@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华容道游戏</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .puzzle-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px auto;
+      width: 100%;
+      aspect-ratio: 1; /* 保持棋盘为正方形 */
+    }
+    .puzzle-cell {
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      aspect-ratio: 1; /* 保持单元格为正方形 */
+    }
+    .puzzle-cell.empty {
+      background-color: transparent;
+      cursor: default;
+    }
+    .message {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+      .puzzle-cell {
+        font-size: 16px;
+      }
+      button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>华容道游戏</h1>
+  <div class="puzzle-board" id="puzzle-board"></div>
+  <div class="message" id="message"></div>
+  <button onclick="resetPuzzle()">重置</button>
+</div>
+
+<script>
+  const puzzle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0];
+  let emptyIndex = 15;
+
+  function renderPuzzle() {
+    const puzzleBoard = document.getElementById('puzzle-board');
+    puzzleBoard.innerHTML = '';
+    for (let i = 0; i < 16; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'puzzle-cell';
+      if (puzzle[i] === 0) {
+        cell.classList.add('empty');
+      } else {
+        cell.textContent = puzzle[i];
+        cell.addEventListener('click', () => moveTile(i));
+      }
+      puzzleBoard.appendChild(cell);
+    }
+  }
+
+  function moveTile(index) {
+    const directions = [-1, 1, -4, 4];
+    for (let dir of directions) {
+      const targetIndex = index + dir;
+      if (targetIndex === emptyIndex) {
+        [puzzle[index], puzzle[targetIndex]] = [puzzle[targetIndex], puzzle[index]];
+        emptyIndex = index;
+        renderPuzzle();
+        checkWin();
+        break;
+      }
+    }
+  }
+
+  function checkWin() {
+    if (puzzle.slice(0, 15).every((value, index) => value === index + 1)) {
+      document.getElementById('message').textContent = '恭喜你！拼图完成！';
+    }
+  }
+
+  function resetPuzzle() {
+    puzzle.sort(() => Math.random() - 0.5);
+    emptyIndex = puzzle.indexOf(0);
+    renderPuzzle();
+    document.getElementById('message').textContent = '';
+  }
+
+  resetPuzzle();
+</script>
+</body>
+</html>

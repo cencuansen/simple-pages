@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五十音 - 平假名</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background-color: #f5f7fa;
+            --text-color: #333333;
+            --input-bg: #ffffff;
+            --button-bg: #dfe4ea;
+            --button-hover: #ced6e0;
+            --accent-color: #4dabf7;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .dark-mode {
+            --background-color: #212529;
+            --text-color: #e9ecef;
+            --input-bg: #343a40;
+            --button-bg: #495057;
+            --button-hover: #5c636a;
+            --accent-color: #74c0fc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            margin-bottom: 10px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px dashed #aaa;
+        }
+
+        .notice td {
+            border-bottom: 1px dashed #f00;
+        }
+
+        .space td {
+            border: none;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+        }
+
+        audio {
+            display: none;
+        }
+
+        /* 主题切换按钮样式 */
+        .theme-toggle {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 添加主题切换按钮 -->
+<div class="header">
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+</div>
+
+<div class="bg-white right-block">
+    <table class="table table-striped">
+        <tbody>
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="あ" ro="a" ka="ア" ha-from="安" ka-from="阿"
+                                   audio-src="/audios/a.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="い" ro="i" ka="イ" ha-from="以" ka-from="伊"
+                                   audio-src="/audios/i.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="う" ro="u" ka="ウ" ha-from="宇" ka-from="宇"
+                                   audio-src="/audios/u.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="え" ro="e" ka="エ" ha-from="衣" ka-from="江"
+                                   audio-src="/audios/e.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="お" ro="o" ka="オ" ha-from="於" ka-from="於"
+                                   audio-src="/audios/o.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="notice">
+            <td class="cell">
+                <audio-cell-module ha="か" ro="ka" ka="カ" ha-from="加" ka-from="加"
+                                   audio-src="/audios/ka.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="き" ro="ki" ka="キ" ha-from="幾" ka-from="幾"
+                                   audio-src="/audios/ki.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="く" ro="ku" ka="ク" ha-from="久" ka-from="久"
+                                   audio-src="/audios/ku.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="け" ro="ke" ka="ケ" ha-from="計" ka-from="介/竹"
+                                   audio-src="/audios/ke.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="こ" ro="ko" ka="コ" ha-from="己" ka-from="己"
+                                   audio-src="/audios/ko.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="notice">
+            <td class="cell">
+                <audio-cell-module ha="さ" ro="sa" ka="サ" ha-from="左" ka-from="散"
+                                   audio-src="/audios/sa.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="し" ro="shi" ka="シ" ha-from="之" ka-from="之"
+                                   audio-src="/audios/shi.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="す" ro="su" ka="ス" ha-from="寸" ka-from="須"
+                                   audio-src="/audios/su.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="せ" ro="se" ka="セ" ha-from="世" ka-from="世"
+                                   audio-src="/audios/se.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="そ" ro="so" ka="ソ" ha-from="首" ka-from="首"
+                                   audio-src="/audios/so.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="notice">
+            <td class="cell">
+                <audio-cell-module ha="た" ro="ta" ka="タ" ha-from="太" ka-from="多"
+                                   audio-src="/audios/ta.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ち" ro="chi" ka="チ" ha-from="知" ka-from="千"
+                                   audio-src="/audios/chi.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="つ" ro="tsu" ka="ツ" ha-from="川" ka-from="川"
+                                   audio-src="/audios/tsu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="て" ro="te" ka="テ" ha-from="天" ka-from="天"
+                                   audio-src="/audios/te.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="と" ro="to" ka="ト" ha-from="止" ka-from="止"
+                                   audio-src="/audios/to.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="な" ro="na" ka="ナ" ha-from="奈" ka-from="奈"
+                                   audio-src="/audios/na.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="に" ro="ni" ka="ニ" ha-from="仁" ka-from="仁"
+                                   audio-src="/audios/ni.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぬ" ro="nu" ka="ヌ" ha-from="奴" ka-from="奴"
+                                   audio-src="/audios/nu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ね" ro="ne" ka="ネ" ha-from="祢" ka-from="祢"
+                                   audio-src="/audios/ne.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="の" ro="no" ka="ノ" ha-from="乃" ka-from="乃"
+                                   audio-src="/audios/no.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="notice">
+            <td class="cell">
+                <audio-cell-module ha="は" ro="ha" ka="ハ" ha-from="波" ka-from="八"
+                                   audio-src="/audios/ha.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ひ" ro="hi" ka="ヒ" ha-from="比" ka-from="比"
+                                   audio-src="/audios/hi.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ふ" ro="fu" ka="フ" ha-from="不" ka-from="不"
+                                   audio-src="/audios/hu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="へ" ro="he" ka="ヘ" ha-from="部" ka-from="部"
+                                   audio-src="/audios/he.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ほ" ro="ho" ka="ホ" ha-from="保" ka-from="保"
+                                   audio-src="/audios/ho.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="ま" ro="ma" ka="マ" ha-from="末" ka-from="万"
+                                   audio-src="/audios/ma.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="み" ro="mi" ka="ミ" ha-from="義" ka-from="三"
+                                   audio-src="/audios/mi.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="む" ro="mu" ka="ム" ha-from="武" ka-from="牟"
+                                   audio-src="/audios/mu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="め" ro="me" ka="メ" ha-from="女" ka-from="女"
+                                   audio-src="/audios/me.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="も" ro="mo" ka="モ" ha-from="毛" ka-from="毛"
+                                   audio-src="/audios/mo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="や" ro="ya" ka="ヤ" ha-from="也" ka-from="也"
+                                   audio-src="/audios/ya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <!-- 此单元格为空 -->
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ゆ" ro="yu" ka="ユ" ha-from="由" ka-from="由"
+                                   audio-src="/audios/yu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <!-- 此单元格为空 -->
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="よ" ro="yo" ka="ヨ" ha-from="與" ka-from="與"
+                                   audio-src="/audios/yo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="ら" ro="ra" ka="ラ" ha-from="良" ka-from="良"
+                                   audio-src="/audios/ra.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="り" ro="ri" ka="リ" ha-from="利" ka-from="利"
+                                   audio-src="/audios/ri.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="る" ro="ru" ka="ル" ha-from="留" ka-from="流"
+                                   audio-src="/audios/ru.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="れ" ro="re" ka="レ" ha-from="礼" ka-from="礼"
+                                   audio-src="/audios/re.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ろ" ro="ro" ka="ロ" ha-from="呂" ka-from="呂"
+                                   audio-src="/audios/ro.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="わ" ro="wa" ka="ワ" ha-from="和" ka-from="和"
+                                   audio-src="/audios/wa.mp3"></audio-cell-module>
+            </td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell">
+                <audio-cell-module ha="を" ro="o" ka="ヲ" ha-from="遠" ka-from="乎"
+                                   audio-src="/audios/o.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="ん" ro="n" ka="ン" ha-from="无" ka-from="尔"
+                                   audio-src="/audios/n.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="space">
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+        </tr>
+
+        <tr class="notice">
+            <td class="cell">
+                <audio-cell-module ha="が" ro="ga" ka="ガ" audio-src="/audios/ga.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぎ" ro="gi" ka="ギ" audio-src="/audios/gi.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぐ" ro="gu" ka="グ" audio-src="/audios/gu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="げ" ro="ge" ka="ゲ" audio-src="/audios/ge.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ご" ro="go" ka="ゴ" audio-src="/audios/go.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="notice">
+            <td class="cell">
+                <audio-cell-module ha="ざ" ro="za" ka="ザ" audio-src="/audios/za.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="じ" ro="ji" ka="ジ" audio-src="/audios/zi.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ず" ro="zu" ka="ズ" audio-src="/audios/zu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぜ" ro="ze" ka="ゼ" audio-src="/audios/ze.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぞ" ro="zo" ka="ゾ" audio-src="/audios/zo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="notice">
+            <td class="cell">
+                <audio-cell-module ha="だ" ro="da" ka="ダ" audio-src="/audios/da.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぢ" ro="zi/di" ka="ヂ" audio-src="/audios/di.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="づ" ro="zu/du" ka="ヅ" audio-src="/audios/zu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="で" ro="de" ka="デ" audio-src="/audios/de.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ど" ro="do" ka="ド" audio-src="/audios/do.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="notice">
+            <td class="cell">
+                <audio-cell-module ha="ば" ro="ba" ka="バ" audio-src="/audios/ba.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="び" ro="bi" ka="ビ" audio-src="/audios/bi.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぶ" ro="bu" ka="ブ" audio-src="/audios/bu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="べ" ro="be" ka="ベ" audio-src="/audios/be.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぼ" ro="bo" ka="ボ" audio-src="/audios/bo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="notice">
+            <td class="cell">
+                <audio-cell-module ha="ぱ" ro="pa" ka="パ" audio-src="/audios/pa.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぴ" ro="pi" ka="ピ" audio-src="/audios/pi.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぷ" ro="pu" ka="プ" audio-src="/audios/pu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぺ" ro="pe" ka="ペ" audio-src="/audios/pe.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぽ" ro="po" ka="ポ" audio-src="/audios/po.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr class="space">
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="きゃ" ro="kya" audio-src="/audios/kya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="きゅ" ro="kyu" audio-src="/audios/kyu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="きょ" ro="kyo" audio-src="/audios/kyo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="しゃ" ro="sya" audio-src="/audios/sya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="しゅ" ro="syu" audio-src="/audios/syu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="しょ" ro="syo" audio-src="/audios/syo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="ちゃ" ro="cya" audio-src="/audios/cya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ちゅ" ro="cyu" audio-src="/audios/cyu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ちょ" ro="cyo" audio-src="/audios/cyo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="にゃ" ro="nya" audio-src="/audios/nya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="にゅ" ro="nyu" audio-src="/audios/nyu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="にょ" ro="nyo" audio-src="/audios/nyo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="ひゃ" ro="hya" audio-src="/audios/hya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ひゅ" ro="hyu" audio-src="/audios/hyu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ひょ" ro="hyo" audio-src="/audios/hyo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="みゃ" ro="mya" audio-src="/audios/mya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="みゅ" ro="myu" audio-src="/audios/myu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="みょ" ro="myo" audio-src="/audios/myo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="りゃ" ro="rya" audio-src="/audios/rya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="りゅ" ro="ryu" audio-src="/audios/ryu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="りょ" ro="ryo" audio-src="/audios/ryo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="ぎゃ" ro="gya" audio-src="/audios/gya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぎゅ" ro="gyu" audio-src="/audios/gyu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぎょ" ro="gyo" audio-src="/audios/gyo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="じゃ" ro="zya" audio-src="/audios/zya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="じゅ" ro="zyu" audio-src="/audios/zyu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="じょ" ro="zyo" audio-src="/audios/zyo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="びゃ" ro="bya" audio-src="/audios/bya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="びゅ" ro="byu" audio-src="/audios/byu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="びょ" ro="byo" audio-src="/audios/byo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="cell">
+                <audio-cell-module ha="ぴゃ" ro="pya" audio-src="/audios/pya.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぴゅ" ro="pyu" audio-src="/audios/pyu.mp3"></audio-cell-module>
+            </td>
+            <td class="cell">
+            </td>
+            <td class="cell">
+                <audio-cell-module ha="ぴょ" ro="pyo" audio-src="/audios/pyo.mp3"></audio-cell-module>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // 主题切换功能（保持不变）
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        document.getElementById('theme-toggle').textContent = isDarkMode ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    // 初始化主题（保持不变）
+    (function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        } else {
+            document.getElementById('theme-toggle').textContent = '🌙';
+        }
+    })();
+
+    class AudioCellModule extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({mode: 'open'}); // 创建一个阴影DOM来挂载模板
+            this.shadowRoot.innerHTML = `
+              <style>
+                .row {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                }
+
+                .row-1 {
+                    font-size: 12px;
+                }
+
+                .row-2 {
+                    font-size: 30px;
+                    display: block;
+                    position: relative;
+                }
+
+                .ha-from {
+                    font-size: 12px;
+                    position: absolute;
+                    right: 8px;
+                    bottom: 8px;
+                }
+
+                .ha-from,.ka-from {
+                    color: #888;
+                    user-select: none;
+                }
+
+                .row-3 {
+                    height: 21px;
+                    display: block;
+                }
+
+                .play-btn {
+                    user-select: none;
+                    cursor: pointer;
+                    color: #ddd;
+                }
+              </style>
+      <div class="row row-1">
+        <span class="ka col"></span>
+        <span class="ka-from col"></span>
+        <span class="ro col"></span>
+      </div>
+      <div class="row row-2">
+        <span class="ha col"></span>
+        <span class="ha-from col"></span>
+      </div>
+      <div class="row row-3 play-btn">
+        ▶
+      </div>
+      <audio></audio>
+    `;
+        }
+
+        connectedCallback() {
+            this.shadowRoot.querySelector('.play-btn').addEventListener('click', () => this.playAudio());
+            this.updateContent();
+        }
+
+        disconnectedCallback() {
+            this.shadowRoot.querySelector('.play-btn').removeEventListener('click', () => this.playAudio());
+        }
+
+        updateContent() {
+            // 相当于props（外部传入的参数）
+            const ha = this.getAttribute('ha');
+            const haFrom = this.getAttribute('ha-from');
+            const ro = this.getAttribute('ro');
+            const ka = this.getAttribute('ka');
+            const kaFrom = this.getAttribute('ka-from');
+            const audioSrc = this.getAttribute('audio-src');
+
+            // 赋值到dom上
+            this.shadowRoot.querySelector('.ha').textContent = ha;
+            // this.shadowRoot.querySelector('.ha-from').textContent = haFrom;
+            this.shadowRoot.querySelector('.ro').textContent = ro;
+            // this.shadowRoot.querySelector('.ka').textContent = ka;
+            // this.shadowRoot.querySelector('.ka-from').textContent = kaFrom;
+            this.shadowRoot.querySelector('audio').src = audioSrc;
+        }
+
+        playAudio() {
+            // 播放音频
+            const audio = this.shadowRoot.querySelector('audio');
+            audio.play();
+        }
+    }
+
+    customElements.define('audio-cell-module', AudioCellModule);
+</script>
+</body>
+</html>

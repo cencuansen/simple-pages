@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本转语音</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #text {
+            width: 50%;
+            height: 200px;
+            resize: none;
+            outline: none;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        #play {
+            width: 50%;
+            height: 40px;
+        }
+
+        @media screen and (max-width: 750px) {
+            #text {
+                width: 100%;
+            }
+
+            #play {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <label for="text"></label><textarea id="text"></textarea>
+    <br/>
+    <button id="play" class="row play" onclick="playFunc()">播放</button>
+    <br/>
+</div>
+
+<script>
+    const textarea = document.getElementById('text');
+
+    function playFunc() {
+        if (!textarea.value) {
+            alert('请输入文本')
+        }
+        const utterance = new SpeechSynthesisUtterance(textarea.value.trim());
+        utterance.rate = 1;
+        utterance.pitch = 1;
+        utterance.lang = 'zh-CN';
+        // utterance.lang = 'zh-TW';
+        // utterance.lang = 'en-US';
+        // utterance.lang = 'zh-HK';
+        speechSynthesis.speak(utterance);
+
+        utterance
+    }
+
+
+</script>
+</body>
+</html>

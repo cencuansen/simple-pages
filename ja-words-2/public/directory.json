@@ -1,0 +1,62 @@
+{
+  "type": "directory",
+  "name": "Root",
+  "children": [
+    {
+      "type": "directory",
+      "name": "标准日本语2_初级_上",
+      "children": [
+        {
+          "type": "file",
+          "name": "第1课",
+          "path": "/words/标准日本语初级上1.json"
+        },
+        {
+          "type": "file",
+          "name": "第2课",
+          "path": "/words/标准日本语初级上2.json"
+        },
+        {
+          "type": "file",
+          "name": "数字",
+          "path": "/words/标准日本语初级上-数字.json"
+        },
+        {
+          "type": "file",
+          "name": "第3课",
+          "path": "/words/标准日本语初级上3.json"
+        },
+        {
+          "type": "file",
+          "name": "第4课",
+          "path": "/words/标准日本语初级上4.json"
+        },
+        {
+          "type": "file",
+          "name": "第5课",
+          "path": "/words/标准日本语初级上5.json"
+        },
+        {
+          "type": "file",
+          "name": "第6课",
+          "path": "/words/标准日本语初级上6.json"
+        },
+        {
+          "type": "file",
+          "name": "第7课",
+          "path": "/words/标准日本语初级上7.json"
+        },
+        {
+          "type": "file",
+          "name": "第8课",
+          "path": "/words/标准日本语初级上8.json"
+        },
+        {
+          "type": "file",
+          "name": "第9课",
+          "path": "/words/标准日本语初级上9.json"
+        }
+      ]
+    }
+  ]
+}

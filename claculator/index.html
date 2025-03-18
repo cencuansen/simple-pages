@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>涨跌幅计算器</title>
+    <link rel="icon" type="image/x-icon" href="calc.ico">
+    <style>
+        /* CSS 变量 */
+        :root {
+            --background-color: #f5f7fa;
+            --text-color: #333333;
+            --input-bg: #ffffff;
+            --button-bg: #dfe4ea;
+            --button-hover: #ced6e0;
+            --accent-color: #4dabf7;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode {
+            --background-color: #212529;
+            --text-color: #e9ecef;
+            --input-bg: #343a40;
+            --button-bg: #495057;
+            --button-hover: #5c636a;
+            --accent-color: #74c0fc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--input-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        h1 {
+            margin: 0 0 20px;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        #theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            background: var(--button-bg);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        #theme-toggle:hover {
+            background: var(--button-hover);
+        }
+
+        #input-container {
+            background: var(--button-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        input {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid #ced4da;
+            padding: 10px;
+            width: 90%;
+            height: 20px; /* 固定高度与按钮对齐 */
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        button {
+            background-color: var(--button-bg);
+            color: var(--text-color);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .clear-button {
+            padding: 0; /* 缩小清空按钮 */
+            width: 40px;
+            height: 40px; /* 与输入框高度一致 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--input-bg);
+            font-size: 12px;
+        }
+
+        #button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px;
+            background: var(--button-bg);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        #history {
+            margin-top: 20px;
+        }
+
+        #history-list {
+            list-style: none;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--button-hover);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        #history-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--button-hover);
+            font-size: 14px;
+        }
+
+        #history-list li:last-child {
+            border-bottom: none;
+        }
+
+        #clear-history {
+            display: block;
+            margin: 0 auto 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <h1>涨跌幅计算器</h1>
+    <button id="theme-toggle" onclick="toggleTheme()" title="切换主题">🌙</button>
+    <div id="input-container">
+        <div class="input-group">
+            <input type="number" id="initialPrice" placeholder="原值" step="0.01" required tabindex="1">
+            <button class="clear-button" onclick="clearInput('initialPrice')" tabindex="-1">✕</button>
+        </div>
+        <div style="text-align: center; margin: 10px 0;">
+            <button onclick="swapValues()" tabindex="-1" style="font-size: 16px; padding: 8px 16px;">⇅</button>
+        </div>
+        <div class="input-group">
+            <input type="number" id="currentPrice" placeholder="现值" step="0.01" required tabindex="2">
+            <button class="clear-button" onclick="clearInput('currentPrice')" tabindex="-1">✕</button>
+        </div>
+    </div>
+    <div id="button-container">
+        <button onclick="clearAllInput()" tabindex="-1">重置</button>
+    </div>
+    <div id="result"></div>
+    <div id="history">
+        <button id="clear-history" onclick="clearHistory()" tabindex="-1">清空历史</button>
+        <ul id="history-list"></ul>
+    </div>
+</div>
+
+<script>
+    // 监听输入事件，自动计算（保持不变）
+    document.getElementById('initialPrice').addEventListener('input', calculate);
+    document.getElementById('currentPrice').addEventListener('input', calculate);
+
+    // 防抖函数（保持不变）
+    function debounce(func, wait) {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
+    function calculate() {
+        const initialPrice = parseFloat(document.getElementById('initialPrice').value);
+        const currentPrice = parseFloat(document.getElementById('currentPrice').value);
+        const resultDiv = document.getElementById('result');
+
+        if (!isNaN(initialPrice) && !isNaN(currentPrice) && initialPrice !== 0) {
+            const change = ((currentPrice - initialPrice) / initialPrice * 100).toFixed(2);
+            resultDiv.textContent = `${ change }%`;
+            debouncedAddToHistory(initialPrice, currentPrice, change);
+        } else {
+            resultDiv.textContent = '请输入有效数字';
+        }
+    }
+
+    function clearInput(id) {
+        document.getElementById(id).value = '';
+        calculate();
+    }
+
+    function clearAllInput() {
+        document.getElementById('initialPrice').value = '';
+        document.getElementById('currentPrice').value = '';
+        document.getElementById('result').textContent = '';
+    }
+
+    function swapValues() {
+        const initialPrice = document.getElementById('initialPrice').value;
+        const currentPrice = document.getElementById('currentPrice').value;
+        document.getElementById('initialPrice').value = currentPrice;
+        document.getElementById('currentPrice').value = initialPrice;
+        calculate();
+    }
+
+    // 修改后的添加历史记录函数，实现去重
+    function addToHistory(initial, current, change) {
+        const historyList = document.getElementById('history-list');
+        const newEntry = `原值: ${ initial }, 现值: ${ current }, 涨跌幅: ${ change }%`;
+
+        // 检查是否已存在相同的记录
+        const existingEntries = Array.from(historyList.getElementsByTagName('li'));
+        const isDuplicate = existingEntries.some(li => li.textContent === newEntry);
+
+        // 如果不是重复记录才添加
+        if (!isDuplicate) {
+            const li = document.createElement('li');
+            li.textContent = newEntry;
+            historyList.insertBefore(li, historyList.firstChild);
+        }
+    }
+
+    const debouncedAddToHistory = debounce(addToHistory, 2000);
+
+    function clearHistory() {
+        document.getElementById('history-list').innerHTML = '';
+    }
+
+    // 主题切换功能（保持不变）
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        document.getElementById('theme-toggle').textContent = isDarkMode ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    // 初始化主题（保持不变）
+    (function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        } else {
+            document.getElementById('theme-toggle').textContent = '🌙';
+        }
+    })();
+</script>
+</body>
+</html>

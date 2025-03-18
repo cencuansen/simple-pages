@@ -1,0 +1,277 @@
+[
+  {
+    "word": "本",
+    "kana": "ほん",
+    "meaning": "书"
+  },
+  {
+    "word": "かばん",
+    "kana": "かばん",
+    "meaning": "包，公文包"
+  },
+  {
+    "word": "ノート",
+    "kana": "ノート",
+    "meaning": "笔记本，本子"
+  },
+  {
+    "word": "鉛筆",
+    "kana": "えんぴつ",
+    "meaning": "铅笔"
+  },
+  {
+    "word": "傘",
+    "kana": "かさ",
+    "meaning": "伞"
+  },
+  {
+    "word": "靴",
+    "kana": "くつ",
+    "meaning": "鞋"
+  },
+  {
+    "word": "新聞",
+    "kana": "しんぶん",
+    "meaning": "报纸"
+  },
+  {
+    "word": "雑誌",
+    "kana": "ざっし",
+    "meaning": "杂志"
+  },
+  {
+    "word": "辞書",
+    "kana": "じしょ",
+    "meaning": "词典"
+  },
+  {
+    "word": "カメラ",
+    "kana": "カメラ",
+    "meaning": "照相机"
+  },
+  {
+    "word": "テレビ",
+    "kana": "テレビ",
+    "meaning": "电视机"
+  },
+  {
+    "word": "パソコン",
+    "kana": "パソコン",
+    "meaning": "个人电脑"
+  },
+  {
+    "word": "ラジオ",
+    "kana": "ラジオ",
+    "meaning": "收音机"
+  },
+  {
+    "word": "電話",
+    "kana": "でんわ",
+    "meaning": "电话"
+  },
+  {
+    "word": "机",
+    "kana": "つくえ",
+    "meaning": "桌子，书桌"
+  },
+  {
+    "word": "いす",
+    "kana": "いす",
+    "meaning": "椅子"
+  },
+  {
+    "word": "かぎ",
+    "kana": "かぎ",
+    "meaning": "钥匙，锁"
+  },
+  {
+    "word": "時計",
+    "kana": "とけい",
+    "meaning": "钟，表"
+  },
+  {
+    "word": "手帳",
+    "kana": "てちょう",
+    "meaning": "记事本"
+  },
+  {
+    "word": "写真",
+    "kana": "しゃしん",
+    "meaning": "照片"
+  },
+  {
+    "word": "車",
+    "kana": "くるま",
+    "meaning": "车"
+  },
+  {
+    "word": "自転車",
+    "kana": "じてんしゃ",
+    "meaning": "自行车"
+  },
+  {
+    "word": "お土産",
+    "kana": "おみやげ",
+    "meaning": "礼物"
+  },
+  {
+    "word": "名産品",
+    "kana": "めいさんひん",
+    "meaning": "特产，名产"
+  },
+  {
+    "word": "シルク",
+    "kana": "シルク",
+    "meaning": "丝绸"
+  },
+  {
+    "word": "ハンカチ",
+    "kana": "ハンカチ",
+    "meaning": "手绢"
+  },
+  {
+    "word": "会社",
+    "kana": "かいしゃ",
+    "meaning": "公司"
+  },
+  {
+    "word": "方",
+    "kana": "かた",
+    "meaning": "（敬称）位，人"
+  },
+  {
+    "word": "人",
+    "kana": "ひと",
+    "meaning": "人"
+  },
+  {
+    "word": "家族",
+    "kana": "かぞく",
+    "meaning": "家人，家属"
+  },
+  {
+    "word": "母",
+    "kana": "はは",
+    "meaning": "（我）母亲"
+  },
+  {
+    "word": "お母さん",
+    "kana": "おかあさん",
+    "meaning": "母亲"
+  },
+  {
+    "word": "日本語",
+    "kana": "にほんご",
+    "meaning": "日语"
+  },
+  {
+    "word": "中国語",
+    "kana": "ちゅうごくご",
+    "meaning": "汉语，中文"
+  },
+  {
+    "word": "これ",
+    "kana": "これ",
+    "meaning": "这，这个"
+  },
+  {
+    "word": "それ",
+    "kana": "それ",
+    "meaning": "那，那个"
+  },
+  {
+    "word": "あれ",
+    "kana": "あれ",
+    "meaning": "那，那个"
+  },
+  {
+    "word": "どれ",
+    "kana": "どれ",
+    "meaning": "哪个"
+  },
+  {
+    "word": "何",
+    "kana": "なん",
+    "meaning": "什么"
+  },
+  {
+    "word": "だれ",
+    "kana": "だれ",
+    "meaning": "谁"
+  },
+  {
+    "word": "どなた",
+    "kana": "どなた",
+    "meaning": "哪位"
+  },
+  {
+    "word": "この",
+    "kana": "この",
+    "meaning": "这，这个"
+  },
+  {
+    "word": "その",
+    "kana": "その",
+    "meaning": "那，那个"
+  },
+  {
+    "word": "あの",
+    "kana": "あの",
+    "meaning": "那，那个"
+  },
+  {
+    "word": "どの",
+    "kana": "どの",
+    "meaning": "哪个"
+  },
+  {
+    "word": "えっ",
+    "kana": "えっ",
+    "meaning": "啊"
+  },
+  {
+    "word": "わあ",
+    "kana": "わあ",
+    "meaning": "哇"
+  },
+  {
+    "word": "ええ",
+    "kana": "ええ",
+    "meaning": "（应答）嗯，是"
+  },
+  {
+    "word": "長島",
+    "kana": "ながしま",
+    "meaning": "长岛"
+  },
+  {
+    "word": "日本",
+    "kana": "にほん",
+    "meaning": "日本"
+  },
+  {
+    "word": "スワトウ",
+    "kana": "スワトウ",
+    "meaning": "汕头"
+  },
+  {
+    "word": "ロンドン",
+    "kana": "ロンドン",
+    "meaning": "伦敦"
+  },
+  {
+    "word": "ありがとうございます",
+    "kana": "ありがとうございます",
+    "meaning": "谢谢"
+  },
+  {
+    "word": "おいくつ",
+    "kana": "おいくつ",
+    "meaning": "多大"
+  },
+  {
+    "word": "何～/～歳",
+    "kana": "なん～/～さい",
+    "meaning": "多少岁"
+  }
+]

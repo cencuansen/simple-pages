@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>俄罗斯方块</title>
+  <style>
+    * {
+      user-select: none;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #333;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 600px;
+      margin: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .game-area {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(15, 1fr); /* 15 列 */
+      grid-template-rows: repeat(20, 1fr); /* 20 行 */
+      gap: 1px;
+      background-color: #444;
+      border: 2px solid #555;
+      width: 300px; /* 调整棋盘宽度 */
+      height: 400px; /* 调整棋盘高度 */
+      aspect-ratio: 1;
+    }
+
+    .cell {
+      width: 100%;
+      height: 100%;
+      background-color: #333;
+    }
+
+    .cell.filled {
+      background-color: #f39c12;
+    }
+
+    .preview-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      gap: 1px;
+      background-color: #444;
+      border: 2px solid #555;
+      width: 80px;
+      aspect-ratio: 1;
+    }
+
+    .message {
+      font-size: 18px;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .controls button {
+      padding: 15px 20px;
+      font-size: 18px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #2980b9;
+    }
+
+    .direction-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .start-pause-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+        margin: 0 10px;
+      }
+
+      .controls button {
+        padding: 10px 15px;
+        font-size: 16px;
+      }
+
+      .game-board {
+        width: 250px;
+        height: 333px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="game-area">
+    <div class="game-board" id="game-board"></div>
+    <div id="message" class="message">尚未开始</div>
+    <div class="message">分数: <span id="score">0</span></div>
+  </div>
+  <div class="controls">
+    <div class="start-pause-buttons">
+      <button id="start" onclick="startGame()">重新开始</button>
+      <button onclick="pauseGame()">暂停/恢复</button>
+    </div>
+    <div class="direction-buttons">
+      <button onclick="moveLeft()">◀</button>
+      <button onclick="moveDown()">▼</button>
+      <button onclick="moveRight()">▶</button>
+      <button onclick="rotate()">↻</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const boardWidth = 15; // 15 列
+  const boardHeight = 20; // 20 行
+  const board = Array.from({length: boardHeight}, () => Array(boardWidth).fill(0));
+  let currentPiece = null;
+  let nextPiece = null;
+  let currentPosition = null;
+  let gameInterval = null;
+  let isGameOver = true;
+  let isPaused = true;
+  let score = 0;
+
+  const pieces = [
+    [[1, 1, 1, 1]], // I
+    [[1, 1], [1, 1]], // O
+    [[1, 1, 1], [0, 1, 0]], // T
+    [[1, 1, 0], [0, 1, 1]], // S
+    [[0, 1, 1], [1, 1, 0]], // Z
+    [[1, 1, 1], [1, 0, 0]], // L
+    [[1, 1, 1], [0, 0, 1]] // J
+  ];
+
+  function createPiece() {
+    const randomIndex = Math.floor(Math.random() * pieces.length);
+    return pieces[randomIndex];
+  }
+
+  function drawBoard() {
+    const gameBoard = document.getElementById('game-board');
+    gameBoard.innerHTML = '';
+    for (let row = 0; row < boardHeight; row++) {
+      for (let col = 0; col < boardWidth; col++) {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        if (board[row][col] || (currentPiece && isPieceAt(row, col))) {
+          cell.classList.add('filled');
+        }
+        gameBoard.appendChild(cell);
+      }
+    }
+  }
+
+  function isPieceAt(row, col) {
+    if (!currentPosition) {
+      return false;
+    }
+    for (let i = 0; i < currentPiece.length; i++) {
+      for (let j = 0; j < currentPiece[i].length; j++) {
+        if (
+                currentPiece[i][j] &&
+                row === currentPosition.y + i &&
+                col === currentPosition.x + j
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  function movePiece(dx, dy) {
+    if (canMove(dx, dy)) {
+      currentPosition.x += dx;
+      currentPosition.y += dy;
+      drawBoard();
+    }
+  }
+
+  function canMove(dx, dy) {
+    if (isPaused) {
+      return false;
+    }
+    for (let i = 0; i < currentPiece.length; i++) {
+      for (let j = 0; j < currentPiece[i].length; j++) {
+        if (currentPiece[i][j]) {
+          const newX = currentPosition.x + j + dx;
+          const newY = currentPosition.y + i + dy;
+          if (
+                  newX < 0 ||
+                  newX >= boardWidth ||
+                  newY >= boardHeight ||
+                  (newY >= 0 && board[newY][newX])
+          ) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  }
+
+  function rotate() {
+    const newPiece = currentPiece[0].map((_, i) =>
+            currentPiece.map(row => row[i]).reverse()
+    );
+    if (canRotate(newPiece)) {
+      currentPiece = newPiece;
+      drawBoard();
+    }
+  }
+
+  function canRotate(newPiece) {
+    if (isPaused) {
+      return false;
+    }
+    for (let i = 0; i < newPiece.length; i++) {
+      for (let j = 0; j < newPiece[i].length; j++) {
+        if (newPiece[i][j]) {
+          const newX = currentPosition.x + j;
+          const newY = currentPosition.y + i;
+          if (
+                  newX < 0 ||
+                  newX >= boardWidth ||
+                  newY >= boardHeight ||
+                  (newY >= 0 && board[newY][newX])
+          ) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  }
+
+  function placePiece() {
+    for (let i = 0; i < currentPiece.length; i++) {
+      for (let j = 0; j < currentPiece[i].length; j++) {
+        if (currentPiece[i][j]) {
+          board[currentPosition.y + i][currentPosition.x + j] = 1;
+        }
+      }
+    }
+    clearLines();
+    spawnPiece();
+  }
+
+  function clearLines() {
+    let linesCleared = 0;
+    for (let row = boardHeight - 1; row >= 0; row--) {
+      if (board[row].every(cell => cell === 1)) {
+        board.splice(row, 1);
+        board.unshift(Array(boardWidth).fill(0));
+        linesCleared++;
+      }
+    }
+    if (linesCleared > 0) {
+      score += linesCleared * boardWidth;
+      document.getElementById('score').textContent = score;
+    }
+  }
+
+  function spawnPiece() {
+    if (!nextPiece) {
+      nextPiece = createPiece();
+    }
+    currentPiece = nextPiece;
+    nextPiece = createPiece();
+    currentPosition = {x: Math.floor(boardWidth / 2) - 1, y: 0};
+    if (!canMove(0, 0)) {
+      gameOver();
+    }
+  }
+
+  function gameOver() {
+    clearInterval(gameInterval);
+    isGameOver = true;
+    isPaused = true;
+    document.getElementById('message').textContent = '游戏结束！';
+    saveGameState();
+  }
+
+  function startGame() {
+    if (!isPaused) {
+      return;
+    }
+    document.getElementById('message').textContent = '游戏已开始';
+    board.forEach(row => row.fill(0));
+    score = 0;
+    document.getElementById('score').textContent = score;
+    isGameOver = false;
+    isPaused = false;
+    spawnPiece();
+    drawBoard();
+    clearInterval(gameInterval);
+    gameInterval = setInterval(() => {
+      if (!isPaused) {
+        if (canMove(0, 1)) {
+          movePiece(0, 1);
+        } else {
+          placePiece();
+        }
+      }
+    }, 500);
+  }
+
+  function pauseGame() {
+    isPaused = !isPaused;
+    document.getElementById('message').textContent = isPaused ? '游戏已暂停' : '游戏进行中';
+    if (isPaused) {
+      saveGameState();
+    }
+    clearInterval(gameInterval);
+    gameInterval = setInterval(() => {
+      if (!isPaused) {
+        if (canMove(0, 1)) {
+          movePiece(0, 1);
+        } else {
+          placePiece();
+        }
+      }
+    }, 500);
+  }
+
+  function saveGameState() {
+    const gameState = {
+      board: board,
+      score: score,
+      currentPiece: currentPiece,
+      currentPosition: currentPosition,
+      isGameOver: isGameOver,
+      isPaused: isPaused
+    };
+    localStorage.setItem('tetrisGameState', JSON.stringify(gameState));
+  }
+
+  function loadGameState() {
+    const savedState = localStorage.getItem('tetrisGameState');
+    if (savedState) {
+      const gameState = JSON.parse(savedState);
+      board.forEach((row, i) => row.forEach((cell, j) => board[i][j] = gameState.board[i][j]));
+      score = gameState.score;
+      isGameOver = gameState.isGameOver;
+      isPaused = gameState.isPaused;
+      currentPiece = gameState.currentPiece;
+      currentPosition = gameState.currentPosition;
+      document.getElementById('score').textContent = score;
+      document.getElementById('message').textContent = isGameOver ? '游戏结束！' : (isPaused ? '游戏已暂停' : '点击“开始”按钮');
+      drawBoard();
+    }
+  }
+
+  document.addEventListener('keydown', event => {
+    if (event.code === 'ArrowLeft') movePiece(-1, 0);
+    if (event.code === 'ArrowRight') movePiece(1, 0);
+    if (event.code === 'ArrowDown') movePiece(0, 1);
+    if (event.code === 'ArrowUp') rotate();
+    if (event.code === 'Space') startGame();
+  });
+
+  // 监听页面失去焦点事件
+  window.addEventListener('blur', () => {
+    if (!isPaused && !isGameOver) {
+      pauseGame(); // 调用暂停函数
+    }
+  });
+
+  function moveLeft() {
+    movePiece(-1, 0);
+  }
+
+  function moveRight() {
+    movePiece(1, 0);
+  }
+
+  function moveDown() {
+    movePiece(0, 1);
+  }
+
+  // 加载保存的游戏状态
+  loadGameState();
+  drawBoard();
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>bullx picker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            padding: 10px;
+            height: calc(100vh - 20px);
+        }
+
+        .p-left {
+            flex: 1;
+            background-color: #fff;
+            border-right: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .p-right {
+            flex: 1;
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        .p-right-header {
+            padding: 10px;
+        }
+
+        .json-list {
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 10px;
+            resize: none;
+        }
+
+        .display-table {
+
+        }
+
+        .table-div {
+            height: calc(100vh - 100px);
+            overflow-y: scroll;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #666;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #999;
+        }
+
+        .emoji-cell {
+            width: 50px;
+            text-align: center;
+        }
+
+        .address-cell {
+            font-family: monospace;
+            max-width: 400px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="p-left">
+        <label>
+            <textarea id="json-list" class="json-list" placeholder="输入 bullx 钱包列表"></textarea>
+        </label>
+    </div>
+    <div class="p-right">
+        <div class="p-right-header">
+            <button id="copyButton" class="copy-button">复制</button>
+<!--            <button id="selectInfo" class="select-info">0/0</button>-->
+        </div>
+        <div class="table-div">
+            <table id="displayTable" class="display-table">
+                <thead>
+                <tr>
+                    <th><label for="selectAll"></label><input type="checkbox" id="selectAll"></th>
+                    <th>Emoji</th>
+                    <th>名称</th>
+                    <th>地址</th>
+                    <th>标签</th>
+                </tr>
+                </thead>
+                <tbody id="displayBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    const textAres = document.querySelector('#json-list');
+    const tbody = document.querySelector('#displayBody');
+    const selectInfo = document.querySelector('#selectInfo');
+
+    // function checkHandler() {
+    //     const rows = document.querySelectorAll('#displayBody tr');
+    //     const total = rows.length;
+    //     let count = 0;
+    //
+    //     rows.forEach(tr => {
+    //         if (tr.querySelector('input').checked) count++;
+    //     });
+    //
+    //     selectInfo.value = `${count}/${total}`;
+    // }
+
+    textAres.addEventListener('input', function (e) {
+        if (!textAres.value) {
+            return;
+        }
+        try {
+            const json = JSON.parse(textAres.value);
+            for (let i = 0; i < json.length; i++) {
+                const item = json[i];
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                                    <td><input type="checkbox"></td>
+                                    <td class="emoji-cell">${ item.emoji || '' }</td>
+                                    <td>${ item.name }</td>
+                                    <td class="address-cell">${ item.address }</td>
+                                    <td>${ item.tags.join(', ') }</td>
+                                `;
+                tr.dataset.item = JSON.stringify(item);
+                tbody.appendChild(tr);
+            }
+        } catch (e) {
+            window.alert(e.message);
+        }
+    })
+
+    // 全选功能
+    document.getElementById('selectAll').addEventListener('click', function (e) {
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = e.target.checked);
+    });
+
+    // 复制
+    document.getElementById('copyButton').addEventListener('click', function (e) {
+        const selectedItems = [];
+        document.querySelectorAll('#displayBody tr').forEach(tr => {
+            if (tr.querySelector('input').checked) {
+                selectedItems.push(JSON.parse(tr.dataset.item));
+            }
+        });
+
+        if (selectedItems.length === 0) {
+            alert('没有勾选');
+            return;
+        }
+
+        const jsonString = JSON.stringify(selectedItems, null, 2);
+        navigator.clipboard.writeText(jsonString)
+            .then(() => alert('已复制'))
+            .catch(() => alert('复制失败'));
+    })
+</script>
+</body>
+</html>

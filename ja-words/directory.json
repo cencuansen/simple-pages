@@ -1,0 +1,33 @@
+{
+  "name": "日语单词本",
+  "type": "directory",
+  "children": [
+    {
+      "name": "基础单词",
+      "type": "directory",
+      "children": [
+        {
+          "name": "问候语",
+          "type": "file",
+          "path": "data/greetings.json"
+        },
+        {
+          "name": "数字",
+          "type": "file",
+          "path": "data/numbers.json"
+        }
+      ]
+    },
+    {
+      "name": "进阶单词",
+      "type": "directory",
+      "children": [
+        {
+          "name": "旅行用语",
+          "type": "file",
+          "path": "data/travel.json"
+        }
+      ]
+    }
+  ]
+}

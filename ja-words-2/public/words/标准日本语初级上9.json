@@ -1,0 +1,327 @@
+[
+  {
+    "word": "料理",
+    "kana": "りょうり",
+    "meaning": "料理"
+  },
+  {
+    "word": "四川料理",
+    "kana": "しせんりょうり",
+    "meaning": "四川料理"
+  },
+  {
+    "word": "スープ",
+    "kana": "すーぷ",
+    "meaning": "汤"
+  },
+  {
+    "word": "北京ダック",
+    "kana": "ぺきんだっく",
+    "meaning": "北京烤鸭"
+  },
+  {
+    "word": "食べ物",
+    "kana": "たべもの",
+    "meaning": "食物"
+  },
+  {
+    "word": "すき焼き",
+    "kana": "すきやき",
+    "meaning": "日式牛肉火锅"
+  },
+  {
+    "word": "温泉",
+    "kana": "おんせん",
+    "meaning": "温泉"
+  },
+  {
+    "word": "お湯",
+    "kana": "おゆ",
+    "meaning": "热水"
+  },
+  {
+    "word": "水",
+    "kana": "みず",
+    "meaning": "水"
+  },
+  {
+    "word": "浴衣",
+    "kana": "ゆかた",
+    "meaning": "浴衣"
+  },
+  {
+    "word": "眺め",
+    "kana": "ながめ",
+    "meaning": "景色"
+  },
+  {
+    "word": "薬",
+    "kana": "くすり",
+    "meaning": "药"
+  },
+  {
+    "word": "天気",
+    "kana": "てんき",
+    "meaning": "天气"
+  },
+  {
+    "word": "紙",
+    "kana": "かみ",
+    "meaning": "纸"
+  },
+  {
+    "word": "ニュース",
+    "kana": "にゅーす",
+    "meaning": "新闻"
+  },
+  {
+    "word": "女性",
+    "kana": "じょせい",
+    "meaning": "女性"
+  },
+  {
+    "word": "お客様",
+    "kana": "おきゃくさま",
+    "meaning": "顾客"
+  },
+  {
+    "word": "グラス",
+    "kana": "ぐらす",
+    "meaning": "玻璃杯"
+  },
+  {
+    "word": "歌舞伎",
+    "kana": "かぶき",
+    "meaning": "歌舞伎"
+  },
+  {
+    "word": "気持ち",
+    "kana": "きもち",
+    "meaning": "心情"
+  },
+  {
+    "word": "たくさん",
+    "kana": "たくさん",
+    "meaning": "很多"
+  },
+  {
+    "word": "辛い",
+    "kana": "からい",
+    "meaning": "辣"
+  },
+  {
+    "word": "甘い",
+    "kana": "あまい",
+    "meaning": "甜"
+  },
+  {
+    "word": "塩辛い",
+    "kana": "しおからい",
+    "meaning": "咸"
+  },
+  {
+    "word": "酸っぱい",
+    "kana": "すっぱい",
+    "meaning": "酸"
+  },
+  {
+    "word": "苦い",
+    "kana": "にがい",
+    "meaning": "苦"
+  },
+  {
+    "word": "おいしい",
+    "kana": "おいしい",
+    "meaning": "好吃"
+  },
+  {
+    "word": "まずい",
+    "kana": "まずい",
+    "meaning": "难吃"
+  },
+  {
+    "word": "熱い",
+    "kana": "あつい",
+    "meaning": "热"
+  },
+  {
+    "word": "冷たい",
+    "kana": "つめたい",
+    "meaning": "冷"
+  },
+  {
+    "word": "楽しい",
+    "kana": "たのしい",
+    "meaning": "开心"
+  },
+  {
+    "word": "面白い",
+    "kana": "おもしろい",
+    "meaning": "有趣"
+  },
+  {
+    "word": "つまらない",
+    "kana": "つまらない",
+    "meaning": "无聊"
+  },
+  {
+    "word": "広い",
+    "kana": "ひろい",
+    "meaning": "宽敞"
+  },
+  {
+    "word": "狭い",
+    "kana": "せまい",
+    "meaning": "狭窄"
+  },
+  {
+    "word": "大きい",
+    "kana": "おおきい",
+    "meaning": "大"
+  },
+  {
+    "word": "小さい",
+    "kana": "ちいさい",
+    "meaning": "小"
+  },
+  {
+    "word": "忙しい",
+    "kana": "いそがしい",
+    "meaning": "忙碌"
+  },
+  {
+    "word": "いい",
+    "kana": "いい",
+    "meaning": "好"
+  },
+  {
+    "word": "悪い",
+    "kana": "わるい",
+    "meaning": "坏"
+  },
+  {
+    "word": "すばらしい",
+    "kana": "すばらしい",
+    "meaning": "精彩"
+  },
+  {
+    "word": "遠い",
+    "kana": "とおい",
+    "meaning": "远"
+  },
+  {
+    "word": "近い",
+    "kana": "ちかい",
+    "meaning": "近"
+  },
+  {
+    "word": "高い",
+    "kana": "たかい",
+    "meaning": "高"
+  },
+  {
+    "word": "安い",
+    "kana": "やすい",
+    "meaning": "便宜"
+  },
+  {
+    "word": "寒い",
+    "kana": "さむい",
+    "meaning": "冷（天气）"
+  },
+  {
+    "word": "新しい",
+    "kana": "あたらしい",
+    "meaning": "新"
+  },
+  {
+    "word": "古い",
+    "kana": "ふるい",
+    "meaning": "旧"
+  },
+  {
+    "word": "難しい",
+    "kana": "むずかしい",
+    "meaning": "难"
+  },
+  {
+    "word": "易しい",
+    "kana": "やさしい",
+    "meaning": "简单"
+  },
+  {
+    "word": "多い",
+    "kana": "おおい",
+    "meaning": "多"
+  },
+  {
+    "word": "少ない",
+    "kana": "すくない",
+    "meaning": "少"
+  },
+  {
+    "word": "可愛い",
+    "kana": "かわいい",
+    "meaning": "可爱"
+  },
+  {
+    "word": "本当に",
+    "kana": "ほんとうに",
+    "meaning": "真的"
+  },
+  {
+    "word": "あまり",
+    "kana": "あまり",
+    "meaning": "不太"
+  },
+  {
+    "word": "とても",
+    "kana": "とても",
+    "meaning": "非常"
+  },
+  {
+    "word": "大変",
+    "kana": "たいへん",
+    "meaning": "很（辛苦）"
+  },
+  {
+    "word": "少し",
+    "kana": "すこし",
+    "meaning": "一点"
+  },
+  {
+    "word": "ちょっと",
+    "kana": "ちょっと",
+    "meaning": "稍稍"
+  },
+  {
+    "word": "全然",
+    "kana": "ぜんぜん",
+    "meaning": "完全不"
+  },
+  {
+    "word": "ちょうど",
+    "kana": "ちょうど",
+    "meaning": "正好"
+  },
+  {
+    "word": "天安門",
+    "kana": "てんあんもん",
+    "meaning": "天安门"
+  },
+  {
+    "word": "万里の長城",
+    "kana": "ばんりのちょうじょう",
+    "meaning": "万里长城"
+  },
+  {
+    "word": "気持ちがいいです",
+    "kana": "きもちがいいです",
+    "meaning": "感觉很好"
+  },
+  {
+    "word": "用",
+    "kana": "よう",
+    "meaning": "用处"
+  }
+]

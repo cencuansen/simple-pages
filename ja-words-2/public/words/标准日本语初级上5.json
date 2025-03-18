@@ -1,0 +1,262 @@
+[
+  {
+    "word": "今",
+    "kana": "いま",
+    "meaning": "现在"
+  },
+  {
+    "word": "先週",
+    "kana": "せんしゅう",
+    "meaning": "上周"
+  },
+  {
+    "word": "来週",
+    "kana": "らいしゅう",
+    "meaning": "下周"
+  },
+  {
+    "word": "さ来週",
+    "kana": "さらいしゅう",
+    "meaning": "下下周"
+  },
+  {
+    "word": "今週",
+    "kana": "こんしゅう",
+    "meaning": "本周"
+  },
+  {
+    "word": "昨日",
+    "kana": "きのう",
+    "meaning": "昨天"
+  },
+  {
+    "word": "明日",
+    "kana": "あした",
+    "meaning": "明天"
+  },
+  {
+    "word": "あさって",
+    "kana": "あさって",
+    "meaning": "后天"
+  },
+  {
+    "word": "おととい",
+    "kana": "おととい",
+    "meaning": "前天"
+  },
+  {
+    "word": "毎日",
+    "kana": "まいにち",
+    "meaning": "每天"
+  },
+  {
+    "word": "毎朝",
+    "kana": "まいあさ",
+    "meaning": "每天早晨"
+  },
+  {
+    "word": "毎晩",
+    "kana": "まいばん",
+    "meaning": "每天晚上"
+  },
+  {
+    "word": "毎週",
+    "kana": "まいしゅう",
+    "meaning": "每周"
+  },
+  {
+    "word": "午前",
+    "kana": "ごぜん",
+    "meaning": "上午"
+  },
+  {
+    "word": "午後",
+    "kana": "ごご",
+    "meaning": "下午"
+  },
+  {
+    "word": "日曜日",
+    "kana": "にちようび",
+    "meaning": "星期日"
+  },
+  {
+    "word": "月曜日",
+    "kana": "げつようび",
+    "meaning": "星期一"
+  },
+  {
+    "word": "火曜日",
+    "kana": "かようび",
+    "meaning": "星期二"
+  },
+  {
+    "word": "金曜日",
+    "kana": "きんようび",
+    "meaning": "星期五"
+  },
+  {
+    "word": "土曜日",
+    "kana": "どようび",
+    "meaning": "星期六"
+  },
+  {
+    "word": "今朝",
+    "kana": "けさ",
+    "meaning": "今天早上"
+  },
+  {
+    "word": "今晩",
+    "kana": "こんばん",
+    "meaning": "今晚"
+  },
+  {
+    "word": "来年",
+    "kana": "らいねん",
+    "meaning": "明年"
+  },
+  {
+    "word": "去年",
+    "kana": "きょねん",
+    "meaning": "去年"
+  },
+  {
+    "word": "夜",
+    "kana": "よる",
+    "meaning": "夜晚"
+  },
+  {
+    "word": "晩",
+    "kana": "ばん",
+    "meaning": "晚上"
+  },
+  {
+    "word": "朝",
+    "kana": "あさ",
+    "meaning": "早晨"
+  },
+  {
+    "word": "学校",
+    "kana": "がっこう",
+    "meaning": "学校"
+  },
+  {
+    "word": "試験",
+    "kana": "しけん",
+    "meaning": "考试"
+  },
+  {
+    "word": "仕事",
+    "kana": "しごと",
+    "meaning": "工作"
+  },
+  {
+    "word": "遅刻",
+    "kana": "ちこく",
+    "meaning": "迟到"
+  },
+  {
+    "word": "休み",
+    "kana": "やすみ",
+    "meaning": "休息/假期"
+  },
+  {
+    "word": "出張",
+    "kana": "しゅっちょう",
+    "meaning": "出差"
+  },
+  {
+    "word": "研修",
+    "kana": "けんしゅう",
+    "meaning": "培训"
+  },
+  {
+    "word": "旅行",
+    "kana": "りょこう",
+    "meaning": "旅行"
+  },
+  {
+    "word": "展覧会",
+    "kana": "てんらんかい",
+    "meaning": "展览会"
+  },
+  {
+    "word": "歓迎会",
+    "kana": "かんげいかい",
+    "meaning": "欢迎会"
+  },
+  {
+    "word": "パーティー",
+    "kana": "ぱーてぃー",
+    "meaning": "派对"
+  },
+  {
+    "word": "お宅",
+    "kana": "おたく",
+    "meaning": "您家/宅"
+  },
+  {
+    "word": "いつ",
+    "kana": "いつ",
+    "meaning": "什么时候"
+  },
+  {
+    "word": "休む",
+    "kana": "やすむ",
+    "meaning": "休息"
+  },
+  {
+    "word": "働く",
+    "kana": "はたらく",
+    "meaning": "工作"
+  },
+  {
+    "word": "始まる",
+    "kana": "はじまる",
+    "meaning": "开始"
+  },
+  {
+    "word": "終わる",
+    "kana": "おわる",
+    "meaning": "结束"
+  },
+  {
+    "word": "起きる",
+    "kana": "おきる",
+    "meaning": "起床"
+  },
+  {
+    "word": "寝る",
+    "kana": "ねる",
+    "meaning": "睡觉"
+  },
+  {
+    "word": "勉強する",
+    "kana": "べんきょうする",
+    "meaning": "学习"
+  },
+  {
+    "word": "いつも",
+    "kana": "いつも",
+    "meaning": "总是"
+  },
+  {
+    "word": "北京支社",
+    "kana": "ぺきんししゃ",
+    "meaning": "北京分公司"
+  },
+  {
+    "word": "神戸",
+    "kana": "こうべ",
+    "meaning": "神户"
+  },
+  {
+    "word": "おはよう",
+    "kana": "おはよう",
+    "meaning": "早安"
+  },
+  {
+    "word": "ごろ",
+    "kana": "ごろ",
+    "meaning": "左右（时间）"
+  }
+]

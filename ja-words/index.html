@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日语单词本</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .directory-item, .file-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .directory-item:hover, .file-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .back-button {
+            display: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .word-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .word-text {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .word-kana {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .word-meaning {
+            font-size: 14px;
+            color: #444;
+        }
+
+        .play-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #007bff;
+        }
+
+        .play-button:hover {
+            color: #0056b3;
+        }
+
+        .unsupported-message {
+            color: #dc3545;
+            background-color: #f8d7da;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #f5c6cb;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>日语单词本</h1>
+    <!-- 不支持时的提示信息 -->
+    <div id="unsupportedMessage" class="unsupported-message" style="display: none;">
+        当前浏览器不支持文本转语音功能，请使用最新版本的 Chrome、Firefox 或 Edge 浏览器。
+    </div>
+    <!-- 返回按钮 -->
+    <button id="backButton" class="back-button">返回上一级</button>
+    <!-- 目录或单词列表 -->
+    <div id="content"></div>
+</div>
+
+<script>
+    // 检查浏览器是否支持 speechSynthesis
+    function checkSpeechSynthesisSupport() {
+        if (!window.speechSynthesis) {
+            // 如果不支持，显示提示信息
+            const unsupportedMessage = document.getElementById('unsupportedMessage');
+            unsupportedMessage.style.display = 'block';
+            return false;
+        }
+        return true;
+    }
+
+    // 朗读单词
+    function speakWord(word) {
+        if (!checkSpeechSynthesisSupport()) return;
+
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = 'ja-JP'; // 设置语言为日语
+        utterance.rate = 1; // 语速
+        utterance.pitch = 1; // 音调
+        speechSynthesis.speak(utterance);
+    }
+
+    // 渲染目录或文件内容
+    function renderContent(data) {
+        const contentContainer = document.getElementById('content');
+        contentContainer.innerHTML = ''; // 清空容器
+
+        if (data.type === 'directory') {
+            // 渲染目录
+            data.children.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = item.type === 'directory' ? 'directory-item' : 'file-item';
+                itemElement.textContent = item.name;
+                itemElement.onclick = () => {
+                    if (item.type === 'directory') {
+                        // 进入子目录
+                        renderContent(item);
+                        history.pushState({ data: item }, '', null);
+                    } else if (item.type === 'file') {
+                        // 加载文件
+                        loadWordList(item.path);
+                    }
+                };
+                contentContainer.appendChild(itemElement);
+            });
+        } else if (data.type === 'file') {
+            // 渲染单词列表
+            data.words.forEach(word => {
+                const wordItem = document.createElement('div');
+                wordItem.className = 'word-item';
+
+                const wordContent = document.createElement('div');
+                wordContent.innerHTML = `
+                    <div class="word-text">${word.word}</div>
+                    <div class="word-kana">(${word.kana})</div>
+                    <div class="word-meaning">${word.meaning}</div>
+                `;
+
+                const playButton = document.createElement('button');
+                playButton.className = 'play-button';
+                playButton.innerHTML = '🔊';
+                playButton.onclick = () => speakWord(word.word);
+
+                wordItem.appendChild(wordContent);
+                wordItem.appendChild(playButton);
+                contentContainer.appendChild(wordItem);
+            });
+        }
+
+        // 显示或隐藏返回按钮
+        const backButton = document.getElementById('backButton');
+        backButton.style.display = 'block';
+    }
+
+    // 加载单词列表
+    async function loadWordList(path) {
+        try {
+            const response = await fetch(path); // 加载 JSON 文件
+            const words = await response.json(); // 解析 JSON 数据
+            renderContent({ type: 'file', words }); // 渲染单词列表
+        } catch (error) {
+            console.error('加载单词列表失败:', error);
+        }
+    }
+
+    // 返回上一级目录
+    function goBack() {
+        history.back();
+    }
+
+    // 初始化
+    checkSpeechSynthesisSupport();
+
+    // 加载目录结构
+    async function init() {
+        try {
+            const response = await fetch('directory.json'); // 加载目录结构
+            const directory = await response.json(); // 解析 JSON 数据
+            renderContent(directory); // 渲染目录
+        } catch (error) {
+            console.error('加载目录结构失败:', error);
+        }
+    }
+
+    // 监听返回按钮点击
+    document.getElementById('backButton').onclick = goBack;
+
+    // 监听浏览器返回事件
+    window.onpopstate = (event) => {
+        if (event.state) {
+            renderContent(event.state.data);
+        } else {
+            init();
+        }
+    };
+
+    // 启动
+    init();
+</script>
+</body>
+</html>

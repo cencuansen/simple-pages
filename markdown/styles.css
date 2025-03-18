@@ -1,0 +1,67 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+.container {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+.editor, .preview {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+  width: 100%;
+  height: calc(100vh - 200px);
+  padding: 10px;
+  font-family: monospace;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: none;
+  box-sizing: border-box;
+  outline: 2px solid #add8e6; /* 淡蓝色轮廓 */
+}
+
+#preview-output {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fafafa;
+  height: calc(100vh - 200px);
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* 代码块样式 */
+pre {
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  background-color: #2d2d2d; /* 背景颜色 */
+  position: relative;
+  outline: 2px solid #add8e6; /* 淡蓝色轮廓 */
+}
+
+code {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+/* 行号样式 */
+.hljs-ln-numbers {
+  text-align: right;
+  color: #999;
+  margin-right: 10px;
+  padding-right: 5px;
+  border-right: 1px solid #555;
+}

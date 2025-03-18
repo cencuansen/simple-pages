@@ -1,0 +1,247 @@
+[
+  {
+    "word": "部屋",
+    "kana": "へや",
+    "meaning": "房间"
+  },
+  {
+    "word": "庭",
+    "kana": "にわ",
+    "meaning": "庭院"
+  },
+  {
+    "word": "家",
+    "kana": "いえ",
+    "meaning": "家"
+  },
+  {
+    "word": "居間",
+    "kana": "いま",
+    "meaning": "客厅"
+  },
+  {
+    "word": "冷蔵庫",
+    "kana": "れいぞうこ",
+    "meaning": "冰箱"
+  },
+  {
+    "word": "壁",
+    "kana": "かべ",
+    "meaning": "墙壁"
+  },
+  {
+    "word": "スイッチ",
+    "kana": "スイッチ",
+    "meaning": "开关"
+  },
+  {
+    "word": "本棚",
+    "kana": "ほんだな",
+    "meaning": "书架"
+  },
+  {
+    "word": "ベッド",
+    "kana": "ベッド",
+    "meaning": "床"
+  },
+  {
+    "word": "猫",
+    "kana": "ねこ",
+    "meaning": "猫"
+  },
+  {
+    "word": "犬",
+    "kana": "いぬ",
+    "meaning": "狗"
+  },
+  {
+    "word": "箱",
+    "kana": "はこ",
+    "meaning": "箱子"
+  },
+  {
+    "word": "眼鏡",
+    "kana": "めがね",
+    "meaning": "眼镜"
+  },
+  {
+    "word": "ビデオ",
+    "kana": "ビデオ",
+    "meaning": "录像机/视频"
+  },
+  {
+    "word": "サッカーボール",
+    "kana": "サッカーボール",
+    "meaning": "足球"
+  },
+  {
+    "word": "ビール",
+    "kana": "ビール",
+    "meaning": "啤酒"
+  },
+  {
+    "word": "ウイスキー",
+    "kana": "ウイスキー",
+    "meaning": "威士忌"
+  },
+  {
+    "word": "子供",
+    "kana": "こども",
+    "meaning": "小孩"
+  },
+  {
+    "word": "兄弟",
+    "kana": "きょうだい",
+    "meaning": "兄弟姐妹"
+  },
+  {
+    "word": "両親",
+    "kana": "りょうしん",
+    "meaning": "父母"
+  },
+  {
+    "word": "妹",
+    "kana": "いもうと",
+    "meaning": "妹妹"
+  },
+  {
+    "word": "男",
+    "kana": "おとこ",
+    "meaning": "男性"
+  },
+  {
+    "word": "女",
+    "kana": "おんな",
+    "meaning": "女性"
+  },
+  {
+    "word": "生徒",
+    "kana": "せいと",
+    "meaning": "学生（中小学）"
+  },
+  {
+    "word": "上",
+    "kana": "うえ",
+    "meaning": "上面"
+  },
+  {
+    "word": "外",
+    "kana": "そと",
+    "meaning": "外面"
+  },
+  {
+    "word": "中",
+    "kana": "なか",
+    "meaning": "里面"
+  },
+  {
+    "word": "下",
+    "kana": "した",
+    "meaning": "下面"
+  },
+  {
+    "word": "後ろ",
+    "kana": "うしろ",
+    "meaning": "后方"
+  },
+  {
+    "word": "近く",
+    "kana": "ちかく",
+    "meaning": "附近"
+  },
+  {
+    "word": "場所",
+    "kana": "ばしょ",
+    "meaning": "场所"
+  },
+  {
+    "word": "教室",
+    "kana": "きょうしつ",
+    "meaning": "教室"
+  },
+  {
+    "word": "会議室",
+    "kana": "かいぎしつ",
+    "meaning": "会议室"
+  },
+  {
+    "word": "図書室",
+    "kana": "としょしつ",
+    "meaning": "图书室"
+  },
+  {
+    "word": "公園",
+    "kana": "こうえん",
+    "meaning": "公园"
+  },
+  {
+    "word": "花屋",
+    "kana": "はなや",
+    "meaning": "花店"
+  },
+  {
+    "word": "売店",
+    "kana": "ばいてん",
+    "meaning": "小卖部"
+  },
+  {
+    "word": "駅",
+    "kana": "えき",
+    "meaning": "车站"
+  },
+  {
+    "word": "地下鉄",
+    "kana": "ちかてつ",
+    "meaning": "地铁"
+  },
+  {
+    "word": "木",
+    "kana": "き",
+    "meaning": "树"
+  },
+  {
+    "word": "一人暮らし",
+    "kana": "ひとりぐらし",
+    "meaning": "独居"
+  },
+  {
+    "word": "あります",
+    "kana": "あります",
+    "meaning": "有（无生命物体）"
+  },
+  {
+    "word": "います",
+    "kana": "います",
+    "meaning": "有（有生命物体）"
+  },
+  {
+    "word": "ええと",
+    "kana": "ええと",
+    "meaning": "呃…（思考时使用）"
+  },
+  {
+    "word": "横浜",
+    "kana": "よこはま",
+    "meaning": "横滨"
+  },
+  {
+    "word": "名古屋",
+    "kana": "なごや",
+    "meaning": "名古屋"
+  },
+  {
+    "word": "大阪",
+    "kana": "おおさか",
+    "meaning": "大阪"
+  },
+  {
+    "word": "ＪＲ",
+    "kana": "ジェーアール",
+    "meaning": "JR（日本铁路公司）"
+  },
+  {
+    "word": "ご～",
+    "kana": "ご～",
+    "meaning": "敬语前缀（如「ご家族」）"
+  }
+]

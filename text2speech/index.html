@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本转语音</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background-color: #f5f7fa;
+            --text-color: #333333;
+            --input-bg: #ffffff;
+            --input-border: #ddd;
+            --input-focus: #3498db;
+            --button-bg: #dfe4ea;
+            --button-hover: #ced6e0;
+            --accent-color: #4dabf7;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --text-area-height: 200px;
+        }
+
+        .dark-mode {
+            --background-color: #212529;
+            --text-color: #e9ecef;
+            --input-bg: #343a40;
+            --input-border: #495057;
+            --input-focus: #74c0fc;
+            --button-bg: #495057;
+            --button-hover: #5c636a;
+            --accent-color: #74c0fc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            min-width: 300px;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .container {
+            height: 100vh;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            color: var(--text-color);
+        }
+
+        .row:nth-child(n + 2) {
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: var(--text-color);
+            margin-top: 0;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            resize: none;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            height: var(--text-area-height);
+            border: 2px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        textarea:focus {
+            border-color: var(--input-focus);
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+            appearance: none;
+            border: 2px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        select:focus {
+            border-color: var(--input-focus);
+            outline: none;
+        }
+
+        #playButton {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-color);
+            border: none;
+            outline: #74c0fc solid 1px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .setting button {
+            cursor: pointer;
+            font-size: 14px;
+            border: none;
+            padding: 5px;
+            border-radius: 2px;
+            transition: background-color 0.3s;
+            background-color: var(--button-bg);
+            color: var(--text-color);
+        }
+
+        .setting-item:nth-child(n+2) {
+            margin-left: 10px;
+        }
+
+        .theme-toggle {
+            border-radius: 50% !important;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--button-hover);
+        }
+
+        select, #playButton {
+            min-height: 48px;
+        }
+
+        .message {
+            color: var(--text-color);
+        }
+
+        /* 保持原有样式不变，添加以下新样式 */
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--input-border);
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--input-focus);
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+
+        /* 小屏幕（如手机，宽度小于 600px） */
+        @media (max-width: 600px) {
+            .container {
+                width: 100%; /* 占满屏幕宽度 */
+            }
+
+            textarea {
+                font-size: 14px; /* 减小字体 */
+            }
+
+            select, #playButton {
+                padding: 10px; /* 调整内边距 */
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 20px; /* 减小标题 */
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="row">文本转语音</h2>
+    <div class="setting row">
+        <button class="theme-toggle setting-item" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+        <span id="message" class="message"></span>
+    </div>
+    <textarea id="textInput" class="row" placeholder="请输入要朗读的文本"></textarea>
+    <div class="row">
+        <input type="text" id="languageSearch" placeholder="搜索语言...">
+    </div>
+    <select id="languageSelect" class="row">
+        <option value="">选择语言</option>
+    </select>
+    <select id="voiceSelect" class="row">
+        <option value="">选择语音</option>
+    </select>
+    <button id="playButton" class="row">播放</button>
+</div>
+
+<script>
+    const textInput = document.getElementById('textInput');
+    const languageSearch = document.getElementById('languageSearch');
+    const languageSelect = document.getElementById('languageSelect');
+    const voiceSelect = document.getElementById('voiceSelect');
+    const playButton = document.getElementById('playButton');
+
+    let voices = [];
+    let allLanguages = [];
+
+    function populateLanguageSelect(searchTerm = '') {
+        const languages = [...new Set(voices.map(voice => voice.lang))];
+        allLanguages = languages;
+
+        languageSelect.innerHTML = '<option value="">选择语言</option>';
+        const filteredLanguages = searchTerm
+            ? languages.filter(lang => lang.toLowerCase().includes(searchTerm.toLowerCase()))
+            : languages;
+
+        filteredLanguages.forEach(lang => {
+            const option = document.createElement('option');
+            option.value = lang;
+            option.text = lang;
+            languageSelect.appendChild(option);
+        });
+    }
+
+    function populateVoiceSelect() {
+        const selectedLang = languageSelect.value;
+        voiceSelect.innerHTML = '<option value="">选择语音</option>';
+        const filteredVoices = selectedLang
+            ? voices.filter(voice => voice.lang === selectedLang)
+            : voices;
+        filteredVoices.forEach((voice) => {
+            const option = document.createElement('option');
+            option.value = voice.name;
+            option.text = voice.name;
+            voiceSelect.appendChild(option);
+        });
+    }
+
+    languageSelect.addEventListener('change', populateVoiceSelect);
+
+    languageSearch.addEventListener('input', (e) => {
+        populateLanguageSelect(e.target.value);
+        populateVoiceSelect();
+    });
+
+    playButton.addEventListener('click', () => {
+        const text = textInput.value.trim();
+        const nowVoice = voiceSelect.value;
+        const selectedVoices = voices.filter(voice => voice.name.startsWith(nowVoice));
+
+        // if (!text) {
+        //     alert('请输入要朗读的文本！');
+        //     return;
+        // }
+        // if (!selectedVoices || selectedVoices.length === 0) {
+        //     alert('请选择语音！');
+        //     return;
+        // }
+
+        const selectedVoice = selectedVoices[0];
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.voice = selectedVoice;
+        utterance.lang = selectedVoice.lang;
+        speechSynthesis.speak(utterance);
+    });
+
+    function loadVoices() {
+        if (voices.length > 0) return;
+        voices = speechSynthesis.getVoices();
+        populateLanguageSelect(languageSearch.value);
+        populateVoiceSelect();
+    }
+
+    const messageBox = document.getElementById('message');
+    const startTime = new Date();
+    let timer = setInterval(() => {
+        messageBox.innerText = `加载中...`
+        loadVoices();
+        if (voices.length > 0) {
+            clearInterval(timer);
+            messageBox.innerText = null
+        }
+        if (new Date() - startTime > 5000) {
+            clearInterval(timer);
+            messageBox.innerText = '当前浏览器不支持'
+        }
+    }, 1000);
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        document.getElementById('theme-toggle').textContent = isDarkMode ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    }
+
+    (function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('theme-toggle').textContent = '☀️';
+        } else {
+            document.getElementById('theme-toggle').textContent = '🌙';
+        }
+    })();
+</script>
+</body>
+</html>
