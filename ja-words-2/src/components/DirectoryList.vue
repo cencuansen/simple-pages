@@ -1,33 +1,56 @@
 <template>
   <div class="directory-list">
     <el-card
-        v-for="item in items"
-        :key="item.name"
         class="directory-item"
-        shadow="hover"
-        @click="navigate(item)"
+        v-for="dir in directories"
+        :key="dir.name"
+        @click="navTo(dir)"
     >
-      {{ item.name }}
+      {{ dir.name }}
     </el-card>
   </div>
 </template>
 
-<script setup>
-import { defineProps, defineEmits } from 'vue';
+<script setup lang="ts">
+import {onMounted, ref} from 'vue'
+import {useRouter} from 'vue-router'
 
-defineProps({
-  items: {
-    type: Array,
-    required: true,
-  },
-});
+const router = useRouter()
 
-const emit = defineEmits(['navigate']);
+const directories = ref<any[]>([])
 
-const navigate = (item) => {
-  emit('navigate', item);
-};
+// 加载目录数据
+const loadDirectory = async () => {
+  const response = await fetch('/directory.json')
+  const data = await response.json()
+
+  const paramDir = router.currentRoute.value.params.dir
+  if (!paramDir) {
+    directories.value = data.children
+  } else {
+    directories.value = data.children.filter((item: any) => item.name === paramDir)[0].children
+  }
+}
+
+// 处理导航
+const navTo = (dir: any) => {
+  const routePath = router.currentRoute.value.path
+  const paramDir = router.currentRoute.value.params.dir
+  if (!paramDir) {
+    const newPath = `${routePath}/${encodeURI(dir.name)}/lessons`
+    router.push({path: newPath})
+  } else {
+    const newPath = `${routePath}/${encodeURI(dir.name)}/words`
+    router.push({path: newPath})
+  }
+}
+
+// 初始化加载
+onMounted(async () => {
+  await loadDirectory()
+})
 </script>
+
 
 <style scoped>
 .directory-list {

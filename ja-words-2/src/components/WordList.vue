@@ -59,23 +59,12 @@
         shadow="hover"
     >
       <el-row :gutter="10" align="middle" class="word-row">
-        <el-col :span="12" class="word-col">
+        <el-col :span="13" class="word-col">
           <div class="word-text">{{ showWord ? word.word : '****' }}</div>
-          <div class="word-kana" v-if="word.kana">({{ showKana ? word.kana : '****' }})</div>
+          <div class="word-kana" v-if="word.kana">{{ showKana ? word.kana : '****' }}</div>
         </el-col>
-        <el-col :span="8" class="meaning-col">
+        <el-col :span="9" class="meaning-col">
           <div class="word-meaning">{{ showMeaning ? word.meaning : '****' }}</div>
-        </el-col>
-        <el-col :span="2" class="button-col speak-button" v-if="isSupported">
-          <el-button
-              type="primary"
-              circle
-              :disabled="speakDisabled"
-              @click="speakWords(word.word)">
-            <el-icon>
-              <VideoPlay/>
-            </el-icon>
-          </el-button>
         </el-col>
         <el-col :span="2" class="button-col speak-button" v-if="isSupported">
           <el-button
@@ -93,33 +82,56 @@
   </div>
 </template>
 
-<script setup>
-import { ref, defineProps } from 'vue';
-import { VideoPlay } from '@element-plus/icons-vue';
-import { ElMessage } from 'element-plus'
+<script setup lang="ts">
+import {ref, onMounted} from 'vue';
+import {VideoPlay} from '@element-plus/icons-vue';
+import {ElMessage} from 'element-plus'
+import {useRouter} from 'vue-router'
 
-defineProps({
-  words: {
-    type: Array,
-    required: true,
-  },
-});
+const router = useRouter()
 
-let currentLanguage = 'ja-JP';
-let currentVoice = null;
-const showWord = ref(true);
-const showKana = ref(true);
-const showMeaning = ref(true);
-const slowMode = ref(false);
-const slowRate = ref(0.5);
-const repeatMode = ref(false);
-const repeatTimes = ref(3);
+const words = ref<any[]>([])
+
+// 加载单词数据
+const loadWords = async () => {
+  try {
+    const paramDir = router.currentRoute.value.params.dir
+    const paramLesson = router.currentRoute.value.params.lesson
+
+    const dirsRes = await fetch('/directory.json')
+    const data = await dirsRes.json()
+    const directories = data.children
+
+    const lessons = directories.filter((d: any) => d.name === paramDir)[0].children
+    const lesson = lessons.filter((d: any) => d.name === paramLesson)[0]
+
+    const response = await fetch(lesson.path)
+    words.value = await response.json()
+    console.log('words.value', words.value)
+  } catch (error) {
+    console.error('加载单词列表失败:', error)
+  }
+}
+
+onMounted(async () => {
+  await loadWords()
+})
+
+let currentLanguage: string = 'ja-JP';
+let currentVoice: SpeechSynthesisVoice | null = null;
+const showWord = ref<boolean>(true);
+const showKana = ref<boolean>(true);
+const showMeaning = ref<boolean>(true);
+const slowMode = ref<boolean>(false);
+const slowRate = ref<number>(0.5);
+const repeatMode = ref<boolean>(false);
+const repeatTimes = ref<number>(3);
 const isSupported = !!speechSynthesis;
-const speakDisabled = ref(false);
-const placeHolder = ref('加载中');
-const voices = ref([]);
-const currentVoiceName = ref(null);
-const japaneseFilter = x => x.lang.indexOf('ja') > -1 && x.lang.indexOf('JP') > -1;
+const speakDisabled = ref<boolean>(false);
+const placeHolder = ref<string | null | undefined>('加载中');
+const voices = ref<SpeechSynthesisVoice[]>([]);
+const currentVoiceName = ref<string>('');
+const japaneseFilter = (x: SpeechSynthesisVoice) => x.lang.indexOf('ja') > -1 && x.lang.indexOf('JP') > -1;
 
 const loadVoices = () => {
   voices.value = speechSynthesis.getVoices().filter(japaneseFilter);
@@ -138,9 +150,9 @@ const loadVoices = () => {
   currentVoiceName.value = currentVoice.name;
 };
 
-const updateVoice = (voiceName) => {
-  currentVoice = voices.value.find(voice => voice.name === voiceName);
-  currentLanguage = currentVoice.lang;
+const updateVoice = (voiceName: string) => {
+  currentVoice = voices.value.find(voice => voice.name === voiceName) || null;
+  currentLanguage = currentVoice?.lang || '';
   localStorage.setItem('currentVoiceName', voiceName);
 };
 
@@ -152,7 +164,7 @@ if (isSupported) {
       placeHolder.value = null;
       return;
     }
-    if (new Date() - start > 5000) {
+    if (new Date().getTime() - start.getTime() > 5000) {
       clearInterval(timer);
       placeHolder.value = null;
       return;
@@ -170,7 +182,7 @@ function onerror() {
   ElMessage.error('错误')
 }
 
-function tryRepeat(utterance, maxTimes, currentTimes) {
+function tryRepeat(utterance: SpeechSynthesisUtterance, maxTimes: number, currentTimes: number) {
   if (currentTimes < maxTimes) {
     utterance.onend = () => {
       currentTimes = currentTimes + 1;
@@ -182,7 +194,7 @@ function tryRepeat(utterance, maxTimes, currentTimes) {
   speechSynthesis.speak(utterance);
 }
 
-const speakWords = (word) => {
+const speakWords = (word: string | undefined) => {
   if (!speechSynthesis) return;
   const utterance = new SpeechSynthesisUtterance(word);
   utterance.rate = slowMode.value ? slowRate.value : 1;
