@@ -1,5 +1,5 @@
 <template>
-  <div class="directory-list">
+  <div class="directory-list-container">
     <el-card
         class="directory-item"
         v-for="dir in directories"
@@ -51,21 +51,22 @@ onMounted(async () => {
 })
 </script>
 
-
 <style scoped>
-.directory-list {
+.directory-list-container {
   overflow-y: auto;
   padding-bottom: 90px;
   box-sizing: border-box;
   height: calc(100vh - 80px);
 }
 
-.directory-list::-webkit-scrollbar {
+.directory-list-container::-webkit-scrollbar {
   display: none;
 }
 
 .directory-item {
-  margin-bottom: 10px;
+  max-width: 768px;
+  min-width: 375px;
+  margin: 0 auto 10px;
   cursor: pointer;
 }
 </style>

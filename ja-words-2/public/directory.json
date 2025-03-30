@@ -23,6 +23,11 @@
         },
         {
           "type": "file",
+          "name": "亲属",
+          "path": "/words/标准日本语初级上-亲属.json"
+        },
+        {
+          "type": "file",
           "name": "第3课",
           "path": "/words/标准日本语初级上3.json"
         },

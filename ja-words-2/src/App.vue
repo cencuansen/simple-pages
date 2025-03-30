@@ -50,20 +50,25 @@ const isSupported = ref(!!speechSynthesis);
 
 <style scoped>
 .container {
-  max-width: 768px;
-  min-width: 375px;
-  margin: 0 auto;
   border-radius: 8px;
 }
 
 .el-header {
+  width: 100%;
+  min-width: 375px;
+  max-width: 768px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.el-main {
+  width: 100%;
+}
+
 .el-header, .el-main {
-  padding: 5px;
+  padding: 0;
   overflow: hidden;
 }
 
@@ -72,7 +77,7 @@ const isSupported = ref(!!speechSynthesis);
   .container {
     margin: 0 auto;
     border-radius: 0;
-    padding: 0;
+    padding: 0 10px;
   }
 }
 </style>

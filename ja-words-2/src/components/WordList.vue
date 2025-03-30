@@ -1,84 +1,86 @@
 <template>
-  <el-row class="word-list-header-row" :gutter="20">
-    <el-col :span="8" class="op-col op-switch-col">
-      <span class="col-label">单词</span>
-      <el-switch v-model="showWord" size="small"/>
-    </el-col>
-    <el-col :span="8" class="op-col op-switch-col">
-      <span class="col-label">注音</span>
-      <el-switch v-model="showKana" size="small"/>
-    </el-col>
-    <el-col :span="8" class="op-col op-switch-col">
-      <span class="col-label">释义</span>
-      <el-switch v-model="showMeaning" size="small"/>
-    </el-col>
-  </el-row>
-  <el-row class="word-list-header-row" :gutter="20">
-    <el-col :span="8" class="op-col op-select-col">
-      <el-select
-          v-model="currentVoiceName"
-          :placeholder="placeHolder"
-          size="small"
-          :popper-append-to-body="false"
-          clearable
-          filterable
-          @change="updateVoice"
-      >
-        <el-option
-            v-for="voice in voices"
-            :key="voice.name"
-            :label="`${ voice.name } | ${ voice.lang }`"
-            :value="voice.name"
-        />
-      </el-select>
-    </el-col>
-    <el-col :span="8" class="op-col op-switch-col">
+  <div class="word-list-container">
+    <el-row class="word-list-header-row row">
+      <el-col :span="8" class="op-col op-switch-col">
+        <span class="col-label">单词</span>
+        <el-switch v-model="showWord" size="small"/>
+      </el-col>
+      <el-col :span="8" class="op-col op-switch-col">
+        <span class="col-label">注音</span>
+        <el-switch v-model="showKana" size="small"/>
+      </el-col>
+      <el-col :span="8" class="op-col op-switch-col">
+        <span class="col-label">释义</span>
+        <el-switch v-model="showMeaning" size="small"/>
+      </el-col>
+    </el-row>
+    <el-row class="word-list-header-row row">
+      <el-col :span="8" class="op-col op-select-col">
+        <el-select
+            v-model="currentVoiceName"
+            :placeholder="placeHolder"
+            size="small"
+            :popper-append-to-body="false"
+            clearable
+            filterable
+            @change="updateVoice"
+        >
+          <el-option
+              v-for="voice in voices"
+              :key="voice.name"
+              :label="`${ voice.name } | ${ voice.lang }`"
+              :value="voice.name"
+          />
+        </el-select>
+      </el-col>
+      <el-col :span="8" class="op-col op-switch-col">
       <span class="col-label col-icon">
         慢速
         <el-tooltip effect="dark" :content="`${slowRate}x`" placement="top">
           <el-icon><InfoFilled/></el-icon>
         </el-tooltip>
       </span>
-      <el-switch v-model="slowMode" size="small"/>
-    </el-col>
-    <el-col :span="8" class="op-col op-switch-col">
+        <el-switch v-model="slowMode" size="small"/>
+      </el-col>
+      <el-col :span="8" class="op-col op-switch-col">
       <span class="col-label col-icon">
         重复
         <el-tooltip effect="dark" :content="`${repeatTimes}次`" placement="top">
           <el-icon><InfoFilled/></el-icon>
         </el-tooltip>
       </span>
-      <el-switch v-model="repeatMode" size="small"/>
-    </el-col>
-  </el-row>
-  <div class="word-list">
-    <el-card
-        v-for="word in words"
-        :key="word.word"
-        class="word-item"
-        shadow="hover"
-    >
-      <el-row :gutter="10" align="middle" class="word-row">
-        <el-col :span="13" class="word-col">
-          <div class="word-text">{{ showWord ? word.word : '****' }}</div>
-          <div class="word-kana" v-if="word.kana">{{ showKana ? word.kana : '****' }}</div>
-        </el-col>
-        <el-col :span="9" class="meaning-col">
-          <div class="word-meaning">{{ showMeaning ? word.meaning : '****' }}</div>
-        </el-col>
-        <el-col :span="2" class="button-col speak-button" v-if="isSupported">
-          <el-button
-              type="primary"
-              circle
-              :disabled="speakDisabled"
-              @click="speakWords(word.kana)">
-            <el-icon>
-              <VideoPlay/>
-            </el-icon>
-          </el-button>
-        </el-col>
-      </el-row>
-    </el-card>
+        <el-switch v-model="repeatMode" size="small"/>
+      </el-col>
+    </el-row>
+    <div class="word-list">
+      <el-card
+          v-for="word in words"
+          :key="word.word"
+          class="word-item row"
+          shadow="hover"
+      >
+        <el-row :gutter="10" align="middle" class="word-row">
+          <el-col :span="13" class="word-col">
+            <div class="word-text">{{ showWord ? word.word : '****' }}</div>
+            <div class="word-kana" v-if="word.kana">{{ showKana ? word.kana : '****' }}</div>
+          </el-col>
+          <el-col :span="9" class="meaning-col">
+            <div class="word-meaning">{{ showMeaning ? word.meaning : '****' }}</div>
+          </el-col>
+          <el-col :span="2" class="button-col speak-button" v-if="isSupported">
+            <el-button
+                type="primary"
+                circle
+                :disabled="speakDisabled"
+                @click="speakWords(word.kana)">
+              <el-icon>
+                <VideoPlay/>
+              </el-icon>
+            </el-button>
+          </el-col>
+        </el-row>
+      </el-card>
+    </div>
   </div>
 </template>
 
@@ -107,7 +109,6 @@ const loadWords = async () => {
 
     const response = await fetch(lesson.path)
     words.value = await response.json()
-    console.log('words.value', words.value)
   } catch (error) {
     console.error('加载单词列表失败:', error)
   }
@@ -215,6 +216,20 @@ const speakWords = (word: string | undefined) => {
 </script>
 
 <style scoped>
+.word-list-container {
+  width: 100%;
+}
+
+.row {
+  max-width: 768px;
+  min-width: 375px;
+  margin: 0 auto 10px !important;
+}
+
+.op-col:not(:last-child) {
+  padding-right: 20px;
+}
+
 .word-list-header-row {
   margin-bottom: 10px;
 }

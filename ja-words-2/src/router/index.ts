@@ -5,22 +5,22 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            redirect: '/dirs',
+            redirect: '/directories',
             children: [
                 {
                     name: 'Words',
-                    path: '/dirs/:dir/lessons/:lesson/words',
+                    path: '/directories/:dir/lessons/:lesson/words',
                     component: () => import('../components/WordList.vue'),
                 },
                 {
                     name: 'Lesson',
-                    path: '/dirs/:dir/lessons',
+                    path: '/directories/:dir/lessons',
                     component: () => import('../components/DirectoryList.vue'),
                     children: []
                 },
                 {
                     name: 'Dir',
-                    path: '/dirs',
+                    path: '/directories',
                     component: () => import('../components/DirectoryList.vue'),
                     children: [],
                 },
