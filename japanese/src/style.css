@@ -38,3 +38,7 @@ a:hover {
 a:active {
     color: #FF0000;
 }
+
+ruby rt {
+    user-select: none;
+}

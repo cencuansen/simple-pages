@@ -38,7 +38,7 @@
       </el-button>
     </h1>
     <h1 class="lesson-title">
-      <span v-html="highlightText(lessonStore.currentLesson.title)"></span>
+      <span v-html="highlightWord(lessonStore.currentLesson.title)"></span>
     </h1>
 
     <!-- 简单句子 -->
@@ -67,7 +67,7 @@
       <ul class="basics-list">
         <li v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
           <div class="original-line">
-            <span v-html="highlightText(item)"></span>
+            <span v-html="highlightWord(item)"></span>
             <el-button
                 type="primary"
                 size="small"
@@ -142,7 +142,7 @@
         >
           <div class="original-line">
             <span class="speaker-label">{{ message.speaker }}：</span>
-            <span class="message-content" v-html="highlightText(message.content)"></span>
+            <span class="message-content" v-html="highlightWord(message.content)"></span>
             <el-button
                 type="primary"
                 size="small"
@@ -219,7 +219,7 @@
         >
           <div class="original-line">
             <span class="speaker-label">{{ message.speaker }}：</span>
-            <span class="message-content" v-html="highlightText(message.content)"></span>
+            <span class="message-content" v-html="highlightWord(message.content)"></span>
             <el-button
                 type="primary"
                 size="small"
@@ -349,7 +349,9 @@ const words = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex + 1)
 })
 
-const regex = computed(() => {
+const kanjiRexEx = /[\u4E00-\u9FFF\u3400-\u4DBF]/
+
+const wordRegEx = computed(() => {
   let wordCopy = words.value.slice()
   wordCopy.sort((a, b) => b.word.length - a.word.length)
   return new RegExp(wordCopy.map(word => word.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
@@ -358,18 +360,24 @@ const regex = computed(() => {
 const convMap = (co: Conversations[]) => co.map(x => x.content)
 const convFlatMap = (conv: Conversations[][]) => conv.flatMap(convMap)
 
-const highlightText = (text: string | undefined = "") => {
-  return text.replace(regex.value, match => `<a href="#word-${match}" class="highlight-word">${match}</a>`)
+const highlightWord = (text: string | undefined = "") => {
+  return text.replace(wordRegEx.value, match => {
+    if (kanjiRexEx.test(match)) {
+      const kana = words.value.find(w => w.word === match)?.kana
+      return `<a href="#word-${match}" class="highlight-word"><ruby>${match}<rt>${kana}</rt></ruby></a>`
+    }
+    return `<a href="#word-${match}" class="highlight-word">${match}</a>`
+  })
 }
 
 const speakTextReplace = (text: string | undefined = "") => {
   // 目的：防止日语汉字读不准，将相关单词换成假名
-  return text.replace(regex.value, match => words.value.find(w => w.word === match)?.kana || match)
+  return text.replace(wordRegEx.value, match => words.value.find(w => w.word === match)?.kana || match)
 }
 
 const speakListTextReplace = (arr: string[] = []) => {
   // 目的：防止日语汉字读不准，将相关单词换成假名
-  return arr.map(text => text.replace(regex.value, match => words.value.find(w => w.word === match)?.kana || match))
+  return arr.map(text => text.replace(wordRegEx.value, match => words.value.find(w => w.word === match)?.kana || match))
 }
 
 const container = ref()
