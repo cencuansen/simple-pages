@@ -35,6 +35,7 @@ onMounted(async () => {
 
 <style scoped>
 .header {
+  width: 100%;
   height: var(--header-height);
   display: flex;
   align-items: center;
@@ -43,6 +44,5 @@ onMounted(async () => {
 
 .body {
   height: calc(100vh - var(--header-height));
-  overflow-y: scroll;
 }
 </style>
