@@ -352,7 +352,7 @@ const words = computed(() => {
 const kanjiRexEx = /[\u4E00-\u9FFF\u3400-\u4DBF]/
 
 const wordRegEx = computed(() => {
-  let wordCopy = words.value.slice()
+  let wordCopy = wordStore.wordList.slice()
   wordCopy.sort((a, b) => b.word.length - a.word.length)
   return new RegExp(wordCopy.map(word => word.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
 })
@@ -362,11 +362,18 @@ const convFlatMap = (conv: Conversations[][]) => conv.flatMap(convMap)
 
 const highlightWord = (text: string | undefined = "") => {
   return text.replace(wordRegEx.value, match => {
+    const wordInCurrent = words.value.find(w => w.word === match)
+    const wordInAll = wordStore.wordList.find(w => w.word === match)
+    let html = match
     if (kanjiRexEx.test(match)) {
-      const kana = words.value.find(w => w.word === match)?.kana
-      return `<a href="#word-${match}" class="highlight-word"><ruby>${match}<rt>${kana}</rt></ruby></a>`
+      // 如果是汉字
+      html = `<ruby>${match}<rt>${wordInAll?.kana}</rt></ruby>`
     }
-    return `<a href="#word-${match}" class="highlight-word">${match}</a>`
+    if (wordInCurrent) {
+      // 如果单词是当前课程的
+      return `<a href="#word-${match}" class="highlight-word">${html}</a>`
+    }
+    return html
   })
 }
 
