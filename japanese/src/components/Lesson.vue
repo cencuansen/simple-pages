@@ -10,8 +10,8 @@
     <el-select class="navigation-item" v-model="lessonStore.currentIndex">
       <el-option
           v-for="(item, index) in lessonStore.lessons"
-          :key="item.title"
-          :label="`第 ${index + 1} 課 - ${item.title}`"
+          :key="index"
+          :label="`第 ${index + 1} 課 - ${getDisplayText(item.title)}`"
           :value="index"
       />
     </el-select>
@@ -38,7 +38,7 @@
       </el-button>
     </h1>
     <h1 class="lesson-title">
-      <span v-html="highlightWord(lessonStore.currentLesson.title)"></span>
+      <span v-html="getHighlightText(lessonStore.currentLesson.title)"></span>
     </h1>
 
     <!-- 简单句子 -->
@@ -58,7 +58,7 @@
             size="small"
             circle
             :disabled="speechStore.isSpeaking"
-            @click="speechStore.speakList(speakListTextReplace(lessonStore.currentLesson.basics))">
+            @click="speechStore.speakList(getSpeechTextList(lessonStore.currentLesson.basics))">
           <el-icon>
             <VideoPlay/>
           </el-icon>
@@ -67,13 +67,13 @@
       <ul class="basics-list">
         <li v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
           <div class="original-line">
-            <span v-html="highlightWord(item)"></span>
+            <span v-html="getHighlightText(item)"></span>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(speakTextReplace(item))">
+                @click="speechStore.speak(getSpeechText(item))">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -103,7 +103,7 @@
             size="small"
             circle
             :disabled="speechStore.isSpeaking"
-            @click="speechStore.speakList(speakListTextReplace(convFlatMap(lessonStore.currentLesson.conversations)))">
+            @click="speechStore.speakList(getSpeechTextList(convFlatMap(lessonStore.currentLesson.conversations)))">
           <el-icon>
             <VideoPlay/>
           </el-icon>
@@ -129,7 +129,7 @@
               size="small"
               circle
               :disabled="speechStore.isSpeaking"
-              @click="speechStore.speakList(speakListTextReplace(convMap(exchange)))">
+              @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
             <el-icon>
               <VideoPlay/>
             </el-icon>
@@ -142,13 +142,13 @@
         >
           <div class="original-line">
             <span class="speaker-label">{{ message.speaker }}：</span>
-            <span class="message-content" v-html="highlightWord(message.content)"></span>
+            <span class="message-content" v-html="getHighlightText(message.content)"></span>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(speakTextReplace(message.content))">
+                @click="speechStore.speak(getSpeechText(message.content))">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -164,7 +164,7 @@
 
     <!-- 情景对话 -->
     <section v-if="lessonStore.currentLesson.conversations2?.length" class="section conversation-section">
-      <h2>{{ lessonStore.currentLesson.title2 }}</h2>
+      <h2 v-html="getHighlightText(lessonStore.currentLesson.title2)"></h2>
       <div class="speak-list">
         <el-button
             type="primary"
@@ -180,7 +180,7 @@
             size="small"
             circle
             :disabled="speechStore.isSpeaking"
-            @click="speechStore.speakList(speakListTextReplace(convFlatMap(lessonStore.currentLesson.conversations2)))">
+            @click="speechStore.speakList(getSpeechTextList(convFlatMap(lessonStore.currentLesson.conversations2)))">
           <el-icon>
             <VideoPlay/>
           </el-icon>
@@ -206,7 +206,7 @@
               size="small"
               circle
               :disabled="speechStore.isSpeaking"
-              @click="speechStore.speakList(speakListTextReplace(convMap(exchange)))">
+              @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
             <el-icon>
               <VideoPlay/>
             </el-icon>
@@ -219,13 +219,13 @@
         >
           <div class="original-line">
             <span class="speaker-label">{{ message.speaker }}：</span>
-            <span class="message-content" v-html="highlightWord(message.content)"></span>
+            <span class="message-content" v-html="getHighlightText(message.content)"></span>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(speakTextReplace(message.content))">
+                @click="speechStore.speak(getSpeechText(message.content))">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -249,7 +249,7 @@
           size="small"
           circle
           :disabled="speechStore.isSpeaking"
-          @click="speechStore.speakList(speakListTextReplace(words.map(w => w.kana)))">
+          @click="speechStore.speakList(getSpeechTextList(words.map(w => w.kana)))">
         <el-icon>
           <VideoPlay/>
         </el-icon>
@@ -269,7 +269,7 @@
                 size="small"
                 circle
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(speakTextReplace(scope.row.kana))">
+                @click="speechStore.speak(scope.row.kana)">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -349,43 +349,20 @@ const words = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex + 1)
 })
 
-const kanjiRexEx = /[\u4E00-\u9FFF\u3400-\u4DBF]/
-
 const wordRegEx = computed(() => {
-  let wordCopy = wordStore.wordList.slice()
+  let wordCopy = words.value.slice()
   wordCopy.sort((a, b) => b.word.length - a.word.length)
   return new RegExp(wordCopy.map(word => word.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
 })
 
+const getSpeechText = (text: string | undefined = "") => text.replace(/![^\(]+\(([^\)]+)\)/g, '$1')
+const getSpeechTextList = (arr: string[] = []) => arr.map(getSpeechText)
+const getDisplayText = (text: string | undefined = "") => text.replace(/!([^\(]+)\([^\)]+\)/g, '$1')
+const getRubyText = (text: string | undefined = "") => text.replace(/!([^\(]+)\(([^\)]+)\)/g, '<ruby>$1<rt>$2</rt></ruby>')
+const getHighlightText = (text: string | undefined = "") => getRubyText(text).replace(wordRegEx.value, match => `<a href="#word-${match}" class="highlight-word">${match}</a>`)
+
 const convMap = (co: Conversations[]) => co.map(x => x.content)
 const convFlatMap = (conv: Conversations[][]) => conv.flatMap(convMap)
-
-const highlightWord = (text: string | undefined = "") => {
-  return text.replace(wordRegEx.value, match => {
-    const wordInCurrent = words.value.find(w => w.word === match)
-    const wordInAll = wordStore.wordList.find(w => w.word === match)
-    let html = match
-    if (kanjiRexEx.test(match)) {
-      // 如果是汉字
-      html = `<ruby>${match}<rt>${wordInAll?.kana}</rt></ruby>`
-    }
-    if (wordInCurrent) {
-      // 如果单词是当前课程的
-      return `<a href="#word-${match}" class="highlight-word">${html}</a>`
-    }
-    return html
-  })
-}
-
-const speakTextReplace = (text: string | undefined = "") => {
-  // 目的：防止日语汉字读不准，将相关单词换成假名
-  return text.replace(wordRegEx.value, match => words.value.find(w => w.word === match)?.kana || match)
-}
-
-const speakListTextReplace = (arr: string[] = []) => {
-  // 目的：防止日语汉字读不准，将相关单词换成假名
-  return arr.map(text => text.replace(wordRegEx.value, match => words.value.find(w => w.word === match)?.kana || match))
-}
 
 const container = ref()
 const goTop = () => {
