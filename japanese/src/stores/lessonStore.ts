@@ -1,12 +1,12 @@
 import {defineStore} from 'pinia'
 import {computed, ref, watch} from 'vue'
 
-interface Conversations {
+export interface Conversations {
     speaker: string;
     content: string;
 }
 
-interface Lesson {
+export interface Lesson {
     title?: string
     basics: string[],
     conversations: Conversations[][],
@@ -43,7 +43,7 @@ export const useLessonStore = defineStore('lessons', () => {
     }
 
     watch(currentIndex, (newVal) => {
-        document.title = `第${newVal + 1}课 - 新版标准日本语`
+        document.title = `第 ${newVal + 1} 课 - 新版标准日本语`
     })
 
     return {
@@ -59,5 +59,7 @@ export const useLessonStore = defineStore('lessons', () => {
         hasPrevious: computed(() => currentIndex.value > 0)
     }
 }, {
-    persist: true
+    persist: {
+        pick: ["currentIndex"]
+    }
 })

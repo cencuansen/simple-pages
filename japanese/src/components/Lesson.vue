@@ -1,25 +1,33 @@
 <template>
-  <div class="lesson-container" v-if="lessonStore.currentLesson">
+  <div ref="container" class="lesson-container" v-if="lessonStore.currentLesson">
     <div class="lesson-header">
       <div class="navigation-buttons">
         <el-button
-            class="previous-button"
+            class="previous-button navigation-item"
             :disabled="!lessonStore.hasPrevious"
             @click="goToLesson(lessonStore.currentIndex - 1)"
         >
           上一课
         </el-button>
+        <el-select class="navigation-item" v-model="lessonStore.currentIndex">
+          <el-option
+              v-for="(item, index) in lessonStore.lessons"
+              :key="item.title"
+              :label="`第 ${index + 1} 課 - ${item.title}`"
+              :value="index"
+          />
+        </el-select>
         <el-button
-            class="next-button"
+            class="next-button navigation-item"
             :disabled="!lessonStore.hasNext"
             @click="goToLesson(lessonStore.currentIndex + 1)"
         >
           下一课
         </el-button>
       </div>
-      <span class="lesson-index">第{{ lessonStore.currentIndex + 1 }}课</span>
+      <h1 class="lesson-index">第 {{ lessonStore.currentIndex + 1 }} 課</h1>
       <h1 class="lesson-title">
-        {{ lessonStore.currentLesson.title }}
+        <span v-html="highlightText(lessonStore.currentLesson.title)"></span>
         <el-button
             type="primary"
             size="small"
@@ -34,10 +42,21 @@
     </div>
 
     <section v-if="lessonStore.currentLesson.basics?.length" class="section basics-section">
-      <h2>基础知识</h2>
+      <div class="speak-list">
+        <el-button
+            type="primary"
+            size="small"
+            circle
+            :disabled="speechStore.isSpeaking"
+            @click="speechStore.speakList(lessonStore.currentLesson.basics)">
+          <el-icon>
+            <VideoPlay/>
+          </el-icon>
+        </el-button>
+      </div>
       <ul class="basics-list">
         <li v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
-          {{ item }}
+          <span v-html="highlightText(item)"></span>
           <el-button
               type="primary"
               size="small"
@@ -53,19 +72,42 @@
     </section>
 
     <section v-if="lessonStore.currentLesson.conversations?.length" class="section conversation-section">
-      <h2>{{ lessonStore.currentLesson.title2 || '对话练习' }}</h2>
+      <div class="speak-list">
+        <el-button
+            type="primary"
+            size="small"
+            circle
+            :disabled="speechStore.isSpeaking"
+            @click="speechStore.speakList(convFlatMap(lessonStore.currentLesson.conversations))">
+          <el-icon>
+            <VideoPlay/>
+          </el-icon>
+        </el-button>
+      </div>
       <div
           v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations"
           :key="`exchange-${exchangeIndex}`"
           class="conversation-exchange"
       >
+        <div class="speak-list">
+          <el-button
+              type="primary"
+              size="small"
+              circle
+              :disabled="speechStore.isSpeaking"
+              @click="speechStore.speakList(convMap(exchange))">
+            <el-icon>
+              <VideoPlay/>
+            </el-icon>
+          </el-button>
+        </div>
         <div
             v-for="(message, messageIndex) in exchange"
             :key="`message-${exchangeIndex}-${messageIndex}`"
             :class="['message', `speaker-${message.speaker}`]"
         >
           <span class="speaker-label">{{ message.speaker }}：</span>
-          <span class="message-content">{{ message.content }}</span>
+          <span class="message-content" v-html="highlightText(message.content)"></span>
           <el-button
               type="primary"
               size="small"
@@ -81,19 +123,43 @@
     </section>
 
     <section v-if="lessonStore.currentLesson.conversations2?.length" class="section conversation-section">
-      <h2>{{ lessonStore.currentLesson.title2 || '进阶对话' }}</h2>
+      <h2>{{ lessonStore.currentLesson.title2 }}</h2>
+      <div class="speak-list">
+        <el-button
+            type="primary"
+            size="small"
+            circle
+            :disabled="speechStore.isSpeaking"
+            @click="speechStore.speakList(convFlatMap(lessonStore.currentLesson.conversations2))">
+          <el-icon>
+            <VideoPlay/>
+          </el-icon>
+        </el-button>
+      </div>
       <div
           v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations2"
           :key="`exchange2-${exchangeIndex}`"
           class="conversation-exchange"
       >
+        <div class="speak-list">
+          <el-button
+              type="primary"
+              size="small"
+              circle
+              :disabled="speechStore.isSpeaking"
+              @click="speechStore.speakList(convMap(exchange))">
+            <el-icon>
+              <VideoPlay/>
+            </el-icon>
+          </el-button>
+        </div>
         <div
             v-for="(message, messageIndex) in exchange"
             :key="`message2-${exchangeIndex}-${messageIndex}`"
             :class="['message', `speaker-${message.speaker}`]"
         >
           <span class="speaker-label">{{ message.speaker }}：</span>
-          <span class="message-content">{{ message.content }}</span>
+          <span class="message-content" v-html="highlightText(message.content)"></span>
           <el-button
               type="primary"
               size="small"
@@ -108,12 +174,9 @@
       </div>
     </section>
 
-    <!-- 翻译部分 -->
-    <h1>翻译</h1>
-    <br>
+    <h1>译文</h1>
 
     <section v-if="lessonStore.currentLesson.translation?.basics" class="section basics-section">
-      <h2>基础知识</h2>
       <ul class="basics-list">
         <li v-for="(item, idx) in lessonStore.currentLesson.translation.basics" :key="`basic-${idx}`">
           {{ item }}
@@ -122,7 +185,6 @@
     </section>
 
     <section v-if="lessonStore.currentLesson.translation.conversations?.length" class="section conversation-section">
-      <h2>{{ lessonStore.currentLesson.translation.title2 || '对话练习' }}</h2>
       <div
           v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.translation.conversations"
           :key="`exchange-${exchangeIndex}`"
@@ -140,7 +202,7 @@
     </section>
 
     <section v-if="lessonStore.currentLesson.translation.conversations2?.length" class="section conversation-section">
-      <h2>{{ lessonStore.currentLesson.translation.title2 || '进阶对话' }}</h2>
+      <h2>{{ lessonStore.currentLesson.translation.title2 }}</h2>
       <div
           v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.translation.conversations2"
           :key="`exchange2-${exchangeIndex}`"
@@ -157,24 +219,69 @@
       </div>
     </section>
 
-    <!-- 翻译部分 -->
+    <section class="section words-section">
+      <h2>单词</h2>
+      <el-button
+          type="primary"
+          size="small"
+          circle
+          :disabled="speechStore.isSpeaking"
+          @click="speechStore.speakList(words.map(w => w.kana))">
+        <el-icon>
+          <VideoPlay/>
+        </el-icon>
+      </el-button>
+      <el-table :data="words">
+        <el-table-column label="假名">
+          <template #default="scope">
+            <div :id="`word-${scope.row.word}`" class="column-word">{{ scope.row.word }}</div>
+            <div class="column-kana">{{ scope.row.kana }}</div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="desc" label="释义"/>
+        <el-table-column label="" width="50">
+          <template #default="scope">
+            <el-button
+                type="primary"
+                size="small"
+                circle
+                :disabled="speechStore.isSpeaking"
+                @click="speechStore.speak(scope.row.kana||'')">
+              <el-icon>
+                <VideoPlay/>
+              </el-icon>
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </section>
 
     <div class="navigation-buttons">
       <el-button
-          class="previous-button"
+          class="previous-button navigation-item"
           :disabled="!lessonStore.hasPrevious"
           @click="goToLesson(lessonStore.currentIndex - 1)"
       >
         上一课
       </el-button>
+      <el-select class="navigation-item" v-model="lessonStore.currentIndex">
+        <el-option
+            v-for="(item, index) in lessonStore.lessons"
+            :key="item.title"
+            :label="`第 ${index + 1} 課 - ${item.title}`"
+            :value="index"
+        />
+      </el-select>
       <el-button
-          class="next-button"
+          class="next-button navigation-item"
           :disabled="!lessonStore.hasNext"
           @click="goToLesson(lessonStore.currentIndex + 1)"
       >
         下一课
       </el-button>
     </div>
+
+    <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
 
   <!-- 加载状态 -->
@@ -199,28 +306,57 @@
 </template>
 
 <script setup lang="ts">
-import {useLessonStore} from '../stores/lessonStore'
 import {Loading, VideoPlay} from '@element-plus/icons-vue'
-import {useSpeechStore} from "../stores/speechStore.ts";
+import {computed, onBeforeUnmount, ref} from 'vue'
+import type {Conversations} from '../stores/lessonStore'
+import {useLessonStore} from '../stores/lessonStore'
+import {useSpeechStore} from "../stores/speechStore"
+import {useWordStore} from "../stores/wordStore"
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
+const wordStore = useWordStore()
 
 const goToLesson = async (index: number) => {
   lessonStore.setCurrentIndex(index)
+}
+
+const words = computed(() => {
+  return wordStore.getByLesson(lessonStore.currentIndex + 1)
+})
+
+const convMap = (co: Conversations[]) => co.map(x => x.content)
+const convFlatMap = (conv: Conversations[][]) => conv.flatMap(convMap)
+
+const highlightText = (text: string | undefined = "") => {
+  if (!text) return
+  let wordCopy = words.value.slice()
+  wordCopy.sort((a, b) => b.word.length - a.word.length)
+  let patten = new RegExp(wordCopy.map(word => word.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+  return text.replace(patten, match => `<a href="#word-${match}" class="highlight-word">${match}</a>`)
+}
+
+const container = ref()
+const goTop = () => {
+  // container.value.scrollIntoView({behavior: 'smooth'})
+  container.value.scrollTop = 0
 }
 
 // 自动加载数据（如果尚未加载）
 if (lessonStore.lessons.length === 0 && !lessonStore.isLoading) {
   lessonStore.fetchLessons()
 }
+
+onBeforeUnmount(() => {
+  speechStore.stop()
+})
+
 </script>
 
 <style scoped>
 .lesson-container {
-  max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 10px 120px;
 }
 
 .lesson-header {
@@ -228,14 +364,24 @@ if (lessonStore.lessons.length === 0 && !lessonStore.isLoading) {
   margin-bottom: 30px;
 }
 
+.navigation-item {
+  margin-right: 20px;
+}
+
+.navigation-item:last-child {
+  margin-right: 0;
+}
+
 .lesson-index {
-  display: block;
-  font-size: 1.2em;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .lesson-title {
   margin: 0;
+}
+
+.speak-list {
+  margin-bottom: 10px;
 }
 
 .section {
@@ -290,6 +436,47 @@ if (lessonStore.lessons.length === 0 && !lessonStore.isLoading) {
   border-radius: 8px;
 }
 
+.column-word {
+  font-size: 1.2rem;
+}
+
+.column-word:target {
+  animation: highlight 7s ease-in-out alternate;
+}
+
+@keyframes highlight {
+  0%, 20%, 40%, 60%, 80% {
+    color: #ff5500;
+  }
+  10%, 30%, 50%, 70%, 90% {
+    color: #ffff00;
+  }
+  100% {
+    color: inherit;
+  }
+}
+
+.column-kanji {
+  font-size: 1rem;
+}
+
+.column-kana {
+  font-size: .8rem;
+}
+
+.highlight-word {
+  color: inherit;
+  text-decoration: none;
+}
+
+.highlight-word span {
+  border-bottom: 1px dashed #1976d2;
+}
+
+.highlight-word:hover span {
+  background-color: #e0f7fa;
+}
+
 .navigation-buttons {
   display: flex;
   justify-content: space-between;
@@ -311,5 +498,24 @@ if (lessonStore.lessons.length === 0 && !lessonStore.isLoading) {
 
 .error-container .el-alert {
   margin-bottom: 20px;
+}
+
+.go-top {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #aaa;
+  border-radius: 50%;
+  line-height: 25px;
+  text-align: center;
+  user-select: none;
+  z-index: 999;
+  color-scheme: inherit;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  color: inherit;
+  background-color: inherit;
 }
 </style>

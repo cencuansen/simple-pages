@@ -1,22 +1,3 @@
-<script setup lang="ts">
-import {onMounted, ref} from 'vue'
-import {Setting} from '@element-plus/icons-vue'
-import SettingsDialog from './components/SettingsDialog.vue'
-import Lesson from './components/Lesson.vue'
-import {useLessonStore} from './stores/lessonStore'
-
-const settingsDialog = ref()
-const openSettings = () => {
-  settingsDialog.value?.open()
-}
-
-const lessonStore = useLessonStore()
-
-onMounted(async () => {
-  await lessonStore.fetchLessons()
-})
-</script>
-
 <template>
   <div class="header">
     <el-button
@@ -26,11 +7,31 @@ onMounted(async () => {
         @click="openSettings"
     />
   </div>
-  <div class="body">
-    <Lesson/>
-  </div>
+  <Lesson class="body"/>
   <SettingsDialog ref="settingsDialog"/>
 </template>
+
+<script setup lang="ts">
+import {onMounted, ref} from 'vue'
+import {Setting} from '@element-plus/icons-vue'
+import SettingsDialog from './components/SettingsDialog.vue'
+import Lesson from './components/Lesson.vue'
+import {useLessonStore} from './stores/lessonStore'
+import {useWordStore} from './stores/wordStore'
+
+const settingsDialog = ref()
+const openSettings = () => {
+  settingsDialog.value?.open()
+}
+
+const lessonStore = useLessonStore()
+const wordStore = useWordStore()
+
+onMounted(async () => {
+  await wordStore.fetchWords()
+  await lessonStore.fetchLessons()
+})
+</script>
 
 <style scoped>
 .header {

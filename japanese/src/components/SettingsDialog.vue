@@ -92,6 +92,12 @@
               测试
             </el-button>
           </el-form-item>
+
+          <el-form-item>
+            <el-button @click="speechStore.reset()">
+              重置
+            </el-button>
+          </el-form-item>
         </el-form>
       </el-tab-pane>
     </el-tabs>

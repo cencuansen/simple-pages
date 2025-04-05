@@ -15,7 +15,7 @@
     const kuroshiro = new Kuroshiro();
 
     kuroshiro.init(new KuromojiAnalyzer()).then((result) => {
-        kuroshiro.convert("教室に学生がいる", {
+        kuroshiro.convert("李さんは　中国人です", {
             mode: 'furigana',
             to: "hiragana"
         }).then((result) => {
