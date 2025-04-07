@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>WaveSurfer.js 示例</title>
+    <style>
+        #waveform {
+            width: 100%;
+            height: 200px;
+            position: relative;
+        }
+
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="waveform"></div>
+<div id="timeline"></div>
+<div>
+    <button id="playRange">播放选定范围</button>
+    <button id="exportRange">导出选定范围</button>
+</div>
+
+<script type="module">
+    import WaveSurfer from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/wavesurfer.esm.js';
+    import Regions from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/plugins/regions.esm.js';
+    import Timeline from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/plugins/timeline.esm.js';
+    import Zoom from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/plugins/zoom.esm.js';
+    import Hover from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/plugins/hover.esm.js';
+
+    // 初始化 WaveSurfer
+    const wavesurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: "#409EFF",
+        progressColor: '#0000FF',
+        cursorColor: '#FF0000',
+        height: 200,
+        plugins: [
+            Timeline.create({
+                container: '#timeline',
+                labelPadding: 2
+            }),
+            Zoom.create({
+                scale: 0.1,
+                maxZoom: 100,
+            }),
+            Hover.create({
+                lineColor: '#ff0000',
+                lineWidth: 1,
+                labelBackground: '#555',
+                labelColor: '#fff',
+                labelSize: '10px',
+            }),
+            Regions.create({
+                showTime: true,
+                dragSelection: {
+                    slop: 5
+                },
+                regions: [
+                    {
+                        start: 1, //选中区域开始时间
+                        end: 3, //选中区域开始时间
+                        attributes: {
+                            label:
+                                "选中区域开始时间1",
+                        },
+                        data: {
+                            note: "选中区域开始时间1",
+                        },
+                        loop: false, //播放时是否循环播放片段
+                        drag: true, //允许/禁止拖动区域
+                        resize: true, //允许/禁止调整区域大小
+                        color: "#ff0000", //选中区块颜色
+                    }
+                ]
+            })
+        ]
+    });
+
+    // 加载音频文件（替换为你自己的音频URL）
+    wavesurfer.load('/l5.mp3');
+
+    // 当音频加载完成时
+    wavesurfer.on('ready', () => {
+        console.log('音频已加载');
+    });
+
+    // 存储当前选中的区域
+    let selectedRegion = null;
+
+    wavesurfer.on('region-click', (e) => {
+        const {start, end} = e
+        console.log('region click: ', changeTime(start), changeTime(end))
+    });
+
+    wavesurfer.on('region-update-end', (e) => {
+        const {start, end} = e;
+        handleChangeStartEnd && handleChangeStartEnd(start, end);
+    });
+    wavesurfer.on('region-created', () => {
+        this.waveSurfer.clearRegions();
+    });
+
+    // 监听区域创建/更新
+    wavesurfer.on('region-created', (region) => {
+        // 如果已有一个区域，移除旧的
+        if (selectedRegion && selectedRegion !== region) {
+            selectedRegion.remove();
+        }
+        selectedRegion = region;
+    });
+
+    wavesurfer.on('region-updated', (region) => {
+        selectedRegion = region;
+    });
+
+    // 播放选定范围
+    document.getElementById('playRange').addEventListener('click', () => {
+        if (selectedRegion) {
+            selectedRegion.play();
+
+        } else {
+            alert('请先选择一个音频范围');
+        }
+    });
+
+    // 导出选定范围
+    document.getElementById('exportRange').addEventListener('click', async () => {
+        if (!selectedRegion) {
+            alert('请先选择一个音频范围');
+            return;
+        }
+
+        const start = selectedRegion.start;
+        const end = selectedRegion.end;
+        const duration = end - start;
+
+        try {
+            // 获取原始音频数据
+            const originalBuffer = await wavesurfer.getDecodedData();
+            const sampleRate = originalBuffer.sampleRate;
+            const numberOfChannels = originalBuffer.numberOfChannels;
+
+            // 计算样本索引
+            const startSample = Math.floor(start * sampleRate);
+            const endSample = Math.floor(end * sampleRate);
+
+            // 创建新的 AudioBuffer
+            const newBuffer = new AudioContext().createBuffer(
+                numberOfChannels,
+                endSample - startSample,
+                sampleRate
+            );
+
+            // 复制选定范围的音频数据
+            for (let channel = 0; channel < numberOfChannels; channel++) {
+                const originalData = originalBuffer.getChannelData(channel);
+                const newData = newBuffer.getChannelData(channel);
+                for (let i = 0; i < endSample - startSample; i++) {
+                    newData[i] = originalData[startSample + i];
+                }
+            }
+
+            // 将 AudioBuffer 转换为 WAV 文件
+            const wavBlob = audioBufferToWav(newBuffer);
+            const url = URL.createObjectURL(wavBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'exported-audio.wav';
+            a.click();
+            URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('导出失败:', error);
+            alert('导出音频时发生错误');
+        }
+    });
+
+    // AudioBuffer 转 WAV 的辅助函数
+    function audioBufferToWav(buffer) {
+        const numberOfChannels = buffer.numberOfChannels;
+        const sampleRate = buffer.sampleRate;
+        const length = buffer.length * numberOfChannels * 2 + 44;
+        const arrayBuffer = new ArrayBuffer(length);
+        const view = new DataView(arrayBuffer);
+
+        // WAV 文件头
+        writeString(view, 0, 'RIFF');
+        view.setUint32(4, 36 + buffer.length * numberOfChannels * 2, true);
+        writeString(view, 8, 'WAVE');
+        writeString(view, 12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        view.setUint16(22, numberOfChannels, true);
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * numberOfChannels * 2, true);
+        view.setUint16(32, numberOfChannels * 2, true);
+        view.setUint16(34, 16, true);
+        writeString(view, 36, 'data');
+        view.setUint32(40, buffer.length * numberOfChannels * 2, true);
+
+        // 写入音频数据
+        let offset = 44;
+        for (let i = 0; i < buffer.length; i++) {
+            for (let channel = 0; channel < numberOfChannels; channel++) {
+                const sample = Math.max(-1, Math.min(1, buffer.getChannelData(channel)[i]));
+                view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true);
+                offset += 2;
+            }
+        }
+
+        return new Blob([arrayBuffer], {type: 'audio/wav'});
+    }
+
+    function writeString(view, offset, string) {
+        for (let i = 0; i < string.length; i++) {
+            view.setUint8(offset + i, string.charCodeAt(i));
+        }
+    }
+
+    function changeTime(seconds) {
+        seconds = Number(seconds)
+        var minutes = Math.floor(seconds / 60)
+        seconds = seconds % 60
+        var secondsStr = Math.round(seconds).toString()
+        secondsStr = seconds.toFixed(2)
+        if (minutes > 0) {
+            return `${ minutes < 10 ? '0' + minutes : minutes }:${ seconds < 10 ? '0' + secondsStr : secondsStr }`
+        }
+        return `00:${ seconds < 10 ? '0' + secondsStr : secondsStr }`
+    }
+</script>
+<script>
+
+</script>
+</body>
+</html>

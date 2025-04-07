@@ -355,11 +355,43 @@ const wordRegEx = computed(() => {
   return new RegExp(wordCopy.map(word => word.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
 })
 
+const highlightReplacer = (match: string) => match ? `<a href="#word-${match}" class="highlight-word">${match}</a>` : ''
+
 const getSpeechText = (text: string | undefined = "") => text.replace(/![^\(]+\(([^\)]+)\)/g, '$1')
 const getSpeechTextList = (arr: string[] = []) => arr.map(getSpeechText)
 const getDisplayText = (text: string | undefined = "") => text.replace(/!([^\(]+)\([^\)]+\)/g, '$1')
-const getRubyText = (text: string | undefined = "") => text.replace(/!([^\(]+)\(([^\)]+)\)/g, '<ruby>$1<rt>$2</rt></ruby>')
-const getHighlightText = (text: string | undefined = "") => getRubyText(text).replace(wordRegEx.value, match => `<a href="#word-${match}" class="highlight-word">${match}</a>`)
+const getHighlightText = (originalText: string | undefined = "") => {
+  const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1');
+  if (words.value.length === 0) return baseText
+
+  let finalText = baseText.replace(wordRegEx.value, highlightReplacer)
+
+  const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || [];
+  const rubyMap: Record<string, string> = {};
+  rubyText.forEach(item => {
+    const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || [];
+    rubyMap[kanji] = kana;
+  });
+
+  const rubyRegEx = /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
+
+  if (originalText?.startsWith("はじめましで，")) {
+    console.log(originalText)
+  }
+
+  return finalText.replace(rubyRegEx, (match, hrefPart, rubyPart, textPart, closingTag) => {
+    if (hrefPart) return hrefPart;
+    if (rubyPart) return rubyPart;
+    if (closingTag) return closingTag;
+    if (textPart) {
+      for (const [kanji, kana] of Object.entries(rubyMap)) {
+        textPart = textPart.replace(new RegExp(kanji, 'g'), `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+      }
+      return textPart;
+    }
+    return match;
+  });
+}
 
 const convMap = (co: Conversations[]) => co.map(x => x.content)
 const convFlatMap = (conv: Conversations[][]) => conv.flatMap(convMap)
@@ -367,11 +399,6 @@ const convFlatMap = (conv: Conversations[][]) => conv.flatMap(convMap)
 const container = ref()
 const goTop = () => {
   container.value.scrollTop = 0
-}
-
-// 自动加载数据（如果尚未加载）
-if (lessonStore.lessons.length === 0 && !lessonStore.isLoading) {
-  lessonStore.fetchLessons()
 }
 
 onBeforeUnmount(() => {
