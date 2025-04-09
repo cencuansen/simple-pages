@@ -98,99 +98,131 @@ const removeRegion = (regionId) => {
 }
 
 const saveRegionAsWav = (regionId) => {
-  const reg = region.value.getRegions().find(x => x.id === regionId)
+  const reg = region.value.getRegions().find(x => x.id === regionId);
   if (!reg) {
-    console.error('Region not found!')
-    return
+    console.error('Region not found!');
+    return;
   }
 
-  const originalBuffer = wavesurfer.value.getDecodedData()
-  const sampleRate = originalBuffer.sampleRate
-  const startSample = Math.floor(reg.start * sampleRate)
-  const endSample = Math.floor(reg.end * sampleRate)
-  const length = endSample - startSample
+  const originalBuffer = wavesurfer.value.getDecodedData();
+  const sampleRate = originalBuffer.sampleRate;
+  const startSample = Math.floor(reg.start * sampleRate);
+  const endSample = Math.floor(reg.end * sampleRate);
+  const length = endSample - startSample;
+
+  // 更精确的WAV文件头生成函数
+  const encodeWAV = (samples, numChannels, sampleRate) => {
+    const buffer = new ArrayBuffer(44 + samples.length * 2);
+    const view = new DataView(buffer);
+
+    /* RIFF identifier */
+    writeString(view, 0, 'RIFF');
+    /* file length */
+    view.setUint32(4, 36 + samples.length * 2, true);
+    /* RIFF type */
+    writeString(view, 8, 'WAVE');
+    /* format chunk identifier */
+    writeString(view, 12, 'fmt ');
+    /* format chunk length */
+    view.setUint32(16, 16, true);
+    /* sample format (raw) */
+    view.setUint16(20, 1, true);
+    /* channel count */
+    view.setUint16(22, numChannels, true);
+    /* sample rate */
+    view.setUint32(24, sampleRate, true);
+    /* byte rate (sample rate * block align) */
+    view.setUint32(28, sampleRate * numChannels * 2, true);
+    /* block align (channel count * bytes per sample) */
+    view.setUint16(32, numChannels * 2, true);
+    /* bits per sample */
+    view.setUint16(34, 16, true);
+    /* data chunk identifier */
+    writeString(view, 36, 'data');
+    /* data chunk length */
+    view.setUint32(40, samples.length * 2, true);
+
+    return view;
+  };
 
   const writeString = (view, offset, string) => {
     for (let i = 0; i < string.length; i++) {
-      view.setUint8(offset + i, string.charCodeAt(i))
+      view.setUint8(offset + i, string.charCodeAt(i));
     }
-  }
+  };
 
-  const convertBufferToWav = (buffer) => {
-    const numberOfChannels = buffer.numberOfChannels
-    const sampleRate = buffer.sampleRate
-    const length = buffer.length * numberOfChannels * 2
-    const dataView = new DataView(new ArrayBuffer(44 + length))
-    let offset = 0
+  // 使用更精确的浮点到16位PCM转换
+  const floatTo16BitPCM = (output, offset, input) => {
+    for (let i = 0; i < input.length; i++, offset += 2) {
+      const s = Math.max(-1, Math.min(1, input[i]));
+      output.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+    }
+  };
 
-    writeString(dataView, offset, 'RIFF')
-    offset += 4
-    dataView.setUint32(offset, 36 + length, true)
-    offset += 4
-    writeString(dataView, offset, 'WAVE')
-    offset += 4
-    writeString(dataView, offset, 'fmt ')
-    offset += 4
-    dataView.setUint32(offset, 16, true)
-    offset += 4
-    dataView.setUint16(offset, 1, true)
-    offset += 2
-    dataView.setUint16(offset, numberOfChannels, true)
-    offset += 2
-    dataView.setUint32(offset, sampleRate, true)
-    offset += 4
-    dataView.setUint32(offset, sampleRate * numberOfChannels * 2, true)
-    offset += 4
-    dataView.setUint16(offset, numberOfChannels * 2, true)
-    offset += 2
-    dataView.setUint16(offset, 16, true)
-    offset += 2
-    writeString(dataView, offset, 'data')
-    offset += 4
-    dataView.setUint32(offset, length, true)
-    offset += 4
+  // 合并多通道数据
+  const interleave = (input) => {
+    const length = input[0].length;
+    const result = new Float32Array(length * input.length);
 
-    for (let i = 0; i < buffer.length; i++) {
-      for (let channel = 0; channel < numberOfChannels; channel++) {
-        const sample = Math.max(-1, Math.min(1, buffer.getChannelData(channel)[i]))
-        dataView.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7FFF, true)
-        offset += 2
+    for (let i = 0; i < length; i++) {
+      for (let channel = 0; channel < input.length; channel++) {
+        result[i * input.length + channel] = input[channel][i];
       }
     }
 
-    return new Blob([dataView], {type: 'audio/wav'})
-  }
+    return result;
+  };
 
+  // 创建新的音频缓冲区
   const offlineContext = new OfflineAudioContext(
       originalBuffer.numberOfChannels,
       length,
       sampleRate
-  )
+  );
 
   const newBuffer = offlineContext.createBuffer(
       originalBuffer.numberOfChannels,
       length,
       sampleRate
-  )
+  );
 
+  // 复制选中的音频数据
   for (let channel = 0; channel < originalBuffer.numberOfChannels; channel++) {
-    const originalData = originalBuffer.getChannelData(channel)
-    const newData = newBuffer.getChannelData(channel)
-    for (let i = 0; i < length; i++) {
-      newData[i] = originalData[startSample + i]
-    }
+    const originalData = originalBuffer.getChannelData(channel);
+    const newData = newBuffer.getChannelData(channel);
+
+    // 使用更高效的数据复制方式
+    newData.set(originalData.subarray(startSample, endSample));
   }
 
-  const wavBlob = convertBufferToWav(newBuffer)
-  const url = window.URL.createObjectURL(wavBlob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = 'region-audio.wav'
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
-  window.URL.revokeObjectURL(url)
-}
+  // 准备导出数据
+  const channels = [];
+  for (let channel = 0; channel < newBuffer.numberOfChannels; channel++) {
+    channels.push(newBuffer.getChannelData(channel));
+  }
+
+  const interleaved = interleave(channels);
+  const dataView = encodeWAV(interleaved, newBuffer.numberOfChannels, sampleRate);
+  const wavData = new DataView(dataView.buffer);
+
+  // 写入PCM数据
+  floatTo16BitPCM(wavData, 44, interleaved);
+
+  // 创建并下载文件
+  const blob = new Blob([wavData], { type: 'audio/wav' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `region-${reg.start.toFixed(2)}-${reg.end.toFixed(2)}.wav`;
+  document.body.appendChild(link);
+  link.click();
+
+  // 清理
+  setTimeout(() => {
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }, 100);
+};
 
 const handleRegionClick = (regionItem, e) => {
   e.stopPropagation()

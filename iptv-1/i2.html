@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV播放器</title>
+    <script src="hls.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+
+        .menu-side {
+            width: 300px;
+            background: #fff;
+            border-right: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .player-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .player-side video {
+            width: 100%;
+            height: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        .controls {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #m3u-url {
+            width: 180px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            margin-right: 8px;
+        }
+
+        button {
+            padding: 6px 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .import-button {
+            background: #007bff;
+        }
+
+        .category {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .category-item {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            background: #f8f8f8;
+            border-right: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .category-item:last-child {
+            border-right: none;
+        }
+
+        .category-item.active {
+            background: #fff;
+            border-bottom: 1px solid #007bff;
+        }
+
+        .list {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 15px;
+            display: none;
+            overflow-y: auto;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .history-item {
+            padding: 8px 12px;
+            margin: 4px 0;
+            background: #f8f8f8;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .history-item:hover {
+            background: #e0e0e0;
+        }
+
+        .search-box {
+            margin-bottom: 12px;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 8px;
+        }
+
+        .channel-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            margin: 4px 0;
+            cursor: pointer;
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: background 0.3s;
+        }
+
+        .channel-item:hover {
+            background: #f0f0f0;
+        }
+
+        .current-channel {
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        input {
+            outline: none;
+        }
+
+        .channel-item.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .edit-btn {
+            padding: 2px 6px;
+            margin-left: 8px;
+            background: #ddd;
+            border-radius: 3px;
+            display: none;
+        }
+
+        .history-item:hover .edit-btn {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div class="menu-side">
+    <div class="controls">
+        <label><input type="text" id="m3u-url" placeholder="输入M3U地址"></label>
+        <button class="import-button" onclick="loadPlaylist()">导入</button>
+    </div>
+    <div class="category">
+        <button class="category-item active" onclick="switchTab('playlist')">列表</button>
+        <button class="category-item" onclick="switchTab('history')">历史</button>
+    </div>
+    <div class="list">
+        <div id="history-section" class="tab-content">
+            <div class="history-list"></div>
+        </div>
+        <div id="playlist-section" class="tab-content active">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="搜索频道名称">
+            </div>
+            <div id="channel-list" class="channel-scroll"></div>
+        </div>
+    </div>
+</div>
+
+<div class="player-side">
+    <div class="current-channel">
+        <span>当前播放:</span>
+        <span id="selected-channel">...</span>
+    </div>
+    <video id="video-player" controls></video>
+</div>
+
+<script>
+    let hls = null;
+    let currentChannel = null;
+    let history = JSON.parse(localStorage.getItem('m3uHistory')) || [];
+
+    // 选项卡切换
+    function switchTab(tabName) {
+        // 切换按钮状态
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+
+        // 切换内容
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        document.querySelector(`#${tabName}-section`).classList.add('active');
+    }
+
+    // 初始化历史记录
+    function initHistory() {
+        const historyList = document.querySelector('.history-list');
+        historyList.innerHTML = '';
+
+        history.forEach(url => {
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.textContent = shortenUrl(url);
+            item.title = url;
+            item.onclick = () => {
+                document.getElementById('m3u-url').value = url;
+                loadPlaylist();
+            };
+            historyList.appendChild(item);
+        });
+    }
+
+    // 缩短URL显示
+    function shortenUrl(url) {
+        return url.length > 30 ? url.substring(0, 30) + '...' : url;
+    }
+
+    // 保存历史记录
+    function saveToHistory(url) {
+        if (!history.includes(url)) {
+            history.unshift(url);
+            if (history.length > 10) history.pop();
+            localStorage.setItem('m3uHistory', JSON.stringify(history));
+            initHistory();
+        }
+    }
+
+    // 解析M3U文件（保持不变）
+    async function parseM3U(url) {
+        try {
+            const response = await fetch(url);
+            const text = await response.text();
+            const channels = [];
+            const lines = text.split('\n');
+
+            for (let i = 0; i < lines.length; i++) {
+                if (lines[i].startsWith('#EXTINF')) {
+                    const channel = {
+                        name: lines[i].split(',')[1]?.trim() || '未知频道',
+                        url: lines[i + 1]?.trim()
+                    };
+                    if (channel.url) {
+                        channels.push(channel);
+                    }
+                }
+            }
+            return channels;
+        } catch (error) {
+            console.error('解析M3U失败:', error);
+            return [];
+        }
+    }
+
+    // 加载播放列表（保持不变）
+    async function loadPlaylist() {
+        const m3uUrl = document.getElementById('m3u-url').value;
+        if (!m3uUrl) return;
+
+        try {
+            saveToHistory(m3uUrl);
+            const channels = await parseM3U(m3uUrl);
+            renderChannelList(channels);
+            switchTab('playlist'); // 加载后自动切换到列表
+        } catch (error) {
+            alert('加载播放列表失败');
+        }
+    }
+
+    // 渲染频道列表（保持不变）
+    function renderChannelList(channels) {
+        const container = document.getElementById('channel-list');
+        container.innerHTML = '';
+
+        channels.forEach(channel => {
+            const div = document.createElement('div');
+            div.className = 'channel-item';
+            // 如果当前频道匹配则添加active类
+            if (currentChannel === channel.url) {
+                div.classList.add('active');
+            }
+            div.textContent = channel.name;
+            div.dataset.search = channel.name.toLowerCase();
+            div.title = channel.name;
+            div.onclick = (e) => {
+                // 点击时传递事件对象
+                playChannel(channel, e);
+            };
+            container.appendChild(div);
+        });
+
+        // 搜索功能
+        document.getElementById('search-input').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const items = container.getElementsByClassName('channel-item');
+
+            Array.from(items).forEach(item => {
+                const match = item.dataset.search.includes(searchTerm);
+                item.style.display = match ? 'block' : 'none';
+            });
+        });
+    }
+
+    function playChannel(channel) {
+        // 移除所有频道的高亮
+        document.querySelectorAll('.channel-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        document.getElementById('selected-channel').textContent = channel.name;
+        if (currentChannel === channel.url) return;
+        currentChannel = channel.url;
+
+        // 添加当前频道高亮
+        event.target.classList.add('active');
+
+        const video = document.getElementById('video-player');
+        if (hls) hls.destroy();
+
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = channel.url;
+        } else if (Hls.isSupported()) {
+            hls = new Hls();
+            hls.loadSource(channel.url);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+        } else {
+            alert('浏览器不支持播放此格式');
+        }
+    }
+
+    // 初始化
+    initHistory();
+</script>
+</body>
+</html>
