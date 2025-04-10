@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .tree-node {
+            margin-left: 20px;
+            user-select: none;
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        summary:hover {
+            background-color: #f0f0f0;
+        }
+
+        a {
+            color: #42b983;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <recursive-node :node="dataList"></recursive-node>
+</div>
+
+<script>
+    const {createApp} = Vue;
+
+    // 定义递归组件
+    const RecursiveNode = {
+        name: 'RecursiveNode', // 必须设置name才能递归
+        template: `
+          <div class="tree-node">
+            <template v-for="item in node" :key="item.name">
+              <details open v-if="item.children && item.children.length">
+                <summary>{{ item.name }}</summary>
+                <recursive-node :node="item.children"></recursive-node>
+              </details>
+              <div v-else>
+                <a v-if="item.url" :href="item.url" target="_blank">{{ item.name }}</a>
+                <span v-else>{{ item.name }}</span>
+              </div>
+            </template>
+          </div>
+        `,
+        props: {
+            node: {
+                type: Array,
+                required: true
+            }
+        }
+    };
+
+    createApp({
+        components: {
+            RecursiveNode
+        },
+        setup() {
+            const dataList = [
+                {
+                    order: 1,
+                    type: "category",
+                    logo: "",
+                    name: "日语",
+                    url: "",
+                    children: [
+                        {
+                            order: 1,
+                            type: "category",
+                            logo: "",
+                            name: "50音",
+                            url: "",
+                            children: [
+                                {
+                                    order: 1,
+                                    type: "item",
+                                    logo: "",
+                                    name: "50音",
+                                    url: "https://50.chengshen.me",
+                                    children: []
+                                }, {
+                                    order: 1,
+                                    type: "item",
+                                    logo: "",
+                                    name: "50音(平假名)",
+                                    url: "https://50-ha.chengshen.me",
+                                    children: []
+                                }, {
+                                    order: 1,
+                                    type: "item",
+                                    logo: "",
+                                    name: "50音(片假名)",
+                                    url: "https://50-ka.chengshen.me",
+                                    children: []
+                                }
+                            ]
+                        }, {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "单词",
+                            url: "",
+                            children: [{
+                                order: 1,
+                                type: "item",
+                                logo: "",
+                                name: "单词",
+                                url: "https://jp-words.chengshen.me",
+                                children: []
+                            }]
+                        }, {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "标准日本语",
+                            url: "",
+                            children: [{
+                                order: 1,
+                                type: "item",
+                                logo: "",
+                                name: "标准日本语",
+                                url: "https://jp.chengshen.me",
+                                children: []
+                            }]
+                        }
+                    ]
+                },
+                {
+                    order: 2,
+                    type: "item",
+                    logo: "",
+                    name: "小游戏",
+                    url: "",
+                    children: [
+                        {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "华容道",
+                            url: "https://hrd.chengshen.me",
+                            children: []
+                        },
+                        {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "俄罗斯方块",
+                            url: "https://tetris.chengshen.me",
+                            children: []
+                        }]
+                },
+                {
+                    order: 3,
+                    type: "item",
+                    logo: "",
+                    name: "工具",
+                    url: "",
+                    children: [
+                        {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "涨跌幅计算器",
+                            url: "https://calc.chengshen.me",
+                            children: []
+                        },
+                        {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "markdown",
+                            url: "https://md.chengshen.me",
+                            children: []
+                        },
+                        {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "文本转语音",
+                            url: "https://tts.chengshen.me",
+                            children: []
+                        }, {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "IPTV 播放器",
+                            url: "https://iptv.chengshen.me",
+                            children: []
+                        }, {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "音频编辑器",
+                            url: "https://wavesurfer.chengshen.me",
+                            children: []
+                        }
+                    ]
+                },
+                {
+                    order: 1,
+                    type: "item",
+                    logo: "",
+                    name: "炒币",
+                    url: "",
+                    children: [
+                        {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "bullx2gmgn",
+                            url: "https://bullx2gmgn.chengshen.me",
+                            children: []
+                        },
+                        {
+                            order: 1,
+                            type: "item",
+                            logo: "",
+                            name: "bullx-picker",
+                            url: "https://bullx-picker.chengshen.me",
+                            children: []
+                        }
+                    ]
+                }
+            ];
+
+            return {
+                dataList,
+            };
+        }
+    }).mount('#app');
+</script>
+</body>
+</html>

@@ -1,9 +1,17 @@
+:root {
+    --active-bg-color: #ccc;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  overflow: hidden;
+    overflow: hidden;
+}
+
+html.dark {
+    --active-bg-color: #333;
 }
