@@ -66,10 +66,10 @@
           </el-icon>
         </el-button>
       </div>
-      <ul class="basics-list">
-        <li v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
-          <div class="original-line">
-            <span v-html="getHighlightText(item)"></span>
+      <el-form class="basics-list">
+        <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
+          <div>
+            <span class="message-content" v-html="getHighlightText(item)"></span>
             <el-button
                 type="primary"
                 size="small"
@@ -81,11 +81,12 @@
               </el-icon>
             </el-button>
           </div>
-          <div class="translation-line" :class="{ 'show-translation': showBasicsTranslation }">
+          <div class="translation-line message"
+               :class="{ 'show-translation': showBasicsTranslation }">
             {{ lessonStore.currentLesson.translation?.basics?.[idx] || '' }}
           </div>
-        </li>
-      </ul>
+        </el-form-item>
+      </el-form>
     </section>
 
     <!-- 普通对话 -->
@@ -111,39 +112,25 @@
           </el-icon>
         </el-button>
       </div>
-      <div
-          v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations"
-          :key="`exchange-${exchangeIndex}`"
-          class="conversation-exchange"
-      >
-        <div class="speak-list">
-          <el-button
-              type="primary"
-              size="small"
-              circle
-              @click="toggleExchangeTranslation(exchangeIndex)">
+      <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations"
+               :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
+        <el-form-item label="" class="speak-list">
+          <el-button type="primary" size="small" circle @click="toggleExchangeTranslation(exchangeIndex)">
             <el-icon>
               <Switch/>
             </el-icon>
           </el-button>
-          <el-button
-              type="primary"
-              size="small"
-              circle
-              :disabled="speechStore.isSpeaking"
-              @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
+          <el-button type="primary" size="small" circle :disabled="speechStore.isSpeaking"
+                     @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
             <el-icon>
               <VideoPlay/>
             </el-icon>
           </el-button>
-        </div>
-        <div
-            v-for="(message, messageIndex) in exchange"
-            :key="`message-${exchangeIndex}-${messageIndex}`"
-            :class="['message', `speaker-${message.speaker}`]"
-        >
-          <div class="original-line">
-            <span class="speaker-label">{{ message.speaker }}：</span>
+        </el-form-item>
+
+        <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
+                      v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
+          <div>
             <span class="message-content" v-html="getHighlightText(message.content)"></span>
             <el-button
                 type="primary"
@@ -156,71 +143,51 @@
               </el-icon>
             </el-button>
           </div>
-          <div class="translation-line"
+          <div class="translation-line message"
                :class="{ 'show-translation': showExchangeTranslations[exchangeIndex] }">
-            {{ lessonStore.currentLesson.translation?.conversations?.[exchangeIndex]?.[messageIndex]?.content || '' }}
+            {{
+              lessonStore.currentLesson.translation?.conversations?.[exchangeIndex][messageIndex]?.content || ''
+            }}
           </div>
-        </div>
-      </div>
+        </el-form-item>
+      </el-form>
     </section>
 
     <!-- 情景对话 -->
     <section v-if="lessonStore.currentLesson.conversations2?.length" class="section conversation-section">
       <h2 v-html="getHighlightText(lessonStore.currentLesson.title2)"></h2>
       <div class="speak-list">
-        <el-button
-            type="primary"
-            size="small"
-            circle
-            @click="toggleConversation2Translations">
+        <el-button type="primary" size="small" circle @click="toggleConversation2Translations">
           <el-icon>
             <Switch/>
           </el-icon>
         </el-button>
-        <el-button
-            type="primary"
-            size="small"
-            circle
-            :disabled="speechStore.isSpeaking"
-            @click="speechStore.speakList(getSpeechTextList(convFlatMap(lessonStore.currentLesson.conversations2)))">
+        <el-button type="primary" size="small" circle :disabled="speechStore.isSpeaking"
+                   @click="speechStore.speakList(getSpeechTextList(convFlatMap(lessonStore.currentLesson.conversations2)))">
           <el-icon>
             <VideoPlay/>
           </el-icon>
         </el-button>
       </div>
-      <div
-          v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations2"
-          :key="`exchange2-${exchangeIndex}`"
-          class="conversation-exchange"
-      >
-        <div class="speak-list">
-          <el-button
-              type="primary"
-              size="small"
-              circle
-              @click="toggleExchange2Translation(exchangeIndex)">
+      <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations2"
+               :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
+        <el-form-item label="" class="speak-list">
+          <el-button type="primary" size="small" circle @click="toggleExchange2Translation(exchangeIndex)">
             <el-icon>
               <Switch/>
             </el-icon>
           </el-button>
-          <el-button
-              type="primary"
-              size="small"
-              circle
-              :disabled="speechStore.isSpeaking"
-              @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
+          <el-button type="primary" size="small" circle :disabled="speechStore.isSpeaking"
+                     @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
             <el-icon>
               <VideoPlay/>
             </el-icon>
           </el-button>
-        </div>
-        <div
-            v-for="(message, messageIndex) in exchange"
-            :key="`message2-${exchangeIndex}-${messageIndex}`"
-            :class="['message', `speaker-${message.speaker}`]"
-        >
-          <div class="original-line">
-            <span class="speaker-label">{{ message.speaker }}：</span>
+        </el-form-item>
+
+        <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
+                      v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
+          <div>
             <span class="message-content" v-html="getHighlightText(message.content)"></span>
             <el-button
                 type="primary"
@@ -233,14 +200,14 @@
               </el-icon>
             </el-button>
           </div>
-          <div class="translation-line"
+          <div class="translation-line message"
                :class="{ 'show-translation': showExchange2Translations[exchangeIndex] }">
             {{
               lessonStore.currentLesson.translation?.conversations2?.[exchangeIndex]?.filter(x => x.speaker !== "旁白")[messageIndex]?.content || ''
             }}
           </div>
-        </div>
-      </div>
+        </el-form-item>
+      </el-form>
     </section>
 
     <!-- 单词 -->
@@ -286,16 +253,18 @@
 </template>
 
 <script setup lang="ts">
-import {VideoPlay, Switch} from '@element-plus/icons-vue'
+import {VideoPlay, Switch,} from '@element-plus/icons-vue'
 import {computed, onBeforeUnmount, ref} from 'vue'
 import type {Conversations} from '../stores/lessonStore'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
+import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
+const baseSettingStore = useBaseSettingStore()
 
 const showAllTranslations = ref(false)
 const showBasicsTranslation = ref(false)
@@ -340,6 +309,7 @@ const toggleExchangeTranslation = (index: number) => {
 
 // 情景对话切换
 const toggleExchange2Translation = (index: number) => {
+  console.log("情景对话翻译文本切换")
   showExchange2Translations.value[index] = !showExchange2Translations.value[index]
 }
 
@@ -367,6 +337,10 @@ const getHighlightText = (originalText: string | undefined = "") => {
   if (words.value.length === 0) return baseText
 
   let finalText = baseText.replace(wordRegEx.value, highlightReplacer)
+
+  if (!baseSettingStore.furiganaEnable) {
+    return finalText
+  }
 
   const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || [];
   const rubyMap: Record<string, string> = {};
@@ -440,16 +414,15 @@ onBeforeUnmount(() => {
 }
 
 .lesson-title {
-  margin: 0 auto 10px;
+  margin: 10px auto 40px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.speak-list {
+:deep(.speak-list) {
   margin-bottom: 10px;
   display: flex;
-  gap: 10px;
 }
 
 .section {
@@ -457,61 +430,51 @@ onBeforeUnmount(() => {
 }
 
 .section h2 {
-  border-bottom: 1px solid #aaa;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-
-.basics-list {
-  padding-left: 20px;
-}
-
-.basics-list li {
   margin-bottom: 10px;
-  line-height: 1.6;
 }
 
 .original-line {
   display: flex;
-  align-items: center;
-  gap: 5px;
+  align-items: start;
 }
 
 .translation-line {
   font-size: 0.85em;
   color: #999;
-  padding-left: 20px;
-  height: 1.2em;
-  visibility: hidden;
-  opacity: 0;
+  display: none;
   transition: opacity 0.3s ease;
 }
 
 .translation-line.show-translation {
-  visibility: visible;
-  opacity: 1;
+  display: inherit;
 }
 
 .conversation-exchange {
-  margin-bottom: 25px;
-  border: 1px solid #aaa;
-  border-radius: 8px;
-  padding: 15px;
-}
-
-.message {
   margin-bottom: 10px;
-  line-height: 1.6;
+  border-left: 1px solid #aaa;
+  padding-left: 10px;
 }
 
-.message:last-child {
+.basics-section {
+  border-left: 1px solid #aaa;
+  padding-left: 10px;
+}
+
+.lesson-container .el-form-item {
   margin-bottom: 0;
 }
 
-.speaker-label {
-  font-weight: bold;
+.speaker-label, :deep(.message .el-form-item__label) {
+  font-weight: bolder;
+  color: var(--el-text-color-regular);
   user-select: none;
   white-space: nowrap;
+}
+
+:deep(.message .el-form-item__content) {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 .speaker-旁白 {
@@ -601,9 +564,5 @@ onBeforeUnmount(() => {
   font-size: 1.5rem;
   color: inherit;
   background-color: inherit;
-}
-
-.el-button + .el-button {
-  margin: 0;
 }
 </style>

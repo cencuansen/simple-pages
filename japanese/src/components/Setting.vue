@@ -1,35 +1,31 @@
 <template>
   <el-dialog
-      v-model="visible"
+      width="380"
       title="系统配置"
+      v-model="visible"
       :close-on-click-modal="false"
   >
     <el-tabs type="border-card">
-      <!-- 主题设置标签页 -->
-      <el-tab-pane label="主题设置">
-        <el-form>
-          <el-form-item label="主题模式">
-            <el-switch
-                v-model="darkMode"
-                inline-prompt
-                active-text="暗黑"
-                inactive-text="明亮"
-                :active-icon="Moon"
-                :inactive-icon="Sunny"
-            />
+      <el-tab-pane label="一般">
+        <el-form label-width="auto">
+          <el-form-item label="主题">
+            <el-switch v-model="darkMode" inline-prompt :active-icon="Moon" :inactive-icon="Sunny" size="small"/>
           </el-form-item>
-
+          <el-form-item label="注音">
+            <el-switch v-model="baseSettingStore.furiganaEnable" inline-prompt  size="small"/>
+          </el-form-item>
         </el-form>
       </el-tab-pane>
 
-      <!-- 语音设置标签页 -->
-      <el-tab-pane label="语音设置">
+      <el-tab-pane label="语音">
         <el-form>
           <el-form-item label="语音选择">
             <el-select
                 v-model="voiceName"
                 placeholder="选择语音"
                 filterable
+                fit-input-width
+                size="small"
             >
               <el-option
                   v-for="voice in voiceOptions"
@@ -47,6 +43,7 @@
                 :max="2"
                 :step="0.1"
                 show-input
+                size="small"
             />
           </el-form-item>
 
@@ -57,6 +54,7 @@
                 :max="2"
                 :step="0.1"
                 show-input
+                size="small"
             />
           </el-form-item>
 
@@ -67,6 +65,7 @@
                 :max="1"
                 :step="0.1"
                 show-input
+                size="small"
             />
           </el-form-item>
 
@@ -75,6 +74,7 @@
                 v-model="repeatTimes"
                 :min="1"
                 :max="5"
+                size="small"
             />
           </el-form-item>
 
@@ -83,10 +83,12 @@
                 v-model="testText"
                 placeholder="输入测试文本"
                 style="width: 55%"
+                size="small"
             />
             <el-button
                 style="margin-left: 10px"
                 :loading="isSpeaking"
+                size="small"
                 @click="speechStore.speak(testText)"
             >
               测试
@@ -94,7 +96,7 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button @click="speechStore.reset()">
+            <el-button @click="speechStore.reset()" size="small">
               重置
             </el-button>
           </el-form-item>
@@ -103,26 +105,25 @@
     </el-tabs>
 
     <template #footer>
-      <el-button @click="visible = false">取消</el-button>
-      <el-button type="primary" @click="handleConfirm">确认</el-button>
+      <el-button @click="visible = false" size="small">关闭</el-button>
     </template>
   </el-dialog>
 </template>
 
 <script setup lang="ts">
 import {Sunny, Moon} from '@element-plus/icons-vue'
-import {useThemeStore} from '../stores/themeStore'
+import {useBaseSettingStore} from '../stores/baseSettingStore.ts'
 import {useSpeechStore} from '../stores/speechStore'
 import {ref, computed} from 'vue'
 import {storeToRefs} from 'pinia'
 
-const themeStore = useThemeStore()
+const baseSettingStore = useBaseSettingStore()
 const visible = ref(false)
 const testText = ref('ありがとう')
 
 const darkMode = computed({
-  get: () => themeStore.isDark,
-  set: (val) => themeStore.toggleDark(val)
+  get: () => baseSettingStore.isDark,
+  set: (val) => baseSettingStore.toggleDark(val)
 })
 
 // 语音设置
@@ -139,10 +140,6 @@ const {
 
 const open = () => {
   visible.value = true
-}
-
-const handleConfirm = () => {
-  visible.value = false
 }
 
 defineExpose({open})

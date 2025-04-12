@@ -16,13 +16,13 @@
   </div>
   <Lesson v-if="lessonMode" class="body"/>
   <Word v-else class="body"/>
-  <SettingsDialog ref="settingsDialog"/>
+  <Settings ref="settingsDialog"/>
 </template>
 
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
 import {Setting,} from '@element-plus/icons-vue'
-import SettingsDialog from './components/SettingsDialog.vue'
+import Settings from './components/Setting.vue'
 import Lesson from './components/Lesson.vue'
 import Word from "./components/Word.vue";
 import {useLessonStore} from './stores/lessonStore'
@@ -38,7 +38,7 @@ const openSettings = () => {
 const lessonStore = useLessonStore()
 const wordStore = useWordStore()
 
-onMounted(async () => {
+  onMounted(async () => {
   await wordStore.fetchWords()
   await lessonStore.fetchLessons()
 })

@@ -13,11 +13,6 @@ body {
     overflow: hidden;
 }
 
-.el-dialog {
-    width: 90% !important;
-    margin: 10px auto !important;
-}
-
 a {
     color: inherit;
     text-decoration: none;
