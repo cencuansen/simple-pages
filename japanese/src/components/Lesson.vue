@@ -1,21 +1,23 @@
 <template>
   <div class="lesson-header navigation-buttons">
     <el-button
+        size="small"
         class="previous-button navigation-item"
         :disabled="!lessonStore.hasPrevious"
         @click="goToLesson(lessonStore.currentIndex - 1)"
     >
       上一课
     </el-button>
-    <el-select class="navigation-item" v-model="lessonStore.currentIndex">
+    <el-select size="small" class="navigation-item" v-model="lessonStore.currentIndex" fit-input-width>
       <el-option
           v-for="(item, index) in lessonStore.lessons"
           :key="index"
-          :label="`第 ${index + 1} 課 - ${getDisplayText(item.title)}`"
+          :label="`${index + 1} ${getDisplayText(item.title)}`"
           :value="index"
       />
     </el-select>
     <el-button
+        size="small"
         class="next-button navigation-item"
         :disabled="!lessonStore.hasNext"
         @click="goToLesson(lessonStore.currentIndex + 1)"
@@ -375,10 +377,6 @@ const getHighlightText = (originalText: string | undefined = "") => {
 
   const rubyRegEx = /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
 
-  if (originalText?.startsWith("はじめましで，")) {
-    console.log(originalText)
-  }
-
   return finalText.replace(rubyRegEx, (match, hrefPart, rubyPart, textPart, closingTag) => {
     if (hrefPart) return hrefPart;
     if (rubyPart) return rubyPart;
@@ -409,9 +407,10 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .lesson-header {
+  margin: 0 auto;
+  padding: 10px 0;
   text-align: center;
-  margin-bottom: 10px;
-  padding: 0 10px;
+  max-width: var(--content-max-width);
 }
 
 .lesson-container {
@@ -419,6 +418,11 @@ onBeforeUnmount(() => {
   margin: 0 auto;
   padding: 0 10px 120px;
   height: calc(100vh - 100px);
+}
+
+.lesson-container > * {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
 }
 
 .navigation-item {

@@ -24,6 +24,8 @@ export const useWordStore = defineStore('word', () => {
     const error = ref<string | null>(null)
     const isInitialized = ref(false)
 
+    const realLessonNumber = (num: number) => num - 100
+
     // Getters
     const uniqueLessons = computed(() => {
         const lessons = new Set<number>()
@@ -31,10 +33,10 @@ export const useWordStore = defineStore('word', () => {
         return Array.from(lessons).sort()
     })
 
-    const uniquePos = computed(() => {
-        const pos = new Set<string>()
-        wordList.value.forEach(item => pos.add(item.pos))
-        return Array.from(pos).sort()
+    const lessonCount = computed(() => {
+        const lessons = new Set<number>()
+        wordList.value.forEach(item => lessons.add(item.lesson))
+        return lessons.size
     })
 
     // Actions
@@ -99,19 +101,20 @@ export const useWordStore = defineStore('word', () => {
     return {
         // State
         wordList,
+        lessonCount,
         isLoading,
         error,
         isInitialized,
 
         // Getters
         uniqueLessons,
-        uniquePos,
 
         // Actions
         fetchWords,
         getByLesson,
         searchByText,
         getByPos,
-        filterWord
+        filterWord,
+        realLessonNumber
     }
 })

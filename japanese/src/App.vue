@@ -5,19 +5,30 @@
         :icon="Setting"
         circle
         @click="openSettings"
+        size="small"
+    />
+    <el-switch
+        inline-prompt
+        v-model="lessonMode"
+        active-text="课程模式"
+        inactive-text="单词模式"
     />
   </div>
-  <Lesson class="body"/>
+  <Lesson v-if="lessonMode" class="body"/>
+  <Word v-else class="body"/>
   <SettingsDialog ref="settingsDialog"/>
 </template>
 
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
-import {Setting} from '@element-plus/icons-vue'
+import {Setting,} from '@element-plus/icons-vue'
 import SettingsDialog from './components/SettingsDialog.vue'
 import Lesson from './components/Lesson.vue'
+import Word from "./components/Word.vue";
 import {useLessonStore} from './stores/lessonStore'
 import {useWordStore} from './stores/wordStore'
+
+const lessonMode = ref<boolean>(true)
 
 const settingsDialog = ref()
 const openSettings = () => {
@@ -35,11 +46,19 @@ onMounted(async () => {
 
 <style scoped>
 .header {
-  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
   height: var(--header-height);
   display: flex;
   align-items: center;
-  padding-left: 10px;
+}
+
+.header > * {
+  margin-right: 10px;
+}
+
+.header > *:last-child {
+  margin-right: 0;
 }
 
 .body {
