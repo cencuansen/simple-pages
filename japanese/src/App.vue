@@ -20,12 +20,13 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from 'vue'
+import {onMounted, ref, toRefs} from 'vue'
 import {Setting,} from '@element-plus/icons-vue'
 import Settings from './components/Setting.vue'
 import Lesson from './components/Lesson.vue'
 import Word from "./components/Word.vue";
 import {useLessonStore} from './stores/lessonStore'
+import {useBaseSettingStore} from './stores/baseSettingStore'
 import {useWordStore} from './stores/wordStore'
 
 const lessonMode = ref<boolean>(true)
@@ -38,12 +39,19 @@ const openSettings = () => {
 const lessonStore = useLessonStore()
 const wordStore = useWordStore()
 
-  onMounted(async () => {
+const {style} = toRefs(useBaseSettingStore())
+const {fontSize} = toRefs(style.value)
+
+onMounted(async () => {
   await wordStore.fetchWords()
   await lessonStore.fetchLessons()
 })
 </script>
-
+<style>
+:root {
+  font-size: v-bind(fontSize);
+}
+</style>
 <style scoped>
 .header {
   max-width: var(--content-max-width);

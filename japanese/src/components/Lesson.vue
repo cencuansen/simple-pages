@@ -27,29 +27,31 @@
   </div>
   <div ref="container" class="lesson-container" v-if="lessonStore.currentLesson">
     <h1 class="lesson-index">
-      <span>第 {{ lessonStore.currentIndex + 1 }} 課</span>
-      &nbsp;
-      <el-button
-          type="primary"
-          size="small"
-          circle
-          @click="toggleAllTranslations">
-        <el-icon>
-          <Switch/>
-        </el-icon>
-      </el-button>
-    </h1>
-    <h1 class="lesson-title">
-      <span v-html="getHighlightText(lessonStore.currentLesson.title)"></span>
-    </h1>
-
-    <!-- 简单句子 -->
-    <section v-if="lessonStore.currentLesson.basics?.length" class="section basics-section">
-      <div class="speak-list">
+      <el-text class="text text-title-index">第 {{ lessonStore.currentIndex + 1 }} 課</el-text>
+      <span v-if="baseSettingStore.translate" style="display: flex;align-items: center">&nbsp;
         <el-button
             type="primary"
             size="small"
             circle
+            @click="toggleAllTranslations">
+        <el-icon>
+          <Switch/>
+        </el-icon>
+      </el-button>
+</span>
+    </h1>
+    <h1 class="lesson-title">
+      <el-text class="text text-title" v-html="wordRef(lessonStore.currentLesson.title)"></el-text>
+    </h1>
+
+    <!-- 简单句子 -->
+    <section v-if="lessonStore.currentLesson.basics?.length" class="section basics-section">
+      <div class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
+        <el-button
+            type="primary"
+            size="small"
+            circle
+            v-if="baseSettingStore.translate"
             @click="showBasicsTranslation = !showBasicsTranslation">
           <el-icon>
             <Switch/>
@@ -60,6 +62,7 @@
             size="small"
             circle
             :disabled="speechStore.isSpeaking"
+            v-if="baseSettingStore.speak"
             @click="speechStore.speakList(getSpeechTextList(lessonStore.currentLesson.basics))">
           <el-icon>
             <VideoPlay/>
@@ -69,11 +72,12 @@
       <el-form class="basics-list">
         <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
           <div>
-            <span class="message-content" v-html="getHighlightText(item)"></span>
+            <el-text class="text text-content" v-html="wordRef(item)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
+                v-if="baseSettingStore.speak"
                 :disabled="speechStore.isSpeaking"
                 @click="speechStore.speak(getSpeechText(item))">
               <el-icon>
@@ -91,11 +95,12 @@
 
     <!-- 普通对话 -->
     <section v-if="lessonStore.currentLesson.conversations?.length" class="section conversation-section">
-      <div class="speak-list">
+      <div class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
         <el-button
             type="primary"
             size="small"
             circle
+            v-if="baseSettingStore.translate"
             @click="toggleConversationTranslations">
           <el-icon>
             <Switch/>
@@ -105,6 +110,7 @@
             type="primary"
             size="small"
             circle
+            v-if="baseSettingStore.speak"
             :disabled="speechStore.isSpeaking"
             @click="speechStore.speakList(getSpeechTextList(convFlatMap(lessonStore.currentLesson.conversations)))">
           <el-icon>
@@ -114,13 +120,17 @@
       </div>
       <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-        <el-form-item label="" class="speak-list">
-          <el-button type="primary" size="small" circle @click="toggleExchangeTranslation(exchangeIndex)">
+        <el-form-item label="" class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
+          <el-button type="primary" size="small" circle
+                     v-if="baseSettingStore.translate"
+                     @click="toggleExchangeTranslation(exchangeIndex)">
             <el-icon>
               <Switch/>
             </el-icon>
           </el-button>
-          <el-button type="primary" size="small" circle :disabled="speechStore.isSpeaking"
+          <el-button type="primary" size="small" circle
+                     v-if="baseSettingStore.speak"
+                     :disabled="speechStore.isSpeaking"
                      @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
             <el-icon>
               <VideoPlay/>
@@ -131,11 +141,12 @@
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div>
-            <span class="message-content" v-html="getHighlightText(message.content)"></span>
+            <el-text class="text text-content" v-html="wordRef(message.content)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
+                v-if="baseSettingStore.speak"
                 :disabled="speechStore.isSpeaking"
                 @click="speechStore.speak(getSpeechText(message.content))">
               <el-icon>
@@ -155,14 +166,20 @@
 
     <!-- 情景对话 -->
     <section v-if="lessonStore.currentLesson.conversations2?.length" class="section conversation-section">
-      <h2 v-html="getHighlightText(lessonStore.currentLesson.title2)"></h2>
-      <div class="speak-list">
-        <el-button type="primary" size="small" circle @click="toggleConversation2Translations">
+      <h2>
+        <el-text class="text text-content-h2" v-html="wordRef(lessonStore.currentLesson.title2)"></el-text>
+      </h2>
+      <div class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
+        <el-button type="primary" size="small" circle
+                   v-if="baseSettingStore.translate"
+                   @click="toggleConversation2Translations">
           <el-icon>
             <Switch/>
           </el-icon>
         </el-button>
-        <el-button type="primary" size="small" circle :disabled="speechStore.isSpeaking"
+        <el-button type="primary" size="small" circle
+                   v-if="baseSettingStore.speak"
+                   :disabled="speechStore.isSpeaking"
                    @click="speechStore.speakList(getSpeechTextList(convFlatMap(lessonStore.currentLesson.conversations2)))">
           <el-icon>
             <VideoPlay/>
@@ -171,13 +188,17 @@
       </div>
       <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations2"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-        <el-form-item label="" class="speak-list">
-          <el-button type="primary" size="small" circle @click="toggleExchange2Translation(exchangeIndex)">
+        <el-form-item label="" class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
+          <el-button type="primary" size="small" circle
+                     v-if="baseSettingStore.translate"
+                     @click="toggleExchange2Translation(exchangeIndex)">
             <el-icon>
               <Switch/>
             </el-icon>
           </el-button>
-          <el-button type="primary" size="small" circle :disabled="speechStore.isSpeaking"
+          <el-button type="primary" size="small" circle
+                     v-if="baseSettingStore.speak"
+                     :disabled="speechStore.isSpeaking"
                      @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
             <el-icon>
               <VideoPlay/>
@@ -188,11 +209,12 @@
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div>
-            <span class="message-content" v-html="getHighlightText(message.content)"></span>
+            <el-text class="text text-content" v-html="wordRef(message.content)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
+                v-if="baseSettingStore.speak"
                 :disabled="speechStore.isSpeaking"
                 @click="speechStore.speak(getSpeechText(message.content))">
               <el-icon>
@@ -217,6 +239,7 @@
           type="primary"
           size="small"
           circle
+          v-if="baseSettingStore.speak"
           :disabled="speechStore.isSpeaking"
           @click="speechStore.speakList(getSpeechTextList(words.map(w => w.kana)))">
         <el-icon>
@@ -231,7 +254,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="desc" label="释义"/>
-        <el-table-column label="" width="50">
+        <el-table-column label="" width="50" v-if="baseSettingStore.speak">
           <template #default="scope">
             <el-button
                 type="primary"
@@ -309,7 +332,6 @@ const toggleExchangeTranslation = (index: number) => {
 
 // 情景对话切换
 const toggleExchange2Translation = (index: number) => {
-  console.log("情景对话翻译文本切换")
   showExchange2Translations.value[index] = !showExchange2Translations.value[index]
 }
 
@@ -332,37 +354,43 @@ const highlightReplacer = (match: string) => match ? `<a href="#word-${match}" c
 const getSpeechText = (text: string | undefined = "") => text.replace(/![^\(]+\(([^\)]+)\)/g, '$1')
 const getSpeechTextList = (arr: string[] = []) => arr.map(getSpeechText)
 const getDisplayText = (text: string | undefined = "") => text.replace(/!([^\(]+)\([^\)]+\)/g, '$1')
-const getHighlightText = (originalText: string | undefined = "") => {
+const wordRef = (originalText: string | undefined = "") => {
   const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1');
   if (words.value.length === 0) return baseText
 
-  let finalText = baseText.replace(wordRegEx.value, highlightReplacer)
+  let finalText = baseText
 
-  if (!baseSettingStore.furiganaEnable) {
-    return finalText
+  // 单词跳转
+  if (baseSettingStore.wordLink) {
+    finalText = baseText.replace(wordRegEx.value, highlightReplacer)
   }
 
-  const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || [];
-  const rubyMap: Record<string, string> = {};
-  rubyText.forEach(item => {
-    const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || [];
-    rubyMap[kanji] = kana;
-  });
+  // 注音
+  if (baseSettingStore.furigana) {
+    const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || [];
+    const rubyMap: Record<string, string> = {};
+    rubyText.forEach(item => {
+      const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || [];
+      rubyMap[kanji] = kana;
+    });
 
-  const rubyRegEx = /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
+    const rubyRegEx = /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
 
-  return finalText.replace(rubyRegEx, (match, hrefPart, rubyPart, textPart, closingTag) => {
-    if (hrefPart) return hrefPart;
-    if (rubyPart) return rubyPart;
-    if (closingTag) return closingTag;
-    if (textPart) {
-      for (const [kanji, kana] of Object.entries(rubyMap)) {
-        textPart = textPart.replace(new RegExp(kanji, 'g'), `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+    finalText = finalText.replace(rubyRegEx, (match, hrefPart, rubyPart, textPart, closingTag) => {
+      if (hrefPart) return hrefPart;
+      if (rubyPart) return rubyPart;
+      if (closingTag) return closingTag;
+      if (textPart) {
+        for (const [kanji, kana] of Object.entries(rubyMap)) {
+          textPart = textPart.replace(new RegExp(kanji, 'g'), `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+        }
+        return textPart;
       }
-      return textPart;
-    }
-    return match;
-  });
+      return match;
+    });
+  }
+
+  return finalText
 }
 
 const convMap = (co: Conversations[]) => co.map(x => x.content)
@@ -420,17 +448,29 @@ onBeforeUnmount(() => {
   justify-content: center;
 }
 
-:deep(.speak-list) {
+.text-title-index, .text-title {
+  font-size: 1.5rem;
+}
+
+.section h2 {
+  margin-bottom: 10px;
+}
+
+.text-content-h2 {
+  font-size: 1.3rem;
+}
+
+.text-content {
+  font-size: 1rem;
+}
+
+:deep(.function-group) {
   margin-bottom: 10px;
   display: flex;
 }
 
 .section {
   margin-bottom: 40px;
-}
-
-.section h2 {
-  margin-bottom: 10px;
 }
 
 .original-line {

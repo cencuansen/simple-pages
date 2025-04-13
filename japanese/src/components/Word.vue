@@ -34,6 +34,7 @@
           type="primary"
           size="small"
           circle
+          v-if="baseSettingStore.speak"
           :disabled="!currentIndex || speechStore.isSpeaking"
           @click="speechStore.speakList(getSpeechTextList(words.map(w => w.kana)))">
         <el-icon>
@@ -48,12 +49,12 @@
           </template>
         </el-table-column>
         <el-table-column prop="desc" label="释义" width="200" show-overflow-tooltip/>
-        <el-table-column label="" width="40" v-if="!currentIndex" show-overflow-tooltip>
+        <el-table-column label="" width="40" v-if="!currentIndex" show-overflow-tooltip >
           <template #default="scope">
             {{ wordStore.realLessonNumber(scope.row.lesson) }}
           </template>
         </el-table-column>
-        <el-table-column label="" width="50">
+        <el-table-column label="" width="50" v-if="baseSettingStore.speak">
           <template #default="scope">
             <el-button
                 type="primary"
@@ -78,10 +79,12 @@
 import {VideoPlay} from '@element-plus/icons-vue'
 import {computed, onBeforeUnmount, ref} from 'vue'
 import {useSpeechStore} from "../stores/speechStore"
+import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore, type WordItem} from "../stores/wordStore"
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
+const baseSettingStore = useBaseSettingStore()
 
 const currentIndex = ref()
 const maxPageSize = ref(0)

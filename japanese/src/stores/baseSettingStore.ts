@@ -4,20 +4,30 @@ import {ref} from "vue";
 
 export const useBaseSettingStore = defineStore('baseSetting', () => {
 
-    /* ------------- 主题 --------------- */
     const isDark = useDark()
     const toggleDark = useToggle(isDark)
 
-    /* ------------- 注音 --------------- */
-    const furiganaEnable = ref(true)
+    const furigana = ref(true)
+
+    const wordLink = ref(true)
+
+    const style = ref({
+        fontSize: "12px"
+    })
+
+    const translate = ref(true)
+
+    const speak = ref(true)
 
     return {
         isDark,
-        furiganaEnable,
+        style,
+        wordLink,
+        furigana,
+        translate,
+        speak,
         toggleDark,
     }
 }, {
-    persist: {
-        pick: ["isDark", "furiganaEnable"],
-    }
+    persist: true
 })

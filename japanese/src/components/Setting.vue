@@ -12,14 +12,33 @@
             <el-switch v-model="darkMode" inline-prompt :active-icon="Moon" :inactive-icon="Sunny" size="small"/>
           </el-form-item>
           <el-form-item label="注音">
-            <el-switch v-model="baseSettingStore.furiganaEnable" inline-prompt  size="small"/>
+            <el-switch v-model="baseSettingStore.furigana" inline-prompt size="small"/>
           </el-form-item>
+          <el-form-item label="单词跳转">
+            <el-switch v-model="baseSettingStore.wordLink" inline-prompt size="small"/>
+          </el-form-item>
+          <el-form-item label="翻译">
+            <el-switch v-model="baseSettingStore.translate" inline-prompt size="small"/>
+          </el-form-item>
+          <el-form-item label="语音">
+            <el-switch v-model="baseSettingStore.speak" inline-prompt size="small"/>
+          </el-form-item>
+          <!--          <el-form-item label="字体大小">-->
+          <!--            <el-slider-->
+          <!--                v-model="baseSettingStore.style.fontSize"-->
+          <!--                :min="10"-->
+          <!--                :max="20"-->
+          <!--                :step="0.1"-->
+          <!--                show-input-->
+          <!--                size="small"-->
+          <!--            />-->
+          <!--          </el-form-item>-->
         </el-form>
       </el-tab-pane>
 
       <el-tab-pane label="语音">
         <el-form>
-          <el-form-item label="语音选择">
+          <el-form-item label="语音">
             <el-select
                 v-model="voiceName"
                 placeholder="选择语音"
@@ -69,7 +88,7 @@
             />
           </el-form-item>
 
-          <el-form-item label="重复次数">
+          <el-form-item label="重复">
             <el-input-number
                 v-model="repeatTimes"
                 :min="1"
@@ -78,7 +97,7 @@
             />
           </el-form-item>
 
-          <el-form-item label="测试语音">
+          <el-form-item label="测试">
             <el-input
                 v-model="testText"
                 placeholder="输入测试文本"
