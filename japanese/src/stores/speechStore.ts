@@ -16,7 +16,7 @@ export const useSpeechStore = defineStore('speech', () => {
     const repeatTimes = ref<number>(1) // 重复次数 (1-5)
     const voice = ref<SpeechSynthesisVoice | null>(null) // 当前选中的语音
     const voiceName = ref<string>()
-    const nowText = ref<string>()
+    const speakingText = ref<string>()
 
     // 系统可用语音列表
     const voices = ref<SpeechSynthesisVoice[]>([])
@@ -46,7 +46,7 @@ export const useSpeechStore = defineStore('speech', () => {
         initVoices() // 立即初始化
     }
 
-    function beforeSpeak() {
+    const beforeSpeak = () => {
         if (voices.value.length > 0) {
             if (voiceName.value) {
                 [voice.value] = voices.value.filter(v => v.name === voiceName.value)
@@ -74,7 +74,7 @@ export const useSpeechStore = defineStore('speech', () => {
                 return
             }
 
-            nowText.value = text
+            speakingText.value = text
 
             const utterance = new SpeechSynthesisUtterance(text)
             utterance.voice = voice.value
@@ -119,9 +119,9 @@ export const useSpeechStore = defineStore('speech', () => {
                 }
             }
 
-            nowText.value = textList[currentIndex]
+            speakingText.value = textList[currentIndex]
 
-            const utterance = new SpeechSynthesisUtterance(nowText.value);
+            const utterance = new SpeechSynthesisUtterance(speakingText.value);
             utterance.voice = voice.value;
             utterance.lang = lang.value;
             utterance.rate = rate.value;
@@ -156,6 +156,8 @@ export const useSpeechStore = defineStore('speech', () => {
         isSpeaking.value = false
     }
 
+    const isTextSpeaking = (text: string) => speakingText.value === text
+
     return {
         rate,
         pitch,
@@ -166,11 +168,13 @@ export const useSpeechStore = defineStore('speech', () => {
         voices,
         voiceOptions,
         isSpeaking,
+        speakingText,
         initVoices,
         speak,
         speakList,
         stop,
-        reset
+        reset,
+        isTextSpeaking
     }
 }, {
     persist: {

@@ -41,7 +41,7 @@
 </span>
     </h1>
     <h1 class="lesson-title">
-      <el-text class="text text-title" v-html="wordRef(lessonStore.currentLesson.title)"></el-text>
+      <el-text class="text text-title" v-html="textHandler(lessonStore.currentLesson.title)"></el-text>
     </h1>
 
     <!-- 简单句子 -->
@@ -63,7 +63,7 @@
             circle
             :disabled="speechStore.isSpeaking"
             v-if="baseSettingStore.speak"
-            @click="speechStore.speakList(getSpeechTextList(lessonStore.currentLesson.basics))">
+            @click="speechStore.speakList(speakTextList(lessonStore.currentLesson.basics))">
           <el-icon>
             <VideoPlay/>
           </el-icon>
@@ -72,14 +72,16 @@
       <el-form class="basics-list">
         <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
           <div>
-            <el-text class="text text-content" v-html="wordRef(item)"></el-text>
+            <el-text class="text text-content"
+                     :class="{'speaking-active': speechStore.isTextSpeaking(speakText(item))}"
+                     v-html="textHandler(item)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 v-if="baseSettingStore.speak"
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(getSpeechText(item))">
+                @click="speechStore.speak(speakText(item))">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -112,7 +114,7 @@
             circle
             v-if="baseSettingStore.speak"
             :disabled="speechStore.isSpeaking"
-            @click="speechStore.speakList(getSpeechTextList(convFlatMap(lessonStore.currentLesson.conversations)))">
+            @click="speechStore.speakList(speakTextList(convFlatMap(lessonStore.currentLesson.conversations)))">
           <el-icon>
             <VideoPlay/>
           </el-icon>
@@ -131,7 +133,7 @@
           <el-button type="primary" size="small" circle
                      v-if="baseSettingStore.speak"
                      :disabled="speechStore.isSpeaking"
-                     @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
+                     @click="speechStore.speakList(speakTextList(convMap(exchange)))">
             <el-icon>
               <VideoPlay/>
             </el-icon>
@@ -141,14 +143,16 @@
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div>
-            <el-text class="text text-content" v-html="wordRef(message.content)"></el-text>
+            <el-text class="text text-content"
+                     :class="{'speaking-active': speechStore.isTextSpeaking(speakText(message.content))}"
+                     v-html="textHandler(message.content)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 v-if="baseSettingStore.speak"
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(getSpeechText(message.content))">
+                @click="speechStore.speak(speakText(message.content))">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -167,7 +171,7 @@
     <!-- 情景对话 -->
     <section v-if="lessonStore.currentLesson.conversations2?.length" class="section conversation-section">
       <h2>
-        <el-text class="text text-content-h2" v-html="wordRef(lessonStore.currentLesson.title2)"></el-text>
+        <el-text class="text text-content-h2" v-html="textHandler(lessonStore.currentLesson.title2)"></el-text>
       </h2>
       <div class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
         <el-button type="primary" size="small" circle
@@ -180,7 +184,7 @@
         <el-button type="primary" size="small" circle
                    v-if="baseSettingStore.speak"
                    :disabled="speechStore.isSpeaking"
-                   @click="speechStore.speakList(getSpeechTextList(convFlatMap(lessonStore.currentLesson.conversations2)))">
+                   @click="speechStore.speakList(speakTextList(convFlatMap(lessonStore.currentLesson.conversations2)))">
           <el-icon>
             <VideoPlay/>
           </el-icon>
@@ -199,7 +203,7 @@
           <el-button type="primary" size="small" circle
                      v-if="baseSettingStore.speak"
                      :disabled="speechStore.isSpeaking"
-                     @click="speechStore.speakList(getSpeechTextList(convMap(exchange)))">
+                     @click="speechStore.speakList(speakTextList(convMap(exchange)))">
             <el-icon>
               <VideoPlay/>
             </el-icon>
@@ -209,14 +213,16 @@
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div>
-            <el-text class="text text-content" v-html="wordRef(message.content)"></el-text>
+            <el-text class="text text-content"
+                     :class="{'speaking-active': speechStore.isTextSpeaking(speakText(message.content))}"
+                     v-html="textHandler(message.content)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 v-if="baseSettingStore.speak"
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(getSpeechText(message.content))">
+                @click="speechStore.speak(speakText(message.content))">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -241,7 +247,7 @@
           circle
           v-if="baseSettingStore.speak"
           :disabled="speechStore.isSpeaking"
-          @click="speechStore.speakList(getSpeechTextList(words.map(w => w.kana)))">
+          @click="speechStore.speakList(speakTextList(words.map(w => w.kana)))">
         <el-icon>
           <VideoPlay/>
         </el-icon>
@@ -249,8 +255,12 @@
       <el-table :data="words">
         <el-table-column label="假名">
           <template #default="scope">
-            <div :id="`word-${scope.row.word}`" class="column-word">{{ scope.row.word }}</div>
-            <div class="column-kana">{{ scope.row.kana }}</div>
+            <div :id="`word-${scope.row.word}`" class="column-word"
+                 :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.word }}
+            </div>
+            <div class="column-kana"
+                 :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.kana }}
+            </div>
           </template>
         </el-table-column>
         <el-table-column prop="desc" label="释义"/>
@@ -351,10 +361,10 @@ const wordRegEx = computed(() => {
 
 const highlightReplacer = (match: string) => match ? `<a href="#word-${match}" class="highlight-word">${match}</a>` : ''
 
-const getSpeechText = (text: string | undefined = "") => text.replace(/![^\(]+\(([^\)]+)\)/g, '$1')
-const getSpeechTextList = (arr: string[] = []) => arr.map(getSpeechText)
+const speakText = (text: string | undefined = "") => text.replace(/![^\(]+\(([^\)]+)\)/g, '$1')
+const speakTextList = (arr: string[] = []) => arr.map(speakText)
 const getDisplayText = (text: string | undefined = "") => text.replace(/!([^\(]+)\([^\)]+\)/g, '$1')
-const wordRef = (originalText: string | undefined = "") => {
+const textHandler = (originalText: string | undefined = "") => {
   const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1');
   if (words.value.length === 0) return baseText
 
@@ -450,6 +460,26 @@ onBeforeUnmount(() => {
 
 .text-title-index, .text-title {
   font-size: 1.5rem;
+}
+
+.speaking-active {
+  color: var(--el-color-success);
+}
+
+.speaking-active a:link {
+  color: var(--el-color-success);
+}
+
+:deep(.speaking-active a:visited) {
+  color: var(--el-color-success);
+}
+
+:deep(.speaking-active a:hover) {
+  color: #4285F4;
+}
+
+:deep(.speaking-active a:active) {
+  color: #FF0000;
 }
 
 .section h2 {

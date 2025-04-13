@@ -44,8 +44,12 @@
       <el-table :data="words">
         <el-table-column label="假名" show-overflow-tooltip>
           <template #default="scope">
-            <div :id="`word-${scope.row.word}`" class="column-word">{{ scope.row.word }}</div>
-            <div class="column-kana">{{ scope.row.kana }}</div>
+            <div :id="`word-${scope.row.word}`" class="column-word"
+                 :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.word }}
+            </div>
+            <div class="column-kana"
+                 :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.kana }}
+            </div>
           </template>
         </el-table-column>
         <el-table-column prop="desc" label="释义" width="200" show-overflow-tooltip/>
@@ -155,6 +159,10 @@ onBeforeUnmount(() => {
 .lesson-container > * {
   max-width: var(--content-max-width);
   margin: 0 auto;
+}
+
+.speaking-active {
+  color: var(--el-color-success);
 }
 
 .go-top {
