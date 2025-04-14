@@ -392,7 +392,7 @@ const textHandler = (originalText: string | undefined = "") => {
       if (closingTag) return closingTag;
       if (textPart) {
         for (const [kanji, kana] of Object.entries(rubyMap)) {
-          textPart = textPart.replace(new RegExp(kanji, 'g'), `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+          textPart = textPart.replace(new RegExp(`${kanji}(?!([^<]*<rt>)[^<]*<\\/rt>)`, "g"), `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
         }
         return textPart;
       }
