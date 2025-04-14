@@ -1,17 +1,20 @@
 import {defineStore} from 'pinia'
 import {computed, ref, watch} from 'vue'
 
-export interface Conversations {
-    speaker: string;
+export interface Text {
+    speaker?: string;
     content: string;
+    base?: string;
+    display?: string;
+    audio: string;
 }
 
 export interface Lesson {
-    title?: string
-    basics: string[],
-    conversations: Conversations[][],
-    title2: string,
-    conversations2: Conversations[][],
+    title?: Text
+    basics: Text[],
+    conversations: Text[][],
+    title2: Text,
+    conversations2: Text[][],
     translation: Lesson
 }
 

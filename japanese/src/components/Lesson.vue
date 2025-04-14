@@ -12,7 +12,7 @@
       <el-option
           v-for="(item, index) in lessonStore.lessons"
           :key="index"
-          :label="`${index + 1} ${getDisplayText(item.title)}`"
+          :label="`${index + 1} ${getDisplayText(item.title?.content)}`"
           :value="index"
       />
     </el-select>
@@ -25,6 +25,7 @@
       下一课
     </el-button>
   </div>
+
   <div ref="container" class="lesson-container" v-if="lessonStore.currentLesson">
     <h1 class="lesson-index">
       <el-text class="text text-title-index">第 {{ lessonStore.currentIndex + 1 }} 課</el-text>
@@ -41,47 +42,23 @@
 </span>
     </h1>
     <h1 class="lesson-title">
-      <el-text class="text text-title" v-html="textHandler(lessonStore.currentLesson.title)"></el-text>
+      <el-text class="text text-title" v-html="textHandler(lessonStore.currentLesson.title?.content)"></el-text>
     </h1>
 
     <!-- 简单句子 -->
     <section v-if="lessonStore.currentLesson.basics?.length" class="section basics-section">
-      <div class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
-        <el-button
-            type="primary"
-            size="small"
-            circle
-            v-if="baseSettingStore.translate"
-            @click="showBasicsTranslation = !showBasicsTranslation">
-          <el-icon>
-            <Switch/>
-          </el-icon>
-        </el-button>
-        <el-button
-            type="primary"
-            size="small"
-            circle
-            :disabled="speechStore.isSpeaking"
-            v-if="baseSettingStore.speak"
-            @click="speechStore.speakList(speakTextList(lessonStore.currentLesson.basics))">
-          <el-icon>
-            <VideoPlay/>
-          </el-icon>
-        </el-button>
-      </div>
       <el-form class="basics-list">
         <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
           <div>
             <el-text class="text text-content"
-                     :class="{'speaking-active': speechStore.isTextSpeaking(speakText(item))}"
-                     v-html="textHandler(item)"></el-text>
+                     :class="{'speaking-active': speechStore.isTextSpeaking(speakText(item?.content))}"
+                     v-html="textHandler(item.content)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 v-if="baseSettingStore.speak"
-                :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(speakText(item))">
+                @click="playAudio(item.audio)">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -97,48 +74,8 @@
 
     <!-- 普通对话 -->
     <section v-if="lessonStore.currentLesson.conversations?.length" class="section conversation-section">
-      <div class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
-        <el-button
-            type="primary"
-            size="small"
-            circle
-            v-if="baseSettingStore.translate"
-            @click="toggleConversationTranslations">
-          <el-icon>
-            <Switch/>
-          </el-icon>
-        </el-button>
-        <el-button
-            type="primary"
-            size="small"
-            circle
-            v-if="baseSettingStore.speak"
-            :disabled="speechStore.isSpeaking"
-            @click="speechStore.speakList(speakTextList(convFlatMap(lessonStore.currentLesson.conversations)))">
-          <el-icon>
-            <VideoPlay/>
-          </el-icon>
-        </el-button>
-      </div>
       <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-        <el-form-item label="" class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
-          <el-button type="primary" size="small" circle
-                     v-if="baseSettingStore.translate"
-                     @click="toggleExchangeTranslation(exchangeIndex)">
-            <el-icon>
-              <Switch/>
-            </el-icon>
-          </el-button>
-          <el-button type="primary" size="small" circle
-                     v-if="baseSettingStore.speak"
-                     :disabled="speechStore.isSpeaking"
-                     @click="speechStore.speakList(speakTextList(convMap(exchange)))">
-            <el-icon>
-              <VideoPlay/>
-            </el-icon>
-          </el-button>
-        </el-form-item>
 
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
@@ -151,8 +88,7 @@
                 size="small"
                 circle
                 v-if="baseSettingStore.speak"
-                :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(speakText(message.content))">
+                @click="playAudio(message.audio)">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -171,45 +107,10 @@
     <!-- 情景对话 -->
     <section v-if="lessonStore.currentLesson.conversations2?.length" class="section conversation-section">
       <h2>
-        <el-text class="text text-content-h2" v-html="textHandler(lessonStore.currentLesson.title2)"></el-text>
+        <el-text class="text text-content-h2" v-html="textHandler(lessonStore.currentLesson.title2.content)"></el-text>
       </h2>
-      <div class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
-        <el-button type="primary" size="small" circle
-                   v-if="baseSettingStore.translate"
-                   @click="toggleConversation2Translations">
-          <el-icon>
-            <Switch/>
-          </el-icon>
-        </el-button>
-        <el-button type="primary" size="small" circle
-                   v-if="baseSettingStore.speak"
-                   :disabled="speechStore.isSpeaking"
-                   @click="speechStore.speakList(speakTextList(convFlatMap(lessonStore.currentLesson.conversations2)))">
-          <el-icon>
-            <VideoPlay/>
-          </el-icon>
-        </el-button>
-      </div>
       <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations2"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-        <el-form-item label="" class="function-group" v-if="baseSettingStore.translate || baseSettingStore.speak">
-          <el-button type="primary" size="small" circle
-                     v-if="baseSettingStore.translate"
-                     @click="toggleExchange2Translation(exchangeIndex)">
-            <el-icon>
-              <Switch/>
-            </el-icon>
-          </el-button>
-          <el-button type="primary" size="small" circle
-                     v-if="baseSettingStore.speak"
-                     :disabled="speechStore.isSpeaking"
-                     @click="speechStore.speakList(speakTextList(convMap(exchange)))">
-            <el-icon>
-              <VideoPlay/>
-            </el-icon>
-          </el-button>
-        </el-form-item>
-
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div>
@@ -221,8 +122,7 @@
                 size="small"
                 circle
                 v-if="baseSettingStore.speak"
-                :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(speakText(message.content))">
+                @click="playAudio(message.audio)">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -283,12 +183,14 @@
 
     <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
+
+  <audio ref="audioRef" :src="src" autoplay></audio>
 </template>
 
 <script setup lang="ts">
 import {VideoPlay, Switch,} from '@element-plus/icons-vue'
 import {computed, onBeforeUnmount, ref} from 'vue'
-import type {Conversations} from '../stores/lessonStore'
+import type {Text} from '../stores/lessonStore'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
@@ -303,6 +205,16 @@ const showAllTranslations = ref(false)
 const showBasicsTranslation = ref(false)
 const showExchangeTranslations = ref<boolean[]>(new Array(100).fill(false))
 const showExchange2Translations = ref<boolean[]>(new Array(100).fill(false))
+
+const audioRef = ref<HTMLAudioElement>()
+const src = ref<string>("")
+const playAudio = (url: string) => {
+  if (!url) {
+    return
+  }
+  const part = url.split("#")
+  src.value = `${part[0]}?${new Date().getTime()}#${part[1]}`
+}
 
 // 全局切换
 const toggleAllTranslations = () => {
@@ -403,8 +315,8 @@ const textHandler = (originalText: string | undefined = "") => {
   return finalText
 }
 
-const convMap = (co: Conversations[]) => co.map(x => x.content)
-const convFlatMap = (conv: Conversations[][]) => conv.flatMap(convMap)
+const convMap = (co: Text[]) => co.map(x => x.content)
+const convFlatMap = (conv: Text[][]) => conv.flatMap(convMap)
 
 const container = ref()
 const goTop = () => {
