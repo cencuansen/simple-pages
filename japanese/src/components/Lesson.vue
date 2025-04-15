@@ -196,7 +196,6 @@
 <script setup lang="ts">
 import {VideoPlay, Switch,} from '@element-plus/icons-vue'
 import {computed, onBeforeUnmount, ref} from 'vue'
-import type {Text} from '../stores/lessonStore'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
@@ -235,32 +234,6 @@ const toggleAllTranslations = () => {
   for (let i = 0; i < showExchange2Translations.value.length; i++) {
     showExchange2Translations.value[i] = showAllTranslations.value
   }
-}
-
-// 简单对话整体切换
-const toggleConversationTranslations = () => {
-  const newValue = !showExchangeTranslations.value.every(x => x)
-  for (let i = 0; i < showExchangeTranslations.value.length; i++) {
-    showExchangeTranslations.value[i] = newValue
-  }
-}
-
-// 情景对话整体切换
-const toggleConversation2Translations = () => {
-  const newValue = !showExchange2Translations.value.every(x => x)
-  for (let i = 0; i < showExchange2Translations.value.length; i++) {
-    showExchange2Translations.value[i] = newValue
-  }
-}
-
-// 简单对话切换
-const toggleExchangeTranslation = (index: number) => {
-  showExchangeTranslations.value[index] = !showExchangeTranslations.value[index]
-}
-
-// 情景对话切换
-const toggleExchange2Translation = (index: number) => {
-  showExchange2Translations.value[index] = !showExchange2Translations.value[index]
 }
 
 const goToLesson = async (index: number) => {
@@ -320,9 +293,6 @@ const textHandler = (originalText: string | undefined = "") => {
 
   return finalText
 }
-
-const convMap = (co: Text[]) => co.map(x => x.content)
-const convFlatMap = (conv: Text[][]) => conv.flatMap(convMap)
 
 const container = ref()
 const goTop = () => {
@@ -435,17 +405,6 @@ onBeforeUnmount(() => {
 
 .translation-line.show-translation {
   display: inherit;
-}
-
-.conversation-exchange {
-  margin-bottom: 10px;
-  border-left: 1px solid #aaa;
-  padding-left: 10px;
-}
-
-.basics-section {
-  border-left: 1px solid #aaa;
-  padding-left: 10px;
 }
 
 .lesson-container .el-form-item {
