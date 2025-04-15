@@ -50,8 +50,9 @@
       <el-form class="basics-list">
         <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
           <div>
+            <!--原文-->
             <el-text class="text text-content"
-                     :class="{'speaking-active': speechStore.isTextSpeaking(speakText(item?.content))}"
+                     :class="{'speaking-active': false}"
                      v-html="textHandler(item.content)"></el-text>
             <el-button
                 type="primary"
@@ -64,9 +65,10 @@
               </el-icon>
             </el-button>
           </div>
+          <!--译文-->
           <div class="translation-line message"
                :class="{ 'show-translation': showBasicsTranslation }">
-            {{ lessonStore.currentLesson.translation?.basics?.[idx] || '' }}
+            {{ item.translation }}
           </div>
         </el-form-item>
       </el-form>
@@ -80,6 +82,7 @@
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div>
+            <!--原文-->
             <el-text class="text text-content"
                      :class="{'speaking-active': speechStore.isTextSpeaking(speakText(message.content))}"
                      v-html="textHandler(message.content)"></el-text>
@@ -94,10 +97,11 @@
               </el-icon>
             </el-button>
           </div>
+          <!--译文-->
           <div class="translation-line message"
                :class="{ 'show-translation': showExchangeTranslations[exchangeIndex] }">
             {{
-              lessonStore.currentLesson.translation?.conversations?.[exchangeIndex][messageIndex]?.content || ''
+              message.translation
             }}
           </div>
         </el-form-item>
@@ -114,6 +118,7 @@
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div>
+            <!--原文-->
             <el-text class="text text-content"
                      :class="{'speaking-active': speechStore.isTextSpeaking(speakText(message.content))}"
                      v-html="textHandler(message.content)"></el-text>
@@ -128,10 +133,11 @@
               </el-icon>
             </el-button>
           </div>
+          <!--译文-->
           <div class="translation-line message"
                :class="{ 'show-translation': showExchange2Translations[exchangeIndex] }">
             {{
-              lessonStore.currentLesson.translation?.conversations2?.[exchangeIndex]?.filter(x => x.speaker !== "旁白")[messageIndex]?.content || ''
+              message.translation
             }}
           </div>
         </el-form-item>

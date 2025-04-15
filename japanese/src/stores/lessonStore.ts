@@ -7,6 +7,7 @@ export interface Text {
     base?: string;
     display?: string;
     audio: string;
+    translation?: string;
 }
 
 export interface Lesson {
