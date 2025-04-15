@@ -15,17 +15,21 @@
         <el-button type="primary">导入</el-button>
       </template>
     </el-upload>
-    <el-button class="play-button button" @click="playRegion(currentRegion)">播放/暂停</el-button>
+    <el-button class="play-button button" @click="playRegion(currentRegion)" type="primary">播放/暂停</el-button>
+    <el-button class="play-button button" @click="resetPoint" type="danger">重置选点</el-button>
   </el-row>
-  <el-row class="region-row" v-for="(reg, index) in region.getRegions().slice().sort((x,y) => x.start - y.start)"
-          :key="reg.id">
-    <el-text class="region-title">{{ timeFormat(reg.start) }},{{ timeFormat(reg.end) }}</el-text>
-    <!--<el-button @click="saveRegionAsWav(reg.id)" size="small" type="primary">下载</el-button>-->
-    <el-button @click="copyText(`${timeFormat(reg.start)},${timeFormat(reg.end)}`)" size="small" type="primary">复制
-    </el-button>
-    <el-button @click="playRegion(reg.id)" size="small" type="primary">播放</el-button>
-    <el-button @click="removeRegion(reg.id)" size="small" type="danger">删除</el-button>
-  </el-row>
+  <div class="region-group">
+    <el-row class="region-row" v-for="(reg, index) in region.getRegions().slice().sort((x,y) => x.start - y.start)"
+            :key="reg.id">
+      <el-text class="row-index">{{ index + 1 }}</el-text>
+      <el-text class="region-title">{{ formatTimeRange(reg) }}</el-text>
+      <!--<el-button @click="saveRegionAsWav(reg.id)" type="primary">下载</el-button>-->
+      <el-button @click="copyText(formatTimeRange(reg))" type="primary">复制
+      </el-button>
+      <el-button @click="playRegion(reg.id)" type="primary">播放</el-button>
+      <el-button @click="removeRegion(reg.id)" type="danger">删除</el-button>
+    </el-row>
+  </div>
 </template>
 
 <script setup>
@@ -35,8 +39,9 @@ import Timeline from 'wavesurfer.js/dist/plugins/timeline.js'
 import Region from 'wavesurfer.js/dist/plugins/regions.js'
 import Hover from 'wavesurfer.js/dist/plugins/hover.js'
 import Zoom from 'wavesurfer.js/dist/plugins/zoom.js'
+import { ElMessage } from "element-plus";
 
-const minTimeSpan = 1
+const minTimeSpan = 0
 const container = ref()
 const wavesurfer = ref(null)
 const timePoint = ref(-1)
@@ -80,7 +85,9 @@ const playRegion = (regionId) => {
   }
   wavesurfer.value.play()
 }
-
+const resetPoint = () => {
+  timePoint.value = -1
+}
 const removeRegion = (regionId) => {
   let regions = region.value.getRegions()
   let index = -1
@@ -297,8 +304,13 @@ const timeFormat = (seconds) => {
   return `${ paddedHrs }:${ paddedMins }:${ paddedSecs }.${ paddedMs }`;
 }
 
+const formatTimeRange = (reg) => {
+  return `${ timeFormat(reg.start) },${ timeFormat(reg.end) }`
+}
+
 const copyText = async (text) => {
   await navigator.clipboard.writeText(text);
+  ElMessage.success('复制完成');
 }
 
 onMounted(() => {
@@ -344,12 +356,26 @@ onMounted(() => {
   margin-right: 0;
 }
 
+.el-button + .el-button {
+  margin-left: 0;
+}
+
 .el-row {
   margin-bottom: 10px;
 }
 
+.row-index {
+  user-select: none;
+  padding-right: 10px;
+}
+
 .region-title {
   width: 180px;
+}
+
+.region-group {
+  height: calc(100vh - 250px);
+  overflow-y: scroll;
 }
 
 .region-row > * {
