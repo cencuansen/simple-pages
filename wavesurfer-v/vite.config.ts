@@ -14,4 +14,9 @@ export default defineConfig({
             resolvers: [ElementPlusResolver()],
         }),
     ],
+    server: {
+        host: '0.0.0.0', // 监听所有网络接口
+        port: 5273,      // 默认端口，可自定义
+        open: true       // 可选：自动打开浏览器
+    }
 })

@@ -19,8 +19,10 @@
   </el-row>
   <el-row class="region-row" v-for="(reg, index) in region.getRegions().slice().sort((x,y) => x.start - y.start)"
           :key="reg.id">
-    <el-text class="region-title">{{ defaultRegionName || index + 1 }}</el-text>
-    <el-button @click="saveRegionAsWav(reg.id)" size="small" type="primary">下载</el-button>
+    <el-text class="region-title">{{ timeFormat(reg.start) }},{{ timeFormat(reg.end) }}</el-text>
+    <!--<el-button @click="saveRegionAsWav(reg.id)" size="small" type="primary">下载</el-button>-->
+    <el-button @click="copyText(`${timeFormat(reg.start)},${timeFormat(reg.end)}`)" size="small" type="primary">复制
+    </el-button>
     <el-button @click="playRegion(reg.id)" size="small" type="primary">播放</el-button>
     <el-button @click="removeRegion(reg.id)" size="small" type="danger">删除</el-button>
   </el-row>
@@ -209,11 +211,11 @@ const saveRegionAsWav = (regionId) => {
   floatTo16BitPCM(wavData, 44, interleaved);
 
   // 创建并下载文件
-  const blob = new Blob([wavData], { type: 'audio/wav' });
+  const blob = new Blob([wavData], {type: 'audio/wav'});
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = `region-${reg.start.toFixed(2)}-${reg.end.toFixed(2)}.wav`;
+  link.download = `region-${ reg.start.toFixed(2) }-${ reg.end.toFixed(2) }.wav`;
   document.body.appendChild(link);
   link.click();
 
@@ -279,6 +281,26 @@ const addRegionByInteraction = (newTimePoint) => {
   timePoint.value = -1
 }
 
+const timeFormat = (seconds) => {
+  // 计算小时、分钟、秒、毫秒
+  const hrs = Math.floor(seconds / 3600);
+  const mins = Math.floor((seconds % 3600) / 60);
+  const secs = Math.floor(seconds % 60);
+  const ms = Math.round((seconds - Math.floor(seconds)) * 1000);
+
+  // 补零处理（确保两位数或三位数）
+  const paddedHrs = String(hrs).padStart(2, '0');
+  const paddedMins = String(mins).padStart(2, '0');
+  const paddedSecs = String(secs).padStart(2, '0');
+  const paddedMs = String(ms).padStart(3, '0').slice(0, 3); // 确保毫秒是3位
+
+  return `${ paddedHrs }:${ paddedMins }:${ paddedSecs }.${ paddedMs }`;
+}
+
+const copyText = async (text) => {
+  await navigator.clipboard.writeText(text);
+}
+
 onMounted(() => {
   if (wavesurfer.value) {
     wavesurfer.value.destroy()
@@ -327,7 +349,7 @@ onMounted(() => {
 }
 
 .region-title {
-  width: 100px;
+  width: 180px;
 }
 
 .region-row > * {
