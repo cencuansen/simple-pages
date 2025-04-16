@@ -6,12 +6,13 @@ export interface Text {
     content: string;
     base?: string;
     display?: string;
-    audio: string;
+    time: string;
     translation?: string;
 }
 
 export interface Lesson {
-    title?: Text
+    title?: Text;
+    audio: string;
     basics: Text[],
     conversations: Text[][],
     title2: Text,

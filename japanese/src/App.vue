@@ -39,19 +39,12 @@ const openSettings = () => {
 const lessonStore = useLessonStore()
 const wordStore = useWordStore()
 
-const {style} = toRefs(useBaseSettingStore())
-const {fontSize} = toRefs(style.value)
-
 onMounted(async () => {
   await wordStore.fetchWords()
   await lessonStore.fetchLessons()
 })
 </script>
-<style>
-:root {
-  font-size: v-bind(fontSize);
-}
-</style>
+
 <style scoped>
 .header {
   max-width: var(--content-max-width);

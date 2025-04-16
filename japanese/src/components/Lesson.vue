@@ -12,7 +12,7 @@
       <el-option
           v-for="(item, index) in lessonStore.lessons"
           :key="index"
-          :label="`${index + 1} ${getDisplayText(item.title?.content)}`"
+          :label="`${getDisplayText(item.title?.content)}`"
           :value="index"
       />
     </el-select>
@@ -27,22 +27,30 @@
   </div>
 
   <div ref="container" class="lesson-container" v-if="lessonStore.currentLesson">
-    <h1 class="lesson-index">
-      <el-text class="text text-title-index">第 {{ lessonStore.currentIndex + 1 }} 課</el-text>
-      <span v-if="baseSettingStore.translate" style="display: flex;align-items: center">&nbsp;
-        <el-button
-            type="primary"
-            size="small"
-            circle
-            @click="toggleAllTranslations">
+    <div class="function-group">
+      <el-button
+          type="primary"
+          size="small"
+          circle
+          v-if="baseSettingStore.translate"
+          @click="toggleAllTranslations(!showAllTranslations)">
         <el-icon>
           <Switch/>
         </el-icon>
       </el-button>
-</span>
-    </h1>
+      <el-button
+          type="primary"
+          size="small"
+          circle
+          v-if="baseSettingStore.speak"
+          @click="playAudio(lessonStore.currentLesson.audio)">
+        <el-icon>
+          <VideoPlay/>
+        </el-icon>
+      </el-button>
+    </div>
     <h1 class="lesson-title">
-      <el-text class="text text-title" v-html="textHandler(lessonStore.currentLesson.title?.content)"></el-text>
+      <el-text class="text-title" v-html="textHandler(lessonStore.currentLesson.title?.content)"></el-text>
     </h1>
 
     <!-- 简单句子 -->
@@ -52,14 +60,14 @@
           <div>
             <!--原文-->
             <el-text class="text text-content"
-                     :class="{'speaking-active': false}"
+                     :class="{'speaking-active': speakingActive(item.time, currentTime)}"
                      v-html="textHandler(item.content)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 v-if="baseSettingStore.speak"
-                @click="playAudio(item.audio)">
+                @click="playAudio(`${lessonStore.currentLesson.audio}${item.time}`)">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -84,14 +92,14 @@
           <div>
             <!--原文-->
             <el-text class="text text-content"
-                     :class="{'speaking-active': speechStore.isTextSpeaking(speakText(message.content))}"
+                     :class="{'speaking-active': speakingActive(message.time, currentTime)}"
                      v-html="textHandler(message.content)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 v-if="baseSettingStore.speak"
-                @click="playAudio(message.audio)">
+                @click="playAudio(`${lessonStore.currentLesson.audio}${message.time}`)">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -120,14 +128,14 @@
           <div>
             <!--原文-->
             <el-text class="text text-content"
-                     :class="{'speaking-active': speechStore.isTextSpeaking(speakText(message.content))}"
+                     :class="{'speaking-active': speakingActive(message.time, currentTime)}"
                      v-html="textHandler(message.content)"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
                 v-if="baseSettingStore.speak"
-                @click="playAudio(message.audio)">
+                @click="playAudio(`${lessonStore.currentLesson.audio}${message.time}`)">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -190,12 +198,12 @@
     <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
 
-  <audio ref="audioRef" :src="src" autoplay></audio>
+  <audio ref="audioRef" :src="src" autoplay @timeupdate="onTimeUpdate"></audio>
 </template>
 
 <script setup lang="ts">
 import {VideoPlay, Switch,} from '@element-plus/icons-vue'
-import {computed, onBeforeUnmount, ref} from 'vue'
+import {computed, onBeforeUnmount, ref, watch} from 'vue'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
@@ -220,10 +228,11 @@ const playAudio = (url: string) => {
   const part = url.split("#")
   src.value = `${part[0]}?${new Date().getTime()}#${part[1]}`
 }
+const currentTime = ref(0)
 
 // 全局切换
-const toggleAllTranslations = () => {
-  showAllTranslations.value = !showAllTranslations.value
+const toggleAllTranslations = (newValue: boolean) => {
+  showAllTranslations.value = newValue
   // 基础句子
   showBasicsTranslation.value = showAllTranslations.value
   // 简单对话
@@ -234,6 +243,30 @@ const toggleAllTranslations = () => {
   for (let i = 0; i < showExchange2Translations.value.length; i++) {
     showExchange2Translations.value[i] = showAllTranslations.value
   }
+}
+
+watch(() => baseSettingStore.translate, (value, _) => {
+  if (!value) {
+    // 设置中关闭翻译功能时
+    toggleAllTranslations(false)
+  }
+})
+
+const onTimeUpdate = () => {
+  if (audioRef.value) {
+    currentTime.value = audioRef.value.currentTime; // 获取当前播放位置（秒）
+  }
+}
+
+const speakingActive = (timeStr: string, currentTime: number): boolean => {
+  if (!audioRef.value || audioRef.value.paused) {
+    return false
+  }
+  if (!timeStr || !currentTime) {
+    return false
+  }
+  const timePart = timeStr.split(",").map(Number)
+  return currentTime > timePart[0] && currentTime < timePart[1]
 }
 
 const goToLesson = async (index: number) => {
@@ -333,25 +366,27 @@ onBeforeUnmount(() => {
   margin-right: 0;
 }
 
-.lesson-index {
+.function-group {
+  margin: 10px auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100px;
 }
 
 .lesson-title {
   margin: 10px auto 40px;
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: center;
+}
+
+.text-title-index {
+  margin-right: 15px;
 }
 
 .text-title-index, .text-title {
   font-size: 1.5rem;
-}
-
-.speaking-active {
-  color: var(--el-color-success);
 }
 
 .speaking-active a:link {
@@ -380,11 +415,6 @@ onBeforeUnmount(() => {
 
 .text-content {
   font-size: 1rem;
-}
-
-:deep(.function-group) {
-  margin-bottom: 10px;
-  display: flex;
 }
 
 .section {
@@ -511,5 +541,9 @@ onBeforeUnmount(() => {
   font-size: 1.5rem;
   color: inherit;
   background-color: inherit;
+}
+
+.speaking-active {
+  color: var(--el-color-success);
 }
 </style>
