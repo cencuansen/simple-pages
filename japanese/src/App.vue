@@ -32,6 +32,8 @@ onMounted(async () => {
 <style scoped>
 .root-tab {
   height: 100vh;
+  width: 100vw;
+  border: none;
 }
 
 :deep(.el-tabs__content) {

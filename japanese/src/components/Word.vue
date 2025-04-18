@@ -80,9 +80,9 @@
         </el-table-column>
       </el-table>
     </section>
-
-    <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
+
+  <a class="go-top" href="#" @click="goTop">↑</a>
 </template>
 
 <script setup lang="ts">
@@ -211,10 +211,12 @@ onBeforeUnmount(() => {
 }
 
 .lesson-container {
-  overflow: auto;
+  width: 100vw;
+  overflow-y: scroll;
   margin: 0 auto;
+  position: fixed;
   padding-bottom: 120px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 85px);
 }
 
 .lesson-container > * {
@@ -228,7 +230,7 @@ onBeforeUnmount(() => {
 
 .go-top {
   position: absolute;
-  bottom: 5%;
+  bottom: 15%;
   right: 15%;
   width: 30px;
   height: 30px;

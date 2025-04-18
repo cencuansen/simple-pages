@@ -214,9 +214,9 @@
         </el-table-column>
       </el-table>
     </section>
-
-    <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
+
+  <a class="go-top" href="#" @click="goTop">↑</a>
 
   <audio ref="audioRef" :src="src" autoplay @timeupdate="onTimeUpdate"></audio>
 </template>
@@ -439,10 +439,12 @@ onBeforeUnmount(() => {
 }
 
 .lesson-container {
-  overflow: auto;
+  overflow-y: scroll;
+  position: fixed;
   margin: 0 auto;
+  width: 100vw;
   padding-bottom: 120px;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 85px);
 }
 
 .lesson-container > * {
