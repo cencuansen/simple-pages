@@ -27,7 +27,9 @@
       下一课
     </el-button>
   </div>
+
   <div ref="container" class="lesson-container">
+    <div ref="top"></div>
     <!-- 单词 -->
     <section class="section words-section">
       <el-button
@@ -53,7 +55,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="desc" label="释义" width="200" show-overflow-tooltip/>
-        <el-table-column label="" width="40" v-if="!currentIndex" show-overflow-tooltip >
+        <el-table-column label="" width="40" v-if="!currentIndex" show-overflow-tooltip>
           <template #default="scope">
             {{ wordStore.realLessonNumber(scope.row.lesson) }}
           </template>
@@ -94,6 +96,9 @@ const currentIndex = ref()
 const maxPageSize = ref(0)
 const keyword = ref("")
 
+const container = ref()
+const top = ref()
+
 const goToLesson = async (index: number) => {
   currentIndex.value = index
   return wordStore.getByLesson(index)
@@ -121,9 +126,12 @@ const words = computed(() => {
 const getSpeechText = (text: string | undefined = "") => text.replace(/![^\(]+\(([^\)]+)\)/g, '$1')
 const getSpeechTextList = (arr: string[] = []) => arr.map(getSpeechText)
 
-const container = ref()
 const goTop = () => {
-  container.value.scrollTop = 0
+  top.value.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+    inline: 'nearest',
+  })
 }
 
 onBeforeUnmount(() => {

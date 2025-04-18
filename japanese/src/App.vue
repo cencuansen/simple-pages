@@ -14,19 +14,18 @@
         inactive-text="单词模式"
     />
   </div>
-  <Lesson v-if="lessonMode" class="body"/>
-  <Word v-else class="body"/>
+  <Lesson v-if="lessonMode"/>
+  <Word v-else/>
   <Settings ref="settingsDialog"/>
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, toRefs} from 'vue'
+import {onMounted, ref} from 'vue'
 import {Setting,} from '@element-plus/icons-vue'
 import Settings from './components/Setting.vue'
 import Lesson from './components/Lesson.vue'
 import Word from "./components/Word.vue";
 import {useLessonStore} from './stores/lessonStore'
-import {useBaseSettingStore} from './stores/baseSettingStore'
 import {useWordStore} from './stores/wordStore'
 
 const lessonMode = ref<boolean>(true)
@@ -60,9 +59,5 @@ onMounted(async () => {
 
 .header > *:last-child {
   margin-right: 0;
-}
-
-.body {
-  height: calc(100vh - var(--header-height));
 }
 </style>

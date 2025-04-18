@@ -27,6 +27,7 @@
   </div>
 
   <div ref="container" class="lesson-container" v-if="lessonStore.currentLesson">
+    <div ref="top"></div>
     <div class="function-group">
       <el-button
           type="primary"
@@ -42,7 +43,7 @@
           type="primary"
           size="small"
           circle
-          v-if="baseSettingStore.speak"
+          v-if="lessonStore.currentLesson.audio"
           @click="playAudio(lessonStore.currentLesson.audio)">
         <el-icon>
           <VideoPlay/>
@@ -50,7 +51,8 @@
       </el-button>
     </div>
     <h1 class="lesson-title">
-      <el-text class="text-title" v-html="textHandler(lessonStore.currentLesson.title?.content)"></el-text>
+      <el-text class="text-title" v-html="textHandler(lessonStore.currentLesson.title?.content)"
+               @click="handleAnchorClick"></el-text>
     </h1>
 
     <!-- 简单句子 -->
@@ -61,13 +63,15 @@
             <!--原文-->
             <el-text class="text text-content"
                      :class="{'speaking-active': speakingActive(item.time, currentTime)}"
-                     v-html="textHandler(item.content)"></el-text>
-            <el-button
-                type="primary"
-                size="small"
-                circle
-                v-if="baseSettingStore.speak"
-                @click="playAudio(`${lessonStore.currentLesson.audio}${item.time}`)">
+                     v-html="textHandler(item.content)" @click="handleAnchorClick"></el-text>
+            <el-button circle type="primary" size="small" v-if="item.time"
+                       @click="playAudio(`${lessonStore.currentLesson.audio}${item.time}`)">
+              <el-icon>
+                <VideoPlay/>
+              </el-icon>
+            </el-button>
+            <el-button v-else circle type="primary" size="small" :disabled="speechStore.isSpeaking"
+                       @click="speechStore.speak(speakText(item.content))">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -93,13 +97,19 @@
             <!--原文-->
             <el-text class="text text-content"
                      :class="{'speaking-active': speakingActive(message.time, currentTime)}"
-                     v-html="textHandler(message.content)"></el-text>
+                     v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
-                v-if="baseSettingStore.speak"
+                v-if="message.time"
                 @click="playAudio(`${lessonStore.currentLesson.audio}${message.time}`)">
+              <el-icon>
+                <VideoPlay/>
+              </el-icon>
+            </el-button>
+            <el-button v-else circle type="primary" size="small" :disabled="speechStore.isSpeaking"
+                       @click="speechStore.speak(speakText(message.content))">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -119,7 +129,8 @@
     <!-- 情景对话 -->
     <section v-if="lessonStore.currentLesson.conversations2?.length" class="section conversation-section">
       <h2>
-        <el-text class="text text-content-h2" v-html="textHandler(lessonStore.currentLesson.title2.content)"></el-text>
+        <el-text class="text text-content-h2" v-html="textHandler(lessonStore.currentLesson.title2.content)"
+                 @click="handleAnchorClick"></el-text>
       </h2>
       <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations2"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
@@ -129,13 +140,19 @@
             <!--原文-->
             <el-text class="text text-content"
                      :class="{'speaking-active': speakingActive(message.time, currentTime)}"
-                     v-html="textHandler(message.content)"></el-text>
+                     v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
             <el-button
                 type="primary"
                 size="small"
                 circle
-                v-if="baseSettingStore.speak"
+                v-if="message.time"
                 @click="playAudio(`${lessonStore.currentLesson.audio}${message.time}`)">
+              <el-icon>
+                <VideoPlay/>
+              </el-icon>
+            </el-button>
+            <el-button v-else circle type="primary" size="small" :disabled="speechStore.isSpeaking"
+                       @click="speechStore.speak(speakText(message.content))">
               <el-icon>
                 <VideoPlay/>
               </el-icon>
@@ -172,7 +189,7 @@
             <div :id="`word-${scope.row.word}`" class="column-word"
                  :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.word }}
             </div>
-            <div class="column-kana"
+            <div :id="`word-${scope.row.kana}`" class="column-kana"
                  :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.kana }}
             </div>
           </template>
@@ -203,7 +220,7 @@
 
 <script setup lang="ts">
 import {VideoPlay, Switch,} from '@element-plus/icons-vue'
-import {computed, onBeforeUnmount, ref, watch} from 'vue'
+import {computed, nextTick, onBeforeUnmount, ref, watch} from 'vue'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
@@ -220,15 +237,21 @@ const showExchangeTranslations = ref<boolean[]>(new Array(100).fill(false))
 const showExchange2Translations = ref<boolean[]>(new Array(100).fill(false))
 
 const audioRef = ref<HTMLAudioElement>()
-const src = ref<string>("")
-const playAudio = (url: string) => {
+const src = ref<string>()
+const currentTime = ref(0)
+
+const playAudio = async (url: string) => {
   if (!url) {
     return
   }
-  const part = url.split("#")
-  src.value = `${part[0]}?${new Date().getTime()}#${part[1]}`
+  src.value = ""
+  await nextTick()
+  src.value = url
 }
-const currentTime = ref(0)
+
+const container = ref()
+const top = ref()
+const lastElement = ref<HTMLElement | null>()
 
 // 全局切换
 const toggleAllTranslations = (newValue: boolean) => {
@@ -251,6 +274,41 @@ watch(() => baseSettingStore.translate, (value, _) => {
     toggleAllTranslations(false)
   }
 })
+
+watch(() => speechStore.speakingText, (value) => {
+  container.value.querySelector(`#word-${value}`)?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+    inline: 'nearest'
+  });
+});
+
+const handleAnchorClick = (event: any) => {
+  event.preventDefault();
+  let target = event.target
+  if (event.target.tagName.toLowerCase() === 'ruby') {
+    target = event.target.parentElement
+  }
+  if (target.tagName.toLowerCase() === 'a') {
+    const href = target.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const targetElement = container.value.querySelector(href);
+      if (targetElement) {
+        lastElement.value = target
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'nearest',
+        });
+        window.history.pushState(null, "", href);
+        targetElement.classList.add("target-active");
+        targetElement.addEventListener("animationend", () => {
+          targetElement.classList.remove("target-active");
+        });
+      }
+    }
+  }
+};
 
 const onTimeUpdate = () => {
   if (audioRef.value) {
@@ -327,9 +385,25 @@ const textHandler = (originalText: string | undefined = "") => {
   return finalText
 }
 
-const container = ref()
 const goTop = () => {
-  container.value.scrollTop = 0
+  if (lastElement.value) {
+    lastElement.value.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
+    })
+    lastElement.value?.classList.add("target-active");
+    lastElement.value?.addEventListener("animationend", () => {
+      lastElement.value?.classList.remove("target-active");
+      lastElement.value = null
+    });
+  } else {
+    top.value.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
+    })
+  }
 }
 
 onBeforeUnmount(() => {
@@ -386,7 +460,7 @@ onBeforeUnmount(() => {
 }
 
 .text-title-index, .text-title {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .speaking-active a:link {
@@ -410,11 +484,11 @@ onBeforeUnmount(() => {
 }
 
 .text-content-h2 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .text-content {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .section {
@@ -437,8 +511,8 @@ onBeforeUnmount(() => {
   display: inherit;
 }
 
-.lesson-container .el-form-item {
-  margin-bottom: 0;
+:deep(.message) {
+  margin-bottom: 10px;
 }
 
 .speaker-label, :deep(.message .el-form-item__label) {
@@ -464,8 +538,8 @@ onBeforeUnmount(() => {
   font-size: 1.2rem;
 }
 
-.column-word:target {
-  animation: highlight 7s ease-in-out alternate;
+:deep(.target-active) {
+  animation: highlight 5s ease-in-out alternate;
 }
 
 @keyframes highlight {
