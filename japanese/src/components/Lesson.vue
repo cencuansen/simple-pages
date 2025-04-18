@@ -1,29 +1,31 @@
 <template>
-  <div class="lesson-header navigation-buttons">
-    <el-button
-        size="small"
-        class="previous-button navigation-item"
-        :disabled="!lessonStore.hasPrevious"
-        @click="goToLesson(lessonStore.currentIndex - 1)"
-    >
-      上一课
-    </el-button>
-    <el-select size="small" class="navigation-item" v-model="lessonStore.currentIndex" fit-input-width>
-      <el-option
-          v-for="(item, index) in lessonStore.lessons"
-          :key="index"
-          :label="`${getDisplayText(item.title?.content)}`"
-          :value="index"
-      />
-    </el-select>
-    <el-button
-        size="small"
-        class="next-button navigation-item"
-        :disabled="!lessonStore.hasNext"
-        @click="goToLesson(lessonStore.currentIndex + 1)"
-    >
-      下一课
-    </el-button>
+  <div class="lesson-header-container">
+    <div class="lesson-header navigation-buttons">
+      <el-button
+          size="small"
+          class="previous-button navigation-item"
+          :disabled="!lessonStore.hasPrevious"
+          @click="goToLesson(lessonStore.currentIndex - 1)"
+      >
+        上一课
+      </el-button>
+      <el-select size="small" class="navigation-item" v-model="lessonStore.currentIndex" fit-input-width>
+        <el-option
+            v-for="(item, index) in lessonStore.lessons"
+            :key="index"
+            :label="`${getDisplayText(item.title?.content)}`"
+            :value="index"
+        />
+      </el-select>
+      <el-button
+          size="small"
+          class="next-button navigation-item"
+          :disabled="!lessonStore.hasNext"
+          @click="goToLesson(lessonStore.currentIndex + 1)"
+      >
+        下一课
+      </el-button>
+    </div>
   </div>
 
   <div ref="container" class="lesson-container" v-if="lessonStore.currentLesson">
@@ -171,20 +173,8 @@
 
     <!-- 单词 -->
     <section class="section words-section">
-      <h2>单词</h2>
-      <el-button
-          type="primary"
-          size="small"
-          circle
-          v-if="baseSettingStore.speak"
-          :disabled="speechStore.isSpeaking"
-          @click="speechStore.speakList(speakTextList(words.map(w => w.kana)))">
-        <el-icon>
-          <VideoPlay/>
-        </el-icon>
-      </el-button>
       <el-table :data="words">
-        <el-table-column label="假名">
+        <el-table-column label="单词">
           <template #default="scope">
             <div :id="`word-${scope.row.word}`" class="column-word"
                  :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.word }}
@@ -196,6 +186,19 @@
         </el-table-column>
         <el-table-column prop="desc" label="释义"/>
         <el-table-column label="" width="50" v-if="baseSettingStore.speak">
+          <template #header>
+            <el-button
+                type="primary"
+                size="small"
+                circle
+                v-if="baseSettingStore.speak"
+                :disabled="speechStore.isSpeaking"
+                @click="speechStore.speakList(speakTextList(words.map(w => w.kana)))">
+              <el-icon>
+                <VideoPlay/>
+              </el-icon>
+            </el-button>
+          </template>
           <template #default="scope">
             <el-button
                 type="primary"
@@ -276,7 +279,11 @@ watch(() => baseSettingStore.translate, (value, _) => {
 })
 
 watch(() => speechStore.speakingText, (value) => {
-  container.value.querySelector(`#word-${value}`)?.scrollIntoView({
+  let id = `#word-${value}`
+  if (kanaWordMap.value.has(value)) {
+    id = `#word-${kanaWordMap.value.get(value)}`
+  }
+  container.value.querySelector(id)?.scrollIntoView({
     behavior: 'smooth',
     block: 'center',
     inline: 'nearest'
@@ -300,7 +307,6 @@ const handleAnchorClick = (event: any) => {
           block: 'center',
           inline: 'nearest',
         });
-        window.history.pushState(null, "", href);
         targetElement.classList.add("target-active");
         targetElement.addEventListener("animationend", () => {
           targetElement.classList.remove("target-active");
@@ -333,6 +339,14 @@ const goToLesson = async (index: number) => {
 
 const words = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex + 1)
+})
+
+const kanaWordMap = computed(() => {
+  const map = new Map()
+  words.value.forEach(item => {
+    map.set(item.kana, item.word)
+  })
+  return map
 })
 
 const wordRegEx = computed(() => {
@@ -413,6 +427,10 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.lesson-header-container {
+  overflow-y: scroll;
+}
+
 .lesson-header {
   margin: 0 auto;
   padding: 10px 0;
@@ -423,7 +441,7 @@ onBeforeUnmount(() => {
 .lesson-container {
   overflow: auto;
   margin: 0 auto;
-  padding: 0 10px 120px;
+  padding-bottom: 120px;
   height: calc(100vh - 100px);
 }
 
@@ -455,11 +473,11 @@ onBeforeUnmount(() => {
   justify-content: center;
 }
 
-.text-title-index {
-  margin-right: 15px;
+.lesson-title, .basics-section, .conversation-section {
+  padding: 0 5px;
 }
 
-.text-title-index, .text-title {
+.text-title {
   font-size: 1.8rem;
 }
 
@@ -495,11 +513,6 @@ onBeforeUnmount(() => {
   margin-bottom: 40px;
 }
 
-.original-line {
-  display: flex;
-  align-items: start;
-}
-
 .translation-line {
   font-size: 0.85em;
   color: #999;
@@ -515,7 +528,7 @@ onBeforeUnmount(() => {
   margin-bottom: 10px;
 }
 
-.speaker-label, :deep(.message .el-form-item__label) {
+:deep(.message .el-form-item__label) {
   font-weight: bolder;
   color: var(--el-text-color-regular);
   user-select: none;
@@ -526,12 +539,6 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   align-items: start;
-}
-
-.speaker-旁白 {
-  font-size: .8em;
-  color: #888;
-  user-select: none;
 }
 
 .column-word {
@@ -581,26 +588,9 @@ onBeforeUnmount(() => {
   position: relative;
 }
 
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-}
-
-.error-container {
-  text-align: center;
-  padding: 20px;
-}
-
-.error-container .el-alert {
-  margin-bottom: 20px;
-}
-
 .go-top {
   position: absolute;
-  bottom: 5%;
+  bottom: 15%;
   right: 15%;
   width: 30px;
   height: 30px;

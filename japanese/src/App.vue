@@ -1,39 +1,24 @@
 <template>
-  <div class="header">
-    <el-button
-        class="settings-button"
-        :icon="Setting"
-        circle
-        @click="openSettings"
-        size="small"
-    />
-    <el-switch
-        inline-prompt
-        v-model="lessonMode"
-        active-text="课程模式"
-        inactive-text="单词模式"
-    />
-  </div>
-  <Lesson v-if="lessonMode"/>
-  <Word v-else/>
-  <Settings ref="settingsDialog"/>
+  <el-tabs type="border-card" class="root-tab">
+    <el-tab-pane label="课程">
+      <Lesson/>
+    </el-tab-pane>
+    <el-tab-pane label="单词">
+      <Word/>
+    </el-tab-pane>
+    <el-tab-pane label="设置">
+      <Settings/>
+    </el-tab-pane>
+  </el-tabs>
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from 'vue'
-import {Setting,} from '@element-plus/icons-vue'
+import {onMounted} from 'vue'
 import Settings from './components/Setting.vue'
 import Lesson from './components/Lesson.vue'
 import Word from "./components/Word.vue";
 import {useLessonStore} from './stores/lessonStore'
 import {useWordStore} from './stores/wordStore'
-
-const lessonMode = ref<boolean>(true)
-
-const settingsDialog = ref()
-const openSettings = () => {
-  settingsDialog.value?.open()
-}
 
 const lessonStore = useLessonStore()
 const wordStore = useWordStore()
@@ -45,19 +30,11 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.header {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
+.root-tab {
+  height: 100vh;
 }
 
-.header > * {
-  margin-right: 10px;
-}
-
-.header > *:last-child {
-  margin-right: 0;
+:deep(.el-tabs__content) {
+  padding: 0 !important;
 }
 </style>
