@@ -401,15 +401,16 @@ const textHandler = (originalText: string | undefined = "") => {
 
 const goTop = () => {
   if (lastElement.value) {
-    lastElement.value.scrollIntoView({
+    const temp = lastElement.value
+    lastElement.value = null
+    temp.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
       inline: 'nearest',
     })
-    lastElement.value?.classList.add("target-active");
-    lastElement.value?.addEventListener("animationend", () => {
-      lastElement.value?.classList.remove("target-active");
-      lastElement.value = null
+    temp.classList.add("target-active");
+    temp.addEventListener("animationend", () => {
+      temp.classList.remove("target-active");
     });
   } else {
     top.value.scrollIntoView({
