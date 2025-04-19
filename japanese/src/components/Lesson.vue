@@ -371,9 +371,9 @@ const wordRegEx = computed(() => {
 
 const highlightReplacer = (match: string) => match ? `<a href="#word-${match}" class="highlight-word">${match}</a>` : ''
 
-const speakText = (text: string | undefined = "") => text.replace(/![^\(]+\(([^\)]+)\)/g, '$1')
+const speakText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
 const speakTextList = (arr: string[] = []) => arr.map(speakText)
-const getDisplayText = (text: string | undefined = "") => text.replace(/!([^\(]+)\([^\)]+\)/g, '$1')
+const getDisplayText = (text: string | undefined = "") => text.replace(/!([^(]+)\([^)]+\)/g, '$1')
 const textHandler = (originalText: string | undefined = "") => {
   const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1');
   if (words.value.length === 0) return baseText

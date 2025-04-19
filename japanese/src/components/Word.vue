@@ -142,7 +142,7 @@ const maxPage = computed(() => {
 })
 
 const words = computed(() => {
-  let list: WordItem[] = []
+  let list: WordItem[]
   let index
   let size
   if (lessonIndex.value) {
@@ -173,7 +173,7 @@ const kanaWordMap = computed(() => {
   return map
 })
 
-const getSpeechText = (text: string | undefined = "") => text.replace(/![^\(]+\(([^\)]+)\)/g, '$1')
+const getSpeechText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
 const getSpeechTextList = (arr: string[] = []) => arr.map(getSpeechText)
 
 const goTop = () => {
