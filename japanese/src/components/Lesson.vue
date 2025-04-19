@@ -171,6 +171,14 @@
       </el-form>
     </section>
 
+    <!-- 语法 -->
+    <section class="section grammar">
+      <el-table :data="grammars">
+        <el-table-column label="语法" prop="content"/>
+        <el-table-column label="说明" prop="desc"/>
+      </el-table>
+    </section>
+
     <!-- 单词 -->
     <section class="section words-section">
       <el-table :data="words">
@@ -228,11 +236,13 @@ import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
+import {useGrammarStore} from "../stores/grammarStore"
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
 const baseSettingStore = useBaseSettingStore()
+const grammarStore = useGrammarStore()
 
 const showAllTranslations = ref(false)
 const showBasicsTranslation = ref(false)
@@ -336,6 +346,10 @@ const speakingActive = (timeStr: string, currentTime: number): boolean => {
 const goToLesson = async (index: number) => {
   lessonStore.setCurrentIndex(index)
 }
+
+const grammars = computed(() => {
+  return grammarStore.queryGrammars({lesson: lessonStore.currentIndex + 1})
+})
 
 const words = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex + 1)

@@ -19,13 +19,16 @@ import Lesson from './components/Lesson.vue'
 import Word from "./components/Word.vue";
 import {useLessonStore} from './stores/lessonStore'
 import {useWordStore} from './stores/wordStore'
+import {useGrammarStore} from './stores/grammarStore'
 
 const lessonStore = useLessonStore()
 const wordStore = useWordStore()
+const grammarStore = useGrammarStore()
 
 onMounted(async () => {
   await wordStore.fetchWords()
   await lessonStore.fetchLessons()
+  await grammarStore.fetchGrammars()
 })
 </script>
 
