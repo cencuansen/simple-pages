@@ -61,7 +61,7 @@
     <section v-if="lessonStore.currentLesson.basics?.length" class="section basics-section">
       <el-form class="basics-list">
         <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
-          <div>
+          <div class="text-row">
             <!--原文-->
             <el-text class="text text-content"
                      :class="{'speaking-active': speakingActive(item.time, currentTime)}"
@@ -95,7 +95,7 @@
 
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
-          <div>
+          <div class="text-row">
             <!--原文-->
             <el-text class="text text-content"
                      :class="{'speaking-active': speakingActive(message.time, currentTime)}"
@@ -138,7 +138,7 @@
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
-          <div>
+          <div class="text-row">
             <!--原文-->
             <el-text class="text text-content"
                      :class="{'speaking-active': speakingActive(message.time, currentTime)}"
@@ -428,13 +428,13 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+
 .lesson-header-container {
   overflow-y: scroll;
 }
 
 .lesson-header {
-  margin: 0 auto;
-  padding: 10px 0;
+  margin: 10px auto;
   text-align: center;
   max-width: var(--content-max-width);
 }
@@ -476,7 +476,7 @@ onBeforeUnmount(() => {
   justify-content: center;
 }
 
-.lesson-title, .basics-section, .conversation-section {
+.lesson-header, .lesson-title, .basics-section, .conversation-section {
   padding: 0 5px;
 }
 
@@ -531,11 +531,21 @@ onBeforeUnmount(() => {
   margin-bottom: 10px;
 }
 
+.text-row {
+  display: flex;
+  align-items: center;
+}
+
+:deep(.el-form-item__label-wrap) {
+  align-items: center;
+}
+
 :deep(.message .el-form-item__label) {
   font-weight: bolder;
   color: var(--el-text-color-regular);
   user-select: none;
   white-space: nowrap;
+  font-size: 1.2rem;
 }
 
 :deep(.message .el-form-item__content) {
@@ -549,15 +559,15 @@ onBeforeUnmount(() => {
 }
 
 :deep(.target-active) {
-  animation: highlight 5s ease-in-out alternate;
+  animation: highlight 3s ease-in-out alternate;
 }
 
 @keyframes highlight {
   0%, 20%, 40%, 60%, 80% {
-    color: #ff5500;
+    color: #ff0000;
   }
   10%, 30%, 50%, 70%, 90% {
-    color: #ffff00;
+    color: #ff9900;
   }
   100% {
     color: inherit;

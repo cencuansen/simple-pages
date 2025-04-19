@@ -24,15 +24,21 @@ a:link {
 }
 
 a:visited {
-    color: #B37AFF;
+    /*color: #B37AFF;*/
+    color: inherit;
 }
 
 a:hover {
-    color: #4285F4;
+    /*color: #4285F4;*/
+    color: inherit;
 }
 
 a:active {
-    color: #FF0000;
+    /*color: #FF0000;*/
+    color: inherit;
+}
+
+ruby {
 }
 
 ruby rt {

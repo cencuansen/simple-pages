@@ -198,7 +198,7 @@ onBeforeUnmount(() => {
 .lesson-header {
   display: flex;
   margin: 10px auto;
-
+  padding: 0 5px;
   max-width: var(--content-max-width);
 }
 
