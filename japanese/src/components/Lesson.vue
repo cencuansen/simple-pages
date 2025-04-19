@@ -348,7 +348,7 @@ const goToLesson = async (index: number) => {
 }
 
 const grammars = computed(() => {
-  return grammarStore.queryGrammars({lesson: lessonStore.currentIndex + 1})
+  return grammarStore.queryGrammars({lesson: lessonStore.currentIndex + 1}).filter(x => x.desc)
 })
 
 const words = computed(() => {
