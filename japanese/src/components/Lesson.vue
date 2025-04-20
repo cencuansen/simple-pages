@@ -175,7 +175,12 @@
     <section class="section grammar">
       <el-table :data="grammars">
         <el-table-column label="语法" prop="content"/>
-        <el-table-column label="说明" prop="desc"/>
+        <el-table-column label="说明">
+          <template #default="scope">
+            <div>{{ scope.row.desc }}</div>
+            <div>{{ scope.row.remark }}</div>
+          </template>
+        </el-table-column>
       </el-table>
     </section>
 
@@ -348,7 +353,7 @@ const goToLesson = async (index: number) => {
 }
 
 const grammars = computed(() => {
-  return grammarStore.queryGrammars({lesson: lessonStore.currentIndex + 1}).filter(x => x.desc)
+  return grammarStore.queryGrammars({lesson: lessonStore.currentIndex + 1})
 })
 
 const words = computed(() => {
