@@ -38,7 +38,7 @@
           v-if="baseSettingStore.translate"
           @click="toggleAllTranslations(!showAllTranslations)">
         <el-icon>
-          <Switch/>
+          <i class="icon-on-GC_138_line-Translate"></i>
         </el-icon>
       </el-button>
       <el-button
@@ -46,7 +46,7 @@
           size="small"
           circle
           v-if="lessonStore.currentLesson.audio && baseSettingStore.audioSpeak"
-          @click="playAudio(lessonStore.currentLesson.audio)">
+          @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson.audio}`)">
         <el-icon>
           <i class="icon-on-music"></i>
         </el-icon>
@@ -67,7 +67,7 @@
                      :class="{'speaking-active': speakingActive(item.time, currentTime)}"
                      v-html="textHandler(item.content)" @click="handleAnchorClick"></el-text>
             <el-button circle type="primary" size="small" v-if="item.time && baseSettingStore.audioSpeak"
-                       @click="playAudio(`${lessonStore.currentLesson.audio}${item.time}`)">
+                       @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson.audio}${item.time}`)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
@@ -105,7 +105,7 @@
                 size="small"
                 circle
                 v-if="message.time && baseSettingStore.audioSpeak"
-                @click="playAudio(`${lessonStore.currentLesson.audio}${message.time}`)">
+                @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson.audio}${message.time}`)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
@@ -148,7 +148,7 @@
                 size="small"
                 circle
                 v-if="message.time && baseSettingStore.audioSpeak"
-                @click="playAudio(`${lessonStore.currentLesson.audio}${message.time}`)">
+                @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson.audio}${message.time}`)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
@@ -236,7 +236,6 @@
 </template>
 
 <script setup lang="ts">
-import {Switch,} from '@element-plus/icons-vue'
 import {computed, nextTick, onBeforeUnmount, ref, watch} from 'vue'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
@@ -271,6 +270,8 @@ const playAudio = async (url: string) => {
 const container = ref()
 const top = ref()
 const lastElement = ref<HTMLElement | null>()
+
+const audioUrlBase = "https://jp-audio.chengshen.me"
 
 // 全局切换
 const toggleAllTranslations = (newValue: boolean) => {

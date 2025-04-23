@@ -20,6 +20,8 @@ export interface Lesson {
     translation: Lesson
 }
 
+const jpJsonBase = "https://jp-json.chengshen.me"
+
 export const useLessonStore = defineStore('lessons', () => {
     const lessons = ref<Lesson[]>([])
     const isLoading = ref(false)
@@ -30,7 +32,7 @@ export const useLessonStore = defineStore('lessons', () => {
         try {
             isLoading.value = true
             error.value = null
-            const response = await fetch('/lesson.json')
+            const response = await fetch(`${jpJsonBase}/lesson.json`)
             lessons.value = await response.json()
         } catch (err) {
             error.value = err instanceof Error ? err.message : 'Failed to fetch lessons'

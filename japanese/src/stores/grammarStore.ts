@@ -14,11 +14,13 @@ export interface GrammarFilter {
     keyword?: string;
 }
 
+const jpJsonBase = "https://jp-json.chengshen.me"
+
 export const useGrammarStore = defineStore('grammar', () => {
     const grammars = ref<Grammar[]>([])
 
     const fetchGrammars = async () => {
-        const response = await fetch('/grammar-junior.json')
+        const response = await fetch(`${jpJsonBase}/grammar-junior.json`)
         grammars.value = await response.json()
     }
 

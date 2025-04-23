@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "43934640",
+      "name": "GC_138_line-Translate",
+      "font_class": "GC_138_line-Translate",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
       "icon_id": "6145935",
       "name": "music",
       "font_class": "music",
@@ -18,13 +25,6 @@
       "font_class": "MPIS-TTS",
       "unicode": "e626",
       "unicode_decimal": 58918
-    },
-    {
-      "icon_id": "22879307",
-      "name": "AUDIO",
-      "font_class": "AUDIO",
-      "unicode": "ea04",
-      "unicode_decimal": 59908
     }
   ]
 }

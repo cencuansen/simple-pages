@@ -17,6 +17,8 @@ export interface FilterOptions {
     searchText?: string;
 }
 
+const jpJsonBase = "https://jp-json.chengshen.me"
+
 export const useWordStore = defineStore('word', () => {
     // State
     const wordList = ref<WordItem[]>([])
@@ -45,7 +47,7 @@ export const useWordStore = defineStore('word', () => {
             isLoading.value = true
             error.value = null
 
-            const response = await fetch('/words-junior.json')
+            const response = await fetch(`${jpJsonBase}/words-junior.json`)
 
             wordList.value = await response.json() as WordItem[]
 
