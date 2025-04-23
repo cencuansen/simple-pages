@@ -1,0 +1,30 @@
+{
+  "id": "4899974",
+  "name": "i-icon",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-on-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6145935",
+      "name": "music",
+      "font_class": "music",
+      "unicode": "e704",
+      "unicode_decimal": 59140
+    },
+    {
+      "icon_id": "12260363",
+      "name": "MPIS-TTS",
+      "font_class": "MPIS-TTS",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "22879307",
+      "name": "AUDIO",
+      "font_class": "AUDIO",
+      "unicode": "ea04",
+      "unicode_decimal": 59908
+    }
+  ]
+}

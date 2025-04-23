@@ -17,7 +17,12 @@ export const useBaseSettingStore = defineStore('baseSetting', () => {
 
     const translate = ref(true)
 
-    const speak = ref(true)
+    const word = ref(true)
+    const kana = ref(true)
+    const wordDesc = ref(true)
+
+    const audioSpeak = ref(true)
+    const ttsSpeak = ref(true)
 
     return {
         isDark,
@@ -25,7 +30,11 @@ export const useBaseSettingStore = defineStore('baseSetting', () => {
         wordLink,
         furigana,
         translate,
-        speak,
+        word,
+        kana,
+        wordDesc,
+        audioSpeak,
+        ttsSpeak,
         toggleDark,
     }
 }, {

@@ -45,10 +45,10 @@
           type="primary"
           size="small"
           circle
-          v-if="lessonStore.currentLesson.audio"
+          v-if="lessonStore.currentLesson.audio && baseSettingStore.audioSpeak"
           @click="playAudio(lessonStore.currentLesson.audio)">
         <el-icon>
-          <VideoPlay/>
+          <i class="icon-on-music"></i>
         </el-icon>
       </el-button>
     </div>
@@ -66,17 +66,17 @@
             <el-text class="text text-content"
                      :class="{'speaking-active': speakingActive(item.time, currentTime)}"
                      v-html="textHandler(item.content)" @click="handleAnchorClick"></el-text>
-            <el-button circle type="primary" size="small" v-if="item.time"
+            <el-button circle type="primary" size="small" v-if="item.time && baseSettingStore.audioSpeak"
                        @click="playAudio(`${lessonStore.currentLesson.audio}${item.time}`)">
               <el-icon>
-                <VideoPlay/>
+                <i class="icon-on-music"></i>
               </el-icon>
             </el-button>
-            <el-button v-else circle type="primary" size="small" :disabled="speechStore.isSpeaking"
+            <el-button circle type="primary" size="small"
+                       v-else-if="baseSettingStore.ttsSpeak"
+                       :disabled="speechStore.isSpeaking"
                        @click="speechStore.speak(speakText(item.content))">
-              <el-icon>
-                <VideoPlay/>
-              </el-icon>
+              <i class="icon-on-MPIS-TTS"></i>
             </el-button>
           </div>
           <!--译文-->
@@ -104,16 +104,16 @@
                 type="primary"
                 size="small"
                 circle
-                v-if="message.time"
+                v-if="message.time && baseSettingStore.audioSpeak"
                 @click="playAudio(`${lessonStore.currentLesson.audio}${message.time}`)">
               <el-icon>
-                <VideoPlay/>
+                <i class="icon-on-music"></i>
               </el-icon>
             </el-button>
-            <el-button v-else circle type="primary" size="small" :disabled="speechStore.isSpeaking"
-                       @click="speechStore.speak(speakText(message.content))">
+            <el-button v-else-if="baseSettingStore.ttsSpeak" circle type="primary" size="small"
+                       :disabled="speechStore.isSpeaking" @click="speechStore.speak(speakText(message.content))">
               <el-icon>
-                <VideoPlay/>
+                <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
             </el-button>
           </div>
@@ -147,16 +147,17 @@
                 type="primary"
                 size="small"
                 circle
-                v-if="message.time"
+                v-if="message.time && baseSettingStore.audioSpeak"
                 @click="playAudio(`${lessonStore.currentLesson.audio}${message.time}`)">
               <el-icon>
-                <VideoPlay/>
+                <i class="icon-on-music"></i>
               </el-icon>
             </el-button>
-            <el-button v-else circle type="primary" size="small" :disabled="speechStore.isSpeaking"
+            <el-button v-else-if="baseSettingStore.ttsSpeak" circle type="primary" size="small"
+                       :disabled="speechStore.isSpeaking"
                        @click="speechStore.speak(speakText(message.content))">
               <el-icon>
-                <VideoPlay/>
+                <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
             </el-button>
           </div>
@@ -189,26 +190,26 @@
       <el-table :data="words">
         <el-table-column label="单词">
           <template #default="scope">
-            <div :id="`word-${scope.row.word}`" class="column-word"
+            <div v-if="baseSettingStore.word" :id="`word-${scope.row.word}`" class="column-word"
                  :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.word }}
             </div>
-            <div :id="`word-${scope.row.kana}`" class="column-kana"
+            <div v-if="baseSettingStore.kana" :id="`word-${scope.row.kana}`" class="column-kana"
                  :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.kana }}
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="desc" label="释义"/>
-        <el-table-column label="" width="50" v-if="baseSettingStore.speak">
+        <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" width="120" show-overflow-tooltip/>
+        <el-table-column width="50" v-if="baseSettingStore.ttsSpeak">
           <template #header>
             <el-button
                 type="primary"
                 size="small"
                 circle
-                v-if="baseSettingStore.speak"
+                v-if="baseSettingStore.ttsSpeak"
                 :disabled="speechStore.isSpeaking"
                 @click="speechStore.speakList(speakTextList(words.map(w => w.kana)))">
               <el-icon>
-                <VideoPlay/>
+                <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
             </el-button>
           </template>
@@ -220,7 +221,7 @@
                 :disabled="speechStore.isSpeaking"
                 @click="speechStore.speak(scope.row.kana)">
               <el-icon>
-                <VideoPlay/>
+                <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
             </el-button>
           </template>
@@ -235,7 +236,7 @@
 </template>
 
 <script setup lang="ts">
-import {VideoPlay, Switch,} from '@element-plus/icons-vue'
+import {Switch,} from '@element-plus/icons-vue'
 import {computed, nextTick, onBeforeUnmount, ref, watch} from 'vue'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
@@ -574,7 +575,7 @@ onBeforeUnmount(() => {
 }
 
 .column-word {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 :deep(.target-active) {

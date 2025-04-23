@@ -35,33 +35,33 @@
     <!-- 单词 -->
     <section class="section words-section">
       <el-table :data="words">
-        <el-table-column label="单词" show-overflow-tooltip>
+        <el-table-column label="单词">
           <template #default="scope">
-            <div :id="`word-${scope.row.word}`" class="column-word"
+            <div v-if="baseSettingStore.word" :id="`word-${scope.row.word}`" class="column-word"
                  :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.word }}
             </div>
-            <div :id="`word-${scope.row.kana}`" class="column-kana"
+            <div v-if="baseSettingStore.kana" :id="`word-${scope.row.kana}`" class="column-kana"
                  :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.kana }}
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="desc" label="释义" width="200" show-overflow-tooltip/>
-        <el-table-column label="" width="40" v-if="!lessonIndex" show-overflow-tooltip>
+        <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" width="120" show-overflow-tooltip/>
+        <el-table-column label="" width="40" v-if="!lessonIndex">
           <template #default="scope">
             {{ wordStore.realLessonNumber(scope.row.lesson) }}
           </template>
         </el-table-column>
-        <el-table-column label="" width="50" v-if="baseSettingStore.speak">
+        <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak">
           <template #header>
             <el-button
                 type="primary"
                 size="small"
                 circle
-                v-if="baseSettingStore.speak && lessonIndex"
+                v-if="baseSettingStore.ttsSpeak && lessonIndex"
                 :disabled="speechStore.isSpeaking"
                 @click="speechStore.speakList(getSpeechTextList(words.map(w => w.kana)))">
               <el-icon>
-                <VideoPlay/>
+                <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
             </el-button>
           </template>
@@ -73,7 +73,7 @@
                 :disabled="speechStore.isSpeaking"
                 @click="speechStore.speak(scope.row.kana)">
               <el-icon>
-                <VideoPlay/>
+                <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
             </el-button>
           </template>
@@ -86,7 +86,6 @@
 </template>
 
 <script setup lang="ts">
-import {VideoPlay} from '@element-plus/icons-vue'
 import {computed, onBeforeUnmount, ref, watch} from 'vue'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
