@@ -1,7 +1,7 @@
 <template>
   <el-tabs class="setting-container" tab-position="left">
     <el-tab-pane label="通用">
-      <el-form label-width="auto">
+      <el-form>
         <el-form-item label="切换主题">
           <el-switch v-model="darkMode" inline-prompt :active-icon="Moon" :inactive-icon="Sunny" size="small"/>
         </el-form-item>
@@ -133,7 +133,6 @@ import {ref, computed} from 'vue'
 import {storeToRefs} from 'pinia'
 
 const baseSettingStore = useBaseSettingStore()
-const visible = ref(false)
 const testText = ref('ありがとう')
 
 const darkMode = computed({
@@ -153,11 +152,6 @@ const {
   isSpeaking,
 } = storeToRefs(speechStore)
 
-const open = () => {
-  visible.value = true
-}
-
-defineExpose({open})
 </script>
 
 <style scoped>

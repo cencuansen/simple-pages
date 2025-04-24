@@ -90,7 +90,7 @@
 
     <!-- 普通对话 -->
     <section v-if="lessonStore.currentLesson.conversations?.length" class="section conversation-section">
-      <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations"
+      <el-form v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
 
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
@@ -134,7 +134,7 @@
         <el-text class="text text-content-h2" v-html="textHandler(lessonStore.currentLesson.title2.content)"
                  @click="handleAnchorClick"></el-text>
       </h2>
-      <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations2"
+      <el-form v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations2"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
