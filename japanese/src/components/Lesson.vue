@@ -37,9 +37,7 @@
           circle
           v-if="baseSettingStore.translate"
           @click="toggleAllTranslations(!showAllTranslations)">
-        <el-icon>
-          <i class="icon-on-GC_138_line-Translate"></i>
-        </el-icon>
+        译
       </el-button>
       <el-button
           type="primary"
