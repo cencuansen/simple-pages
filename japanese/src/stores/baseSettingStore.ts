@@ -8,8 +8,14 @@ export const useBaseSettingStore = defineStore('baseSetting', () => {
     const toggleDark = useToggle(isDark)
 
     const furigana = ref(true)
+    const furiganaToggle = () => {
+        furigana.value = !furigana.value
+    }
 
     const wordLink = ref(true)
+    const wordLinkToggle = () => {
+        wordLink.value = !wordLink.value
+    }
 
     const style = ref({
         fontSize: "12px"
@@ -36,6 +42,8 @@ export const useBaseSettingStore = defineStore('baseSetting', () => {
         audioSpeak,
         ttsSpeak,
         toggleDark,
+        furiganaToggle,
+        wordLinkToggle
     }
 }, {
     persist: true

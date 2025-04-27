@@ -32,15 +32,15 @@
     <div ref="top"></div>
     <div class="function-group">
       <el-button
-          type="primary"
+          :type="allTranslate ? 'primary' : ''"
           size="small"
           circle
           v-if="baseSettingStore.translate"
-          @click="toggleAllTranslations(!showAllTranslations)">
+          @click="toggleAllTranslations(!allTranslate)">
         译
       </el-button>
       <el-button
-          type="primary"
+          :type="''"
           size="small"
           circle
           v-if="lessonStore.currentLesson.audio && baseSettingStore.audioSpeak"
@@ -48,6 +48,20 @@
         <el-icon>
           <i class="icon-on-music"></i>
         </el-icon>
+      </el-button>
+      <el-button
+          :type="baseSettingStore.furigana ? 'primary' : ''"
+          size="small"
+          circle
+          @click="baseSettingStore.furiganaToggle">
+        注
+      </el-button>
+      <el-button
+          :type="baseSettingStore.wordLink ? 'primary' : ''"
+          size="small"
+          circle
+          @click="baseSettingStore.wordLinkToggle">
+        跳
       </el-button>
     </div>
     <h1 class="lesson-title">
@@ -64,13 +78,13 @@
             <el-text class="text text-content"
                      :class="{'speaking-active': speakingActive(item.time, currentTime)}"
                      v-html="textHandler(item.content)" @click="handleAnchorClick"></el-text>
-            <el-button circle type="primary" size="small" v-if="item.time && baseSettingStore.audioSpeak"
+            <el-button circle size="small" v-if="item.time && baseSettingStore.audioSpeak"
                        @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson.audio}${item.time}`)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
             </el-button>
-            <el-button circle type="primary" size="small"
+            <el-button circle size="small"
                        v-else-if="baseSettingStore.ttsSpeak"
                        :disabled="speechStore.isSpeaking"
                        @click="speechStore.speak(speakText(item.content))">
@@ -79,7 +93,7 @@
           </div>
           <!--译文-->
           <div class="translation-line message"
-               :class="{ 'show-translation': showBasicsTranslation }">
+               :class="{ 'show-translation': basicsTranslate }">
             {{ item.translation }}
           </div>
         </el-form-item>
@@ -99,7 +113,6 @@
                      :class="{'speaking-active': speakingActive(message.time, currentTime)}"
                      v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
             <el-button
-                type="primary"
                 size="small"
                 circle
                 v-if="message.time && baseSettingStore.audioSpeak"
@@ -108,7 +121,7 @@
                 <i class="icon-on-music"></i>
               </el-icon>
             </el-button>
-            <el-button v-else-if="baseSettingStore.ttsSpeak" circle type="primary" size="small"
+            <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
                        :disabled="speechStore.isSpeaking" @click="speechStore.speak(speakText(message.content))">
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
@@ -117,7 +130,7 @@
           </div>
           <!--译文-->
           <div class="translation-line message"
-               :class="{ 'show-translation': showExchangeTranslations[exchangeIndex] }">
+               :class="{ 'show-translation': exchangeTranslate[exchangeIndex] }">
             {{
               message.translation
             }}
@@ -142,7 +155,6 @@
                      :class="{'speaking-active': speakingActive(message.time, currentTime)}"
                      v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
             <el-button
-                type="primary"
                 size="small"
                 circle
                 v-if="message.time && baseSettingStore.audioSpeak"
@@ -151,7 +163,7 @@
                 <i class="icon-on-music"></i>
               </el-icon>
             </el-button>
-            <el-button v-else-if="baseSettingStore.ttsSpeak" circle type="primary" size="small"
+            <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
                        :disabled="speechStore.isSpeaking"
                        @click="speechStore.speak(speakText(message.content))">
               <el-icon>
@@ -161,7 +173,7 @@
           </div>
           <!--译文-->
           <div class="translation-line message"
-               :class="{ 'show-translation': showExchange2Translations[exchangeIndex] }">
+               :class="{ 'show-translation': exchange2Translate[exchangeIndex] }">
             {{
               message.translation
             }}
@@ -196,11 +208,10 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" width="120" show-overflow-tooltip/>
+        <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
         <el-table-column width="50" v-if="baseSettingStore.ttsSpeak">
           <template #header>
             <el-button
-                type="primary"
                 size="small"
                 circle
                 v-if="baseSettingStore.ttsSpeak"
@@ -213,7 +224,6 @@
           </template>
           <template #default="scope">
             <el-button
-                type="primary"
                 size="small"
                 circle
                 :disabled="speechStore.isSpeaking"
@@ -247,10 +257,10 @@ const wordStore = useWordStore()
 const baseSettingStore = useBaseSettingStore()
 const grammarStore = useGrammarStore()
 
-const showAllTranslations = ref(false)
-const showBasicsTranslation = ref(false)
-const showExchangeTranslations = ref<boolean[]>(new Array(100).fill(false))
-const showExchange2Translations = ref<boolean[]>(new Array(100).fill(false))
+const allTranslate = ref(false)
+const basicsTranslate = ref(false)
+const exchangeTranslate = ref<boolean[]>(new Array(100).fill(false))
+const exchange2Translate = ref<boolean[]>(new Array(100).fill(false))
 
 const audioRef = ref<HTMLAudioElement>()
 const src = ref<string>()
@@ -273,16 +283,16 @@ const audioUrlBase = "https://jp-audio.chengshen.me"
 
 // 全局切换
 const toggleAllTranslations = (newValue: boolean) => {
-  showAllTranslations.value = newValue
+  allTranslate.value = newValue
   // 基础句子
-  showBasicsTranslation.value = showAllTranslations.value
+  basicsTranslate.value = allTranslate.value
   // 简单对话
-  for (let i = 0; i < showExchangeTranslations.value.length; i++) {
-    showExchangeTranslations.value[i] = showAllTranslations.value
+  for (let i = 0; i < exchangeTranslate.value.length; i++) {
+    exchangeTranslate.value[i] = allTranslate.value
   }
   // 情景对话
-  for (let i = 0; i < showExchange2Translations.value.length; i++) {
-    showExchange2Translations.value[i] = showAllTranslations.value
+  for (let i = 0; i < exchange2Translate.value.length; i++) {
+    exchange2Translate.value[i] = allTranslate.value
   }
 }
 

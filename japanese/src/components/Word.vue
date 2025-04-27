@@ -45,7 +45,7 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" width="120" show-overflow-tooltip/>
+        <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
         <el-table-column label="" width="40" v-if="!lessonIndex">
           <template #default="scope">
             {{ wordStore.realLessonNumber(scope.row.lesson) }}

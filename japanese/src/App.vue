@@ -1,29 +1,56 @@
 <template>
-  <el-tabs type="border-card" class="root-tab">
-    <el-tab-pane label="课程">
-      <Lesson/>
-    </el-tab-pane>
-    <el-tab-pane label="单词">
-      <Word/>
-    </el-tab-pane>
-    <el-tab-pane label="工具">
-      <Tool/>
-    </el-tab-pane>
-    <el-tab-pane label="设置">
-      <Settings/>
-    </el-tab-pane>
-  </el-tabs>
+  <div class="nav-container">
+    <div class="nav-buttons">
+      <el-button 
+        size="small" 
+        :type="isActive('/lesson') ? 'primary' : 'default'"
+        @click="navigateTo('/lesson')"
+      >
+        课程
+      </el-button>
+      <el-button 
+        size="small" 
+        :type="isActive('/word') ? 'primary' : 'default'"
+        @click="navigateTo('/word')"
+      >
+        单词
+      </el-button>
+      <el-button 
+        size="small" 
+        :type="isActive('/tool') ? 'primary' : 'default'"
+        @click="navigateTo('/tool')"
+      >
+        工具
+      </el-button>
+      <el-button 
+        size="small" 
+        :type="isActive('/setting') ? 'primary' : 'default'"
+        @click="navigateTo('/setting')"
+      >
+        设置
+      </el-button>
+    </div>
+  </div>
+  <router-view />
 </template>
 
 <script setup lang="ts">
-import {onMounted} from 'vue'
-import Settings from './components/Setting.vue'
-import Lesson from './components/Lesson.vue'
-import Word from "./components/Word.vue";
-import Tool from "./components/Tool.vue";
-import {useLessonStore} from './stores/lessonStore'
-import {useWordStore} from './stores/wordStore'
-import {useGrammarStore} from './stores/grammarStore'
+import { onMounted } from 'vue'
+import { useLessonStore } from './stores/lessonStore'
+import { useWordStore } from './stores/wordStore'
+import { useGrammarStore } from './stores/grammarStore'
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
+
+const navigateTo = (path: string) => {
+  router.push(path)
+}
+
+const isActive = (path: string) => {
+  return route.path === path
+}
 
 const lessonStore = useLessonStore()
 const wordStore = useWordStore()
@@ -37,6 +64,18 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.nav-container {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-buttons {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .root-tab {
   height: 100vh;
   width: 100vw;
