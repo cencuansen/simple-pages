@@ -279,7 +279,7 @@ const container = ref()
 const top = ref()
 const lastElement = ref<HTMLElement | null>()
 
-const audioUrlBase = "https://jp-audio.chengshen.me"
+const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
 // 全局切换
 const toggleAllTranslations = (newValue: boolean) => {

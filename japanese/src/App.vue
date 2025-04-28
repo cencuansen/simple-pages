@@ -1,29 +1,29 @@
 <template>
   <div class="nav-container">
     <div class="nav-buttons">
-      <el-button 
-        size="small" 
+      <el-button
+        size="small"
         :type="isActive('/lesson') ? 'primary' : 'default'"
         @click="navigateTo('/lesson')"
       >
         课程
       </el-button>
-      <el-button 
-        size="small" 
+      <el-button
+        size="small"
         :type="isActive('/word') ? 'primary' : 'default'"
         @click="navigateTo('/word')"
       >
         单词
       </el-button>
-      <el-button 
-        size="small" 
+      <el-button
+        size="small"
         :type="isActive('/tool') ? 'primary' : 'default'"
         @click="navigateTo('/tool')"
       >
         工具
       </el-button>
-      <el-button 
-        size="small" 
+      <el-button
+        size="small"
         :type="isActive('/setting') ? 'primary' : 'default'"
         @click="navigateTo('/setting')"
       >
@@ -31,7 +31,11 @@
       </el-button>
     </div>
   </div>
-  <router-view />
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
 </template>
 
 <script setup lang="ts">

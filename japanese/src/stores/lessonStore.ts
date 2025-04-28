@@ -20,7 +20,7 @@ export interface Lesson {
     translation: Lesson
 }
 
-const jpJsonBase = "https://jp-json.chengshen.me"
+const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
 export const useLessonStore = defineStore('lessons', () => {
     const lessons = ref<Lesson[]>([])

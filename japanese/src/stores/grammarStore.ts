@@ -14,7 +14,7 @@ export interface GrammarFilter {
     keyword?: string;
 }
 
-const jpJsonBase = "https://jp-json.chengshen.me"
+const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
 export const useGrammarStore = defineStore('grammar', () => {
     const grammars = ref<Grammar[]>([])

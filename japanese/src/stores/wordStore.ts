@@ -17,7 +17,7 @@ export interface FilterOptions {
     searchText?: string;
 }
 
-const jpJsonBase = "https://jp-json.chengshen.me"
+const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
 export const useWordStore = defineStore('word', () => {
     // State
