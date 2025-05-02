@@ -56,8 +56,8 @@
           <el-form-item label="语速">
             <el-slider
                 v-model="rate"
-                :min="0.5"
-                :max="2"
+                :min="0.25"
+                :max="3"
                 :step="0.1"
                 show-input
                 size="small"
@@ -97,7 +97,7 @@
 
           <el-form-item label="测试">
             <el-input
-                v-model="testText"
+                v-model.trim="testText"
                 placeholder="输入测试文本"
                 style="width: 55%"
                 size="small"

@@ -10,7 +10,7 @@
             :value="index"
         />
       </el-select>
-      <el-input v-model="keyword" size="small" placeholder="搜单词" clearable></el-input>
+      <el-input v-model.trim="keyword" size="small" placeholder="搜单词" clearable></el-input>
       <el-button
           size="small"
           class="previous-button navigation-item"
