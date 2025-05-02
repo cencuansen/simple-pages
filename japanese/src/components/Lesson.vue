@@ -26,33 +26,21 @@
         下一课
       </el-button>
     </div>
-  </div>
-
-  <div ref="container" class="lesson-container" v-if="lessonStore.currentLesson">
-    <div ref="top"></div>
     <div class="function-group">
       <el-button
           :type="allTranslate ? 'primary' : ''"
           size="small"
           circle
+          title="翻译"
           v-if="baseSettingStore.translate"
           @click="toggleAllTranslations(!allTranslate)">
         译
       </el-button>
       <el-button
-          :type="''"
-          size="small"
-          circle
-          v-if="lessonStore.currentLesson.audio && baseSettingStore.audioSpeak"
-          @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson.audio}`)">
-        <el-icon>
-          <i class="icon-on-music"></i>
-        </el-icon>
-      </el-button>
-      <el-button
           :type="baseSettingStore.furigana ? 'primary' : ''"
           size="small"
           circle
+          title="注音"
           @click="baseSettingStore.furiganaToggle">
         注
       </el-button>
@@ -60,33 +48,60 @@
           :type="baseSettingStore.wordLink ? 'primary' : ''"
           size="small"
           circle
+          title="单词跳转"
           @click="baseSettingStore.wordLinkToggle">
         跳
       </el-button>
+      <el-button
+          :type="''"
+          size="small"
+          circle
+          title="播放"
+          :disabled="isPlaying"
+          v-if="lessonStore.currentLesson?.audio && baseSettingStore.audioSpeak"
+          @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson?.audio}`)">
+        <el-icon>
+          <i class="icon-on-music"></i>
+        </el-icon>
+      </el-button>
+      <el-button
+          :type="''"
+          size="small"
+          circle
+          v-if="isPlaying"
+          title="停止播放"
+          @click="pauseAudio">
+        停
+      </el-button>
     </div>
+  </div>
+
+  <div ref="container" class="lesson-container" v-if="lessonStore.currentLesson">
+    <div ref="top"></div>
     <h1 class="lesson-title">
-      <el-text class="text-title" v-html="textHandler(lessonStore.currentLesson.title?.content)"
+      <el-text class="text-title" v-html="textHandler(lessonStore.currentLesson?.title?.content)"
                @click="handleAnchorClick"></el-text>
     </h1>
 
     <!-- 简单句子 -->
-    <section v-if="lessonStore.currentLesson.basics?.length" class="section basics-section">
+    <section v-if="lessonStore.currentLesson?.basics?.length" class="section basics-section">
       <el-form class="basics-list">
-        <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson.basics" :key="`basic-${idx}`">
+        <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson?.basics" :key="`basic-${idx}`">
           <div class="text-row">
             <!--原文-->
             <el-text class="text text-content"
                      :class="{'speaking-active': speakingActive(item.time, currentTime)}"
                      v-html="textHandler(item.content)" @click="handleAnchorClick"></el-text>
-            <el-button circle size="small" v-if="item.time && baseSettingStore.audioSpeak"
-                       @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson.audio}${item.time}`)">
+            <el-button :disabled="isPlaying" circle
+                       size="small" v-if="item.time && baseSettingStore.audioSpeak"
+                       @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson?.audio}${item.time}`)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
             </el-button>
             <el-button circle size="small"
                        v-else-if="baseSettingStore.ttsSpeak"
-                       :disabled="speechStore.isSpeaking"
+                       :disabled="isPlaying"
                        @click="speechStore.speak(speakText(item.content))">
               <i class="icon-on-MPIS-TTS"></i>
             </el-button>
@@ -101,8 +116,8 @@
     </section>
 
     <!-- 普通对话 -->
-    <section v-if="lessonStore.currentLesson.conversations?.length" class="section conversation-section">
-      <el-form v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations"
+    <section v-if="lessonStore.currentLesson?.conversations?.length" class="section conversation-section">
+      <el-form v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
 
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
@@ -115,14 +130,15 @@
             <el-button
                 size="small"
                 circle
+                :disabled="isPlaying"
                 v-if="message.time && baseSettingStore.audioSpeak"
-                @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson.audio}${message.time}`)">
+                @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson?.audio}${message.time}`)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
             </el-button>
             <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
-                       :disabled="speechStore.isSpeaking" @click="speechStore.speak(speakText(message.content))">
+                       :disabled="isPlaying" @click="speechStore.speak(speakText(message.content))">
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
@@ -140,12 +156,12 @@
     </section>
 
     <!-- 情景对话 -->
-    <section v-if="lessonStore.currentLesson.conversations2?.length" class="section conversation-section">
+    <section v-if="lessonStore.currentLesson?.conversations2?.length" class="section conversation-section">
       <h2>
-        <el-text class="text text-content-h2" v-html="textHandler(lessonStore.currentLesson.title2.content)"
+        <el-text class="text text-content-h2" v-html="textHandler(lessonStore.currentLesson?.title2.content)"
                  @click="handleAnchorClick"></el-text>
       </h2>
-      <el-form v-for="(exchange, exchangeIndex) in lessonStore.currentLesson.conversations2"
+      <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations2"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
         <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
@@ -157,14 +173,15 @@
             <el-button
                 size="small"
                 circle
+                :disabled="isPlaying"
                 v-if="message.time && baseSettingStore.audioSpeak"
-                @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson.audio}${message.time}`)">
+                @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson?.audio}${message.time}`)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
             </el-button>
             <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
-                       :disabled="speechStore.isSpeaking"
+                       :disabled="isPlaying"
                        @click="speechStore.speak(speakText(message.content))">
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
@@ -215,7 +232,7 @@
                 size="small"
                 circle
                 v-if="baseSettingStore.ttsSpeak"
-                :disabled="speechStore.isSpeaking"
+                :disabled="isPlaying"
                 @click="speechStore.speakList(speakTextList(words.map(w => w.kana)))">
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
@@ -226,7 +243,7 @@
             <el-button
                 size="small"
                 circle
-                :disabled="speechStore.isSpeaking"
+                :disabled="isPlaying"
                 @click="speechStore.speak(scope.row.kana)">
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
@@ -265,14 +282,42 @@ const exchange2Translate = ref<boolean[]>(new Array(100).fill(false))
 const audioRef = ref<HTMLAudioElement>()
 const src = ref<string>()
 const currentTime = ref(0)
+const audioPlaying = ref(false)
+
+const isPlaying = computed(() => speechStore.isSpeaking || audioPlaying.value)
 
 const playAudio = async (url: string) => {
-  if (!url) {
+  if (!url || !audioRef.value) {
     return
   }
+
+  audioRef.value?.addEventListener('play', () => {
+    audioPlaying.value = true
+  })
+
+  audioRef.value?.addEventListener('pause', () => {
+    audioPlaying.value = false
+  });
+
+  audioRef.value?.addEventListener('ended', () => {
+    audioPlaying.value = false
+  });
+
   src.value = ""
   await nextTick()
   src.value = url
+}
+
+const pauseAudio = () => {
+  if (!isPlaying.value) {
+    return
+  }
+  if (audioPlaying.value && audioRef.value) {
+    audioRef.value.pause()
+  }
+  if (speechStore.isSpeaking) {
+    speechStore.stop()
+  }
 }
 
 const container = ref()
