@@ -1,7 +1,7 @@
 <template>
   <div class="tool-container">
     <el-tabs class="setting-container">
-      <el-tab-pane label="假名转换">
+      <el-tab-pane label="假名注音">
         <el-form label-width="auto" v-loading="loading">
           <el-form-item label="输入文本">
             <div class="item-group">
@@ -9,7 +9,7 @@
               <el-button size="small" @click="convertHandler">转换</el-button>
             </div>
           </el-form-item>
-          <el-form-item label="平假名">
+          <el-form-item label="-">
             <div class="item-group">
               <el-text v-html="hiraganaResult" class="result-item"></el-text>
               <el-button v-if="baseSettingStore.ttsSpeak && hiraganaResult" size="small" class="speak-button"
@@ -20,15 +20,15 @@
               </el-button>
             </div>
           </el-form-item>
-          <el-form-item label="送假名">
+          <el-form-item label="-">
             <el-text v-html="okuriganaResult" class="result-item"></el-text>
           </el-form-item>
-          <el-form-item label="振假名">
+          <el-form-item label="-">
             <el-text v-html="furiganaResult" class="result-item"></el-text>
           </el-form-item>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="文本朗读">
+      <el-tab-pane label="日文朗读">
         <div class="text-speak-pane">
           <el-input class="text-speak-textarea" size="small" type="textarea"
                     v-model.trim="textToSpeak" :autosize="{ minRows: 5, maxRows: 10 }"

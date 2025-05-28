@@ -56,7 +56,7 @@
           <el-form-item label="语速">
             <el-slider
                 v-model="rate"
-                :min="0.25"
+                :min="0.2"
                 :max="3"
                 :step="0.1"
                 show-input

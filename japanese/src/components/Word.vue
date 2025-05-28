@@ -45,6 +45,7 @@
             </div>
           </template>
         </el-table-column>
+        <el-table-column width="60" prop="pos" label="词性" show-overflow-tooltip/>
         <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
         <el-table-column label="" width="40" v-if="!lessonIndex">
           <template #default="scope">
