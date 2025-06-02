@@ -76,7 +76,7 @@
     </div>
   </div>
 
-  <div ref="container" class="lesson-container" v-if="lessonStore.currentLesson">
+  <div ref="container" @scroll="containerOnScroll" class="lesson-container" v-if="lessonStore.currentLesson">
     <div ref="top"></div>
     <h1 class="lesson-title">
       <el-text class="text-title" v-html="textHandler(lessonStore.currentLesson?.title?.content)"
@@ -163,7 +163,7 @@
       </h2>
       <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations2"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-        <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
+        <el-form-item :label="message.speaker" class="message" :class="[`speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div class="text-row">
             <!--原文-->
@@ -262,7 +262,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, nextTick, onBeforeUnmount, ref, watch} from 'vue'
+import {computed, nextTick, onBeforeUnmount, onActivated, ref, watch} from 'vue'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
@@ -338,6 +338,7 @@ const pauseAudio = () => {
 };
 
 const container = ref()
+const scrollPosition = ref<number>(0)
 const top = ref()
 const lastElement = ref<HTMLElement | null>()
 
@@ -477,9 +478,11 @@ const textHandler = (originalText: string | undefined = "") => {
       if (hrefPart) return hrefPart;
       if (rubyPart) return rubyPart;
       if (closingTag) return closingTag;
-      if (textPart) {
-        for (const [kanji, kana] of Object.entries(rubyMap)) {
-          textPart = textPart.replace(new RegExp(`${kanji}(?!([^<]*<rt>)[^<]*<\\/rt>)`, "g"), `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+      if (textPart !== undefined && textPart !== null && textPart.trim() !== "") {
+        const kanjis = Object.keys(rubyMap).sort((a, b) => b.length - a.length)
+        for (const kanji of kanjis) {
+          const kana = rubyMap[kanji]
+          textPart = textPart.replace(new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, "g"), `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`)
         }
         return textPart;
       }
@@ -514,6 +517,18 @@ const goTop = () => {
 
 onBeforeUnmount(() => {
   speechStore.stop()
+})
+
+const containerOnScroll = async () => {
+  scrollPosition.value = container.value.scrollTop
+}
+
+onActivated(async () => {
+  setTimeout(() => {
+    if (container && container.value) {
+      container.value.scrollTop = scrollPosition.value
+    }
+  })
 })
 
 </script>
@@ -628,7 +643,7 @@ onBeforeUnmount(() => {
 }
 
 :deep(.el-form-item__label-wrap) {
-  align-items: center;
+  align-items: start;
 }
 
 :deep(.message .el-form-item__label) {
@@ -694,11 +709,11 @@ onBeforeUnmount(() => {
 
 .go-top {
   position: absolute;
-  bottom: 15%;
-  right: 15%;
+  bottom: 3%;
+  right: 12%;
   width: 30px;
   height: 30px;
-  border: 1px solid #aaa;
+  border: none;
   border-radius: 50%;
   line-height: 25px;
   text-align: center;
@@ -707,8 +722,10 @@ onBeforeUnmount(() => {
   color-scheme: inherit;
   font-weight: bolder;
   font-size: 1.5rem;
-  color: inherit;
+  color: var(--el-color-primary);
   background-color: inherit;
+  backdrop-filter: blur(1000px);
+  text-decoration: none;
 }
 
 .speaking-active {

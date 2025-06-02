@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div ref="container" class="lesson-container">
+  <div ref="container" @scroll="containerOnScroll" class="lesson-container">
     <div ref="top"></div>
     <!-- 单词 -->
     <section class="section words-section">
@@ -87,7 +87,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onBeforeUnmount, ref, watch} from 'vue'
+import {computed, onActivated, onBeforeUnmount, ref, watch} from 'vue'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore, type WordItem} from "../stores/wordStore"
@@ -103,6 +103,7 @@ const keyword = ref("")
 const maxPageSize = 20
 
 const container = ref()
+const scrollPosition = ref<number>(0)
 const top = ref()
 
 watch(() => speechStore.speakingText, (value) => {
@@ -188,6 +189,18 @@ onBeforeUnmount(() => {
   speechStore.stop()
 })
 
+const containerOnScroll = async () => {
+  scrollPosition.value = container.value.scrollTop
+}
+
+onActivated(async () => {
+  setTimeout(() => {
+    if (container && container.value) {
+      container.value.scrollTop = scrollPosition.value
+    }
+  })
+})
+
 </script>
 
 <style scoped>
@@ -230,11 +243,11 @@ onBeforeUnmount(() => {
 
 .go-top {
   position: absolute;
-  bottom: 15%;
-  right: 15%;
+  bottom: 3%;
+  right: 12%;
   width: 30px;
   height: 30px;
-  border: 1px solid #aaa;
+  border: none;
   border-radius: 50%;
   line-height: 25px;
   text-align: center;
@@ -243,7 +256,9 @@ onBeforeUnmount(() => {
   color-scheme: inherit;
   font-weight: bolder;
   font-size: 1.5rem;
-  color: inherit;
+  color: var(--el-color-primary);
   background-color: inherit;
+  backdrop-filter: blur(1000px);
+  text-decoration: none;
 }
 </style>

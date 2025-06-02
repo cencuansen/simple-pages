@@ -1,6 +1,13 @@
 :root {
     --header-height: 50px;
-    --content-max-width: 650px
+    --content-max-width: 650px;
+    --go-top-color: #fff;
+    --go-top-bgc: #333;
+}
+
+html.dark {
+    --go-top-color: #fff;
+    --go-top-bgc: #333;
 }
 
 * {
@@ -15,8 +22,10 @@ body {
 
 a {
     color: inherit;
-    text-decoration: none;
-    border-bottom: 1px dashed;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
 }
 
 a:link {
@@ -39,8 +48,15 @@ a:active {
 }
 
 ruby {
+    ruby-position: under;
 }
 
 ruby rt {
     user-select: none;
+    pointer-events: none;
+}
+
+ruby rt::before {
+    content: attr(data-ruby);
+    display: block;
 }

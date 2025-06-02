@@ -16,6 +16,13 @@
         单词
       </el-button>
       <el-button
+          size="small"
+          :type="isActive('/vocabulary') ? 'primary' : 'default'"
+          @click="navigateTo('/vocabulary')"
+      >
+        词汇(jlpt)
+      </el-button>
+      <el-button
         size="small"
         :type="isActive('/tool') ? 'primary' : 'default'"
         @click="navigateTo('/tool')"

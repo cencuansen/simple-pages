@@ -1,0 +1,365 @@
+[
+  {
+    "grammar_point": "です",
+    "definition": "is, am, or are (depending on the situation), broader in English than in Japanese. Other words like 「いる」 and 「ある」 also mean 'is' depending on context.",
+    "examples": [
+      {"japanese": "私（わたし）はマイク です。", "english": "I am Mike."},
+      {"japanese": "これはペン です。", "english": "This is a pen."}
+    ],
+    "notes": "Pronounced as 'des-' instead of 'desu'."
+  },
+  {
+    "grammar_point": "も",
+    "definition": "too, and, or also.",
+    "examples": [
+      {"japanese": "彼（かれ）はサッカーが好き（すき）です。私（わたし） も サッカーが好き（すき）です。", "english": "He likes soccer. I like soccer, too."},
+      {"japanese": "ケンはケーキ も クッキーも食べ（たべ）ました。", "english": "Ken ate both cake and cookies."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "で",
+    "definition": "at or in, used to specify where something happens.",
+    "examples": [
+      {"japanese": "エミは学校（がっこう） で数学（すうがく）を勉強（べんきょう）します。", "english": "Emi studies math at school."},
+      {"japanese": "私（わたし）は映画館（えいがかん） で仮面ライダー（かめんらいだー）の映画（えいが）を見ました（みました）。", "english": "I watched Kamen Rider at the movie theater."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "に/へ",
+    "definition": "to, indicates location of a person or thing, location of short-term action, used for destinations.",
+    "examples": [
+      {"japanese": "リエ子はローマ に行き（いき）ました。", "english": "Rieko went to Rome."},
+      {"japanese": "明日（あした）彼（かれ）は美術館（びじゅつかん） へ行く（いく）予定（よてい）です。", "english": "He plans to go to the art museum tomorrow."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "に",
+    "definition": "General use preposition, can mean 'in', 'at', 'to', 'for', and other prepositional phrases depending on context.",
+    "examples": [
+      {"japanese": "この本（ほん）をあの人（ひと） に 上げ（あげ）てください。", "english": "Please give the book to that person."},
+      {"japanese": "冬（ふゆ） に、雪（ゆき）が降り（ふり）ます。", "english": "In winter, it snows."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "を",
+    "definition": "Denotes the object of an action.",
+    "examples": [
+      {"japanese": "あの猫（ねこ）は魚（さかな） を食べ（たべ）た。", "english": "That cat ate the fish."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～ませんか",
+    "definition": "'Won't you ~ ?' or 'Shall we ~ ?', used as an invitation.",
+    "examples": [
+      {"japanese": "ケーキを食べ（たべ） ませんか？", "english": "Won't you have some cake?"},
+      {"japanese": "映画（えいが）をみ ませんか？", "english": "Won't you (shall we) watch a movie?"}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "は",
+    "definition": "Denotes a topic.",
+    "examples": [
+      {"japanese": "彼女（かのじょ） は嬉しい（うれしい）です。", "english": "She is happy."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～があります",
+    "definition": "'there is', used for non-living things (use 「がいます」 for living things).",
+    "examples": [
+      {"japanese": "つくえの上（うえ）にボール があります。", "english": "There is a ball on the desk."},
+      {"japanese": "はこの中（なか）にプレゼント がありますか。", "english": "Is there a present inside the box?"}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～がいます",
+    "definition": "'there is' or 'is', used for living things (or things that appear alive, like ghosts or robots).",
+    "examples": [
+      {"japanese": "あそこの木（き）の下（した）に、二人（ふたり）子供（こども） がいます。", "english": "There are two children under the tree over there."},
+      {"japanese": "教室（きょうしつ）に田中（たなか）先生（せんせい） がいますか。", "english": "Is Mr. Tanaka in the classroom?"}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "と",
+    "definition": "Particle used to link nouns in a complete list.",
+    "examples": [
+      {"japanese": "そのサラダはレタス と にんじん と ラディッシュから 作り（つくり）ました。", "english": "The salad was made from lettuce, carrot, and radish."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～ましょう",
+    "definition": "Polite volitional phrase, meaning 'I'll' or 'let's'.",
+    "examples": [
+      {"japanese": "食べ（たべ） ましょう。", "english": "Let's eat!"}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～ましょうか",
+    "definition": "Polite volitional phrase used for suggestions.",
+    "examples": [
+      {"japanese": "食べ（たべ） ましょうか。", "english": "How about we eat?"}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～てください",
+    "definition": "Used to link verb copulas ending in 'て' or 'で' to 'ください', making it a request.",
+    "examples": [
+      {"japanese": "日本語（にほんご）で話し（はなし） て下さい（ください）。", "english": "Please speak in Japanese."},
+      {"japanese": "彼（かれ）に言っ（いっ） て下さい（ください）。", "english": "Please tell it to him."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～てもいいです",
+    "definition": "Links verb copulas to 'もいいです' meaning 'it's enough' or 'it's good', can be a request for permission.",
+    "examples": [
+      {"japanese": "料理（りょうり）し てもいいですか。", "english": "May I cook?"},
+      {"japanese": "食べ（たべ） てもいいです。", "english": "You may eat."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～てはいけません",
+    "definition": "Links copulas to 'はいけません', meaning 'it's not good', used to scold or disapprove. Formed by te-form + はいけません.",
+    "examples": [
+      {"japanese": "サーラーの手書き（てがき） はよくありません（いけません）。", "english": "Sarah's handwriting is not great."},
+      {"japanese": "ここに車（くるま）を停め（とめ） てはいけません。", "english": "You must not park the car here."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～から",
+    "definition": "Phrase meaning 'from'.",
+    "examples": [
+      {"japanese": "この電車（でんしゃ）はサンホセ からサンフランシスコにいきます。", "english": "This train goes from San Jose to San Francisco."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～ている",
+    "definition": "When 「いる」 is used after the て form of a verb, indicates an ongoing action (progressive tense) or a certain state.",
+    "examples": [
+      {"japanese": "私（わたし）は読ん（よん） でいます。", "english": "I am reading."},
+      {"japanese": "ドアが 開い（ひらい） ています。", "english": "The door is open."},
+      {"japanese": "僕（ぼく）は結婚（けっこん）し ています。", "english": "I am married."},
+      {"japanese": "子供（こども）たちは走（はし）っ ています。", "english": "The children are running."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～にいく",
+    "definition": "Means to go somewhere or to go do something. If meaning to go do something, 「にいく」 is used after a verb stem (verb in ます form without ます).",
+    "examples": [
+      {"japanese": "私（わたし）は泳ぎ（およぎ） に行く。", "english": "I go swimming."},
+      {"japanese": "彼（かれ）は勉強（べんきょう） に行った。", "english": "He went to study."},
+      {"japanese": "彼女（かのじょ）は東京（とうきょう） に行く。", "english": "She's going to Tokyo."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "ないでください",
+    "definition": "'please don't do', used in place of a ない form of a verb.",
+    "examples": [
+      {"japanese": "この林檎（りんご）を食べ（たべ） ないでください。", "english": "Please don't eat this apple."},
+      {"japanese": "その本（ほん）を読ま（よま） ないでください。", "english": "Please don't read that book."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～のがすきです",
+    "definition": "Means to like doing something.",
+    "examples": [
+      {"japanese": "私（わたし）はアニメを見る（みる） のが好き（すき）です。", "english": "I like watching anime."},
+      {"japanese": "彼女（かのじょ）は歌う（うたう） のが好き（すき）です。", "english": "She likes singing."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～のがじょうずです",
+    "definition": "Means to be good at something.",
+    "examples": [
+      {"japanese": "彼女（かのじょ）は歌う（うたう） のが上手（じょうず）です。", "english": "She's good at singing."},
+      {"japanese": "貴方（あなた）は泳ぐ（およぐ） のが上手（じょうず）ですか。", "english": "Are you good at swimming?"}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～のがへたです",
+    "definition": "Means to be bad at something.",
+    "examples": [
+      {"japanese": "私（わたし）は踊る（おどる） のが下手（へた）です。", "english": "I'm bad at dancing."},
+      {"japanese": "彼（かれ）は 勉強する（べんきょうする） のが下手（へた）です。", "english": "He's bad at studying."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "まだ～ていません",
+    "definition": "Means that someone hasn't done something yet.",
+    "examples": [
+      {"japanese": "私（わたし）は まだ決め（きめ） ていません。", "english": "I haven't decided yet."},
+      {"japanese": "彼（かれ）は まだ帰っ（かえっ） ていません。", "english": "He hasn't returned yet."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～のほうが～より",
+    "definition": "Means that something is more (interesting/expensive/etc.) than something else.",
+    "examples": [
+      {"japanese": "この本（ほん） の方（ほう）が あの新聞（しんぶん） より高い（たかい）。", "english": "This book is more expensive than that newspaper."},
+      {"japanese": "図書館（としょかん） の方（ほう）が 学校（がっこう） より静か（しずか）。", "english": "Library is quieter than school."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～のなかで～がいちばん～",
+    "definition": "Means the best from something or the most (new/old/expensive/likeable/etc.).",
+    "examples": [
+      {"japanese": "あの図書館（としょかん） の中（なか）でこの本（ほん） がいちばん。", "english": "This book is the best book in that library."},
+      {"japanese": "このお菓子（おかし） の中（なか）でクッキーがいちばん好き（すき）です。", "english": "From these sweets I like cookies the most."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "つもりです",
+    "definition": "Means a plan or intent of doing something.",
+    "examples": [
+      {"japanese": "私（わたし）は映画（えいが）を 見（み）に行く（いく） つもりです。", "english": "I'm going to go see a movie."},
+      {"japanese": "貴方（あなた）は何（なに）を勉強（べんきょう）する つもりですか？", "english": "What are you going to study?"}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～く/～になる",
+    "definition": "Means to become (smart/tall/etc.). For -na adjectives, use adj+になる; for -i adjectives, use adj+くなる.",
+    "examples": [
+      {"japanese": "あの女性（じょせい）はきれい になった。", "english": "That woman became beautiful."},
+      {"japanese": "この自転車（じてんしゃ）は古（ふる） くなった。", "english": "This bicycle became old."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "V stem + たいです",
+    "definition": "Creates the polite 'want to do' form of a verb.",
+    "examples": [
+      {"japanese": "僕（ぼく）はケーキを食べ（たべ） たいです。", "english": "I want to eat some cake."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～たり…～たりする",
+    "definition": "Makes a list of activities or attributes, meaning 'this and that/sometimes this and sometimes that/in some parts this in other parts that'. With nouns or -na adjectives, it becomes '～だったり …～だったりする'.",
+    "examples": [
+      {"japanese": "昨日（きのう）私（わたし）は本（ほん）を読ん（よん） だりお菓子（おかし）を食べ（たべ） たりした。", "english": "Yesterday I was reading a book and eating sweets."},
+      {"japanese": "あの映画（えいが）は面白（おもしろ）かっ たりつまらなかっ たりする。", "english": "That movie is interesting in some parts and boring in other parts."},
+      {"japanese": "彼女（かのじょ）は親切（しんせつ）だっ たりきれいだっ たりする。", "english": "She's nice and beautiful."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～たことがある",
+    "definition": "Indicates that something has (or hasn't ever) happened in the past.",
+    "examples": [
+      {"japanese": "私（わたし）は東京（とうきょう）へ行っ たことがある。", "english": "I've been to Tokyo."},
+      {"japanese": "私（わたし）はそれを聞い（きい） たことがない。", "english": "I've never heard of this."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "や",
+    "definition": "Particle used to link nouns in an incomplete list.",
+    "examples": [
+      {"japanese": "猫（ねこ） や犬（いぬ） や猿（さる）が動物園（どうぶつえん）にいます。", "english": "There are cats and dogs and monkeys (among other things) at the zoo."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～んです",
+    "definition": "Accents the sentence's content or softens a request or order. Can also be said as '~のです'. With -na adjectives and nouns, it becomes '~なのです'.",
+    "examples": [
+      {"japanese": "私（わたし）は今（いま）忙しい（いそがしい） んです。", "english": "I'm busy right now."},
+      {"japanese": "私（わたし）は今（いま）そうじ中（ちゅう） なのです。", "english": "I'm cleaning right now."},
+      {"japanese": "テニスはする んですか？", "english": "Do you play tennis? (at all, not right now)"}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～すぎる",
+    "definition": "Means 'too much' or 'too (big/small/expensive/etc.)'.",
+    "examples": [
+      {"japanese": "山田（やまだ）さんは食べ（たべ） すぎる。", "english": "Mr. Yamada eats too much."},
+      {"japanese": "私（わたし）は食べ物（たべもの）を買い（かい） すぎた。", "english": "I bought too much food."},
+      {"japanese": "このシャツは大き（おおき） すぎる。", "english": "This shirt is too big."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～ほうがいい",
+    "definition": "Means 'it's better' or 'it would be better', can also indicate something should (or shouldn't) be done.",
+    "examples": [
+      {"japanese": "貴方（あなた）はこの本（ほん）を買っ（かっ）た ほうがいい。", "english": "You should buy this book."},
+      {"japanese": "私（わたし）はあのケーキを食べ（たべ）ない ほうがいい。", "english": "I shouldn't eat that cake."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "ので",
+    "definition": "Means 'because' or 'so'. The cause is more impartial (e.g., because a building is red) than with 'から' or 'だから' (more subjective, e.g., because you think an apple tastes good). With nouns and -na adjectives, it becomes 'なので'.",
+    "examples": [
+      {"japanese": "この本（ほん）は高い（たかい） ので買わ（かわ）ない。", "english": "I'm not buying this book, because it's expensive."},
+      {"japanese": "あの映画（えいが）を見た（みた） ので他（ほか）の映画（えいが）を見（み）よう。", "english": "I've seen this movie so let's watch a different one."},
+      {"japanese": "彼女（かのじょ）は病気（びょうき）な ので来（こ）ない。", "english": "She isn't coming because she's sick."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～なくちゃいけない",
+    "definition": "Means that something has to be done (literally: 'it's bad not to do it').",
+    "examples": [
+      {"japanese": "貴方（あなた）は宿題（しゅくだい）を終わら（おわら） なくちゃいけない。", "english": "You have to finish your homework."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "でしょう",
+    "definition": "Means 'isn't it/aren't you/aren't I/etc.' or 'right?'. Used when the speaker isn't sure or in rhetorical questions.",
+    "examples": [
+      {"japanese": "貴方（あなた）は七（しち）時（じ）まえに帰る（かえる） でしょう？", "english": "You'll come back before 7 o'clock, right?"},
+      {"japanese": "これは本（ほん） でしょう？", "english": "It's a book, isn't it?"},
+      {"japanese": "あのビルは普通（ふつう）じゃない でしょう？", "english": "That building isn't normal, is it?"},
+      {"japanese": "彼（かれ）は泳げ（およげ）ない でしょう？", "english": "He can't swim, can he?"},
+      {"japanese": "ドレスは黒（くろ）くて青い（あおい） でしょう？", "english": "The dress is black and blue, isn't it?"}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～まえに",
+    "definition": "Means 'before doing (something)' or 'ago' (e.g., 3 days ago).",
+    "examples": [
+      {"japanese": "食べる（たべる） 前（まえ）に手（て）を洗っ（あらっ）て下さい（ください）。", "english": "Please wash your hands before eating."},
+      {"japanese": "私（わたし）は一（いち）時間（じかん） 前（まえ）に帰っ（かえっ）た。", "english": "I came back an hour ago."},
+      {"japanese": "私（わたし）はプールで入る（はいる） 前（まえ）に30分（ふん）も待ち（まち）ました。", "english": "I waited 30 minutes before entering the pool."}
+    ],
+    "notes": ""
+  },
+  {
+    "grammar_point": "～てから",
+    "definition": "Means to do something after doing something else.",
+    "examples": [
+      {"japanese": "考え（かんがえ） てから言って（いって）ください。", "english": "Please speak after thinking. or Think then speak please."},
+      {"japanese": "私は手を洗っ てから食事（しょくじ）をした。", "english": "I had a meal after washing my hands."},
+      {"japanese": "私は宿題（しゅくだい）をし てからねました。", "english": "I went to sleep after doing homework."}
+    ],
+    "notes": ""
+  }
+]
