@@ -100,4 +100,5 @@ onMounted(async () => {
 :deep(.el-tabs__content) {
   padding: 0 !important;
 }
+
 </style>

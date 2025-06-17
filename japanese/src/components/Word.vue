@@ -243,8 +243,8 @@ onActivated(async () => {
 
 .go-top {
   position: absolute;
-  bottom: 3%;
-  right: 12%;
+  bottom: 60px;
+  right: 50px;
   width: 30px;
   height: 30px;
   border: none;

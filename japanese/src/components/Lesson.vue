@@ -59,7 +59,7 @@
           title="播放"
           :disabled="isPlaying"
           v-if="lessonStore.currentLesson?.audio && baseSettingStore.audioSpeak"
-          @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson?.audio}`, speechStore.repeatTimes)">
+          @click="playAudio(``, speechStore.repeatTimes)">
         <el-icon>
           <i class="icon-on-music"></i>
         </el-icon>
@@ -94,7 +94,7 @@
                      v-html="textHandler(item.content)" @click="handleAnchorClick"></el-text>
             <el-button :disabled="isPlaying" circle
                        size="small" v-if="item.time && baseSettingStore.audioSpeak"
-                       @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson?.audio}${item.time}`, speechStore.repeatTimes)">
+                       @click="playAudio(item.time, speechStore.repeatTimes)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
@@ -132,7 +132,7 @@
                 circle
                 :disabled="isPlaying"
                 v-if="message.time && baseSettingStore.audioSpeak"
-                @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson?.audio}${message.time}`, speechStore.repeatTimes)">
+                @click="playAudio(message.time, speechStore.repeatTimes)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
@@ -175,7 +175,7 @@
                 circle
                 :disabled="isPlaying"
                 v-if="message.time && baseSettingStore.audioSpeak"
-                @click="playAudio(`${audioUrlBase}${lessonStore.currentLesson?.audio}${message.time}`, speechStore.repeatTimes)">
+                @click="playAudio(message.time, speechStore.repeatTimes)">
               <el-icon>
                 <i class="icon-on-music"></i>
               </el-icon>
@@ -259,11 +259,18 @@
 
   <a class="go-top" href="#" @click="goTop">↑</a>
 
-  <audio ref="audioRef" :src="src" autoplay @timeupdate="onTimeUpdate"></audio>
+  <audio ref="audioRef" :src="src"
+         controls
+         @timeupdate="onTimeUpdate"
+         @play="onPlay"
+         @pause="onPause"
+         @error="onError"
+         @abort="onAbort"
+  ></audio>
 </template>
 
 <script setup lang="ts">
-import {computed, nextTick, onBeforeUnmount, onActivated, ref, watch} from 'vue'
+import {computed, onBeforeUnmount, ref, watch} from 'vue'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
@@ -282,43 +289,46 @@ const exchangeTranslate = ref<boolean[]>(new Array(100).fill(false))
 const exchange2Translate = ref<boolean[]>(new Array(100).fill(false))
 
 const audioRef = ref<HTMLAudioElement>()
-const src = ref<string>()
 const currentTime = ref(0)
 const audioPlaying = ref(false)
 
 const isPlaying = computed(() => speechStore.isSpeaking || audioPlaying.value)
 
+const src = computed(() => {
+  if (speechStore.isSpeaking) {
+    return void 0;
+  }
+  return `${audioUrlBase}${lessonStore.currentLesson?.audio}`;
+})
+
 const pauseHandler = async (url: string, playTimes: number) => {
-  audioPlaying.value = false
   await playAudio(url, playTimes - 1)
 }
 
 // 存储当前活动的pause处理函数
 let currentPauseHandler: (() => void) | null = null;
 
-const playAudio = async (url: string, playTimes: number) => {
-  if (!url || !audioRef.value || playTimes < 1) {
-    audioPlaying.value = false;
+const playAudio = async (timeRange: string, playTimes: number) => {
+  if (!audioRef.value || !src.value || playTimes < 1) {
     return;
   }
 
-  audioPlaying.value = true;
+  const url = `${src.value}${timeRange}`;
+  audioRef.value.src = url;
 
   // 移除旧的监听器
   if (currentPauseHandler) {
     audioRef.value?.removeEventListener('pause', currentPauseHandler);
   }
-
   // 创建并存储新的处理函数
   currentPauseHandler = () => pauseHandler(url, playTimes);
   audioRef.value?.addEventListener('pause', currentPauseHandler);
 
-  src.value = "";
-  await nextTick();
-  src.value = url;
-  await nextTick();
   audioRef.value.playbackRate = speechStore.rate;
-};
+  audioRef.value.volume = speechStore.volume;
+
+  await audioRef.value.play()
+}
 
 const pauseAudio = () => {
   if (!isPlaying.value) return;
@@ -329,7 +339,6 @@ const pauseAudio = () => {
       audioRef.value.removeEventListener('pause', currentPauseHandler);
       currentPauseHandler = null;
     }
-    audioPlaying.value = false
     audioRef.value.pause();
   }
 
@@ -406,9 +415,19 @@ const handleAnchorClick = (event: any) => {
 };
 
 const onTimeUpdate = () => {
-  if (audioRef.value) {
-    currentTime.value = audioRef.value.currentTime; // 获取当前播放位置（秒）
-  }
+  currentTime.value = audioRef.value?.currentTime || 0;
+}
+const onPlay = () => {
+  audioPlaying.value = true;
+}
+const onPause = () => {
+  audioPlaying.value = false;
+}
+const onError = () => {
+  audioPlaying.value = false;
+}
+const onAbort = () => {
+  audioPlaying.value = false;
 }
 
 const speakingActive = (timeStr: string, currentTime: number): boolean => {
@@ -534,15 +553,6 @@ onBeforeUnmount(() => {
 const containerOnScroll = async () => {
   scrollPosition.value = container.value.scrollTop
 }
-
-onActivated(async () => {
-  setTimeout(() => {
-    if (container && container.value) {
-      container.value.scrollTop = scrollPosition.value
-    }
-  })
-})
-
 </script>
 
 <style scoped>
@@ -562,7 +572,7 @@ onActivated(async () => {
   position: fixed;
   margin: 0 auto;
   width: 100vw;
-  padding-bottom: 120px;
+  padding-bottom: 160px;
   height: calc(100vh - 85px);
 }
 
@@ -723,8 +733,8 @@ onActivated(async () => {
 
 .go-top {
   position: absolute;
-  bottom: 3%;
-  right: 12%;
+  bottom: 60px;
+  right: 50px;
   width: 30px;
   height: 30px;
   border: none;
@@ -744,5 +754,13 @@ onActivated(async () => {
 
 .speaking-active {
   color: var(--el-color-success);
+}
+
+audio {
+  position: absolute;
+  margin-left: 50%;
+  transform: translate(-50%);
+  bottom: 0;
+  width: 100%;
 }
 </style>
