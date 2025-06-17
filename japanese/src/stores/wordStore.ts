@@ -46,10 +46,12 @@ export const useWordStore = defineStore('word', () => {
         try {
             isLoading.value = true
             error.value = null
-
             const response = await fetch(`${jpJsonBase}/words-junior.json`)
-
-            wordList.value = await response.json() as WordItem[]
+            let words = await response.json() as WordItem[]
+            words.forEach((word: WordItem) => {
+                word.word = word.word.replace(/\s/g, '')
+            })
+            wordList.value = words
 
             isInitialized.value = true
         } catch (err) {

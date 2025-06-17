@@ -120,7 +120,7 @@
       <el-form v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
 
-        <el-form-item :label="message.speaker" class="message" :class="[ `speaker-${message.speaker}`]"
+        <el-form-item :label="message.speaker" class="message speaker" :class="[ `speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div class="text-row">
             <!--原文-->
@@ -163,7 +163,7 @@
       </h2>
       <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations2"
                :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-        <el-form-item :label="message.speaker" class="message" :class="[`speaker-${message.speaker}`]"
+        <el-form-item :label="message.speaker" class="message speaker" :class="[`speaker-${message.speaker}`]"
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div class="text-row">
             <!--原文-->
@@ -205,8 +205,9 @@
         <el-table-column label="语法" prop="content"/>
         <el-table-column label="说明">
           <template #default="scope">
-            <div>{{ scope.row.desc }}</div>
-            <div>{{ scope.row.remark }}</div>
+            <div v-html="scope.row.desc"></div>
+            <br v-if="scope.row.remark"/>
+            <div v-html="scope.row.remark"></div>
           </template>
         </el-table-column>
       </el-table>
@@ -444,10 +445,21 @@ const kanaWordMap = computed(() => {
 const wordRegEx = computed(() => {
   let wordCopy = words.value.slice()
   wordCopy.sort((a, b) => b.word.length - a.word.length)
-  return new RegExp(wordCopy.map(word => word.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+  return new RegExp(
+      wordCopy.map(word =>
+          word.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+              .split('') // 将单词拆分为字符数组
+              .join('\\s*') // 在每个字符之间添加\s*以匹配任意空格
+      ).join('|'),
+      'g'
+  );
 })
 
-const highlightReplacer = (match: string) => match ? `<a href="#word-${match}" class="highlight-word">${match}</a>` : ''
+const highlightReplacer = (match: string) => {
+  match = match.replace(/\s/g, '')
+  if (!match) return match
+  return `<a href="#word-${match}" class="highlight-word">${match}</a>`
+}
 
 const speakText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
 const speakTextList = (arr: string[] = []) => arr.map(speakText)
@@ -616,6 +628,7 @@ onActivated(async () => {
 
 .text-content {
   font-size: 1.2rem;
+  line-height: var(--text-content-line-height);
 }
 
 .section {
@@ -646,12 +659,13 @@ onActivated(async () => {
   align-items: start;
 }
 
-:deep(.message .el-form-item__label) {
+:deep(.el-form-item__label) {
   font-weight: bolder;
   color: var(--el-text-color-regular);
   user-select: none;
   white-space: nowrap;
   font-size: 1.2rem;
+  line-height: var(--text-content-line-height);
 }
 
 :deep(.message .el-form-item__content) {

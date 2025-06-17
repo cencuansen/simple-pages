@@ -20,7 +20,7 @@ export const useGrammarStore = defineStore('grammar', () => {
     const grammars = ref<Grammar[]>([])
 
     const fetchGrammars = async () => {
-        const response = await fetch(`${jpJsonBase}/grammar-junior.json`)
+        const response = await fetch(`${jpJsonBase}/grammars.json`)
         grammars.value = await response.json()
     }
 

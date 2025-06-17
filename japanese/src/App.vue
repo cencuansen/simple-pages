@@ -74,6 +74,10 @@ onMounted(async () => {
 })
 </script>
 
+<style>
+
+</style>
+
 <style scoped>
 .nav-container {
   display: flex;
