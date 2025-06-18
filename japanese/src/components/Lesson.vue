@@ -270,7 +270,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onBeforeUnmount, ref, watch} from 'vue'
+import {computed, onBeforeUnmount, ref, watch, onActivated} from 'vue'
 import {useLessonStore} from '../stores/lessonStore'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
@@ -553,6 +553,21 @@ onBeforeUnmount(() => {
 const containerOnScroll = async () => {
   scrollPosition.value = container.value.scrollTop
 }
+
+onActivated(async () => {
+  setTimeout(() => {
+    if (container && container.value) {
+      container.value.scrollTop = scrollPosition.value
+    }
+  })
+})
+
+document.addEventListener('keyup', function(event) {
+  if (event.key === 'r' || event.key === 'R') {
+    console.log('r 被按下')
+  }
+});
+
 </script>
 
 <style scoped>
