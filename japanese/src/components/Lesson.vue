@@ -89,9 +89,11 @@
         <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson?.basics" :key="`basic-${idx}`">
           <div class="text-row">
             <!--原文-->
-            <el-text class="text text-content"
-                     :class="{'speaking-active': speakingActive(item.time, currentTime)}"
-                     v-html="textHandler(item.content)" @click="handleAnchorClick"></el-text>
+            <el-text
+                :id="speakingTextId(speakText(item.content))"
+                class="text text-content"
+                :class="{'speaking-active': speakingActive(item.time, currentTime, speakText(item.content))}"
+                v-html="textHandler(item.content)" @click="handleAnchorClick"></el-text>
             <el-button :disabled="isPlaying" circle
                        size="small" v-if="item.time && baseSettingStore.audioSpeak"
                        @click="playAudio(item.time, speechStore.repeatTimes)">
@@ -124,9 +126,11 @@
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div class="text-row">
             <!--原文-->
-            <el-text class="text text-content"
-                     :class="{'speaking-active': speakingActive(message.time, currentTime)}"
-                     v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
+            <el-text
+                :id="speakingTextId(speakText(message.content))"
+                class="text text-content"
+                :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
+                v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
             <el-button
                 size="small"
                 circle
@@ -167,9 +171,11 @@
                       v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
           <div class="text-row">
             <!--原文-->
-            <el-text class="text text-content"
-                     :class="{'speaking-active': speakingActive(message.time, currentTime)}"
-                     v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
+            <el-text
+                :id="speakingTextId(speakText(message.content))"
+                class="text text-content"
+                :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
+                v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
             <el-button
                 size="small"
                 circle
@@ -355,6 +361,19 @@ const lastElement = ref<HTMLElement | null>()
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
+const speakingTextId = (str: string): string => `text-${str}`
+const speakingWordId = (str: string): string => `word-${str}`
+
+const speakingId = (): string => {
+  let id = null
+  if (speechStore.speakingWord) {
+    id = speakingWordId(`${speechStore.speakingWord.idx}`)
+  } else {
+    id = speakingTextId(speechStore.speakingText)
+  }
+  return id || ""
+}
+
 // 全局切换
 const toggleAllTranslations = (newValue: boolean) => {
   allTranslate.value = newValue
@@ -378,16 +397,11 @@ watch(() => baseSettingStore.translate, (value, _) => {
 })
 
 watch(() => speechStore.lastFireTime, (_) => {
-  let id = ""
-  if (speechStore.speakingWord) {
-    id = `#word-${speechStore.speakingWord?.idx}`
-  } else {
-    const text = speechStore.speakingText
-    if (kanaWordMap.value.has(text)) {
-      id = `#word-${kanaWordMap.value.get(text)}`
-    }
+  const id = speakingId()
+  if (!id) {
+    return;
   }
-  document.querySelector(id)?.scrollIntoView({
+  document.getElementById(id)?.scrollIntoView({
     behavior: 'smooth',
     block: 'center',
     inline: 'nearest'
@@ -436,7 +450,10 @@ const onAbort = () => {
   audioPlaying.value = false;
 }
 
-const speakingActive = (timeStr: string, currentTime: number): boolean => {
+const speakingActive = (timeStr: string, currentTime: number, text: string = ""): boolean => {
+  if (text !== null && text.length > 0 && speechStore.speakingText === text) {
+    return true
+  }
   if (!audioRef.value || audioRef.value.paused) {
     return false
   }
@@ -457,14 +474,6 @@ const grammars = computed(() => {
 
 const words = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex + 1)
-})
-
-const kanaWordMap = computed(() => {
-  const map = new Map()
-  words.value.forEach(item => {
-    map.set(item.kana, item.word)
-  })
-  return map
 })
 
 const wordRegEx = computed(() => {

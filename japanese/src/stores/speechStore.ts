@@ -12,7 +12,7 @@ export const useSpeechStore = defineStore('speech', () => {
     const voice = ref<SpeechSynthesisVoice | null>(null) // 当前选中的语音
     const voiceName = ref<string>()
     const speakingText = ref<string>("")
-    const speakingWord = ref<WordItem>()
+    const speakingWord = ref<WordItem | null>()
     const lastFireTime = ref<number>(0)
 
     // 系统可用语音列表
@@ -70,8 +70,10 @@ export const useSpeechStore = defineStore('speech', () => {
 
     // 朗读文本
     const speak = (text: string | WordItem) => {
-        lastFireTime.value = new Date().getTime()
         if (isSpeaking.value || !text) return
+        lastFireTime.value = new Date().getTime()
+        speakingText.value = ""
+        speakingWord.value = null
 
         beforeSpeak()
 
@@ -107,8 +109,10 @@ export const useSpeechStore = defineStore('speech', () => {
     }
 
     const speakList = (textList: string[] | WordItem[] = []) => {
-        lastFireTime.value = new Date().getTime()
         if (isSpeaking.value || textList.length === 0) return;
+
+        speakingText.value = ""
+        speakingWord.value = null
 
         beforeSpeak()
 
@@ -135,6 +139,8 @@ export const useSpeechStore = defineStore('speech', () => {
                 speakingText.value = w.kana
                 speakingWord.value = w
             }
+
+            lastFireTime.value = new Date().getTime()
 
             const utterance = initSpeech(speakingText.value)
 
