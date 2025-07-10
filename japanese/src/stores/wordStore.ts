@@ -1,21 +1,7 @@
 import {defineStore} from 'pinia'
 import {computed, ref} from 'vue'
+import type {WordItem,FilterOptions} from '../types'
 
-export interface WordItem {
-    kana: string;
-    kanji: string;
-    pos: string;
-    desc: string;
-    word: string;
-    lesson: number;
-    idx: number;
-}
-
-export interface FilterOptions {
-    lesson?: number;
-    pos?: string;
-    searchText?: string;
-}
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 

@@ -1,11 +1,6 @@
 import {defineStore} from 'pinia'
 import {ref, computed} from 'vue'
-
-interface VoiceOption {
-    name: string
-    lang: string
-    voice: SpeechSynthesisVoice
-}
+import type {WordItem, VoiceOption} from '../types'
 
 export const useSpeechStore = defineStore('speech', () => {
     // 可配置项
@@ -16,7 +11,9 @@ export const useSpeechStore = defineStore('speech', () => {
     const repeatTimes = ref<number>(1) // 重复次数 (1-5)
     const voice = ref<SpeechSynthesisVoice | null>(null) // 当前选中的语音
     const voiceName = ref<string>()
-    const speakingText = ref<string>()
+    const speakingText = ref<string>("")
+    const speakingWord = ref<WordItem>()
+    const lastFireTime = ref<number>(0)
 
     // 系统可用语音列表
     const voices = ref<SpeechSynthesisVoice[]>([])
@@ -61,11 +58,29 @@ export const useSpeechStore = defineStore('speech', () => {
         isSpeaking.value = true
     }
 
+    const initSpeech = (text: string): SpeechSynthesisUtterance => {
+        const utterance = new SpeechSynthesisUtterance(text)
+        utterance.voice = voice.value
+        utterance.lang = lang.value
+        utterance.rate = rate.value
+        utterance.pitch = pitch.value
+        utterance.volume = volume.value
+        return utterance
+    }
+
     // 朗读文本
-    const speak = (text: string) => {
+    const speak = (text: string | WordItem) => {
+        lastFireTime.value = new Date().getTime()
         if (isSpeaking.value || !text) return
 
         beforeSpeak()
+
+        if (typeof text === 'string') {
+            speakingText.value = text
+        } else {
+            speakingText.value = text.kana
+            speakingWord.value = text
+        }
 
         let count = 0
         const speakLoop = () => {
@@ -74,14 +89,7 @@ export const useSpeechStore = defineStore('speech', () => {
                 return
             }
 
-            speakingText.value = text
-
-            const utterance = new SpeechSynthesisUtterance(text)
-            utterance.voice = voice.value
-            utterance.lang = lang.value
-            utterance.rate = rate.value
-            utterance.pitch = pitch.value
-            utterance.volume = volume.value
+            const utterance = initSpeech(speakingText.value)
 
             utterance.onend = () => {
                 count++
@@ -98,7 +106,8 @@ export const useSpeechStore = defineStore('speech', () => {
         speakLoop()
     }
 
-    const speakList = (textList: string[] = []) => {
+    const speakList = (textList: string[] | WordItem[] = []) => {
+        lastFireTime.value = new Date().getTime()
         if (isSpeaking.value || textList.length === 0) return;
 
         beforeSpeak()
@@ -119,14 +128,15 @@ export const useSpeechStore = defineStore('speech', () => {
                 }
             }
 
-            speakingText.value = textList[currentIndex]
+            if (typeof textList[currentIndex] === 'string') {
+                speakingText.value = textList[currentIndex] as string
+            } else {
+                const w = (textList[currentIndex] as WordItem)
+                speakingText.value = w.kana
+                speakingWord.value = w
+            }
 
-            const utterance = new SpeechSynthesisUtterance(speakingText.value);
-            utterance.voice = voice.value;
-            utterance.lang = lang.value;
-            utterance.rate = rate.value;
-            utterance.pitch = pitch.value;
-            utterance.volume = volume.value;
+            const utterance = initSpeech(speakingText.value)
 
             utterance.onend = () => {
                 currentIndex++;
@@ -158,6 +168,8 @@ export const useSpeechStore = defineStore('speech', () => {
 
     const isTextSpeaking = (text: string) => speakingText.value === text
 
+    const isWordSpeaking = (word: WordItem) => speakingWord.value?.idx === word.idx
+
     return {
         rate,
         pitch,
@@ -169,12 +181,15 @@ export const useSpeechStore = defineStore('speech', () => {
         voiceOptions,
         isSpeaking,
         speakingText,
+        speakingWord,
+        lastFireTime,
         initVoices,
         speak,
         speakList,
         stop,
         reset,
-        isTextSpeaking
+        isTextSpeaking,
+        isWordSpeaking
     }
 }, {
     persist: {

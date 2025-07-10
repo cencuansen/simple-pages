@@ -1,6 +1,6 @@
 <template>
-  <div class="lesson-header-container">
-    <div class="lesson-header navigation-buttons">
+  <div class="word-header-container">
+    <div class="word-header navigation-buttons">
       <el-select size="small" class="navigation-item" v-model="lessonIndex" fit-input-width clearable
                  placeholder="选课程">
         <el-option
@@ -30,24 +30,24 @@
     </div>
   </div>
 
-  <div ref="container" @scroll="containerOnScroll" class="lesson-container">
+  <div ref="container" @scroll="containerOnScroll" class="word-container">
     <div ref="top"></div>
     <!-- 单词 -->
     <section class="section words-section">
       <el-table :data="words">
         <el-table-column label="单词">
           <template #default="scope">
-            <div v-if="baseSettingStore.word" :id="`word-${scope.row.word}`" class="column-word"
-                 :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.word }}
+            <div v-if="baseSettingStore.word" :id="`word-${scope.row.idx}`" class="column-word"
+                 :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.word }}
             </div>
-            <div v-if="baseSettingStore.kana" :id="`word-${scope.row.kana}`" class="column-kana"
-                 :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.kana }}
+            <div v-if="baseSettingStore.kana" class="column-kana"
+                 :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.kana }}
             </div>
           </template>
         </el-table-column>
         <el-table-column width="60" prop="pos" label="词性" show-overflow-tooltip/>
         <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
-        <el-table-column label="" width="40" v-if="!lessonIndex">
+        <el-table-column label="" width="50" v-if="!lessonIndex">
           <template #default="scope">
             {{ wordStore.realLessonNumber(scope.row.lesson) }}
           </template>
@@ -60,7 +60,7 @@
                 circle
                 v-if="baseSettingStore.ttsSpeak && lessonIndex"
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speakList(getSpeechTextList(words.map(w => w.kana)))">
+                @click="speechStore.speakList(words)">
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
@@ -72,7 +72,7 @@
                 size="small"
                 circle
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(scope.row.kana)">
+                @click="speechStore.speak(scope.row)">
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
@@ -90,7 +90,8 @@
 import {computed, onActivated, onBeforeUnmount, ref, watch} from 'vue'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
-import {useWordStore, type WordItem} from "../stores/wordStore"
+import {useWordStore} from "../stores/wordStore"
+import type {WordItem} from '../types'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
@@ -106,12 +107,17 @@ const container = ref()
 const scrollPosition = ref<number>(0)
 const top = ref()
 
-watch(() => speechStore.speakingText, (value) => {
-  let id = `#word-${value}`
-  if (kanaWordMap.value.has(value)) {
-    id = `#word-${kanaWordMap.value.get(value)}`
+watch(() => speechStore.lastFireTime, (_) => {
+  let id = ""
+  if (speechStore.speakingWord) {
+    id = `#word-${speechStore.speakingWord?.idx}`
+  } else {
+    const text = speechStore.speakingText
+    if (kanaWordMap.value.has(text)) {
+      id = `#word-${kanaWordMap.value.get(text)}`
+    }
   }
-  container.value.querySelector(id)?.scrollIntoView({
+  document.querySelector(id)?.scrollIntoView({
     behavior: 'smooth',
     block: 'center',
     inline: 'nearest'
@@ -174,8 +180,8 @@ const kanaWordMap = computed(() => {
   return map
 })
 
-const getSpeechText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
-const getSpeechTextList = (arr: string[] = []) => arr.map(getSpeechText)
+// const getSpeechText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
+// const getSpeechTextList = (arr: string[] = []) => arr.map(getSpeechText)
 
 const goTop = () => {
   top.value.scrollIntoView({
@@ -204,26 +210,26 @@ onActivated(async () => {
 </script>
 
 <style scoped>
-.lesson-header-container {
+.word-header-container {
   overflow-y: scroll;
 }
 
-.lesson-header {
+.word-header {
   display: flex;
   margin: 10px auto;
   padding: 0 5px;
   max-width: var(--content-max-width);
 }
 
-.lesson-header > * {
+.word-header > * {
   margin-right: 10px;
 }
 
-.lesson-header > *:last-child {
+.word-header > *:last-child {
   margin-right: 0;
 }
 
-.lesson-container {
+.word-container {
   width: 100vw;
   overflow-y: scroll;
   margin: 0 auto;
@@ -232,7 +238,7 @@ onActivated(async () => {
   height: calc(100vh - 85px);
 }
 
-.lesson-container > * {
+.word-container > * {
   max-width: var(--content-max-width);
   margin: 0 auto;
 }

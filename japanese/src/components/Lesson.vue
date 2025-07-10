@@ -218,11 +218,11 @@
       <el-table :data="words">
         <el-table-column label="单词">
           <template #default="scope">
-            <div v-if="baseSettingStore.word" :id="`word-${scope.row.word}`" class="column-word"
-                 :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.word }}
+            <div v-if="baseSettingStore.word" :id="`word-${scope.row.idx}`" class="column-word"
+                 :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.word }}
             </div>
-            <div v-if="baseSettingStore.kana" :id="`word-${scope.row.kana}`" class="column-kana"
-                 :class="{'speaking-active': speechStore.isTextSpeaking(scope.row.kana)}">{{ scope.row.kana }}
+            <div v-if="baseSettingStore.kana" class="column-kana"
+                 :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.kana }}
             </div>
           </template>
         </el-table-column>
@@ -235,7 +235,7 @@
                 circle
                 v-if="baseSettingStore.ttsSpeak"
                 :disabled="isPlaying"
-                @click="speechStore.speakList(speakTextList(words.map(w => w.kana)))">
+                @click="speechStore.speakList(words as WordItem[])">
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
@@ -246,7 +246,7 @@
                 size="small"
                 circle
                 :disabled="isPlaying"
-                @click="speechStore.speak(scope.row.kana)">
+                @click="speechStore.speak(scope.row as WordItem)">
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
@@ -259,7 +259,7 @@
 
   <a class="go-top" href="#" @click="goTop">↑</a>
 
-  <audio ref="audioRef" :src="src"
+  <audio v-if="baseSettingStore.audioSpeak" ref="audioRef" :src="src"
          controls
          @timeupdate="onTimeUpdate"
          @play="onPlay"
@@ -276,6 +276,7 @@ import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
 import {useGrammarStore} from "../stores/grammarStore"
+import type {WordItem} from "../types";
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -376,12 +377,17 @@ watch(() => baseSettingStore.translate, (value, _) => {
   }
 })
 
-watch(() => speechStore.speakingText, (value) => {
-  let id = `#word-${value}`
-  if (kanaWordMap.value.has(value)) {
-    id = `#word-${kanaWordMap.value.get(value)}`
+watch(() => speechStore.lastFireTime, (_) => {
+  let id = ""
+  if (speechStore.speakingWord) {
+    id = `#word-${speechStore.speakingWord?.idx}`
+  } else {
+    const text = speechStore.speakingText
+    if (kanaWordMap.value.has(text)) {
+      id = `#word-${kanaWordMap.value.get(text)}`
+    }
   }
-  container.value.querySelector(id)?.scrollIntoView({
+  document.querySelector(id)?.scrollIntoView({
     behavior: 'smooth',
     block: 'center',
     inline: 'nearest'
@@ -477,11 +483,12 @@ const wordRegEx = computed(() => {
 const highlightReplacer = (match: string) => {
   match = match.replace(/\s/g, '')
   if (!match) return match
-  return `<a href="#word-${match}" class="highlight-word">${match}</a>`
+  const word = words.value.find(w => w.word === match || w.kana === match)
+  if (!word) return match
+  return `<a href="#word-${word?.idx}" class="highlight-word">${word?.word}</a>`
 }
 
 const speakText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
-const speakTextList = (arr: string[] = []) => arr.map(speakText)
 const getDisplayText = (text: string | undefined = "") => text.replace(/!([^(]+)\([^)]+\)/g, '$1')
 const textHandler = (originalText: string | undefined = "") => {
   const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1');
@@ -562,7 +569,7 @@ onActivated(async () => {
   })
 })
 
-document.addEventListener('keyup', function(event) {
+document.addEventListener('keyup', function (event) {
   if (event.key === 'r' || event.key === 'R') {
     console.log('r 被按下')
   }

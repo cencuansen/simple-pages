@@ -37,12 +37,20 @@
             transition: background-color 0.3s, color 0.3s;
             background-color: var(--background-color);
             color: var(--text-color);
+            font-size: 10px;
         }
 
         .header {
             margin-bottom: 10px;
             background-color: var(--background-color);
             color: var(--text-color);
+        }
+
+        .main {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-around;
+            flex-wrap: wrap;
         }
 
         table {
@@ -63,15 +71,14 @@
         }
 
         .cell {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
         }
 
         audio {
             display: none;
         }
 
-        /* 主题切换按钮样式 */
         .theme-toggle {
             padding: 8px 16px;
             border: none;
@@ -79,9 +86,6 @@
             cursor: pointer;
             font-size: 14px;
             transition: background-color 0.3s;
-        }
-
-        .theme-toggle {
             background-color: var(--background-color);
             color: var(--text-color);
         }
@@ -89,12 +93,11 @@
 </head>
 
 <body>
-<!-- 添加主题切换按钮 -->
 <div class="header">
     <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">🌙</button>
 </div>
 
-<div class="bg-white right-block">
+<div class="main">
     <table class="table table-striped">
         <tbody>
         <tr>
@@ -119,7 +122,6 @@
                                    audio-src="/audios/o.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="notice">
             <td class="cell">
                 <audio-cell-module ha="か" ro="ka" ka="カ" ha-from="加" ka-from="加"
@@ -142,7 +144,6 @@
                                    audio-src="/audios/ko.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="notice">
             <td class="cell">
                 <audio-cell-module ha="さ" ro="sa" ka="サ" ha-from="左" ka-from="散"
@@ -165,7 +166,6 @@
                                    audio-src="/audios/so.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="notice">
             <td class="cell">
                 <audio-cell-module ha="た" ro="ta" ka="タ" ha-from="太" ka-from="多"
@@ -188,7 +188,6 @@
                                    audio-src="/audios/to.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr>
             <td class="cell">
                 <audio-cell-module ha="な" ro="na" ka="ナ" ha-from="奈" ka-from="奈"
@@ -211,7 +210,6 @@
                                    audio-src="/audios/no.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="notice">
             <td class="cell">
                 <audio-cell-module ha="は" ro="ha" ka="ハ" ha-from="波" ka-from="八"
@@ -234,7 +232,6 @@
                                    audio-src="/audios/ho.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr>
             <td class="cell">
                 <audio-cell-module ha="ま" ro="ma" ka="マ" ha-from="末" ka-from="万"
@@ -257,7 +254,6 @@
                                    audio-src="/audios/mo.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr>
             <td class="cell">
                 <audio-cell-module ha="や" ro="ya" ka="ヤ" ha-from="也" ka-from="也"
@@ -278,7 +274,6 @@
                                    audio-src="/audios/yo.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr>
             <td class="cell">
                 <audio-cell-module ha="ら" ro="ra" ka="ラ" ha-from="良" ka-from="良"
@@ -301,7 +296,6 @@
                                    audio-src="/audios/ro.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr>
             <td class="cell">
                 <audio-cell-module ha="わ" ro="wa" ka="ワ" ha-from="和" ka-from="和"
@@ -315,14 +309,12 @@
                                    audio-src="/audios/o.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr>
             <td class="cell">
                 <audio-cell-module ha="ん" ro="n" ka="ン" ha-from="无" ka-from="尔"
                                    audio-src="/audios/n.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="space">
             <td class="cell"></td>
             <td class="cell"></td>
@@ -330,7 +322,10 @@
             <td class="cell"></td>
             <td class="cell"></td>
         </tr>
-
+        </tbody>
+    </table>
+    <table class="table table-striped">
+        <tbody>
         <tr class="notice">
             <td class="cell">
                 <audio-cell-module ha="が" ro="ga" ka="ガ" audio-src="/audios/ga.mp3"></audio-cell-module>
@@ -348,7 +343,6 @@
                 <audio-cell-module ha="ご" ro="go" ka="ゴ" audio-src="/audios/go.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="notice">
             <td class="cell">
                 <audio-cell-module ha="ざ" ro="za" ka="ザ" audio-src="/audios/za.mp3"></audio-cell-module>
@@ -366,7 +360,6 @@
                 <audio-cell-module ha="ぞ" ro="zo" ka="ゾ" audio-src="/audios/zo.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="notice">
             <td class="cell">
                 <audio-cell-module ha="だ" ro="da" ka="ダ" audio-src="/audios/da.mp3"></audio-cell-module>
@@ -384,7 +377,6 @@
                 <audio-cell-module ha="ど" ro="do" ka="ド" audio-src="/audios/do.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="notice">
             <td class="cell">
                 <audio-cell-module ha="ば" ro="ba" ka="バ" audio-src="/audios/ba.mp3"></audio-cell-module>
@@ -402,7 +394,6 @@
                 <audio-cell-module ha="ぼ" ro="bo" ka="ボ" audio-src="/audios/bo.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="notice">
             <td class="cell">
                 <audio-cell-module ha="ぱ" ro="pa" ka="パ" audio-src="/audios/pa.mp3"></audio-cell-module>
@@ -420,7 +411,6 @@
                 <audio-cell-module ha="ぽ" ro="po" ka="ポ" audio-src="/audios/po.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr class="space">
             <td class="cell"></td>
             <td class="cell"></td>
@@ -428,7 +418,10 @@
             <td class="cell"></td>
             <td class="cell"></td>
         </tr>
-
+        </tbody>
+    </table>
+    <table class="table table-striped">
+        <tbody>
         <tr>
             <td class="cell">
                 <audio-cell-module ha="きゃ" ro="kya" audio-src="/audios/kya.mp3"></audio-cell-module>
@@ -444,7 +437,6 @@
                 <audio-cell-module ha="きょ" ro="kyo" audio-src="/audios/kyo.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr>
             <td class="cell">
                 <audio-cell-module ha="しゃ" ro="sya" audio-src="/audios/sya.mp3"></audio-cell-module>
@@ -535,7 +527,6 @@
                 <audio-cell-module ha="りょ" ro="ryo" audio-src="/audios/ryo.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr>
             <td class="cell">
                 <audio-cell-module ha="ぎゃ" ro="gya" audio-src="/audios/gya.mp3"></audio-cell-module>
@@ -581,7 +572,6 @@
                 <audio-cell-module ha="びょ" ro="byo" audio-src="/audios/byo.mp3"></audio-cell-module>
             </td>
         </tr>
-
         <tr>
             <td class="cell">
                 <audio-cell-module ha="ぴゃ" ro="pya" audio-src="/audios/pya.mp3"></audio-cell-module>
@@ -596,6 +586,13 @@
             <td class="cell">
                 <audio-cell-module ha="ぴょ" ro="pyo" audio-src="/audios/pyo.mp3"></audio-cell-module>
             </td>
+        </tr>
+        <tr class="space">
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
+            <td class="cell"></td>
         </tr>
         </tbody>
     </table>

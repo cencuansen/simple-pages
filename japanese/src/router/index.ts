@@ -4,6 +4,7 @@ import Word from '../components/Word.vue'
 import Vocabulary from '../components/Vocabulary.vue'
 import Tool from '../components/Tool.vue'
 import Setting from '../components/Setting.vue'
+import Grammar from "../components/Grammar.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -23,6 +24,10 @@ const router = createRouter({
         {
             path: '/vocabulary',
             component: Vocabulary
+        },
+        {
+            path: '/grammar',
+            component: Grammar
         },
         {
             path: '/tool',

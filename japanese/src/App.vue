@@ -2,16 +2,16 @@
   <div class="nav-container">
     <div class="nav-buttons">
       <el-button
-        size="small"
-        :type="isActive('/lesson') ? 'primary' : 'default'"
-        @click="navigateTo('/lesson')"
+          size="small"
+          :type="isActive('/lesson') ? 'primary' : 'default'"
+          @click="navigateTo('/lesson')"
       >
         课程
       </el-button>
       <el-button
-        size="small"
-        :type="isActive('/word') ? 'primary' : 'default'"
-        @click="navigateTo('/word')"
+          size="small"
+          :type="isActive('/word') ? 'primary' : 'default'"
+          @click="navigateTo('/word')"
       >
         单词
       </el-button>
@@ -23,16 +23,23 @@
         词汇(jlpt)
       </el-button>
       <el-button
-        size="small"
-        :type="isActive('/tool') ? 'primary' : 'default'"
-        @click="navigateTo('/tool')"
+          size="small"
+          :type="isActive('/grammar') ? 'primary' : 'default'"
+          @click="navigateTo('/grammar')"
+      >
+        文法
+      </el-button>
+      <el-button
+          size="small"
+          :type="isActive('/tool') ? 'primary' : 'default'"
+          @click="navigateTo('/tool')"
       >
         工具
       </el-button>
       <el-button
-        size="small"
-        :type="isActive('/setting') ? 'primary' : 'default'"
-        @click="navigateTo('/setting')"
+          size="small"
+          :type="isActive('/setting') ? 'primary' : 'default'"
+          @click="navigateTo('/setting')"
       >
         设置
       </el-button>
@@ -40,20 +47,22 @@
   </div>
   <router-view v-slot="{ Component }">
     <keep-alive>
-      <component :is="Component" />
+      <component :is="Component"/>
     </keep-alive>
   </router-view>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { useLessonStore } from './stores/lessonStore'
-import { useWordStore } from './stores/wordStore'
-import { useGrammarStore } from './stores/grammarStore'
-import { useRouter, useRoute } from 'vue-router'
+import {onMounted} from 'vue'
+import {useLessonStore} from './stores/lessonStore'
+import {useWordStore} from './stores/wordStore'
+import {useGrammarStore} from './stores/grammarStore'
+import {useBaseSettingStore} from "./stores/baseSettingStore"
+import {useRouter, useRoute} from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
+useBaseSettingStore();
 
 const navigateTo = (path: string) => {
   router.push(path)
@@ -88,7 +97,15 @@ onMounted(async () => {
   height: 40px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  overflow-x: auto;
+}
+
+.nav-buttons::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-buttons button {
+  margin: 0 10px;
 }
 
 .root-tab {
