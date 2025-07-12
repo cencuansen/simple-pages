@@ -5,21 +5,25 @@
     </div>
     <div class="main">
       <el-table class="table" :data="grammarView" stripe>
-        <el-table-column label="课程" width="80">
+        <el-table-column type="index" width="50"/>
+        <el-table-column label="语法" prop="grammar">
           <template #default="scope">
-            <div v-html="scope.row.lesson"></div>
+            <div v-html="scope.row.grammar"></div>
           </template>
         </el-table-column>
-        <el-table-column label="语法" prop="content">
+        <el-table-column label="含义" prop="meaning">
           <template #default="scope">
-            <div v-html="scope.row.content"></div>
+            <div v-html="scope.row.meaning"></div>
           </template>
         </el-table-column>
-        <el-table-column label="说明">
+        <el-table-column label="示例" prop="example">
           <template #default="scope">
-            <div v-html="scope.row.desc"></div>
-            <br v-if="scope.row.remark"/>
-            <div v-html="scope.row.remark"></div>
+            <div v-html="scope.row.example"></div>
+          </template>
+        </el-table-column>
+        <el-table-column label="级别" prop="level" width="60">
+          <template #default="scope">
+            <div v-html="scope.row.level"></div>
           </template>
         </el-table-column>
       </el-table>
@@ -29,30 +33,30 @@
 
 <script setup lang="ts">
 import {computed, ref} from 'vue'
-import {useGrammarStore} from "../stores/grammarStore"
+import {useJlptGrammarStore} from "../stores/jlptGrammarStore.ts"
 
-const grammarStore = useGrammarStore()
+const grammarStore = useJlptGrammarStore()
 const keyword = ref("")
 
 const grammarView = computed(() => {
-  let list = grammarStore.grammars
+  let list = grammarStore.JlptGrammars
   const key = keyword.value
   if (key) {
     const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
     list = list.filter(item => {
       return (
-          item.lesson?.toString().includes(key) ||
-          item.content?.includes(key) ||
-          item.remark?.includes(key) ||
-          item.desc?.includes(key)
+          item.grammar?.toString().includes(key) ||
+          item.meaning?.includes(key) ||
+          item.example?.includes(key) ||
+          item.level?.includes(key)
       )
     }).map(item => {
       const highlighted = {...item}
       const highlight = (text: string) => text?.replace(regex, '<span class="match">$1</span>')
-      if (highlighted.content) highlighted.content = highlight(highlighted.content)
-      if (highlighted.remark) highlighted.remark = highlight(highlighted.remark)
-      if (highlighted.desc) highlighted.desc = highlight(highlighted.desc)
+      if (highlighted.grammar) highlighted.grammar = highlight(highlighted.grammar)
+      if (highlighted.meaning) highlighted.meaning = highlight(highlighted.meaning)
+      if (highlighted.example) highlighted.example = highlight(highlighted.example)
       return highlighted
     })
   }

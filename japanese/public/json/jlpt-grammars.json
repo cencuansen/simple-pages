@@ -1,0 +1,536 @@
+[
+  {
+    "grammar": "です",
+    "meaning": "表示判断或断定，相当于英文的 is/am/are。",
+    "example": "これはペンです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "も",
+    "meaning": "表示也、还、连，用于并列。",
+    "example": "私もサッカーが好きです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "で",
+    "meaning": "表示动作发生的场所，相当于“在”。",
+    "example": "学校で数学を勉強します。",
+    "level": "n5"
+  },
+  {
+    "grammar": "に/へ",
+    "meaning": "表示动作的方向或目的地。",
+    "example": "彼は美術館へ行きます。",
+    "level": "n5"
+  },
+  {
+    "grammar": "に",
+    "meaning": "表示时间点或给予对象等，多种含义。",
+    "example": "冬に雪が降ります。",
+    "level": "n5"
+  },
+  {
+    "grammar": "を",
+    "meaning": "表示动作的对象，相当于宾语标志。",
+    "example": "魚を食べました。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ませんか",
+    "meaning": "用于委婉邀请，对方是否愿意做某事。",
+    "example": "ケーキを食べませんか？",
+    "level": "n5"
+  },
+  {
+    "grammar": "は",
+    "meaning": "表示主语或话题。",
+    "example": "彼女は嬉しいです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～があります",
+    "meaning": "表示存在（无生命物体）。",
+    "example": "机の上にボールがあります。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～がいます",
+    "meaning": "表示存在（有生命物体）。",
+    "example": "木の下に子供がいます。",
+    "level": "n5"
+  },
+  {
+    "grammar": "と",
+    "meaning": "用于完整列举名词。",
+    "example": "レタスとにんじんとラディッシュがあります。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ましょう",
+    "meaning": "表示提议或决定做某事。",
+    "example": "食べましょう。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ましょうか",
+    "meaning": "用于提议询问是否做某事。",
+    "example": "食べましょうか？",
+    "level": "n5"
+  },
+  {
+    "grammar": "～てください",
+    "meaning": "表示请求，请做某事。",
+    "example": "日本語で話してください。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～てもいいです",
+    "meaning": "表示许可，可做某事。",
+    "example": "料理してもいいですか？",
+    "level": "n5"
+  },
+  {
+    "grammar": "～てはいけません",
+    "meaning": "表示禁止，不允许做某事。",
+    "example": "ここに車を停めてはいけません。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～から",
+    "meaning": "表示起点，相当于“从”。",
+    "example": "サンホセからサンフランシスコに行きます。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ている",
+    "meaning": "表示动作正在进行或状态持续。",
+    "example": "私は読んでいます。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～にいく",
+    "meaning": "表示去做某事。",
+    "example": "彼は勉強に行った。",
+    "level": "n5"
+  },
+  {
+    "grammar": "ないでください",
+    "meaning": "表示请求不要做某事。",
+    "example": "その本を読まないでください。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のがすきです",
+    "meaning": "表示喜欢做某事。",
+    "example": "アニメを見るのが好きです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のがじょうずです",
+    "meaning": "表示擅长做某事。",
+    "example": "泳ぐのが上手ですか？",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のがへたです",
+    "meaning": "表示不擅长做某事。",
+    "example": "踊るのが下手です。",
+    "level": "n5"
+  },
+  {
+    "grammar": "まだ～ていません",
+    "meaning": "表示某事还未发生。",
+    "example": "私はまだ決めていません。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のほうが～より",
+    "meaning": "表示比较，“A比B更…”。",
+    "example": "図書館のほうが学校より静かです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のなかで～がいちばん～",
+    "meaning": "表示三者以上比较，“最…”。",
+    "example": "クッキーがいちばん好きです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～つもりです",
+    "meaning": "表示打算做某事。",
+    "example": "映画を見に行くつもりです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～くなる / ～になる",
+    "meaning": "表示状态变化。“变得…”",
+    "example": "自転車は古くなった。",
+    "level": "n5"
+  },
+  {
+    "grammar": "Vたいです",
+    "meaning": "表示希望做某事。“想做…”",
+    "example": "ケーキを食べたいです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～たり～たりする",
+    "meaning": "表示列举动作或状态。",
+    "example": "本を読んだりお菓子を食べたりした。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～たことがある",
+    "meaning": "表示曾有某经历。",
+    "example": "東京へ行ったことがある。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～たことがない",
+    "meaning": "表示从未有某经历。",
+    "example": "それを聞いたことがない。",
+    "level": "n5"
+  },
+  {
+    "grammar": "や",
+    "meaning": "用于不完全列举名词，相当于“等”。",
+    "example": "猫や犬がいます。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～んです",
+    "meaning": "表示解释、强调或引导进一步交流。",
+    "example": "忙しいんです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～すぎる",
+    "meaning": "表示“过于…”",
+    "example": "食べすぎました。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ほうがいい",
+    "meaning": "表示建议或比较，“最好…”",
+    "example": "早く寝たほうがいいです。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ので",
+    "meaning": "表示原因，相当于“因为…”",
+    "example": "疲れたので、休みます。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～なくちゃいけない",
+    "meaning": "表示必须做某事。",
+    "example": "勉強しなくちゃいけない。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～でしょう",
+    "meaning": "表示推测或询问，相当于“吧？”",
+    "example": "雨が降るでしょう。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～まえに",
+    "meaning": "表示在做某事之前。",
+    "example": "食事のまえに手を洗います。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～てから",
+    "meaning": "表示在做某事之后。",
+    "example": "学校へ行ってから、図書館に行きます。",
+    "level": "n5"
+  },
+  {
+    "grammar": "～し",
+    "meaning": "表示并列多个理由或状态。",
+    "example": "値段も安いし、味もいいし、いつもこの店で食べています。",
+    "level": "n4"
+  },
+  {
+    "grammar": "そうです",
+    "meaning": "表示“看起来…”，也可用于引用他人说法。",
+    "example": "この本は高そうです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "てみる",
+    "meaning": "表示尝试做某事。",
+    "example": "あの本を読んでみます。",
+    "level": "n4"
+  },
+  {
+    "grammar": "なら",
+    "meaning": "表示假设、条件或回应。",
+    "example": "明日なら、行けます。",
+    "level": "n4"
+  },
+  {
+    "grammar": "(period)に(frequency)",
+    "meaning": "表示时间段内的频率。",
+    "example": "一週間に三回日本語を勉強します。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～がほしい",
+    "meaning": "表示“想要某物”。",
+    "example": "新しいかばんがほしいです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～がる",
+    "meaning": "表达他人感情或欲望。",
+    "example": "子供は遊びたがっています。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～かもしれない",
+    "meaning": "表示“可能…”，推测语气较弱。",
+    "example": "明日は雨が降るかもしれません。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～たらどうですか",
+    "meaning": "用于建议或劝告。",
+    "example": "もっと勉強したらどうですか？",
+    "level": "n4"
+  },
+  {
+    "grammar": "Number+も",
+    "meaning": "表示“竟然…次”，强调多。",
+    "example": "ケーキを三つも食べました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "しか～ない",
+    "meaning": "表示“只…”，强调少或唯一。",
+    "example": "水しか飲みません。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ておく",
+    "meaning": "表示预先做好准备。",
+    "example": "宿題をやっておきました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～よう / ～おう",
+    "meaning": "表示意志或提议“让我们…”。",
+    "example": "早く寝よう。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てあげる",
+    "meaning": "表示“为别人做某事”。",
+    "example": "友達にプレゼントを買ってあげました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てくれる",
+    "meaning": "表示“别人为我做某事”。",
+    "example": "彼が手伝ってくれました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てもらう",
+    "meaning": "表示“我得到别人帮忙”。",
+    "example": "母にお弁当を作ってもらいました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ていただけませんか",
+    "meaning": "表示非常礼貌的请求。",
+    "example": "写真を撮っていただけませんか。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～といいです",
+    "meaning": "表示“希望…发生”。",
+    "example": "明日晴れるといいですね。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てすみません",
+    "meaning": "表示道歉。",
+    "example": "遅れてすみませんでした。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～させる",
+    "meaning": "表示使役，“让某人做…”。",
+    "example": "先生は学生に漢字を書かせました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～なさい",
+    "meaning": "表示命令或指示，比命令形更礼貌。",
+    "example": "宿題をしなさい。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ば / ～れば",
+    "meaning": "表示假设条件，“如果…就…”",
+    "example": "早く寝れば、元気になります。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ても",
+    "meaning": "表示让步，“即使…也…”",
+    "example": "雨が降っても行きます。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～たら",
+    "meaning": "表示条件，“…之后/如果…”",
+    "example": "時間があったら遊びましょう。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～なくてもいい",
+    "meaning": "表示“不做也可以”。",
+    "example": "宿題を持ってこなくてもいいです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～みたい",
+    "meaning": "表示比喻或推测，“好像…”。",
+    "example": "彼は子供みたいですね。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てしまう",
+    "meaning": "表示动作完成或遗憾。",
+    "example": "財布を忘れてしまいました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "Dictionary form + と",
+    "meaning": "表示自然结果，“一…就…”",
+    "example": "春になると桜が咲きます。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ながら",
+    "meaning": "表示同时进行，“一边…一边…”",
+    "example": "音楽を聞きながら勉強します。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ばよかった",
+    "meaning": "表示后悔，“要是…就好了”。",
+    "example": "もっと勉強すればよかった。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てくれてありがとう",
+    "meaning": "表示感谢。",
+    "example": "手伝ってくれてありがとう。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てよかった",
+    "meaning": "表示庆幸。",
+    "example": "この映画を見てよかったです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～はずです",
+    "meaning": "表示推测或“应该…”。",
+    "example": "彼は明日来るはずです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ないで",
+    "meaning": "表示“不做某事而…”。",
+    "example": "朝ご飯を食べないで学校に行きました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～かどうか",
+    "meaning": "表示是否。",
+    "example": "彼が来るかどうか知りません。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～という～",
+    "meaning": "表示定义或引用。",
+    "example": "東京という町は大きいです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～やすい",
+    "meaning": "表示容易做某事。",
+    "example": "このペンは書きやすいです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～にくい",
+    "meaning": "表示难以做某事。",
+    "example": "この漢字は覚えにくいです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～られる",
+    "meaning": "动词可能形，“能…”。",
+    "example": "日本語が話せます。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てある",
+    "meaning": "表示状态的结果。",
+    "example": "ドアが開けてあります。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ているあいだに",
+    "meaning": "表示在某动作进行期间发生另一事。",
+    "example": "テレビを見ているあいだに寝てしまいました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～く / ～にする",
+    "meaning": "表示状态改变。",
+    "example": "部屋をきれいにしました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てほしい",
+    "meaning": "表示希望别人做某事，主语通常为说话人，谓语为希望的对象行动。",
+    "example": "あなたに英語を教えてほしいです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～のに",
+    "meaning": "表示逆接，“虽然…却…”；可接名词或动词等。",
+    "example": "雨が降っているのに、彼は出かけました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～のような",
+    "meaning": "用作定语，表示“像…一样的…”；后接名词。",
+    "example": "彼のような人になりたいです。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～のように",
+    "meaning": "用作状语，表示“像…一样地…”；后接动词或形容词。",
+    "example": "彼のように話すことができません。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～させられる",
+    "meaning": "动词使役被动形，表示“被迫做某事”。",
+    "example": "先生に作文を書かせられました。",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ことにする",
+    "meaning": "表示个人决定做某事，强调主观意志。",
+    "example": "毎朝運動することにしています。",
+    "level": "n4"
+  }
+]

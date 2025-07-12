@@ -31,6 +31,13 @@
       </el-button>
       <el-button
           size="small"
+          :type="isActive('/jlpt-grammar') ? 'primary' : 'default'"
+          @click="navigateTo('/jlpt-grammar')"
+      >
+        文法(jlpt)
+      </el-button>
+      <el-button
+          size="small"
           :type="isActive('/tool') ? 'primary' : 'default'"
           @click="navigateTo('/tool')"
       >
@@ -57,6 +64,7 @@ import {onMounted} from 'vue'
 import {useLessonStore} from './stores/lessonStore'
 import {useWordStore} from './stores/wordStore'
 import {useGrammarStore} from './stores/grammarStore'
+import {useJlptGrammarStore} from './stores/jlptGrammarStore'
 import {useBaseSettingStore} from "./stores/baseSettingStore"
 import {useRouter, useRoute} from 'vue-router'
 
@@ -75,11 +83,13 @@ const isActive = (path: string) => {
 const lessonStore = useLessonStore()
 const wordStore = useWordStore()
 const grammarStore = useGrammarStore()
+const jlptGrammarStore = useJlptGrammarStore()
 
 onMounted(async () => {
   await wordStore.fetchWords()
   await lessonStore.fetchLessons()
   await grammarStore.fetchGrammars()
+  await jlptGrammarStore.fetchJlptGrammars()
 })
 </script>
 
