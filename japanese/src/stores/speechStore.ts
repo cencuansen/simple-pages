@@ -174,7 +174,8 @@ export const useSpeechStore = defineStore('speech', () => {
 
     const isTextSpeaking = (text: string) => speakingText.value === text
 
-    const isWordSpeaking = (word: WordItem) => speakingWord.value?.idx === word.idx
+    const isWordSpeaking = (word: WordItem) => speakingWord.value?.lesson === word.lesson
+        && speakingWord.value?.idx === word.idx
 
     return {
         rate,

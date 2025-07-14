@@ -37,7 +37,7 @@
       <el-table :data="words">
         <el-table-column label="单词">
           <template #default="scope">
-            <div v-if="baseSettingStore.word" :id="`word-${scope.row.idx}`" class="column-word"
+            <div v-if="baseSettingStore.word" :id="speakingWordId(scope.row as WordItem)" class="column-word"
                  :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.word }}
             </div>
             <div v-if="baseSettingStore.kana" class="column-kana"
@@ -92,6 +92,7 @@ import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
 import type {WordItem} from '../types'
+import {speakingId, speakingWordId} from '../utils.ts'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
@@ -108,16 +109,11 @@ const scrollPosition = ref<number>(0)
 const top = ref()
 
 watch(() => speechStore.lastFireTime, (_) => {
-  let id = ""
-  if (speechStore.speakingWord) {
-    id = `#word-${speechStore.speakingWord?.idx}`
-  } else {
-    const text = speechStore.speakingText
-    if (kanaWordMap.value.has(text)) {
-      id = `#word-${kanaWordMap.value.get(text)}`
-    }
+  const id = speakingId()
+  if (!id) {
+    return;
   }
-  document.querySelector(id)?.scrollIntoView({
+  document.getElementById(id)?.scrollIntoView({
     behavior: 'smooth',
     block: 'center',
     inline: 'nearest'
@@ -170,14 +166,6 @@ const words = computed(() => {
   }
   let skip = (index - 1) * size
   return list.slice(skip, index * size)
-})
-
-const kanaWordMap = computed(() => {
-  const map = new Map()
-  words.value.forEach(item => {
-    map.set(item.kana, item.word)
-  })
-  return map
 })
 
 // const getSpeechText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')

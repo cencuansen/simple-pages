@@ -224,8 +224,9 @@
       <el-table :data="words">
         <el-table-column label="单词">
           <template #default="scope">
-            <div v-if="baseSettingStore.word" :id="`word-${scope.row.idx}`" class="column-word"
-                 :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.word }}
+            <div v-if="baseSettingStore.word" :id="speakingWordId(scope.row as WordItem)"
+                 class="column-word" :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">
+              {{ scope.row.word }}
             </div>
             <div v-if="baseSettingStore.kana" class="column-kana"
                  :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.kana }}
@@ -283,6 +284,7 @@ import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
 import {useGrammarStore} from "../stores/grammarStore"
 import type {WordItem} from "../types";
+import {speakingId, speakingTextId, speakingWordId} from '../utils.ts'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -360,19 +362,6 @@ const top = ref()
 const lastElement = ref<HTMLElement | null>()
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
-
-const speakingTextId = (str: string): string => `text-${str}`
-const speakingWordId = (str: string): string => `word-${str}`
-
-const speakingId = (): string => {
-  let id = null
-  if (speechStore.speakingWord) {
-    id = speakingWordId(`${speechStore.speakingWord.idx}`)
-  } else {
-    id = speakingTextId(speechStore.speakingText)
-  }
-  return id || ""
-}
 
 // 全局切换
 const toggleAllTranslations = (newValue: boolean) => {
@@ -494,7 +483,7 @@ const highlightReplacer = (match: string) => {
   if (!match) return match
   const word = words.value.find(w => w.word === match || w.kana === match)
   if (!word) return match
-  return `<a href="#word-${word?.idx}" class="highlight-word">${word?.word}</a>`
+  return `<a href="#${speakingWordId(word)}" class="highlight-word">${word?.word}</a>`
 }
 
 const speakText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
