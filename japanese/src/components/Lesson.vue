@@ -13,7 +13,7 @@
         <el-option
             v-for="(item, index) in lessonStore.lessons"
             :key="index"
-            :label="`${getDisplayText(item.title?.content)}`"
+            :label="`${displayText(item.title?.content)}`"
             :value="index"
         />
       </el-select>
@@ -79,7 +79,7 @@
   <div ref="container" @scroll="containerOnScroll" class="lesson-container" v-if="lessonStore.currentLesson">
     <div ref="top"></div>
     <h1 class="lesson-title">
-      <el-text class="text-title" v-html="textHandler(lessonStore.currentLesson?.title?.content)"
+      <el-text class="text-title" v-html="textView(lessonStore.currentLesson?.title?.content)"
                @click="handleAnchorClick"></el-text>
     </h1>
 
@@ -93,7 +93,7 @@
                 :id="speakingTextId(speakText(item.content))"
                 class="text text-content"
                 :class="{'speaking-active': speakingActive(item.time, currentTime, speakText(item.content))}"
-                v-html="textHandler(item.content)" @click="handleAnchorClick"></el-text>
+                v-html="textView(item.content)" @click="handleAnchorClick"></el-text>
             <el-button :disabled="isPlaying" circle
                        size="small" v-if="item.time && baseSettingStore.audioSpeak"
                        @click="playAudio(item.time, speechStore.repeatTimes)">
@@ -130,7 +130,7 @@
                 :id="speakingTextId(speakText(message.content))"
                 class="text text-content"
                 :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
-                v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
+                v-html="textView(message.content)" @click="handleAnchorClick"></el-text>
             <el-button
                 size="small"
                 circle
@@ -162,7 +162,7 @@
     <!-- 情景对话 -->
     <section v-if="lessonStore.currentLesson?.conversations2?.length" class="section conversation-section">
       <h2>
-        <el-text class="text text-content-h2" v-html="textHandler(lessonStore.currentLesson?.title2.content)"
+        <el-text class="text text-content-h2" v-html="textView(lessonStore.currentLesson?.title2.content)"
                  @click="handleAnchorClick"></el-text>
       </h2>
       <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations2"
@@ -175,7 +175,7 @@
                 :id="speakingTextId(speakText(message.content))"
                 class="text text-content"
                 :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
-                v-html="textHandler(message.content)" @click="handleAnchorClick"></el-text>
+                v-html="textView(message.content)" @click="handleAnchorClick"></el-text>
             <el-button
                 size="small"
                 circle
@@ -487,8 +487,8 @@ const highlightReplacer = (match: string) => {
 }
 
 const speakText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
-const getDisplayText = (text: string | undefined = "") => text.replace(/!([^(]+)\([^)]+\)/g, '$1')
-const textHandler = (originalText: string | undefined = "") => {
+const displayText = (text: string | undefined = "") => text.replace(/!([^(]+)\([^)]+\)/g, '$1')
+const textView = (originalText: string | undefined = "") => {
   const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1');
   if (words.value.length === 0) return baseText
 
