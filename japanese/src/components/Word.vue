@@ -1,6 +1,6 @@
 <template>
-  <div class="word-header-container">
-    <div class="word-header navigation-buttons">
+  <div class="word-headers">
+    <div class="word-header">
       <el-select size="small" class="navigation-item" v-model="lessonIndex" fit-input-width clearable
                  placeholder="选课程">
         <el-option
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div ref="container" @scroll="containerOnScroll" class="word-container">
+  <div class="word-main" ref="container" @scroll="containerOnScroll">
     <div ref="top"></div>
     <!-- 单词 -->
     <section class="section words-section">
@@ -198,13 +198,13 @@ onActivated(async () => {
 </script>
 
 <style scoped>
-.word-header-container {
+.word-headers {
   overflow-y: scroll;
 }
 
 .word-header {
   display: flex;
-  margin: 10px auto;
+  margin: 0 auto 10px;
   padding: 0 5px;
   max-width: var(--content-max-width);
 }
@@ -217,7 +217,7 @@ onActivated(async () => {
   margin-right: 0;
 }
 
-.word-container {
+.word-main {
   width: 100vw;
   overflow-y: scroll;
   margin: 0 auto;
@@ -226,7 +226,7 @@ onActivated(async () => {
   height: calc(100vh - 85px);
 }
 
-.word-container > * {
+.word-main > * {
   max-width: var(--content-max-width);
   margin: 0 auto;
 }

@@ -1,12 +1,11 @@
 <template>
-  <div class="vocabulary-list">
-    <el-input
-        class="vocabulary-input"
-        v-model.lazy="searchInput"
-        placeholder="搜索词汇、读音、释义或标签"
-        clearable
-        size="small"
-    />
+  <div class="word-headers">
+    <div class="word-header">
+      <el-input class="search" v-model.trim="keyword" size="small" placeholder="搜单词" clearable></el-input>
+    </div>
+  </div>
+
+  <div class="word-main">
     <el-table
         :data="store.paginatedVocabularies"
         v-loading="store.loading"
@@ -47,7 +46,6 @@
         layout="prev, pager, next"
         @current-change="store.setPage"
     />
-    <div v-if="store.error" class="error">{{ store.error }}</div>
   </div>
 </template>
 
@@ -68,34 +66,53 @@ onMounted(() => {
 });
 
 // 搜索输入
-const searchInput = computed({
+const keyword = computed({
   get: () => store.searchQuery,
   set: (value) => store.setSearchQuery(value),
 });
 </script>
 
 <style scoped>
-.vocabulary-input {
-  margin-bottom: 10px;
-  width: 100%;
+.word-headers {
+  overflow-y: scroll;
 }
 
-.vocabulary-list {
-  margin: 0 auto;
-  padding: 0;
+.word-header {
+  display: flex;
+  margin: 0 auto 10px;
+  padding: 0 5px;
   max-width: var(--content-max-width);
 }
 
+.word-header > * {
+  margin-right: 10px;
+}
+
+.word-header > *:last-child {
+  margin-right: 0;
+}
+
+.search {
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: var(--content-max-width);
+}
+
+.word-main {
+  margin: 0 auto;
+  padding: 0;
+  overflow-y: scroll;
+  width: 100%;
+  height: calc(100vh - 80px);
+}
+
 .el-table {
-  height: calc(100vh - 230px);
+  margin: 0 auto;
+  max-width: var(--content-max-width);
 }
 
 .el-pagination {
-  margin-top: 10px;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
+  margin: 10px auto 0;
+  max-width: var(--content-max-width);
 }
 </style>

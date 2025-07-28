@@ -1,6 +1,6 @@
 <template>
-  <div class="nav-container">
-    <div class="nav-buttons">
+  <div class="header">
+    <div class="buttons">
       <el-button
           size="small"
           :type="isActive('/lesson') ? 'primary' : 'default'"
@@ -13,7 +13,7 @@
           :type="isActive('/word') ? 'primary' : 'default'"
           @click="navigateTo('/word')"
       >
-        单词
+        词汇
       </el-button>
       <el-button
           size="small"
@@ -98,24 +98,22 @@ onMounted(async () => {
 </style>
 
 <style scoped>
-.nav-container {
+.header {
+  overflow-y: scroll;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.nav-buttons {
+.buttons {
   height: 40px;
   display: flex;
   align-items: center;
   overflow-x: auto;
 }
 
-.nav-buttons::-webkit-scrollbar {
+.buttons::-webkit-scrollbar {
   display: none;
-}
-
-.nav-buttons button {
-  margin: 0 10px;
 }
 
 .root-tab {

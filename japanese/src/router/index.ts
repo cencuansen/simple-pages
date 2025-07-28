@@ -1,7 +1,7 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Lesson from '../components/Lesson.vue'
 import Word from '../components/Word.vue'
-import Vocabulary from '../components/Vocabulary.vue'
+import JlptWord from '../components/JlptWord.vue'
 import Tool from '../components/Tool.vue'
 import Setting from '../components/Setting.vue'
 import Grammar from "../components/Grammar.vue";
@@ -24,7 +24,7 @@ const router = createRouter({
         },
         {
             path: '/vocabulary',
-            component: Vocabulary
+            component: JlptWord
         },
         {
             path: '/grammar',

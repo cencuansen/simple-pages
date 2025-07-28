@@ -1,279 +1,281 @@
 <template>
-  <div class="lesson-header-container">
-    <div class="lesson-header navigation-buttons">
-      <el-button
-          size="small"
-          class="previous-button navigation-item"
-          :disabled="!lessonStore.hasPrevious"
-          @click="goToLesson(lessonStore.currentIndex - 1)"
-      >
-        上一课
-      </el-button>
-      <el-select size="small" class="navigation-item" v-model="lessonStore.currentIndex" fit-input-width>
-        <el-option
-            v-for="(item, index) in lessonStore.lessons"
-            :key="index"
-            :label="`${displayText(item.title?.content)}`"
-            :value="index"
-        />
-      </el-select>
-      <el-button
-          size="small"
-          class="next-button navigation-item"
-          :disabled="!lessonStore.hasNext"
-          @click="goToLesson(lessonStore.currentIndex + 1)"
-      >
-        下一课
-      </el-button>
+  <div class="lessons">
+    <div class="lesson-headers">
+      <div class="lesson-switch">
+        <el-button
+            size="small"
+            class="previous-button navigation-item"
+            :disabled="!lessonStore.hasPrevious"
+            @click="goToLesson(lessonStore.currentIndex - 1)"
+        >
+          上一课
+        </el-button>
+        <el-select size="small" class="navigation-item" v-model="lessonStore.currentIndex" fit-input-width>
+          <el-option
+              v-for="(item, index) in lessonStore.lessons"
+              :key="index"
+              :label="`${displayText(item.title?.content)}`"
+              :value="index"
+          />
+        </el-select>
+        <el-button
+            size="small"
+            class="next-button navigation-item"
+            :disabled="!lessonStore.hasNext"
+            @click="goToLesson(lessonStore.currentIndex + 1)"
+        >
+          下一课
+        </el-button>
+      </div>
+      <div class="function-group">
+        <el-button
+            :type="allTranslate ? 'primary' : ''"
+            size="small"
+            circle
+            title="翻译"
+            v-if="baseSettingStore.translate"
+            @click="toggleAllTranslations(!allTranslate)">
+          译
+        </el-button>
+        <el-button
+            :type="baseSettingStore.furigana ? 'primary' : ''"
+            size="small"
+            circle
+            title="注音"
+            @click="baseSettingStore.furiganaToggle">
+          注
+        </el-button>
+        <el-button
+            :type="baseSettingStore.wordLink ? 'primary' : ''"
+            size="small"
+            circle
+            title="单词跳转"
+            @click="baseSettingStore.wordLinkToggle">
+          跳
+        </el-button>
+        <el-button
+            :type="''"
+            size="small"
+            circle
+            title="播放"
+            :disabled="isPlaying"
+            v-if="lessonStore.currentLesson?.audio && baseSettingStore.audioSpeak"
+            @click="playAudio(``, speechStore.repeatTimes)">
+          <el-icon>
+            <i class="icon-on-music"></i>
+          </el-icon>
+        </el-button>
+        <el-button
+            :type="''"
+            size="small"
+            circle
+            v-if="isPlaying"
+            title="停止播放"
+            @click="pauseAudio">
+          停
+        </el-button>
+      </div>
     </div>
-    <div class="function-group">
-      <el-button
-          :type="allTranslate ? 'primary' : ''"
-          size="small"
-          circle
-          title="翻译"
-          v-if="baseSettingStore.translate"
-          @click="toggleAllTranslations(!allTranslate)">
-        译
-      </el-button>
-      <el-button
-          :type="baseSettingStore.furigana ? 'primary' : ''"
-          size="small"
-          circle
-          title="注音"
-          @click="baseSettingStore.furiganaToggle">
-        注
-      </el-button>
-      <el-button
-          :type="baseSettingStore.wordLink ? 'primary' : ''"
-          size="small"
-          circle
-          title="单词跳转"
-          @click="baseSettingStore.wordLinkToggle">
-        跳
-      </el-button>
-      <el-button
-          :type="''"
-          size="small"
-          circle
-          title="播放"
-          :disabled="isPlaying"
-          v-if="lessonStore.currentLesson?.audio && baseSettingStore.audioSpeak"
-          @click="playAudio(``, speechStore.repeatTimes)">
-        <el-icon>
-          <i class="icon-on-music"></i>
-        </el-icon>
-      </el-button>
-      <el-button
-          :type="''"
-          size="small"
-          circle
-          v-if="isPlaying"
-          title="停止播放"
-          @click="pauseAudio">
-        停
-      </el-button>
+
+    <div class="lesson-main" ref="container" @scroll="onScroll" v-if="lessonStore.currentLesson">
+      <div ref="top"></div>
+      <h1 class="lesson-title">
+        <el-text class="text-title" v-html="textView(lessonStore.currentLesson?.title?.content)"
+                 @click="aClick"></el-text>
+      </h1>
+
+      <!-- 简单句子 -->
+      <section v-if="lessonStore.currentLesson?.basics?.length" class="section basics-section">
+        <el-form class="basics-list">
+          <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson?.basics" :key="`basic-${idx}`">
+            <div class="text-row">
+              <!--原文-->
+              <el-text
+                  :id="speakingTextId(speakText(item.content))"
+                  class="text text-content"
+                  :class="{'speaking-active': speakingActive(item.time, currentTime, speakText(item.content))}"
+                  v-html="textView(item.content)" @click="aClick"></el-text>
+              <el-button :disabled="isPlaying" circle
+                         size="small" v-if="item.time && baseSettingStore.audioSpeak"
+                         @click="playAudio(item.time, speechStore.repeatTimes)">
+                <el-icon>
+                  <i class="icon-on-music"></i>
+                </el-icon>
+              </el-button>
+              <el-button circle size="small"
+                         v-else-if="baseSettingStore.ttsSpeak"
+                         :disabled="isPlaying"
+                         @click="speechStore.speak(speakText(item.content))">
+                <i class="icon-on-MPIS-TTS"></i>
+              </el-button>
+            </div>
+            <!--译文-->
+            <div class="translation-line message"
+                 :class="{ 'show-translation': basicsTranslate }">
+              {{ item.translation }}
+            </div>
+          </el-form-item>
+        </el-form>
+      </section>
+
+      <!-- 普通对话 -->
+      <section v-if="lessonStore.currentLesson?.conversations?.length" class="section conversation-section">
+        <el-form v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations"
+                 :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
+
+          <el-form-item :label="message.speaker" class="message speaker" :class="[ `speaker-${message.speaker}`]"
+                        v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
+            <div class="text-row">
+              <!--原文-->
+              <el-text
+                  :id="speakingTextId(speakText(message.content))"
+                  class="text text-content"
+                  :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
+                  v-html="textView(message.content)" @click="aClick"></el-text>
+              <el-button
+                  size="small"
+                  circle
+                  :disabled="isPlaying"
+                  v-if="message.time && baseSettingStore.audioSpeak"
+                  @click="playAudio(message.time, speechStore.repeatTimes)">
+                <el-icon>
+                  <i class="icon-on-music"></i>
+                </el-icon>
+              </el-button>
+              <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
+                         :disabled="isPlaying" @click="speechStore.speak(speakText(message.content))">
+                <el-icon>
+                  <i class="icon-on-MPIS-TTS"></i>
+                </el-icon>
+              </el-button>
+            </div>
+            <!--译文-->
+            <div class="translation-line message"
+                 :class="{ 'show-translation': exchangeTranslate[exchangeIndex] }">
+              {{
+                message.translation
+              }}
+            </div>
+          </el-form-item>
+        </el-form>
+      </section>
+
+      <!-- 情景对话 -->
+      <section v-if="lessonStore.currentLesson?.conversations2?.length" class="section conversation-section">
+        <h2>
+          <el-text class="text text-content-h2" v-html="textView(lessonStore.currentLesson?.title2.content)"
+                   @click="aClick"></el-text>
+        </h2>
+        <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations2"
+                 :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
+          <el-form-item :label="message.speaker" class="message speaker" :class="[`speaker-${message.speaker}`]"
+                        v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
+            <div class="text-row">
+              <!--原文-->
+              <el-text
+                  :id="speakingTextId(speakText(message.content))"
+                  class="text text-content"
+                  :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
+                  v-html="textView(message.content)" @click="aClick"></el-text>
+              <el-button
+                  size="small"
+                  circle
+                  :disabled="isPlaying"
+                  v-if="message.time && baseSettingStore.audioSpeak"
+                  @click="playAudio(message.time, speechStore.repeatTimes)">
+                <el-icon>
+                  <i class="icon-on-music"></i>
+                </el-icon>
+              </el-button>
+              <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
+                         :disabled="isPlaying"
+                         @click="speechStore.speak(speakText(message.content))">
+                <el-icon>
+                  <i class="icon-on-MPIS-TTS"></i>
+                </el-icon>
+              </el-button>
+            </div>
+            <!--译文-->
+            <div class="translation-line message"
+                 :class="{ 'show-translation': exchange2Translate[exchangeIndex] }">
+              {{
+                message.translation
+              }}
+            </div>
+          </el-form-item>
+        </el-form>
+      </section>
+
+      <!-- 语法 -->
+      <section class="section grammar">
+        <el-table :data="grammars">
+          <el-table-column label="语法" prop="content"/>
+          <el-table-column label="说明">
+            <template #default="scope">
+              <div v-html="scope.row.desc"></div>
+              <br v-if="scope.row.remark"/>
+              <div v-html="scope.row.remark"></div>
+            </template>
+          </el-table-column>
+        </el-table>
+      </section>
+
+      <!-- 单词 -->
+      <section class="section words-section">
+        <el-table :data="words">
+          <el-table-column label="单词">
+            <template #default="scope">
+              <div v-if="baseSettingStore.word" :id="speakingWordId(scope.row as WordItem)"
+                   class="column-word" :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">
+                {{ scope.row.word }}
+              </div>
+              <div v-if="baseSettingStore.kana" class="column-kana"
+                   :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.kana }}
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column width="60" prop="pos" label="词性" show-overflow-tooltip/>
+          <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
+          <el-table-column width="50" v-if="baseSettingStore.ttsSpeak">
+            <template #header>
+              <el-button
+                  size="small"
+                  circle
+                  v-if="baseSettingStore.ttsSpeak"
+                  :disabled="isPlaying"
+                  @click="speechStore.speakList(words as WordItem[])">
+                <el-icon>
+                  <i class="icon-on-MPIS-TTS"></i>
+                </el-icon>
+              </el-button>
+            </template>
+            <template #default="scope">
+              <el-button
+                  size="small"
+                  circle
+                  :disabled="isPlaying"
+                  @click="speechStore.speak(scope.row as WordItem)">
+                <el-icon>
+                  <i class="icon-on-MPIS-TTS"></i>
+                </el-icon>
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </section>
     </div>
+
+    <a class="go-top" href="#" @click="goTop">↑</a>
+
+    <audio v-if="baseSettingStore.audioSpeak" ref="audioRef" :src="src"
+           controls
+           @timeupdate="onTimeUpdate"
+           @play="onPlay"
+           @pause="onPause"
+           @error="onError"
+           @abort="onAbort"
+    ></audio>
   </div>
-
-  <div ref="container" @scroll="containerOnScroll" class="lesson-container" v-if="lessonStore.currentLesson">
-    <div ref="top"></div>
-    <h1 class="lesson-title">
-      <el-text class="text-title" v-html="textView(lessonStore.currentLesson?.title?.content)"
-               @click="handleAnchorClick"></el-text>
-    </h1>
-
-    <!-- 简单句子 -->
-    <section v-if="lessonStore.currentLesson?.basics?.length" class="section basics-section">
-      <el-form class="basics-list">
-        <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson?.basics" :key="`basic-${idx}`">
-          <div class="text-row">
-            <!--原文-->
-            <el-text
-                :id="speakingTextId(speakText(item.content))"
-                class="text text-content"
-                :class="{'speaking-active': speakingActive(item.time, currentTime, speakText(item.content))}"
-                v-html="textView(item.content)" @click="handleAnchorClick"></el-text>
-            <el-button :disabled="isPlaying" circle
-                       size="small" v-if="item.time && baseSettingStore.audioSpeak"
-                       @click="playAudio(item.time, speechStore.repeatTimes)">
-              <el-icon>
-                <i class="icon-on-music"></i>
-              </el-icon>
-            </el-button>
-            <el-button circle size="small"
-                       v-else-if="baseSettingStore.ttsSpeak"
-                       :disabled="isPlaying"
-                       @click="speechStore.speak(speakText(item.content))">
-              <i class="icon-on-MPIS-TTS"></i>
-            </el-button>
-          </div>
-          <!--译文-->
-          <div class="translation-line message"
-               :class="{ 'show-translation': basicsTranslate }">
-            {{ item.translation }}
-          </div>
-        </el-form-item>
-      </el-form>
-    </section>
-
-    <!-- 普通对话 -->
-    <section v-if="lessonStore.currentLesson?.conversations?.length" class="section conversation-section">
-      <el-form v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations"
-               :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-
-        <el-form-item :label="message.speaker" class="message speaker" :class="[ `speaker-${message.speaker}`]"
-                      v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
-          <div class="text-row">
-            <!--原文-->
-            <el-text
-                :id="speakingTextId(speakText(message.content))"
-                class="text text-content"
-                :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
-                v-html="textView(message.content)" @click="handleAnchorClick"></el-text>
-            <el-button
-                size="small"
-                circle
-                :disabled="isPlaying"
-                v-if="message.time && baseSettingStore.audioSpeak"
-                @click="playAudio(message.time, speechStore.repeatTimes)">
-              <el-icon>
-                <i class="icon-on-music"></i>
-              </el-icon>
-            </el-button>
-            <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
-                       :disabled="isPlaying" @click="speechStore.speak(speakText(message.content))">
-              <el-icon>
-                <i class="icon-on-MPIS-TTS"></i>
-              </el-icon>
-            </el-button>
-          </div>
-          <!--译文-->
-          <div class="translation-line message"
-               :class="{ 'show-translation': exchangeTranslate[exchangeIndex] }">
-            {{
-              message.translation
-            }}
-          </div>
-        </el-form-item>
-      </el-form>
-    </section>
-
-    <!-- 情景对话 -->
-    <section v-if="lessonStore.currentLesson?.conversations2?.length" class="section conversation-section">
-      <h2>
-        <el-text class="text text-content-h2" v-html="textView(lessonStore.currentLesson?.title2.content)"
-                 @click="handleAnchorClick"></el-text>
-      </h2>
-      <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations2"
-               :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-        <el-form-item :label="message.speaker" class="message speaker" :class="[`speaker-${message.speaker}`]"
-                      v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
-          <div class="text-row">
-            <!--原文-->
-            <el-text
-                :id="speakingTextId(speakText(message.content))"
-                class="text text-content"
-                :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
-                v-html="textView(message.content)" @click="handleAnchorClick"></el-text>
-            <el-button
-                size="small"
-                circle
-                :disabled="isPlaying"
-                v-if="message.time && baseSettingStore.audioSpeak"
-                @click="playAudio(message.time, speechStore.repeatTimes)">
-              <el-icon>
-                <i class="icon-on-music"></i>
-              </el-icon>
-            </el-button>
-            <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
-                       :disabled="isPlaying"
-                       @click="speechStore.speak(speakText(message.content))">
-              <el-icon>
-                <i class="icon-on-MPIS-TTS"></i>
-              </el-icon>
-            </el-button>
-          </div>
-          <!--译文-->
-          <div class="translation-line message"
-               :class="{ 'show-translation': exchange2Translate[exchangeIndex] }">
-            {{
-              message.translation
-            }}
-          </div>
-        </el-form-item>
-      </el-form>
-    </section>
-
-    <!-- 语法 -->
-    <section class="section grammar">
-      <el-table :data="grammars">
-        <el-table-column label="语法" prop="content"/>
-        <el-table-column label="说明">
-          <template #default="scope">
-            <div v-html="scope.row.desc"></div>
-            <br v-if="scope.row.remark"/>
-            <div v-html="scope.row.remark"></div>
-          </template>
-        </el-table-column>
-      </el-table>
-    </section>
-
-    <!-- 单词 -->
-    <section class="section words-section">
-      <el-table :data="words">
-        <el-table-column label="单词">
-          <template #default="scope">
-            <div v-if="baseSettingStore.word" :id="speakingWordId(scope.row as WordItem)"
-                 class="column-word" :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">
-              {{ scope.row.word }}
-            </div>
-            <div v-if="baseSettingStore.kana" class="column-kana"
-                 :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.kana }}
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column width="60" prop="pos" label="词性" show-overflow-tooltip/>
-        <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
-        <el-table-column width="50" v-if="baseSettingStore.ttsSpeak">
-          <template #header>
-            <el-button
-                size="small"
-                circle
-                v-if="baseSettingStore.ttsSpeak"
-                :disabled="isPlaying"
-                @click="speechStore.speakList(words as WordItem[])">
-              <el-icon>
-                <i class="icon-on-MPIS-TTS"></i>
-              </el-icon>
-            </el-button>
-          </template>
-          <template #default="scope">
-            <el-button
-                size="small"
-                circle
-                :disabled="isPlaying"
-                @click="speechStore.speak(scope.row as WordItem)">
-              <el-icon>
-                <i class="icon-on-MPIS-TTS"></i>
-              </el-icon>
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </section>
-  </div>
-
-  <a class="go-top" href="#" @click="goTop">↑</a>
-
-  <audio v-if="baseSettingStore.audioSpeak" ref="audioRef" :src="src"
-         controls
-         @timeupdate="onTimeUpdate"
-         @play="onPlay"
-         @pause="onPause"
-         @error="onError"
-         @abort="onAbort"
-  ></audio>
 </template>
 
 <script setup lang="ts">
@@ -397,7 +399,7 @@ watch(() => speechStore.lastFireTime, (_) => {
   });
 });
 
-const handleAnchorClick = (event: any) => {
+const aClick = (event: any) => {
   event.preventDefault();
   let target = event.target
   if (event.target.tagName.toLowerCase() === 'ruby') {
@@ -555,7 +557,7 @@ onBeforeUnmount(() => {
   speechStore.stop()
 })
 
-const containerOnScroll = async () => {
+const onScroll = async () => {
   scrollPosition.value = container.value.scrollTop
 }
 
@@ -576,18 +578,21 @@ document.addEventListener('keyup', function (event) {
 </script>
 
 <style scoped>
-
-.lesson-header-container {
+.lesson-headers {
   overflow-y: scroll;
+  width: 100%;
 }
 
-.lesson-header {
-  margin: 10px auto;
+.lesson-switch {
+  margin: 0 auto 10px;
   text-align: center;
   max-width: var(--content-max-width);
+  display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
-.lesson-container {
+.lesson-main {
   overflow-y: scroll;
   position: fixed;
   margin: 0 auto;
@@ -596,7 +601,7 @@ document.addEventListener('keyup', function (event) {
   height: calc(100vh - 85px);
 }
 
-.lesson-container > * {
+.lesson-main > * {
   max-width: var(--content-max-width);
   margin: 0 auto;
 }
@@ -624,7 +629,7 @@ document.addEventListener('keyup', function (event) {
   justify-content: center;
 }
 
-.lesson-header, .lesson-title, .basics-section, .conversation-section {
+.lesson-switch, .lesson-title, .basics-section, .conversation-section {
   padding: 0 5px;
 }
 
@@ -743,12 +748,6 @@ document.addEventListener('keyup', function (event) {
 
 .highlight-word:hover span {
   background-color: #e0f7fa;
-}
-
-.navigation-buttons {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
 }
 
 .go-top {

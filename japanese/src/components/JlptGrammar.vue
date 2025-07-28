@@ -1,8 +1,8 @@
 <template>
-  <div class="grammar-container">
-    <div class="head">
-      <el-input class="search" size="small" placeholder="搜索关键字" v-model.lazy="keyword" clearable/>
-    </div>
+  <div class="grammar-headers">
+    <el-input class="search" size="small" placeholder="搜索关键字" v-model.lazy="keyword" clearable/>
+  </div>
+  <div class="grammar-main">
     <div class="main">
       <el-table class="table" :data="grammarView" stripe>
         <el-table-column type="index" width="50"/>
@@ -65,7 +65,7 @@ const grammarView = computed(() => {
 </script>
 
 <style scoped>
-.head {
+.grammar-headers {
   width: 100%;
   overflow-y: scroll;
   display: flex;
@@ -75,7 +75,7 @@ const grammarView = computed(() => {
 
 .search {
   max-width: var(--content-max-width);
-  margin: 10px auto 20px;
+  margin: 0 auto 20px;
 }
 
 .main {
