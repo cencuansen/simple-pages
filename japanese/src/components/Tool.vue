@@ -5,7 +5,7 @@
         <el-form label-width="auto" v-loading="loading">
           <el-form-item label="输入文本">
             <div class="item-group">
-              <el-input size="small" v-model.trim="inputText" clearable @clear="onClear"></el-input>
+              <el-input size="small" v-model="inputText" type="textarea" clearable @clear="onClear"></el-input>
               <el-button size="small" @click="convertHandler">转换</el-button>
             </div>
           </el-form-item>
@@ -24,7 +24,7 @@
             <el-text v-html="okuriganaResult" class="result-item"></el-text>
           </el-form-item>
           <el-form-item label="-">
-            <el-text v-html="furiganaResult" class="result-item"></el-text>
+            <el-text v-html="toDataRuby(furiganaResult)" class="result-item ruby-result-item"></el-text>
           </el-form-item>
         </el-form>
       </el-tab-pane>
@@ -115,6 +115,10 @@ const onSpeakTextClear = () => {
   speechStore.stop();
 }
 
+const toDataRuby = (text: string): string => {
+  return text.replace(/<rt>(.*?)<\/rt>/g, '<rt data-ruby="$1"></rt>');
+}
+
 </script>
 
 <style scoped>
@@ -142,5 +146,10 @@ const onSpeakTextClear = () => {
 
 .text-speak-button-group {
   display: flex;
+}
+
+.ruby-result-item {
+  font-size: 1.5rem;
+  line-height: 3rem;
 }
 </style>
