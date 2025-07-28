@@ -212,7 +212,7 @@
           <el-table-column label="语法" prop="content"/>
           <el-table-column label="说明">
             <template #default="scope">
-              <div v-html="scope.row.desc"></div>
+              <div v-if="scope.row.desc" v-html="scope.row.desc"></div>
               <br v-if="scope.row.remark"/>
               <div v-html="scope.row.remark"></div>
             </template>
