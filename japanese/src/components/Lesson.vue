@@ -59,7 +59,7 @@
             circle
             title="播放"
             :disabled="isPlaying"
-            v-if="lessonStore.currentLesson?.audio && baseSettingStore.audioSpeak"
+            v-if="currentLesson?.audio && baseSettingStore.audioSpeak"
             @click="playAudio(``, speechStore.repeatTimes)">
           <el-icon>
             <i class="icon-on-music"></i>
@@ -77,17 +77,17 @@
       </div>
     </div>
 
-    <div class="lesson-main" ref="container" @scroll="onScroll" v-if="lessonStore.currentLesson">
+    <div class="lesson-main" ref="container" @scroll="onScroll" v-if="currentLesson">
       <div ref="top"></div>
       <h1 class="lesson-title">
-        <el-text class="text-title" v-html="textView(lessonStore.currentLesson?.title?.content)"
+        <el-text class="text-title" v-html="textView(currentLesson?.title?.content)"
                  @click="aClick"></el-text>
       </h1>
 
       <!-- 简单句子 -->
-      <section v-if="lessonStore.currentLesson?.basics?.length" class="section basics-section">
+      <section v-if="currentLesson?.basics?.length" class="section basics-section">
         <el-form class="basics-list">
-          <el-form-item class="message" v-for="(item, idx) in lessonStore.currentLesson?.basics" :key="`basic-${idx}`">
+          <el-form-item class="message" v-for="(item, idx) in currentLesson?.basics" :key="`basic-${idx}`">
             <div class="text-row">
               <!--原文-->
               <el-text
@@ -119,8 +119,8 @@
       </section>
 
       <!-- 普通对话 -->
-      <section v-if="lessonStore.currentLesson?.conversations?.length" class="section conversation-section">
-        <el-form v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations"
+      <section v-if="currentLesson?.conversations?.length" class="section conversation-section">
+        <el-form v-for="(exchange, exchangeIndex) in currentLesson?.conversations"
                  :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
 
           <el-form-item :label="message.speaker" class="message speaker" :class="[ `speaker-${message.speaker}`]"
@@ -161,12 +161,12 @@
       </section>
 
       <!-- 情景对话 -->
-      <section v-if="lessonStore.currentLesson?.conversations2?.length" class="section conversation-section">
+      <section v-if="currentLesson?.conversations2?.length" class="section conversation-section">
         <h2>
-          <el-text class="text text-content-h2" v-html="textView(lessonStore.currentLesson?.title2.content)"
+          <el-text class="text text-content-h2" v-html="textView(currentLesson?.title2.content)"
                    @click="aClick"></el-text>
         </h2>
-        <el-form label-width="auto" v-for="(exchange, exchangeIndex) in lessonStore.currentLesson?.conversations2"
+        <el-form label-width="auto" v-for="(exchange, exchangeIndex) in currentLesson?.conversations2"
                  :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
           <el-form-item :label="message.speaker" class="message speaker" :class="[`speaker-${message.speaker}`]"
                         v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
@@ -287,12 +287,15 @@ import {useWordStore} from "../stores/wordStore"
 import {useGrammarStore} from "../stores/grammarStore"
 import type {WordItem} from "../types";
 import {speakingId, speakingTextId, speakingWordId} from '../utils.ts'
+import {storeToRefs} from 'pinia'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
 const baseSettingStore = useBaseSettingStore()
 const grammarStore = useGrammarStore()
+
+const {currentLesson} = storeToRefs(lessonStore)
 
 const allTranslate = ref(false)
 const basicsTranslate = ref(false)
@@ -309,7 +312,7 @@ const src = computed(() => {
   if (speechStore.isSpeaking) {
     return void 0;
   }
-  return `${audioUrlBase}${lessonStore.currentLesson?.audio}`;
+  return `${audioUrlBase}${currentLesson.value?.audio}`;
 })
 
 const pauseHandler = async (url: string, playTimes: number) => {

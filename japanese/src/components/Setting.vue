@@ -133,7 +133,7 @@ import {ref, computed} from 'vue'
 import {storeToRefs} from 'pinia'
 
 const baseSettingStore = useBaseSettingStore()
-const testText = ref('ありがとう')
+const testText = ref('こんにちは')
 
 const darkMode = computed({
   get: () => baseSettingStore.isDark,
