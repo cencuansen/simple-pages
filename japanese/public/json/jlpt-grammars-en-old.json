@@ -1,0 +1,908 @@
+[
+  {
+    "grammar": "です",
+    "meaning": "Is, am, or are (used to describe a state of being or identity).",
+    "example": "私（わたし）はマイク です。 (I am Mike.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "も",
+    "meaning": "Too, and, or also (used to add something or someone to a previous statement).",
+    "example": "彼（かれ）はサッカーが好き（すき）です。私（わたし） も サッカーが好き（すき）です。 (He likes soccer. I like soccer, too.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "で",
+    "meaning": "At or in (used to specify the location where an action takes place).",
+    "example": "エミは学校（がっこう） で数学（すうがく）を勉強（べんきょう）します。 (Emi studies math at school.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "に/へ",
+    "meaning": "To (used to indicate a destination or direction, such as location or action destination).",
+    "example": "リエ子はローマ に行き（いき）ました。 (Rieko went to Rome.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "に",
+    "meaning": "A general preposition that can mean in, at, to, for, etc., depending on context.",
+    "example": "この本（ほん）をあの人（ひと） に 上げ（あげ）てください。 (Please give the book to that person.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "を",
+    "meaning": "Denotes the object of an action (direct object marker).",
+    "example": "あの猫（ねこ）は魚（さかな） を食べ（たべ）た。 (That cat ate the fish.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ませんか",
+    "meaning": "Won't you ~ ? or Shall we ~ ? (used for invitations).",
+    "example": "ケーキを食べ（たべ） ませんか？ (Won't you have some cake?)",
+    "level": "n5"
+  },
+  {
+    "grammar": "は",
+    "meaning": "Denotes a topic (marks the topic of the sentence).",
+    "example": "彼女（かのじょ） は嬉しい（うれしい）です。 (She is happy.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～があります",
+    "meaning": "There is (used for non-living things).",
+    "example": "つくえの上（うえ）にボール があります。 (There is a ball on the desk.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～がいます",
+    "meaning": "There is or is (used for living things or things that appear alive, like ghosts or robots).",
+    "example": "あそこの木（き）の下（した）に、二人（ふたり）子供（こども） がいます。 (There are two children under the tree over there.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "と",
+    "meaning": "Links nouns in a complete list.",
+    "example": "そのサラダはレタス と にんじん と ラディッシュから 作り（つくり）ました。 (The salad was made from lettuce, carrot, and radish.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ましょう",
+    "meaning": "Polite volitional phrase, meaning I'll or let's (expressing intention or suggestion).",
+    "example": "食べ（たべ） ましょう。 (Let's eat!)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ましょうか",
+    "meaning": "Polite volitional phrase used for suggestions, meaning How about we ~ ?",
+    "example": "食べ（たべ） ましょうか。 (How about we eat?)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～てください",
+    "meaning": "Used to make a request by linking a verb in its te-form to ください (please).",
+    "example": "日本語（にほんご）で話し（はなし） て下さい（ください）。 (Please speak in Japanese.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～てもいいです",
+    "meaning": "It's okay to ~ or May I ~ ? (used to ask for or grant permission).",
+    "example": "料理（りょうり）し てもいいですか。 (May I cook?)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～てはいけません",
+    "meaning": "Must not ~ or It's not good to ~ (used to prohibit or disapprove).",
+    "example": "サーラーの手書き（てがき） はよくありません（いけません）。 (Sarah's handwriting is not great.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～から",
+    "meaning": "From (indicates a starting point).",
+    "example": "この電車（でんしゃ）はサンホセ からサンフランシスコにいきます。 (This train goes from San Jose to San Francisco.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ている",
+    "meaning": "Indicates an ongoing action (progressive tense, like ing in English) or a resulting state.",
+    "example": "私（わたし）は読ん（よん） でいます。 (I am reading.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～にいく",
+    "meaning": "To go somewhere or to go do something (used after a verb stem).",
+    "example": "私（わたし）は泳ぎ（およぎ） に行く。 (I go swimming.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "ないでください",
+    "meaning": "Please don't ~ (used to politely request someone not to do something).",
+    "example": "この林檎（りんご）を食べ（たべ） ないでください。 (Please don't eat this apple.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のがすきです",
+    "meaning": "Like to do something (expresses liking an activity).",
+    "example": "私（わたし）はアニメを見る（みる） のが好き（すき）です。 (I like watching anime.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のがじょうずです",
+    "meaning": "Is good at something (describes proficiency in an activity).",
+    "example": "彼女（かのじょ）は歌う（うたう） のが上手（じょうず）です。 (She's good at singing.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のがへたです",
+    "meaning": "Is bad at something (describes lack of proficiency in an activity).",
+    "example": "私（わたし）は踊る（おどる） のが下手（へた）です。 (I'm bad at dancing.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "まだ～ていません",
+    "meaning": "Hasn't done something yet (indicates something is not yet completed).",
+    "example": "私（わたし）は まだ決め（きめ） ていません。 (I haven't decided yet.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のほうが～より",
+    "meaning": "Is more ~ than (compares two things, stating one is better, more expensive, etc.).",
+    "example": "この本（ほん） の方（ほう）が あの新聞（しんぶん） より高い（たかい）。 (This book is more expensive than that newspaper.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～のなかで～がいちばん～",
+    "meaning": "The most ~ or the best among (identifies the best or most of something in a group).",
+    "example": "あの図書館（としょかん） の中（なか）でこの本（ほん） がいちばん。 (This book is the best in that library.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "つもりです",
+    "meaning": "Plan to or intend to (expresses a future intention or plan).",
+    "example": "私（わたし）は映画（えいが）を 見（み）に行く（いく） つもりです。 (I'm going to go see a movie.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～く/ ～になる",
+    "meaning": "To become ~ (describes a change in state, with different forms for -i and -na adjectives).",
+    "example": "あの女性（じょせい）はきれい になった。 (That woman became beautiful.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "V stem + たいです",
+    "meaning": "Want to do (polite form of expressing desire to perform an action).",
+    "example": "僕（ぼく）はケーキを食べ（たべ） たいです。 (I want to eat some cake.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～たり …～たりする",
+    "meaning": "Do this and that or sometimes this and sometimes that (lists activities or attributes).",
+    "example": "昨日（きのう）私（わたし）は本（ほん）を読ん（よん） だりお菓子（おかし）を食べ（たべ） たりした。 (Yesterday I was reading a book and eating sweets.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～たことがある",
+    "meaning": "Have done or have experienced (indicates past experience).",
+    "example": "私（わたし）は東京（とうきょう）へ行っ たことがある。 (I've been to Tokyo.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "や",
+    "meaning": "Links nouns in an incomplete list (implies and others).",
+    "example": "猫（ねこ） や犬（いぬ） や猿（さる）が動物園（どうぶつえん）にいます。 (There are cats, dogs, monkeys, and others at the zoo.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～んです",
+    "meaning": "Emphasizes or softens a statement, request, or order (adds explanation or clarification).",
+    "example": "私（わたし）は今（いま）忙しい（いそがしい） んです。 (I'm busy right now.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～すぎる",
+    "meaning": "Too much or too ~ (indicates excess).",
+    "example": "山田（やまだ）さんは食べ（たべ） すぎる。 (Mr. Yamada eats too much.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～ほうがいい",
+    "meaning": "It's better to ~ or should ~ (gives advice or recommendation).",
+    "example": "貴方（あなた）はこの本（ほん）を買っ（かっ）た ほうがいい。 (You should buy this book.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "ので",
+    "meaning": "Because or so (explains a reason, more impartial than から).",
+    "example": "この本（ほん）は高い（たかい） ので買わ（かわ）ない。 (I'm not buying this book because it's expensive.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～なくちゃいけない",
+    "meaning": "Have to ~ or must ~ (indicates necessity).",
+    "example": "貴方（あなた）は宿題（しゅくだい）を終わら（おわら） なくちゃいけない。 (You have to finish your homework.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "でしょう",
+    "meaning": "Isn't it? or right? (seeks confirmation or expresses uncertainty).",
+    "example": "貴方（あなた）は七（しち）時（じ）まえに帰る（かえる） でしょう？ (You'll come back before 7 o'clock, right?)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～まえに",
+    "meaning": "Before doing ~ or ago (indicates time before an action or event).",
+    "example": "食べる（たべる） 前（まえ）に手（て）を洗っ（あらっ）て下さい（ください）。 (Please wash your hands before eating.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～てから",
+    "meaning": "After doing ~ (indicates doing something after another action).",
+    "example": "考え（かんがえ） てから言って（いって）ください。 (Please speak after thinking.)",
+    "level": "n5"
+  },
+  {
+    "grammar": "～し",
+    "meaning": "Used to list reasons for multiple states or actions (similar to 'and' or 'because').",
+    "example": "優しい（やさしい）し、格好いい（かっこいい）し、面白い（おもしろい）から。 (Because he's kind, attractive, and interesting [among other things].)",
+    "level": "n4"
+  },
+  {
+    "grammar": "そうです",
+    "meaning": "'It seems like' or 'appears to be.'",
+    "example": "明日（あした）雪（ゆき）が降り（ふり）そうです。 (Tomorrow it looks like it will snow.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "てみる",
+    "meaning": "'To try to do something.'",
+    "example": "彼（かれ）は彼女（かのじょ）と話し（はなし）てみる。 (He'll try to talk to her.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "なら",
+    "meaning": "Implies that the action before なら happens after the action following it in time (opposite of たら).",
+    "example": "友達（ともだち）が来る（くる）なら、私（わたし）はピザを注文（ちゅうもん）する。 (If our friends come, I will order pizza [first].)",
+    "level": "n4"
+  },
+  {
+    "grammar": "(period)に(frequency)",
+    "meaning": "A particle used to link a period of time with how often something happens.",
+    "example": "一週（いっしゅ）間（かん）に一回（いっかい）日本語（にほんご）を勉強し（べんきょうし）ます。 (I study Japanese once a week.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～がほしい",
+    "meaning": "'To want something' (literally 'something is wanted').",
+    "example": "私（わたし）はこの本（ほん）が欲しい（ほしい）。 (I want this book.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～がる",
+    "meaning": "Used to observe someone else's feelings or desires (e.g., what they want or feel).",
+    "example": "家（うち）に帰っ（かえっ）たら、すぐパソコンを使い（つかい）たがる。 (It seems like [they] want to use the computer as soon as [they] get home.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～かもしれない",
+    "meaning": "Indicates possibility ('maybe' or 'might').",
+    "example": "明日（あした）は雨（あめ）が降る（ふる）かもしれない。 (It may rain tomorrow.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～たらどうですか",
+    "meaning": "Used for giving advice or suggestions ('How about...?' or 'Why don’t you...?').",
+    "example": "薬（くすり）を飲ん（のん）だらどうですか？ (How about taking some medicine?)",
+    "level": "n4"
+  },
+  {
+    "grammar": "Number+も",
+    "meaning": "'As many as' (emphasizes quantity).",
+    "example": "昨日（きのう）、電話（でんわ）三（さん）回（かい）もしたよ！ (I called you like three times yesterday!)",
+    "level": "n4"
+  },
+  {
+    "grammar": "しかない",
+    "meaning": "'Only' or 'as few as' (implies limitation, used with negative verbs).",
+    "example": "彼（かれ）にはお金（おかね）しかない。 (He has nothing but money.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ておく",
+    "meaning": "'To do something in advance' (for future convenience or preparation).",
+    "example": "この分（ぶん）を覚え（おぼえ）ておく。 (I'll memorize this part [because it may appear on a test].)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～よう",
+    "meaning": "'Let’s do (something)' (used with ichidan verbs).",
+    "example": "このケーキを食べ（たべ）よう。 (Let’s eat this cake.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～おう",
+    "meaning": "'Let’s do (something)' (used with godan verbs).",
+    "example": "あそこで遊（あそ）ぼう。 (Let’s play over there.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てあげる",
+    "meaning": "'A does something for B' (A helps or gives an action to B).",
+    "example": "私（わたし）は山田（やまだ）さんに本（ほん）を買っ（かっ）てあげました。 (I bought this book for Yamada-san.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てくれる",
+    "meaning": "'Someone does something for me' (receiver is the speaker).",
+    "example": "山田（やまだ）さんは私（わたし）に本（ほん）を買っ（かっ）てくれました。 (Yamada-san bought this book for me.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てもらう",
+    "meaning": "'To get someone to do something' (asking or making someone do something for you).",
+    "example": "彼（かれ）に宿題（しゅくだい）を見せ（みせ）てもらう。 (I’ll make him show his homework.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ていただけませんか",
+    "meaning": "Polite request or asking for permission ('Could you...?' or 'Would you...?').",
+    "example": "窓（まど）を開け（あけ）ていただけませんか。 (Could you open the window?)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～といいです",
+    "meaning": "'I hope...' or 'It would be nice if...'",
+    "example": "明日（あした）いい天気（てんき）だといいですね。 (I hope the weather tomorrow is good.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てすみません",
+    "meaning": "Apologize for something done ('I’m sorry for doing...').",
+    "example": "汚い（きたない）言葉（ことば）を使っ（つかっ）てすみませんでした。 (I’m sorry for using bad language.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～そうです",
+    "meaning": "'It seems' or 'appears' (used after verb stems, nouns, or adjectives).",
+    "example": "彼（かれ）はケーキを食べ（たべ）そうです。 (It seems he eats cake.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～させる",
+    "meaning": "'To let someone do something' or 'to make someone do something.'",
+    "example": "この音（おと）が私（わたし）をいらいらさせる。 (This sound irritates me.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～なさい",
+    "meaning": "Used for giving orders or commands politely.",
+    "example": "学校（がっこう）へ行き（いき）なさい。 (Go to school!)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ば/～れば",
+    "meaning": "'If (something happens).'",
+    "example": "この果物（くだもの）を食べ（たべ）ればすぐに元気（げんき）になる。 (If you eat this fruit, you’ll recover soon.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ても",
+    "meaning": "'Even if' or 'even though.'",
+    "example": "全部（ぜんぶ）食べ（たべ）てもいいよ。 (You can go ahead and eat it all.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～たら",
+    "meaning": "Conditional 'if' (if A happens, then B will happen).",
+    "example": "日本（にほん）に行っ（いっ）たら、着物（きもの）を買い（かい）ます。 (I will buy a kimono if I go to Japan.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～なくてもいい",
+    "meaning": "'Don’t have to do' or 'it’s fine not to do.'",
+    "example": "君（きみ）は今日（きょう）学校（がっこう）へ行か（いか）なくてもいい。 (You don’t have to go to school today.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～みたい",
+    "meaning": "'Seems to be' (e.g., difficult, deep, etc.).",
+    "example": "この本（ほん）は難しい（むずかしい）みたい。 (This book seems to be difficult.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てしまう",
+    "meaning": "'To end up doing something' (often unintentionally).",
+    "example": "私（わたし）はけっきょく学校（がっこう）へ行っ（いっ）てしまう。 (After all, I’ll end up going to school.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "Dictionary form+と",
+    "meaning": "'If A, then B' (for situations that can’t be controlled).",
+    "example": "もし貴方（あなた）がこのケーキを食べる（たべる）と私（わたし）は怒る（おこる）だろう！ (If you eat this cake, I will be angry!)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ながら",
+    "meaning": "Indicates two actions happening simultaneously ('while doing').",
+    "example": "男の子（おとこのこ）はケーキを食べ（たべ）ながらコーヒーを飲ん（のん）だ。 (The boy drank coffee while he ate cake.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ばよかった",
+    "meaning": "'I wish I had done' or 'should have done.'",
+    "example": "学生（がくせい）のとき、勉強（べんきょう）すれば良かった（よかった）です。 (I should have studied when I was a student.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てくれてありがとう",
+    "meaning": "'Thank you for doing.'",
+    "example": "手伝っ（てつだっ）てくれてありがとう。 (Thank you for your help.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てよかった",
+    "meaning": "'I’m glad I could do' or 'it was good to do.'",
+    "example": "駅（えき）で久しぶり（ひさしぶり）に友達（ともだち）と会え（あえ）てよかった。 (I’m glad I could meet my friend at the station after a long time.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～はずです",
+    "meaning": "'Should be' or 'supposed to be.'",
+    "example": "それはこれまでに終わった（をわった）はずです。 (It should have ended by now.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ないで",
+    "meaning": "'Don’t do (something)' (can be made polite with ください).",
+    "example": "このケーキを食べ（たべ）ないで。 (Don’t eat this cake.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～かどうか",
+    "meaning": "Used in yes/no questions to indicate uncertainty ('whether or not').",
+    "example": "田中（たなか）さんは、明日（あした）来る（くる）かどうか、分かり（わかり）ますか？ (Do you know whether Tanaka-san is coming tomorrow or not?)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～という～",
+    "meaning": "'Called,' 'such as,' or 'that.'",
+    "example": "クレヨンしんちゃんという漫画（まんが）は面白い（おもしろい）ですよ。 (A comic called Crayon Shinchan is really interesting.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～やすい",
+    "meaning": "Indicates that an action is easy (conjugates like an い-adjective).",
+    "example": "水（みず）は飲み（のみ）やすいです。 (Drinking water is easy.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～にくい",
+    "meaning": "Indicates that an action is hard to do (opposite of ～やすい).",
+    "example": "この字（じ）は読み（よみ）にくい。 (This handwriting is hard to read.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～られる",
+    "meaning": "Forms passive verbs ('to be done' or 'to be affected').",
+    "example": "水（みず）が子供（こども）に飲ま（のま）れました。 (The water was drunk by the child.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てある",
+    "meaning": "Indicates something is in a state of completion ('has been done').",
+    "example": "準備（じゅんび）は、もうしてあるよ。 (The preparations are already done.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ているあいだに",
+    "meaning": "'While' (something happens during another action).",
+    "example": "お風呂（おふろ）に入っ（はいっ）ている間に、電話（でんわ）がありました。 (There was a phone call while I was taking a bath.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～く/～にする",
+    "meaning": "To change the state or condition of something ('to make' or 'to become').",
+    "example": "きれいにする (To make [something] pretty or clean.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～てほしい",
+    "meaning": "'I want (someone) to do (something).'",
+    "example": "父（ちち）にたばこを止め（やめ）てほしいです。 (I want my father to stop smoking.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "のに",
+    "meaning": "'Even though,' 'despite,' or 'albeit.'",
+    "example": "私（わたし）は宿題（しゅくだい）を終えた（おえた）のにまだ寝られ（ねられ）ない。 (Even though I’ve finished my homework, I can’t go to sleep yet.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～のような",
+    "meaning": "Describes something as similar to a noun ('like' or 'such as').",
+    "example": "スージーは私（わたし）のお母（おかあ）さんのようなものだ。 (Susie seems like my mother.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～のように",
+    "meaning": "'Like' or 'similar to' (used to compare actions or states).",
+    "example": "ピカピカの太陽（たいよう）のように。 (Shining like the sun.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～させられる",
+    "meaning": "'To be made to do' (causative passive, forced to do something).",
+    "example": "母（はは）に勉強（べんきょう）[を]させられる。 (I am forced to study by my mother.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ことにする",
+    "meaning": "'To decide to do (something).'",
+    "example": "彼（かれ）は勉強（べんきょう）することにする。 (He’s deciding to study.)",
+    "level": "n4"
+  },
+  {
+    "grammar": "～ために",
+    "meaning": "For the purpose of ～; in order to ～. Gives the goal.",
+    "example": "日本語を学ぶために留学しに来ました。 (I came to study abroad in order to learn Japanese.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～によって",
+    "meaning": "Depending on ～",
+    "example": "曜日によってランチメニューが違います。 (Depending on the day of the week, the lunch menu is different.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～ば～ほど",
+    "meaning": "The more ～, the more ～",
+    "example": "地震が強ければ強いほど、津波が起こる可能性が高くなります。 (The stronger an earthquake, the higher the probability for a tsunami to occur.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～さえ～ば",
+    "meaning": "If only",
+    "example": "時間さえあれば、もっと日本語を勉強できます。 (If only I had more time, I could study more Japanese.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～としたら",
+    "meaning": "If (hypothetically) ～; in the case that ～",
+    "example": "車を購入したらどれが欲しいですか？ (If you were to buy a car, which would you want?)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～たて",
+    "meaning": "Just ～; freshly ～",
+    "example": "焼きたてのパンがフワフワで美味しいね。 (Freshly baked bread is soft and delicious.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～っぽい",
+    "meaning": "Like ～; ～-ish; with ～ character",
+    "example": "わがままで図々しい言い方は子供っぽい。 (That selfish and impudent way of speaking is childish.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "ふり",
+    "meaning": "Pretend to ～",
+    "example": "友達とメールしていたのに、上司が怒らないように仕事をしているふりにした。 (Although I was emailing my friend, I pretended to be working so my boss wouldn't get angry.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "おかげで",
+    "meaning": "Thanks to ～; because of ～",
+    "example": "先生のおかげでN3を合格しました。 (I passed the N3 thanks to my teacher.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～ようになる",
+    "meaning": "A change which has taken place or will take place",
+    "example": "最近、日本語が上手に話せるようになりました。 (Recently, I have become able to speak Japanese well.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～ことになる",
+    "meaning": "To be decided; to be arranged",
+    "example": "明日は会議があることになりました。 (It has been decided that there will be a meeting tomorrow.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～とても～ない",
+    "meaning": "Can't possibly",
+    "example": "そんなに忙しいとてもではない。 (It can't possibly be that busy.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～らしい",
+    "meaning": "Seems like; hearsay",
+    "example": "彼は有名人らしいです。 (I heard he is a celebrity.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～ないで",
+    "meaning": "Without doing ～",
+    "example": "説明しないで、急に行動しないでください。 (Please don't act suddenly without explaining.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～のような",
+    "meaning": "Like ～",
+    "example": "彼女は母のような人です。 (She is like a mother.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "N+ばかり",
+    "meaning": "Nothing but ～",
+    "example": "彼はゲームばかりしています。 (He does nothing but play games.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "AはBで有名",
+    "meaning": "~ A is famous for B",
+    "example": "京都は寺で有名です。 (Kyoto is famous for its temples.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "N+を始め",
+    "meaning": "For example; starting with",
+    "example": "東京を始め、日本の都市は美しいです。 (Starting with Tokyo, Japanese cities are beautiful.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～は～くらいです",
+    "meaning": "(How much) ~ (adj) is ~",
+    "example": "この本は難しいくらいです。 (This book is quite difficult.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "ほど",
+    "meaning": "To the extent",
+    "example": "彼は疲れているほどです。 (He is tired to such an extent.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "まま",
+    "meaning": "In its current state",
+    "example": "部屋は散らかったままです。 (The room remains messy.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "わざわざ",
+    "meaning": "To bother oneself to do something",
+    "example": "わざわざ来てくれてありがとう。 (Thank you for taking the trouble to come.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～たものだ",
+    "meaning": "This used to ~ / This was what ~",
+    "example": "昔はよく遊んだものだ。 (We used to play a lot in the past.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～ぐらい",
+    "meaning": "About/around ~",
+    "example": "1000円ぐらいです。 (It’s about 1000 yen.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～かえって",
+    "meaning": "On the contrary",
+    "example": "忙しいかえって、集中力が上がる。 (On the contrary, being busy increases my focus.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～には～の～がある",
+    "meaning": "There is ~ in ~",
+    "example": "彼には優しさがある。 (There is kindness in him.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～に関する",
+    "meaning": "In relation to ~",
+    "example": "その問題に関する報告書です。 (It’s a report regarding that issue.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "まさか",
+    "meaning": "Impossible!",
+    "example": "まさか、彼が来るなんて！ (No way, he actually came!)",
+    "level": "n3"
+  },
+  {
+    "grammar": "まい",
+    "meaning": "Probably won't",
+    "example": "雨が降るまい。 (It probably won’t rain.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "きり",
+    "meaning": "Just, for good",
+    "example": "その日以来、会ったきりです。 (Since that day, we haven’t met again.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "いったい（一体）",
+    "meaning": "What in the world?",
+    "example": "いったいどうしたんですか？ (What in the world happened?)",
+    "level": "n3"
+  },
+  {
+    "grammar": "どうやら",
+    "meaning": "I think that ~",
+    "example": "どうやら、彼は来ないようです。 (It seems he won’t come.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "さらに（更に）",
+    "meaning": "Furthermore",
+    "example": "さらに、問題が起きました。 (Furthermore, a problem arose.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "すでに（既に）",
+    "meaning": "Already ~",
+    "example": "すでに、仕事が終わりました。 (The work is already finished.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "つい",
+    "meaning": "Without thinking",
+    "example": "つい、遅刻してしまった。 (I ended up being late without thinking.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "むしろ",
+    "meaning": "Rather; better; instead",
+    "example": "むしろ、早く行きましょう。 (Rather, let’s go early.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "さえ",
+    "meaning": "Even; if only; if just; as long as; the only thing needed",
+    "example": "時間さえあれば、できます。 (If only I had time, I could do it.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～になれる",
+    "meaning": "Get used to ~ ; come to be ~",
+    "example": "新しい環境になれるまで時間がかかりました。 (It took time to get used to the new environment.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～に違いない",
+    "meaning": "There is no doubt that ~, I am sure that ~",
+    "example": "彼が来るに違いない。 (I’m sure he will come.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "なかなか",
+    "meaning": "Considerably",
+    "example": "なかなか難しい問題です。 (It’s a considerably difficult problem.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～ず",
+    "meaning": "Without doing ~ (shortened form of ~ないで)",
+    "example": "説明せずに、急に行動しないでください。 (Please don’t act suddenly without explaining.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～によると",
+    "meaning": "According to, due to, by means of",
+    "example": "新聞によると、明日は雨です。 (According to the newspaper, it will rain tomorrow.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～代わり",
+    "meaning": "In place of ~",
+    "example": "彼の代わりに、私が行きます。 (I will go in his place.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "ようにする",
+    "meaning": "Make sure to do ~",
+    "example": "遅れないようにします。 (I’ll make sure not to be late.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～始める",
+    "meaning": "To start to ~",
+    "example": "新しい仕事を始めました。 (I started a new job.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～ても",
+    "meaning": "Even if~",
+    "example": "忙しくても、頑張ります。 (Even if I’m busy, I’ll do my best.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～として",
+    "meaning": "As ~, in the role of ~",
+    "example": "学生として、勉強しなければなりません。 (As a student, I must study.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "ように",
+    "meaning": "In order that ~",
+    "example": "成功するように頑張ります。 (I’ll work hard to succeed.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "こそ",
+    "meaning": "(Emphasis)",
+    "example": "今こそ、行動する時です。 (Now is the time to act.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～ないうちに",
+    "meaning": "Before ~ happens (before it rains, ~)",
+    "example": "雨が降る前に、家に帰りましょう。 (Let’s go home before it rains.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "どうしても",
+    "meaning": "By all means, at any rate",
+    "example": "どうしても、行きたいです。 (I really want to go.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～がち",
+    "meaning": "Tends to be ~",
+    "example": "彼は遅刻がちです。 (He tends to be late.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "せいぜい",
+    "meaning": "As far as possible, at the most",
+    "example": "せいぜい、頑張ってください。 (Do your best as much as possible.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～に限る",
+    "meaning": "Nothing better than ~",
+    "example": "この店に限ります。 (There’s nothing better than this shop.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～とともに～",
+    "meaning": "As well as; with; along with; at the same time",
+    "example": "彼とともに、行きます。 (I’ll go along with him.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～たび～",
+    "meaning": "~ whenever ~",
+    "example": "彼に会うたびに、話します。 (Whenever I meet him, we talk.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "すぎない（過ぎない）",
+    "meaning": "Merely ~ ; no more than ~",
+    "example": "それは単なる勘違いすぎない。 (It’s merely a misunderstanding.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "おいて（於いて）",
+    "meaning": "As for ~ ; regarding ~",
+    "example": "彼のことおいて、心配しています。 (Regarding him, I’m worried.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～げ",
+    "meaning": "Seems like~",
+    "example": "彼は疲れげです。 (He seems tired.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "つもりで",
+    "meaning": "Having the intention of~",
+    "example": "勉強するつもりでいます。 (I intend to study.)",
+    "level": "n3"
+  },
+  {
+    "grammar": "～て 初めて",
+    "meaning": "Only after ～; it was not until ～",
+    "example": "入院して初めて自分の健康が大切だと思っていました。 (It was not until I was hospitalized that I thought my own health was important.)",
+    "level": "n3"
+  }
+]
