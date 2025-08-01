@@ -89,10 +89,10 @@ const columns = ref([
     prop: "meaning", label: "释义", formatter: emptyFn, show: true
   },
   {
-    prop: "type", label: "类型", formatter: typeFn, show: true
+    prop: "type", label: "类型", formatter: typeFn, show: false
   },
   {
-    prop: "transitivity", label: "及物性", formatter: transitivityFn, show: true
+    prop: "transitivity", label: "及物性", formatter: transitivityFn, show: false
   },
   {
     prop: "negative", label: "否定", formatter: emptyFn, show: true

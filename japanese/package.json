@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --mode dev",
-    "build": "vue-tsc -b && vite build --mode prod && rimraf dist/audio dist/json",
+    "build": "vue-tsc -b && vite build --mode prod && rimraf dist/audio dist/json  dist/unused",
     "preview": "vite preview --mode prod"
   },
   "dependencies": {
