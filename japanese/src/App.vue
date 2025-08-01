@@ -38,6 +38,13 @@
       </el-button>
       <el-button
           size="small"
+          :type="isActive('/verb-conju') ? 'primary' : 'default'"
+          @click="navigateTo('/verb-conju')"
+      >
+        动词活用
+      </el-button>
+      <el-button
+          size="small"
           :type="isActive('/tool') ? 'primary' : 'default'"
           @click="navigateTo('/tool')"
       >
@@ -66,6 +73,7 @@ import {useWordStore} from './stores/wordStore'
 import {useGrammarStore} from './stores/grammarStore'
 import {useJlptGrammarStore} from './stores/jlptGrammarStore'
 import {useBaseSettingStore} from "./stores/baseSettingStore"
+import {useConjuStore} from "./stores/conjuStore.ts"
 import {useRouter, useRoute} from 'vue-router'
 
 const router = useRouter()
@@ -84,12 +92,14 @@ const lessonStore = useLessonStore()
 const wordStore = useWordStore()
 const grammarStore = useGrammarStore()
 const jlptGrammarStore = useJlptGrammarStore()
+const verbConju = useConjuStore()
 
 onMounted(async () => {
   await wordStore.fetchWords()
   await lessonStore.fetchLessons()
   await grammarStore.fetchGrammars()
   await jlptGrammarStore.fetchJlptGrammars()
+  await verbConju.fetchVerbConjus()
 })
 </script>
 

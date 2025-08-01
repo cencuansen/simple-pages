@@ -6,6 +6,7 @@ import Tool from '../components/Tool.vue'
 import Setting from '../components/Setting.vue'
 import Grammar from "../components/Grammar.vue";
 import JlptGrammar from "../components/JlptGrammar.vue";
+import VerbConju from "../components/VerbConju.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -33,6 +34,10 @@ const router = createRouter({
         {
             path: '/jlpt-grammar',
             component: JlptGrammar
+        },
+        {
+            path: '/verb-conju',
+            component: VerbConju
         },
         {
             path: '/tool',
