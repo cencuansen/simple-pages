@@ -154,6 +154,10 @@ onMounted(() => {
 }
 
 .el-table {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 120px);
+}
+
+.verb-conju-footer {
+  height: 150px;
 }
 </style>
