@@ -57,6 +57,14 @@
             :type="''"
             size="small"
             circle
+            title="搜索"
+            @click="searchModel = !searchModel">
+          搜
+        </el-button>
+        <el-button
+            :type="''"
+            size="small"
+            circle
             title="播放"
             :disabled="isPlaying"
             v-if="currentLesson?.audio && baseSettingStore.audioSpeak"
@@ -267,7 +275,7 @@
 
     <el-dialog class="search-model" v-model="searchModel" :modal="false">
       <template #header>
-        <el-input v-model.lazy="keyword" v-focus size="small" placeholder="搜索" clearable/>
+        <el-input v-model.lazy="keyword" size="small" placeholder="搜索" clearable/>
       </template>
       <div class="model-result-item" v-for="lesson in lessonsView">
         <div class="model-lesson-title" v-html="textView(lesson.title, false, false)"
@@ -471,7 +479,7 @@ const aClick = (event: any) => {
       const targetElement = container.value.querySelector(href);
       if (targetElement) {
         lastElement.value = target
-        scrollTarget(lastElement)
+        scrollTarget(targetElement)
         targetElement.classList.add("target-active");
         targetElement.addEventListener("animationend", () => {
           targetElement.classList.remove("target-active");
@@ -833,6 +841,11 @@ watch(() => searchModel.value, (value, _) => {
 
 .highlight-word:hover span {
   background-color: #e0f7fa;
+}
+
+:deep(.search-model) {
+  width: 95%;
+  max-width: calc(var(--content-max-width) * 1.1);
 }
 
 :deep(.el-dialog__body) {
