@@ -631,11 +631,11 @@ const onKeyup = (event: KeyboardEvent) => {
     goToLesson(lessonStore.currentIndex - 1)
   } else if (['ArrowRight'].includes(event.key)) {
     goToLesson(lessonStore.currentIndex + 1)
-  } else if (['z', '1'].includes(event.key)) {
+  } else if (['1'].includes(event.key)) {
     scrollTarget(top.value, {behavior: "smooth", block: "start", inline: "nearest"})
-  } else if (['x', '2'].includes(event.key)) {
+  } else if (['2'].includes(event.key)) {
     scrollTarget(grammarsRef.value, {behavior: "smooth", block: "start", inline: "nearest"})
-  } else if (['c', '3'].includes(event.key)) {
+  } else if (['3'].includes(event.key)) {
     scrollTarget(wordsRef.value, {behavior: "smooth", block: "start", inline: "nearest"})
   } else if (['f', 'g'].includes(event.key)) {
     searchModel.value = !searchModel.value
