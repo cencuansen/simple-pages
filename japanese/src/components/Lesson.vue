@@ -288,6 +288,7 @@ import {useGrammarStore} from "../stores/grammarStore"
 import type {WordItem} from "../types";
 import {speakingId, speakingTextId, speakingWordId} from '../utils.ts'
 import {storeToRefs} from 'pinia'
+import {onDeactivated} from "@vue/runtime-core";
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -564,7 +565,19 @@ const onScroll = async () => {
   scrollPosition.value = container.value.scrollTop
 }
 
+const onKeyup = (event: KeyboardEvent) => {
+  if ('ArrowLeft' === event.key) {
+    // 上一课
+    goToLesson(lessonStore.currentIndex - 1)
+  } else if ('ArrowRight' === event.key) {
+    // 下一课
+    goToLesson(lessonStore.currentIndex + 1)
+  }
+}
+
 onActivated(async () => {
+  document.addEventListener('keyup', onKeyup);
+
   setTimeout(() => {
     if (container && container.value) {
       container.value.scrollTop = scrollPosition.value
@@ -572,11 +585,9 @@ onActivated(async () => {
   })
 })
 
-document.addEventListener('keyup', function (event) {
-  if (event.key === 'r' || event.key === 'R') {
-    console.log('r 被按下')
-  }
-});
+onDeactivated(() => {
+  document.removeEventListener('keyup', onKeyup);
+})
 
 </script>
 

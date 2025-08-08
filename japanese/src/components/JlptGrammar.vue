@@ -1,6 +1,6 @@
 <template>
   <div class="grammar-headers">
-    <el-input class="search" size="small" placeholder="搜索关键字" v-model.lazy="keyword" clearable/>
+    <el-input class="search" v-model.lazy="keyword" size="small" placeholder="搜索关键字" clearable/>
   </div>
   <div class="grammar-main">
     <div class="main">
