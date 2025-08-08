@@ -15,3 +15,14 @@ export const speakingId = (): string => {
     }
     return id || ""
 }
+
+export type TextMatchReplacer = (text: string) => string;
+
+export const matchTextFunc = (keyword: string): TextMatchReplacer => {
+    if (!keyword) {
+        return (text: string) => text
+    }
+    const escapedKey = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
+    return (text: string) => text?.replace(regex, '<span class="match">$1</span>')
+}

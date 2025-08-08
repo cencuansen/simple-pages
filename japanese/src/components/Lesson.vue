@@ -207,7 +207,7 @@
       </section>
 
       <!-- 语法 -->
-      <section class="section grammar">
+      <section class="section grammar" ref="grammarsRef">
         <el-table :data="grammars">
           <el-table-column label="语法" prop="content"/>
           <el-table-column label="说明">
@@ -221,7 +221,7 @@
       </section>
 
       <!-- 单词 -->
-      <section class="section words-section">
+      <section class="section words-section" ref="wordsRef">
         <el-table :data="words">
           <el-table-column label="单词">
             <template #default="scope">
@@ -265,6 +265,18 @@
       </section>
     </div>
 
+    <el-dialog class="search-model" v-model="searchModel" :modal="false">
+      <template #header>
+        <el-input v-model.lazy="keyword" v-focus size="small" placeholder="搜索" clearable/>
+      </template>
+      <div class="model-result-item" v-for="lesson in lessonsView">
+        <div class="model-lesson-title" v-html="textView(lesson.title, false, false)"
+             @click="goToLesson(Number(lesson.idx))"></div>
+        <div class="model-lesson-match-content" v-for="content in lesson.contents"
+             v-html="matchText(textView(content,false, false))"></div>
+      </div>
+    </el-dialog>
+
     <a class="go-top" href="#" @click="goTop">↑</a>
 
     <audio v-if="baseSettingStore.audioSpeak" ref="audioRef" :src="src"
@@ -286,9 +298,9 @@ import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
 import {useGrammarStore} from "../stores/grammarStore"
 import type {WordItem} from "../types";
-import {speakingId, speakingTextId, speakingWordId} from '../utils.ts'
+import {speakingId, speakingTextId, speakingWordId, matchTextFunc} from '../utils.ts'
 import {storeToRefs} from 'pinia'
-import {onDeactivated} from "@vue/runtime-core";
+import {onDeactivated} from "@vue/runtime-core"
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -296,14 +308,21 @@ const wordStore = useWordStore()
 const baseSettingStore = useBaseSettingStore()
 const grammarStore = useGrammarStore()
 
-const {currentLesson} = storeToRefs(lessonStore)
+const {currentLesson, lessons} = storeToRefs(lessonStore)
 
 const allTranslate = ref(false)
 const basicsTranslate = ref(false)
 const exchangeTranslate = ref<boolean[]>(new Array(100).fill(false))
 const exchange2Translate = ref<boolean[]>(new Array(100).fill(false))
 
+const searchModel = ref(false)
+
+const top = ref()
+const container = ref()
+const grammarsRef = ref()
+const wordsRef = ref()
 const audioRef = ref<HTMLAudioElement>()
+
 const currentTime = ref(0)
 const audioPlaying = ref(false)
 
@@ -362,9 +381,8 @@ const pauseAudio = () => {
   }
 };
 
-const container = ref()
 const scrollPosition = ref<number>(0)
-const top = ref()
+
 const lastElement = ref<HTMLElement | null>()
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
@@ -403,6 +421,44 @@ watch(() => speechStore.lastFireTime, (_) => {
   });
 });
 
+const keyword = ref('')
+const matchText = computed(() => matchTextFunc(keyword.value || ''))
+const lessonsView = computed(() => {
+  const flatLessons = lessons.value.map((lesson, index) => {
+    return [
+      `${index}`,
+      lesson.title?.content,
+      ...lesson.basics.map(a => a.content),
+      ...lesson.conversations.flatMap(a => a).map(a => a.content),
+      ...lesson.conversations2.flatMap(a => a).map(a => a.content)].filter(Boolean) as string[]
+  })
+
+  if (!keyword.value) {
+    return flatLessons.map(lesson => {
+      const contents = lesson.slice(2)
+      return {idx: lesson[0], title: lesson[1], contents: [...contents.slice(0, 2), '...']}
+    }).filter(a => a.contents.length > 0)
+  }
+
+  return flatLessons.map(lesson => {
+    const contents = lesson.slice(2).filter(c => c.includes(keyword.value))
+    return {idx: lesson[0], title: lesson[1], contents}
+  }).filter(a => a.contents.length > 0)
+})
+
+const scrollTarget = (target: any, config: {
+  behavior?: ScrollBehavior,
+  block?: ScrollLogicalPosition,
+  inline?: ScrollLogicalPosition,
+} = {behavior: 'smooth', block: 'center', inline: 'nearest'}) => {
+  const {behavior, block, inline} = config;
+  target?.scrollIntoView({
+    behavior,
+    block,
+    inline,
+  });
+}
+
 const aClick = (event: any) => {
   event.preventDefault();
   let target = event.target
@@ -415,11 +471,7 @@ const aClick = (event: any) => {
       const targetElement = container.value.querySelector(href);
       if (targetElement) {
         lastElement.value = target
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-          inline: 'nearest',
-        });
+        scrollTarget(lastElement)
         targetElement.classList.add("target-active");
         targetElement.addEventListener("animationend", () => {
           targetElement.classList.remove("target-active");
@@ -494,19 +546,19 @@ const highlightReplacer = (match: string) => {
 
 const speakText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
 const displayText = (text: string | undefined = "") => text.replace(/!([^(]+)\([^)]+\)/g, '$1')
-const textView = (originalText: string | undefined = "") => {
+const textView = (originalText: string | undefined = "", wordLink = true, furigana = true) => {
   const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1');
   if (words.value.length === 0) return baseText
 
   let finalText = baseText
 
   // 单词跳转
-  if (baseSettingStore.wordLink) {
+  if (wordLink && baseSettingStore.wordLink) {
     finalText = baseText.replace(wordRegEx.value, highlightReplacer)
   }
 
   // 注音
-  if (baseSettingStore.furigana) {
+  if (furigana && baseSettingStore.furigana) {
     const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || [];
     const rubyMap: Record<string, string> = {};
     rubyText.forEach(item => {
@@ -566,12 +618,19 @@ const onScroll = async () => {
 }
 
 const onKeyup = (event: KeyboardEvent) => {
-  if ('ArrowLeft' === event.key) {
-    // 上一课
+  console.log('onKeyup', event.key)
+  if (['ArrowLeft'].includes(event.key)) {
     goToLesson(lessonStore.currentIndex - 1)
-  } else if ('ArrowRight' === event.key) {
-    // 下一课
+  } else if (['ArrowRight'].includes(event.key)) {
     goToLesson(lessonStore.currentIndex + 1)
+  } else if (['z', '1'].includes(event.key)) {
+    scrollTarget(top.value, {behavior: "smooth", block: "start", inline: "nearest"})
+  } else if (['x', '2'].includes(event.key)) {
+    scrollTarget(grammarsRef.value, {behavior: "smooth", block: "start", inline: "nearest"})
+  } else if (['c', '3'].includes(event.key)) {
+    scrollTarget(wordsRef.value, {behavior: "smooth", block: "start", inline: "nearest"})
+  } else if (['f', 'g'].includes(event.key)) {
+    searchModel.value = !searchModel.value
   }
 }
 
@@ -589,9 +648,21 @@ onDeactivated(() => {
   document.removeEventListener('keyup', onKeyup);
 })
 
+watch(() => searchModel.value, (value, _) => {
+  if (value) {
+    document.removeEventListener('keyup', onKeyup);
+  } else {
+    document.addEventListener('keyup', onKeyup);
+  }
+})
+
 </script>
 
 <style scoped>
+.lessons {
+  height: calc(100vh - 40px);
+}
+
 .lesson-headers {
   overflow-y: scroll;
   width: 100%;
@@ -764,6 +835,32 @@ onDeactivated(() => {
   background-color: #e0f7fa;
 }
 
+:deep(.el-dialog__body) {
+  height: 60vh;
+  overflow-y: auto;
+}
+
+.model-result-item {
+  margin: 30px 20px;
+  font-size: 16px;
+}
+
+.model-lesson-title {
+  cursor: pointer;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+
+.model-lesson-title:hover {
+  color: #1976d2;
+}
+
+.model-lesson-match-content {
+  user-select: auto;
+  box-sizing: border-box;
+  padding-left: 20px;
+}
+
 .go-top {
   position: absolute;
   bottom: 60px;
@@ -795,5 +892,9 @@ audio {
   transform: translate(-50%);
   bottom: 0;
   width: 100%;
+}
+
+:deep(.match) {
+  color: var(--el-color-danger);
 }
 </style>
