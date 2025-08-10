@@ -34,7 +34,7 @@
             circle
             title="翻译"
             v-if="baseSettingStore.translate"
-            @click="toggleAllTranslations(!allTranslate)">
+            @click="toggleTranslate(!allTranslate)">
           译
         </el-button>
         <el-button
@@ -396,7 +396,7 @@ const lastElement = ref<HTMLElement | null>()
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
 // 全局切换
-const toggleAllTranslations = (newValue: boolean) => {
+const toggleTranslate = (newValue: boolean) => {
   allTranslate.value = newValue
   // 基础句子
   basicsTranslate.value = allTranslate.value
@@ -413,7 +413,7 @@ const toggleAllTranslations = (newValue: boolean) => {
 watch(() => baseSettingStore.translate, (value, _) => {
   if (!value) {
     // 设置中关闭翻译功能时
-    toggleAllTranslations(false)
+    toggleTranslate(false)
   }
 })
 
@@ -637,8 +637,10 @@ const onKeyup = (event: KeyboardEvent) => {
     scrollTarget(grammarsRef.value, {behavior: "smooth", block: "start", inline: "nearest"})
   } else if (['3'].includes(event.key)) {
     scrollTarget(wordsRef.value, {behavior: "smooth", block: "start", inline: "nearest"})
-  } else if (['f', 'g'].includes(event.key)) {
+  } else if (['f'].includes(event.key)) {
     searchModel.value = !searchModel.value
+  } else if (['r'].includes(event.key)) {
+    
   }
 }
 
