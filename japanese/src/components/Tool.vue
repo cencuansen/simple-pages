@@ -123,7 +123,8 @@ const toDataRuby = (text: string): string => {
 
 <style scoped>
 .tool-container {
-  margin: 10px auto 0;
+  width: 100%;
+  margin: 0 auto;
   max-width: var(--content-max-width);
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <el-tabs class="setting-container" tab-position="left">
+  <el-tabs class="setting-container" tab-position="top">
     <el-tab-pane label="通用">
       <el-form>
         <el-form-item label="切换主题">
@@ -156,8 +156,8 @@ const {
 
 <style scoped>
 .setting-container {
-  margin: 10px auto 0;
+  width: 100%;
+  margin: 0 auto;
   max-width: var(--content-max-width);
 }
-
 </style>
