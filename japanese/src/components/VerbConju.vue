@@ -6,16 +6,18 @@
         <el-option v-for="col in columns" :key="col.label" :value="col.label" :label="col.label"></el-option>
       </el-select>
     </div>
-    <el-table class="el-table" :data="conjuView" stripe fit style="width: 100%">
-      <template v-for="col in columns">
-        <el-table-column v-if="selectedCols.includes(col.label)"
-                         :prop="col.prop" :label="col.label"
-                         :formatter="col.formatter"
-        ></el-table-column>
-      </template>
+    <div class="verb-conju-main">
+      <el-table class="el-table" :data="conjuView" stripe fit style="width: 100%">
+        <template v-for="col in columns">
+          <el-table-column v-if="selectedCols.includes(col.label)"
+                           :prop="col.prop" :label="col.label"
+                           :formatter="col.formatter"
+          ></el-table-column>
+        </template>
 
-    </el-table>
-    <div class="verb-conju-footer">
+      </el-table>
+    </div>
+    <div class="verb-conju-pagination">
       <el-pagination
           v-model:current-page="pageIndex"
           :page-size="pageSize"
@@ -138,26 +140,32 @@ onMounted(() => {
 
 <style scoped>
 .verb-conju {
-  height: calc(100vh - 41px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 .verb-conju-header {
+  height: var(--single-row-header-height);
   display: flex;
-  gap: 10px;
+  gap: var(--gap12);
   align-items: center;
   justify-content: space-around;
-  padding: 0 5px;
 }
 
-.el-table {
-  height: calc(100vh - 120px);
+.verb-conju-main {
+  overflow-y: auto;
+  height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--pagination-height) - var(--root-footer-height));
 }
 
-.verb-conju-footer {
-  height: 150px;
+.verb-conju-pagination {
+  width: 100%;
+  height: var(--pagination-height);
+  overflow-y: scroll;
+}
+
+.el-pagination {
+  margin: 0 auto;
+  max-width: 100%;
 }
 </style>

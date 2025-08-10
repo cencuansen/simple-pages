@@ -77,12 +77,6 @@ const keyword = computed({
 });
 </script>
 
-<style>
-:root {
-  --pagination-height: 35px;
-}
-</style>
-
 <style scoped>
 .words {
   width: 100%;
@@ -95,7 +89,7 @@ const keyword = computed({
 }
 
 .word-header {
-  height: var(--word-headers-height);
+  height: var(--single-row-header-height);
   display: flex;
   margin: 0 auto;
   max-width: var(--content-max-width);
@@ -120,7 +114,7 @@ const keyword = computed({
   padding: 0;
   overflow-y: scroll;
   width: 100%;
-  height: calc(100vh - var(--root-header-height) - var(--word-headers-height) - var(--pagination-height) - var(--root-footer-height));
+  height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--pagination-height) - var(--root-footer-height));
 }
 
 .el-table {

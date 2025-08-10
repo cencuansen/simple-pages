@@ -130,6 +130,8 @@ onMounted(async () => {
   --gap12: 12px;
   --audio-height: 54px;
   --root-header-height: 30px;
+  --pagination-height: 35px;
+  --single-row-header-height: 35px;
   /* default */
   --root-footer-height: 0px;
   /* desktop */

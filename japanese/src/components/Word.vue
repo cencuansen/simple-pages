@@ -199,12 +199,6 @@ onActivated(async () => {
 
 </script>
 
-<style>
-:root {
-  --word-headers-height: 35px;
-}
-</style>
-
 <style scoped>
 .words {
   width: 100%;
@@ -213,7 +207,7 @@ onActivated(async () => {
 }
 
 .word-headers {
-  height: var(--word-headers-height);
+  height: var(--single-row-header-height);
   width: 100%;
   overflow-y: scroll;
   display: flex;
@@ -223,7 +217,7 @@ onActivated(async () => {
 
 .word-header {
   width: 100%;
-  height: var(--word-headers-height);
+  height: var(--single-row-header-height);
   display: flex;
   flex-direction: row;
   gap: var(--gap12);
@@ -236,7 +230,7 @@ onActivated(async () => {
   overflow-y: scroll;
   margin: 0 auto;
   position: fixed;
-  height: calc(100vh - var(--root-header-height) - var(--word-headers-height) - var(--root-footer-height));
+  height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--root-footer-height));
 }
 
 .word-main > * {

@@ -62,12 +62,6 @@ const grammarView = computed(() => {
 })
 </script>
 
-<style>
-:root {
-  --grammar-headers-height: 35px;
-}
-</style>
-
 <style scoped>
 .grammar {
   width: 100%;
@@ -77,7 +71,7 @@ const grammarView = computed(() => {
 
 .grammar-headers {
   width: 100%;
-  height: var(--grammar-headers-height);
+  height: var(--single-row-header-height);
   overflow-y: scroll;
   display: flex;
   align-items: center;
@@ -91,7 +85,7 @@ const grammarView = computed(() => {
 
 .main {
   overflow-y: scroll;
-  height: calc(100vh - var(--root-header-height) - var(--grammar-headers-height) - var(--root-footer-height));
+  height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--root-footer-height));
 }
 
 .table {
