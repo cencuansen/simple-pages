@@ -1,32 +1,34 @@
 <template>
-  <div class="grammar-headers">
-    <el-input class="search" v-model.lazy="keyword" size="small" placeholder="搜索关键字" clearable/>
-  </div>
-  <div class="grammar-main">
-    <div class="main">
-      <el-table class="table" :data="grammarView" stripe>
-        <el-table-column type="index" width="50"/>
-        <el-table-column label="语法" prop="grammar">
-          <template #default="scope">
-            <div v-html="scope.row.grammar"></div>
-          </template>
-        </el-table-column>
-        <el-table-column label="含义" prop="meaning">
-          <template #default="scope">
-            <div v-html="scope.row.meaning"></div>
-          </template>
-        </el-table-column>
-        <el-table-column label="示例" prop="example">
-          <template #default="scope">
-            <div v-html="scope.row.example"></div>
-          </template>
-        </el-table-column>
-        <el-table-column label="级别" prop="level" width="60">
-          <template #default="scope">
-            <div v-html="scope.row.level"></div>
-          </template>
-        </el-table-column>
-      </el-table>
+  <div class="grammar">
+    <div class="grammar-headers">
+      <el-input class="search" v-model.lazy="keyword" size="small" placeholder="搜索关键字" clearable/>
+    </div>
+    <div class="grammar-main">
+      <div class="main">
+        <el-table class="table" :data="grammarView" stripe>
+          <el-table-column type="index" width="50"/>
+          <el-table-column label="语法" prop="grammar">
+            <template #default="scope">
+              <div v-html="scope.row.grammar"></div>
+            </template>
+          </el-table-column>
+          <el-table-column label="含义" prop="meaning">
+            <template #default="scope">
+              <div v-html="scope.row.meaning"></div>
+            </template>
+          </el-table-column>
+          <el-table-column label="示例" prop="example">
+            <template #default="scope">
+              <div v-html="scope.row.example"></div>
+            </template>
+          </el-table-column>
+          <el-table-column label="级别" prop="level" width="60">
+            <template #default="scope">
+              <div v-html="scope.row.level"></div>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
     </div>
   </div>
 </template>
@@ -64,9 +66,22 @@ const grammarView = computed(() => {
 })
 </script>
 
+<style>
+:root {
+  --grammar-headers-height: 35px;
+}
+</style>
+
 <style scoped>
+.grammar {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
 .grammar-headers {
   width: 100%;
+  height: var(--grammar-headers-height);
   overflow-y: scroll;
   display: flex;
   align-items: center;
@@ -75,20 +90,21 @@ const grammarView = computed(() => {
 
 .search {
   max-width: var(--content-max-width);
-  margin: 0 auto 20px;
+  margin: 0 auto;
 }
 
 .main {
-  height: calc(100vh - 95px);
   overflow-y: scroll;
+  height: calc(100vh - var(--root-header-height) - var(--grammar-headers-height) - var(--root-footer-height));
 }
 
 .table {
   max-width: var(--content-max-width);
-  margin: 0 auto 120px;
+  margin: 0 auto;
 }
 
 :deep(.match) {
   color: var(--el-color-danger);
 }
 </style>
+
