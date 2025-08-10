@@ -20,6 +20,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     const error = ref<string | null>(null);
     const currentPage = ref(1);
     const pageSize = ref(20);
+    const totalInView = ref(0)
     const searchQuery = ref('');
 
     // 加载CSV数据
@@ -50,25 +51,27 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     }
 
     // 过滤和分页数据
-    const filteredVocabularies = computed(() => {
+    const doFilter = computed(() => {
         const query = searchQuery.value.toLowerCase();
-        return vocabularies.value.filter(
+        const res = vocabularies.value.filter(
             (item) =>
                 item.expression.toLowerCase().includes(query) ||
                 item.reading.toLowerCase().includes(query) ||
                 item.meaning.toLowerCase().includes(query) ||
                 item.levelName.toLowerCase().includes(query)
         );
+        totalInView.value = res.length;
+        return res;
     });
 
-    const paginatedVocabularies = computed(() => {
+    const pageView = computed(() => {
         const start = (currentPage.value - 1) * pageSize.value;
         const end = start + pageSize.value;
-        return filteredVocabularies.value.slice(start, end);
+        return doFilter.value.slice(start, end);
     });
 
     const totalPages = computed(() =>
-        Math.ceil(filteredVocabularies.value.length / pageSize.value)
+        Math.ceil(doFilter.value.length / pageSize.value)
     );
 
     // 更新分页
@@ -112,9 +115,9 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
         currentPage,
         pageSize,
         searchQuery,
-        filteredVocabularies,
-        paginatedVocabularies,
-        totalPages,
+        doFilter,
+        pageView,
+        totalInView,
         loadVocabularies,
         setPage,
         setSearchQuery,

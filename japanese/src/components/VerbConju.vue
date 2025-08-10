@@ -21,7 +21,7 @@
       <el-pagination
           v-model:current-page="pageIndex"
           :page-size="pageSize"
-          :total="conjuVerbs.length"
+          :total="totalInView"
           layout="prev, pager, next"
       />
     </div>
@@ -40,11 +40,13 @@ const {conjuVerbs} = storeToRefs(verbConjuStore)
 const keyword = ref<string>()
 const pageSize = 18;
 const pageIndex = ref(1)
+const totalInView = ref(0)
 const conjuView = computed(() => {
   let list = conjuVerbs.value as Conju[]
   if (keyword.value) {
     list = list.filter(item => Object.values(item).join(' ').includes(keyword.value || ""))
   }
+  totalInView.value = list.length
   const start = (pageIndex.value - 1) * pageSize
   const end = start + pageSize
   return list.slice(start, end)
@@ -146,6 +148,7 @@ onMounted(() => {
 }
 
 .verb-conju-header {
+  overflow-y: scroll;
   height: var(--single-row-header-height);
   display: flex;
   gap: var(--gap12);
@@ -154,7 +157,7 @@ onMounted(() => {
 }
 
 .verb-conju-main {
-  overflow-y: auto;
+  overflow-y: scroll;
   height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--pagination-height) - var(--root-footer-height));
 }
 

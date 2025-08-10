@@ -8,7 +8,7 @@
 
     <div class="word-main">
       <el-table
-          :data="store.paginatedVocabularies"
+          :data="store.pageView"
           v-loading="store.loading"
           :show-header="false"
           stripe
@@ -46,7 +46,7 @@
       <el-pagination
           v-model:current-page="store.currentPage"
           :page-size="store.pageSize"
-          :total="store.filteredVocabularies.length"
+          :total="store.totalInView"
           layout="prev, pager, next"
           @current-change="store.setPage"
       />
