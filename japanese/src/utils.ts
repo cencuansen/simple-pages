@@ -26,3 +26,24 @@ export const matchTextFunc = (keyword: string): TextMatchReplacer => {
     const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
     return (text: string) => text?.replace(regex, '<span class="match">$1</span>')
 }
+
+export const detectBrowser = () => {
+    const ua = navigator.userAgent;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+
+    // 桌面端检测
+    if (!isMobile) return {type: 'desktop', browser: 'desktop'};
+
+    // 安卓浏览器检测
+    if (/Android/i.test(ua)) {
+        if (/Chrome\/[\d.]+ Mobile/i.test(ua) && !/EdgA\/[\d.]+/.test(ua)) {
+            return {type: 'android', browser: 'chrome'};
+        }
+        if (/EdgA\/[\d.]+/.test(ua)) {
+            return {type: 'android', browser: 'edge'};
+        }
+        return {type: 'android', browser: 'other'};
+    }
+
+    return {type: 'other', browser: 'unknown'};
+}

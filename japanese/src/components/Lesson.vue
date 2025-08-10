@@ -306,7 +306,7 @@ import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
 import {useGrammarStore} from "../stores/grammarStore"
 import type {WordItem} from "../types";
-import {speakingId, speakingTextId, speakingWordId, matchTextFunc} from '../utils.ts'
+import {speakingId, speakingTextId, speakingWordId, matchTextFunc, detectBrowser} from '../utils.ts'
 import {storeToRefs} from 'pinia'
 import {onDeactivated} from "@vue/runtime-core"
 
@@ -640,7 +640,7 @@ const onKeyup = (event: KeyboardEvent) => {
   } else if (['f'].includes(event.key)) {
     searchModel.value = !searchModel.value
   } else if (['r'].includes(event.key)) {
-    
+
   }
 }
 
@@ -667,33 +667,42 @@ watch(() => searchModel.value, (value, _) => {
 })
 
 </script>
-
+<style>
+:root {
+  --lesson-headers-height: 60px;
+}
+</style>
 <style scoped>
 .lessons {
-  height: calc(100vh - 40px);
+  height: 100%;
+  position: fixed;
 }
 
 .lesson-headers {
-  overflow-y: scroll;
+  height: var(--lesson-headers-height);
   width: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .lesson-switch {
-  margin: 0 auto 10px;
+  width: 100%;
+  margin: 0 auto;
   text-align: center;
   max-width: var(--content-max-width);
   display: flex;
   justify-content: space-between;
   position: relative;
+  gap: var(--gap12);
 }
 
 .lesson-main {
   overflow-y: scroll;
-  position: fixed;
   margin: 0 auto;
   width: 100vw;
-  padding-bottom: 160px;
-  height: calc(100vh - 85px);
+  height: calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - 54px - var(--root-footer-height));
 }
 
 .lesson-main > * {
@@ -701,16 +710,8 @@ watch(() => searchModel.value, (value, _) => {
   margin: 0 auto;
 }
 
-.navigation-item {
-  margin-right: 20px;
-}
-
-.navigation-item:last-child {
-  margin-right: 0;
-}
-
 .function-group {
-  margin: 10px auto;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -878,7 +879,7 @@ watch(() => searchModel.value, (value, _) => {
 
 .go-top {
   position: absolute;
-  bottom: 60px;
+  bottom: 100px;
   right: 50px;
   width: 30px;
   height: 30px;
@@ -902,10 +903,7 @@ watch(() => searchModel.value, (value, _) => {
 }
 
 audio {
-  position: absolute;
-  margin-left: 50%;
-  transform: translate(-50%);
-  bottom: 0;
+  display: block;
   width: 100%;
 }
 

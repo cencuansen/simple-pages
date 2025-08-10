@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="buttons">
+    <div class="button-group">
       <el-button
           size="small"
           :type="isActive('/lesson') ? 'primary' : 'default'"
@@ -59,11 +59,16 @@
       </el-button>
     </div>
   </div>
-  <router-view v-slot="{ Component }">
-    <keep-alive>
-      <component :is="Component"/>
-    </keep-alive>
-  </router-view>
+  <div class="router-view">
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component"/>
+      </keep-alive>
+    </router-view>
+  </div>
+  <div class="footer">
+
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -75,6 +80,26 @@ import {useJlptGrammarStore} from './stores/jlptGrammarStore'
 import {useBaseSettingStore} from "./stores/baseSettingStore"
 import {useConjuStore} from "./stores/conjuStore.ts"
 import {useRouter, useRoute} from 'vue-router'
+import {detectBrowser} from './utils.ts'
+
+
+onMounted(() => {
+  let rootFooterHeight = '0px'
+  const {type, browser} = detectBrowser()
+  if (type === 'desktop') {
+    rootFooterHeight = '0px'
+  } else {
+    if (browser === 'chrome') {
+      rootFooterHeight = '55px'
+    } else if (browser === 'edge') {
+      rootFooterHeight = '105px'
+    } else {
+      rootFooterHeight = '0px'
+    }
+  }
+  // 关键：直接设置CSS变量到文档根元素
+  document.documentElement.style.setProperty('--root-footer-height', rootFooterHeight)
+})
 
 const router = useRouter()
 const route = useRoute()
@@ -107,33 +132,59 @@ onMounted(async () => {
 
 </style>
 
+<style>
+:root {
+  --gap12: 12px;
+
+  --root-header-height: 40px;
+  /* default */
+  --root-footer-height: 0px;
+  /* desktop */
+  /*--root-footer-height: 0px;*/
+  /* android chrome */
+  /*--root-footer-height: 55px;*/
+  /* android edge */
+  /*--root-footer-height: 105px;*/
+}
+</style>
+
 <style scoped>
 .header {
-  overflow-y: scroll;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.buttons {
-  height: 40px;
   display: flex;
   align-items: center;
-  overflow-x: auto;
+  padding: 0 5px;
+  height: var(--root-header-height);
+  width: 100%;
+  justify-content: center;
+  overflow-y: scroll;
 }
 
-.buttons::-webkit-scrollbar {
+.button-group {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+}
+
+.button-group::-webkit-scrollbar {
   display: none;
 }
 
-.root-tab {
-  height: 100vh;
+.router-view {
   width: 100vw;
-  border: none;
+  height: calc(100% - var(--root-header-height));
+  position: fixed;
+  display: flex;
+  overflow: hidden;
 }
 
+/*
 :deep(.el-tabs__content) {
   padding: 0 !important;
 }
+*/
 
+.footer {
+  width: 100%;
+  height: var(--root-footer-height);
+}
 </style>

@@ -237,7 +237,7 @@ onActivated(async () => {
 
 .go-top {
   position: absolute;
-  bottom: 60px;
+  bottom: 100px;
   right: 50px;
   width: 30px;
   height: 30px;
