@@ -66,13 +66,11 @@
       </keep-alive>
     </router-view>
   </div>
-  <div class="footer">
-
-  </div>
+  <div v-if="rootFooterHeight" class="footer"></div>
 </template>
 
 <script setup lang="ts">
-import {onMounted} from 'vue'
+import {ref, onMounted} from 'vue'
 import {useLessonStore} from './stores/lessonStore'
 import {useWordStore} from './stores/wordStore'
 import {useGrammarStore} from './stores/grammarStore'
@@ -82,23 +80,22 @@ import {useConjuStore} from "./stores/conjuStore.ts"
 import {useRouter, useRoute} from 'vue-router'
 import {detectBrowser} from './utils.ts'
 
-
+const rootFooterHeight = ref(0)
 onMounted(() => {
-  let rootFooterHeight = '0px'
   const {type, browser} = detectBrowser()
   if (type === 'desktop') {
-    rootFooterHeight = '0px'
+    rootFooterHeight.value = 0
   } else {
     if (browser === 'chrome') {
-      rootFooterHeight = '55px'
+      rootFooterHeight.value = 55
     } else if (browser === 'edge') {
-      rootFooterHeight = '105px'
+      rootFooterHeight.value = 105
     } else {
-      rootFooterHeight = '0px'
+      rootFooterHeight.value = 0
     }
   }
   // 关键：直接设置CSS变量到文档根元素
-  document.documentElement.style.setProperty('--root-footer-height', rootFooterHeight)
+  document.documentElement.style.setProperty('--root-footer-height', `${rootFooterHeight.value}px`)
 })
 
 const router = useRouter()
@@ -129,14 +126,10 @@ onMounted(async () => {
 </script>
 
 <style>
-
-</style>
-
-<style>
 :root {
   --gap12: 12px;
 
-  --root-header-height: 40px;
+  --root-header-height: 30px;
   /* default */
   --root-footer-height: 0px;
   /* desktop */
@@ -171,17 +164,15 @@ onMounted(async () => {
 
 .router-view {
   width: 100vw;
-  height: calc(100% - var(--root-header-height));
+  height: calc(100vh - var(--root-header-height) - var(--root-footer-height));
   position: fixed;
   display: flex;
   overflow: hidden;
 }
 
-/*
 :deep(.el-tabs__content) {
   padding: 0 !important;
 }
-*/
 
 .footer {
   width: 100%;

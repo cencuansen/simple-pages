@@ -667,11 +667,13 @@ watch(() => searchModel.value, (value, _) => {
 })
 
 </script>
+
 <style>
 :root {
   --lesson-headers-height: 60px;
 }
 </style>
+
 <style scoped>
 .lessons {
   height: 100%;
