@@ -676,6 +676,7 @@ watch(() => searchModel.value, (value, _) => {
 
 <style scoped>
 .lessons {
+  width: 100%;
   height: 100%;
   position: fixed;
 }
@@ -704,7 +705,7 @@ watch(() => searchModel.value, (value, _) => {
   overflow-y: scroll;
   margin: 0 auto;
   width: 100vw;
-  height: calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - 54px - var(--root-footer-height));
+  height: calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--audio-height) - var(--root-footer-height));
 }
 
 .lesson-main > * {

@@ -19,7 +19,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     const loading = ref(false);
     const error = ref<string | null>(null);
     const currentPage = ref(1);
-    const pageSize = ref(10);
+    const pageSize = ref(20);
     const searchQuery = ref('');
 
     // 加载CSV数据

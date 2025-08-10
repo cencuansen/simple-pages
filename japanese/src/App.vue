@@ -128,7 +128,7 @@ onMounted(async () => {
 <style>
 :root {
   --gap12: 12px;
-
+  --audio-height: 54px;
   --root-header-height: 30px;
   /* default */
   --root-footer-height: 0px;
@@ -167,6 +167,7 @@ onMounted(async () => {
   height: calc(100vh - var(--root-header-height) - var(--root-footer-height));
   position: fixed;
   display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
