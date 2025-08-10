@@ -306,7 +306,7 @@ import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
 import {useGrammarStore} from "../stores/grammarStore"
 import type {WordItem} from "../types";
-import {speakingId, speakingTextId, speakingWordId, matchTextFunc, detectBrowser} from '../utils.ts'
+import {speakingId, speakingTextId, speakingWordId, matchTextFunc} from '../utils.ts'
 import {storeToRefs} from 'pinia'
 import {onDeactivated} from "@vue/runtime-core"
 
