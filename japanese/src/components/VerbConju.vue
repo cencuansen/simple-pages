@@ -2,7 +2,8 @@
   <div class="verb-conju">
     <div class="verb-conju-header">
       <el-input v-model="keyword" size="small" placeholder="搜索" clearable></el-input>
-      <el-select v-model="selectedCols" size="small" style="width: 210px;" placeholder="选择列" multiple collapse-tags fit-input-width>
+      <el-select v-model="selectedCols" size="small" style="width: 210px;" placeholder="选择列" multiple collapse-tags
+                 fit-input-width>
         <el-option v-for="col in columns" :key="col.label" :value="col.label" :label="col.label"></el-option>
       </el-select>
     </div>
@@ -38,7 +39,7 @@ const verbConjuStore = useConjuStore()
 const {conjuVerbs} = storeToRefs(verbConjuStore)
 
 const keyword = ref<string>()
-const pageSize = 18;
+const pageSize = 20;
 const pageIndex = ref(1)
 const totalInView = ref(0)
 const conjuView = computed(() => {
@@ -163,8 +164,8 @@ onMounted(() => {
 
 .verb-conju-pagination {
   width: 100%;
-  height: var(--pagination-height);
   overflow-y: scroll;
+  height: var(--pagination-height);
 }
 
 .el-pagination {

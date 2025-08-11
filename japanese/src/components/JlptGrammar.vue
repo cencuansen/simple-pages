@@ -30,15 +30,28 @@
         </el-table>
       </div>
     </div>
+    <div class="pagination">
+      <el-pagination
+          v-model:current-page="pageIndex"
+          :page-size="pageSize"
+          :total="totalInView"
+          layout="prev, pager, next"
+      />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import {computed, ref} from 'vue'
 import {useJlptGrammarStore} from "../stores/jlptGrammarStore.ts"
+import {ElPagination} from "element-plus";
 
 const grammarStore = useJlptGrammarStore()
 const keyword = ref("")
+
+const pageSize = 20
+const pageIndex = ref(1)
+const totalInView = ref(0)
 
 const grammarView = computed(() => {
   let list = grammarStore.JlptGrammars
@@ -62,7 +75,10 @@ const grammarView = computed(() => {
       return highlighted
     })
   }
-  return list
+  totalInView.value = list.length
+  const start = (pageIndex.value - 1) * pageSize
+  const end = start + pageSize
+  return list.slice(start, end)
 })
 </script>
 
@@ -95,7 +111,7 @@ const grammarView = computed(() => {
 
 .main {
   overflow-y: scroll;
-  height: calc(100vh - var(--root-header-height) - var(--grammar-headers-height) - var(--root-footer-height));
+  height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--pagination-height) - var(--root-footer-height));
 }
 
 .table {
@@ -105,6 +121,17 @@ const grammarView = computed(() => {
 
 :deep(.match) {
   color: var(--el-color-danger);
+}
+
+.pagination {
+  width: 100%;
+  overflow-y: scroll;
+  height: var(--pagination-height);
+}
+
+.el-pagination {
+  margin: 0 auto;
+  width: var(--content-max-width);
 }
 </style>
 
