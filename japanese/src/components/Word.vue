@@ -2,32 +2,16 @@
   <div class="words">
     <div class="word-headers">
       <div class="word-header">
-      <span><el-button
-          size="small"
-          class="previous-button navigation-item"
-          :disabled="lessonIndex === 1 || (!lessonIndex && pageIndex === 1)"
-          @click="goPrevious"
-      >
-        上一页
-      </el-button></span>
-        <el-select size="small" class="navigation-item" v-model="lessonIndex" fit-input-width clearable
-                   placeholder="选课程">
+        <el-select size="small" class="navigation-item" v-model="lessonIndex" placeholder="选课程" clearable
+                   fit-input-width>
           <el-option
-              v-for="index in wordStore.lessonCount"
+              v-for="(item, index) in lessonStore.lessons"
               :key="index"
-              :label="`第 ${index} 课`"
+              :label="`${displayText(item.title?.content)}`"
               :value="index"
           />
         </el-select>
         <el-input v-model.trim="keyword" size="small" placeholder="搜单词" clearable></el-input>
-        <span><el-button
-            size="small"
-            class="next-button navigation-item"
-            :disabled="lessonIndex === maxPage || (!lessonIndex && pageIndex === maxPage)"
-            @click="goNext"
-        >
-        下一页
-      </el-button></span>
       </div>
     </div>
 
@@ -48,7 +32,7 @@
           </el-table-column>
           <el-table-column width="60" prop="pos" label="词性" show-overflow-tooltip/>
           <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
-          <el-table-column label="" width="50" v-if="!lessonIndex">
+          <el-table-column label="" width="50" v-if="lessonIndex > -1">
             <template #default="scope">
               {{ wordStore.realLessonNumber(scope.row.lesson) }}
             </template>
@@ -84,6 +68,15 @@
       </section>
     </div>
 
+    <div class="pagination">
+      <el-pagination
+          v-model:current-page="pageIndex"
+          :page-size="pageSize"
+          :total="totalInView"
+          layout="prev, pager, next"
+      />
+    </div>
+
     <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
 </template>
@@ -93,18 +86,21 @@ import {computed, onActivated, onBeforeUnmount, ref, watch} from 'vue'
 import {useSpeechStore} from "../stores/speechStore"
 import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
+import {useLessonStore} from '../stores/lessonStore'
 import type {WordItem} from '../types'
-import {speakingId, speakingWordId} from '../utils.ts'
+import {displayText, speakingId, speakingWordId} from '../utils.ts'
+import {ElPagination} from "element-plus";
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
+const lessonStore = useLessonStore()
 const baseSettingStore = useBaseSettingStore()
 
 const lessonIndex = ref()
+const pageSize = 20
 const pageIndex = ref(1)
+const totalInView = ref(0)
 const keyword = ref("")
-
-const maxPageSize = 20
 
 const container = ref()
 const scrollPosition = ref<number>(0)
@@ -122,42 +118,12 @@ watch(() => speechStore.lastFireTime, (_) => {
   });
 });
 
-const goPrevious = async () => {
-  if (lessonIndex.value) {
-    lessonIndex.value--
-  } else {
-    pageIndex.value--
-  }
-}
-
-const goNext = async () => {
-  if (lessonIndex.value) {
-    lessonIndex.value++
-  } else {
-    pageIndex.value++
-  }
-}
-
-const maxPage = computed(() => {
-  if (lessonIndex.value) {
-    pageIndex.value = 1
-    return wordStore.lessonCount
-  }
-  return Math.ceil(wordStore.wordList.length / maxPageSize)
-})
-
 const words = computed(() => {
   let list: WordItem[]
-  let index
-  let size
   if (lessonIndex.value) {
-    list = wordStore.getByLesson(lessonIndex.value)
-    index = 1
-    size = list.length
+    list = wordStore.getByLesson(lessonIndex.value + 1)
   } else {
     list = wordStore.wordList
-    index = pageIndex.value
-    size = maxPageSize
   }
   if (keyword.value) {
     list = list.filter(item => item.kana.indexOf(keyword.value) > -1
@@ -166,8 +132,10 @@ const words = computed(() => {
         || item.word.indexOf(keyword.value) > -1
     )
   }
-  let skip = (index - 1) * size
-  return list.slice(skip, index * size)
+  totalInView.value = list.length
+  const start = (pageIndex.value - 1) * pageSize
+  const end = start + pageSize
+  return list.slice(start, end)
 })
 
 // const getSpeechText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
@@ -229,8 +197,7 @@ onActivated(async () => {
   width: 100vw;
   overflow-y: scroll;
   margin: 0 auto;
-  position: fixed;
-  height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--root-footer-height));
+  height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--pagination-height) - var(--root-footer-height));
 }
 
 .word-main > * {
@@ -240,6 +207,17 @@ onActivated(async () => {
 
 .speaking-active {
   color: var(--el-color-success);
+}
+
+.pagination {
+  width: 100%;
+  overflow-y: scroll;
+  height: var(--pagination-height);
+}
+
+.el-pagination {
+  margin: 0 auto;
+  width: var(--content-max-width);
 }
 
 .go-top {

@@ -308,7 +308,7 @@ import {useBaseSettingStore} from "../stores/baseSettingStore"
 import {useWordStore} from "../stores/wordStore"
 import {useGrammarStore} from "../stores/grammarStore"
 import type {WordItem} from "../types";
-import {speakingId, speakingTextId, speakingWordId, matchTextFunc} from '../utils.ts'
+import {speakingId, speakingTextId, speakingWordId, matchTextFunc, speakText, displayText} from '../utils.ts'
 import {storeToRefs} from 'pinia'
 import {onDeactivated} from "@vue/runtime-core"
 
@@ -554,8 +554,6 @@ const highlightReplacer = (match: string) => {
   return `<a href="#${speakingWordId(word)}" class="highlight-word">${word?.word}</a>`
 }
 
-const speakText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
-const displayText = (text: string | undefined = "") => text.replace(/!([^(]+)\([^)]+\)/g, '$1')
 const textView = (originalText: string | undefined = "", wordLink = true, furigana = true) => {
   const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1');
   if (words.value.length === 0) return baseText

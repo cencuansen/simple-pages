@@ -47,3 +47,7 @@ export const detectBrowser = () => {
 
     return {type: 'other', browser: 'unknown'};
 }
+
+export const speakText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
+
+export const displayText = (text: string | undefined = "") => text.replace(/!([^(]+)\([^)]+\)/g, '$1')
