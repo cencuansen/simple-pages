@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" v-if="!fullscreen">
     <div class="button-group">
       <el-button
           size="small"
@@ -17,8 +17,8 @@
       </el-button>
       <el-button
           size="small"
-          :type="isActive('/vocabulary') ? 'primary' : 'default'"
-          @click="navigateTo('/vocabulary')"
+          :type="isActive('/jlpt-word') ? 'primary' : 'default'"
+          @click="navigateTo('/jlpt-word')"
       >
         词汇(jlpt)
       </el-button>
@@ -79,6 +79,7 @@ import {useBaseSettingStore} from "./stores/baseSettingStore"
 import {useConjuStore} from "./stores/conjuStore.ts"
 import {useRouter, useRoute} from 'vue-router'
 import {detectBrowser} from './utils.ts'
+import {storeToRefs} from "pinia";
 
 const rootFooterHeight = ref(0)
 onMounted(() => {
@@ -100,7 +101,9 @@ onMounted(() => {
 
 const router = useRouter()
 const route = useRoute()
-useBaseSettingStore();
+const baseSettingStore = useBaseSettingStore()
+
+const {fullscreen} = storeToRefs(baseSettingStore)
 
 const navigateTo = (path: string) => {
   router.push(path)
@@ -117,6 +120,10 @@ const jlptGrammarStore = useJlptGrammarStore()
 const verbConju = useConjuStore()
 
 onMounted(async () => {
+  if (!isActive('/lesson')) {
+    baseSettingStore.setFullscreen(false)
+  }
+
   await wordStore.fetchWords()
   await lessonStore.fetchLessons()
   await grammarStore.fetchGrammars()

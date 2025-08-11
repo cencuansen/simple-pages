@@ -1,6 +1,6 @@
 <template>
   <div class="lessons" v-if="currentLesson">
-    <div class="lesson-headers">
+    <div class="lesson-headers" v-if="!fullscreen">
       <div class="lesson-switch">
         <el-button
             size="small"
@@ -81,6 +81,14 @@
             title="停止播放"
             @click="pauseAudio">
           停
+        </el-button>
+        <el-button
+            size="small"
+            circle
+            title="全屏"
+            v-if="!fullscreen"
+            @click="toggleFullscreen">
+          全
         </el-button>
       </div>
     </div>
@@ -273,6 +281,17 @@
       </section>
     </div>
 
+    <div class="audio" v-if="baseSettingStore.audioSpeak && !fullscreen">
+      <audio ref="audioRef" :src="src"
+             controls
+             @timeupdate="onTimeUpdate"
+             @play="onPlay"
+             @pause="onPause"
+             @error="onError"
+             @abort="onAbort"
+      ></audio>
+    </div>
+
     <el-dialog class="search-model" v-model="searchModel" :modal="false">
       <template #header>
         <el-input v-model.lazy="keyword" size="small" placeholder="搜索" clearable/>
@@ -287,15 +306,10 @@
 
     <a class="go-top" href="#" @click="goTop">↑</a>
 
-    <div class="audio" v-if="baseSettingStore.audioSpeak">
-      <audio ref="audioRef" :src="src"
-             controls
-             @timeupdate="onTimeUpdate"
-             @play="onPlay"
-             @pause="onPause"
-             @error="onError"
-             @abort="onAbort"
-      ></audio>
+    <div class="close-fullscreen" title="退出全屏" v-if="fullscreen" @click="toggleFullscreen(false)">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
     </div>
   </div>
 </template>
@@ -319,6 +333,7 @@ const baseSettingStore = useBaseSettingStore()
 const grammarStore = useGrammarStore()
 
 const {currentLesson, lessons} = storeToRefs(lessonStore)
+const {fullscreen} = storeToRefs(baseSettingStore)
 
 const allTranslate = ref(false)
 const basicsTranslate = ref(false)
@@ -349,7 +364,6 @@ const pauseHandler = async (url: string, playTimes: number) => {
   await playAudio(url, playTimes - 1)
 }
 
-// 存储当前活动的pause处理函数
 let currentPauseHandler: (() => void) | null = null;
 
 const playAudio = async (timeRange: string, playTimes: number) => {
@@ -397,7 +411,6 @@ const lastElement = ref<HTMLElement | null>()
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
-// 全局切换
 const toggleTranslate = (newValue: boolean) => {
   allTranslate.value = newValue
   // 基础句子
@@ -454,6 +467,18 @@ const lessonsView = computed(() => {
     const contents = lesson.slice(2).filter(c => c.includes(keyword.value))
     return {idx: lesson[0], title: lesson[1], contents}
   }).filter(a => a.contents.length > 0)
+})
+
+const toggleFullscreen = (newStatus: boolean | null = null) => {
+  baseSettingStore.setFullscreen(newStatus !== null ? newStatus : !fullscreen.value)
+}
+
+const mainHeight = computed(() => {
+  if (fullscreen.value) {
+    return `calc(100vh - var(--root-footer-height))`
+  } else {
+    return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--audio-height) - var(--root-footer-height))`
+  }
 })
 
 const scrollTarget = (target: any, config: {
@@ -705,7 +730,7 @@ watch(() => searchModel.value, (value, _) => {
   overflow-y: scroll;
   margin: 0 auto;
   width: 100vw;
-  height: calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--audio-height) - var(--root-footer-height));
+  height: v-bind(mainHeight);
 }
 
 .lesson-main > * {
@@ -880,6 +905,24 @@ watch(() => searchModel.value, (value, _) => {
   padding-left: 20px;
 }
 
+.speaking-active {
+  color: var(--el-color-success);
+}
+
+.audio {
+  width: 100%;
+  overflow-y: scroll;
+}
+
+audio {
+  display: block;
+  width: 100%;
+}
+
+:deep(.match) {
+  color: var(--el-color-danger);
+}
+
 .go-top {
   position: absolute;
   bottom: 100px;
@@ -897,25 +940,25 @@ watch(() => searchModel.value, (value, _) => {
   font-size: 1.5rem;
   color: var(--el-color-primary);
   background-color: inherit;
-  backdrop-filter: blur(1000px);
+  backdrop-filter: blur(10000px);
   text-decoration: none;
 }
 
-.speaking-active {
-  color: var(--el-color-success);
-}
-
-.audio {
-  width: 100%;
-  overflow-y: scroll;
-}
-
-audio {
-  display: block;
-  width: 100%;
-}
-
-:deep(.match) {
-  color: var(--el-color-danger);
+.close-fullscreen {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 24px;
+  user-select: none;
+  z-index: 999;
+  display: flex; /* 使用Flexbox */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  backdrop-filter: blur(10000px);
 }
 </style>

@@ -30,6 +30,12 @@ export const useBaseSettingStore = defineStore('baseSetting', () => {
     const audioSpeak = ref(true)
     const ttsSpeak = ref(true)
 
+    const fullscreen = ref(false)
+
+    const setFullscreen = (newStatus: boolean) => {
+        fullscreen.value = newStatus
+    }
+
     return {
         isDark,
         style,
@@ -42,8 +48,10 @@ export const useBaseSettingStore = defineStore('baseSetting', () => {
         audioSpeak,
         ttsSpeak,
         toggleDark,
+        fullscreen,
         furiganaToggle,
-        wordLinkToggle
+        wordLinkToggle,
+        setFullscreen
     }
 }, {
     persist: true

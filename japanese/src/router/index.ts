@@ -24,7 +24,7 @@ const router = createRouter({
             component: Word
         },
         {
-            path: '/vocabulary',
+            path: '/jlpt-word',
             component: JlptWord
         },
         {
