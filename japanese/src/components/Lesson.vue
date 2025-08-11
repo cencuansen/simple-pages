@@ -1,5 +1,5 @@
 <template>
-  <div class="lessons">
+  <div class="lessons" v-if="currentLesson">
     <div class="lesson-headers">
       <div class="lesson-switch">
         <el-button
@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <div class="lesson-main" ref="container" @scroll="onScroll" v-if="currentLesson">
+    <div class="lesson-main" ref="container" @scroll="onScroll">
       <div ref="top"></div>
       <h1 class="lesson-title">
         <el-text class="text-title" v-html="textView(currentLesson?.title?.content)"
@@ -287,14 +287,16 @@
 
     <a class="go-top" href="#" @click="goTop">↑</a>
 
-    <audio v-if="baseSettingStore.audioSpeak" ref="audioRef" :src="src"
-           controls
-           @timeupdate="onTimeUpdate"
-           @play="onPlay"
-           @pause="onPause"
-           @error="onError"
-           @abort="onAbort"
-    ></audio>
+    <div class="audio" v-if="baseSettingStore.audioSpeak">
+      <audio ref="audioRef" :src="src"
+             controls
+             @timeupdate="onTimeUpdate"
+             @play="onPlay"
+             @pause="onPause"
+             @error="onError"
+             @abort="onAbort"
+      ></audio>
+    </div>
   </div>
 </template>
 
@@ -903,6 +905,11 @@ watch(() => searchModel.value, (value, _) => {
 
 .speaking-active {
   color: var(--el-color-success);
+}
+
+.audio {
+  width: 100%;
+  overflow-y: scroll;
 }
 
 audio {
