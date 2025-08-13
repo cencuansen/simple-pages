@@ -32,7 +32,7 @@
           </el-table-column>
           <el-table-column width="60" prop="pos" label="词性" show-overflow-tooltip/>
           <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
-          <el-table-column label="" width="50" v-if="lessonIndex > -1">
+          <el-table-column label="课程" width="60">
             <template #default="scope">
               {{ wordStore.realLessonNumber(scope.row.lesson) }}
             </template>
