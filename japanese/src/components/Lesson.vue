@@ -650,8 +650,10 @@ const onScroll = async () => {
   scrollPosition.value = container.value.scrollTop
 }
 
-const onKeyup = (event: KeyboardEvent) => {
-  console.log('onKeyup', event.key)
+const onSingleKeyup = (event: KeyboardEvent) => {
+  if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey) {
+    return;
+  }
   if (['ArrowLeft'].includes(event.key)) {
     goToLesson(lessonStore.currentIndex - 1)
   } else if (['ArrowRight'].includes(event.key)) {
@@ -670,7 +672,7 @@ const onKeyup = (event: KeyboardEvent) => {
 }
 
 onActivated(async () => {
-  document.addEventListener('keyup', onKeyup);
+  document.addEventListener('keyup', onSingleKeyup);
 
   setTimeout(() => {
     if (container && container.value) {
@@ -680,14 +682,14 @@ onActivated(async () => {
 })
 
 onDeactivated(() => {
-  document.removeEventListener('keyup', onKeyup);
+  document.removeEventListener('keyup', onSingleKeyup);
 })
 
 watch(() => searchModel.value, (value, _) => {
   if (value) {
-    document.removeEventListener('keyup', onKeyup);
+    document.removeEventListener('keyup', onSingleKeyup);
   } else {
-    document.addEventListener('keyup', onKeyup);
+    document.addEventListener('keyup', onSingleKeyup);
   }
 })
 
