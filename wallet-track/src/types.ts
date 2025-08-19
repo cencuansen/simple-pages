@@ -1,4 +1,4 @@
-export interface CommonExport {
+export interface Common {
   name: string
   address: string
   emoji: string
@@ -9,13 +9,13 @@ export interface CommonExport {
   sound: string
 }
 
-export interface BullxExport {
+export interface Bullx {
   name: string
   address: string
   emoji: string
 }
 
-export interface AxiomExport {
+export interface Axiom {
   trackedWalletAddress: string
   name: string
   emoji: string
@@ -26,10 +26,10 @@ export interface AxiomExport {
   sound: string
 }
 
-export interface GmgnExport {
+export interface Gmgn {
   name: string
   address: string
   emoji: string
 }
 
-export interface OkxExport {}
+export interface Okx {}

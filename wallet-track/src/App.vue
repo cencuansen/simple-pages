@@ -35,7 +35,16 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { fromBullx, fromAxiom, fromGmgn, toBullx, toGmgn, toAxiom, fromOkx, toOkx } from './functions.ts'
+import {
+  fromAxiom,
+  fromBullx,
+  fromGmgn,
+  fromOkx,
+  toAxiom,
+  toBullx,
+  toGmgn,
+  toOkx
+} from './functions.ts'
 
 const platforms = [
   {
@@ -60,16 +69,20 @@ const platforms = [
   }
 ]
 
-const fromActive = ref(platforms[0].name)
-const toActive = ref(platforms[1].name)
+const fromActive = ref('OKX')
+const toActive = ref('Axiom')
 
 const from = ref('')
 
 const to = computed(() => {
+  if (!from.value) {
+    return null
+  }
   const nowFrom = platforms.find(p => p.name === fromActive.value)
   const nowTo = platforms.find(p => p.name === toActive.value)
   if (nowFrom === undefined || nowTo === undefined) return
-  return nowTo?.to(nowFrom.from(from.value))
+  const mid = nowFrom.from(from.value)
+  return nowTo?.to(mid)
 })
 </script>
 
