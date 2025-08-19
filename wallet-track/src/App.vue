@@ -10,7 +10,7 @@
         >
           {{ platform.name }}
         </div>
-        <div class="tab-item" @click="from = ''">清空</div>
+        <div class="tab-item" @click="from = ''">Clear</div>
       </div>
       <div class="tab-main">
         <textarea name="from" id="from" v-model="from"></textarea>
@@ -26,9 +26,9 @@
         >
           {{ platform.name }}
         </div>
-        <div class="tab-item" :class="{ red: reverse }" @click="reverse = !reverse">反序</div>
-        <div class="tab-item" @click="copy">复制</div>
-        <div class="info" v-if="count">共 {{ count }} 项</div>
+        <div class="tab-item" :class="{ red: reverse }" @click="reverse = !reverse">Reverse</div>
+        <div class="tab-item" @click="copy">Copy</div>
+        <div class="info" v-if="count">total {{ count }} items</div>
         <div class="info" :class="{ green: green }">{{ info }}</div>
       </div>
       <div class="tab-main">
@@ -125,10 +125,10 @@ const copy = async () => {
       green.value = false
     }, 3000)
     copied.value = true
-    info.value = '内容已复制到剪贴板'
+    info.value = 'copied'
     green.value = true
   } catch (err) {
-    console.error('复制失败:', err)
+    console.error('failed:', err)
   }
 }
 </script>

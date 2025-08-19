@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import type { Common, Bullx, Axiom } from './types.ts'
+import { all as allEmojis } from './emojis-all.ts'
 
 export const fromBullx = (params: string): Common[] => {
   const addressSet = new Set<string>()
@@ -10,13 +11,14 @@ export const fromBullx = (params: string): Common[] => {
     // return fromAxiom(params)
     return []
   }
+  const emojis = shuffle(allEmojis.slice())
   return list
     .map(
       item =>
         ({
           name: item.name,
           address: item.address,
-          emoji: item.emoji,
+          emoji: item.emoji || emojis.shift(),
           toast: false,
           bubble: true,
           feed: true,
@@ -58,13 +60,14 @@ export const fromAxiom = (params: string): Common[] => {
     // return fromBullx(params)
     return []
   }
+  const emojis = shuffle(allEmojis.slice())
   return list
     .map(
       item =>
         ({
           name: item.name,
           address: item.trackedWalletAddress,
-          emoji: item.emoji,
+          emoji: item.emoji || emojis.shift(),
           toast: item.alertsOnToast,
           bubble: item.alertsOnBubble,
           feed: item.alertsOnFeed,
@@ -108,7 +111,7 @@ export const fromOkx = (params: string): Common[] => {
     // return fromAxiom(params)
     return []
   } catch (_) {}
-
+  const emojis = shuffle(allEmojis.slice())
   return params
     .split('\n')
     .filter(line => line.trim() !== '') // 过滤空行
@@ -117,7 +120,7 @@ export const fromOkx = (params: string): Common[] => {
         ({
           name: address.slice(0, 5),
           address: address.trim(), // 去除前后空格
-          emoji: null,
+          emoji: emojis.shift(),
           toast: false,
           bubble: true,
           feed: true,
@@ -134,3 +137,12 @@ export const fromOkx = (params: string): Common[] => {
     })
 }
 export const toOkx = toBullx
+
+export const shuffle = (array: number[] | string[]): number[] | string[] => {
+  const shuffled = [...array]
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+  }
+  return shuffled
+}
