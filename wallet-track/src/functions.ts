@@ -19,10 +19,10 @@ export const toAxiom = (params: Common[]): string => {
         trackedWalletAddress: param.address,
         name: param.name,
         emoji: param.emoji,
-        alertsOnToast: param.toast || false,
-        alertsOnBubble: param.bubble || true,
-        alertsOnFeed: param.feed || true,
-        groups: param.groups || [],
+        alertsOnToast: param.toast,
+        alertsOnBubble: param.bubble,
+        alertsOnFeed: param.feed,
+        groups: param.groups,
         sound: param.sound
       } as unknown as Axiom
     }), null, 2)
@@ -42,10 +42,10 @@ export const fromOkx = (params: string): Common[] => {
       address: address,
       emoji: null,
       toast: false,
-      bubble: false,
-      feed: false,
+      bubble: true,
+      feed: true,
       groups: [],
-      sound: null
+      sound: 'default'
     } as unknown as Common
   })
 }
