@@ -2,16 +2,27 @@
   <div class="words">
     <div class="word-headers">
       <div class="word-header">
-        <el-select size="small" class="navigation-item" v-model="lessonIndex" placeholder="选课程" clearable
-                   fit-input-width>
+        <el-select
+          size="small"
+          class="navigation-item"
+          v-model="lessonIndex"
+          placeholder="选课程"
+          clearable
+          fit-input-width
+        >
           <el-option
-              v-for="(item, index) in lessonStore.lessons"
-              :key="index"
-              :label="`${displayText(item.title?.content)}`"
-              :value="index"
+            v-for="(item, index) in lessonStore.lessons"
+            :key="index"
+            :label="`${displayText(item.title?.content)}`"
+            :value="index"
           />
         </el-select>
-        <el-input v-model.trim="keyword" size="small" placeholder="搜单词" clearable></el-input>
+        <el-input
+          v-model.trim="keyword"
+          size="small"
+          placeholder="搜单词"
+          clearable
+        ></el-input>
       </div>
     </div>
 
@@ -22,16 +33,39 @@
         <el-table :data="words">
           <el-table-column label="单词">
             <template #default="scope">
-              <div v-if="baseSettingStore.word" :id="speakingWordId(scope.row as WordItem)" class="column-word"
-                   :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.word }}
+              <div
+                v-if="baseSettingStore.word"
+                :id="speakingWordId(scope.row as WordItem)"
+                class="column-word"
+                :class="{
+                  'speaking-active': speechStore.isWordSpeaking(scope.row),
+                }"
+              >
+                {{ scope.row.word }}
               </div>
-              <div v-if="baseSettingStore.kana" class="column-kana"
-                   :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.kana }}
+              <div
+                v-if="baseSettingStore.kana"
+                class="column-kana"
+                :class="{
+                  'speaking-active': speechStore.isWordSpeaking(scope.row),
+                }"
+              >
+                {{ scope.row.kana }}
               </div>
             </template>
           </el-table-column>
-          <el-table-column width="60" prop="pos" label="词性" show-overflow-tooltip/>
-          <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
+          <el-table-column
+            width="60"
+            prop="pos"
+            label="词性"
+            show-overflow-tooltip
+          />
+          <el-table-column
+            prop="desc"
+            label="释义"
+            v-if="baseSettingStore.wordDesc"
+            show-overflow-tooltip
+          />
           <el-table-column label="课程" width="60">
             <template #default="scope">
               {{ wordStore.realLessonNumber(scope.row.lesson) }}
@@ -40,12 +74,13 @@
           <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak">
             <template #header>
               <el-button
-                  type="primary"
-                  size="small"
-                  circle
-                  v-if="baseSettingStore.ttsSpeak && lessonIndex"
-                  :disabled="speechStore.isSpeaking"
-                  @click="speechStore.speakList(words)">
+                type="primary"
+                size="small"
+                circle
+                v-if="baseSettingStore.ttsSpeak && lessonIndex"
+                :disabled="speechStore.isSpeaking"
+                @click="speechStore.speakList(words)"
+              >
                 <el-icon>
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
@@ -53,11 +88,12 @@
             </template>
             <template #default="scope">
               <el-button
-                  type="primary"
-                  size="small"
-                  circle
-                  :disabled="speechStore.isSpeaking"
-                  @click="speechStore.speak(scope.row)">
+                type="primary"
+                size="small"
+                circle
+                :disabled="speechStore.isSpeaking"
+                @click="speechStore.speak(scope.row)"
+              >
                 <el-icon>
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
@@ -70,10 +106,10 @@
 
     <div class="pagination">
       <el-pagination
-          v-model:current-page="pageIndex"
-          :page-size="pageSize"
-          :total="totalInView"
-          layout="prev, pager, next"
+        v-model:current-page="pageIndex"
+        :page-size="pageSize"
+        :total="totalInView"
+        layout="prev, pager, next"
       />
     </div>
 
@@ -82,14 +118,14 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onActivated, onBeforeUnmount, ref, watch} from 'vue'
-import {useSpeechStore} from "../stores/speechStore"
-import {useBaseSettingStore} from "../stores/baseSettingStore"
-import {useWordStore} from "../stores/wordStore"
-import {useLessonStore} from '../stores/lessonStore'
-import type {WordItem} from '../types'
-import {displayText, speakingId, speakingWordId} from '../utils.ts'
-import {ElPagination} from "element-plus";
+import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
+import { useSpeechStore } from '../stores/speechStore'
+import { useBaseSettingStore } from '../stores/baseSettingStore'
+import { useWordStore } from '../stores/wordStore'
+import { useLessonStore } from '../stores/lessonStore'
+import type { WordItem } from '../types'
+import { displayText, speakingId, speakingWordId } from '../utils.ts'
+import { ElPagination } from 'element-plus'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
@@ -100,23 +136,26 @@ const lessonIndex = ref()
 const pageSize = 20
 const pageIndex = ref(1)
 const totalInView = ref(0)
-const keyword = ref("")
+const keyword = ref('')
 
 const container = ref()
 const scrollPosition = ref<number>(0)
 const top = ref()
 
-watch(() => speechStore.lastFireTime, (_) => {
-  const id = speakingId()
-  if (!id) {
-    return;
+watch(
+  () => speechStore.lastFireTime,
+  (_) => {
+    const id = speakingId()
+    if (!id) {
+      return
+    }
+    document.getElementById(id)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
+    })
   }
-  document.getElementById(id)?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center',
-    inline: 'nearest'
-  });
-});
+)
 
 const words = computed(() => {
   let list: WordItem[]
@@ -126,10 +165,12 @@ const words = computed(() => {
     list = wordStore.wordList
   }
   if (keyword.value) {
-    list = list.filter(item => item.kana.indexOf(keyword.value) > -1
-        || item.kanji.indexOf(keyword.value) > -1
-        || item.desc.indexOf(keyword.value) > -1
-        || item.word.indexOf(keyword.value) > -1
+    list = list.filter(
+      (item) =>
+        item.kana.indexOf(keyword.value) > -1 ||
+        item.kanji.indexOf(keyword.value) > -1 ||
+        item.desc.indexOf(keyword.value) > -1 ||
+        item.word.indexOf(keyword.value) > -1
     )
   }
   totalInView.value = list.length
@@ -164,7 +205,6 @@ onActivated(async () => {
     }
   })
 })
-
 </script>
 
 <style scoped>
@@ -197,7 +237,10 @@ onActivated(async () => {
   width: 100vw;
   overflow-y: scroll;
   margin: 0 auto;
-  height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--pagination-height) - var(--root-footer-height));
+  height: calc(
+    100vh - var(--root-header-height) - var(--single-row-header-height) -
+      var(--pagination-height) - var(--root-footer-height)
+  );
 }
 
 .word-main > * {

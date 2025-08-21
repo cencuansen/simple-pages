@@ -1,61 +1,61 @@
 :root {
-    --header-height: 50px;
-    --content-max-width: 700px;
-    --go-top-color: #fff;
-    --go-top-bgc: #333;
+  --header-height: 50px;
+  --content-max-width: 700px;
+  --go-top-color: #fff;
+  --go-top-bgc: #333;
 
-    --text-content-line-height: 40px;
+  --text-content-line-height: 40px;
 }
 
 html.dark {
-    --go-top-color: #fff;
-    --go-top-bgc: #333;
+  --go-top-color: #fff;
+  --go-top-bgc: #333;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 a {
-    color: inherit;
-    text-decoration-line: underline;
-    text-decoration-style: dotted;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 a:link {
-    color: inherit;
+  color: inherit;
 }
 
 a:visited {
-    /*color: #B37AFF;*/
-    color: inherit;
+  /*color: #B37AFF;*/
+  color: inherit;
 }
 
 a:hover {
-    /*color: #4285F4;*/
-    color: inherit;
+  /*color: #4285F4;*/
+  color: inherit;
 }
 
 a:active {
-    /*color: #FF0000;*/
-    color: inherit;
+  /*color: #FF0000;*/
+  color: inherit;
 }
 
 ruby rt {
-    user-select: none;
-    pointer-events: none;
+  user-select: none;
+  pointer-events: none;
 }
 
 ruby rt::before {
-    content: attr(data-ruby);
+  content: attr(data-ruby);
 }
 
 /*

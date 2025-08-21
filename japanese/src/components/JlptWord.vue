@@ -2,37 +2,46 @@
   <div class="words">
     <div class="word-headers">
       <div class="word-header">
-        <el-input class="search" v-model.trim="keyword" size="small" placeholder="搜单词" clearable></el-input>
+        <el-input
+          class="search"
+          v-model.trim="keyword"
+          size="small"
+          placeholder="搜单词"
+          clearable
+        ></el-input>
       </div>
     </div>
 
     <div class="word-main">
       <el-table
-          :data="store.pageView"
-          v-loading="store.loading"
-          :show-header="false"
-          stripe
+        :data="store.pageView"
+        v-loading="store.loading"
+        :show-header="false"
+        stripe
       >
         <el-table-column label="词汇">
           <template #default="scope">
-            <div :id="`word-${scope.row.expression}`" class="column-word">{{ scope.row.expression }}
+            <div :id="`word-${scope.row.expression}`" class="column-word">
+              {{ scope.row.expression }}
             </div>
-            <div :id="`word-${scope.row.reading}`" class="column-kana">{{ scope.row.reading }}
+            <div :id="`word-${scope.row.reading}`" class="column-kana">
+              {{ scope.row.reading }}
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="meaning" label="释义"/>
+        <el-table-column prop="meaning" label="释义" />
         <el-table-column label="标签" width="65">
           <template #default="scope">{{ scope.row.levelName }}</template>
         </el-table-column>
         <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak">
           <template #default="scope">
             <el-button
-                type="primary"
-                size="small"
-                circle
-                :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(scope.row.reading)">
+              type="primary"
+              size="small"
+              circle
+              :disabled="speechStore.isSpeaking"
+              @click="speechStore.speak(scope.row.reading)"
+            >
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>
               </el-icon>
@@ -44,37 +53,37 @@
 
     <div class="pagination">
       <el-pagination
-          v-model:current-page="store.currentPage"
-          :page-size="store.pageSize"
-          :total="store.totalInView"
-          layout="prev, pager, next"
-          @current-change="store.setPage"
+        v-model:current-page="store.currentPage"
+        :page-size="store.pageSize"
+        :total="store.totalInView"
+        layout="prev, pager, next"
+        @current-change="store.setPage"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted} from 'vue';
-import {useSpeechStore} from "../stores/speechStore";
-import {useVocabularyStore} from '../stores/vocabularyStore.ts';
-import {useBaseSettingStore} from "../stores/baseSettingStore";
-import {ElTable, ElTableColumn, ElPagination, ElInput} from 'element-plus';
+import { computed, onMounted } from 'vue'
+import { useSpeechStore } from '../stores/speechStore'
+import { useVocabularyStore } from '../stores/vocabularyStore.ts'
+import { useBaseSettingStore } from '../stores/baseSettingStore'
+import { ElTable, ElTableColumn, ElPagination, ElInput } from 'element-plus'
 
-const store = useVocabularyStore();
-const speechStore = useSpeechStore();
-const baseSettingStore = useBaseSettingStore();
+const store = useVocabularyStore()
+const speechStore = useSpeechStore()
+const baseSettingStore = useBaseSettingStore()
 
 // 初始化加载数据
 onMounted(() => {
-  store.loadVocabularies();
-});
+  store.loadVocabularies()
+})
 
 // 搜索输入
 const keyword = computed({
   get: () => store.searchQuery,
   set: (value) => store.setSearchQuery(value),
-});
+})
 </script>
 
 <style scoped>
@@ -114,7 +123,10 @@ const keyword = computed({
   padding: 0;
   overflow-y: scroll;
   width: 100%;
-  height: calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--pagination-height) - var(--root-footer-height));
+  height: calc(
+    100vh - var(--root-header-height) - var(--single-row-header-height) -
+      var(--pagination-height) - var(--root-footer-height)
+  );
 }
 
 .el-table {

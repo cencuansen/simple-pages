@@ -3,91 +3,103 @@
     <div class="lesson-headers" v-if="!fullscreen">
       <div class="lesson-switch">
         <el-button
-            size="small"
-            class="previous-button navigation-item"
-            :disabled="!lessonStore.hasPrevious"
-            @click="goToLesson(lessonStore.currentIndex - 1)"
+          size="small"
+          class="previous-button navigation-item"
+          :disabled="!lessonStore.hasPrevious"
+          @click="goToLesson(lessonStore.currentIndex - 1)"
         >
           上一课
         </el-button>
-        <el-select size="small" class="navigation-item" v-model="lessonStore.currentIndex" fit-input-width>
+        <el-select
+          size="small"
+          class="navigation-item"
+          v-model="lessonStore.currentIndex"
+          fit-input-width
+        >
           <el-option
-              v-for="(item, index) in lessonStore.lessons"
-              :key="index"
-              :label="`${displayText(item.title?.content)}`"
-              :value="index"
+            v-for="(item, index) in lessonStore.lessons"
+            :key="index"
+            :label="`${displayText(item.title?.content)}`"
+            :value="index"
           />
         </el-select>
         <el-button
-            size="small"
-            class="next-button navigation-item"
-            :disabled="!lessonStore.hasNext"
-            @click="goToLesson(lessonStore.currentIndex + 1)"
+          size="small"
+          class="next-button navigation-item"
+          :disabled="!lessonStore.hasNext"
+          @click="goToLesson(lessonStore.currentIndex + 1)"
         >
           下一课
         </el-button>
       </div>
       <div class="function-group">
         <el-button
-            :type="allTranslate ? 'primary' : ''"
-            size="small"
-            circle
-            title="翻译"
-            v-if="baseSettingStore.translate"
-            @click="toggleTranslate(!allTranslate)">
+          :type="allTranslate ? 'primary' : ''"
+          size="small"
+          circle
+          title="翻译"
+          v-if="baseSettingStore.translate"
+          @click="toggleTranslate(!allTranslate)"
+        >
           译
         </el-button>
         <el-button
-            :type="baseSettingStore.furigana ? 'primary' : ''"
-            size="small"
-            circle
-            title="注音"
-            @click="baseSettingStore.furiganaToggle">
+          :type="baseSettingStore.furigana ? 'primary' : ''"
+          size="small"
+          circle
+          title="注音"
+          @click="baseSettingStore.furiganaToggle"
+        >
           注
         </el-button>
         <el-button
-            :type="baseSettingStore.wordLink ? 'primary' : ''"
-            size="small"
-            circle
-            title="单词跳转"
-            @click="baseSettingStore.wordLinkToggle">
+          :type="baseSettingStore.wordLink ? 'primary' : ''"
+          size="small"
+          circle
+          title="单词跳转"
+          @click="baseSettingStore.wordLinkToggle"
+        >
           跳
         </el-button>
         <el-button
-            :type="''"
-            size="small"
-            circle
-            title="搜索"
-            @click="searchModel = !searchModel">
+          :type="''"
+          size="small"
+          circle
+          title="搜索"
+          @click="searchModel = !searchModel"
+        >
           搜
         </el-button>
         <el-button
-            :type="''"
-            size="small"
-            circle
-            title="播放"
-            :disabled="isPlaying"
-            v-if="currentLesson?.audio && baseSettingStore.audioSpeak"
-            @click="playAudio(``, speechStore.repeatTimes)">
+          :type="''"
+          size="small"
+          circle
+          title="播放"
+          :disabled="isPlaying"
+          v-if="currentLesson?.audio && baseSettingStore.audioSpeak"
+          @click="playAudio(``, speechStore.repeatTimes)"
+        >
           <el-icon>
             <i class="icon-on-music"></i>
           </el-icon>
         </el-button>
         <el-button
-            :type="''"
-            size="small"
-            circle
-            v-if="isPlaying"
-            title="停止播放"
-            @click="pauseAudio">
+          :type="''"
+          size="small"
+          circle
+          v-if="isPlaying"
+          title="停止播放"
+          @click="pauseAudio"
+        >
           停
         </el-button>
         <el-button
-            size="small"
-            circle
-            title="全屏"
-            v-if="!fullscreen"
-            @click="toggleFullscreen">
+          size="small"
+          circle
+          title="全屏"
+          v-if="!fullscreen"
+          @click="toggleFullscreen"
+        >
           全
         </el-button>
       </div>
@@ -96,38 +108,65 @@
     <div class="lesson-main" ref="container" @scroll="onScroll">
       <div ref="top"></div>
       <h1 class="lesson-title">
-        <el-text class="text-title" v-html="textView(currentLesson?.title?.content)"
-                 @click="aClick"></el-text>
+        <el-text
+          class="text-title"
+          v-html="textView(currentLesson?.title?.content)"
+          @click="aClick"
+        ></el-text>
       </h1>
 
       <!-- 简单句子 -->
-      <section v-if="currentLesson?.basics?.length" class="section basics-section">
+      <section
+        v-if="currentLesson?.basics?.length"
+        class="section basics-section"
+      >
         <el-form class="basics-list">
-          <el-form-item class="message" v-for="(item, idx) in currentLesson?.basics" :key="`basic-${idx}`">
+          <el-form-item
+            class="message"
+            v-for="(item, idx) in currentLesson?.basics"
+            :key="`basic-${idx}`"
+          >
             <div class="text-row">
               <!--原文-->
               <el-text
-                  :id="speakingTextId(speakText(item.content))"
-                  class="text text-content"
-                  :class="{'speaking-active': speakingActive(item.time, currentTime, speakText(item.content))}"
-                  v-html="textView(item.content)" @click="aClick"></el-text>
-              <el-button :disabled="isPlaying" circle
-                         size="small" v-if="item.time && baseSettingStore.audioSpeak"
-                         @click="playAudio(item.time, speechStore.repeatTimes)">
+                :id="speakingTextId(speakText(item.content))"
+                class="text text-content"
+                :class="{
+                  'speaking-active': speakingActive(
+                    item.time,
+                    currentTime,
+                    speakText(item.content)
+                  ),
+                }"
+                v-html="textView(item.content)"
+                @click="aClick"
+              ></el-text>
+              <el-button
+                :disabled="isPlaying"
+                circle
+                size="small"
+                v-if="item.time && baseSettingStore.audioSpeak"
+                @click="playAudio(item.time, speechStore.repeatTimes)"
+              >
                 <el-icon>
                   <i class="icon-on-music"></i>
                 </el-icon>
               </el-button>
-              <el-button circle size="small"
-                         v-else-if="baseSettingStore.ttsSpeak"
-                         :disabled="isPlaying"
-                         @click="speechStore.speak(speakText(item.content))">
+              <el-button
+                circle
+                size="small"
+                v-else-if="baseSettingStore.ttsSpeak"
+                :disabled="isPlaying"
+                @click="speechStore.speak(speakText(item.content))"
+              >
                 <i class="icon-on-MPIS-TTS"></i>
               </el-button>
             </div>
             <!--译文-->
-            <div class="translation-line message"
-                 :class="{ 'show-translation': basicsTranslate }">
+            <div
+              class="translation-line message"
+              :class="{ 'show-translation': basicsTranslate }"
+            >
               {{ item.translation }}
             </div>
           </el-form-item>
@@ -135,88 +174,140 @@
       </section>
 
       <!-- 普通对话 -->
-      <section v-if="currentLesson?.conversations?.length" class="section conversation-section">
-        <el-form v-for="(exchange, exchangeIndex) in currentLesson?.conversations"
-                 :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-
-          <el-form-item :label="message.speaker" class="message speaker" :class="[ `speaker-${message.speaker}`]"
-                        v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
+      <section
+        v-if="currentLesson?.conversations?.length"
+        class="section conversation-section"
+      >
+        <el-form
+          v-for="(exchange, exchangeIndex) in currentLesson?.conversations"
+          :key="`exchange2-${exchangeIndex}`"
+          class="conversation-exchange"
+        >
+          <el-form-item
+            :label="message.speaker"
+            class="message speaker"
+            :class="[`speaker-${message.speaker}`]"
+            v-for="(message, messageIndex) in exchange"
+            :key="`message2-${exchangeIndex}-${messageIndex}`"
+          >
             <div class="text-row">
               <!--原文-->
               <el-text
-                  :id="speakingTextId(speakText(message.content))"
-                  class="text text-content"
-                  :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
-                  v-html="textView(message.content)" @click="aClick"></el-text>
+                :id="speakingTextId(speakText(message.content))"
+                class="text text-content"
+                :class="{
+                  'speaking-active': speakingActive(
+                    message.time,
+                    currentTime,
+                    speakText(message.content)
+                  ),
+                }"
+                v-html="textView(message.content)"
+                @click="aClick"
+              ></el-text>
               <el-button
-                  size="small"
-                  circle
-                  :disabled="isPlaying"
-                  v-if="message.time && baseSettingStore.audioSpeak"
-                  @click="playAudio(message.time, speechStore.repeatTimes)">
+                size="small"
+                circle
+                :disabled="isPlaying"
+                v-if="message.time && baseSettingStore.audioSpeak"
+                @click="playAudio(message.time, speechStore.repeatTimes)"
+              >
                 <el-icon>
                   <i class="icon-on-music"></i>
                 </el-icon>
               </el-button>
-              <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
-                         :disabled="isPlaying" @click="speechStore.speak(speakText(message.content))">
+              <el-button
+                v-else-if="baseSettingStore.ttsSpeak"
+                circle
+                size="small"
+                :disabled="isPlaying"
+                @click="speechStore.speak(speakText(message.content))"
+              >
                 <el-icon>
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
               </el-button>
             </div>
             <!--译文-->
-            <div class="translation-line message"
-                 :class="{ 'show-translation': exchangeTranslate[exchangeIndex] }">
-              {{
-                message.translation
-              }}
+            <div
+              class="translation-line message"
+              :class="{ 'show-translation': exchangeTranslate[exchangeIndex] }"
+            >
+              {{ message.translation }}
             </div>
           </el-form-item>
         </el-form>
       </section>
 
       <!-- 情景对话 -->
-      <section v-if="currentLesson?.conversations2?.length" class="section conversation-section">
+      <section
+        v-if="currentLesson?.conversations2?.length"
+        class="section conversation-section"
+      >
         <h2>
-          <el-text class="text text-content-h2" v-html="textView(currentLesson?.title2.content)"
-                   @click="aClick"></el-text>
+          <el-text
+            class="text text-content-h2"
+            v-html="textView(currentLesson?.title2.content)"
+            @click="aClick"
+          ></el-text>
         </h2>
-        <el-form label-width="auto" v-for="(exchange, exchangeIndex) in currentLesson?.conversations2"
-                 :key="`exchange2-${exchangeIndex}`" class="conversation-exchange">
-          <el-form-item :label="message.speaker" class="message speaker" :class="[`speaker-${message.speaker}`]"
-                        v-for="(message, messageIndex) in exchange" :key="`message2-${exchangeIndex}-${messageIndex}`">
+        <el-form
+          label-width="auto"
+          v-for="(exchange, exchangeIndex) in currentLesson?.conversations2"
+          :key="`exchange2-${exchangeIndex}`"
+          class="conversation-exchange"
+        >
+          <el-form-item
+            :label="message.speaker"
+            class="message speaker"
+            :class="[`speaker-${message.speaker}`]"
+            v-for="(message, messageIndex) in exchange"
+            :key="`message2-${exchangeIndex}-${messageIndex}`"
+          >
             <div class="text-row">
               <!--原文-->
               <el-text
-                  :id="speakingTextId(speakText(message.content))"
-                  class="text text-content"
-                  :class="{'speaking-active': speakingActive(message.time, currentTime, speakText(message.content))}"
-                  v-html="textView(message.content)" @click="aClick"></el-text>
+                :id="speakingTextId(speakText(message.content))"
+                class="text text-content"
+                :class="{
+                  'speaking-active': speakingActive(
+                    message.time,
+                    currentTime,
+                    speakText(message.content)
+                  ),
+                }"
+                v-html="textView(message.content)"
+                @click="aClick"
+              ></el-text>
               <el-button
-                  size="small"
-                  circle
-                  :disabled="isPlaying"
-                  v-if="message.time && baseSettingStore.audioSpeak"
-                  @click="playAudio(message.time, speechStore.repeatTimes)">
+                size="small"
+                circle
+                :disabled="isPlaying"
+                v-if="message.time && baseSettingStore.audioSpeak"
+                @click="playAudio(message.time, speechStore.repeatTimes)"
+              >
                 <el-icon>
                   <i class="icon-on-music"></i>
                 </el-icon>
               </el-button>
-              <el-button v-else-if="baseSettingStore.ttsSpeak" circle size="small"
-                         :disabled="isPlaying"
-                         @click="speechStore.speak(speakText(message.content))">
+              <el-button
+                v-else-if="baseSettingStore.ttsSpeak"
+                circle
+                size="small"
+                :disabled="isPlaying"
+                @click="speechStore.speak(speakText(message.content))"
+              >
                 <el-icon>
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
               </el-button>
             </div>
             <!--译文-->
-            <div class="translation-line message"
-                 :class="{ 'show-translation': exchange2Translate[exchangeIndex] }">
-              {{
-                message.translation
-              }}
+            <div
+              class="translation-line message"
+              :class="{ 'show-translation': exchange2Translate[exchangeIndex] }"
+            >
+              {{ message.translation }}
             </div>
           </el-form-item>
         </el-form>
@@ -225,11 +316,11 @@
       <!-- 语法 -->
       <section class="section grammar" ref="grammarsRef">
         <el-table :data="grammars">
-          <el-table-column label="语法" prop="content"/>
+          <el-table-column label="语法" prop="content" />
           <el-table-column label="说明">
             <template #default="scope">
               <div v-if="scope.row.desc" v-html="scope.row.desc"></div>
-              <br v-if="scope.row.remark"/>
+              <br v-if="scope.row.remark" />
               <div v-html="scope.row.remark"></div>
             </template>
           </el-table-column>
@@ -241,25 +332,48 @@
         <el-table :data="words">
           <el-table-column label="单词">
             <template #default="scope">
-              <div v-if="baseSettingStore.word" :id="speakingWordId(scope.row as WordItem)"
-                   class="column-word" :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">
+              <div
+                v-if="baseSettingStore.word"
+                :id="speakingWordId(scope.row as WordItem)"
+                class="column-word"
+                :class="{
+                  'speaking-active': speechStore.isWordSpeaking(scope.row),
+                }"
+              >
                 {{ scope.row.word }}
               </div>
-              <div v-if="baseSettingStore.kana" class="column-kana"
-                   :class="{'speaking-active': speechStore.isWordSpeaking(scope.row)}">{{ scope.row.kana }}
+              <div
+                v-if="baseSettingStore.kana"
+                class="column-kana"
+                :class="{
+                  'speaking-active': speechStore.isWordSpeaking(scope.row),
+                }"
+              >
+                {{ scope.row.kana }}
               </div>
             </template>
           </el-table-column>
-          <el-table-column width="60" prop="pos" label="词性" show-overflow-tooltip/>
-          <el-table-column prop="desc" label="释义" v-if="baseSettingStore.wordDesc" show-overflow-tooltip/>
+          <el-table-column
+            width="60"
+            prop="pos"
+            label="词性"
+            show-overflow-tooltip
+          />
+          <el-table-column
+            prop="desc"
+            label="释义"
+            v-if="baseSettingStore.wordDesc"
+            show-overflow-tooltip
+          />
           <el-table-column width="50" v-if="baseSettingStore.ttsSpeak">
             <template #header>
               <el-button
-                  size="small"
-                  circle
-                  v-if="baseSettingStore.ttsSpeak"
-                  :disabled="isPlaying"
-                  @click="speechStore.speakList(words as WordItem[])">
+                size="small"
+                circle
+                v-if="baseSettingStore.ttsSpeak"
+                :disabled="isPlaying"
+                @click="speechStore.speakList(words as WordItem[])"
+              >
                 <el-icon>
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
@@ -267,10 +381,11 @@
             </template>
             <template #default="scope">
               <el-button
-                  size="small"
-                  circle
-                  :disabled="isPlaying"
-                  @click="speechStore.speak(scope.row as WordItem)">
+                size="small"
+                circle
+                :disabled="isPlaying"
+                @click="speechStore.speak(scope.row as WordItem)"
+              >
                 <el-icon>
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
@@ -282,49 +397,85 @@
     </div>
 
     <div class="audio" v-if="baseSettingStore.audioSpeak && !fullscreen">
-      <audio ref="audioRef" :src="src"
-             controls
-             @timeupdate="onTimeUpdate"
-             @play="onPlay"
-             @pause="onPause"
-             @error="onError"
-             @abort="onAbort"
+      <audio
+        ref="audioRef"
+        :src="src"
+        controls
+        @timeupdate="onTimeUpdate"
+        @play="onPlay"
+        @pause="onPause"
+        @error="onError"
+        @abort="onAbort"
       ></audio>
     </div>
 
     <el-dialog class="search-model" v-model="searchModel" :modal="false">
       <template #header>
-        <el-input v-model.lazy="keyword" size="small" placeholder="搜索" clearable/>
+        <el-input
+          v-model.lazy="keyword"
+          size="small"
+          placeholder="搜索"
+          clearable
+        />
       </template>
       <div class="model-result-item" v-for="lesson in lessonsView">
-        <div class="model-lesson-title" v-html="textView(lesson.title, false, false)"
-             @click="goToLesson(Number(lesson.idx))"></div>
-        <div class="model-lesson-match-content" v-for="content in lesson.contents"
-             v-html="matchText(textView(content,false, false))"></div>
+        <div
+          class="model-lesson-title"
+          v-html="textView(lesson.title, false, false)"
+          @click="goToLesson(Number(lesson.idx))"
+        ></div>
+        <div
+          class="model-lesson-match-content"
+          v-for="content in lesson.contents"
+          v-html="matchText(textView(content, false, false))"
+        ></div>
       </div>
     </el-dialog>
 
     <a class="go-top" href="#" @click="goTop">↑</a>
 
-    <div class="close-fullscreen" title="退出全屏" v-if="fullscreen" @click="toggleFullscreen(false)">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <div
+      class="close-fullscreen"
+      title="退出全屏"
+      v-if="fullscreen"
+      @click="toggleFullscreen(false)"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18 6L6 18M6 6L18 18"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
       </svg>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {computed, onBeforeUnmount, ref, watch, onActivated} from 'vue'
-import {useLessonStore} from '../stores/lessonStore'
-import {useSpeechStore} from "../stores/speechStore"
-import {useBaseSettingStore} from "../stores/baseSettingStore"
-import {useWordStore} from "../stores/wordStore"
-import {useGrammarStore} from "../stores/grammarStore"
-import type {WordItem} from "../types";
-import {speakingId, speakingTextId, speakingWordId, matchTextFunc, speakText, displayText} from '../utils.ts'
-import {storeToRefs} from 'pinia'
-import {onDeactivated} from "@vue/runtime-core"
+import { computed, onBeforeUnmount, ref, watch, onActivated } from 'vue'
+import { useLessonStore } from '../stores/lessonStore'
+import { useSpeechStore } from '../stores/speechStore'
+import { useBaseSettingStore } from '../stores/baseSettingStore'
+import { useWordStore } from '../stores/wordStore'
+import { useGrammarStore } from '../stores/grammarStore'
+import type { WordItem } from '../types'
+import {
+  speakingId,
+  speakingTextId,
+  speakingWordId,
+  matchTextFunc,
+  speakText,
+  displayText,
+} from '../utils.ts'
+import { storeToRefs } from 'pinia'
+import { onDeactivated } from '@vue/runtime-core'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -332,8 +483,8 @@ const wordStore = useWordStore()
 const baseSettingStore = useBaseSettingStore()
 const grammarStore = useGrammarStore()
 
-const {currentLesson, lessons} = storeToRefs(lessonStore)
-const {fullscreen} = storeToRefs(baseSettingStore)
+const { currentLesson, lessons } = storeToRefs(lessonStore)
+const { fullscreen } = storeToRefs(baseSettingStore)
 
 const allTranslate = ref(false)
 const basicsTranslate = ref(false)
@@ -355,55 +506,55 @@ const isPlaying = computed(() => speechStore.isSpeaking || audioPlaying.value)
 
 const src = computed(() => {
   if (speechStore.isSpeaking) {
-    return void 0;
+    return void 0
   }
-  return `${audioUrlBase}${currentLesson.value?.audio}`;
+  return `${audioUrlBase}${currentLesson.value?.audio}`
 })
 
 const pauseHandler = async (url: string, playTimes: number) => {
   await playAudio(url, playTimes - 1)
 }
 
-let currentPauseHandler: (() => void) | null = null;
+let currentPauseHandler: (() => void) | null = null
 
 const playAudio = async (timeRange: string, playTimes: number) => {
   if (!audioRef.value || !src.value || playTimes < 1) {
-    return;
+    return
   }
 
-  const url = `${src.value}${timeRange}`;
-  audioRef.value.src = url;
+  const url = `${src.value}${timeRange}`
+  audioRef.value.src = url
 
   // 移除旧的监听器
   if (currentPauseHandler) {
-    audioRef.value?.removeEventListener('pause', currentPauseHandler);
+    audioRef.value?.removeEventListener('pause', currentPauseHandler)
   }
   // 创建并存储新的处理函数
-  currentPauseHandler = () => pauseHandler(url, playTimes);
-  audioRef.value?.addEventListener('pause', currentPauseHandler);
+  currentPauseHandler = () => pauseHandler(url, playTimes)
+  audioRef.value?.addEventListener('pause', currentPauseHandler)
 
-  audioRef.value.playbackRate = speechStore.rate;
-  audioRef.value.volume = speechStore.volume;
+  audioRef.value.playbackRate = speechStore.rate
+  audioRef.value.volume = speechStore.volume
 
   await audioRef.value.play()
 }
 
 const pauseAudio = () => {
-  if (!isPlaying.value) return;
+  if (!isPlaying.value) return
 
   if (audioPlaying.value && audioRef.value) {
     // 移除监听器
     if (currentPauseHandler) {
-      audioRef.value.removeEventListener('pause', currentPauseHandler);
-      currentPauseHandler = null;
+      audioRef.value.removeEventListener('pause', currentPauseHandler)
+      currentPauseHandler = null
     }
-    audioRef.value.pause();
+    audioRef.value.pause()
   }
 
   if (speechStore.isSpeaking) {
-    speechStore.stop();
+    speechStore.stop()
   }
-};
+}
 
 const scrollPosition = ref<number>(0)
 
@@ -425,24 +576,30 @@ const toggleTranslate = (newValue: boolean) => {
   }
 }
 
-watch(() => baseSettingStore.translate, (value, _) => {
-  if (!value) {
-    // 设置中关闭翻译功能时
-    toggleTranslate(false)
+watch(
+  () => baseSettingStore.translate,
+  (value, _) => {
+    if (!value) {
+      // 设置中关闭翻译功能时
+      toggleTranslate(false)
+    }
   }
-})
+)
 
-watch(() => speechStore.lastFireTime, (_) => {
-  const id = speakingId()
-  if (!id) {
-    return;
+watch(
+  () => speechStore.lastFireTime,
+  (_) => {
+    const id = speakingId()
+    if (!id) {
+      return
+    }
+    document.getElementById(id)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
+    })
   }
-  document.getElementById(id)?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center',
-    inline: 'nearest'
-  });
-});
+)
 
 const keyword = ref('')
 const matchText = computed(() => matchTextFunc(keyword.value || ''))
@@ -451,26 +608,37 @@ const lessonsView = computed(() => {
     return [
       `${index}`,
       lesson.title?.content,
-      ...lesson.basics.map(a => a.content),
-      ...lesson.conversations.flatMap(a => a).map(a => a.content),
-      ...lesson.conversations2.flatMap(a => a).map(a => a.content)].filter(Boolean) as string[]
+      ...lesson.basics.map((a) => a.content),
+      ...lesson.conversations.flatMap((a) => a).map((a) => a.content),
+      ...lesson.conversations2.flatMap((a) => a).map((a) => a.content),
+    ].filter(Boolean) as string[]
   })
 
   if (!keyword.value) {
-    return flatLessons.map(lesson => {
-      const contents = lesson.slice(2)
-      return {idx: lesson[0], title: lesson[1], contents: [...contents.slice(0, 2), '...']}
-    }).filter(a => a.contents.length > 0)
+    return flatLessons
+      .map((lesson) => {
+        const contents = lesson.slice(2)
+        return {
+          idx: lesson[0],
+          title: lesson[1],
+          contents: [...contents.slice(0, 2), '...'],
+        }
+      })
+      .filter((a) => a.contents.length > 0)
   }
 
-  return flatLessons.map(lesson => {
-    const contents = lesson.slice(2).filter(c => c.includes(keyword.value))
-    return {idx: lesson[0], title: lesson[1], contents}
-  }).filter(a => a.contents.length > 0)
+  return flatLessons
+    .map((lesson) => {
+      const contents = lesson.slice(2).filter((c) => c.includes(keyword.value))
+      return { idx: lesson[0], title: lesson[1], contents }
+    })
+    .filter((a) => a.contents.length > 0)
 })
 
 const toggleFullscreen = (newStatus: boolean | null = null) => {
-  baseSettingStore.setFullscreen(newStatus !== null ? newStatus : !fullscreen.value)
+  baseSettingStore.setFullscreen(
+    newStatus !== null ? newStatus : !fullscreen.value
+  )
 }
 
 const mainHeight = computed(() => {
@@ -481,58 +649,65 @@ const mainHeight = computed(() => {
   }
 })
 
-const scrollTarget = (target: any, config: {
-  behavior?: ScrollBehavior,
-  block?: ScrollLogicalPosition,
-  inline?: ScrollLogicalPosition,
-} = {behavior: 'smooth', block: 'center', inline: 'nearest'}) => {
-  const {behavior, block, inline} = config;
+const scrollTarget = (
+  target: any,
+  config: {
+    behavior?: ScrollBehavior
+    block?: ScrollLogicalPosition
+    inline?: ScrollLogicalPosition
+  } = { behavior: 'smooth', block: 'center', inline: 'nearest' }
+) => {
+  const { behavior, block, inline } = config
   target?.scrollIntoView({
     behavior,
     block,
     inline,
-  });
+  })
 }
 
 const aClick = (event: any) => {
-  event.preventDefault();
+  event.preventDefault()
   let target = event.target
   if (event.target.tagName.toLowerCase() === 'ruby') {
     target = event.target.parentElement
   }
   if (target.tagName.toLowerCase() === 'a') {
-    const href = target.getAttribute('href');
+    const href = target.getAttribute('href')
     if (href && href.startsWith('#')) {
-      const targetElement = container.value.querySelector(href);
+      const targetElement = container.value.querySelector(href)
       if (targetElement) {
         lastElement.value = target
         scrollTarget(targetElement)
-        targetElement.classList.add("target-active");
-        targetElement.addEventListener("animationend", () => {
-          targetElement.classList.remove("target-active");
-        });
+        targetElement.classList.add('target-active')
+        targetElement.addEventListener('animationend', () => {
+          targetElement.classList.remove('target-active')
+        })
       }
     }
   }
-};
+}
 
 const onTimeUpdate = () => {
-  currentTime.value = audioRef.value?.currentTime || 0;
+  currentTime.value = audioRef.value?.currentTime || 0
 }
 const onPlay = () => {
-  audioPlaying.value = true;
+  audioPlaying.value = true
 }
 const onPause = () => {
-  audioPlaying.value = false;
+  audioPlaying.value = false
 }
 const onError = () => {
-  audioPlaying.value = false;
+  audioPlaying.value = false
 }
 const onAbort = () => {
-  audioPlaying.value = false;
+  audioPlaying.value = false
 }
 
-const speakingActive = (timeStr: string, currentTime: number, text: string = ""): boolean => {
+const speakingActive = (
+  timeStr: string,
+  currentTime: number,
+  text: string = ''
+): boolean => {
   if (text !== null && text.length > 0 && speechStore.speakingText === text) {
     return true
   }
@@ -542,7 +717,7 @@ const speakingActive = (timeStr: string, currentTime: number, text: string = "")
   if (!timeStr || !currentTime) {
     return false
   }
-  const timePart = timeStr.split(",").map(Number)
+  const timePart = timeStr.split(',').map(Number)
   return currentTime > timePart[0] && currentTime < timePart[1]
 }
 
@@ -551,7 +726,7 @@ const goToLesson = async (index: number) => {
 }
 
 const grammars = computed(() => {
-  return grammarStore.queryGrammars({lesson: lessonStore.currentIndex + 1})
+  return grammarStore.queryGrammars({ lesson: lessonStore.currentIndex + 1 })
 })
 
 const words = computed(() => {
@@ -562,25 +737,33 @@ const wordRegEx = computed(() => {
   let wordCopy = words.value.slice()
   wordCopy.sort((a, b) => b.word.length - a.word.length)
   return new RegExp(
-      wordCopy.map(word =>
-          word.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-              .split('') // 将单词拆分为字符数组
-              .join('\\s*') // 在每个字符之间添加\s*以匹配任意空格
-      ).join('|'),
-      'g'
-  );
+    wordCopy
+      .map(
+        (word) =>
+          word.word
+            .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+            .split('') // 将单词拆分为字符数组
+            .join('\\s*') // 在每个字符之间添加\s*以匹配任意空格
+      )
+      .join('|'),
+    'g'
+  )
 })
 
 const highlightReplacer = (match: string) => {
   match = match.replace(/\s/g, '')
   if (!match) return match
-  const word = words.value.find(w => w.word === match || w.kana === match)
+  const word = words.value.find((w) => w.word === match || w.kana === match)
   if (!word) return match
   return `<a href="#${speakingWordId(word)}" class="highlight-word">${word?.word}</a>`
 }
 
-const textView = (originalText: string | undefined = "", wordLink = true, furigana = true) => {
-  const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1');
+const textView = (
+  originalText: string | undefined = '',
+  wordLink = true,
+  furigana = true
+) => {
+  const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
   if (words.value.length === 0) return baseText
 
   let finalText = baseText
@@ -592,29 +775,42 @@ const textView = (originalText: string | undefined = "", wordLink = true, furiga
 
   // 注音
   if (furigana && baseSettingStore.furigana) {
-    const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || [];
-    const rubyMap: Record<string, string> = {};
-    rubyText.forEach(item => {
-      const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || [];
-      rubyMap[kanji] = kana;
-    });
+    const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || []
+    const rubyMap: Record<string, string> = {}
+    rubyText.forEach((item) => {
+      const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || []
+      rubyMap[kanji] = kana
+    })
 
-    const rubyRegEx = /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
+    const rubyRegEx =
+      /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
 
-    finalText = finalText.replace(rubyRegEx, (match, hrefPart, rubyPart, textPart, closingTag) => {
-      if (hrefPart) return hrefPart;
-      if (rubyPart) return rubyPart;
-      if (closingTag) return closingTag;
-      if (textPart !== undefined && textPart !== null && textPart.trim() !== "") {
-        const kanjis = Object.keys(rubyMap).sort((a, b) => b.length - a.length)
-        for (const kanji of kanjis) {
-          const kana = rubyMap[kanji]
-          textPart = textPart.replace(new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, "g"), `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`)
+    finalText = finalText.replace(
+      rubyRegEx,
+      (match, hrefPart, rubyPart, textPart, closingTag) => {
+        if (hrefPart) return hrefPart
+        if (rubyPart) return rubyPart
+        if (closingTag) return closingTag
+        if (
+          textPart !== undefined &&
+          textPart !== null &&
+          textPart.trim() !== ''
+        ) {
+          const kanjis = Object.keys(rubyMap).sort(
+            (a, b) => b.length - a.length
+          )
+          for (const kanji of kanjis) {
+            const kana = rubyMap[kanji]
+            textPart = textPart.replace(
+              new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'g'),
+              `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`
+            )
+          }
+          return textPart
         }
-        return textPart;
+        return match
       }
-      return match;
-    });
+    )
   }
 
   return finalText
@@ -629,10 +825,10 @@ const goTop = () => {
       block: 'center',
       inline: 'nearest',
     })
-    temp.classList.add("target-active");
-    temp.addEventListener("animationend", () => {
-      temp.classList.remove("target-active");
-    });
+    temp.classList.add('target-active')
+    temp.addEventListener('animationend', () => {
+      temp.classList.remove('target-active')
+    })
   } else {
     top.value.scrollIntoView({
       behavior: 'smooth',
@@ -652,27 +848,38 @@ const onScroll = async () => {
 
 const onSingleKeyup = (event: KeyboardEvent) => {
   if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey) {
-    return;
+    return
   }
   if (['ArrowLeft'].includes(event.key)) {
     goToLesson(lessonStore.currentIndex - 1)
   } else if (['ArrowRight'].includes(event.key)) {
     goToLesson(lessonStore.currentIndex + 1)
   } else if (['1'].includes(event.key)) {
-    scrollTarget(top.value, {behavior: "smooth", block: "start", inline: "nearest"})
+    scrollTarget(top.value, {
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    })
   } else if (['2'].includes(event.key)) {
-    scrollTarget(grammarsRef.value, {behavior: "smooth", block: "start", inline: "nearest"})
+    scrollTarget(grammarsRef.value, {
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    })
   } else if (['3'].includes(event.key)) {
-    scrollTarget(wordsRef.value, {behavior: "smooth", block: "start", inline: "nearest"})
+    scrollTarget(wordsRef.value, {
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    })
   } else if (['f'].includes(event.key)) {
     searchModel.value = !searchModel.value
   } else if (['r'].includes(event.key)) {
-
   }
 }
 
 onActivated(async () => {
-  document.addEventListener('keyup', onSingleKeyup);
+  document.addEventListener('keyup', onSingleKeyup)
 
   setTimeout(() => {
     if (container && container.value) {
@@ -682,17 +889,19 @@ onActivated(async () => {
 })
 
 onDeactivated(() => {
-  document.removeEventListener('keyup', onSingleKeyup);
+  document.removeEventListener('keyup', onSingleKeyup)
 })
 
-watch(() => searchModel.value, (value, _) => {
-  if (value) {
-    document.removeEventListener('keyup', onSingleKeyup);
-  } else {
-    document.addEventListener('keyup', onSingleKeyup);
+watch(
+  () => searchModel.value,
+  (value, _) => {
+    if (value) {
+      document.removeEventListener('keyup', onSingleKeyup)
+    } else {
+      document.addEventListener('keyup', onSingleKeyup)
+    }
   }
-})
-
+)
 </script>
 
 <style>
@@ -755,7 +964,10 @@ watch(() => searchModel.value, (value, _) => {
   justify-content: center;
 }
 
-.lesson-switch, .lesson-title, .basics-section, .conversation-section {
+.lesson-switch,
+.lesson-title,
+.basics-section,
+.conversation-section {
   padding: 0 5px;
 }
 
@@ -772,11 +984,11 @@ watch(() => searchModel.value, (value, _) => {
 }
 
 :deep(.speaking-active a:hover) {
-  color: #4285F4;
+  color: #4285f4;
 }
 
 :deep(.speaking-active a:active) {
-  color: #FF0000;
+  color: #ff0000;
 }
 
 .section h2 {
@@ -844,10 +1056,18 @@ watch(() => searchModel.value, (value, _) => {
 }
 
 @keyframes highlight {
-  0%, 20%, 40%, 60%, 80% {
+  0%,
+  20%,
+  40%,
+  60%,
+  80% {
     color: #ff0000;
   }
-  10%, 30%, 50%, 70%, 90% {
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
     color: #ff9900;
   }
   100% {
@@ -860,7 +1080,7 @@ watch(() => searchModel.value, (value, _) => {
 }
 
 .column-kana {
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .highlight-word {

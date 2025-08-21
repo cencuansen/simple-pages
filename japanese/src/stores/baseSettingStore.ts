@@ -1,24 +1,25 @@
-import {defineStore} from 'pinia'
-import {useDark, useToggle} from '@vueuse/core'
-import {ref} from "vue";
+import { defineStore } from 'pinia'
+import { useDark, useToggle } from '@vueuse/core'
+import { ref } from 'vue'
 
-export const useBaseSettingStore = defineStore('baseSetting', () => {
-
+export const useBaseSettingStore = defineStore(
+  'baseSetting',
+  () => {
     const isDark = useDark()
     const toggleDark = useToggle(isDark)
 
     const furigana = ref(true)
     const furiganaToggle = () => {
-        furigana.value = !furigana.value
+      furigana.value = !furigana.value
     }
 
     const wordLink = ref(true)
     const wordLinkToggle = () => {
-        wordLink.value = !wordLink.value
+      wordLink.value = !wordLink.value
     }
 
     const style = ref({
-        fontSize: "12px"
+      fontSize: '12px',
     })
 
     const translate = ref(true)
@@ -33,26 +34,28 @@ export const useBaseSettingStore = defineStore('baseSetting', () => {
     const fullscreen = ref(false)
 
     const setFullscreen = (newStatus: boolean) => {
-        fullscreen.value = newStatus
+      fullscreen.value = newStatus
     }
 
     return {
-        isDark,
-        style,
-        wordLink,
-        furigana,
-        translate,
-        word,
-        kana,
-        wordDesc,
-        audioSpeak,
-        ttsSpeak,
-        toggleDark,
-        fullscreen,
-        furiganaToggle,
-        wordLinkToggle,
-        setFullscreen
+      isDark,
+      style,
+      wordLink,
+      furigana,
+      translate,
+      word,
+      kana,
+      wordDesc,
+      audioSpeak,
+      ttsSpeak,
+      toggleDark,
+      fullscreen,
+      furiganaToggle,
+      wordLinkToggle,
+      setFullscreen,
     }
-}, {
-    persist: true
-})
+  },
+  {
+    persist: true,
+  }
+)

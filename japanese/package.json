@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --mode dev",
     "build": "vue-tsc -b && vite build --mode prod && rimraf dist/audio dist/json  dist/unused",
-    "preview": "vite preview --mode prod"
+    "preview": "vite preview --mode prod",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@pinia/nuxt": "^0.10.1",
@@ -23,6 +24,9 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
     "typescript": "~5.7.2",
     "unplugin-element-plus": "^0.9.1",

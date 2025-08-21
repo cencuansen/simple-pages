@@ -2,58 +2,58 @@
   <div class="header" v-if="!fullscreen">
     <div class="button-group">
       <el-button
-          size="small"
-          :type="isActive('/lesson') ? 'primary' : 'default'"
-          @click="navigateTo('/lesson')"
+        size="small"
+        :type="isActive('/lesson') ? 'primary' : 'default'"
+        @click="navigateTo('/lesson')"
       >
         课程
       </el-button>
       <el-button
-          size="small"
-          :type="isActive('/word') ? 'primary' : 'default'"
-          @click="navigateTo('/word')"
+        size="small"
+        :type="isActive('/word') ? 'primary' : 'default'"
+        @click="navigateTo('/word')"
       >
         词汇
       </el-button>
       <el-button
-          size="small"
-          :type="isActive('/jlpt-word') ? 'primary' : 'default'"
-          @click="navigateTo('/jlpt-word')"
+        size="small"
+        :type="isActive('/jlpt-word') ? 'primary' : 'default'"
+        @click="navigateTo('/jlpt-word')"
       >
         词汇(jlpt)
       </el-button>
       <el-button
-          size="small"
-          :type="isActive('/grammar') ? 'primary' : 'default'"
-          @click="navigateTo('/grammar')"
+        size="small"
+        :type="isActive('/grammar') ? 'primary' : 'default'"
+        @click="navigateTo('/grammar')"
       >
         文法
       </el-button>
       <el-button
-          size="small"
-          :type="isActive('/jlpt-grammar') ? 'primary' : 'default'"
-          @click="navigateTo('/jlpt-grammar')"
+        size="small"
+        :type="isActive('/jlpt-grammar') ? 'primary' : 'default'"
+        @click="navigateTo('/jlpt-grammar')"
       >
         文法(jlpt)
       </el-button>
       <el-button
-          size="small"
-          :type="isActive('/verb-conju') ? 'primary' : 'default'"
-          @click="navigateTo('/verb-conju')"
+        size="small"
+        :type="isActive('/verb-conju') ? 'primary' : 'default'"
+        @click="navigateTo('/verb-conju')"
       >
         动词活用
       </el-button>
       <el-button
-          size="small"
-          :type="isActive('/tool') ? 'primary' : 'default'"
-          @click="navigateTo('/tool')"
+        size="small"
+        :type="isActive('/tool') ? 'primary' : 'default'"
+        @click="navigateTo('/tool')"
       >
         工具
       </el-button>
       <el-button
-          size="small"
-          :type="isActive('/setting') ? 'primary' : 'default'"
-          @click="navigateTo('/setting')"
+        size="small"
+        :type="isActive('/setting') ? 'primary' : 'default'"
+        @click="navigateTo('/setting')"
       >
         设置
       </el-button>
@@ -62,7 +62,7 @@
   <div class="router-view">
     <router-view v-slot="{ Component }">
       <keep-alive>
-        <component :is="Component"/>
+        <component :is="Component" />
       </keep-alive>
     </router-view>
   </div>
@@ -70,20 +70,20 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from 'vue'
-import {useLessonStore} from './stores/lessonStore'
-import {useWordStore} from './stores/wordStore'
-import {useGrammarStore} from './stores/grammarStore'
-import {useJlptGrammarStore} from './stores/jlptGrammarStore'
-import {useBaseSettingStore} from "./stores/baseSettingStore"
-import {useConjuStore} from "./stores/conjuStore.ts"
-import {useRouter, useRoute} from 'vue-router'
-import {detectBrowser} from './utils.ts'
-import {storeToRefs} from "pinia";
+import { ref, onMounted } from 'vue'
+import { useLessonStore } from './stores/lessonStore'
+import { useWordStore } from './stores/wordStore'
+import { useGrammarStore } from './stores/grammarStore'
+import { useJlptGrammarStore } from './stores/jlptGrammarStore'
+import { useBaseSettingStore } from './stores/baseSettingStore'
+import { useConjuStore } from './stores/conjuStore.ts'
+import { useRouter, useRoute } from 'vue-router'
+import { detectBrowser } from './utils.ts'
+import { storeToRefs } from 'pinia'
 
 const rootFooterHeight = ref(0)
 onMounted(() => {
-  const {type, browser} = detectBrowser()
+  const { type, browser } = detectBrowser()
   if (type === 'desktop') {
     rootFooterHeight.value = 0
   } else {
@@ -96,14 +96,17 @@ onMounted(() => {
     }
   }
   // 关键：直接设置CSS变量到文档根元素
-  document.documentElement.style.setProperty('--root-footer-height', `${rootFooterHeight.value}px`)
+  document.documentElement.style.setProperty(
+    '--root-footer-height',
+    `${rootFooterHeight.value}px`
+  )
 })
 
 const router = useRouter()
 const route = useRoute()
 const baseSettingStore = useBaseSettingStore()
 
-const {fullscreen} = storeToRefs(baseSettingStore)
+const { fullscreen } = storeToRefs(baseSettingStore)
 
 const navigateTo = (path: string) => {
   router.push(path)
