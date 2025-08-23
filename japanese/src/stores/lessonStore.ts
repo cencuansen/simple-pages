@@ -44,7 +44,7 @@ export const useLessonStore = defineStore(
         minIndex.value = lessons.value[0].index
         maxIndex.value = lessons.value[lessons.value.length - 1].index
 
-        if (!isValidLesson(currentIndex.value)) {
+        if (!isValidLessonIndex(currentIndex.value)) {
           currentIndex.value = minIndex.value
         }
       } catch (err) {
@@ -56,21 +56,17 @@ export const useLessonStore = defineStore(
       }
     }
 
-    const isValidLesson = (index: number): boolean =>
+    const isValidLessonIndex = (index: number): boolean =>
       isNumber(index) && index >= minIndex.value && index <= maxIndex.value
 
     // 切换课程
     const setCurrentIndex = (index: number) => {
-      if (isValidLesson(index)) {
-        currentIndex.value = index
-      }
+      isValidLessonIndex(index) && (currentIndex.value = index)
     }
 
-    const currentLesson = computed(() => {
-      if (isValidLesson(currentIndex.value)) {
-        return lessons.value.find((item) => item.index === currentIndex.value)
-      }
-    })
+    const currentLesson = computed(() =>
+      lessons.value.find((item) => item.index === currentIndex.value)
+    )
 
     const hasPrevious = computed(() => currentIndex.value > minIndex.value)
 
