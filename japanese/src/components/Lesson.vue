@@ -483,8 +483,7 @@ import {
 } from '../utils.ts'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
-
-const props = defineProps(['index'])
+import { useRouter } from 'vue-router'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -494,6 +493,24 @@ const grammarStore = useGrammarStore()
 
 const { currentLesson, lessons } = storeToRefs(lessonStore)
 const { fullscreen } = storeToRefs(baseSettingStore)
+
+const props = defineProps(['index'])
+const router = useRouter()
+
+if (props.index) {
+  const index = Number(props.index)
+  lessonStore.setCurrentIndex(index)
+  lessonStore.goLesson(index)
+} else {
+  router.push(`/lesson/${lessonStore?.currentLesson?.index}`)
+}
+
+watch(
+  () => lessonStore.currentLesson,
+  (_) => {
+    router.push(`/lesson/${lessonStore?.currentLesson?.index}`)
+  }
+)
 
 const searchModel = ref(false)
 
@@ -879,8 +896,9 @@ const onSingleKeyup = (event: KeyboardEvent) => {
 }
 
 onActivated(async () => {
-  document.addEventListener('keyup', onSingleKeyup)
+  await router.push(`/lesson/${lessonStore?.currentLesson?.index}`)
 
+  document.addEventListener('keyup', onSingleKeyup)
   setTimeout(() => {
     if (container && container.value) {
       container.value.scrollTop = scrollPosition.value

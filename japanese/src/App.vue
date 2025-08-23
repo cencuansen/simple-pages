@@ -113,7 +113,7 @@ const navigateTo = (path: string) => {
 }
 
 const isActive = (path: string) => {
-  return route.path === path
+  return route.path.startsWith(path)
 }
 
 const lessonStore = useLessonStore()
