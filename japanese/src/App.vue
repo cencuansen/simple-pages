@@ -191,4 +191,8 @@ onMounted(async () => {
   width: 100%;
   height: var(--root-footer-height);
 }
+
+:deep(.match) {
+  color: var(--el-color-success);
+}
 </style>

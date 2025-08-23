@@ -1141,10 +1141,6 @@ audio {
   width: 100%;
 }
 
-:deep(.match) {
-  color: var(--el-color-danger);
-}
-
 .go-top {
   position: absolute;
   bottom: 100px;

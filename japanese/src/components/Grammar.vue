@@ -12,11 +12,6 @@
     <div class="grammar-main">
       <div class="main">
         <el-table class="table" :data="grammarView" stripe>
-          <el-table-column label="课程" width="80">
-            <template #default="scope">
-              <div v-html="scope.row.lesson"></div>
-            </template>
-          </el-table-column>
           <el-table-column label="语法" prop="content">
             <template #default="scope">
               <div v-html="scope.row.content"></div>
@@ -27,6 +22,11 @@
               <div v-html="scope.row.desc"></div>
               <br v-if="scope.row.remark" />
               <div v-html="scope.row.remark"></div>
+            </template>
+          </el-table-column>
+          <el-table-column label="课程" width="80">
+            <template #default="scope">
+              <div v-html="scope.row.lesson"></div>
             </template>
           </el-table-column>
         </el-table>
@@ -121,10 +121,6 @@ const grammarView = computed(() => {
 .table {
   max-width: var(--content-max-width);
   margin: 0 auto;
-}
-
-:deep(.match) {
-  color: var(--el-color-danger);
 }
 
 .pagination {

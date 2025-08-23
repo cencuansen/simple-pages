@@ -11,8 +11,6 @@ export const useWordStore = defineStore('word', () => {
   const error = ref<string | null>(null)
   const isInitialized = ref(false)
 
-  const realLessonNumber = (num: number) => num - 100
-
   // Getters
   const uniqueLessons = computed(() => {
     const lessons = new Set<number>()
@@ -107,6 +105,5 @@ export const useWordStore = defineStore('word', () => {
     searchByText,
     getByPos,
     filterWord,
-    realLessonNumber,
   }
 })

@@ -2,27 +2,50 @@
   <div class="words">
     <div class="word-headers">
       <div class="word-header">
-        <el-select
-          size="small"
-          class="navigation-item"
-          v-model="lessonIndex"
-          placeholder="选课程"
-          clearable
-          fit-input-width
-        >
-          <el-option
-            v-for="(item, index) in lessonStore.lessons"
-            :key="index"
-            :label="`${displayText(item.title?.content)}`"
-            :value="index"
-          />
-        </el-select>
-        <el-input
-          v-model.trim="keyword"
-          size="small"
-          placeholder="搜单词"
-          clearable
-        ></el-input>
+        <div class="header-item">
+          <el-select
+            size="small"
+            class="navigation-item"
+            v-model="lessonIndex"
+            placeholder="选课程"
+            clearable
+            fit-input-width
+          >
+            <el-option
+              v-for="(item, index) in lessonStore.lessons"
+              :key="index"
+              :label="`${displayText(item.title?.content)}`"
+              :value="index"
+            />
+          </el-select>
+        </div>
+        <div class="header-item">
+          <el-select
+            size="small"
+            class="navigation-item"
+            v-model="selectedClasses"
+            placeholder="选词性"
+            clearable
+            multiple
+            collapse-tags
+            fit-input-width
+          >
+            <el-option
+              v-for="item in wordClasses"
+              :key="item"
+              :label="item"
+              :value="item"
+            />
+          </el-select>
+        </div>
+        <div class="header-item">
+          <el-input
+            v-model.trim="keyword"
+            size="small"
+            placeholder="搜单词"
+            clearable
+          ></el-input>
+        </div>
       </div>
     </div>
 
@@ -68,7 +91,7 @@
           />
           <el-table-column label="课程" width="60">
             <template #default="scope">
-              {{ wordStore.realLessonNumber(scope.row.lesson) }}
+              {{ scope.row.lesson }}
             </template>
           </el-table-column>
           <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak">
@@ -137,6 +160,7 @@ const pageSize = 20
 const pageIndex = ref(1)
 const totalInView = ref(0)
 const keyword = ref('')
+const selectedClasses = ref<string[]>([])
 
 const container = ref()
 const scrollPosition = ref<number>(0)
@@ -173,10 +197,19 @@ const words = computed(() => {
         item.word.indexOf(keyword.value) > -1
     )
   }
+  if (selectedClasses.value.length > 0) {
+    list = list.filter((item) => selectedClasses.value.includes(item.pos))
+  }
   totalInView.value = list.length
   const start = (pageIndex.value - 1) * pageSize
   const end = start + pageSize
   return list.slice(start, end)
+})
+
+const wordClasses = computed(() => {
+  return [...new Set(wordStore.wordList.map((item) => item.pos))].sort((a, b) =>
+    a.localeCompare(b, 'zh-CN')
+  )
 })
 
 // const getSpeechText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
@@ -229,8 +262,12 @@ onActivated(async () => {
   display: flex;
   flex-direction: row;
   gap: var(--gap12);
-  margin: 0 auto 10px;
+  margin: 0 auto;
   max-width: var(--content-max-width);
+}
+
+.header-item {
+  flex: 1;
 }
 
 .word-main {

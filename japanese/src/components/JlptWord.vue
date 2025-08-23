@@ -2,13 +2,34 @@
   <div class="words">
     <div class="word-headers">
       <div class="word-header">
-        <el-input
-          class="search"
-          v-model.trim="keyword"
-          size="small"
-          placeholder="搜单词"
-          clearable
-        ></el-input>
+        <div class="header-item">
+          <el-select
+            size="small"
+            class="navigation-item"
+            v-model="store.selectedLevels"
+            placeholder="选等级"
+            clearable
+            multiple
+            collapse-tags
+            fit-input-width
+          >
+            <el-option
+              v-for="item in store.levels"
+              :key="item"
+              :label="item"
+              :value="item"
+            />
+          </el-select>
+        </div>
+        <div class="header-item">
+          <el-input
+            class="search"
+            v-model.trim="keyword"
+            size="small"
+            placeholder="搜单词"
+            clearable
+          ></el-input>
+        </div>
       </div>
     </div>
 
@@ -30,8 +51,17 @@
           </template>
         </el-table-column>
         <el-table-column prop="meaning" label="释义" />
-        <el-table-column label="标签" width="65">
-          <template #default="scope">{{ scope.row.levelName }}</template>
+        <el-table-column label="标签" width="130">
+          <template #default="scope">
+            <div
+              class="tag-item"
+              v-for="item in scope.row.levels"
+              :key="item"
+              :title="item"
+              v-html="item"
+              :class="{ match: store.selectedLevels.includes(item) }"
+            ></div>
+          </template>
         </el-table-column>
         <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak">
           <template #default="scope">
@@ -81,8 +111,8 @@ onMounted(() => {
 
 // 搜索输入
 const keyword = computed({
-  get: () => store.searchQuery,
-  set: (value) => store.setSearchQuery(value),
+  get: () => store.keyword,
+  set: (value) => store.setKeyword(value),
 })
 </script>
 
@@ -100,16 +130,13 @@ const keyword = computed({
 .word-header {
   height: var(--single-row-header-height);
   display: flex;
+  gap: var(--gap12);
   margin: 0 auto;
   max-width: var(--content-max-width);
 }
 
-.word-header > * {
-  margin-right: 10px;
-}
-
-.word-header > *:last-child {
-  margin-right: 0;
+.header-item {
+  flex: 1;
 }
 
 .search {
@@ -132,6 +159,13 @@ const keyword = computed({
 .el-table {
   margin: 0 auto;
   max-width: var(--content-max-width);
+}
+
+.tag-item {
+  width: 100%;
+  overflow: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
 }
 
 .pagination {

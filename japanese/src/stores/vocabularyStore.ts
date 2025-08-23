@@ -10,6 +10,7 @@ export interface Vocabulary {
   tags: string
   level: number
   levelName: string
+  levels: string[]
 }
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
@@ -21,7 +22,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const currentPage = ref(1)
   const pageSize = ref(20)
   const totalInView = ref(0)
-  const searchQuery = ref('')
+  const keyword = ref('')
+  const tagDelimiter = /\s+/
 
   // 加载CSV数据
   async function loadVocabularies() {
@@ -37,7 +39,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
         header: true,
         skipEmptyLines: true,
         complete: (result) => {
-          vocabularies.value = dataHandler(result.data)
+          vocabularies.value = process(result.data)
         },
         error: (err: any) => {
           error.value = err.message
@@ -52,17 +54,29 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
 
   // 过滤和分页数据
   const doFilter = computed(() => {
-    const query = searchQuery.value.toLowerCase()
-    const res = vocabularies.value.filter(
-      (item) =>
-        item.expression.toLowerCase().includes(query) ||
-        item.reading.toLowerCase().includes(query) ||
-        item.meaning.toLowerCase().includes(query) ||
-        item.levelName.toLowerCase().includes(query)
-    )
+    const query = keyword.value.toLowerCase()
+    let res = vocabularies.value
+    if (query) {
+      res = res.filter(
+        (item) =>
+          item.expression.toLowerCase().includes(query) ||
+          item.reading.toLowerCase().includes(query) ||
+          item.meaning.toLowerCase().includes(query) ||
+          item.levels.includes(query)
+      )
+    }
+    if (selectedLevels.value.length > 0) {
+      const keys = selectedLevels.value.map((x) => x.toLowerCase())
+      res = res.filter((item) =>
+        item.levels.some((x) => keys.includes(x))
+      )
+    }
+
     totalInView.value = res.length
     return res
   })
+
+  const selectedLevels = ref<string[]>([])
 
   const pageView = computed(() => {
     const start = (currentPage.value - 1) * pageSize.value
@@ -81,45 +95,45 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     }
   }
 
+  const levels = computed(() => {
+    return [
+      ...new Set(
+        vocabularies.value.flatMap((item) => item.levels)
+      ),
+    ].sort()
+  })
+
   // 更新搜索关键词
-  function setSearchQuery(query: string) {
-    searchQuery.value = query
+  function setKeyword(query: string) {
+    keyword.value = query
     currentPage.value = 1 // 重置到第一页
   }
 
-  function dataHandler(voc: Vocabulary[]): Vocabulary[] {
-    if (!voc || voc.length === 0) {
-      return []
-    }
-    const levelNames = [5, 4, 3, 2, 1].map((x) => `jlpt_${x}`)
-    for (let x = 0; x < voc.length; x++) {
-      for (let i = 0; i < levelNames.length; i++) {
-        if (voc[x].tags.toLowerCase().includes(levelNames[i].toLowerCase())) {
-          voc[x].level = Number(levelNames[i].split('_')[1])
-          voc[x].levelName = levelNames[i]
-          break
-        }
-      }
-    }
-    let res: Vocabulary[] = []
-    for (let x = 0; x < levelNames.length; x++) {
-      res.push(...voc.filter((item) => item.levelName === levelNames[x]))
-    }
-    return res
+  function process(voc: Vocabulary[]): Vocabulary[] {
+    voc.forEach((item) => {
+      item.levels = item.tags
+        .split(tagDelimiter)
+        .map((x) => x.toLowerCase())
+        .sort((a, b) => a.length - b.length)
+    })
+    return voc
   }
 
   return {
+    tagDelimiter,
     vocabularies,
     loading,
     error,
     currentPage,
     pageSize,
-    searchQuery,
+    keyword,
     doFilter,
     pageView,
     totalInView,
+    levels,
+    selectedLevels,
     loadVocabularies,
     setPage,
-    setSearchQuery,
+    setKeyword,
   }
 })

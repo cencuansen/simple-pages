@@ -1,13 +1,35 @@
 <template>
   <div class="grammar">
     <div class="grammar-headers">
-      <el-input
-        class="search"
-        v-model.lazy="keyword"
-        size="small"
-        placeholder="搜索关键字"
-        clearable
-      />
+      <div class="grammar-header">
+        <div class="header-item">
+          <el-select
+            size="small"
+            v-model="selectedLevels"
+            placeholder="选等级"
+            clearable
+            multiple
+            collapse-tags
+            fit-input-width
+          >
+            <el-option
+              v-for="item in levels"
+              :key="item"
+              :label="item"
+              :value="item"
+            />
+          </el-select>
+        </div>
+        <div class="header-item">
+          <el-input
+            class="search"
+            v-model.lazy="keyword"
+            size="small"
+            placeholder="搜索关键字"
+            clearable
+          />
+        </div>
+      </div>
     </div>
     <div class="grammar-main">
       <div class="main">
@@ -59,6 +81,12 @@ const pageSize = 20
 const pageIndex = ref(1)
 const totalInView = ref(0)
 
+const selectedLevels = ref<string[]>([])
+
+const levels = computed(() => {
+  return [...new Set(grammarStore.JlptGrammars.map((x) => x.level))].sort()
+})
+
 const grammarView = computed(() => {
   let list = grammarStore.JlptGrammars
   const key = keyword.value
@@ -108,17 +136,21 @@ const grammarView = computed(() => {
 }
 
 .grammar-headers {
-  width: 100%;
-  height: var(--grammar-headers-height);
   overflow-y: scroll;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.search {
-  max-width: var(--content-max-width);
+.grammar-header {
+  height: var(--single-row-header-height);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: var(--gap12);
   margin: 0 auto;
+  max-width: var(--content-max-width);
+}
+
+.header-item {
+  flex: 1;
 }
 
 .main {
@@ -132,10 +164,6 @@ const grammarView = computed(() => {
 .table {
   max-width: var(--content-max-width);
   margin: 0 auto;
-}
-
-:deep(.match) {
-  color: var(--el-color-danger);
 }
 
 .pagination {
