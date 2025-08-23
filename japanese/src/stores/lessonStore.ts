@@ -44,7 +44,9 @@ export const useLessonStore = defineStore(
         minIndex.value = lessons.value[0].index
         maxIndex.value = lessons.value[lessons.value.length - 1].index
 
-        currentIndex.value = minIndex.value
+        if (!isValidLesson(currentIndex.value)) {
+          currentIndex.value = minIndex.value
+        }
       } catch (err) {
         error.value =
           err instanceof Error ? err.message : 'Failed to fetch lessons'
