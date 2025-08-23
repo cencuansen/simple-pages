@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 
 export interface Text {
   speaker?: string
@@ -11,6 +11,7 @@ export interface Text {
 }
 
 export interface Lesson {
+  index: number
   title?: Text
   audio: string
   basics: Text[]
@@ -28,7 +29,10 @@ export const useLessonStore = defineStore(
     const lessons = ref<Lesson[]>([])
     const isLoading = ref(false)
     const error = ref<string | null>(null)
-    const currentIndex = ref(0)
+    const currentIndex = ref(101)
+
+    const minIndex = ref(0)
+    const maxIndex = ref(0)
 
     const fetchLessons = async () => {
       try {
@@ -36,6 +40,8 @@ export const useLessonStore = defineStore(
         error.value = null
         const response = await fetch(`${jpJsonBase}/lesson.json`)
         lessons.value = await response.json()
+        minIndex.value = lessons.value[0].index
+        maxIndex.value = lessons.value[lessons.value.length - 1].index
       } catch (err) {
         error.value =
           err instanceof Error ? err.message : 'Failed to fetch lessons'
@@ -47,26 +53,52 @@ export const useLessonStore = defineStore(
 
     // 切换课程
     const setCurrentIndex = (index: number) => {
-      if (index >= 0 && index < lessons.value.length) {
+      if (index >= minIndex.value && index < maxIndex.value) {
         currentIndex.value = index
+      } else {
+        currentIndex.value = minIndex.value
       }
     }
 
-    watch(currentIndex, (newVal) => {
-      document.title = `第 ${newVal + 1} 课 - 新版标准日本语`
-    })
+    const currentLesson = computed(
+      () =>
+        lessons.value.find((item) => item.index === currentIndex.value) || null
+    )
+
+    const hasPrevious = computed(() => currentIndex.value > minIndex.value)
+
+    const hasNext = computed(() => currentIndex.value < maxIndex.value)
+
+    const goPrevious = () => {
+      currentIndex.value = currentIndex.value - 1
+    }
+
+    const goNext = () => {
+      currentIndex.value = currentIndex.value + 1
+    }
+
+    const goLesson = (num: number) => {
+      currentIndex.value = num
+    }
 
     return {
+      // 属性
       lessons,
       isLoading,
       error,
       currentIndex,
+
+      // 计算属性
+      currentLesson,
+      hasNext,
+      hasPrevious,
+
+      // 方法
       setCurrentIndex,
       fetchLessons,
-      // 计算属性
-      currentLesson: computed(() => lessons.value[currentIndex.value]),
-      hasNext: computed(() => currentIndex.value < lessons.value.length - 1),
-      hasPrevious: computed(() => currentIndex.value > 0),
+      goPrevious,
+      goNext,
+      goLesson,
     }
   },
   {

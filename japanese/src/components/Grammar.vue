@@ -1,17 +1,37 @@
 <template>
   <div class="grammar">
-    <div class="grammar-headers">
-      <el-input
-        class="search"
-        v-model.lazy="keyword"
-        size="small"
-        placeholder="搜索关键字"
-        clearable
-      />
+    <div class="headers">
+      <div class="headers-inner">
+        <div class="header-item">
+          <el-select
+            size="small"
+            class="select"
+            v-model="lessonIndex"
+            placeholder="选课程"
+            clearable
+            fit-input-width
+          >
+            <el-option
+              v-for="item in lessonStore.lessons"
+              :value="item.index"
+              :label="`${displayText(item.title?.content)}`"
+            />
+          </el-select>
+        </div>
+        <div class="header-item">
+          <el-input
+            class="search"
+            v-model.lazy="keyword"
+            size="small"
+            placeholder="搜索关键字"
+            clearable
+          />
+        </div>
+      </div>
     </div>
     <div class="grammar-main">
       <div class="main">
-        <el-table class="table" :data="grammarView" stripe>
+        <el-table class="table" :data="grammarView" stripe :show-header="false">
           <el-table-column label="语法" prop="content">
             <template #default="scope">
               <div v-html="scope.row.content"></div>
@@ -46,10 +66,15 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useGrammarStore } from '../stores/grammarStore'
-import { ElPagination } from 'element-plus'
+import { useLessonStore } from '../stores/lessonStore'
+import { ElPagination, ElTable } from 'element-plus'
+import { displayText } from '../utils.ts'
 
 const grammarStore = useGrammarStore()
+const lessonStore = useLessonStore()
 const keyword = ref('')
+
+const lessonIndex = ref<null | number>(null)
 
 const pageSize = 20
 const pageIndex = ref(1)
@@ -58,6 +83,9 @@ const totalInView = ref(0)
 const grammarView = computed(() => {
   let list = grammarStore.grammars
   const key = keyword.value
+  if (lessonIndex.value) {
+    list = list.filter((item) => item.lesson === lessonIndex.value)
+  }
   if (key) {
     const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
@@ -96,13 +124,27 @@ const grammarView = computed(() => {
   position: fixed;
 }
 
-.grammar-headers {
+.headers {
   width: 100%;
   height: var(--single-row-header-height);
   overflow-y: scroll;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.headers-inner {
+  width: 100%;
+  height: var(--single-row-header-height);
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap12);
+  margin: 0 auto;
+  max-width: var(--content-max-width);
+}
+
+.header-item {
+  flex: 1;
 }
 
 .search {

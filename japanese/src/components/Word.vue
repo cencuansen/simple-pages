@@ -53,7 +53,7 @@
       <div ref="top"></div>
       <!-- 单词 -->
       <section class="section words-section">
-        <el-table :data="words">
+        <el-table :data="words" :show-header="false">
           <el-table-column label="单词">
             <template #default="scope">
               <div
@@ -148,7 +148,7 @@ import { useWordStore } from '../stores/wordStore'
 import { useLessonStore } from '../stores/lessonStore'
 import type { WordItem } from '../types'
 import { displayText, speakingId, speakingWordId } from '../utils.ts'
-import { ElPagination } from 'element-plus'
+import { ElPagination, ElTable } from 'element-plus'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()

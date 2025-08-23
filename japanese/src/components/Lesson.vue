@@ -6,7 +6,7 @@
           size="small"
           class="previous-button navigation-item"
           :disabled="!lessonStore.hasPrevious"
-          @click="goToLesson(lessonStore.currentIndex - 1)"
+          @click="lessonStore.goPrevious"
         >
           上一课
         </el-button>
@@ -17,29 +17,30 @@
           fit-input-width
         >
           <el-option
-            v-for="(item, index) in lessonStore.lessons"
-            :key="index"
+            v-for="item in lessonStore.lessons"
+            :value="item.index"
             :label="`${displayText(item.title?.content)}`"
-            :value="index"
           />
         </el-select>
         <el-button
           size="small"
           class="next-button navigation-item"
           :disabled="!lessonStore.hasNext"
-          @click="goToLesson(lessonStore.currentIndex + 1)"
+          @click="lessonStore.goNext"
         >
           下一课
         </el-button>
       </div>
       <div class="function-group">
         <el-button
-          :type="allTranslate ? 'primary' : ''"
+          :type="baseSettingStore.allTranslate ? 'primary' : ''"
           size="small"
           circle
           title="翻译"
           v-if="baseSettingStore.translate"
-          @click="toggleTranslate(!allTranslate)"
+          @click="
+            baseSettingStore.setAllTranslate(!baseSettingStore.allTranslate)
+          "
         >
           译
         </el-button>
@@ -165,7 +166,7 @@
             <!--译文-->
             <div
               class="translation-line message"
-              :class="{ 'show-translation': basicsTranslate }"
+              :class="{ 'show-translation': baseSettingStore.basicsTranslate }"
             >
               {{ item.translation }}
             </div>
@@ -231,7 +232,10 @@
             <!--译文-->
             <div
               class="translation-line message"
-              :class="{ 'show-translation': exchangeTranslate[exchangeIndex] }"
+              :class="{
+                'show-translation':
+                  baseSettingStore.exchangeTranslate[exchangeIndex],
+              }"
             >
               {{ message.translation }}
             </div>
@@ -305,7 +309,10 @@
             <!--译文-->
             <div
               class="translation-line message"
-              :class="{ 'show-translation': exchange2Translate[exchangeIndex] }"
+              :class="{
+                'show-translation':
+                  baseSettingStore.exchange2Translate[exchangeIndex],
+              }"
             >
               {{ message.translation }}
             </div>
@@ -422,7 +429,7 @@
         <div
           class="model-lesson-title"
           v-html="textView(lesson.title, false, false)"
-          @click="goToLesson(Number(lesson.idx))"
+          @click="lessonStore.goLesson(Number(lesson.idx))"
         ></div>
         <div
           class="model-lesson-match-content"
@@ -485,11 +492,6 @@ const grammarStore = useGrammarStore()
 
 const { currentLesson, lessons } = storeToRefs(lessonStore)
 const { fullscreen } = storeToRefs(baseSettingStore)
-
-const allTranslate = ref(false)
-const basicsTranslate = ref(false)
-const exchangeTranslate = ref<boolean[]>(new Array(100).fill(false))
-const exchange2Translate = ref<boolean[]>(new Array(100).fill(false))
 
 const searchModel = ref(false)
 
@@ -562,26 +564,26 @@ const lastElement = ref<HTMLElement | null>()
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
-const toggleTranslate = (newValue: boolean) => {
-  allTranslate.value = newValue
-  // 基础句子
-  basicsTranslate.value = allTranslate.value
-  // 简单对话
-  for (let i = 0; i < exchangeTranslate.value.length; i++) {
-    exchangeTranslate.value[i] = allTranslate.value
-  }
-  // 情景对话
-  for (let i = 0; i < exchange2Translate.value.length; i++) {
-    exchange2Translate.value[i] = allTranslate.value
-  }
-}
+// const toggleTranslate = (newValue: boolean) => {
+//   allTranslate.value = newValue
+//   // 基础句子
+//   basicsTranslate.value = allTranslate.value
+//   // 简单对话
+//   for (let i = 0; i < exchangeTranslate.value.length; i++) {
+//     exchangeTranslate.value[i] = allTranslate.value
+//   }
+//   // 情景对话
+//   for (let i = 0; i < exchange2Translate.value.length; i++) {
+//     exchange2Translate.value[i] = allTranslate.value
+//   }
+// }
 
 watch(
   () => baseSettingStore.translate,
   (value, _) => {
     if (!value) {
       // 设置中关闭翻译功能时
-      toggleTranslate(false)
+      baseSettingStore.setAllTranslate(false)
     }
   }
 )
@@ -721,16 +723,12 @@ const speakingActive = (
   return currentTime > timePart[0] && currentTime < timePart[1]
 }
 
-const goToLesson = async (index: number) => {
-  lessonStore.setCurrentIndex(index)
-}
-
 const grammars = computed(() => {
-  return grammarStore.queryGrammars({ lesson: lessonStore.currentIndex + 1 })
+  return grammarStore.queryGrammars({ lesson: lessonStore.currentIndex })
 })
 
 const words = computed(() => {
-  return wordStore.getByLesson(lessonStore.currentIndex + 1)
+  return wordStore.getByLesson(lessonStore.currentIndex)
 })
 
 const wordRegEx = computed(() => {
@@ -851,9 +849,9 @@ const onSingleKeyup = (event: KeyboardEvent) => {
     return
   }
   if (['ArrowLeft'].includes(event.key)) {
-    goToLesson(lessonStore.currentIndex - 1)
+    lessonStore.goPrevious()
   } else if (['ArrowRight'].includes(event.key)) {
-    goToLesson(lessonStore.currentIndex + 1)
+    lessonStore.goNext()
   } else if (['1'].includes(event.key)) {
     scrollTarget(top.value, {
       behavior: 'smooth',

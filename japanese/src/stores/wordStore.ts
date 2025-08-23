@@ -47,7 +47,7 @@ export const useWordStore = defineStore('word', () => {
   }
 
   const getByLesson = (lesson: number) => {
-    return wordList.value.filter((item) => item.lesson === 100 + lesson)
+    return wordList.value.filter((item) => item.lesson === lesson)
   }
 
   const searchByText = (text: string) => {

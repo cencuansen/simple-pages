@@ -37,6 +37,33 @@ export const useBaseSettingStore = defineStore(
       fullscreen.value = newStatus
     }
 
+    const basicsTranslate = ref(false)
+    const setBasicsTranslate = (newStatus: boolean) => {
+      basicsTranslate.value = newStatus
+    }
+
+    const exchangeTranslate = ref<boolean[]>(new Array(100).fill(false))
+    const setExchangeTranslate = (newStatus: boolean) => {
+      for (let i = 0; i < exchangeTranslate.value.length; i++) {
+        exchangeTranslate.value[i] = newStatus
+      }
+    }
+
+    const exchange2Translate = ref<boolean[]>(new Array(100).fill(false))
+    const setExchange2Translate = (newStatus: boolean) => {
+      for (let i = 0; i < exchange2Translate.value.length; i++) {
+        exchange2Translate.value[i] = newStatus
+      }
+    }
+
+    const allTranslate = ref(false)
+    const setAllTranslate = (newStatus: boolean) => {
+      allTranslate.value = newStatus
+      setBasicsTranslate(newStatus)
+      setExchangeTranslate(newStatus)
+      setExchange2Translate(newStatus)
+    }
+
     return {
       isDark,
       style,
@@ -50,9 +77,17 @@ export const useBaseSettingStore = defineStore(
       ttsSpeak,
       toggleDark,
       fullscreen,
+      allTranslate,
+      basicsTranslate,
+      exchangeTranslate,
+      exchange2Translate,
       furiganaToggle,
       wordLinkToggle,
       setFullscreen,
+      setAllTranslate,
+      setBasicsTranslate,
+      setExchangeTranslate,
+      setExchange2Translate,
     }
   },
   {

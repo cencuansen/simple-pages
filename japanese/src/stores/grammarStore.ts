@@ -27,7 +27,7 @@ export const useGrammarStore = defineStore('grammar', () => {
   const queryGrammars = (param: GrammarFilter) => {
     let res = grammars.value
     if (param.lesson) {
-      res = res.filter((r) => r.lesson === 100 + param.lesson)
+      res = res.filter((r) => r.lesson === param.lesson)
     }
     if (param.keyword) {
       res = res.filter((r) => r.desc.includes(param.keyword || ''))

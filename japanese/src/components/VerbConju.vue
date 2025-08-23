@@ -150,7 +150,7 @@ const columns = ref([
   },
   {
     prop: 'polite',
-    label: '丁寧',
+    label: '丁宁',
     formatter: emptyFn,
     show: true,
   },
@@ -174,13 +174,13 @@ const columns = ref([
   },
   {
     prop: 'past',
-    label: '過去',
+    label: '过去',
     formatter: emptyFn,
     show: true,
   },
   {
     prop: 'negativePast',
-    label: '過去否定',
+    label: '过去否定',
     formatter: emptyFn,
     show: true,
   },
