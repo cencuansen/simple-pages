@@ -93,6 +93,28 @@
               {{ scope.row.lesson }}
             </template>
           </el-table-column>
+          <el-table-column
+            width="60"
+            label="字典"
+            v-if="baseSettingStore.wordDict"
+          >
+            <template #default="scope">
+              <el-button
+                class="dict-item"
+                :type="''"
+                size="small"
+                circle
+                title="mazii"
+              >
+                <a
+                  target="_blank"
+                  :href="`https://mazii.net/zh-CN/search/word/jacn/${scope.row.word}`"
+                >
+                  <img src="/mazii.png" alt="mazii" />
+                </a>
+              </el-button>
+            </template>
+          </el-table-column>
           <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak">
             <template #header>
               <el-button
@@ -282,6 +304,12 @@ onActivated(async () => {
 .word-main > * {
   max-width: var(--content-max-width);
   margin: 0 auto;
+}
+
+.dict-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .speaking-active {

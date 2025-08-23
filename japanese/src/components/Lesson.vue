@@ -372,6 +372,28 @@
             v-if="baseSettingStore.wordDesc"
             show-overflow-tooltip
           />
+          <el-table-column
+            width="60"
+            label="字典"
+            v-if="baseSettingStore.wordDict"
+          >
+            <template #default="scope">
+              <el-button
+                class="dict-item"
+                :type="''"
+                size="small"
+                circle
+                title="mazii"
+              >
+                <a
+                  target="_blank"
+                  :href="`https://mazii.net/zh-CN/search/word/jacn/${scope.row.word}`"
+                >
+                  <img src="/mazii.png" alt="mazii" />
+                </a>
+              </el-button>
+            </template>
+          </el-table-column>
           <el-table-column width="50" v-if="baseSettingStore.ttsSpeak">
             <template #header>
               <el-button
@@ -884,7 +906,8 @@ const onSingleKeyup = (event: KeyboardEvent) => {
 let deactivated = false
 
 onActivated(async () => {
-  deactivated && await router.push(`/lesson/${lessonStore?.currentLesson?.index}`)
+  deactivated &&
+    (await router.push(`/lesson/${lessonStore?.currentLesson?.index}`))
 
   document.addEventListener('keyup', onSingleKeyup)
   setTimeout(() => {
@@ -1088,6 +1111,12 @@ watch(
 
 .column-kana {
   font-size: 0.8rem;
+}
+
+.dict-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .highlight-word {

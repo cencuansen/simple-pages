@@ -27,6 +27,7 @@ export const useBaseSettingStore = defineStore(
     const word = ref(true)
     const kana = ref(true)
     const wordDesc = ref(true)
+    const wordDict = ref(true)
 
     const audioSpeak = ref(true)
     const ttsSpeak = ref(true)
@@ -73,6 +74,7 @@ export const useBaseSettingStore = defineStore(
       word,
       kana,
       wordDesc,
+      wordDict,
       audioSpeak,
       ttsSpeak,
       toggleDark,
