@@ -581,20 +581,6 @@ const lastElement = ref<HTMLElement | null>()
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
-// const toggleTranslate = (newValue: boolean) => {
-//   allTranslate.value = newValue
-//   // 基础句子
-//   basicsTranslate.value = allTranslate.value
-//   // 简单对话
-//   for (let i = 0; i < exchangeTranslate.value.length; i++) {
-//     exchangeTranslate.value[i] = allTranslate.value
-//   }
-//   // 情景对话
-//   for (let i = 0; i < exchange2Translate.value.length; i++) {
-//     exchange2Translate.value[i] = allTranslate.value
-//   }
-// }
-
 watch(
   () => baseSettingStore.translate,
   (value, _) => {
@@ -893,8 +879,12 @@ const onSingleKeyup = (event: KeyboardEvent) => {
   }
 }
 
+// 控制：刷新页面、切换页面 router.push 是否执行。
+// 避免刷新页面执行 onActivated 中 router.push，此时 index 为 undefined。
+let deactivated = false
+
 onActivated(async () => {
-  await router.push(`/lesson/${lessonStore?.currentLesson?.index}`)
+  deactivated && await router.push(`/lesson/${lessonStore?.currentLesson?.index}`)
 
   document.addEventListener('keyup', onSingleKeyup)
   setTimeout(() => {
@@ -905,6 +895,7 @@ onActivated(async () => {
 })
 
 onDeactivated(() => {
+  deactivated = true
   document.removeEventListener('keyup', onSingleKeyup)
 })
 
