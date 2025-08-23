@@ -373,25 +373,20 @@
             show-overflow-tooltip
           />
           <el-table-column
+            class-name="dict-column"
             width="60"
             label="字典"
             v-if="baseSettingStore.wordDict"
           >
             <template #default="scope">
-              <el-button
-                class="dict-item"
-                :type="''"
-                size="small"
-                circle
+              <a
                 title="mazii"
+                class="dict-item"
+                target="_blank"
+                :href="`https://mazii.net/zh-CN/search/word/jacn/${scope.row.word}`"
               >
-                <a
-                  target="_blank"
-                  :href="`https://mazii.net/zh-CN/search/word/jacn/${scope.row.word}`"
-                >
-                  <img src="/mazii.png" alt="mazii" />
-                </a>
-              </el-button>
+                <img src="/mazii.png" alt="mazii" />
+              </a>
             </template>
           </el-table-column>
           <el-table-column width="50" v-if="baseSettingStore.ttsSpeak">
@@ -1113,10 +1108,24 @@ watch(
   font-size: 0.8rem;
 }
 
+:deep(.dict-column .cell) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dict-item {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
 .dict-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .highlight-word {
