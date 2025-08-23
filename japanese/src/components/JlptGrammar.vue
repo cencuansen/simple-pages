@@ -114,6 +114,9 @@ const grammarView = computed(() => {
         return highlighted
       })
   }
+  if (selectedLevels.value.length > 0) {
+    list = list.filter((item) => selectedLevels.value.includes(item.level))
+  }
   totalInView.value = list.length
   const start = (pageIndex.value - 1) * pageSize
   const end = start + pageSize
