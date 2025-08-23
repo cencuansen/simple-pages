@@ -484,6 +484,8 @@ import {
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 
+const props = defineProps(['index'])
+
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()

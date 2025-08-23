@@ -62,10 +62,9 @@ export const useLessonStore = defineStore(
     }
 
     const currentLesson = computed(() => {
-      if (!isValidLesson(currentIndex.value)) {
-        currentIndex.value = minIndex.value
+      if (isValidLesson(currentIndex.value)) {
+        return lessons.value.find((item) => item.index === currentIndex.value)
       }
-      return lessons.value.find((item) => item.index === currentIndex.value)
     })
 
     const hasPrevious = computed(() => currentIndex.value > minIndex.value)

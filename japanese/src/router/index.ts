@@ -16,6 +16,12 @@ const router = createRouter({
       redirect: '/lesson',
     },
     {
+      path: '/lesson/:index?',
+      component: Lesson,
+      name: 'lesson',
+      props: true
+    },
+    {
       path: '/lesson',
       component: Lesson,
     },
