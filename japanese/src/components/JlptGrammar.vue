@@ -34,7 +34,6 @@
     <div class="grammar-main">
       <div class="main">
         <el-table class="table" :data="grammarView" stripe :show-header="false">
-          <el-table-column type="index" width="50" />
           <el-table-column label="语法" prop="grammar">
             <template #default="scope">
               <div v-html="scope.row.grammar"></div>

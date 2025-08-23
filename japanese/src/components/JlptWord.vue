@@ -51,7 +51,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="meaning" label="释义" />
-        <el-table-column label="标签" width="130">
+        <el-table-column label="标签" width="100">
           <template #default="scope">
             <div
               class="tag-item"
