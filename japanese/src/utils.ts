@@ -55,3 +55,7 @@ export const speakText = (text: string | undefined = '') =>
 
 export const displayText = (text: string | undefined = '') =>
   text.replace(/!([^(]+)\([^)]+\)/g, '$1')
+
+export const isNumber = (value: number | null | undefined) => {
+  return typeof value === 'number' && Number.isFinite(value)
+}

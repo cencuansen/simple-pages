@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import { isNumber } from '../utils.ts'
 
 export interface Text {
   speaker?: string
@@ -29,7 +30,7 @@ export const useLessonStore = defineStore(
     const lessons = ref<Lesson[]>([])
     const isLoading = ref(false)
     const error = ref<string | null>(null)
-    const currentIndex = ref(101)
+    const currentIndex = ref(-1)
 
     const minIndex = ref(0)
     const maxIndex = ref(0)
@@ -42,6 +43,8 @@ export const useLessonStore = defineStore(
         lessons.value = await response.json()
         minIndex.value = lessons.value[0].index
         maxIndex.value = lessons.value[lessons.value.length - 1].index
+
+        currentIndex.value = minIndex.value
       } catch (err) {
         error.value =
           err instanceof Error ? err.message : 'Failed to fetch lessons'
@@ -52,7 +55,7 @@ export const useLessonStore = defineStore(
     }
 
     const isValidLesson = (index: number): boolean =>
-      index >= minIndex.value && index <= maxIndex.value
+      isNumber(index) && index >= minIndex.value && index <= maxIndex.value
 
     // 切换课程
     const setCurrentIndex = (index: number) => {
@@ -89,6 +92,8 @@ export const useLessonStore = defineStore(
       isLoading,
       error,
       currentIndex,
+      minIndex,
+      maxIndex,
 
       // 计算属性
       currentLesson,

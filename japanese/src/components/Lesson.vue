@@ -499,16 +499,14 @@ const router = useRouter()
 
 if (props.index) {
   const index = Number(props.index)
-  lessonStore.setCurrentIndex(index)
   lessonStore.goLesson(index)
-} else {
-  router.push(`/lesson/${lessonStore?.currentLesson?.index}`)
 }
 
 watch(
   () => lessonStore.currentLesson,
   (_) => {
-    router.push(`/lesson/${lessonStore?.currentLesson?.index}`)
+    let index = lessonStore?.currentLesson?.index
+    router.push(`/lesson/${index}`)
   }
 )
 
