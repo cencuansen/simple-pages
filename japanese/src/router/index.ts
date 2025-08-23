@@ -19,11 +19,7 @@ const router = createRouter({
       path: '/lesson/:index?',
       component: Lesson,
       name: 'lesson',
-      props: true
-    },
-    {
-      path: '/lesson',
-      component: Lesson,
+      props: true,
     },
     {
       path: '/word',
