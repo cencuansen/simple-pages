@@ -674,7 +674,7 @@ expression,reading,meaning,tags
 大筋,おおすじ,"outline, summary",JLPT_1 JLPT
 大空,おおぞら,"heaven, the sky",JLPT_1 JLPT
 オートマチック,オートマチック,automatic,JLPT_1 JLPT
-大幅,おおはば,"full width, large scale, drastic",JLPT JLPT_1 MediaMissing
+大幅,おおはば,"full width, large scale, drastic",JLPT JLPT_1
 おおまかな,おおまかな,"rough, approximate",JLPT_1 JLPT
 大水,おおみず,flood,JLPT_1 JLPT
 公,おおやけ,public,JLPT_1 JLPT
@@ -1280,7 +1280,7 @@ expression,reading,meaning,tags
 意気込む,いきごむ,to be enthusiastic about,JLPT_1 JLPT
 育成,いくせい,"rearing, training, cultivation",JLPT_1 JLPT
 幾多,いくた,"many, numerous",JLPT_1 JLPT
-"(花を〜) 生ける, 活ける",(はなを～) いける,to arrange (flowers),JLPT JLPT_1 MediaMissing
+"(花を〜) 生ける, 活ける",(はなを～) いける,to arrange (flowers),JLPT JLPT_1
 異見,いけん,"different opinion, objection",JLPT_1 JLPT
 意向,いこう,"intention, idea, inclination",JLPT_1 JLPT
 移行,いこう,switching over to,JLPT_1 JLPT
@@ -3439,7 +3439,7 @@ expression,reading,meaning,tags
 差し支え,さしつかえ,"hindrance, impediment",JLPT JLPT_2
 差し引き,さしひき,"deduction, balance",JLPT_1 JLPT JLPT_2
 刺身,さしみ,sliced raw fish,JLPT JLPT_2
-(かさを～) さす,(かさを～) さす,to open; hold (an umbrella),JLPT JLPT_2 MediaMissing
+(かさを～) さす,(かさを～) さす,to open; hold (an umbrella),JLPT JLPT_2
 流石,さすが,"indeed, truly, as one would expect",JLPT JLPT_2
 撮影,さつえい,photographing,JLPT JLPT_2
 雑音,ざつおん,"noise (jarring, grating)",JLPT JLPT_2
@@ -3476,7 +3476,7 @@ expression,reading,meaning,tags
 仕方がない,しかたがない,"it can't be helped, it's inevitable",JLPT JLPT_2
 ～時間目,～じかんめ,"~th hour, ~th period",JLPT JLPT_2
 時間割,じかんわり,"timetable, schedule",JLPT JLPT_2
-〜(日本) 式,～(にほん) しき,"custom,",JLPT JLPT_2 MediaMissing
+〜(日本) 式,～(にほん) しき,"custom,",JLPT JLPT_2
 敷地,しきち,site,JLPT JLPT_2
 敷く,しく,"to spread out, to lay out",JLPT JLPT_2
 茂る,しげる,to grow thick,JLPT JLPT_2
