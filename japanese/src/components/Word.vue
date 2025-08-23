@@ -12,10 +12,9 @@
             fit-input-width
           >
             <el-option
-              v-for="(item, index) in lessonStore.lessons"
-              :key="index"
+              v-for="(item) in lessonStore.lessons"
               :label="`${displayText(item.title?.content)}`"
-              :value="index"
+              :value="item.index"
             />
           </el-select>
         </div>
@@ -184,7 +183,7 @@ watch(
 const words = computed(() => {
   let list: WordItem[]
   if (lessonIndex.value) {
-    list = wordStore.getByLesson(lessonIndex.value + 1)
+    list = wordStore.getByLesson(lessonIndex.value)
   } else {
     list = wordStore.wordList
   }
