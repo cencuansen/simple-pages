@@ -23,7 +23,7 @@ const speechStore = useSpeechStore()
 const baseSettingStore = useBaseSettingStore()
 
 const isPlaying = computed(
-  () => speechStore.isSpeaking || baseSettingStore.audioPlaying
+  () => speechStore.isSpeaking
 )
 
 const useAudio = computed(() => props.time && baseSettingStore.audioSpeak)
