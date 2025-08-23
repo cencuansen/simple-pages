@@ -879,7 +879,7 @@ const onSingleKeyup = (event: KeyboardEvent) => {
   }
 }
 
-// 控制：刷新页面、切换页面 router.push 是否执行。
+// 刷新页面、切换页面 router.push 是否执行。
 // 避免刷新页面执行 onActivated 中 router.push，此时 index 为 undefined。
 let deactivated = false
 
