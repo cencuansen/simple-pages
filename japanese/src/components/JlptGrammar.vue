@@ -7,12 +7,12 @@
         v-model="selectedLevels"
         placeholder="选等级"
       />
-      <SimpleInput v-model.trim="keyword"/>
+      <SimpleInput v-model.trim="keyword" />
     </Row>
 
     <div class="grammar-main">
       <div class="main">
-        <el-table class="table" :data="grammarView" stripe :show-header="false">
+        <el-table class="table" :data="afterPage" stripe :show-header="false">
           <el-table-column label="语法" prop="grammar" min-width="200">
             <template #default="scope">
               <div v-html="scope.row.grammar"></div>
@@ -36,31 +36,24 @@
         </el-table>
       </div>
     </div>
-    <div class="pagination">
-      <el-pagination
-        v-model:current-page="pageIndex"
-        :page-size="pageSize"
-        :total="totalInView"
-        layout="prev, pager, next"
-      />
-    </div>
+    <SimplePagination :data="beforePage" @page-change="pageChange" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useJlptGrammarStore } from '../stores/jlptGrammarStore.ts'
-import { ElInput, ElPagination, ElTable } from 'element-plus'
+import {
+  type JlptGrammar,
+  useJlptGrammarStore,
+} from '../stores/jlptGrammarStore.ts'
+import { ElTable } from 'element-plus'
 import SimpleSelect from './shares/SimpleSelect.vue'
 import Row from './shares/Row.vue'
 import SimpleInput from './shares/SimpleInput.vue'
+import SimplePagination from './shares/SimplePagination.vue'
 
 const grammarStore = useJlptGrammarStore()
 const keyword = ref('')
-
-const pageSize = 20
-const pageIndex = ref(1)
-const totalInView = ref(0)
 
 const selectedLevels = ref<string[]>([])
 
@@ -68,7 +61,7 @@ const levels = computed(() => {
   return [...new Set(grammarStore.JlptGrammars.map((x) => x.level))].sort()
 })
 
-const grammarView = computed(() => {
+const beforePage = computed(() => {
   let list = grammarStore.JlptGrammars
   const key = keyword.value
   if (key) {
@@ -99,11 +92,14 @@ const grammarView = computed(() => {
   if (selectedLevels.value.length > 0) {
     list = list.filter((item) => selectedLevels.value.includes(item.level))
   }
-  totalInView.value = list.length
-  const start = (pageIndex.value - 1) * pageSize
-  const end = start + pageSize
-  return list.slice(start, end)
+  return list
 })
+
+// 当前页数据
+const afterPage = ref<JlptGrammar[]>([])
+const pageChange = (data: JlptGrammar[]) => {
+  afterPage.value = data
+}
 </script>
 
 <style>
