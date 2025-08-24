@@ -1,29 +1,15 @@
 <template>
   <div class="verb-conju">
-    <div class="verb-conju-header">
-      <el-input
-        v-model="keyword"
-        size="small"
-        placeholder="搜索"
-        clearable
-      ></el-input>
-      <el-select
-        v-model="selectedCols"
-        size="small"
-        style="width: 210px"
-        placeholder="选择列"
+    <Row>
+      <SimpleInput v-model.trim="keyword"/>
+      <SimpleSelect
         multiple
-        collapse-tags
-        fit-input-width
-      >
-        <el-option
-          v-for="col in columns"
-          :key="col.label"
-          :value="col.label"
-          :label="col.label"
-        ></el-option>
-      </el-select>
-    </div>
+        :data="columns"
+        v-model="selectedCols"
+        placeholder="选择列"
+      />
+    </Row>
+
     <div class="verb-conju-main">
       <el-table
         class="el-table"
@@ -57,7 +43,10 @@
 import { useConjuStore, type Conju } from '../stores/conjuStore.ts'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
-import { ElPagination } from 'element-plus'
+import { ElInput, ElPagination } from 'element-plus'
+import SimpleSelect from './shares/SimpleSelect.vue'
+import Row from './shares/Row.vue'
+import SimpleInput from './shares/SimpleInput.vue'
 
 const verbConjuStore = useConjuStore()
 const { conjuVerbs } = storeToRefs(verbConjuStore)

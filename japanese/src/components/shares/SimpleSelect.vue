@@ -80,7 +80,7 @@ const props = withDefaults(defineProps<Props>(), {
   placeholder: '请选择',
   clearable: true,
   multiple: false,
-  collapseTags: false,
+  collapseTags: true,
   collapseTagsTooltip: false,
   style: () => ({}),
   size: 'small',
