@@ -9,8 +9,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useSpeechStore } from '../stores/speechStore'
-import { useBaseSettingStore } from '../stores/baseSettingStore'
+import { useSpeechStore } from '../../stores/speechStore.ts'
+import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
 
 const props = defineProps<{
   time?: string
