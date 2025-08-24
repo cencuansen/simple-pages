@@ -1,58 +1,25 @@
 <template>
   <div class="words">
-    <div class="word-headers">
-      <div class="word-header">
-        <div class="header-item">
-          <el-select
-            size="small"
-            class="navigation-item"
-            v-model="lessonIndex"
-            placeholder="选课程"
-            clearable
-            fit-input-width
-          >
-            <el-option
-              v-for="item in lessonStore.lessons"
-              :label="`${displayText(item.title?.content)}`"
-              :value="item.index"
-            />
-          </el-select>
-        </div>
-        <div class="header-item">
-          <el-select
-            size="small"
-            class="navigation-item"
-            v-model="selectedClasses"
-            placeholder="选词性"
-            clearable
-            multiple
-            collapse-tags
-            fit-input-width
-          >
-            <el-option
-              v-for="item in wordClasses"
-              :key="item"
-              :label="item"
-              :value="item"
-            />
-          </el-select>
-        </div>
-        <div class="header-item">
-          <el-input
-            v-model.trim="keyword"
-            size="small"
-            placeholder="搜单词"
-            clearable
-          ></el-input>
-        </div>
-      </div>
-    </div>
+    <Row>
+      <LessonSelect v-model="lessonIndex" />
+      <SimpleSelect
+        :data="wordClasses"
+        v-model="selectedClasses"
+        placeholder="选词性"
+      />
+      <el-input
+        v-model.trim="keyword"
+        size="small"
+        placeholder="搜单词"
+        clearable
+      ></el-input>
+    </Row>
 
     <div class="word-main" ref="container" @scroll="containerOnScroll">
       <div ref="top"></div>
       <!-- 单词 -->
       <section class="section words-section">
-        <el-table :data="words">
+        <el-table :data="words" :show-header="false">
           <el-table-column label="单词" min-width="150">
             <template #default="scope">
               <div
@@ -167,14 +134,16 @@ import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
 import { useSpeechStore } from '../stores/speechStore'
 import { useBaseSettingStore } from '../stores/baseSettingStore'
 import { useWordStore } from '../stores/wordStore'
-import { useLessonStore } from '../stores/lessonStore'
 import type { WordItem } from '../types'
-import { displayText, speakingId, speakingWordId } from '../utils.ts'
+import { speakingId, speakingWordId } from '../utils.ts'
 import { ElPagination, ElTable } from 'element-plus'
+
+import Row from './shares/Row.vue'
+import LessonSelect from './shares/LessonSelect.vue'
+import SimpleSelect from './shares/SimpleSelect.vue'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
-const lessonStore = useLessonStore()
 const baseSettingStore = useBaseSettingStore()
 
 const lessonIndex = ref()
@@ -234,9 +203,6 @@ const wordClasses = computed(() => {
   )
 })
 
-// const getSpeechText = (text: string | undefined = "") => text.replace(/![^(]+\(([^)]+)\)/g, '$1')
-// const getSpeechTextList = (arr: string[] = []) => arr.map(getSpeechText)
-
 const goTop = () => {
   top.value.scrollIntoView({
     behavior: 'smooth',
@@ -267,29 +233,6 @@ onActivated(async () => {
   width: 100%;
   height: 100%;
   position: fixed;
-}
-
-.word-headers {
-  height: var(--single-row-header-height);
-  width: 100%;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.word-header {
-  width: 100%;
-  height: var(--single-row-header-height);
-  display: flex;
-  flex-direction: row;
-  gap: var(--gap12);
-  margin: 0 auto;
-  max-width: var(--content-max-width);
-}
-
-.header-item {
-  flex: 1;
 }
 
 .word-main {
