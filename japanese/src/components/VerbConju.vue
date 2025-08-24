@@ -1,7 +1,7 @@
 <template>
   <div class="verb-conju">
     <Row>
-      <SimpleInput v-model.trim="keyword"/>
+      <SimpleInput v-model.trim="keyword" />
       <SimpleSelect
         multiple
         :data="columns"
@@ -43,7 +43,7 @@
 import { useConjuStore, type Conju } from '../stores/conjuStore.ts'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
-import { ElInput, ElPagination } from 'element-plus'
+import { ElPagination } from 'element-plus'
 import SimpleSelect from './shares/SimpleSelect.vue'
 import Row from './shares/Row.vue'
 import SimpleInput from './shares/SimpleInput.vue'
@@ -213,15 +213,6 @@ onMounted(() => {
   position: fixed;
   width: 100%;
   height: 100%;
-}
-
-.verb-conju-header {
-  overflow-y: scroll;
-  height: var(--single-row-header-height);
-  display: flex;
-  gap: var(--gap12);
-  align-items: center;
-  justify-content: space-around;
 }
 
 .verb-conju-main {
