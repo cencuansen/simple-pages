@@ -81,7 +81,6 @@ import { useSpeechStore } from '../stores/speechStore'
 import { useVocabularyStore } from '../stores/vocabularyStore.ts'
 import { useBaseSettingStore } from '../stores/baseSettingStore'
 import { ElTable, ElTableColumn, ElPagination, ElInput } from 'element-plus'
-import LessonSelect from './shares/LessonSelect.vue'
 import SimpleSelect from './shares/SimpleSelect.vue'
 import Row from './shares/Row.vue'
 
@@ -106,28 +105,6 @@ const keyword = computed({
   width: 100%;
   height: 100%;
   position: fixed;
-}
-
-.word-headers {
-  overflow-y: scroll;
-}
-
-.word-header {
-  height: var(--single-row-header-height);
-  display: flex;
-  gap: var(--gap12);
-  margin: 0 auto;
-  max-width: var(--content-max-width);
-}
-
-.header-item {
-  flex: 1;
-}
-
-.search {
-  margin-bottom: 10px;
-  width: 100%;
-  max-width: var(--content-max-width);
 }
 
 .word-main {
