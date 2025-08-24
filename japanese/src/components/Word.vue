@@ -114,15 +114,6 @@
 
     <SimplePagination :data="words" @page-change="pageChange" />
 
-    <div class="pagination">
-      <el-pagination
-        v-model:current-page="pageIndex"
-        :page-size="pageSize"
-        :total="totalInView"
-        layout="prev, pager, next"
-      />
-    </div>
-
     <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
 </template>
@@ -134,7 +125,7 @@ import { useBaseSettingStore } from '../stores/baseSettingStore'
 import { useWordStore } from '../stores/wordStore'
 import type { WordItem } from '../types'
 import { speakingId, speakingWordId } from '../utils.ts'
-import { ElPagination, ElTable } from 'element-plus'
+import { ElTable } from 'element-plus'
 
 import Row from './shares/Row.vue'
 import LessonSelect from './shares/LessonSelect.vue'
