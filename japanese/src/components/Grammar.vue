@@ -2,12 +2,12 @@
   <div class="grammar">
     <Row>
       <LessonSelect v-model="lessonIndex" />
-      <SimpleInput v-model.trim="keyword"/>
+      <SimpleInput v-model.trim="keyword" />
     </Row>
 
     <div class="grammar-main">
       <div class="main">
-        <el-table class="table" :data="grammarView" stripe :show-header="false">
+        <el-table class="table" :data="afterPage" stripe :show-header="false">
           <el-table-column label="语法" prop="content" min-width="200">
             <template #default="scope">
               <div v-html="scope.row.content"></div>
@@ -28,35 +28,25 @@
         </el-table>
       </div>
     </div>
-    <div class="pagination">
-      <el-pagination
-        v-model:current-page="pageIndex"
-        :page-size="pageSize"
-        :total="totalInView"
-        layout="prev, pager, next"
-      />
-    </div>
+    <SimplePagination :data="beforePage" @page-change="pageChange" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useGrammarStore } from '../stores/grammarStore'
-import { ElInput, ElPagination, ElTable } from 'element-plus'
+import { type Grammar, useGrammarStore } from '../stores/grammarStore'
+import { ElTable } from 'element-plus'
 import Row from './shares/Row.vue'
 import LessonSelect from './shares/LessonSelect.vue'
 import SimpleInput from './shares/SimpleInput.vue'
+import SimplePagination from './shares/SimplePagination.vue'
 
 const grammarStore = useGrammarStore()
 const keyword = ref('')
 
 const lessonIndex = ref<null | number>(null)
 
-const pageSize = 20
-const pageIndex = ref(1)
-const totalInView = ref(0)
-
-const grammarView = computed(() => {
+const beforePage = computed(() => {
   let list = grammarStore.grammars
   const key = keyword.value
   if (lessonIndex.value) {
@@ -86,11 +76,14 @@ const grammarView = computed(() => {
         return highlighted
       })
   }
-  totalInView.value = list.length
-  const start = (pageIndex.value - 1) * pageSize
-  const end = start + pageSize
-  return list.slice(start, end)
+  return list
 })
+
+// 当前页数据
+const afterPage = ref<Grammar[]>([])
+const pageChange = (data: Grammar[]) => {
+  afterPage.value = data
+}
 </script>
 
 <style scoped>
