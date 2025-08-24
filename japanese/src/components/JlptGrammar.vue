@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, type ComputedRef, ref } from 'vue'
 import {
   type JlptGrammar,
   useJlptGrammarStore,
@@ -57,7 +57,7 @@ const keyword = ref('')
 
 const selectedLevels = ref<string[]>([])
 
-const levels = computed(() => {
+const levels: ComputedRef<string[]> = computed(() => {
   return [...new Set(grammarStore.JlptGrammars.map((x) => x.level))].sort()
 })
 

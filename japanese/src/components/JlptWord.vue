@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, type ComputedRef, onMounted, ref } from 'vue'
 import { useSpeechStore } from '../stores/speechStore'
 import {
   useVocabularyStore,
@@ -93,7 +93,7 @@ onMounted(() => {
 const keyword = ref<string>('')
 const selectedLevels = ref<string[]>([])
 
-const levels = computed(() => {
+const levels: ComputedRef<string[]> = computed(() => {
   return [...new Set(vocabularyStore.vocabularies.flatMap((item: Vocabulary) => item.levels))].sort()
 })
 

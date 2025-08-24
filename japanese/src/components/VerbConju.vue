@@ -20,8 +20,8 @@
       >
         <template v-for="col in columns">
           <el-table-column
-            v-if="selectedCols.includes(col.label)"
-            :prop="col.prop"
+            v-if="selectedCols.includes(col.value)"
+            :prop="col.value"
             :label="col.label"
             :formatter="col.formatter"
           ></el-table-column>
@@ -70,9 +70,9 @@ const typeFn = (_1: any, _2: any, cellValue: any, _3: number) => {
   if (!cellValue) {
     return null
   } else if (cellValue === 'godan') {
-    return '5段动词'
+    return '五段动词'
   } else if (cellValue === 'ichidan') {
-    return '1段动词'
+    return '一段动词'
   } else if (cellValue === 'irregular') {
     return '不规则动词'
   } else {
@@ -96,97 +96,97 @@ const transitivityFn = (_1: any, _2: any, cellValue: any, _3: number) => {
 
 const columns = ref([
   {
-    prop: 'dictionary',
+    value: 'dictionary',
     label: '辞书',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'hiragana',
+    value: 'hiragana',
     label: '平假名',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'meaning',
+    value: 'meaning',
     label: '释义',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'type',
+    value: 'type',
     label: '类型',
     formatter: typeFn,
     show: false,
   },
   {
-    prop: 'transitivity',
+    value: 'transitivity',
     label: '及物性',
     formatter: transitivityFn,
     show: false,
   },
   {
-    prop: 'negative',
+    value: 'negative',
     label: '否定',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'polite',
+    value: 'polite',
     label: '丁宁',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'conditional',
+    value: 'conditional',
     label: '条件',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'volitional',
+    value: 'volitional',
     label: '意向',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'te',
+    value: 'te',
     label: 'て',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'past',
+    value: 'past',
     label: '过去',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'negativePast',
+    value: 'negativePast',
     label: '过去否定',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'passive',
+    value: 'passive',
     label: '被动',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'causative',
+    value: 'causative',
     label: '使役',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'potential',
+    value: 'potential',
     label: '可能',
     formatter: emptyFn,
     show: true,
   },
   {
-    prop: 'imperative',
+    value: 'imperative',
     label: '命令',
     formatter: emptyFn,
     show: true,
@@ -198,7 +198,7 @@ const selectedCols = ref<string[]>([])
 onMounted(() => {
   selectedCols.value = columns.value
     .filter((col) => col.show)
-    .map((col) => col.label)
+    .map((col) => col.value)
 })
 </script>
 
