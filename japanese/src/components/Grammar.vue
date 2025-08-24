@@ -1,34 +1,15 @@
 <template>
   <div class="grammar">
-    <div class="headers">
-      <div class="headers-inner">
-        <div class="header-item">
-          <el-select
-            size="small"
-            class="select"
-            v-model="lessonIndex"
-            placeholder="选课程"
-            clearable
-            fit-input-width
-          >
-            <el-option
-              v-for="item in lessonStore.lessons"
-              :value="item.index"
-              :label="`${displayText(item.title?.content)}`"
-            />
-          </el-select>
-        </div>
-        <div class="header-item">
-          <el-input
-            class="search"
-            v-model.lazy="keyword"
-            size="small"
-            placeholder="搜索关键字"
-            clearable
-          />
-        </div>
-      </div>
-    </div>
+    <Row>
+      <LessonSelect v-model="lessonIndex" />
+      <el-input
+        v-model.trim="keyword"
+        size="small"
+        placeholder="搜索关键字"
+        clearable
+      ></el-input>
+    </Row>
+
     <div class="grammar-main">
       <div class="main">
         <el-table class="table" :data="grammarView" stripe :show-header="false">
@@ -66,12 +47,11 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useGrammarStore } from '../stores/grammarStore'
-import { useLessonStore } from '../stores/lessonStore'
-import { ElPagination, ElTable } from 'element-plus'
-import { displayText } from '../utils.ts'
+import { ElInput, ElPagination, ElTable } from 'element-plus'
+import Row from './shares/Row.vue'
+import LessonSelect from './shares/LessonSelect.vue'
 
 const grammarStore = useGrammarStore()
-const lessonStore = useLessonStore()
 const keyword = ref('')
 
 const lessonIndex = ref<null | number>(null)
@@ -122,34 +102,6 @@ const grammarView = computed(() => {
   width: 100%;
   height: 100%;
   position: fixed;
-}
-
-.headers {
-  width: 100%;
-  height: var(--single-row-header-height);
-  overflow-y: scroll;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.headers-inner {
-  width: 100%;
-  height: var(--single-row-header-height);
-  display: flex;
-  flex-direction: row;
-  gap: var(--gap12);
-  margin: 0 auto;
-  max-width: var(--content-max-width);
-}
-
-.header-item {
-  flex: 1;
-}
-
-.search {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
 }
 
 .main {
