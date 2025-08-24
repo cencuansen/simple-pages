@@ -12,7 +12,7 @@
             fit-input-width
           >
             <el-option
-              v-for="(item) in lessonStore.lessons"
+              v-for="item in lessonStore.lessons"
               :label="`${displayText(item.title?.content)}`"
               :value="item.index"
             />
@@ -52,8 +52,8 @@
       <div ref="top"></div>
       <!-- 单词 -->
       <section class="section words-section">
-        <el-table :data="words" :show-header="false">
-          <el-table-column label="单词">
+        <el-table :data="words">
+          <el-table-column label="单词" min-width="150">
             <template #default="scope">
               <div
                 v-if="baseSettingStore.word"
@@ -83,6 +83,7 @@
             show-overflow-tooltip
           />
           <el-table-column
+            min-width="150"
             prop="desc"
             label="释义"
             v-if="baseSettingStore.wordDesc"
@@ -110,7 +111,12 @@
               </a>
             </template>
           </el-table-column>
-          <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak">
+          <el-table-column
+            label=""
+            width="50"
+            v-if="baseSettingStore.ttsSpeak"
+            fixed="right"
+          >
             <template #header>
               <el-button
                 type="primary"
@@ -328,6 +334,7 @@ onActivated(async () => {
 .pagination {
   width: 100%;
   overflow-y: scroll;
+  overflow-x: hidden;
   height: var(--pagination-height);
 }
 

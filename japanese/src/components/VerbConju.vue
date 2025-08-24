@@ -245,6 +245,7 @@ onMounted(() => {
 
 .verb-conju-pagination {
   width: 100%;
+  overflow-x: hidden;
   overflow-y: scroll;
   height: var(--pagination-height);
 }

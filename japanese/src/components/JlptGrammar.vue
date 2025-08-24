@@ -34,17 +34,17 @@
     <div class="grammar-main">
       <div class="main">
         <el-table class="table" :data="grammarView" stripe :show-header="false">
-          <el-table-column label="语法" prop="grammar">
+          <el-table-column label="语法" prop="grammar" min-width="200">
             <template #default="scope">
               <div v-html="scope.row.grammar"></div>
             </template>
           </el-table-column>
-          <el-table-column label="含义" prop="meaning">
+          <el-table-column label="含义" prop="meaning" min-width="200">
             <template #default="scope">
               <div v-html="scope.row.meaning"></div>
             </template>
           </el-table-column>
-          <el-table-column label="示例" prop="example">
+          <el-table-column label="示例" prop="example" min-width="200">
             <template #default="scope">
               <div v-html="scope.row.example"></div>
             </template>
@@ -170,6 +170,7 @@ const grammarView = computed(() => {
 
 .pagination {
   width: 100%;
+  overflow-x: hidden;
   overflow-y: scroll;
   height: var(--pagination-height);
 }

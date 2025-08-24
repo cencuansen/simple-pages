@@ -323,8 +323,8 @@
       <!-- 语法 -->
       <section class="section grammar" ref="grammarsRef">
         <el-table :data="grammars">
-          <el-table-column label="语法" prop="content" />
-          <el-table-column label="说明">
+          <el-table-column label="语法" prop="content" min-width="200" />
+          <el-table-column label="说明" min-width="200">
             <template #default="scope">
               <div v-if="scope.row.desc" v-html="scope.row.desc"></div>
               <br v-if="scope.row.remark" />
@@ -337,7 +337,7 @@
       <!-- 单词 -->
       <section class="section words-section" ref="wordsRef">
         <el-table :data="words">
-          <el-table-column label="单词">
+          <el-table-column label="单词" min-width="150">
             <template #default="scope">
               <div
                 v-if="baseSettingStore.word"
@@ -367,6 +367,7 @@
             show-overflow-tooltip
           />
           <el-table-column
+            min-width="150"
             prop="desc"
             label="释义"
             v-if="baseSettingStore.wordDesc"
@@ -389,7 +390,11 @@
               </a>
             </template>
           </el-table-column>
-          <el-table-column width="50" v-if="baseSettingStore.ttsSpeak">
+          <el-table-column
+            width="50"
+            v-if="baseSettingStore.ttsSpeak"
+            fixed="right"
+          >
             <template #header>
               <el-button
                 size="small"

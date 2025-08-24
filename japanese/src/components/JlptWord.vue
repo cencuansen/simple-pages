@@ -40,7 +40,7 @@
         :show-header="false"
         stripe
       >
-        <el-table-column label="词汇">
+        <el-table-column label="词汇" min-width="150">
           <template #default="scope">
             <div :id="`word-${scope.row.expression}`" class="column-word">
               {{ scope.row.expression }}
@@ -50,8 +50,8 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="meaning" label="释义" />
-        <el-table-column label="标签" width="100">
+        <el-table-column prop="meaning" label="释义" min-width="150"/>
+        <el-table-column label="标签" min-width="150">
           <template #default="scope">
             <div
               class="tag-item"
@@ -63,7 +63,7 @@
             ></div>
           </template>
         </el-table-column>
-        <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak">
+        <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak" fixed="right">
           <template #default="scope">
             <el-button
               type="primary"
@@ -172,6 +172,7 @@ const keyword = computed({
   width: 100%;
   height: var(--pagination-height);
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .el-pagination {
