@@ -1,37 +1,18 @@
 <template>
   <div class="words">
-    <div class="word-headers">
-      <div class="word-header">
-        <div class="header-item">
-          <el-select
-            size="small"
-            class="navigation-item"
-            v-model="store.selectedLevels"
-            placeholder="选等级"
-            clearable
-            multiple
-            collapse-tags
-            fit-input-width
-          >
-            <el-option
-              v-for="item in store.levels"
-              :key="item"
-              :label="item"
-              :value="item"
-            />
-          </el-select>
-        </div>
-        <div class="header-item">
-          <el-input
-            class="search"
-            v-model.trim="keyword"
-            size="small"
-            placeholder="搜单词"
-            clearable
-          ></el-input>
-        </div>
-      </div>
-    </div>
+    <Row>
+      <SimpleSelect
+        :data="store.levels"
+        v-model="store.selectedLevels"
+        placeholder="选等级"
+      />
+      <el-input
+        v-model.trim="keyword"
+        size="small"
+        placeholder="搜单词"
+        clearable
+      ></el-input>
+    </Row>
 
     <div class="word-main">
       <el-table
@@ -99,6 +80,9 @@ import { useSpeechStore } from '../stores/speechStore'
 import { useVocabularyStore } from '../stores/vocabularyStore.ts'
 import { useBaseSettingStore } from '../stores/baseSettingStore'
 import { ElTable, ElTableColumn, ElPagination, ElInput } from 'element-plus'
+import LessonSelect from './shares/LessonSelect.vue'
+import SimpleSelect from './shares/SimpleSelect.vue'
+import Row from './shares/Row.vue'
 
 const store = useVocabularyStore()
 const speechStore = useSpeechStore()
