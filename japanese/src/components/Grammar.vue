@@ -2,12 +2,7 @@
   <div class="grammar">
     <Row>
       <LessonSelect v-model="lessonIndex" />
-      <el-input
-        v-model.trim="keyword"
-        size="small"
-        placeholder="搜索关键字"
-        clearable
-      ></el-input>
+      <SimpleInput v-model.trim="keyword"/>
     </Row>
 
     <div class="grammar-main">
@@ -50,6 +45,7 @@ import { useGrammarStore } from '../stores/grammarStore'
 import { ElInput, ElPagination, ElTable } from 'element-plus'
 import Row from './shares/Row.vue'
 import LessonSelect from './shares/LessonSelect.vue'
+import SimpleInput from './shares/SimpleInput.vue'
 
 const grammarStore = useGrammarStore()
 const keyword = ref('')

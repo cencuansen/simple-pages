@@ -7,12 +7,7 @@
         v-model="store.selectedLevels"
         placeholder="选等级"
       />
-      <el-input
-        v-model.trim="keyword"
-        size="small"
-        placeholder="搜单词"
-        clearable
-      ></el-input>
+      <SimpleInput v-model.trim="keyword"/>
     </Row>
 
     <div class="word-main">
@@ -83,6 +78,7 @@ import { useBaseSettingStore } from '../stores/baseSettingStore'
 import { ElTable, ElTableColumn, ElPagination, ElInput } from 'element-plus'
 import SimpleSelect from './shares/SimpleSelect.vue'
 import Row from './shares/Row.vue'
+import SimpleInput from './shares/SimpleInput.vue'
 
 const store = useVocabularyStore()
 const speechStore = useSpeechStore()

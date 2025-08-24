@@ -7,12 +7,7 @@
         v-model="selectedLevels"
         placeholder="选等级"
       />
-      <el-input
-        v-model.trim="keyword"
-        size="small"
-        placeholder="搜索关键字"
-        clearable
-      ></el-input>
+      <SimpleInput v-model.trim="keyword"/>
     </Row>
 
     <div class="grammar-main">
@@ -58,6 +53,7 @@ import { useJlptGrammarStore } from '../stores/jlptGrammarStore.ts'
 import { ElInput, ElPagination, ElTable } from 'element-plus'
 import SimpleSelect from './shares/SimpleSelect.vue'
 import Row from './shares/Row.vue'
+import SimpleInput from './shares/SimpleInput.vue'
 
 const grammarStore = useJlptGrammarStore()
 const keyword = ref('')

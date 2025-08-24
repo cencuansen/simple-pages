@@ -8,12 +8,7 @@
         v-model="selectedClasses"
         placeholder="选词性"
       />
-      <el-input
-        v-model.trim="keyword"
-        size="small"
-        placeholder="搜单词"
-        clearable
-      ></el-input>
+      <SimpleInput v-model.trim="keyword"/>
     </Row>
 
     <div class="word-main" ref="container" @scroll="containerOnScroll">
@@ -142,6 +137,7 @@ import { ElPagination, ElTable } from 'element-plus'
 import Row from './shares/Row.vue'
 import LessonSelect from './shares/LessonSelect.vue'
 import SimpleSelect from './shares/SimpleSelect.vue'
+import SimpleInput from './shares/SimpleInput.vue'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
