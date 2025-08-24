@@ -3,17 +3,17 @@
     <Row>
       <SimpleSelect
         multiple
-        :data="store.levels"
-        v-model="store.selectedLevels"
+        :data="levels"
+        v-model="selectedLevels"
         placeholder="选等级"
       />
-      <SimpleInput v-model.trim="keyword"/>
+      <SimpleInput v-model.trim="keyword" />
     </Row>
 
     <div class="word-main">
       <el-table
-        :data="store.pageView"
-        v-loading="store.loading"
+        :data="afterPage"
+        v-loading="vocabularyStore.loading"
         :show-header="false"
         stripe
       >
@@ -27,7 +27,7 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="meaning" label="释义" min-width="150"/>
+        <el-table-column prop="meaning" label="释义" min-width="150" />
         <el-table-column label="标签" min-width="150">
           <template #default="scope">
             <div
@@ -36,11 +36,16 @@
               :key="item"
               :title="item"
               v-html="item"
-              :class="{ match: store.selectedLevels.includes(item) }"
+              :class="{ match: selectedLevels.includes(item) }"
             ></div>
           </template>
         </el-table-column>
-        <el-table-column label="" width="50" v-if="baseSettingStore.ttsSpeak" fixed="right">
+        <el-table-column
+          label=""
+          width="50"
+          v-if="baseSettingStore.ttsSpeak"
+          fixed="right"
+        >
           <template #default="scope">
             <el-button
               type="primary"
@@ -58,42 +63,65 @@
       </el-table>
     </div>
 
-    <div class="pagination">
-      <el-pagination
-        v-model:current-page="store.currentPage"
-        :page-size="store.pageSize"
-        :total="store.totalInView"
-        layout="prev, pager, next"
-        @current-change="store.setPage"
-      />
-    </div>
+    <SimplePagination :data="beforePage" @page-change="pageChange" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useSpeechStore } from '../stores/speechStore'
-import { useVocabularyStore } from '../stores/vocabularyStore.ts'
+import {
+  useVocabularyStore,
+  type Vocabulary,
+} from '../stores/vocabularyStore.ts'
 import { useBaseSettingStore } from '../stores/baseSettingStore'
-import { ElTable, ElTableColumn, ElPagination, ElInput } from 'element-plus'
+import { ElTable, ElTableColumn } from 'element-plus'
 import SimpleSelect from './shares/SimpleSelect.vue'
 import Row from './shares/Row.vue'
 import SimpleInput from './shares/SimpleInput.vue'
+import SimplePagination from './shares/SimplePagination.vue'
 
-const store = useVocabularyStore()
+const vocabularyStore = useVocabularyStore()
 const speechStore = useSpeechStore()
 const baseSettingStore = useBaseSettingStore()
 
 // 初始化加载数据
 onMounted(() => {
-  store.loadVocabularies()
+  vocabularyStore.loadVocabularies()
 })
 
-// 搜索输入
-const keyword = computed({
-  get: () => store.keyword,
-  set: (value) => store.setKeyword(value),
+const keyword = ref<string>('')
+const selectedLevels = ref<string[]>([])
+
+const levels = computed(() => {
+  return [...new Set(vocabularyStore.vocabularies.flatMap((item: Vocabulary) => item.levels))].sort()
 })
+
+const beforePage = computed(() => {
+  keyword.value = keyword.value.toLowerCase()
+  let res = vocabularyStore.vocabularies
+  if (keyword.value) {
+    res = res.filter(
+      (item: Vocabulary) =>
+        item.expression.toLowerCase().includes(keyword.value) ||
+        item.reading.toLowerCase().includes(keyword.value) ||
+        item.meaning.toLowerCase().includes(keyword.value) ||
+        item.levels.includes(keyword.value)
+    )
+  }
+  if (selectedLevels.value.length > 0) {
+    const keys = selectedLevels.value.map((x) => x.toLowerCase())
+    res = res.filter((item: Vocabulary) => item.levels.some((x: string) => keys.includes(x)))
+  }
+
+  return res
+})
+
+// 当前页数据
+const afterPage = ref<Vocabulary[]>([])
+const pageChange = (data: Vocabulary[]) => {
+  afterPage.value = data
+}
 </script>
 
 <style scoped>
