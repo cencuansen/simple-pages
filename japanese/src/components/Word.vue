@@ -3,6 +3,7 @@
     <Row>
       <LessonSelect v-model="lessonIndex" />
       <SimpleSelect
+        multiple
         :data="wordClasses"
         v-model="selectedClasses"
         placeholder="选词性"

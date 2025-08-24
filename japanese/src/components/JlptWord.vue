@@ -2,6 +2,7 @@
   <div class="words">
     <Row>
       <SimpleSelect
+        multiple
         :data="store.levels"
         v-model="store.selectedLevels"
         placeholder="选等级"

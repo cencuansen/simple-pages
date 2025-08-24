@@ -79,7 +79,7 @@ const props = withDefaults(defineProps<Props>(), {
   data: () => [],
   placeholder: '请选择',
   clearable: true,
-  multiple: true,
+  multiple: false,
   collapseTags: false,
   collapseTagsTooltip: false,
   style: () => ({}),
