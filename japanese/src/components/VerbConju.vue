@@ -13,7 +13,7 @@
     <div class="verb-conju-main">
       <el-table
         class="el-table"
-        :data="conjuView"
+        :data="afterPage"
         stripe
         fit
         style="width: 100%"
@@ -28,14 +28,7 @@
         </template>
       </el-table>
     </div>
-    <div class="verb-conju-pagination">
-      <el-pagination
-        v-model:current-page="pageIndex"
-        :page-size="pageSize"
-        :total="totalInView"
-        layout="prev, pager, next"
-      />
-    </div>
+    <SimplePagination :data="beforePage" @page-change="pageChange" />
   </div>
 </template>
 
@@ -43,19 +36,17 @@
 import { useConjuStore, type Conju } from '../stores/conjuStore.ts'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
-import { ElPagination } from 'element-plus'
 import SimpleSelect from './shares/SimpleSelect.vue'
 import Row from './shares/Row.vue'
 import SimpleInput from './shares/SimpleInput.vue'
+import SimplePagination from './shares/SimplePagination.vue'
 
 const verbConjuStore = useConjuStore()
 const { conjuVerbs } = storeToRefs(verbConjuStore)
 
 const keyword = ref<string>()
-const pageSize = 20
-const pageIndex = ref(1)
-const totalInView = ref(0)
-const conjuView = computed(() => {
+
+const beforePage = computed(() => {
   let list = conjuVerbs.value as Conju[]
   if (keyword.value) {
     list = list.filter((item) =>
@@ -64,11 +55,14 @@ const conjuView = computed(() => {
         .includes(keyword.value || '')
     )
   }
-  totalInView.value = list.length
-  const start = (pageIndex.value - 1) * pageSize
-  const end = start + pageSize
-  return list.slice(start, end)
+  return list
 })
+
+// 当前页数据
+const afterPage = ref<Conju[]>([])
+const pageChange = (data: Conju[]) => {
+  afterPage.value = data
+}
 
 const emptyFn = (_1: any, _2: any, cellValue: any, _3: number) => cellValue
 
