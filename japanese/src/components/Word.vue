@@ -138,9 +138,6 @@ const wordStore = useWordStore()
 const baseSettingStore = useBaseSettingStore()
 
 const lessonIndex = ref()
-const pageSize = 20
-const pageIndex = ref(1)
-const totalInView = ref(0)
 const keyword = ref('')
 const selectedClasses = ref<string[]>([])
 
@@ -267,18 +264,6 @@ onActivated(async () => {
 
 .speaking-active {
   color: var(--el-color-success);
-}
-
-.pagination {
-  width: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: var(--pagination-height);
-}
-
-.el-pagination {
-  margin: 0 auto;
-  width: var(--content-max-width);
 }
 
 .go-top {
