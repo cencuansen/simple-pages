@@ -8,7 +8,7 @@
         v-model="selectedClasses"
         placeholder="选词性"
       />
-      <SimpleInput v-model.trim="keyword"/>
+      <SimpleInput v-model.trim="keyword" />
     </Row>
 
     <div class="word-main" ref="container" @scroll="containerOnScroll">
@@ -112,10 +112,7 @@
       </section>
     </div>
 
-    <SimplePagination
-      :data="words"
-      @page-change="handlePageChange"
-    />
+    <SimplePagination :data="words" @page-change="pageChange" />
 
     <div class="pagination">
       <el-pagination
@@ -200,7 +197,7 @@ const words = computed(() => {
 // 当前页数据
 const pageData = ref<WordItem[]>([])
 
-const handlePageChange = (data: WordItem[]) => {
+const pageChange = (data: WordItem[]) => {
   pageData.value = data
 }
 
