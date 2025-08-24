@@ -15,7 +15,7 @@
       <div ref="top"></div>
       <!-- 单词 -->
       <section class="section words-section">
-        <el-table :data="words" :show-header="false">
+        <el-table :data="pageData" :show-header="false">
           <el-table-column label="单词" min-width="150">
             <template #default="scope">
               <div
@@ -112,6 +112,11 @@
       </section>
     </div>
 
+    <SimplePagination
+      :data="words"
+      @page-change="handlePageChange"
+    />
+
     <div class="pagination">
       <el-pagination
         v-model:current-page="pageIndex"
@@ -138,6 +143,7 @@ import Row from './shares/Row.vue'
 import LessonSelect from './shares/LessonSelect.vue'
 import SimpleSelect from './shares/SimpleSelect.vue'
 import SimpleInput from './shares/SimpleInput.vue'
+import SimplePagination from './shares/SimplePagination.vue'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
@@ -188,11 +194,15 @@ const words = computed(() => {
   if (selectedClasses.value.length > 0) {
     list = list.filter((item) => selectedClasses.value.includes(item.pos))
   }
-  totalInView.value = list.length
-  const start = (pageIndex.value - 1) * pageSize
-  const end = start + pageSize
-  return list.slice(start, end)
+  return list
 })
+
+// 当前页数据
+const pageData = ref<WordItem[]>([])
+
+const handlePageChange = (data: WordItem[]) => {
+  pageData.value = data
+}
 
 const wordClasses = computed(() => {
   return [...new Set(wordStore.wordList.map((item) => item.pos))].sort((a, b) =>
