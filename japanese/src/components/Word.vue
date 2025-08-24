@@ -15,7 +15,7 @@
       <div ref="top"></div>
       <!-- 单词 -->
       <section class="section words-section">
-        <el-table :data="pageData" :show-header="false">
+        <el-table :data="afterPage" :show-header="false">
           <el-table-column label="单词" min-width="150">
             <template #default="scope">
               <div
@@ -87,7 +87,7 @@
                 circle
                 v-if="baseSettingStore.ttsSpeak && lessonIndex"
                 :disabled="speechStore.isSpeaking"
-                @click="speechStore.speakList(words)"
+                @click="speechStore.speakList(beforePage)"
               >
                 <el-icon>
                   <i class="icon-on-MPIS-TTS"></i>
@@ -112,7 +112,7 @@
       </section>
     </div>
 
-    <SimplePagination :data="words" @page-change="pageChange" />
+    <SimplePagination :data="beforePage" @page-change="pageChange" />
 
     <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
@@ -160,7 +160,7 @@ watch(
   }
 )
 
-const words = computed(() => {
+const beforePage = computed(() => {
   let list: WordItem[]
   if (lessonIndex.value) {
     list = wordStore.getByLesson(lessonIndex.value)
@@ -183,10 +183,9 @@ const words = computed(() => {
 })
 
 // 当前页数据
-const pageData = ref<WordItem[]>([])
-
+const afterPage = ref<WordItem[]>([])
 const pageChange = (data: WordItem[]) => {
-  pageData.value = data
+  afterPage.value = data
 }
 
 const wordClasses = computed(() => {
