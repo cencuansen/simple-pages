@@ -15,6 +15,7 @@
         :data="afterPage"
         v-loading="vocabularyStore.loading"
         :show-header="false"
+        empty-text="暂无数据"
         stripe
       >
         <el-table-column label="词汇" min-width="150">
@@ -94,7 +95,11 @@ const keyword = ref<string>('')
 const selectedLevels = ref<string[]>([])
 
 const levels: ComputedRef<string[]> = computed(() => {
-  return [...new Set(vocabularyStore.vocabularies.flatMap((item: Vocabulary) => item.levels))].sort()
+  return [
+    ...new Set(
+      vocabularyStore.vocabularies.flatMap((item: Vocabulary) => item.levels)
+    ),
+  ].sort()
 })
 
 const beforePage = computed(() => {
@@ -111,7 +116,9 @@ const beforePage = computed(() => {
   }
   if (selectedLevels.value.length > 0) {
     const keys = selectedLevels.value.map((x) => x.toLowerCase())
-    res = res.filter((item: Vocabulary) => item.levels.some((x: string) => keys.includes(x)))
+    res = res.filter((item: Vocabulary) =>
+      item.levels.some((x: string) => keys.includes(x))
+    )
   }
 
   return res

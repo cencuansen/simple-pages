@@ -15,7 +15,12 @@
       <div ref="top"></div>
       <!-- 单词 -->
       <section class="section words-section">
-        <el-table :data="afterPage" :show-header="false">
+        <el-table
+          :data="afterPage"
+          :show-header="false"
+          empty-text="暂无数据"
+          stripe
+        >
           <el-table-column label="单词" min-width="150">
             <template #default="scope">
               <div
@@ -185,6 +190,7 @@ const beforePage = computed(() => {
 // 当前页数据
 const afterPage = ref<WordItem[]>([])
 const pageChange = (data: WordItem[]) => {
+  console.log('pageChange', data)
   afterPage.value = data
 }
 

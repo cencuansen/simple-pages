@@ -1,16 +1,16 @@
 <template>
-  <div v-if="showPagination" class="simple-pagination">
+  <div class="simple-pagination">
     <el-pagination
-        v-model:current-page="internalPageIndex"
-        :page-size="internalPageSize"
-        :total="totalItems"
-        :layout="layout"
-        :small="small"
-        :background="background"
-        :disabled="disabled"
-        :hide-on-single-page="hideOnSinglePage"
-        @current-change="handlePageChange"
-        @size-change="handleSizeChange"
+      v-model:current-page="internalPageIndex"
+      :page-size="internalPageSize"
+      :total="totalItems"
+      :layout="layout"
+      :small="small"
+      :background="background"
+      :disabled="disabled"
+      :hide-on-single-page="hideOnSinglePage"
+      @current-change="handlePageChange"
+      @size-change="handleSizeChange"
     />
   </div>
 </template>
@@ -44,12 +44,12 @@ const props = withDefaults(defineProps<Props>(), {
   small: true,
   background: true,
   disabled: false,
-  hideOnSinglePage: true,
-  showSizeChanger: false
+  hideOnSinglePage: false,
+  showSizeChanger: false,
 })
 
 const emit = defineEmits<{
-  'pageChange': [pageData: any[], pageIndex: number, pageSize: number]
+  pageChange: [pageData: any[], pageIndex: number, pageSize: number]
   'update:data': [data: any[]]
 }>()
 
@@ -59,15 +59,9 @@ const internalPageSize = ref(props.pageSize)
 
 // 计算属性
 const totalItems = computed(() => props.data.length)
-const totalPages = computed(() => Math.ceil(totalItems.value / internalPageSize.value))
-
-// 是否显示分页组件
-const showPagination = computed(() => {
-  if (props.hideOnSinglePage) {
-    return totalItems.value > internalPageSize.value
-  }
-  return totalItems.value > 0
-})
+const totalPages = computed(() =>
+  Math.ceil(totalItems.value / internalPageSize.value)
+)
 
 // 计算当前页数据
 const currentPageData = computed(() => {
@@ -80,19 +74,24 @@ const currentPageData = computed(() => {
 })
 
 // 监听数据变化，重置到第一页
-watch(() => props.data, (newData) => {
-  if (newData.length > 0) {
+watch(
+  () => props.data,
+  () => {
+    internalPageIndex.value = 1
+    emitPageData()
+  },
+  { deep: true }
+)
+
+// 监听每页条数变化
+watch(
+  () => props.pageSize,
+  (newSize) => {
+    internalPageSize.value = newSize
     internalPageIndex.value = 1
     emitPageData()
   }
-}, { deep: true })
-
-// 监听每页条数变化
-watch(() => props.pageSize, (newSize) => {
-  internalPageSize.value = newSize
-  internalPageIndex.value = 1
-  emitPageData()
-})
+)
 
 // 初始化布局
 const layout = computed(() => {
@@ -108,7 +107,18 @@ const layout = computed(() => {
 
 // 发送当前页数据给父组件
 const emitPageData = () => {
-  emit('pageChange', currentPageData.value, internalPageIndex.value, internalPageSize.value)
+  console.log(
+    'emitPageData',
+    currentPageData.value,
+    internalPageIndex.value,
+    internalPageSize.value
+  )
+  emit(
+    'pageChange',
+    currentPageData.value,
+    internalPageIndex.value,
+    internalPageSize.value
+  )
 }
 
 // 处理页码变化
@@ -177,7 +187,7 @@ defineExpose({
   // 刷新当前页数据
   refresh: () => {
     emitPageData()
-  }
+  },
 })
 </script>
 

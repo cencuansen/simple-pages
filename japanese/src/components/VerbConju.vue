@@ -14,8 +14,9 @@
       <el-table
         class="el-table"
         :data="afterPage"
-        stripe
         fit
+        empty-text="暂无数据"
+        stripe
         style="width: 100%"
       >
         <template v-for="col in columns">
@@ -40,6 +41,7 @@ import SimpleSelect from './shares/SimpleSelect.vue'
 import Row from './shares/Row.vue'
 import SimpleInput from './shares/SimpleInput.vue'
 import SimplePagination from './shares/SimplePagination.vue'
+import { ElTable } from 'element-plus'
 
 const verbConjuStore = useConjuStore()
 const { conjuVerbs } = storeToRefs(verbConjuStore)

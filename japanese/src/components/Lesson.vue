@@ -322,7 +322,7 @@
 
       <!-- 语法 -->
       <section class="section grammar" ref="grammarsRef">
-        <el-table :data="grammars">
+        <el-table :data="grammars" empty-text="暂无数据" stripe>
           <el-table-column label="语法" prop="content" min-width="200" />
           <el-table-column label="说明" min-width="200">
             <template #default="scope">
@@ -336,7 +336,7 @@
 
       <!-- 单词 -->
       <section class="section words-section" ref="wordsRef">
-        <el-table :data="words">
+        <el-table :data="words" empty-text="暂无数据" stripe>
           <el-table-column label="单词" min-width="150">
             <template #default="scope">
               <div
@@ -506,6 +506,7 @@ import {
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
+import { ElTable } from 'element-plus'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()

@@ -7,7 +7,13 @@
 
     <div class="grammar-main">
       <div class="main">
-        <el-table class="table" :data="afterPage" stripe :show-header="false">
+        <el-table
+          class="table"
+          :data="afterPage"
+          :show-header="false"
+          empty-text="暂无数据"
+          stripe
+        >
           <el-table-column label="语法" prop="content" min-width="200">
             <template #default="scope">
               <div v-html="scope.row.content"></div>
