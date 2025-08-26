@@ -1,7 +1,11 @@
-// const fs = require('fs');
 import fs from 'fs'
+import { fileURLToPath } from 'url'
+import { dirname, resolve, join } from 'path'
+// 获取当前文件的 __filename 和 __dirname 等效值
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
-const file = '../public/json/grammars.json'
+const file = join(__dirname, '../public/json/grammars.json')
 const data = JSON.parse(fs.readFileSync(file))
 
 const lessonIdx = [...new Set(data.map((d) => Number(d.lesson)))].sort()
