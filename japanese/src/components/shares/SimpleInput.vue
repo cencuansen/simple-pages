@@ -1,5 +1,6 @@
 <template>
   <el-input
+    class="simple-input"
     v-model.trim="inputValue"
     :size="size"
     :placeholder="placeholder"
