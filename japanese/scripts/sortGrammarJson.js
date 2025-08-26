@@ -1,7 +1,7 @@
 // const fs = require('fs');
 import fs from 'fs'
 
-const file = './public/json/grammars.json'
+const file = '../public/json/grammars.json'
 const data = JSON.parse(fs.readFileSync(file))
 
 const lessonIdx = [...new Set(data.map((d) => Number(d.lesson)))].sort()
