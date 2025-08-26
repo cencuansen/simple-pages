@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        import hlsParser from 'https://cdn.jsdelivr.net/npm/hls-parser@0.13.6/+esm'
+        const { parse, types, stringify } = hlsParser;
+
+        const list = 'https://freetv.fun/test_channels.m3u'
+        const stream = 'https://vv.jisuzyv.com/play/YaOO3PQa/index.m3u8'
+
+        const res1 = await fetch(list);
+        const text1 = await res1.text()
+        const playlist = parse(text1);
+        if (playlist.isMasterPlaylist) {
+            console.log("Master Playlist");
+        } else {
+            console.log("Media Playlist");
+        }
+
+        const res2 = await fetch(stream);
+        const text2 = await res2.text()
+        const playlist2 = parse(text2);
+        if (playlist2.isMasterPlaylist) {
+            console.log("Master Playlist");
+        } else {
+            console.log("Media Playlist");
+        }
+    </script>
+</body>
+</html>
