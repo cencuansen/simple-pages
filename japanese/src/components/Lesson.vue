@@ -1190,7 +1190,8 @@ watch(
 audio {
   display: block;
   margin: 0 auto;
-  width: var(--content-max-width);
+  width: 100%;
+  max-width: var(--content-max-width);
 }
 
 .go-top {
