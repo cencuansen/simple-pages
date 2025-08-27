@@ -40,7 +40,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
   pageSize: 20,
-  layout: 'prev, pager, next',
+  layout: 'prev, pager, next, total',
   small: true,
   background: true,
   disabled: false,

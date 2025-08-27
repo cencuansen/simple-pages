@@ -60,11 +60,13 @@
     </div>
   </div>
   <div class="router-view">
-    <router-view v-slot="{ Component }">
-      <keep-alive>
-        <component :is="Component" />
-      </keep-alive>
-    </router-view>
+    <el-config-provider :locale="locale">
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+    </el-config-provider>
   </div>
   <div v-if="rootFooterHeight" class="footer"></div>
 </template>
@@ -80,6 +82,9 @@ import { useConjuStore } from './stores/conjuStore.ts'
 import { useRouter, useRoute } from 'vue-router'
 import { detectBrowser } from './utils.ts'
 import { storeToRefs } from 'pinia'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+
+const locale = zhCn
 
 const rootFooterHeight = ref(0)
 onMounted(() => {
