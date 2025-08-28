@@ -5,6 +5,8 @@
         multiple
         :data="levels"
         v-model="selectedLevels"
+        :filterable="true"
+        :allow-create="true"
         placeholder="选等级"
       />
       <SimpleInput v-model.trim="keyword" />
@@ -37,7 +39,7 @@
               :key="item"
               :title="item"
               v-html="item"
-              :class="{ match: selectedLevels.includes(item) }"
+              :class="{ match: selectedLevels.some(sl => item.includes(sl)) }"
             ></div>
           </template>
         </el-table-column>
@@ -92,7 +94,7 @@ onMounted(() => {
 })
 
 const keyword = ref<string>('')
-const selectedLevels = ref<string[]>([])
+const selectedLevels = ref<string[]>(['jlpt'])
 
 const levels: ComputedRef<string[]> = computed(() => {
   return [
@@ -117,7 +119,9 @@ const beforePage = computed(() => {
   if (selectedLevels.value.length > 0) {
     const keys = selectedLevels.value.map((x) => x.toLowerCase())
     res = res.filter((item: Vocabulary) =>
-      item.levels.some((x: string) => keys.includes(x))
+      item.levels.some(
+        (x: string) => keys.includes(x) || keys.some((k) => x.includes(k))
+      )
     )
   }
 

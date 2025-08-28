@@ -13,6 +13,7 @@
     :class="className"
     :disabled="disabled"
     :filterable="filterable"
+    :allow-create="allowCreate"
     @change="handleChange"
   >
     <el-option
@@ -62,6 +63,8 @@ interface Props {
   disabled?: boolean
   // 是否可搜索
   filterable?: boolean
+  // 可新增
+  allowCreate?: boolean
   // 值字段名（当data为对象数组时）
   valueKey?: string
   // 标签字段名（当data为对象数组时）
@@ -87,6 +90,7 @@ const props = withDefaults(defineProps<Props>(), {
   className: '',
   disabled: false,
   filterable: false,
+  allowCreate: false,
   valueKey: 'value',
   labelKey: 'label',
   disabledKey: 'disabled',
