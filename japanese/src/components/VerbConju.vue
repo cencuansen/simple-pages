@@ -1,13 +1,13 @@
 <template>
   <div class="verb-conju">
     <Row>
-      <SimpleInput v-model.trim="keyword" />
       <SimpleSelect
         multiple
         :data="columns"
         v-model="selectedCols"
         placeholder="选择列"
       />
+      <SimpleInput v-model.trim="keyword" />
     </Row>
 
     <div class="verb-conju-main">
