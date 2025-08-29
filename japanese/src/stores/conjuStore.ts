@@ -19,6 +19,7 @@ export interface Conju {
   causative: string // 使役
   potential: string // 可能
   imperative: string // 命令
+  lesson: number // 课程号
 }
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE

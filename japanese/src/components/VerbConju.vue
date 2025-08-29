@@ -7,6 +7,24 @@
         v-model="selectedCols"
         placeholder="选择列"
       />
+      <SimpleSelect
+        multiple
+        :data="lessonIndexOptions"
+        v-model="selectedLessons"
+        placeholder="选择课程"
+      />
+      <SimpleSelect
+        multiple
+        :data="typeOptions"
+        v-model="selectedTypes"
+        placeholder="选择类型"
+      />
+      <SimpleSelect
+        multiple
+        :data="transitivityOptions"
+        v-model="selectedTransitivities"
+        placeholder="选择及物性"
+      />
       <SimpleInput v-model.trim="keyword" />
     </Row>
 
@@ -57,6 +75,17 @@ const beforePage = computed(() => {
         .includes(keyword.value || '')
     )
   }
+  if (selectedLessons.value.length > 0) {
+    list = list.filter((item) => selectedLessons.value.includes(item.lesson))
+  }
+  if (selectedTypes.value.length > 0) {
+    list = list.filter((item) => selectedTypes.value.includes(item.type))
+  }
+  if (selectedTransitivities.value.length > 0) {
+    list = list.filter((item) =>
+      selectedTransitivities.value.some((st) => item.transitivity.includes(st))
+    )
+  }
   return list
 })
 
@@ -67,6 +96,28 @@ const pageChange = (data: Conju[]) => {
 }
 
 const emptyFn = (_1: any, _2: any, cellValue: any, _3: number) => cellValue
+
+const lessonIndexOptions = computed(() => {
+  return [...new Set(conjuVerbs.value.map((item) => item.lesson))].sort()
+})
+
+const typeOptions = [
+  {
+    label: '五段动词',
+    value: 'godan',
+    key: 'godan',
+  },
+  {
+    label: '一段动词',
+    value: 'ichidan',
+    key: 'ichidan',
+  },
+  {
+    label: '不规则动词',
+    value: 'irregular',
+    key: 'irregular',
+  },
+]
 
 const typeFn = (_1: any, _2: any, cellValue: any, _3: number) => {
   if (!cellValue) {
@@ -81,6 +132,24 @@ const typeFn = (_1: any, _2: any, cellValue: any, _3: number) => {
     return null
   }
 }
+
+const transitivityOptions = [
+  {
+    label: '他动词',
+    value: 't',
+    key: 't',
+  },
+  {
+    label: '自动词',
+    value: 'i',
+    key: 'i',
+  },
+  {
+    label: '自他动词',
+    value: 'i_t',
+    key: 'i_t',
+  },
+]
 
 const transitivityFn = (_1: any, _2: any, cellValue: any, _3: number) => {
   if (!cellValue) {
@@ -119,13 +188,13 @@ const columns = ref([
     value: 'type',
     label: '类型',
     formatter: typeFn,
-    show: false,
+    show: true,
   },
   {
     value: 'transitivity',
     label: '及物性',
     formatter: transitivityFn,
-    show: false,
+    show: true,
   },
   {
     value: 'negative',
@@ -196,6 +265,9 @@ const columns = ref([
 ])
 
 const selectedCols = ref<string[]>([])
+const selectedLessons = ref<number[]>([])
+const selectedTypes = ref<string[]>([])
+const selectedTransitivities = ref<string[]>([])
 
 onMounted(() => {
   selectedCols.value = columns.value
