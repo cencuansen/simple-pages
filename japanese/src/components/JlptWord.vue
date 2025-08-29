@@ -158,6 +158,11 @@ const pageChange = (data: Vocabulary[]) => {
   max-width: var(--content-max-width);
 }
 
+:deep(.el-scrollbar__wrap) {
+  /* 解决移动端滚动不顺畅问题 */
+  overflow-y: hidden;
+}
+
 .tag-item {
   width: 100%;
   overflow: hidden;

@@ -1106,6 +1106,11 @@ watch(
   }
 }
 
+:deep(.el-scrollbar__wrap) {
+  /* 解决移动端滚动不顺畅问题 */
+  overflow-y: hidden;
+}
+
 .column-kanji {
   font-size: 1rem;
 }

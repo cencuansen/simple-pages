@@ -219,6 +219,11 @@ onMounted(() => {
   );
 }
 
+:deep(.el-scrollbar__wrap) {
+  /* 解决移动端滚动不顺畅问题 */
+  overflow-y: hidden;
+}
+
 .verb-conju-pagination {
   width: 100%;
   overflow-x: hidden;

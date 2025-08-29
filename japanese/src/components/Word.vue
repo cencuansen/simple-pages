@@ -247,6 +247,11 @@ onActivated(async () => {
   margin: 0 auto;
 }
 
+:deep(.el-scrollbar__wrap) {
+  /* 解决移动端滚动不顺畅问题 */
+  overflow-y: hidden;
+}
+
 :deep(.dict-column .cell) {
   display: flex;
   flex-direction: column;

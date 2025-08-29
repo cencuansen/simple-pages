@@ -134,6 +134,11 @@ const pageChange = (data: JlptGrammar[]) => {
   margin: 0 auto;
 }
 
+:deep(.el-scrollbar__wrap) {
+  /* 解决移动端滚动不顺畅问题 */
+  overflow-y: hidden;
+}
+
 .pagination {
   width: 100%;
   overflow-x: hidden;
