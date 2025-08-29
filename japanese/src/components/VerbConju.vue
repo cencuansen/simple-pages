@@ -1,12 +1,12 @@
 <template>
   <div class="verb-conju">
     <Row>
-      <SimpleSelect
-        multiple
-        :data="columns"
-        v-model="selectedCols"
-        placeholder="选择列"
-      />
+      <!--      <SimpleSelect-->
+      <!--        multiple-->
+      <!--        :data="columns"-->
+      <!--        v-model="selectedCols"-->
+      <!--        placeholder="选择列"-->
+      <!--      />-->
       <SimpleSelect
         multiple
         :data="lessonIndexOptions"
@@ -36,6 +36,7 @@
         empty-text="暂无数据"
         stripe
         style="width: 100%"
+        @row-click="rowClick"
       >
         <template v-for="col in columns">
           <el-table-column
@@ -43,10 +44,29 @@
             :prop="col.value"
             :label="col.label"
             :formatter="col.formatter"
+            :width="col.width"
           ></el-table-column>
         </template>
       </el-table>
     </div>
+
+    <el-dialog
+      class="conju-detail"
+      :modal="true"
+      v-model="dialogModel"
+      center
+      align-center
+      width="400"
+    >
+      <el-form label-width="auto" :label-position="'right'">
+        <el-form-item v-for="col in columns" :label="col.label">
+          <span>{{
+            currentRow && col.formatter(null, null, currentRow[col.value], 0)
+          }}</span>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
+
     <SimplePagination :data="beforePage" @page-change="pageChange" />
   </div>
 </template>
@@ -171,96 +191,119 @@ const columns = ref([
     label: '辞书',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'hiragana',
     label: '平假名',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'meaning',
     label: '释义',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'type',
     label: '类型',
     formatter: typeFn,
     show: true,
+    width: 180,
   },
   {
     value: 'transitivity',
     label: '及物性',
     formatter: transitivityFn,
     show: true,
+    width: 180,
   },
   {
     value: 'negative',
     label: '否定',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'polite',
     label: '丁宁',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'conditional',
     label: '条件',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'volitional',
     label: '意向',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'te',
     label: 'て',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'past',
     label: '过去',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'negativePast',
     label: '过去否定',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'passive',
     label: '被动',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'causative',
     label: '使役',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'potential',
     label: '可能',
     formatter: emptyFn,
     show: true,
+    width: 180,
   },
   {
     value: 'imperative',
     label: '命令',
     formatter: emptyFn,
     show: true,
+    width: 180,
+  },
+  {
+    value: 'lesson',
+    label: '课程',
+    formatter: emptyFn,
+    show: true,
+    width: 60,
   },
 ])
 
@@ -268,6 +311,13 @@ const selectedCols = ref<string[]>([])
 const selectedLessons = ref<number[]>([])
 const selectedTypes = ref<string[]>([])
 const selectedTransitivities = ref<string[]>([])
+
+const dialogModel = ref(false)
+const currentRow = ref<Conju>()
+const rowClick = (row: Conju) => {
+  dialogModel.value = true
+  currentRow.value = row
+}
 
 onMounted(() => {
   selectedCols.value = columns.value
@@ -294,6 +344,14 @@ onMounted(() => {
 :deep(.el-scrollbar__wrap) {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
+}
+
+:deep(.el-overlay) {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.el-form-item {
+  margin-bottom: 0;
 }
 
 .verb-conju-pagination {

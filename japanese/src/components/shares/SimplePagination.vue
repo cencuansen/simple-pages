@@ -5,7 +5,7 @@
       :page-size="internalPageSize"
       :total="totalItems"
       :layout="layout"
-      :small="small"
+      :size="'small'"
       :background="background"
       :disabled="disabled"
       :hide-on-single-page="hideOnSinglePage"
@@ -27,6 +27,8 @@ interface Props {
   layout?: string
   // 是否小型
   small?: boolean
+  // 尺寸
+  size?: string
   // 是否有背景色
   background?: boolean
   // 是否禁用
@@ -42,6 +44,7 @@ const props = withDefaults(defineProps<Props>(), {
   pageSize: 20,
   layout: 'prev, pager, next, total',
   small: true,
+  size: 'small',
   background: true,
   disabled: false,
   hideOnSinglePage: false,
@@ -107,12 +110,6 @@ const layout = computed(() => {
 
 // 发送当前页数据给父组件
 const emitPageData = () => {
-  console.log(
-    'emitPageData',
-    currentPageData.value,
-    internalPageIndex.value,
-    internalPageSize.value
-  )
   emit(
     'pageChange',
     currentPageData.value,

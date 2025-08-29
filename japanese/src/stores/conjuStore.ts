@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import Papa from 'papaparse'
 
 export interface Conju {
+  [key: string]: any; // 添加索引签名
   dictionary: string // 辞书
   hiragana: string // 平假名
   meaning: string // 释义
