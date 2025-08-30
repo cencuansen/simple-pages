@@ -80,6 +80,7 @@ import Row from './shares/Row.vue'
 import SimpleInput from './shares/SimpleInput.vue'
 import SimplePagination from './shares/SimplePagination.vue'
 import { ElTable } from 'element-plus'
+import LessonSelect from './shares/LessonSelect.vue'
 
 const verbConjuStore = useConjuStore()
 const { conjuVerbs } = storeToRefs(verbConjuStore)
@@ -121,69 +122,8 @@ const lessonIndexOptions = computed(() => {
   return [...new Set(conjuVerbs.value.map((item) => item.lesson))].sort()
 })
 
-const typeOptions = [
-  {
-    label: '五段动词',
-    value: 'godan',
-    key: 'godan',
-  },
-  {
-    label: '一段动词',
-    value: 'ichidan',
-    key: 'ichidan',
-  },
-  {
-    label: '不规则动词',
-    value: 'irregular',
-    key: 'irregular',
-  },
-]
-
-const typeFn = (_1: any, _2: any, cellValue: any, _3: number) => {
-  if (!cellValue) {
-    return null
-  } else if (cellValue === 'godan') {
-    return '五段动词'
-  } else if (cellValue === 'ichidan') {
-    return '一段动词'
-  } else if (cellValue === 'irregular') {
-    return '不规则动词'
-  } else {
-    return null
-  }
-}
-
-const transitivityOptions = [
-  {
-    label: '他动词',
-    value: 't',
-    key: 't',
-  },
-  {
-    label: '自动词',
-    value: 'i',
-    key: 'i',
-  },
-  {
-    label: '自他动词',
-    value: 'i_t',
-    key: 'i_t',
-  },
-]
-
-const transitivityFn = (_1: any, _2: any, cellValue: any, _3: number) => {
-  if (!cellValue) {
-    return null
-  } else if (cellValue === 't') {
-    return '他动词'
-  } else if (cellValue === 'i') {
-    return '自动词'
-  } else if (cellValue.includes('t') && cellValue.includes('i')) {
-    return '自他动词'
-  } else {
-    return null
-  }
-}
+const typeOptions = ['五段动词', '一段动词', '不规则动词']
+const transitivityOptions = ['他动词', '自动词', '自他动词']
 
 const columns = ref([
   {
@@ -210,14 +150,14 @@ const columns = ref([
   {
     value: 'type',
     label: '类型',
-    formatter: typeFn,
+    formatter: emptyFn,
     show: true,
     width: 180,
   },
   {
     value: 'transitivity',
     label: '及物性',
-    formatter: transitivityFn,
+    formatter: emptyFn,
     show: true,
     width: 180,
   },
