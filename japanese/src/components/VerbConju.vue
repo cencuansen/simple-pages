@@ -45,6 +45,7 @@
             :label="col.label"
             :formatter="col.formatter"
             :width="col.width"
+            show-overflow-tooltip
           ></el-table-column>
         </template>
       </el-table>
@@ -151,14 +152,14 @@ const columns = ref([
     label: '类型',
     formatter: emptyFn,
     show: true,
-    width: 180,
+    width: 100,
   },
   {
     value: 'transitivity',
     label: '及物性',
     formatter: emptyFn,
     show: true,
-    width: 180,
+    width: 80,
   },
   {
     value: 'te',
@@ -220,7 +221,7 @@ const columns = ref([
     value: 'causativePassive',
     label: '使役被动',
     formatter: emptyFn,
-    show: false,
+    show: true,
     width: 180,
   },
   {
@@ -248,7 +249,7 @@ const columns = ref([
     value: 'prohibitive',
     label: '禁止',
     formatter: emptyFn,
-    show: false,
+    show: true,
     width: 180,
   },
   {
