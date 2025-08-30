@@ -80,7 +80,6 @@ import Row from './shares/Row.vue'
 import SimpleInput from './shares/SimpleInput.vue'
 import SimplePagination from './shares/SimplePagination.vue'
 import { ElTable } from 'element-plus'
-import LessonSelect from './shares/LessonSelect.vue'
 
 const verbConjuStore = useConjuStore()
 const { conjuVerbs } = storeToRefs(verbConjuStore)
