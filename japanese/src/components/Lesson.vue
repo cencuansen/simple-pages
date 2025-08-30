@@ -72,6 +72,15 @@
           搜
         </el-button>
         <el-button
+          size="small"
+          circle
+          title="全屏"
+          v-if="!fullscreen"
+          @click="toggleFullscreen"
+        >
+          全
+        </el-button>
+        <el-button
           :type="''"
           size="small"
           circle
@@ -80,9 +89,7 @@
           v-if="currentLesson?.audio && baseSettingStore.audioSpeak"
           @click="playAudio(``, speechStore.repeatTimes)"
         >
-          <el-icon>
-            <i class="icon-on-music"></i>
-          </el-icon>
+          读
         </el-button>
         <el-button
           :type="''"
@@ -93,15 +100,6 @@
           @click="pauseAudio"
         >
           停
-        </el-button>
-        <el-button
-          size="small"
-          circle
-          title="全屏"
-          v-if="!fullscreen"
-          @click="toggleFullscreen"
-        >
-          全
         </el-button>
       </div>
     </div>
