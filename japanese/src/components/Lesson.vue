@@ -797,6 +797,7 @@ const textView = (
 
   // 注音
   if (furigana && baseSettingStore.furigana) {
+    console.log('furigana')
     const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || []
     const rubyMap: Record<string, string> = {}
     rubyText.forEach((item) => {

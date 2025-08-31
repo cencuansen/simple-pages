@@ -1,11 +1,11 @@
 export interface WordItem {
   kana: string
-  kanji: string
   pos: string
   desc: string
   word: string
   lesson: number
   idx: number
+  group: number
 }
 
 export interface FilterOptions {
