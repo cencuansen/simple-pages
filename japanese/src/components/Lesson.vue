@@ -261,7 +261,7 @@
           class="conversation-exchange"
         >
           <el-form-item
-            :label="message.speaker"
+            :label="displayText(message.speaker)"
             class="message speaker"
             :class="[`speaker-${message.speaker}`]"
             v-for="(message, messageIndex) in exchange"
@@ -319,10 +319,8 @@
         </el-form>
       </section>
 
-      <section
-        v-if="currentLesson?.article.contents.length"
-        class="section"
-      >
+      <!-- 短文-->
+      <section v-if="currentLesson?.article.contents.length" class="section">
         <h2>
           <el-text
             class="text text-content-h2"

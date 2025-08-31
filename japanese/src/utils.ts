@@ -50,9 +50,11 @@ export const detectBrowser = () => {
   return { type: 'other', browser: 'unknown' }
 }
 
+// 获取朗读假名
 export const speakText = (text: string | undefined = '') =>
   text.replace(/![^(]+\(([^)]+)\)/g, '$1')
 
+// 去除注音
 export const displayText = (text: string | undefined = '') =>
   text.replace(/!([^(]+)\([^)]+\)/g, '$1')
 
