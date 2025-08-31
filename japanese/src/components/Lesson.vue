@@ -1110,10 +1110,6 @@ watch(
   overflow-y: hidden;
 }
 
-.column-kanji {
-  font-size: 1rem;
-}
-
 .column-kana {
   font-size: 0.8rem;
 }

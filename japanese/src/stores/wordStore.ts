@@ -61,8 +61,7 @@ export const useWordStore = defineStore('word', () => {
     const searchText = text.toLowerCase()
     return wordList.value.filter(
       (item) =>
-        item.kana.toLowerCase().includes(searchText) ||
-        item.kanji.toLowerCase().includes(searchText)
+        item.kana.toLowerCase().includes(searchText)
     )
   }
 
@@ -86,7 +85,6 @@ export const useWordStore = defineStore('word', () => {
       result = result.filter(
         (item) =>
           item.kana.toLowerCase().includes(text) ||
-          item.kanji.toLowerCase().includes(text) ||
           (item.desc && item.desc.toLowerCase().includes(text))
       )
     }

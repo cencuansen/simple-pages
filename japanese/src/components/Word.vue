@@ -176,7 +176,6 @@ const beforePage = computed(() => {
     list = list.filter(
       (item) =>
         item.kana.indexOf(keyword.value) > -1 ||
-        item.kanji.indexOf(keyword.value) > -1 ||
         item.desc.indexOf(keyword.value) > -1 ||
         item.word.indexOf(keyword.value) > -1
     )
