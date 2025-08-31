@@ -426,7 +426,7 @@
     <div class="audio" v-if="baseSettingStore.audioSpeak && !fullscreen">
       <audio
         ref="audioRef"
-        :src="src"
+        :src="void 0"
         controls
         @timeupdate="onTimeUpdate"
         @play="onPlay"
@@ -486,7 +486,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref, watch, onActivated } from 'vue'
+import { computed, onBeforeUnmount, ref, watch, onActivated, nextTick } from 'vue'
 import { useLessonStore } from '../stores/lessonStore'
 import { useSpeechStore } from '../stores/speechStore'
 import { useBaseSettingStore } from '../stores/baseSettingStore'
@@ -717,7 +717,11 @@ const onTimeUpdate = () => {
   currentTime.value = audioRef.value?.currentTime || 0
 }
 const onPlay = () => {
-  audioPlaying.value = true
+  audioRef.value && (audioRef.value.src = src.value || '')
+  nextTick(() => audioPlaying.value = true)
+  setTimeout(() => {
+    audioPlaying.value = true
+  }, 500)
 }
 const onPause = () => {
   audioPlaying.value = false
