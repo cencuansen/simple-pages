@@ -320,7 +320,11 @@
       </section>
 
       <!-- 短文-->
-      <section v-if="currentLesson?.article.contents.length" class="section">
+      <section
+        v-if="currentLesson?.article.contents.length"
+        class="section"
+        ref="articleRef"
+      >
         <h2>
           <el-text
             class="text text-content-h2"
@@ -338,7 +342,7 @@
               <!--原文-->
               <el-text
                 :id="speakingTextId(speakText(item.content))"
-                class="text text-content"
+                class="text text-content article"
                 :class="{
                   'speaking-active': speakingActive(
                     item.time,
@@ -599,6 +603,7 @@ const searchModel = ref(false)
 const top = ref()
 const container = ref()
 const grammarsRef = ref()
+const articleRef = ref()
 const wordsRef = ref()
 const audioRef = ref<HTMLAudioElement>()
 
@@ -932,6 +937,19 @@ const onScroll = async () => {
   scrollPosition.value = container.value.scrollTop
 }
 
+interface HotkeyRef {
+  [key: string]: HTMLElement | null
+}
+
+const hotkeyRefMap = computed<HotkeyRef>(() => {
+  return {
+    '1': top.value,
+    '2': articleRef.value || grammarsRef.value,
+    '3': articleRef.value && grammarsRef.value,
+    '4': articleRef.value && wordsRef.value,
+  }
+})
+
 const onSingleKeyup = (event: KeyboardEvent) => {
   if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey) {
     return
@@ -940,27 +958,16 @@ const onSingleKeyup = (event: KeyboardEvent) => {
     lessonStore.goPrevious()
   } else if (['ArrowRight'].includes(event.key)) {
     lessonStore.goNext()
-  } else if (['1'].includes(event.key)) {
-    scrollTarget(top.value, {
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
-    })
-  } else if (['2'].includes(event.key)) {
-    scrollTarget(grammarsRef.value, {
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
-    })
-  } else if (['3'].includes(event.key)) {
-    scrollTarget(wordsRef.value, {
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
-    })
   } else if (['f'].includes(event.key)) {
     searchModel.value = !searchModel.value
   } else if (['r'].includes(event.key)) {
+  } else if (Object.keys(hotkeyRefMap.value).includes(event.key)) {
+    // 数字跳转关联键
+    scrollTarget(hotkeyRefMap.value[event.key as string], {
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    })
   }
 }
 
@@ -1112,10 +1119,6 @@ watch(
   display: inherit;
 }
 
-/*:deep(.message) {
-  margin-bottom: 10px;
-}*/
-
 .text-row {
   display: flex;
   align-items: center;
@@ -1138,6 +1141,10 @@ watch(
   display: flex;
   flex-direction: column;
   align-items: start;
+}
+
+.article {
+  text-indent: 2em; /* 使用em单位实现字符宽度缩进 */
 }
 
 .column-word {
