@@ -7,23 +7,24 @@ const __dirname = dirname(__filename)
 
 const file1 = join(__dirname, '../public/json/lesson.json')
 const data1 = JSON.parse(fs.readFileSync(file1))
-
-const res = data1.map((item) => {
+let index = 201
+for (let i = 0; i < 32; i++) {
   const obj = {}
-  obj.index = item.index
-  obj.audio = item.audio
-  obj.title = item.title.content
-  obj.sentences = item.basics
-  obj.conversations = item.conversations
+  obj.index = index
+  obj.audio = `/audio/${index}.mp3#t=`
+  obj.title = `第 ${index - 200} 課`
+  obj.sentences = []
+  obj.conversations = []
   obj.discussions = {
-    title: item.title2.content,
-    contents: item.conversations2
+    title: "",
+    contents: [],
   }
   obj.article = {
     title: "",
-    contents: []
+    contents: [],
   }
-  return obj
-})
+  index++
+  data1.push(obj)
+}
 
-fs.writeFileSync('../public/json/lesson.json', JSON.stringify(res, null, 2))
+fs.writeFileSync('../public/json/lesson.json', JSON.stringify(data1, null, 2))

@@ -25,9 +25,7 @@ import { displayText } from '../../utils.ts'
 
 interface Lesson {
   index: number
-  title?: {
-    content: string
-  }
+  title?: string
 
   // 其他可能的字段
   [key: string]: any
@@ -93,7 +91,7 @@ const getOptionLabel = (lesson: Lesson) => {
   if (props.formatLabel) {
     return props.formatLabel(lesson)
   }
-  const title = lesson.title?.content
+  const title = lesson.title
   return displayText(title)
 }
 
