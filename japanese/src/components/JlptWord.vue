@@ -76,7 +76,7 @@ import { useSpeechStore } from '../stores/speechStore'
 import {
   useVocabularyStore,
   type Vocabulary,
-} from '../stores/vocabularyStore.ts'
+} from '../stores/jlptWord.ts'
 import { useBaseSettingStore } from '../stores/baseSettingStore'
 import { ElTable, ElTableColumn } from 'element-plus'
 import SimpleSelect from './shares/SimpleSelect.vue'
