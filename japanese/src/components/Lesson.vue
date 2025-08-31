@@ -19,7 +19,7 @@
           <el-option
             v-for="item in lessonStore.lessons"
             :value="item.index"
-            :label="`${displayText(item.title?.content)}`"
+            :label="`${displayText(item.title)}`"
           />
         </el-select>
         <el-button
@@ -109,20 +109,20 @@
       <h1 class="lesson-title">
         <el-text
           class="text-title"
-          v-html="textView(currentLesson?.title?.content)"
+          v-html="textView(currentLesson?.title)"
           @click="aClick"
         ></el-text>
       </h1>
 
       <!-- 简单句子 -->
       <section
-        v-if="currentLesson?.basics?.length"
+        v-if="currentLesson?.sentences?.length"
         class="section basics-section"
       >
         <el-form class="basics-list">
           <el-form-item
             class="message"
-            v-for="(item, idx) in currentLesson?.basics"
+            v-for="(item, idx) in currentLesson?.sentences"
             :key="`basic-${idx}`"
           >
             <div class="text-row">
@@ -243,19 +243,20 @@
 
       <!-- 情景对话 -->
       <section
-        v-if="currentLesson?.conversations2?.length"
+        v-if="currentLesson?.discussions?.contents.length"
         class="section conversation-section"
       >
         <h2>
           <el-text
             class="text text-content-h2"
-            v-html="textView(currentLesson?.title2.content)"
+            v-html="textView(currentLesson?.discussions.title)"
             @click="aClick"
           ></el-text>
         </h2>
         <el-form
           label-width="auto"
-          v-for="(exchange, exchangeIndex) in currentLesson?.conversations2"
+          v-for="(exchange, exchangeIndex) in currentLesson?.discussions
+            .contents"
           :key="`exchange2-${exchangeIndex}`"
           class="conversation-exchange"
         >
@@ -633,10 +634,10 @@ const lessonsView = computed(() => {
   const flatLessons = lessons.value.map((lesson, index) => {
     return [
       `${index}`,
-      lesson.title?.content,
-      ...lesson.basics.map((a) => a.content),
+      lesson.title,
+      ...lesson.sentences.map((a) => a.content),
       ...lesson.conversations.flatMap((a) => a).map((a) => a.content),
-      ...lesson.conversations2.flatMap((a) => a).map((a) => a.content),
+      ...lesson.discussions.contents.flatMap((a) => a).map((a) => a.content),
     ].filter(Boolean) as string[]
   })
 

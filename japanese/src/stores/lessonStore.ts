@@ -11,15 +11,19 @@ export interface Text {
   translation?: string
 }
 
+export interface TextBlock {
+  title: string
+  contents: Text[][]
+}
+
 export interface Lesson {
   index: number
-  title?: Text
+  title?: string
   audio: string
-  basics: Text[]
+  sentences: Text[]
   conversations: Text[][]
-  title2: Text
-  conversations2: Text[][]
-  translation: Lesson
+  discussions: TextBlock
+  article: TextBlock
 }
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
