@@ -1112,9 +1112,9 @@ watch(
   display: inherit;
 }
 
-:deep(.message) {
+/*:deep(.message) {
   margin-bottom: 10px;
-}
+}*/
 
 .text-row {
   display: flex;

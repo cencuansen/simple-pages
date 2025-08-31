@@ -156,6 +156,10 @@ onMounted(async () => {
   /* android edge */
   /*--root-footer-height: 105px;*/
 }
+
+.el-form-item {
+  margin-bottom: 0 !important;
+}
 </style>
 
 <style scoped>

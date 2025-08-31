@@ -164,10 +164,6 @@ onMounted(() => {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-.el-form-item {
-  margin-bottom: 0;
-}
-
 .verb-conju-pagination {
   width: 100%;
   overflow-x: hidden;
