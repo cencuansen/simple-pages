@@ -789,13 +789,13 @@ const textView = (
   if (words.value.length === 0) return baseText
 
   let finalText = baseText
-
   // 单词跳转
   if (wordLink && baseSettingStore.wordLink) {
     finalText = baseText.replace(wordRegEx.value, highlightReplacer)
   }
 
   // 注音
+
   if (furigana && baseSettingStore.furigana) {
     console.log('furigana')
     const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || []

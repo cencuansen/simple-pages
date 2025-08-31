@@ -34,6 +34,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
       Papa.parse<Vocabulary>(csvText, {
         header: true,
         skipEmptyLines: true,
+        dynamicTyping: true,
         complete: (result) => {
           vocabularies.value = process(result.data)
         },

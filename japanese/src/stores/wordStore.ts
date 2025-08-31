@@ -35,8 +35,10 @@ export const useWordStore = defineStore('word', () => {
       Papa.parse<WordItem>(csvText, {
         header: true,
         skipEmptyLines: true,
+        dynamicTyping: true,
         complete: (result) => {
           wordList.value = result.data
+          console.log('wordList.value[0]', wordList.value[0])
           isInitialized.value = true
         },
         error: (err: any) => {

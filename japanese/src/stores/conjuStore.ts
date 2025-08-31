@@ -34,6 +34,7 @@ export const useConjuStore = defineStore('conju', () => {
     Papa.parse<Conju>(csvText, {
       header: true,
       skipEmptyLines: true,
+      dynamicTyping: true,
       complete: (result) => {
         conjuVerbs.value = result.data
       },
