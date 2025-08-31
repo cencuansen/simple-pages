@@ -319,6 +319,70 @@
         </el-form>
       </section>
 
+      <section
+        v-if="currentLesson?.article.contents.length"
+        class="section"
+      >
+        <h2>
+          <el-text
+            class="text text-content-h2"
+            v-html="textView(currentLesson?.article.title)"
+            @click="aClick"
+          ></el-text>
+        </h2>
+        <el-form class="basics-list">
+          <el-form-item
+            class="message"
+            v-for="(item, idx) in currentLesson?.article.contents"
+            :key="`article-${idx}`"
+          >
+            <div class="text-row">
+              <!--原文-->
+              <el-text
+                :id="speakingTextId(speakText(item.content))"
+                class="text text-content"
+                :class="{
+                  'speaking-active': speakingActive(
+                    item.time,
+                    currentTime,
+                    speakText(item.content)
+                  ),
+                }"
+                v-html="textView(item.content)"
+                @click="aClick"
+              ></el-text>
+              <el-button
+                :disabled="isPlaying"
+                circle
+                size="small"
+                v-if="item.time && baseSettingStore.audioSpeak"
+                @click="playAudio(item.time, speechStore.repeatTimes)"
+              >
+                <el-icon>
+                  <i class="icon-on-music"></i>
+                </el-icon>
+              </el-button>
+              <el-button
+                circle
+                size="small"
+                v-else-if="baseSettingStore.ttsSpeak"
+                :disabled="isPlaying"
+                @click="speechStore.speak(speakText(item.content))"
+              >
+                <i class="icon-on-MPIS-TTS"></i>
+              </el-button>
+            </div>
+            <!--译文-->
+            <div
+              class="translation-line message"
+              :class="{ 'show-translation': baseSettingStore.basicsTranslate }"
+            >
+              {{ item.translation }}
+            </div>
+          </el-form-item>
+        </el-form>
+      </section>
+
       <!-- 语法 -->
       <section class="section grammar" ref="grammarsRef">
         <el-table :data="grammars" empty-text="暂无数据" stripe>

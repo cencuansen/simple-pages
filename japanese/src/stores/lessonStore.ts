@@ -2,7 +2,13 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { isNumber } from '../utils.ts'
 
-export interface Text {
+export interface TextBase {
+  content: string
+  time: string
+  translation?: string
+}
+
+export interface Conversation {
   speaker?: string
   content: string
   base?: string
@@ -11,19 +17,24 @@ export interface Text {
   translation?: string
 }
 
-export interface TextBlock {
+export interface Discussion {
   title: string
-  contents: Text[][]
+  contents: Conversation[][]
+}
+
+export interface Article {
+  title: string
+  contents: TextBase[]
 }
 
 export interface Lesson {
   index: number
   title?: string
   audio: string
-  sentences: Text[]
-  conversations: Text[][]
-  discussions: TextBlock
-  article: TextBlock
+  sentences: TextBase[]
+  conversations: Conversation[][]
+  discussions: Discussion
+  article: Article
 }
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
@@ -72,16 +83,33 @@ export const useLessonStore = defineStore(
       lessons.value.find((item) => item.index === currentIndex.value)
     )
 
-    const hasPrevious = computed(() => currentIndex.value > minIndex.value)
+    // 全部课程号
+    const lessonIndexs = computed(() => lessons.value.map((les) => les.index))
 
-    const hasNext = computed(() => currentIndex.value < maxIndex.value)
+    const hasPrevious = computed(() => {
+      // 课程号在数组中位置
+      const position = lessonIndexs.value.indexOf(currentIndex.value)
+      const isValid = lessonIndexs.value[position - 1]
+      return Boolean(isValid)
+    })
+
+    const hasNext = computed(() => {
+      // 课程号在数组中位置
+      const position = lessonIndexs.value.indexOf(currentIndex.value)
+      const isValid = lessonIndexs.value[position + 1]
+      return Boolean(isValid)
+    })
 
     const goPrevious = () => {
-      currentIndex.value = currentIndex.value - 1
+      const position = lessonIndexs.value.indexOf(currentIndex.value)
+      const value = lessonIndexs.value[position - 1]
+      Boolean(value) && (currentIndex.value = value)
     }
 
     const goNext = () => {
-      currentIndex.value = currentIndex.value + 1
+      const position = lessonIndexs.value.indexOf(currentIndex.value)
+      const value = lessonIndexs.value[position + 1]
+      Boolean(value) && (currentIndex.value = value)
     }
 
     const goLesson = (num: number) => {
