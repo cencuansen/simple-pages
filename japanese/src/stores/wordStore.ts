@@ -38,7 +38,6 @@ export const useWordStore = defineStore('word', () => {
         dynamicTyping: true,
         complete: (result) => {
           wordList.value = result.data
-          console.log('wordList.value[0]', wordList.value[0])
           isInitialized.value = true
         },
         error: (err: any) => {
