@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { WordItem, FilterOptions } from '../types'
+import Papa from 'papaparse'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -29,14 +30,19 @@ export const useWordStore = defineStore('word', () => {
     try {
       isLoading.value = true
       error.value = null
-      const response = await fetch(`${jpJsonBase}/words-junior.json`)
-      let words = (await response.json()) as WordItem[]
-      words.forEach((word: WordItem) => {
-        word.word = word.word.replace(/\s/g, '')
+      const response = await fetch(`${jpJsonBase}/words.csv`)
+      const csvText = await response.text()
+      Papa.parse<WordItem>(csvText, {
+        header: true,
+        skipEmptyLines: true,
+        complete: (result) => {
+          wordList.value = result.data
+          isInitialized.value = true
+        },
+        error: (err: any) => {
+          error.value = err.message
+        },
       })
-      wordList.value = words
-
-      isInitialized.value = true
     } catch (err) {
       error.value =
         err instanceof Error ? err.message : 'Failed to fetch word data'
