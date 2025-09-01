@@ -14,7 +14,15 @@
       :key="item.index"
       :label="getOptionLabel(item)"
       :value="getOptionValue(item)"
-    />
+      class="option-item"
+    >
+      <div class="option-prefix" :class="levelClass(item.index).en">
+        <span class="option-prefix-content">
+          {{ levelClass(item.index).cn }}
+        </span>
+      </div>
+      <div class="option-content">{{ getOptionLabel(item) }}</div>
+    </el-option>
   </el-select>
 </template>
 
@@ -103,6 +111,17 @@ const getOptionValue = (lesson: Lesson) => {
   return lesson.index
 }
 
+const levelClass = (index: number) => {
+  if (index < 200) {
+    return { en: 'level-junior', cn: '初' }
+  } else if (index < 300) {
+    return { en: 'level-medium', cn: '中' }
+  } else if (index < 400) {
+    return { en: 'level-senior', cn: '高' }
+  }
+  return { en: '', cn: '' }
+}
+
 // 暴露方法给父组件
 defineExpose({
   // 获取当前选中的课程对象
@@ -122,3 +141,42 @@ defineExpose({
   },
 })
 </script>
+
+<style scoped>
+.option-item {
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.option-prefix {
+  width: 30px;
+}
+
+.option-prefix-content {
+  border: 1px solid var(--el-color-info);
+  padding: 2px;
+  border-radius: 5px;
+  width: calc(100% - 30px);
+}
+
+.option-content {
+  flex: 1;
+  text-align: left;
+  overflow-x: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+
+.level-junior {
+  color: var(--el-color-success);
+}
+
+.level-medium {
+  color: var(--el-color-warning);
+}
+
+.level-senior {
+  color: var(--el-color-error);
+}
+</style>

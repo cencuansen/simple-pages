@@ -10,18 +10,7 @@
         >
           上一课
         </el-button>
-        <el-select
-          size="small"
-          class="navigation-item"
-          v-model="lessonStore.currentIndex"
-          fit-input-width
-        >
-          <el-option
-            v-for="item in lessonStore.lessons"
-            :value="item.index"
-            :label="`${displayText(item.title)}`"
-          />
-        </el-select>
+        <LessonSelect v-model="lessonStore.currentIndex" />
         <el-button
           size="small"
           class="next-button navigation-item"
@@ -376,7 +365,7 @@
             </div>
             <!--译文-->
             <div
-              class="translation-line message"
+              class="translation-line message article-translation"
               :class="{ 'show-translation': baseSettingStore.basicsTranslate }"
             >
               {{ item.translation }}
@@ -572,6 +561,7 @@ import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 import { ElTable } from 'element-plus'
+import LessonSelect from './shares/LessonSelect.vue'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -1143,8 +1133,10 @@ watch(
   align-items: start;
 }
 
-.article {
-  text-indent: 2em; /* 使用em单位实现字符宽度缩进 */
+.article,
+.article-translation {
+  /* 缩进 */
+  text-indent: 2em;
 }
 
 .column-word {
