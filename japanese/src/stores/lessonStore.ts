@@ -307,25 +307,18 @@ export const useLessonStore = defineStore(
       originalText: string | undefined = '',
       words: WordItem[]
     ) => {
-      // const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
       const baseText = kataFalseWordFalse({ originalText })
       if (words.length === 0) return baseText
-
-      // let finalText = baseText
-      // // 单词跳转
-      // finalText = baseText.replace(wordRegEx(words), (match) =>
-      //   highlightReplacer(match, words)
-      // )
 
       let finalText = kataFalseWordTrue({ originalText: baseText, words })
 
       // 注音，['!失礼(しつれい)', '!先(さき)', '!方(かた)']
       const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || []
-      const rubyMap: string[][] = []
+      const kanjiKanaMarks: string[][] = []
       rubyText.forEach((item) => {
         // ['!失礼(しつれい)', '失礼', 'しつれい', index: 0, input: '!失礼(しつれい)', groups: undefined]
         const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || []
-        rubyMap.push([kanji, kana])
+        kanjiKanaMarks.push([kanji, kana])
       })
 
       const rubyRegEx =
@@ -342,22 +335,17 @@ export const useLessonStore = defineStore(
             textPart !== null &&
             textPart.trim() !== ''
           ) {
-            rubyMap.reverse()
-            // 遍历 rubyMap 并进行替换
-            for (let i = rubyMap.length - 1; i >= 0; i--) {
-              const [kanji, kana] = rubyMap[i];
+            kanjiKanaMarks.reverse()
+            for (let i = kanjiKanaMarks.length - 1; i >= 0; i--) {
+              const [kanji, kana] = kanjiKanaMarks[i];
               const originalText = textPart;
-
-              // 执行替换
               textPart = textPart.replace(
-                new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'gi'),
+                new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'i'),
                 `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`
               );
-
-              // 检查是否发生了替换
               if (textPart !== originalText) {
-                // 如果发生了替换，从 rubyMap 中移除该项
-                rubyMap.splice(i, 1);
+                // 每项只使用一次，用完就删掉
+                kanjiKanaMarks.splice(i, 1);
               }
             }
             return textPart
@@ -365,7 +353,6 @@ export const useLessonStore = defineStore(
           return match
         }
       )
-
       return finalText
     }
 
