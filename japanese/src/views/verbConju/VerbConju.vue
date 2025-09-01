@@ -81,7 +81,7 @@ import Row from '../../components/Row.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { ElTable } from 'element-plus'
-import { columns, typeOptions, transitivityOptions } from '../../verbConjuUtils.ts'
+import { columns, typeOptions, transitivityOptions } from './index.ts'
 
 const verbConjuStore = useConjuStore()
 const { conjuVerbs } = storeToRefs(verbConjuStore)
