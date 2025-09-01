@@ -32,7 +32,7 @@ export interface Article {
 
 export interface Lesson {
   index: number
-  title?: string
+  title: string
   audio: string
   sentences: TextBase[]
   conversations: Conversation[][]
@@ -313,7 +313,7 @@ export const useLessonStore = defineStore(
       wordLink = true,
       furigana = true
     ) => {
-      return (originalText: string | null) => {
+      return (originalText: string) => {
         if (!originalText) return ''
         if (furigana && wordLink) {
           return origin_2_Kata_Word({ originalText, words })
@@ -324,7 +324,7 @@ export const useLessonStore = defineStore(
         } else if (!furigana && wordLink) {
           return origin_2_No_Word({ originalText, words })
         }
-        return null
+        return ''
       }
     }
 

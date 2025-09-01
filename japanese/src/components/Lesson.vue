@@ -98,7 +98,7 @@
       <h1 class="lesson-title">
         <el-text
           class="text-title"
-          v-html="textView(currentLesson?.title)"
+          v-html="textView(currentLesson.title)"
           @click="aClick"
         ></el-text>
       </h1>
