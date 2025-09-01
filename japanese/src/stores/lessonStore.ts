@@ -153,13 +153,13 @@ export const useLessonStore = defineStore(
       // 只提取假名，用于朗读
       onlyKatakana: string
       // 无假名无跳转
-      noKatakanaNoWord: string
+      katakanaFalseWordFalse: string
       // 无假名有跳转
-      noKatakanaWord: string
+      katakanaFalseWordTrue: string
       // 有假名无跳转
-      katakanaNoWord: string
+      katakanaTrueWordFalse: string
       // 有假名有跳转
-      katakanaWord: string
+      katakanaTrueWordTrue: string
     }
 
     interface OriginalTextMap {
@@ -171,10 +171,10 @@ export const useLessonStore = defineStore(
     const commonPreset = (
       text: string,
       type:
-        | 'noKatakanaNoWord'
-        | 'noKatakanaWord'
-        | 'katakanaNoWord'
-        | 'katakanaWord',
+        | 'katakanaFalseWordFalse'
+        | 'katakanaFalseWordTrue'
+        | 'katakanaTrueWordFalse'
+        | 'katakanaTrueWordTrue',
       fn: (val: string) => string
     ): string => {
       if (!text) {
@@ -198,19 +198,23 @@ export const useLessonStore = defineStore(
     }
 
     // 无假名无跳转
-    const origin_2_No_No = ({ originalText = '' }: ConvertParam) => {
-      return commonPreset(originalText, 'noKatakanaNoWord', (param: string) => {
-        return param.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
-      })
+    const kataFalseWordFalse = ({ originalText = '' }: ConvertParam) => {
+      return commonPreset(
+        originalText,
+        'katakanaFalseWordFalse',
+        (param: string) => {
+          return param.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
+        }
+      )
     }
 
     // 无假名有跳转
-    const origin_2_No_Word = ({
+    const kataFalseWordTrue = ({
       originalText = '',
       words = [],
     }: ConvertParam) => {
-      const temp = origin_2_No_No({ originalText, words })
-      return commonPreset(temp, 'noKatakanaWord', (param: string) => {
+      const temp = kataFalseWordFalse({ originalText, words })
+      return commonPreset(temp, 'katakanaFalseWordTrue', (param: string) => {
         return param.replace(wordRegEx(words), (match) =>
           highlightReplacer(match, words)
         )
@@ -231,7 +235,7 @@ export const useLessonStore = defineStore(
     }
 
     // 解析函数
-    const parseJapaneseText = (input: string): ParseRuby => {
+    const parseKata = (input: string): ParseRuby => {
       const rubyParts: RubyPart[] = []
       let output = ''
       let i = 0
@@ -289,26 +293,86 @@ export const useLessonStore = defineStore(
     }
 
     // 有假名无跳转
-    const origin_2_Kata_No = ({ originalText = '' }: ConvertParam) => {
-      return commonPreset(originalText, 'katakanaNoWord', (param: string) => {
-        return parseJapaneseText(param).outputHtml
+    const kataTrueWordFalse = ({ originalText = '' }: ConvertParam) => {
+      return commonPreset(
+        originalText,
+        'katakanaTrueWordFalse',
+        (param: string) => {
+          return parseKata(param).outputHtml
+        }
+      )
+    }
+
+    const kataTrueWordTrueCore = (
+      originalText: string | undefined = '',
+      words: WordItem[]
+    ) => {
+      const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
+      if (words.length === 0) return baseText
+
+      let finalText = baseText
+      // 单词跳转
+      finalText = baseText.replace(wordRegEx(words), (match) =>
+        highlightReplacer(match, words)
+      )
+
+      // 注音
+
+      const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || []
+      const rubyMap: Record<string, string> = {}
+      rubyText.forEach((item) => {
+        const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || []
+        rubyMap[kanji] = kana
       })
+
+      const rubyRegEx =
+        /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
+
+      finalText = finalText.replace(
+        rubyRegEx,
+        (match, hrefPart, rubyPart, textPart, closingTag) => {
+          if (hrefPart) return hrefPart
+          if (rubyPart) return rubyPart
+          if (closingTag) return closingTag
+          if (
+            textPart !== undefined &&
+            textPart !== null &&
+            textPart.trim() !== ''
+          ) {
+            const kanjis = Object.keys(rubyMap).sort(
+              (a, b) => b.length - a.length
+            )
+            for (const kanji of kanjis) {
+              const kana = rubyMap[kanji]
+              textPart = textPart.replace(
+                new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'g'),
+                `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`
+              )
+            }
+            return textPart
+          }
+          return match
+        }
+      )
+
+      return finalText
     }
 
     // 有假名有跳转
-    const origin_2_Kata_Word = ({
+    const kataTrueWordTrue = ({
       originalText = '',
       words = [],
     }: ConvertParam) => {
-      const temp = origin_2_Kata_No({ originalText, words })
-      return commonPreset(temp, 'katakanaWord', (param: string) => {
-        return param.replace(wordRegEx(words), (match) =>
-          highlightReplacer(match, words)
-        )
-      })
+      return commonPreset(
+        originalText,
+        'katakanaTrueWordTrue',
+        (param: string) => {
+          return kataTrueWordTrueCore(param, words)
+        }
+      )
     }
 
-    const textView = (
+    const textParser = (
       words: WordItem[] = [],
       wordLink = true,
       furigana = true
@@ -316,13 +380,13 @@ export const useLessonStore = defineStore(
       return (originalText: string) => {
         if (!originalText) return ''
         if (furigana && wordLink) {
-          return origin_2_Kata_Word({ originalText, words })
+          return kataTrueWordTrue({ originalText, words })
         } else if (!furigana && !wordLink) {
-          return origin_2_No_No({ originalText })
+          return kataFalseWordFalse({ originalText })
         } else if (furigana && !wordLink) {
-          return origin_2_Kata_No({ originalText })
+          return kataTrueWordFalse({ originalText })
         } else if (!furigana && wordLink) {
-          return origin_2_No_Word({ originalText, words })
+          return kataFalseWordTrue({ originalText, words })
         }
         return ''
       }
@@ -348,7 +412,7 @@ export const useLessonStore = defineStore(
       goPrevious,
       goNext,
       goLesson,
-      textView,
+      textParser,
     }
   },
   {

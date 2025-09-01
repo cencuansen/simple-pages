@@ -860,11 +860,13 @@ const words = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex)
 })
 
-const textView = lessonStore.textView(
-  words.value,
-  baseSettingStore.wordLink,
-  baseSettingStore.furigana
-)
+const textView = computed(() => {
+  return lessonStore.textParser(
+    words.value,
+    baseSettingStore.wordLink,
+    baseSettingStore.furigana
+  )
+})
 
 const goTop = () => {
   if (lastElement.value) {
