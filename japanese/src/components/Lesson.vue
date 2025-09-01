@@ -1164,6 +1164,7 @@ watch(
 .article-translation {
   /* 缩进 */
   text-indent: 2em;
+  margin-left: 2em;
 }
 
 .column-word {
