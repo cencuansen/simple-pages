@@ -130,6 +130,7 @@
                 @click="aClick"
               ></el-text>
               <el-button
+                class="speech-button"
                 :disabled="isPlaying"
                 circle
                 size="small"
@@ -141,6 +142,7 @@
                 </el-icon>
               </el-button>
               <el-button
+                class="speech-button"
                 circle
                 size="small"
                 v-else-if="baseSettingStore.ttsSpeak"
@@ -194,6 +196,7 @@
                 @click="aClick"
               ></el-text>
               <el-button
+                class="speech-button"
                 size="small"
                 circle
                 :disabled="isPlaying"
@@ -205,6 +208,7 @@
                 </el-icon>
               </el-button>
               <el-button
+                class="speech-button"
                 v-else-if="baseSettingStore.ttsSpeak"
                 circle
                 size="small"
@@ -272,6 +276,7 @@
                 @click="aClick"
               ></el-text>
               <el-button
+                class="speech-button"
                 size="small"
                 circle
                 :disabled="isPlaying"
@@ -283,6 +288,7 @@
                 </el-icon>
               </el-button>
               <el-button
+                class="speech-button"
                 v-else-if="baseSettingStore.ttsSpeak"
                 circle
                 size="small"
@@ -342,7 +348,9 @@
                 v-html="textView(item.content)"
                 @click="aClick"
               ></el-text>
+              &nbsp;
               <el-button
+                class="speech-button"
                 :disabled="isPlaying"
                 circle
                 size="small"
@@ -354,6 +362,7 @@
                 </el-icon>
               </el-button>
               <el-button
+                class="speech-button"
                 circle
                 size="small"
                 v-else-if="baseSettingStore.ttsSpeak"
@@ -501,7 +510,7 @@
           clearable
         />
       </template>
-      <div class="model-result-item" v-for="lesson in lessonsView">
+      <div class="model-result-item" v-for="lesson in fullLessons">
         <div
           class="model-lesson-title"
           v-html="textView(lesson.title, false, false)"
@@ -510,7 +519,7 @@
         <div
           class="model-lesson-match-content"
           v-for="content in lesson.contents"
-          v-html="matchText(textView(content, false, false))"
+          v-html="searchLesson(textView(content, false, false))"
         ></div>
       </div>
     </el-dialog>
@@ -553,7 +562,7 @@ import {
   speakingId,
   speakingTextId,
   speakingWordId,
-  matchTextFunc,
+  searchLessonFunc,
   speakText,
   displayText,
 } from '../utils.ts'
@@ -686,15 +695,20 @@ watch(
 )
 
 const keyword = ref('')
-const matchText = computed(() => matchTextFunc(keyword.value || ''))
-const lessonsView = computed(() => {
+const searchLesson = computed(() => searchLessonFunc(keyword.value || ''))
+const fullLessons = computed(() => {
+  // 用于搜索全部课文内容
   const flatLessons = lessons.value.map((lesson, index) => {
     return [
       `${index}`,
       lesson.title,
-      ...lesson.sentences.map((a) => a.content),
-      ...lesson.conversations.flatMap((a) => a).map((a) => a.content),
-      ...lesson.discussions.contents.flatMap((a) => a).map((a) => a.content),
+      ...lesson.sentences.map((a) => displayText(a.content)),
+      ...lesson.conversations
+        .flatMap((a) => a)
+        .map((a) => displayText(a.content)),
+      ...lesson.discussions.contents
+        .flatMap((a) => a)
+        .map((a) => displayText(a.content)),
     ].filter(Boolean) as string[]
   })
 
@@ -727,7 +741,11 @@ const toggleFullscreen = (newStatus: boolean | null = null) => {
 
 const mainHeight = computed(() => {
   if (fullscreen.value) {
+    // 全屏
     return `calc(100vh - var(--root-footer-height))`
+  } else if (!baseSettingStore.audioSpeak) {
+    // 非全屏 && 没有启用音频播放
+    return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--root-footer-height))`
   } else {
     return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--audio-height) - var(--root-footer-height))`
   }
@@ -953,7 +971,7 @@ const onSingleKeyup = (event: KeyboardEvent) => {
   } else if (['r'].includes(event.key)) {
   } else if (Object.keys(hotkeyRefMap.value).includes(event.key)) {
     // 数字跳转关联键
-    scrollTarget(hotkeyRefMap.value[event.key as string], {
+    scrollTarget(hotkeyRefMap.value[event.key], {
       behavior: 'smooth',
       block: 'start',
       inline: 'nearest',
@@ -1090,6 +1108,7 @@ watch(
 }
 
 .text-content {
+  display: inline;
   font-size: 1.2rem;
   line-height: var(--text-content-line-height);
 }
@@ -1110,8 +1129,16 @@ watch(
 }
 
 .text-row {
-  display: flex;
+  position: relative;
+  display: inline;
   align-items: center;
+  line-height: var(--text-content-line-height);
+}
+
+.speech-button {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 12px;
 }
 
 :deep(.el-form-item__label-wrap) {
@@ -1247,6 +1274,7 @@ watch(
 .audio {
   width: 100%;
   overflow-y: scroll;
+  height: var(--audio-height);
 }
 
 audio {

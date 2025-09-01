@@ -57,7 +57,7 @@
     </el-tab-pane>
     <el-tab-pane label="语音">
       <el-form>
-        <el-form-item label="音频朗读">
+        <el-form-item label="音频播放">
           <el-switch
             v-model="baseSettingStore.audioSpeak"
             inline-prompt
@@ -65,7 +65,7 @@
           />
         </el-form-item>
 
-        <el-form-item label="TTS语音朗读">
+        <el-form-item label="TTS 朗读">
           <el-switch
             v-model="baseSettingStore.ttsSpeak"
             inline-prompt
