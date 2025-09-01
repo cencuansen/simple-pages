@@ -320,12 +320,41 @@
         class="section"
         ref="articleRef"
       >
-        <h2>
+        <h2 class="h2">
           <el-text
             class="text text-content-h2"
             v-html="textView(currentLesson?.article.title)"
             @click="aClick"
           ></el-text>
+          &nbsp;
+          <el-button
+            class="speech-button"
+            :disabled="isPlaying"
+            circle
+            size="small"
+            v-if="currentLesson?.article.time && baseSettingStore.audioSpeak"
+            @click="
+              playAudio(currentLesson?.article.time, speechStore.repeatTimes)
+            "
+          >
+            <el-icon>
+              <i class="icon-on-music"></i>
+            </el-icon>
+          </el-button>
+          <el-button
+            v-else-if="baseSettingStore.ttsSpeak"
+            class="speech-button"
+            circle
+            size="small"
+            :disabled="isPlaying"
+            @click="
+              speechStore.speakList(
+                currentLesson?.article.contents.map((c) => speakText(c.content))
+              )
+            "
+          >
+            <i class="icon-on-MPIS-TTS"></i>
+          </el-button>
         </h2>
         <el-form class="basics-list">
           <el-form-item
@@ -1079,6 +1108,11 @@ watch(
   padding: 0 5px;
 }
 
+.h2 {
+  position: relative;
+  line-height: var(--text-content-line-height);
+}
+
 .text-title {
   font-size: 1.8rem;
 }
@@ -1110,7 +1144,6 @@ watch(
 .text-content {
   display: inline;
   font-size: 1.2rem;
-  line-height: var(--text-content-line-height);
 }
 
 .section {
@@ -1138,7 +1171,7 @@ watch(
 .speech-button {
   position: absolute;
   bottom: 0;
-  margin-bottom: 12px;
+  transform: translateY(-65%);
 }
 
 :deep(.el-form-item__label-wrap) {

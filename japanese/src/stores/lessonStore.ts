@@ -19,11 +19,13 @@ export interface Conversation {
 
 export interface Discussion {
   title: string
+  time: string
   contents: Conversation[][]
 }
 
 export interface Article {
   title: string
+  time: string
   contents: TextBase[]
 }
 
