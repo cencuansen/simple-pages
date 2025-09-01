@@ -4,7 +4,7 @@
     size="small"
     v-model="selectedValue"
     placeholder="选课程"
-    clearable
+    :clearable="clearable"
     fit-input-width
     :style="style"
     :class="className"

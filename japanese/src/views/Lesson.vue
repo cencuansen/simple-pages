@@ -10,7 +10,7 @@
         >
           上一课
         </el-button>
-        <LessonSelect v-model="lessonStore.currentIndex" />
+        <LessonSelect v-model="lessonStore.currentIndex" :clearable="false" />
         <el-button
           size="small"
           class="next-button navigation-item"
