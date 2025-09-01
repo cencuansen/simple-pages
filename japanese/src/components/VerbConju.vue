@@ -163,16 +163,4 @@ onMounted(() => {
 :deep(.el-overlay) {
   background-color: rgba(0, 0, 0, 0.9);
 }
-
-.verb-conju-pagination {
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: var(--pagination-height);
-}
-
-.el-pagination {
-  margin: 0 auto;
-  max-width: 100%;
-}
 </style>
