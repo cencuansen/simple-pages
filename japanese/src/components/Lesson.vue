@@ -594,12 +594,13 @@ import {
   searchLessonFunc,
   speakText,
   displayText,
-} from '../utils.ts'
+} from './scripts/utils'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 import { ElTable } from 'element-plus'
 import LessonSelect from './shares/LessonSelect.vue'
+import { textParser } from './scripts/lesson'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -861,7 +862,7 @@ const words = computed(() => {
 })
 
 const textView = computed(() => {
-  return lessonStore.textParser(
+  return textParser(
     words.value,
     baseSettingStore.wordLink,
     baseSettingStore.furigana

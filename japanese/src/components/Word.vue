@@ -129,7 +129,7 @@ import { useSpeechStore } from '../stores/speechStore'
 import { useBaseSettingStore } from '../stores/baseSettingStore'
 import { useWordStore } from '../stores/wordStore'
 import type { WordItem } from '../types'
-import { speakingId, speakingWordId } from '../utils.ts'
+import { speakingId, speakingWordId } from './scripts/utils'
 import { ElTable } from 'element-plus'
 
 import Row from './shares/Row.vue'

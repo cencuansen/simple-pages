@@ -1,5 +1,5 @@
-import type { WordItem } from './types'
-import { useSpeechStore } from './stores/speechStore'
+import type { WordItem } from '../../../types'
+import { useSpeechStore } from '../../../stores/speechStore.ts'
 
 export const speakingTextId = (str: string): string => `text-${str}`
 
