@@ -42,6 +42,38 @@ export interface Lesson {
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
+interface RubyPart {
+  text: string
+  kana: string
+  position: number
+  length: number
+}
+
+interface ParseRuby {
+  rubyParts: RubyPart[]
+  outputHtml: string
+}
+
+interface OriginalTextParsedMap {
+  [key: string]: any
+
+  sourceText: string
+  onlyKatakana: string
+  katakanaFalseWordFalse: string
+  katakanaFalseWordTrue: string
+  katakanaTrueWordFalse: string
+  katakanaTrueWordTrue: string
+}
+
+interface OriginalTextMap {
+  [key: string]: OriginalTextParsedMap
+}
+
+interface ConvertParam {
+  originalText: string
+  words?: WordItem[]
+}
+
 export const useLessonStore = defineStore(
   'lessons',
   () => {
@@ -49,10 +81,11 @@ export const useLessonStore = defineStore(
     const isLoading = ref(false)
     const error = ref<string | null>(null)
     const currentIndex = ref(-1)
-
     const minIndex = ref(0)
     const maxIndex = ref(0)
+    const originalTextMap: OriginalTextMap = {}
 
+    // 获取课程数据
     const fetchLessons = async () => {
       try {
         isLoading.value = true
@@ -74,6 +107,7 @@ export const useLessonStore = defineStore(
       }
     }
 
+    // 检查课程索引是否有效
     const isValidLessonIndex = (index: number): boolean =>
       isNumber(index) && index >= minIndex.value && index <= maxIndex.value
 
@@ -90,17 +124,13 @@ export const useLessonStore = defineStore(
     const lessonIndexs = computed(() => lessons.value.map((les) => les.index))
 
     const hasPrevious = computed(() => {
-      // 课程号在数组中位置
       const position = lessonIndexs.value.indexOf(currentIndex.value)
-      const isValid = lessonIndexs.value[position - 1]
-      return Boolean(isValid)
+      return Boolean(lessonIndexs.value[position - 1])
     })
 
     const hasNext = computed(() => {
-      // 课程号在数组中位置
       const position = lessonIndexs.value.indexOf(currentIndex.value)
-      const isValid = lessonIndexs.value[position + 1]
-      return Boolean(isValid)
+      return Boolean(lessonIndexs.value[position + 1])
     })
 
     const goPrevious = () => {
@@ -119,82 +149,51 @@ export const useLessonStore = defineStore(
       currentIndex.value = num
     }
 
-    // 课文内容处理：假名提取，单词跳转等
+    // 创建单词正则表达式
     const wordRegEx = (words: WordItem[]) => {
-      let wordCopy = words.slice()
-      wordCopy.sort((a, b) => b.word.length - a.word.length)
+      const wordCopy = [...words].sort((a, b) => b.word.length - a.word.length)
       return new RegExp(
         wordCopy
-          .map(
-            (word) =>
-              word.word
-                .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-                .split('') // 将单词拆分为字符数组
-                .join('\\s*') // 在每个字符之间添加\s*以匹配任意空格
+          .map((word) =>
+            word.word
+              .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+              .split('')
+              .join('\\s*')
           )
           .join('|'),
         'g'
       )
     }
 
+    // 高亮替换器
     const highlightReplacer = (match: string, words: WordItem[] = []) => {
       match = match.replace(/\s/g, '')
       if (!match) return match
+
       const word = words.find((w) => w.word === match || w.kana === match)
       if (!word) return match
-      return `<a href="#${speakingWordId(word)}" class="highlight-word">${word?.word}</a>`
+
+      return `<a href="#${speakingWordId(word)}" class="highlight-word">${word.word}</a>`
     }
 
-    interface OriginalTextParsedMap {
-      [key: string]: any
-
-      // 原始数据
-      sourceText: string
-      // 只提取假名，用于朗读
-      onlyKatakana: string
-      // 无假名无跳转
-      katakanaFalseWordFalse: string
-      // 无假名有跳转
-      katakanaFalseWordTrue: string
-      // 有假名无跳转
-      katakanaTrueWordFalse: string
-      // 有假名有跳转
-      katakanaTrueWordTrue: string
-    }
-
-    interface OriginalTextMap {
-      [key: string]: OriginalTextParsedMap
-    }
-
-    const originalTextMap: OriginalTextMap = {}
-
+    // 通用预设处理
     const commonPreset = (
       text: string,
-      type:
-        | 'katakanaFalseWordFalse'
-        | 'katakanaFalseWordTrue'
-        | 'katakanaTrueWordFalse'
-        | 'katakanaTrueWordTrue',
+      type: keyof OriginalTextParsedMap,
       fn: (val: string) => string
     ): string => {
-      if (!text) {
-        return ''
-      }
+      if (!text) return ''
+
       if (!originalTextMap[text]) {
         originalTextMap[text] = {} as OriginalTextParsedMap
       }
+
       const cache = originalTextMap[text][type]
-      if (cache) {
-        return cache
-      }
-      const res = (fn && fn(text)) || ''
+      if (cache) return cache
+
+      const res = fn(text) || ''
       originalTextMap[text][type] = res
       return res
-    }
-
-    interface ConvertParam {
-      originalText: string
-      words?: WordItem[]
     }
 
     // 无假名无跳转
@@ -221,20 +220,7 @@ export const useLessonStore = defineStore(
       })
     }
 
-    // 定义接口
-    interface RubyPart {
-      text: string
-      kana: string
-      position: number
-      length: number
-    }
-
-    interface ParseRuby {
-      rubyParts: RubyPart[]
-      outputHtml: string
-    }
-
-    // 解析函数
+    // 解析假名
     const parseKata = (input: string): ParseRuby => {
       const rubyParts: RubyPart[] = []
       let output = ''
@@ -243,8 +229,7 @@ export const useLessonStore = defineStore(
 
       while (i < input.length) {
         if (input[i] === '!') {
-          // 找到汉字开始
-          i++
+          i++ // 跳过'!'字符
           const kanjiStart = i
           let kanjiEnd = i
 
@@ -303,8 +288,9 @@ export const useLessonStore = defineStore(
       )
     }
 
+    // 有假名有跳转核心处理
     const kataTrueWordTrueCore = (
-      originalText: string | undefined = '',
+      originalText: string = '',
       words: WordItem[]
     ) => {
       const baseText = kataFalseWordFalse({ originalText })
@@ -312,13 +298,11 @@ export const useLessonStore = defineStore(
 
       let finalText = kataFalseWordTrue({ originalText: baseText, words })
 
-      // 注音，['!失礼(しつれい)', '!先(さき)', '!方(かた)']
+      // 提取注音标记
       const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || []
-      const kanjiKanaMarks: string[][] = []
-      rubyText.forEach((item) => {
-        // ['!失礼(しつれい)', '失礼', 'しつれい', index: 0, input: '!失礼(しつれい)', groups: undefined]
+      const kanjiKanaMarks: string[][] = rubyText.map((item) => {
         const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || []
-        kanjiKanaMarks.push([kanji, kana])
+        return [kanji, kana]
       })
 
       const rubyRegEx =
@@ -330,22 +314,17 @@ export const useLessonStore = defineStore(
           if (hrefPart) return hrefPart
           if (rubyPart) return rubyPart
           if (closingTag) return closingTag
-          if (
-            textPart !== undefined &&
-            textPart !== null &&
-            textPart.trim() !== ''
-          ) {
+          if (textPart?.trim()) {
             kanjiKanaMarks.reverse()
             for (let i = kanjiKanaMarks.length - 1; i >= 0; i--) {
-              const [kanji, kana] = kanjiKanaMarks[i];
-              const originalText = textPart;
+              const [kanji, kana] = kanjiKanaMarks[i]
+              const originalText = textPart
               textPart = textPart.replace(
                 new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'i'),
                 `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`
-              );
+              )
               if (textPart !== originalText) {
-                // 每项只使用一次，用完就删掉
-                kanjiKanaMarks.splice(i, 1);
+                kanjiKanaMarks.splice(i, 1)
               }
             }
             return textPart
@@ -370,6 +349,7 @@ export const useLessonStore = defineStore(
       )
     }
 
+    // 文本解析器
     const textParser = (
       words: WordItem[] = [],
       wordLink = true,
@@ -377,6 +357,7 @@ export const useLessonStore = defineStore(
     ) => {
       return (originalText: string) => {
         if (!originalText) return ''
+
         if (furigana && wordLink) {
           return kataTrueWordTrue({ originalText, words })
         } else if (!furigana && !wordLink) {
