@@ -125,18 +125,18 @@
 
 <script setup lang="ts">
 import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
-import { useSpeechStore } from '../stores/speechStore'
-import { useBaseSettingStore } from '../stores/baseSettingStore'
-import { useWordStore } from '../stores/wordStore'
+import { useSpeechStore } from '../stores/speechStore.ts'
+import { useBaseSettingStore } from '../stores/baseSettingStore.ts'
+import { useWordStore } from '../stores/wordStore.ts'
 import type { WordItem } from '../types'
 import { speakingId, speakingWordId } from './scripts/utils'
 import { ElTable } from 'element-plus'
 
-import Row from './shares/Row.vue'
-import LessonSelect from './shares/LessonSelect.vue'
-import SimpleSelect from './shares/SimpleSelect.vue'
-import SimpleInput from './shares/SimpleInput.vue'
-import SimplePagination from './shares/SimplePagination.vue'
+import Row from '../components/Row.vue'
+import LessonSelect from '../components/LessonSelect.vue'
+import SimpleSelect from '../components/SimpleSelect.vue'
+import SimpleInput from '../components/SimpleInput.vue'
+import SimplePagination from '../components/SimplePagination.vue'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()

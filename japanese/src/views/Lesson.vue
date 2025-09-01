@@ -581,11 +581,11 @@
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref, watch, onActivated } from 'vue'
-import { useLessonStore } from '../stores/lessonStore'
-import { useSpeechStore } from '../stores/speechStore'
-import { useBaseSettingStore } from '../stores/baseSettingStore'
-import { useWordStore } from '../stores/wordStore'
-import { useGrammarStore } from '../stores/grammarStore'
+import { useLessonStore } from '../stores/lessonStore.ts'
+import { useSpeechStore } from '../stores/speechStore.ts'
+import { useBaseSettingStore } from '../stores/baseSettingStore.ts'
+import { useWordStore } from '../stores/wordStore.ts'
+import { useGrammarStore } from '../stores/grammarStore.ts'
 import type { WordItem } from '../types'
 import {
   speakingId,
@@ -599,7 +599,7 @@ import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 import { ElTable } from 'element-plus'
-import LessonSelect from './shares/LessonSelect.vue'
+import LessonSelect from '../components/LessonSelect.vue'
 import { textParser } from './scripts/lesson'
 
 const lessonStore = useLessonStore()

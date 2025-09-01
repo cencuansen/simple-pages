@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Lesson from '../components/Lesson.vue'
-import Word from '../components/Word.vue'
-import JlptWord from '../components/JlptWord.vue'
-import Tool from '../components/Tool.vue'
-import Setting from '../components/Setting.vue'
-import Grammar from '../components/Grammar.vue'
-import JlptGrammar from '../components/JlptGrammar.vue'
-import VerbConju from '../components/VerbConju.vue'
+import Lesson from '../views/Lesson.vue'
+import Word from '../views/Word.vue'
+import JlptWord from '../views/JlptWord.vue'
+import Tool from '../views/Tool.vue'
+import Setting from '../views/Setting.vue'
+import Grammar from '../views/Grammar.vue'
+import JlptGrammar from '../views/JlptGrammar.vue'
+import VerbConju from '../views/VerbConju.vue'
 
 const router = createRouter({
   history: createWebHistory(),

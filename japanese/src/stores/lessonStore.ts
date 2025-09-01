@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { isNumber } from '../components/scripts/utils'
-import type { Lesson } from '../components/scripts/lesson/types.ts'
+import { isNumber } from '../views/scripts/utils'
+import type { Lesson } from '../views/scripts/lesson/types.ts'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 

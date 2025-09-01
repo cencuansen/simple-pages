@@ -53,10 +53,10 @@ import {
   useJlptGrammarStore,
 } from '../stores/jlptGrammarStore.ts'
 import { ElTable } from 'element-plus'
-import SimpleSelect from './shares/SimpleSelect.vue'
-import Row from './shares/Row.vue'
-import SimpleInput from './shares/SimpleInput.vue'
-import SimplePagination from './shares/SimplePagination.vue'
+import SimpleSelect from '../components/SimpleSelect.vue'
+import Row from '../components/Row.vue'
+import SimpleInput from '../components/SimpleInput.vue'
+import SimplePagination from '../components/SimplePagination.vue'
 
 const grammarStore = useJlptGrammarStore()
 const keyword = ref('')
