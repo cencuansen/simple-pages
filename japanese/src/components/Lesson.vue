@@ -728,9 +728,9 @@ const keyword = ref('')
 const searchLesson = computed(() => searchLessonFunc(keyword.value || ''))
 const fullLessons = computed(() => {
   // 用于搜索全部课文内容
-  const flatLessons = lessons.value.map((lesson, index) => {
+  const flatLessons = lessons.value.map((lesson) => {
     return [
-      `${index}`,
+      `${lesson.index}`,
       lesson.title,
       ...lesson.sentences.map((a) => displayText(a.content)),
       ...lesson.conversations
@@ -739,6 +739,7 @@ const fullLessons = computed(() => {
       ...lesson.discussions.contents
         .flatMap((a) => a)
         .map((a) => displayText(a.content)),
+      ...lesson.article.contents.map((a) => displayText(a.content)),
     ].filter(Boolean) as string[]
   })
 
