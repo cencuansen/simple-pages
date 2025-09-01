@@ -307,20 +307,23 @@ export const useLessonStore = defineStore(
       originalText: string | undefined = '',
       words: WordItem[]
     ) => {
-      const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
+      // const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
+      const baseText = kataFalseWordFalse({ originalText })
       if (words.length === 0) return baseText
 
-      let finalText = baseText
-      // 单词跳转
-      finalText = baseText.replace(wordRegEx(words), (match) =>
-        highlightReplacer(match, words)
-      )
+      // let finalText = baseText
+      // // 单词跳转
+      // finalText = baseText.replace(wordRegEx(words), (match) =>
+      //   highlightReplacer(match, words)
+      // )
 
-      // 注音
+      let finalText = kataFalseWordTrue({ originalText: baseText, words })
 
+      // 注音，['!失礼(しつれい)', '!先(さき)', '!方(かた)']
       const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || []
       const rubyMap: Record<string, string> = {}
       rubyText.forEach((item) => {
+        // ['!失礼(しつれい)', '失礼', 'しつれい', index: 0, input: '!失礼(しつれい)', groups: undefined]
         const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || []
         rubyMap[kanji] = kana
       })
@@ -339,13 +342,11 @@ export const useLessonStore = defineStore(
             textPart !== null &&
             textPart.trim() !== ''
           ) {
-            const kanjis = Object.keys(rubyMap).sort(
-              (a, b) => b.length - a.length
-            )
+            const kanjis = Object.keys(rubyMap)
             for (const kanji of kanjis) {
               const kana = rubyMap[kanji]
               textPart = textPart.replace(
-                new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'g'),
+                new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'i'),
                 `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`
               )
             }
