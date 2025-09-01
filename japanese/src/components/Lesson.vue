@@ -542,13 +542,13 @@
       <div class="model-result-item" v-for="lesson in fullLessons">
         <div
           class="model-lesson-title"
-          v-html="textView(lesson.title, false, false)"
+          v-html="textView(lesson.title)"
           @click="lessonStore.goLesson(Number(lesson.idx))"
         ></div>
         <div
           class="model-lesson-match-content"
           v-for="content in lesson.contents"
-          v-html="searchLesson(textView(content, false, false))"
+          v-html="searchLesson(textView(content))"
         ></div>
       </div>
     </el-dialog>
@@ -860,89 +860,11 @@ const words = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex)
 })
 
-const wordRegEx = computed(() => {
-  let wordCopy = words.value.slice()
-  wordCopy.sort((a, b) => b.word.length - a.word.length)
-  return new RegExp(
-    wordCopy
-      .map(
-        (word) =>
-          word.word
-            .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-            .split('') // 将单词拆分为字符数组
-            .join('\\s*') // 在每个字符之间添加\s*以匹配任意空格
-      )
-      .join('|'),
-    'g'
-  )
-})
-
-const highlightReplacer = (match: string) => {
-  match = match.replace(/\s/g, '')
-  if (!match) return match
-  const word = words.value.find((w) => w.word === match || w.kana === match)
-  if (!word) return match
-  return `<a href="#${speakingWordId(word)}" class="highlight-word">${word?.word}</a>`
-}
-
-const textView = (
-  originalText: string | undefined = '',
-  wordLink = true,
-  furigana = true
-) => {
-  const baseText = originalText.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
-  if (words.value.length === 0) return baseText
-
-  let finalText = baseText
-  // 单词跳转
-  if (wordLink && baseSettingStore.wordLink) {
-    finalText = baseText.replace(wordRegEx.value, highlightReplacer)
-  }
-
-  // 注音
-
-  if (furigana && baseSettingStore.furigana) {
-    console.log('furigana')
-    const rubyText = originalText.match(/!([^(]+)\(([^)]+)\)/g) || []
-    const rubyMap: Record<string, string> = {}
-    rubyText.forEach((item) => {
-      const [, kanji, kana] = item.match(/!([^(]+)\(([^)]+)\)/) || []
-      rubyMap[kanji] = kana
-    })
-
-    const rubyRegEx =
-      /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
-
-    finalText = finalText.replace(
-      rubyRegEx,
-      (match, hrefPart, rubyPart, textPart, closingTag) => {
-        if (hrefPart) return hrefPart
-        if (rubyPart) return rubyPart
-        if (closingTag) return closingTag
-        if (
-          textPart !== undefined &&
-          textPart !== null &&
-          textPart.trim() !== ''
-        ) {
-          const kanjis = Object.keys(rubyMap).sort(
-            (a, b) => b.length - a.length
-          )
-          for (const kanji of kanjis) {
-            const kana = rubyMap[kanji]
-            textPart = textPart.replace(
-              new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'g'),
-              `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`
-            )
-          }
-          return textPart
-        }
-        return match
-      }
-    )
-  }
-
-  return finalText
-}
+const textView = lessonStore.textView(
+  words.value,
+  baseSettingStore.wordLink,
+  baseSettingStore.furigana
+)
 
 const goTop = () => {
   if (lastElement.value) {

@@ -19,7 +19,7 @@ export const speakingId = (): string => {
 
 export type TextMatchReplacer = (text: string) => string
 
-export const searchLessonFunc = (keyword: string): TextMatchReplacer => {
+export const searchLessonFunc = (keyword: string | null): TextMatchReplacer => {
   if (!keyword) {
     return (text: string) => text
   }
