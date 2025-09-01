@@ -113,11 +113,11 @@ const getOptionValue = (lesson: Lesson) => {
 
 const levelClass = (index: number) => {
   if (index < 200) {
-    return { en: 'level-junior', cn: '初' }
+    return { en: 'level-junior', cn: '初级' }
   } else if (index < 300) {
-    return { en: 'level-medium', cn: '中' }
+    return { en: 'level-medium', cn: '中级' }
   } else if (index < 400) {
-    return { en: 'level-senior', cn: '高' }
+    return { en: 'level-senior', cn: '高级' }
   }
   return { en: '', cn: '' }
 }
@@ -150,7 +150,8 @@ defineExpose({
 }
 
 .option-prefix {
-  width: 30px;
+  font-size: 10px;
+  width: 35px;
 }
 
 .option-prefix-content {
