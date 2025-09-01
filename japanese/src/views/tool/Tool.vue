@@ -84,8 +84,8 @@
 import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 import ky from 'ky'
-import { useSpeechStore } from '../stores/speechStore.ts'
-import { useBaseSettingStore } from '../stores/baseSettingStore.ts'
+import { useSpeechStore } from '../../stores/speechStore.ts'
+import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
 
 const speechStore = useSpeechStore()
 const baseSettingStore = useBaseSettingStore()

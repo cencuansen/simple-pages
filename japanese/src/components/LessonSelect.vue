@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLessonStore } from '../stores/lessonStore.ts'
-import { displayText } from '../views/scripts/utils'
+import { displayText } from '../utils'
 
 interface Lesson {
   index: number

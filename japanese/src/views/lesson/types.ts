@@ -1,4 +1,4 @@
-import type { WordItem } from '../../../types'
+import type { WordItem } from '../../types'
 
 export interface TextBase {
   content: string

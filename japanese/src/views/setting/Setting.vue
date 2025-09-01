@@ -164,8 +164,8 @@
 
 <script setup lang="ts">
 import { Sunny, Moon } from '@element-plus/icons-vue'
-import { useBaseSettingStore } from '../stores/baseSettingStore.ts'
-import { useSpeechStore } from '../stores/speechStore.ts'
+import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
+import { useSpeechStore } from '../../stores/speechStore.ts'
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 

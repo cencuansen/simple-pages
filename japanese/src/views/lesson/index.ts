@@ -1,7 +1,7 @@
 // 创建单词正则表达式
-import type { WordItem } from '../../../types'
+import type { WordItem } from '../../types'
 import type { ConvertParam, OriginalTextMap, OriginalTextParsedMap, ParseRuby, RubyPart } from './types.ts'
-import {speakingWordId} from "../utils";
+import {speakingWordId} from "../../utils";
 
 const originalTextMap: OriginalTextMap = {}
 

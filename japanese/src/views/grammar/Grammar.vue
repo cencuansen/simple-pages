@@ -40,12 +40,12 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { type Grammar, useGrammarStore } from '../stores/grammarStore.ts'
+import { type Grammar, useGrammarStore } from '../../stores/grammarStore.ts'
 import { ElTable } from 'element-plus'
-import Row from '../components/Row.vue'
-import LessonSelect from '../components/LessonSelect.vue'
-import SimpleInput from '../components/SimpleInput.vue'
-import SimplePagination from '../components/SimplePagination.vue'
+import Row from '../../components/Row.vue'
+import LessonSelect from '../../components/LessonSelect.vue'
+import SimpleInput from '../../components/SimpleInput.vue'
+import SimplePagination from '../../components/SimplePagination.vue'
 
 const grammarStore = useGrammarStore()
 const keyword = ref('')

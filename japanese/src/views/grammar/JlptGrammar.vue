@@ -51,12 +51,12 @@ import { computed, type ComputedRef, ref } from 'vue'
 import {
   type JlptGrammar,
   useJlptGrammarStore,
-} from '../stores/jlptGrammarStore.ts'
+} from '../../stores/jlptGrammarStore.ts'
 import { ElTable } from 'element-plus'
-import SimpleSelect from '../components/SimpleSelect.vue'
-import Row from '../components/Row.vue'
-import SimpleInput from '../components/SimpleInput.vue'
-import SimplePagination from '../components/SimplePagination.vue'
+import SimpleSelect from '../../components/SimpleSelect.vue'
+import Row from '../../components/Row.vue'
+import SimpleInput from '../../components/SimpleInput.vue'
+import SimplePagination from '../../components/SimplePagination.vue'
 
 const grammarStore = useJlptGrammarStore()
 const keyword = ref('')

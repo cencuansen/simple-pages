@@ -72,17 +72,17 @@
 
 <script setup lang="ts">
 import { computed, type ComputedRef, onMounted, ref } from 'vue'
-import { useSpeechStore } from '../stores/speechStore.ts'
+import { useSpeechStore } from '../../stores/speechStore.ts'
 import {
   useVocabularyStore,
   type Vocabulary,
-} from '../stores/jlptWord.ts'
-import { useBaseSettingStore } from '../stores/baseSettingStore.ts'
+} from '../../stores/jlptWord.ts'
+import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
 import { ElTable, ElTableColumn } from 'element-plus'
-import SimpleSelect from '../components/SimpleSelect.vue'
-import Row from '../components/Row.vue'
-import SimpleInput from '../components/SimpleInput.vue'
-import SimplePagination from '../components/SimplePagination.vue'
+import SimpleSelect from '../../components/SimpleSelect.vue'
+import Row from '../../components/Row.vue'
+import SimpleInput from '../../components/SimpleInput.vue'
+import SimplePagination from '../../components/SimplePagination.vue'
 
 const vocabularyStore = useVocabularyStore()
 const speechStore = useSpeechStore()

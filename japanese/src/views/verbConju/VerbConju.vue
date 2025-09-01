@@ -73,15 +73,15 @@
 </template>
 
 <script setup lang="ts">
-import { useConjuStore, type Conju } from '../stores/conjuStore.ts'
+import { useConjuStore, type Conju } from '../../stores/conjuStore.ts'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
-import SimpleSelect from '../components/SimpleSelect.vue'
-import Row from '../components/Row.vue'
-import SimpleInput from '../components/SimpleInput.vue'
-import SimplePagination from '../components/SimplePagination.vue'
+import SimpleSelect from '../../components/SimpleSelect.vue'
+import Row from '../../components/Row.vue'
+import SimpleInput from '../../components/SimpleInput.vue'
+import SimplePagination from '../../components/SimplePagination.vue'
 import { ElTable } from 'element-plus'
-import { columns, typeOptions, transitivityOptions } from '../verbConjuUtils.ts'
+import { columns, typeOptions, transitivityOptions } from '../../verbConjuUtils.ts'
 
 const verbConjuStore = useConjuStore()
 const { conjuVerbs } = storeToRefs(verbConjuStore)
