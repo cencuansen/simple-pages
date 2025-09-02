@@ -1106,6 +1106,7 @@ watch(
   position: relative;
   display: inline;
   align-items: center;
+  letter-spacing: 1px;
   line-height: var(--text-content-line-height);
 }
 
