@@ -75,7 +75,7 @@
                 target="_blank"
                 :href="`https://mazii.net/zh-CN/search/word/jacn/${scope.row.word}`"
               >
-                <img src="/mazii.png" alt="mazii" />
+                <img src="/images/mazii.png" alt="mazii" />
               </a>
             </template>
           </el-table-column>
