@@ -57,8 +57,3 @@ ruby rt {
 ruby rt::before {
   content: attr(data-ruby);
 }
-
-/*
-.el-button+.el-button {
-    margin-left: 0;
-}*/

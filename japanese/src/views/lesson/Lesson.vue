@@ -326,7 +326,6 @@
             v-html="textView(currentLesson?.article.title)"
             @click="aClick"
           ></el-text>
-          &nbsp;
           <el-button
             class="speech-button"
             :disabled="isPlaying"
@@ -364,20 +363,6 @@
           >
             <div class="text-row">
               <!--原文-->
-              <el-text
-                :id="speakingTextId(speakText(item.content))"
-                class="text text-content article"
-                :class="{
-                  'speaking-active': speakingActive(
-                    item.time,
-                    currentTime,
-                    speakText(item.content)
-                  ),
-                }"
-                v-html="textView(item.content)"
-                @click="aClick"
-              ></el-text>
-              &nbsp;
               <el-button
                 class="speech-button"
                 :disabled="isPlaying"
@@ -400,6 +385,19 @@
               >
                 <i class="icon-on-MPIS-TTS"></i>
               </el-button>
+              <el-text
+                :id="speakingTextId(speakText(item.content))"
+                class="text text-content article"
+                :class="{
+                  'speaking-active': speakingActive(
+                    item.time,
+                    currentTime,
+                    speakText(item.content)
+                  ),
+                }"
+                v-html="textView(item.content)"
+                @click="aClick"
+              ></el-text>
             </div>
             <!--译文-->
             <div
@@ -530,7 +528,12 @@
       ></audio>
     </div>
 
-    <el-dialog class="search-model" v-model="dialog" v-if="dialog" :modal="true">
+    <el-dialog
+      class="search-model"
+      v-model="dialog"
+      v-if="dialog"
+      :modal="true"
+    >
       <template #header>
         <el-input
           v-model.lazy="keyword"
@@ -1043,6 +1046,18 @@ watch(
   font-size: 1.8rem;
 }
 
+.speech-button {
+  margin-bottom: 0.5rem;
+}
+
+.speech-button:first-child {
+  margin-right: 1rem;
+}
+
+.speech-button:last-child {
+  margin-left: 1rem;
+}
+
 .speaking-active a:link {
   color: var(--el-color-success);
 }
@@ -1094,12 +1109,6 @@ watch(
   line-height: var(--text-content-line-height);
 }
 
-.speech-button {
-  position: absolute;
-  bottom: 0;
-  transform: translateY(-65%);
-}
-
 :deep(.el-form-item__label-wrap) {
   align-items: start;
 }
@@ -1117,13 +1126,6 @@ watch(
   display: flex;
   flex-direction: column;
   align-items: start;
-}
-
-.article,
-.article-translation {
-  /* 缩进 */
-  text-indent: 2em;
-  margin-left: 2em;
 }
 
 .column-word {
