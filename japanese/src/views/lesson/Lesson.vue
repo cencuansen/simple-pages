@@ -116,19 +116,6 @@
           >
             <div class="text-row">
               <!--原文-->
-              <el-text
-                :id="speakingTextId(speakText(item.content))"
-                class="text text-content"
-                :class="{
-                  'speaking-active': speakingActive(
-                    item.time,
-                    currentTime,
-                    speakText(item.content)
-                  ),
-                }"
-                v-html="textView(item.content)"
-                @click="aClick"
-              ></el-text>
               <el-button
                 class="speech-button"
                 :disabled="isPlaying"
@@ -151,6 +138,19 @@
               >
                 <i class="icon-on-MPIS-TTS"></i>
               </el-button>
+              <el-text
+                :id="speakingTextId(speakText(item.content))"
+                class="text text-content"
+                :class="{
+                  'speaking-active': speakingActive(
+                    item.time,
+                    currentTime,
+                    speakText(item.content)
+                  ),
+                }"
+                v-html="textView(item.content)"
+                @click="aClick"
+              ></el-text>
             </div>
             <!--译文-->
             <div
@@ -182,19 +182,6 @@
           >
             <div class="text-row">
               <!--原文-->
-              <el-text
-                :id="speakingTextId(speakText(message.content))"
-                class="text text-content"
-                :class="{
-                  'speaking-active': speakingActive(
-                    message.time,
-                    currentTime,
-                    speakText(message.content)
-                  ),
-                }"
-                v-html="textView(message.content)"
-                @click="aClick"
-              ></el-text>
               <el-button
                 class="speech-button"
                 size="small"
@@ -219,6 +206,19 @@
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
               </el-button>
+              <el-text
+                :id="speakingTextId(speakText(message.content))"
+                class="text text-content"
+                :class="{
+                  'speaking-active': speakingActive(
+                    message.time,
+                    currentTime,
+                    speakText(message.content)
+                  ),
+                }"
+                v-html="textView(message.content)"
+                @click="aClick"
+              ></el-text>
             </div>
             <!--译文-->
             <div
@@ -262,19 +262,6 @@
           >
             <div class="text-row">
               <!--原文-->
-              <el-text
-                :id="speakingTextId(speakText(message.content))"
-                class="text text-content"
-                :class="{
-                  'speaking-active': speakingActive(
-                    message.time,
-                    currentTime,
-                    speakText(message.content)
-                  ),
-                }"
-                v-html="textView(message.content)"
-                @click="aClick"
-              ></el-text>
               <el-button
                 class="speech-button"
                 size="small"
@@ -299,6 +286,19 @@
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
               </el-button>
+              <el-text
+                :id="speakingTextId(speakText(message.content))"
+                class="text text-content"
+                :class="{
+                  'speaking-active': speakingActive(
+                    message.time,
+                    currentTime,
+                    speakText(message.content)
+                  ),
+                }"
+                v-html="textView(message.content)"
+                @click="aClick"
+              ></el-text>
             </div>
             <!--译文-->
             <div
@@ -321,11 +321,6 @@
         ref="articleRef"
       >
         <h2 class="h2">
-          <el-text
-            class="text text-content-h2"
-            v-html="textView(currentLesson?.article.title)"
-            @click="aClick"
-          ></el-text>
           <el-button
             class="speech-button"
             :disabled="isPlaying"
@@ -354,6 +349,11 @@
           >
             <i class="icon-on-MPIS-TTS"></i>
           </el-button>
+          <el-text
+            class="text text-content-h2"
+            v-html="textView(currentLesson?.article.title)"
+            @click="aClick"
+          ></el-text>
         </h2>
         <el-form class="basics-list">
           <el-form-item
