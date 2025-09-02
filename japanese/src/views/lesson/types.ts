@@ -7,7 +7,7 @@ export interface TextBase {
 }
 
 export interface Conversation {
-  speaker?: string
+  speaker: string
   content: string
   base?: string
   display?: string

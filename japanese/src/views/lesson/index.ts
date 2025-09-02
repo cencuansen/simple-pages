@@ -57,7 +57,7 @@ const commonPreset = (
 }
 
 // 无假名无跳转
-const kataFalseWordFalse = ({ originalText = '' }: ConvertParam) => {
+export const kataFalseWordFalse = ({ originalText = '' }: ConvertParam) => {
   return commonPreset(
     originalText,
     'katakanaFalseWordFalse',
@@ -67,8 +67,15 @@ const kataFalseWordFalse = ({ originalText = '' }: ConvertParam) => {
   )
 }
 
+// 对"无假名无跳转"封装
+export const displayText = (text: string) =>
+  kataFalseWordFalse({ originalText: text })
+
 // 无假名有跳转
-const kataFalseWordTrue = ({ originalText = '', words = [] }: ConvertParam) => {
+export const kataFalseWordTrue = ({
+  originalText = '',
+  words = [],
+}: ConvertParam) => {
   const temp = kataFalseWordFalse({ originalText, words })
   return commonPreset(temp, 'katakanaFalseWordTrue', (param: string) => {
     return param.replace(wordRegEx(words), (match) =>
@@ -135,7 +142,7 @@ const parseKata = (input: string): ParseRuby => {
 }
 
 // 有假名无跳转
-const kataTrueWordFalse = ({ originalText = '' }: ConvertParam) => {
+export const kataTrueWordFalse = ({ originalText = '' }: ConvertParam) => {
   return commonPreset(
     originalText,
     'katakanaTrueWordFalse',
@@ -181,7 +188,10 @@ export const kataTrueWordTrueCore = (
 }
 
 // 有假名有跳转
-const kataTrueWordTrue = ({ originalText = '', words = [] }: ConvertParam) => {
+export const kataTrueWordTrue = ({
+  originalText = '',
+  words = [],
+}: ConvertParam) => {
   return commonPreset(originalText, 'katakanaTrueWordTrue', (param: string) => {
     return kataTrueWordTrueCore(param, words)
   })

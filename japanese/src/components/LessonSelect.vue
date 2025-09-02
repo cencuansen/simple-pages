@@ -29,11 +29,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLessonStore } from '../stores/lessonStore.ts'
-import { displayText } from '../utils'
+import { displayText } from '../views/lesson'
 
 interface Lesson {
   index: number
-  title?: string
+  title: string
 
   // 其他可能的字段
   [key: string]: any

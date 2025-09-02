@@ -594,14 +594,13 @@ import {
   speakingWordId,
   searchLessonFunc,
   speakText,
-  displayText,
 } from '../../utils'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 import { ElTable } from 'element-plus'
 import LessonSelect from '../../components/LessonSelect.vue'
-import { textParser } from './index.ts'
+import { displayText, textParser } from './index.ts'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
