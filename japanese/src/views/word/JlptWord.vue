@@ -72,10 +72,7 @@
 <script setup lang="ts">
 import { computed, type ComputedRef, onMounted, ref } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
-import {
-  useVocabularyStore,
-  type Vocabulary,
-} from '../../stores/jlptWord.ts'
+import { useVocabularyStore, type Vocabulary } from '../../stores/jlptWord.ts'
 import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
 import { ElTable, ElTableColumn } from 'element-plus'
 import SimpleSelect from '../../components/SimpleSelect.vue'
@@ -104,15 +101,12 @@ const levels: ComputedRef<string[]> = computed(() => {
 })
 
 const beforePage = computed(() => {
-  keyword.value = keyword.value.toLowerCase()
   let res = vocabularyStore.vocabularies
   if (keyword.value) {
-    res = res.filter(
-      (item: Vocabulary) =>
-        item.expression?.toLowerCase().includes(keyword.value) ||
-        item.reading?.toLowerCase().includes(keyword.value) ||
-        item.meaning?.toLowerCase().includes(keyword.value) ||
-        item.levels?.includes(keyword.value)
+    res = res.filter((item: Vocabulary) =>
+      `${item.expression}${item.reading}${item.meaning}${item.levels}`
+        .toLowerCase()
+        .includes(keyword.value.toLowerCase())
     )
   }
   if (selectedLevels.value.length > 0) {
