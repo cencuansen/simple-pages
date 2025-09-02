@@ -39,7 +39,6 @@
               :key="item"
               :title="item"
               v-html="item"
-              :class="{ match: selectedLevels.some(sl => item.includes(sl)) }"
             ></div>
           </template>
         </el-table-column>
@@ -110,10 +109,10 @@ const beforePage = computed(() => {
   if (keyword.value) {
     res = res.filter(
       (item: Vocabulary) =>
-        item.expression.toLowerCase().includes(keyword.value) ||
-        item.reading.toLowerCase().includes(keyword.value) ||
-        item.meaning.toLowerCase().includes(keyword.value) ||
-        item.levels.includes(keyword.value)
+        item.expression?.toLowerCase().includes(keyword.value) ||
+        item.reading?.toLowerCase().includes(keyword.value) ||
+        item.meaning?.toLowerCase().includes(keyword.value) ||
+        item.levels?.includes(keyword.value)
     )
   }
   if (selectedLevels.value.length > 0) {
