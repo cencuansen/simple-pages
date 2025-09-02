@@ -584,7 +584,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref, watch, onActivated } from 'vue'
+import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
@@ -592,10 +592,10 @@ import { useWordStore } from '../../stores/wordStore.ts'
 import { useGrammarStore } from '../../stores/grammarStore.ts'
 import type { WordItem } from '../../types'
 import {
+  searchLessonFunc,
   speakingId,
   speakingTextId,
   speakingWordId,
-  searchLessonFunc,
   speakText,
 } from '../../utils'
 import { storeToRefs } from 'pinia'
@@ -908,12 +908,24 @@ interface HotkeyRef {
 }
 
 const hotkeyRefMap = computed<HotkeyRef>(() => {
-  return {
-    '1': top.value,
-    '2': articleRef.value || grammarsRef.value,
-    '3': articleRef.value && grammarsRef.value,
-    '4': articleRef.value && wordsRef.value,
-  }
+  const refs: { [key: string]: HTMLElement } = {}
+  const elements = [
+    top.value,
+    articleRef.value,
+    grammarsRef.value,
+    wordsRef.value,
+  ] as HTMLElement[]
+  elements
+    .filter(Boolean)
+    .map((item: HTMLElement, index: number) => {
+      const key: string = `${index + 1}`
+      return [key, item]
+    })
+    .forEach((arr) => {
+      const key = arr[0] as string
+      refs[key] = arr[1] as HTMLElement
+    })
+  return refs
 })
 
 const onSingleKeyup = (event: KeyboardEvent) => {
