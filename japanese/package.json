@@ -12,11 +12,9 @@
     "cf": "npm run build && npx wrangler pages deploy ./dist --project-name=jp --branch=main"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.10.1",
     "@types/papaparse": "^5.3.16",
     "@vueuse/core": "^13.0.0",
     "element-plus": "^2.9.7",
-    "ky": "^1.8.1",
     "papaparse": "^5.5.3",
     "pinia": "^3.0.1",
     "pinia-plugin-persistedstate": "^4.2.0",
