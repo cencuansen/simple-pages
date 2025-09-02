@@ -546,13 +546,13 @@
       <div class="model-result-item" v-for="lesson in fullLessons">
         <div
           class="model-lesson-title"
-          v-html="textView(lesson.title)"
+          v-html="displayText(lesson.title)"
           @click="lessonStore.goLesson(Number(lesson.idx))"
         ></div>
         <div
           class="model-lesson-match-content"
           v-for="content in lesson.contents"
-          v-html="searchLesson(textView(content))"
+          v-html="searchLesson(displayText(content))"
         ></div>
       </div>
     </el-dialog>
