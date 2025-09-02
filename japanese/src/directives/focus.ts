@@ -1,4 +1,3 @@
-// src/directives/focus.ts
 import { type Directive, type DirectiveBinding } from 'vue'
 
 const vFocus: Directive = {

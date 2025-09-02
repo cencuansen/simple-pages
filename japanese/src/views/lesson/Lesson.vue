@@ -56,7 +56,7 @@
           size="small"
           circle
           title="搜索"
-          @click="searchModel = !searchModel"
+          @click="dialog = !dialog"
         >
           搜
         </el-button>
@@ -530,13 +530,14 @@
       ></audio>
     </div>
 
-    <el-dialog class="search-model" v-model="searchModel" :modal="false">
+    <el-dialog class="search-model" v-model="dialog" v-if="dialog" :modal="true">
       <template #header>
         <el-input
           v-model.lazy="keyword"
           size="small"
           placeholder="搜索"
           clearable
+          v-focus
         />
       </template>
       <div class="model-result-item" v-for="lesson in fullLessons">
@@ -627,7 +628,7 @@ watch(
   }
 )
 
-const searchModel = ref(false)
+const dialog = ref(false)
 
 const top = ref()
 const container = ref()
@@ -922,7 +923,7 @@ const onSingleKeyup = (event: KeyboardEvent) => {
   } else if (['ArrowRight'].includes(event.key)) {
     lessonStore.goNext()
   } else if (['f'].includes(event.key)) {
-    searchModel.value = !searchModel.value
+    dialog.value = !dialog.value
   } else if (['r'].includes(event.key)) {
   } else if (Object.keys(hotkeyRefMap.value).includes(event.key)) {
     // 数字跳转关联键
@@ -956,7 +957,7 @@ onDeactivated(() => {
 })
 
 watch(
-  () => searchModel.value,
+  () => dialog.value,
   (value, _) => {
     if (value) {
       document.removeEventListener('keyup', onSingleKeyup)
