@@ -162,67 +162,21 @@ export const kataTrueWordTrueCore = (
     return [kanji, kana]
   })
 
-  // const rubyRegEx =
-  //   /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
-
-  // console.log('before replace ', kanjiKanaMarks)
-  // console.log('before replace ', finalText)
-
-  const replaceWithIndex = (
+  const replaceAt = (
     text: string,
     search: string,
     replace: string,
     index: number
-  ) => {
-    return text.slice(0, index) + text.slice(index).replace(search, replace)
-  }
+  ) => text.slice(0, index) + text.slice(index).replace(search, replace)
 
-  const len = kanjiKanaMarks.length
   let lastIndex = 0
-  for (let i = 0; i < len; i++) {
+  for (let i = 0; i < kanjiKanaMarks.length; i++) {
     const item = kanjiKanaMarks[i]
     const index = finalText.indexOf(item[0], lastIndex)
     const replace = `<ruby>${item[0]}<rt data-ruby="${item[1]}"/></ruby>`
     lastIndex = index + replace.length
-    // console.log(item[0], index)
-    finalText = replaceWithIndex(finalText, item[0], replace, index)
+    finalText = replaceAt(finalText, item[0], replace, index)
   }
-  // console.log('after replace ', finalText)
-
-  // finalText = finalText.replace(
-  //   rubyRegEx,
-  //   (match, hrefPart, rubyPart, textPart, closingTag) => {
-  //     if (hrefPart) {
-  //       console.log('href part', match)
-  //       return hrefPart
-  //     }
-  //     if (rubyPart) {
-  //       console.log('rubyPart', match)
-  //       return rubyPart
-  //     }
-  //     if (closingTag) {
-  //       console.log('closing tag', match)
-  //       return closingTag
-  //     }
-  //     if (textPart?.trim()) {
-  //       console.log('text part', match, kanjiKanaMarks)
-  //       const newMarks = kanjiKanaMarks.slice()
-  //       for (let i = 0; i < newMarks.length; i++) {
-  //         const [kanji, kana] = kanjiKanaMarks[i]
-  //         const oldText = textPart
-  //         textPart = textPart.replace(
-  //           new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'i'),
-  //           `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`
-  //         )
-  //         if (textPart !== oldText) {
-  //           kanjiKanaMarks.splice(i, 1)
-  //         }
-  //       }
-  //       return textPart
-  //     }
-  //     return match
-  //   }
-  // )
   return finalText
 }
 
