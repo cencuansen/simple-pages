@@ -8,7 +8,8 @@
     "build": "vue-tsc -b && vite build --mode prod && rimraf dist/audio dist/json  dist/unused",
     "check": "vue-tsc -b",
     "preview": "vite preview --mode prod",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "cf": "npm run build && npx wrangler pages deploy ./dist --project-name=jp --branch=main"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.10.1",
