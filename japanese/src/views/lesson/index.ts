@@ -1,7 +1,13 @@
 // 创建单词正则表达式
 import type { WordItem } from '../../types'
-import type { ConvertParam, OriginalTextMap, OriginalTextParsedMap, ParseRuby, RubyPart } from './types.ts'
-import {speakingWordId} from "../../utils";
+import type {
+  ConvertParam,
+  OriginalTextMap,
+  OriginalTextParsedMap,
+  ParseRuby,
+  RubyPart,
+} from './types.ts'
+import { speakingWordId } from '../../utils'
 
 const originalTextMap: OriginalTextMap = {}
 
@@ -20,15 +26,14 @@ const wordRegEx = (words: WordItem[]) => {
   )
 }
 
-// 高亮替换器
-const highlightReplacer = (match: string, words: WordItem[] = []) => {
+const buildAnchorLink = (match: string, words: WordItem[] = []) => {
   match = match.replace(/\s/g, '')
   if (!match) return match
 
   const word = words.find((w) => w.word === match || w.kana === match)
   if (!word) return match
 
-  return `<a href="#${speakingWordId(word)}" class="highlight-word">${word.word}</a>`
+  return `<a href="#${speakingWordId(word)}" class="anchor-link">${word.word}</a>`
 }
 
 // 通用预设处理
@@ -67,7 +72,7 @@ const kataFalseWordTrue = ({ originalText = '', words = [] }: ConvertParam) => {
   const temp = kataFalseWordFalse({ originalText, words })
   return commonPreset(temp, 'katakanaFalseWordTrue', (param: string) => {
     return param.replace(wordRegEx(words), (match) =>
-      highlightReplacer(match, words)
+      buildAnchorLink(match, words)
     )
   })
 }
@@ -141,7 +146,10 @@ const kataTrueWordFalse = ({ originalText = '' }: ConvertParam) => {
 }
 
 // 有假名有跳转核心处理
-const kataTrueWordTrueCore = (originalText: string = '', words: WordItem[]) => {
+export const kataTrueWordTrueCore = (
+  originalText: string = '',
+  words: WordItem[]
+) => {
   const baseText = kataFalseWordFalse({ originalText })
   if (words.length === 0) return baseText
 
@@ -154,33 +162,67 @@ const kataTrueWordTrueCore = (originalText: string = '', words: WordItem[]) => {
     return [kanji, kana]
   })
 
-  const rubyRegEx =
-    /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
+  // const rubyRegEx =
+  //   /(<a\b[^>]*href=["'][^"']*["'][^>]*>)|(<ruby>[^<]*<\/ruby>)|([^<]+)|(<\/a>)/g
 
-  finalText = finalText.replace(
-    rubyRegEx,
-    (match, hrefPart, rubyPart, textPart, closingTag) => {
-      if (hrefPart) return hrefPart
-      if (rubyPart) return rubyPart
-      if (closingTag) return closingTag
-      if (textPart?.trim()) {
-        kanjiKanaMarks.reverse()
-        for (let i = kanjiKanaMarks.length - 1; i >= 0; i--) {
-          const [kanji, kana] = kanjiKanaMarks[i]
-          const originalText = textPart
-          textPart = textPart.replace(
-            new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'i'),
-            `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`
-          )
-          if (textPart !== originalText) {
-            kanjiKanaMarks.splice(i, 1)
-          }
-        }
-        return textPart
-      }
-      return match
-    }
-  )
+  // console.log('before replace ', kanjiKanaMarks)
+  // console.log('before replace ', finalText)
+
+  const replaceWithIndex = (
+    text: string,
+    search: string,
+    replace: string,
+    index: number
+  ) => {
+    return text.slice(0, index) + text.slice(index).replace(search, replace)
+  }
+
+  const len = kanjiKanaMarks.length
+  let lastIndex = 0
+  for (let i = 0; i < len; i++) {
+    const item = kanjiKanaMarks[i]
+    const index = finalText.indexOf(item[0], lastIndex)
+    const replace = `<ruby>${item[0]}<rt data-ruby="${item[1]}"/></ruby>`
+    lastIndex = index + replace.length
+    // console.log(item[0], index)
+    finalText = replaceWithIndex(finalText, item[0], replace, index)
+  }
+  // console.log('after replace ', finalText)
+
+  // finalText = finalText.replace(
+  //   rubyRegEx,
+  //   (match, hrefPart, rubyPart, textPart, closingTag) => {
+  //     if (hrefPart) {
+  //       console.log('href part', match)
+  //       return hrefPart
+  //     }
+  //     if (rubyPart) {
+  //       console.log('rubyPart', match)
+  //       return rubyPart
+  //     }
+  //     if (closingTag) {
+  //       console.log('closing tag', match)
+  //       return closingTag
+  //     }
+  //     if (textPart?.trim()) {
+  //       console.log('text part', match, kanjiKanaMarks)
+  //       const newMarks = kanjiKanaMarks.slice()
+  //       for (let i = 0; i < newMarks.length; i++) {
+  //         const [kanji, kana] = kanjiKanaMarks[i]
+  //         const oldText = textPart
+  //         textPart = textPart.replace(
+  //           new RegExp(`${kanji}(?!(?:(?!<ruby>).)*<\/ruby>)`, 'i'),
+  //           `<ruby>${kanji}<rt data-ruby="${kana}"/></ruby>`
+  //         )
+  //         if (textPart !== oldText) {
+  //           kanjiKanaMarks.splice(i, 1)
+  //         }
+  //       }
+  //       return textPart
+  //     }
+  //     return match
+  //   }
+  // )
   return finalText
 }
 

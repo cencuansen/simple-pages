@@ -1184,16 +1184,16 @@ watch(
   object-fit: cover;
 }
 
-.highlight-word {
+.anchor-link {
   color: inherit;
   text-decoration: none;
 }
 
-.highlight-word span {
+.anchor-link span {
   border-bottom: 1px dashed #1976d2;
 }
 
-.highlight-word:hover span {
+.anchor-link:hover span {
   background-color: #e0f7fa;
 }
 
