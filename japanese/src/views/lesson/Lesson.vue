@@ -411,20 +411,21 @@
       </section>
 
       <!-- 语法 -->
-      <el-collapse
+      <section
         class="section grammar"
         ref="grammarsRef"
-        v-model="expands"
-        :expand-icon-position="'left'"
+        v-if="grammars.length > 0"
       >
-        <el-collapse-item
-          v-for="grammar in grammars"
-          :title="grammar.title"
-          :name="collapseTitle(grammar.title, grammar.idx)"
-        >
-          <div v-for="row in grammar.desc" v-html="row"></div>
-        </el-collapse-item>
-      </el-collapse>
+        <el-collapse v-model="expands" :expand-icon-position="'left'">
+          <el-collapse-item
+            v-for="grammar in grammars"
+            :title="grammar.title"
+            :name="collapseTitle(grammar.title, grammar.idx)"
+          >
+            <div v-for="row in grammar.desc" v-html="row"></div>
+          </el-collapse-item>
+        </el-collapse>
+      </section>
 
       <!-- 单词 -->
       <section class="section words-section" ref="wordsRef">
@@ -729,7 +730,7 @@ watch(
   }
 )
 
-const expands = ref([])
+const expands: string[] = ref([])
 const collapseTitle = (str: string, index: number) => `${index}-${str}`
 
 const keyword = ref('')
