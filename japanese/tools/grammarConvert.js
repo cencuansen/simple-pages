@@ -9,10 +9,11 @@ const file1 = join(__dirname, '../public/json/grammars.json')
 const data1 = JSON.parse(fs.readFileSync(file1))
 const res = []
 for (let i = 0; i < data1.length; i++) {
-  if (!data1[i].remark) {
-    delete data1[i].remark
-  }
-  res.push(data1[i])
+  res.push({
+    idx: data1[i].idx,
+    lesson: data1[i].lesson,
+    title: data1[i].content,
+    desc: data1[i].desc.split('<br/>'),
+  })
 }
-
 fs.writeFileSync('../public/json/grammars.json', JSON.stringify(res, null, 2))

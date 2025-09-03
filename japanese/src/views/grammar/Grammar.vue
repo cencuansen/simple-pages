@@ -16,17 +16,15 @@
         >
           <el-table-column label="语法" prop="content" min-width="200">
             <template #default="scope">
-              <div v-html="scope.row.content"></div>
+              <div v-html="scope.row.title"></div>
             </template>
           </el-table-column>
           <el-table-column label="说明" min-width="200">
             <template #default="scope">
-              <div v-html="scope.row.desc"></div>
-              <br v-if="scope.row.remark" />
-              <div v-html="scope.row.remark"></div>
+              <div v-for="item in scope.row.desc" v-html="item"></div>
             </template>
           </el-table-column>
-          <el-table-column label="课程" width="80">
+          <el-table-column label="课程" width="50">
             <template #default="scope">
               <div v-html="scope.row.lesson"></div>
             </template>
@@ -62,23 +60,13 @@ const beforePage = computed(() => {
     const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
     list = list
-      .filter((item) => {
-        return (
-          item.lesson?.toString().includes(key) ||
-          item.content?.includes(key) ||
-          item.remark?.includes(key) ||
-          item.desc?.includes(key)
-        )
-      })
+      .filter((item) => `${item.lesson}${item.title}${item.desc}`.includes(key))
       .map((item) => {
         const highlighted = { ...item }
         const highlight = (text: string) =>
           text?.replace(regex, '<span class="match">$1</span>')
-        if (highlighted.content)
-          highlighted.content = highlight(highlighted.content)
-        if (highlighted.remark)
-          highlighted.remark = highlight(highlighted.remark)
-        if (highlighted.desc) highlighted.desc = highlight(highlighted.desc)
+        if (highlighted.title) highlighted.title = highlight(highlighted.title)
+        if (highlighted.desc) highlighted.desc = highlighted.desc.map(highlight)
         return highlighted
       })
   }

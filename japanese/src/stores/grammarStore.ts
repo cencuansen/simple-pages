@@ -5,9 +5,8 @@ import ky from 'ky'
 export interface Grammar {
   idx: number
   lesson: number
-  content: string
-  remark: string
-  desc: string
+  title: string
+  desc: string[]
 }
 
 export interface GrammarFilter {
