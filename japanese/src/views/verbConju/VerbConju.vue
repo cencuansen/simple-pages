@@ -1,12 +1,6 @@
 <template>
   <div class="verb-conju">
     <Row>
-      <!--      <SimpleSelect-->
-      <!--        multiple-->
-      <!--        :data="columns"-->
-      <!--        v-model="selectedCols"-->
-      <!--        placeholder="选择列"-->
-      <!--      />-->
       <SimpleSelect
         multiple
         :data="lessonIndexOptions"
@@ -36,8 +30,12 @@
         empty-text="暂无数据"
         stripe
         style="width: 100%"
-        @row-click="rowClick"
       >
+        <el-table-column label="" width="50">
+          <template #default="scope">
+            <el-button size="small" type="text" @click="rowClick(scope.row)">详情</el-button>
+          </template>
+        </el-table-column>
         <template v-for="col in columns">
           <el-table-column
             v-if="selectedCols.includes(col.value)"

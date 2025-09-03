@@ -171,6 +171,7 @@ onMounted(async () => {
   width: 100%;
   justify-content: center;
   overflow-y: scroll;
+  user-select: none;
 }
 
 .button-group {
