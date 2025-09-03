@@ -413,12 +413,10 @@
       <!-- 语法 -->
       <section class="section grammar" ref="grammarsRef">
         <el-table :data="grammars" empty-text="暂无数据" stripe>
-          <el-table-column label="语法" prop="content" min-width="200" />
+          <el-table-column label="语法" prop="title" min-width="200" />
           <el-table-column label="说明" min-width="200">
             <template #default="scope">
-              <div v-if="scope.row.desc" v-html="scope.row.desc"></div>
-              <br v-if="scope.row.remark" />
-              <div v-html="scope.row.remark"></div>
+              <div v-for="item in scope.row.desc" v-html="item"></div>
             </template>
           </el-table-column>
         </el-table>
