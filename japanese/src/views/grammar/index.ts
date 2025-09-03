@@ -1,0 +1,1 @@
+ export const collapseTitle = (str: string, index: number) => `${index}-${str}`

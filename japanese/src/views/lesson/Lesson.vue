@@ -607,6 +607,7 @@ import { useRouter } from 'vue-router'
 import { ElTable } from 'element-plus'
 import LessonSelect from '../../components/LessonSelect.vue'
 import { displayText, textParser } from './index.ts'
+import { collapseTitle } from '../grammar'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -730,8 +731,7 @@ watch(
   }
 )
 
-const expands: string[] = ref([])
-const collapseTitle = (str: string, index: number) => `${index}-${str}`
+const expands = ref<string[]>([])
 
 const keyword = ref('')
 const searchLesson = computed(() => searchLessonFunc(keyword.value || ''))
