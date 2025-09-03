@@ -138,6 +138,8 @@ onMounted(() => {
     .filter((col) => col.show)
     .map((col) => col.value)
 })
+
+const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-header-height) - var(--pagination-height) - var(--root-footer-height))`
 </script>
 
 <style scoped>
@@ -149,10 +151,7 @@ onMounted(() => {
 
 .verb-conju-main {
   overflow-y: scroll;
-  height: calc(
-    100vh - var(--root-header-height) - var(--single-row-header-height) -
-      var(--pagination-height) - var(--root-footer-height)
-  );
+  height: v-bind(mainHeight);
 }
 
 :deep(.el-scrollbar__wrap) {
