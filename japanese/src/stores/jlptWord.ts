@@ -2,6 +2,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import Papa from 'papaparse'
+import ky from 'ky'
 
 export interface Vocabulary {
   expression: string
@@ -29,7 +30,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await fetch(`${jpJsonBase}/jlpt-vocabularies.csv`)
+      const response = await ky(`${jpJsonBase}/jlpt-vocabularies.csv`)
       const csvText = await response.text()
       Papa.parse<Vocabulary>(csvText, {
         header: true,

@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { isNumber } from '../utils'
 import type { Lesson } from '../views/lesson/types.ts'
+import ky from 'ky'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -20,7 +21,7 @@ export const useLessonStore = defineStore(
       try {
         isLoading.value = true
         error.value = null
-        const response = await fetch(`${jpJsonBase}/lesson.json`)
+        const response = await ky(`${jpJsonBase}/lesson.json`)
         lessons.value = await response.json()
         minIndex.value = lessons.value[0].index
         maxIndex.value = lessons.value[lessons.value.length - 1].index

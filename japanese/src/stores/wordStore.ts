@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { WordItem, FilterOptions } from '../types'
 import Papa from 'papaparse'
+import ky from 'ky'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -30,7 +31,7 @@ export const useWordStore = defineStore('word', () => {
     try {
       isLoading.value = true
       error.value = null
-      const response = await fetch(`${jpJsonBase}/words.csv`)
+      const response = await ky(`${jpJsonBase}/words.csv`)
       const csvText = await response.text()
       Papa.parse<WordItem>(csvText, {
         header: true,

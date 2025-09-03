@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import ky from 'ky'
 
 export interface JlptGrammar {
   grammar: string
@@ -19,7 +20,7 @@ export const useJlptGrammarStore = defineStore('JlptGrammar', () => {
   const JlptGrammars = ref<JlptGrammar[]>([])
 
   const fetchJlptGrammars = async () => {
-    const response = await fetch(`${jpJsonBase}/jlpt-grammars-en.json`)
+    const response = await ky(`${jpJsonBase}/jlpt-grammars-en.json`)
     JlptGrammars.value = await response.json()
   }
 

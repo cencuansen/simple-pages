@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import Papa from 'papaparse'
+import ky from 'ky'
 
 export interface Conju {
   [key: string]: any; // 添加索引签名
@@ -29,7 +30,7 @@ export const useConjuStore = defineStore('conju', () => {
   const conjuVerbs = ref<Conju[]>([])
 
   const fetchVerbConjus = async () => {
-    const response = await fetch(`${jpJsonBase}/verbs-conju.csv`)
+    const response = await ky(`${jpJsonBase}/verbs-conju.csv`)
     const csvText = await response.text()
     Papa.parse<Conju>(csvText, {
       header: true,

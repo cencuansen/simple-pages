@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import ky from 'ky'
 
 export interface Grammar {
   idx: number
@@ -20,7 +21,7 @@ export const useGrammarStore = defineStore('grammar', () => {
   const grammars = ref<Grammar[]>([])
 
   const fetchGrammars = async () => {
-    const response = await fetch(`${jpJsonBase}/grammars.json`)
+    const response = await ky(`${jpJsonBase}/grammars.json`)
     grammars.value = await response.json()
   }
 
