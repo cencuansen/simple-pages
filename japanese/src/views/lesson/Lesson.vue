@@ -411,16 +411,20 @@
       </section>
 
       <!-- 语法 -->
-      <section class="section grammar" ref="grammarsRef">
-        <el-table :data="grammars" empty-text="暂无数据" stripe>
-          <el-table-column label="语法" prop="title" min-width="200" />
-          <el-table-column label="说明" min-width="200">
-            <template #default="scope">
-              <div v-for="item in scope.row.desc" v-html="item"></div>
-            </template>
-          </el-table-column>
-        </el-table>
-      </section>
+      <el-collapse
+        class="section grammar"
+        ref="grammarsRef"
+        v-model="expands"
+        :expand-icon-position="'left'"
+      >
+        <el-collapse-item
+          v-for="grammar in grammars"
+          :title="grammar.title"
+          :name="collapseTitle(grammar.title, grammar.idx)"
+        >
+          <div v-for="row in grammar.desc" v-html="row"></div>
+        </el-collapse-item>
+      </el-collapse>
 
       <!-- 单词 -->
       <section class="section words-section" ref="wordsRef">
@@ -724,6 +728,9 @@ watch(
     })
   }
 )
+
+const expands = ref([])
+const collapseTitle = (str: string, index: number) => `${index}-${str}`
 
 const keyword = ref('')
 const searchLesson = computed(() => searchLessonFunc(keyword.value || ''))
