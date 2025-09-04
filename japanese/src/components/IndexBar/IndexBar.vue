@@ -217,7 +217,6 @@ onUnmounted(() => {
 :root {
   --index-bar-width: 12px;
   --index-bar-height: 300px;
-  --index-bar-offset: calc(0.25 * 100vw);
   --index-bar-item-w: calc(var(--index-bar-width) - 2px);
   --index-bar-item-h: var(--index-bar-item-w);
   --index-bar-item-fs: calc(0.5 * var(--index-bar-item-w));
@@ -229,7 +228,13 @@ onUnmounted(() => {
   --index-bar-item-current-bg: #666;
 }
 
-@media (max-width: 1300px) {
+@media (min-width: 800px) {
+  :root {
+    --index-bar-offset: calc((100vw - 768px) * 0.25);
+  }
+}
+
+@media (max-width: 768px) {
   :root {
     --index-bar-offset: 0;
   }
