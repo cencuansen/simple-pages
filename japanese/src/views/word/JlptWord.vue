@@ -20,7 +20,7 @@
         empty-text="暂无数据"
         stripe
       >
-        <el-table-column label="词汇" min-width="150">
+        <el-table-column label="词汇" min-width="120">
           <template #default="scope">
             <div :id="`word-${scope.row.expression}`" class="column-word">
               {{ scope.row.expression }}
@@ -31,7 +31,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="meaning" label="释义" min-width="150" />
-        <el-table-column label="标签" min-width="150">
+        <el-table-column label="标签" min-width="80">
           <template #default="scope">
             <div
               class="tag-item"
@@ -40,6 +40,16 @@
               :title="item"
               v-html="item"
             ></div>
+          </template>
+        </el-table-column>
+        <el-table-column
+          class-name="dict-column"
+          width="60"
+          label="字典"
+          v-if="baseSettingStore.wordDict"
+        >
+          <template #default="scope">
+            <Dictionary :word="scope.row.word" :dict="'JapanDict'"/>
           </template>
         </el-table-column>
         <el-table-column
@@ -79,6 +89,7 @@ import SimpleSelect from '../../components/SimpleSelect.vue'
 import Row from '../../components/Row.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
+import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
 const vocabularyStore = useVocabularyStore()
 const speechStore = useSpeechStore()

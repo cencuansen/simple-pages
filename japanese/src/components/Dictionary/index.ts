@@ -5,3 +5,8 @@ export interface Dictionary {
   logo?: string
   description?: string
 }
+
+export interface DictionaryProps {
+  word: string
+  dict?: 'Mazii' | 'JapanDict' | 'JiSho'
+}

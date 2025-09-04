@@ -31,9 +31,11 @@
         stripe
         style="width: 100%"
       >
-        <el-table-column label="" width="50">
+        <el-table-column label="" width="50" fixed="left">
           <template #default="scope">
-            <el-button size="small" type="text" @click="rowClick(scope.row)">详情</el-button>
+            <el-button size="small" type="text" @click="rowClick(scope.row)"
+              >详情
+            </el-button>
           </template>
         </el-table-column>
         <template v-for="col in columns">
@@ -57,13 +59,25 @@
       align-center
       width="400"
     >
-      <el-form label-width="auto" :label-position="'right'">
-        <el-form-item v-for="col in columns" :label="col.label">
-          <span>{{
-            currentRow && col.formatter(null, null, currentRow[col.value], 0)
-          }}</span>
-        </el-form-item>
-      </el-form>
+      <div class="detail-left">
+        <el-form label-width="auto" :label-position="'right'">
+          <el-form-item v-for="col in columns" :label="col.label">
+            <span>{{
+              currentRow && col.formatter(null, null, currentRow[col.value], 0)
+            }}</span>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div class="detail-right">
+        <el-form>
+          <el-form-item :label="' '">
+            <Dictionary
+              :word="(currentRow && currentRow['dictionary']) || ''"
+              :dict="'JapanDict'"
+            />
+          </el-form-item>
+        </el-form>
+      </div>
     </el-dialog>
 
     <SimplePagination :data="beforePage" @page-change="pageChange" />
@@ -80,6 +94,7 @@ import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { ElTable } from 'element-plus'
 import { columns, typeOptions, transitivityOptions } from './index.ts'
+import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
 const verbConjuStore = useConjuStore()
 const { conjuVerbs } = storeToRefs(verbConjuStore)
@@ -155,6 +170,16 @@ const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-he
 :deep(.el-scrollbar__wrap) {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
+}
+
+:deep(.el-dialog__body) {
+  display: flex;
+  gap: var(--gap12);
+}
+
+.detail-left,
+.detail-right {
+  height: 100%;
 }
 
 :deep(.el-overlay) {

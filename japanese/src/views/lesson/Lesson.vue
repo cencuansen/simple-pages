@@ -435,7 +435,7 @@
       <!-- 单词 -->
       <section id="words" class="section words-section" ref="wordsRef">
         <el-table :data="words" empty-text="暂无数据" stripe>
-          <el-table-column label="单词" min-width="150">
+          <el-table-column label="单词" min-width="120">
             <template #default="scope">
               <div
                 v-if="baseSettingStore.word"
@@ -473,19 +473,12 @@
           />
           <el-table-column
             class-name="dict-column"
-            width="60"
+            width="70"
             label="词典"
             v-if="baseSettingStore.wordDict"
           >
             <template #default="scope">
-              <a
-                title="mazii"
-                class="dict-item"
-                target="_blank"
-                :href="`https://mazii.net/zh-CN/search/word/jacn/${scope.row.word}`"
-              >
-                <img src="/images/mazii.png" alt="mazii" />
-              </a>
+              <Dictionary :word="scope.row.word" :dict="'JapanDict'"/>
             </template>
           </el-table-column>
           <el-table-column
@@ -589,18 +582,12 @@
       </svg>
     </div>
 
-    <IndexBar :data="indexData"/>
+    <IndexBar :data="indexData" />
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  computed,
-  onActivated,
-  onBeforeUnmount,
-  ref,
-  watch,
-} from 'vue'
+import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
@@ -623,6 +610,7 @@ import { displayText, textParser } from './index.ts'
 import { collapseTitle } from '../grammar'
 import type { IndexItem } from '../../components/IndexBar'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
+import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()

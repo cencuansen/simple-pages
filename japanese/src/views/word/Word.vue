@@ -21,7 +21,7 @@
           empty-text="暂无数据"
           stripe
         >
-          <el-table-column label="单词" min-width="150">
+          <el-table-column label="单词" min-width="120">
             <template #default="scope">
               <div
                 v-if="baseSettingStore.word"
@@ -69,14 +69,7 @@
             v-if="baseSettingStore.wordDict"
           >
             <template #default="scope">
-              <a
-                title="mazii"
-                class="dict-item"
-                target="_blank"
-                :href="`https://mazii.net/zh-CN/search/word/jacn/${scope.row.word}`"
-              >
-                <img src="/images/mazii.png" alt="mazii" />
-              </a>
+              <Dictionary :word="scope.row.word" :dict="'JapanDict'"/>
             </template>
           </el-table-column>
           <el-table-column
@@ -137,6 +130,7 @@ import LessonSelect from '../../components/LessonSelect.vue'
 import SimpleSelect from '../../components/SimpleSelect.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
+import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
