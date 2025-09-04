@@ -189,7 +189,6 @@ const beforePage = computed(() => {
 // 当前页数据
 const afterPage = ref<WordItem[]>([])
 const pageChange = (data: WordItem[]) => {
-  console.log('pageChange', data)
   afterPage.value = data
 }
 

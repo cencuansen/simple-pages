@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useLessonStore } from './stores/lessonStore'
 import { useWordStore } from './stores/wordStore'
 import { useGrammarStore } from './stores/grammarStore'
@@ -97,13 +97,17 @@ const grammarStore = useGrammarStore()
 const jlptGrammarStore = useJlptGrammarStore()
 const verbConju = useConjuStore()
 
-onMounted(async () => {
-  if (!isActive('/lesson')) {
-    baseSettingStore.setFullscreen(false)
+watch(
+  () => route.path,
+  () => {
+    if (!isActive('/lesson')) {
+      baseSettingStore.setFullscreen(false)
+    }
+    nowLabel.value = pathMap.get(paths.find(isActive) || '') || ''
   }
+)
 
-  nowLabel.value = pathMap.get(paths.find(isActive) || '') || ''
-
+onMounted(async () => {
   await wordStore.fetchWords()
   await lessonStore.fetchLessons()
   await grammarStore.fetchGrammars()
