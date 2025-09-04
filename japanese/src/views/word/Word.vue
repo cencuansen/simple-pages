@@ -64,7 +64,7 @@
           </el-table-column>
           <el-table-column
             class-name="dict-column"
-            width="60"
+            width="70"
             label="字典"
             v-if="baseSettingStore.wordDict"
           >

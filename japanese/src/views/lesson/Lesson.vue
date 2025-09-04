@@ -478,7 +478,7 @@
             v-if="baseSettingStore.wordDict"
           >
             <template #default="scope">
-              <Dictionary :word="scope.row.word" :dict="'JapanDict'"/>
+              <Dictionary :word="scope.row.word" :dict="'JapanDict'" />
             </template>
           </el-table-column>
           <el-table-column
@@ -1143,6 +1143,10 @@ watch(
   align-items: center;
   letter-spacing: 1px;
   line-height: var(--text-content-line-height);
+}
+
+:deep(.anchor-link + .anchor-link) {
+  margin-left: calc(0.5 * var(--gap12));
 }
 
 :deep(.el-form-item__label-wrap) {

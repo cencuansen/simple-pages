@@ -80,7 +80,7 @@ const toUrl = (word: string, dict: Dictionary): string => {
 }
 
 :deep(.el-dropdown .el-button-group button:first-child) {
-  width: 30px;
+  width: 40px;
 }
 
 :deep(.el-dropdown .el-button-group button:first-child span) {
