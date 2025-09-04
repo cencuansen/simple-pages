@@ -1,62 +1,11 @@
 <template>
   <div class="header" v-if="!fullscreen">
     <div class="button-group">
-      <el-button
-        size="small"
-        :type="isActive('/lesson') ? 'primary' : 'default'"
-        @click="navigateTo('/lesson')"
-      >
-        课程
-      </el-button>
-      <el-button
-        size="small"
-        :type="isActive('/word') ? 'primary' : 'default'"
-        @click="navigateTo('/word')"
-      >
-        词汇
-      </el-button>
-      <el-button
-        size="small"
-        :type="isActive('/jlpt-word') ? 'primary' : 'default'"
-        @click="navigateTo('/jlpt-word')"
-      >
-        词汇(jlpt)
-      </el-button>
-      <el-button
-        size="small"
-        :type="isActive('/grammar') ? 'primary' : 'default'"
-        @click="navigateTo('/grammar')"
-      >
-        文法
-      </el-button>
-      <el-button
-        size="small"
-        :type="isActive('/jlpt-grammar') ? 'primary' : 'default'"
-        @click="navigateTo('/jlpt-grammar')"
-      >
-        文法(jlpt)
-      </el-button>
-      <el-button
-        size="small"
-        :type="isActive('/verb-conju') ? 'primary' : 'default'"
-        @click="navigateTo('/verb-conju')"
-      >
-        动词活用
-      </el-button>
-      <el-button
-        size="small"
-        :type="isActive('/tool') ? 'primary' : 'default'"
-        @click="navigateTo('/tool')"
-      >
-        工具
-      </el-button>
-      <el-button
-        size="small"
-        :type="isActive('/setting') ? 'primary' : 'default'"
-        @click="navigateTo('/setting')"
-      >
-        设置
-      </el-button>
+      <el-segmented
+        v-model="nowLabel"
+        :options="labels"
+        @change="segmentChange"
+      />
     </div>
   </div>
   <div class="router-view">
@@ -85,6 +34,27 @@ import { storeToRefs } from 'pinia'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const locale = zhCn
+
+const segments = ref([
+  { label: '课程', path: '/lesson' },
+  { label: '词汇', path: '/word' },
+  { label: '词汇(jlpt)', path: '/jlpt-word' },
+  { label: '语法', path: '/grammar' },
+  { label: '语法(jlpt)', path: '/jlpt-grammar' },
+  { label: '动词活用', path: '/verb-conju' },
+  { label: '工具', path: '/tool' },
+  { label: '设置', path: '/setting' },
+])
+
+const labelMap = new Map(segments.value.map((item) => [item.label, item.path]))
+const pathMap = new Map(segments.value.map((item) => [item.path, item.label]))
+const labels = segments.value.map((item) => item.label)
+const paths = segments.value.map((item) => item.path)
+const nowLabel = ref<string>('')
+const segmentChange = (value: string) => {
+  const path = labelMap.get(value) || ''
+  navigateTo(path)
+}
 
 const rootFooterHeight = ref(0)
 onMounted(() => {
@@ -132,6 +102,8 @@ onMounted(async () => {
     baseSettingStore.setFullscreen(false)
   }
 
+  nowLabel.value = pathMap.get(paths.find(isActive) || '') || ''
+
   await wordStore.fetchWords()
   await lessonStore.fetchLessons()
   await grammarStore.fetchGrammars()
@@ -178,6 +150,10 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   overflow-x: scroll;
+}
+
+.el-segmented {
+  padding: 0;
 }
 
 .button-group::-webkit-scrollbar {
