@@ -1,6 +1,6 @@
 <template>
   <div class="lessons" v-if="currentLesson">
-    <div class="lesson-headers" v-if="!fullscreen">
+    <div id="header" class="lesson-headers" v-if="!fullscreen">
       <div class="lesson-switch">
         <el-button
           size="small"
@@ -95,7 +95,7 @@
 
     <div class="lesson-main" ref="container" @scroll="onScroll">
       <div ref="top"></div>
-      <h1 class="lesson-title">
+      <h1 id="title" class="lesson-title">
         <el-text
           class="text-title"
           v-html="textView(currentLesson.title)"
@@ -105,6 +105,7 @@
 
       <!-- 简单句子 -->
       <section
+        id="sentences"
         v-if="currentLesson?.sentences?.length"
         class="section basics-section"
       >
@@ -165,6 +166,7 @@
 
       <!-- 普通对话 -->
       <section
+        id="conversations"
         v-if="currentLesson?.conversations?.length"
         class="section conversation-section"
       >
@@ -236,6 +238,7 @@
 
       <!-- 情景对话 -->
       <section
+        id="discussions"
         v-if="currentLesson?.discussions?.contents.length"
         class="section conversation-section"
       >
@@ -316,6 +319,7 @@
 
       <!-- 短文-->
       <section
+        id="article"
         v-if="currentLesson?.article.contents.length"
         class="section"
         ref="articleRef"
@@ -412,6 +416,7 @@
 
       <!-- 语法 -->
       <section
+        id="grammars"
         class="section grammar"
         ref="grammarsRef"
         v-if="grammars.length > 0"
@@ -428,7 +433,7 @@
       </section>
 
       <!-- 单词 -->
-      <section class="section words-section" ref="wordsRef">
+      <section id="words" class="section words-section" ref="wordsRef">
         <el-table :data="words" empty-text="暂无数据" stripe>
           <el-table-column label="单词" min-width="150">
             <template #default="scope">
@@ -583,11 +588,19 @@
         />
       </svg>
     </div>
+
+    <IndexBar :data="indexData"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
+import {
+  computed,
+  onActivated,
+  onBeforeUnmount,
+  ref,
+  watch,
+} from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
@@ -608,6 +621,8 @@ import { ElTable } from 'element-plus'
 import LessonSelect from '../../components/LessonSelect.vue'
 import { displayText, textParser } from './index.ts'
 import { collapseTitle } from '../grammar'
+import type { IndexItem } from '../../components/IndexBar'
+import IndexBar from '../../components/IndexBar/IndexBar.vue'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -954,6 +969,20 @@ const onSingleKeyup = (event: KeyboardEvent) => {
     })
   }
 }
+
+const indexData = ref<IndexItem[]>([])
+watch(
+  () => hotkeyRefMap.value,
+  () => {
+    indexData.value = []
+    Object.keys(hotkeyRefMap.value).forEach((key: string) => {
+      indexData.value.push({
+        label: key,
+        element: hotkeyRefMap.value[key],
+      })
+    })
+  }
+)
 
 // 刷新页面、切换页面 router.push 是否执行。
 // 避免刷新页面执行 onActivated 中 router.push，此时 index 为 undefined。
