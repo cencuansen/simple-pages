@@ -9,6 +9,14 @@
     :style="style"
     :class="className"
   >
+    <template #label="{ label, value }">
+      <div class="option-item">
+        <div class="option-prefix" :class="levelClass(value).en">
+          {{ levelClass(value).cn }}
+        </div>
+        <div class="option-content">{{ label }}</div>
+      </div>
+    </template>
     <el-option
       v-for="item in lessons"
       :key="item.index"
@@ -17,9 +25,7 @@
       class="option-item"
     >
       <div class="option-prefix" :class="levelClass(item.index).en">
-        <span class="option-prefix-content">
-          {{ levelClass(item.index).cn }}
-        </span>
+        {{ levelClass(item.index).cn }}
       </div>
       <div class="option-content">{{ getOptionLabel(item) }}</div>
     </el-option>
@@ -147,18 +153,32 @@ defineExpose({
   display: flex;
   align-items: center;
   overflow-x: hidden;
+  gap: var(--gap12);
+  height: 100%;
 }
 
 .option-prefix {
-  font-size: 10px;
-  width: 35px;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  font-size: 12px;
+  padding: 0 5px;
+  border-radius: 5px;
 }
 
-.option-prefix-content {
-  border: 1px solid var(--el-color-info);
-  padding: 2px;
-  border-radius: 5px;
-  width: calc(100% - 30px);
+.level-junior {
+  color: var(--el-color-success);
+  border: 1px solid var(--el-color-success);
+}
+
+.level-medium {
+  color: var(--el-color-warning);
+  border: 1px solid var(--el-color-warning);
+}
+
+.level-senior {
+  color: var(--el-color-error);
+  border: 1px solid var(--el-color-error);
 }
 
 .option-content {
@@ -167,17 +187,5 @@ defineExpose({
   overflow-x: hidden;
   text-wrap: nowrap;
   text-overflow: ellipsis;
-}
-
-.level-junior {
-  color: var(--el-color-success);
-}
-
-.level-medium {
-  color: var(--el-color-warning);
-}
-
-.level-senior {
-  color: var(--el-color-error);
 }
 </style>
