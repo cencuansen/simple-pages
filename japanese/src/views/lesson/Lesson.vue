@@ -474,7 +474,7 @@
           <el-table-column
             class-name="dict-column"
             width="60"
-            label="字典"
+            label="词典"
             v-if="baseSettingStore.wordDict"
           >
             <template #default="scope">

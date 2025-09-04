@@ -7,6 +7,7 @@ import Setting from '../views/setting/Setting.vue'
 import Grammar from '../views/grammar/Grammar.vue'
 import JlptGrammar from '../views/grammar/JlptGrammar.vue'
 import VerbConju from '../views/verbConju/VerbConju.vue'
+import Blank from '../components/Blank/Blank.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -48,6 +49,10 @@ const router = createRouter({
     {
       path: '/setting',
       component: Setting,
+    },
+    {
+      path: '/dev',
+      component: Blank,
     },
   ],
 })
