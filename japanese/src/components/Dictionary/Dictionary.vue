@@ -1,7 +1,12 @@
 <template>
   <div class="dictionary">
     <el-dropdown size="small" split-button type="default">
-      <a class="now-dict" target="_blank" :href="toUrl(props.word, nowDict)">
+      <a
+        class="now-dict"
+        target="_blank"
+        :href="toUrl(props.word, nowDict)"
+        :title="nowDict.name"
+      >
         <img
           class="now-dict-img"
           v-if="nowDict.logo"
@@ -33,20 +38,28 @@ const placeholder = '{word}'
 
 const dictionaries = ref<Dictionary[]>([
   {
+    label: 'JD',
+    name: 'JapanDict',
+    url: `https://www.japandict.com/${placeholder}?lang=eng`,
+    logo: '/images/japan_dict.png',
+  },
+  {
+    label: 'YD',
+    name: 'YouDao',
+    url: `https://youdao.com/result?word=${placeholder}&lang=ja`,
+    logo: '/images/you_dao.png',
+  },
+  {
     label: 'MZ',
     name: 'Mazii',
     url: `https://mazii.net/zh-CN/search/word/jacn/${placeholder}`,
     logo: '/images/mazii.png',
   },
   {
-    label: 'JD',
-    name: 'JapanDict',
-    url: `https://www.japandict.com/${placeholder}?lang=eng`,
-  },
-  {
     label: 'JS',
     name: 'JiSho',
     url: `https://jisho.org/search/${placeholder}`,
+    logo: '/images/ji_sho.png',
   },
 ])
 
@@ -80,7 +93,7 @@ const toUrl = (word: string, dict: Dictionary): string => {
 }
 
 :deep(.el-dropdown .el-button-group button:first-child) {
-  width: 40px;
+  width: 24px;
 }
 
 :deep(.el-dropdown .el-button-group button:first-child span) {
@@ -106,6 +119,7 @@ const toUrl = (word: string, dict: Dictionary): string => {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  background-position: 100% 100%;
 }
 
 .now-dict-label {
