@@ -1,6 +1,27 @@
 <template>
   <div class="dictionary">
-    <el-text v-for="dict in dictionaries">{{ dict.name }} </el-text>
+    <el-dropdown size="small" split-button type="default">
+      <a class="now-dict" target="_blank" :href="toUrl(word, nowDict)">
+        <img
+          class="now-dict-img"
+          v-if="nowDict.logo"
+          :src="nowDict.logo"
+          :alt="nowDict.name"
+        />
+        <span class="now-dict-label" v-else>{{ nowDict.label }}</span>
+      </a>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item
+            class="dict-item"
+            v-for="dict in dictionaries"
+            @click="selectOne(dict)"
+          >
+            {{ `${dict.label}-${dict.name}` }}
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
   </div>
 </template>
 
@@ -8,21 +29,80 @@
 import { ref } from 'vue'
 import type { Dictionary } from './index.ts'
 
-//
+const placeholder = '{word}'
+
+defineProps({
+  word: {
+    type: String,
+    required: true,
+  },
+})
+
 const dictionaries = ref<Dictionary[]>([
   {
+    label: 'MZ',
     name: 'Mazii',
-    url: 'https://mazii.net/zh-CN/search/word/jacn/{placeholder}',
+    url: `https://mazii.net/zh-CN/search/word/jacn/${placeholder}`,
+    logo: '/images/mazii.png',
   },
   {
+    label: 'JD',
     name: 'JapanDict',
-    url: 'https://www.japandict.com/{placeholder}?lang=eng',
+    url: `https://www.japandict.com/${placeholder}?lang=eng`,
   },
   {
+    label: 'JS',
     name: 'JiSho',
-    url: ' https://jisho.org/search/{placeholder}',
+    url: `https://jisho.org/search/${placeholder}`,
   },
 ])
+
+const nowDict = ref<Dictionary>(dictionaries.value[0])
+const selectOne = (dict: Dictionary): void => {
+  nowDict.value = dict
+}
+
+const toUrl = (word: string, dict: Dictionary): string => {
+  return dict.url.replace(placeholder, word)
+}
 </script>
 
-<style scoped></style>
+<style scoped>
+.dictionary {
+  display: flex;
+  gap: 1rem;
+}
+
+:deep(.el-dropdown .el-button-group button:first-child span) {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+:deep(.el-dropdown .el-button-group button:last-child) {
+  position: absolute;
+  width: 20px;
+  height: 100%;
+}
+
+.now-dict {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.now-dict-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.now-dict-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
