@@ -45,11 +45,11 @@
         <el-table-column
           class-name="dict-column"
           width="70"
-          label="字典"
+          label="词典"
           v-if="baseSettingStore.wordDict"
         >
           <template #default="scope">
-            <Dictionary :word="scope.row.word" :dict="'JapanDict'"/>
+            <Dictionary :word="scope.row.word" :dict="'JapanDict'" />
           </template>
         </el-table-column>
         <el-table-column
@@ -172,17 +172,5 @@ const pageChange = (data: Vocabulary[]) => {
   overflow: hidden;
   text-wrap: nowrap;
   text-overflow: ellipsis;
-}
-
-.pagination {
-  width: 100%;
-  height: var(--pagination-height);
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.el-pagination {
-  margin: 0 auto;
-  max-width: var(--content-max-width);
 }
 </style>
