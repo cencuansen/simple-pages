@@ -138,16 +138,4 @@ const pageChange = (data: JlptGrammar[]) => {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
 }
-
-.pagination {
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: var(--pagination-height);
-}
-
-.el-pagination {
-  margin: 0 auto;
-  width: var(--content-max-width);
-}
 </style>

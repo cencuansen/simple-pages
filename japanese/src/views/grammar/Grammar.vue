@@ -13,7 +13,10 @@
             :name="collapseTitle(grammar.title, grammar.idx)"
           >
             <template #title>
-              <div v-html="grammar.displayTitle"></div>
+              <div class="grammar-title-row">
+                <div class="grammar-title" v-html="grammar.displayTitle"></div>
+                <div class="grammar-lesson">{{ grammar.lesson }}</div>
+              </div>
             </template>
             <div v-for="row in grammar.desc" v-html="row"></div>
           </el-collapse-item>
@@ -54,14 +57,14 @@ const beforePage = computed(() => {
   })
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
+  const highlight = (text: string) =>
+    text?.replace(regex, '<span class="match">$1</span>')
+
   list = list.map((item) => {
-    const highlighted = { ...item }
-    const highlight = (text: string) =>
-      text?.replace(regex, '<span class="match">$1</span>')
-    if (highlighted.displayTitle)
-      highlighted.displayTitle = highlight(highlighted.displayTitle)
-    if (highlighted.desc) highlighted.desc = highlighted.desc.map(highlight)
-    return highlighted
+    const tem = {...item}
+    tem.displayTitle = highlight(tem.displayTitle)
+    tem.desc = tem.desc.map(highlight)
+    return tem
   })
   return list
 })
@@ -72,7 +75,6 @@ const expands = ref<string[]>([])
 const afterPage = ref<Grammar[]>([])
 const pageChange = (data: Grammar[]) => {
   afterPage.value = data
-
   expands.value = afterPage.value.map((grammar) =>
     collapseTitle(grammar.title, grammar.idx)
   )
@@ -99,20 +101,16 @@ const pageChange = (data: Grammar[]) => {
   margin: 0 auto;
 }
 
-:deep(.el-scrollbar__wrap) {
-  /* 解决移动端滚动不顺畅问题 */
-  overflow-y: hidden;
+.grammar-title-row {
+  display: flex;
 }
 
-.pagination {
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: var(--pagination-height);
+.grammar-title {
+  flex: 9;
 }
 
-.el-pagination {
-  margin: 0 auto;
-  width: var(--content-max-width);
+.grammar-lesson {
+  flex: 1;
+  text-align: right;
 }
 </style>
