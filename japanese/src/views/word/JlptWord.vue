@@ -115,7 +115,7 @@ const beforePage = computed(() => {
   let res = vocabularyStore.vocabularies
   if (keyword.value) {
     res = res.filter((item: Vocabulary) =>
-      `${item.expression}${item.reading}${item.meaning}${item.levels}`
+      `${item.word}${item.kana}${item.desc}${item.levels}`
         .toLowerCase()
         .includes(keyword.value.toLowerCase())
     )

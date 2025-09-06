@@ -12,7 +12,7 @@
     <el-config-provider :locale="locale">
       <router-view v-slot="{ Component }">
         <keep-alive>
-          <component :is="Component" />
+          <component :is="Component" v-select-context-menu="menuConfig"/>
         </keep-alive>
       </router-view>
     </el-config-provider>
@@ -106,6 +106,44 @@ watch(
     nowLabel.value = pathMap.get(paths.find(isActive) || '') || ''
   }
 )
+
+const menuConfig = ref({
+  menuItems: [
+    {
+      label: '复制',
+      icon: '📋',
+      action: (text: string) => {
+        navigator.clipboard.writeText(text).then(() => {
+          console.log('文本已复制:', text)
+        })
+      }
+    },
+    {
+      label: '翻译',
+      icon: '🌐',
+      action: (text: string) => {
+        console.log('翻译文本:', text)
+        // 调用翻译API
+      }
+    },
+    {
+      label: '搜索',
+      icon: '🔍',
+      action: (text: string) => {
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(text)}`, '_blank')
+      }
+    },
+    {
+      label: '高亮',
+      icon: '🖍️',
+      action: (text: string) => {
+        console.log('高亮文本:', text)
+        // 高亮逻辑
+      }
+    }
+  ],
+  menuClass: 'custom-selection-menu'
+})
 
 onBeforeMount(() => {
   document.querySelector('h')
