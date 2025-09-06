@@ -34,7 +34,7 @@ try {
     item.lesson = lessonPrefix + item.lesson
   })
 
-  fs.writeFileSync('all.json', JSON.stringify(all, null, 2))
+  fs.writeFileSync('all.jsons', JSON.stringify(all, null, 2))
 } catch (err) {
   console.error('读取文件时出错:', err)
 }

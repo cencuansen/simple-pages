@@ -109,7 +109,7 @@ const convertHandler = async () => {
   try {
     const response = await ky.post(hiraganaUrl, {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/jsons',
       },
       body: JSON.stringify({
         input: inputText.value,

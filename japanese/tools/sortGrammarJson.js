@@ -5,7 +5,7 @@ import { dirname, resolve, join } from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const file = join(__dirname, '../public/json/grammars.json')
+const file = join(__dirname, '../public/jsons/grammars.jsons')
 const data = JSON.parse(fs.readFileSync(file))
 
 const lessonIdx = [...new Set(data.map((d) => Number(d.lesson)))].sort()

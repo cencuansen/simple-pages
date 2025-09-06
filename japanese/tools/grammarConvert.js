@@ -5,7 +5,7 @@ import { dirname, resolve, join } from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const file1 = join(__dirname, '../public/json/grammars.json')
+const file1 = join(__dirname, '../public/jsons/grammars.jsons')
 const data1 = JSON.parse(fs.readFileSync(file1))
 const res = []
 for (let i = 0; i < data1.length; i++) {
@@ -16,4 +16,4 @@ for (let i = 0; i < data1.length; i++) {
     desc: data1[i].desc.split('<br/>'),
   })
 }
-fs.writeFileSync('../public/json/grammars.json', JSON.stringify(res, null, 2))
+fs.writeFileSync('../public/jsons/grammars.jsons', JSON.stringify(res, null, 2))

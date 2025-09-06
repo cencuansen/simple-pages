@@ -5,10 +5,10 @@ import { dirname, resolve, join } from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const file1 = join(__dirname, '../public/json/words-junior.json')
+const file1 = join(__dirname, '../public/jsons/words-junior.jsons')
 const data1 = JSON.parse(fs.readFileSync(file1))
 const verbs1 = data1.filter((d) => d.pos.includes('动')).map((d, i) => {d.idx = i + 1;return d})
-// fs.writeFileSync(join(__dirname, './verbs-1.json'), JSON.stringify(verbs1))
+// fs.writeFileSync(join(__dirname, './verbs-1.jsons'), JSON.stringify(verbs1))
 
 const pageSize = 20
 

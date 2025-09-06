@@ -5,7 +5,7 @@ import { dirname, resolve, join } from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const file1 = join(__dirname, '../public/json/lesson.json')
+const file1 = join(__dirname, '../public/jsons/lesson.jsons')
 const data1 = JSON.parse(fs.readFileSync(file1))
 let index = 201
 for (let i = 0; i < 32; i++) {
@@ -27,4 +27,4 @@ for (let i = 0; i < 32; i++) {
   data1.push(obj)
 }
 
-fs.writeFileSync('../public/json/lesson.json', JSON.stringify(data1, null, 2))
+fs.writeFileSync('../public/jsons/lesson.jsons', JSON.stringify(data1, null, 2))
