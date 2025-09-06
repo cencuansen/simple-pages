@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, onBeforeMount } from 'vue'
 import { useLessonStore } from './stores/lessonStore'
 import { useWordStore } from './stores/wordStore'
 import { useGrammarStore } from './stores/grammarStore'
@@ -106,6 +106,10 @@ watch(
     nowLabel.value = pathMap.get(paths.find(isActive) || '') || ''
   }
 )
+
+onBeforeMount(() => {
+  document.querySelector('h')
+})
 
 onMounted(async () => {
   await wordStore.fetchWords()
