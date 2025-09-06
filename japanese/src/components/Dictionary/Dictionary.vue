@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import type { Dictionary, DictionaryProps } from './types.ts'
 import { dictionaries, getDictionary, toUrl } from './index.ts'
 import { useSettingStore } from '../../stores/settingStore'
@@ -46,6 +46,18 @@ const nowDict = ref<Dictionary | undefined>(
 const selectOne = (dict: Dictionary): void => {
   nowDict.value = dict
 }
+
+watch(
+  () => settingStore.dictionary,
+  () => {
+    if (settingStore.dictionary) {
+      const dict = getDictionary(settingStore.dictionary)
+      if (dict) {
+        nowDict.value = dict
+      }
+    }
+  }
+)
 </script>
 
 <style scoped>
