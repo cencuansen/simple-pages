@@ -24,7 +24,7 @@
           <el-table-column label="单词" min-width="120">
             <template #default="scope">
               <div
-                v-if="baseSettingStore.word"
+                v-if="settingStore.word"
                 :id="speakingWordId(scope.row as WordItem)"
                 class="column-word"
                 :class="{
@@ -34,7 +34,7 @@
                 {{ scope.row.word }}
               </div>
               <div
-                v-if="baseSettingStore.kana"
+                v-if="settingStore.kana"
                 class="column-kana"
                 :class="{
                   'speaking-active': speechStore.isWordSpeaking(scope.row),
@@ -54,7 +54,7 @@
             min-width="150"
             prop="desc"
             label="释义"
-            v-if="baseSettingStore.wordDesc"
+            v-if="settingStore.wordDesc"
             show-overflow-tooltip
           />
           <el-table-column label="课程" width="60">
@@ -66,16 +66,16 @@
             class-name="dict-column"
             width="70"
             label="词典"
-            v-if="baseSettingStore.wordDict"
+            v-if="settingStore.wordDict"
           >
             <template #default="scope">
-              <Dictionary :word="scope.row.word" :dict="'JapanDict'"/>
+              <Dictionary :word="scope.row.word"/>
             </template>
           </el-table-column>
           <el-table-column
             label=""
             width="50"
-            v-if="baseSettingStore.ttsSpeak"
+            v-if="settingStore.ttsSpeak"
             fixed="right"
           >
             <template #header>
@@ -83,7 +83,7 @@
                 type="primary"
                 size="small"
                 circle
-                v-if="baseSettingStore.ttsSpeak && lessonIndex"
+                v-if="settingStore.ttsSpeak && lessonIndex"
                 :disabled="speechStore.isSpeaking"
                 @click="speechStore.speakList(beforePage)"
               >
@@ -119,7 +119,7 @@
 <script setup lang="ts">
 import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
-import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
+import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
 import type { WordItem } from '../../types'
 import { speakingId, speakingWordId } from '../../utils'
@@ -134,7 +134,7 @@ import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
-const baseSettingStore = useBaseSettingStore()
+const settingStore = useSettingStore()
 
 const lessonIndex = ref()
 const keyword = ref('')

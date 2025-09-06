@@ -13,45 +13,50 @@
         </el-form-item>
         <el-form-item label="显示注音">
           <el-switch
-            v-model="baseSettingStore.furigana"
+            v-model="settingStore.furigana"
             inline-prompt
             size="small"
           />
         </el-form-item>
         <el-form-item label="单词跳转">
           <el-switch
-            v-model="baseSettingStore.wordLink"
+            v-model="settingStore.wordLink"
             inline-prompt
             size="small"
           />
         </el-form-item>
         <el-form-item label="翻译功能">
           <el-switch
-            v-model="baseSettingStore.translate"
+            v-model="settingStore.translate"
             inline-prompt
             size="small"
           />
         </el-form-item>
         <el-form-item label="显示单词">
-          <el-switch
-            v-model="baseSettingStore.word"
-            inline-prompt
-            size="small"
-          />
+          <el-switch v-model="settingStore.word" inline-prompt size="small" />
         </el-form-item>
         <el-form-item label="单词假名">
-          <el-switch
-            v-model="baseSettingStore.kana"
-            inline-prompt
-            size="small"
-          />
+          <el-switch v-model="settingStore.kana" inline-prompt size="small" />
         </el-form-item>
         <el-form-item label="单词释义">
           <el-switch
-            v-model="baseSettingStore.wordDesc"
+            v-model="settingStore.wordDesc"
             inline-prompt
             size="small"
           />
+        </el-form-item>
+        <el-form-item label="默认词典">
+          <el-select
+            size="small"
+            fit-input-width
+            v-model="settingStore.dictionary"
+          >
+            <el-option
+              v-for="dict in dictionaries"
+              :label="dict.name"
+              :value="dict.name"
+            />
+          </el-select>
         </el-form-item>
       </el-form>
     </el-tab-pane>
@@ -59,7 +64,7 @@
       <el-form>
         <el-form-item label="音频播放">
           <el-switch
-            v-model="baseSettingStore.audioSpeak"
+            v-model="settingStore.audioSpeak"
             inline-prompt
             size="small"
           />
@@ -67,13 +72,13 @@
 
         <el-form-item label="TTS 朗读">
           <el-switch
-            v-model="baseSettingStore.ttsSpeak"
+            v-model="settingStore.ttsSpeak"
             inline-prompt
             size="small"
           />
         </el-form-item>
 
-        <div v-if="baseSettingStore.ttsSpeak">
+        <div v-if="settingStore.ttsSpeak">
           <el-form-item label="语音">
             <el-select
               v-model="voiceName"
@@ -164,17 +169,18 @@
 
 <script setup lang="ts">
 import { Sunny, Moon } from '@element-plus/icons-vue'
-import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
+import { useSettingStore } from '../../stores/settingStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
+import { dictionaries } from '../../components/Dictionary'
 
-const baseSettingStore = useBaseSettingStore()
+const settingStore = useSettingStore()
 const testText = ref('こんにちは')
 
 const darkMode = computed({
-  get: () => baseSettingStore.isDark,
-  set: (val) => baseSettingStore.toggleDark(val),
+  get: () => settingStore.isDark,
+  set: (val) => settingStore.toggleDark(val),
 })
 
 // 语音设置

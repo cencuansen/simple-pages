@@ -19,7 +19,7 @@
             <div class="item-group">
               <el-text v-html="hiraganaResult" class="result-item"></el-text>
               <el-button
-                v-if="baseSettingStore.ttsSpeak && hiraganaResult"
+                v-if="settingStore.ttsSpeak && hiraganaResult"
                 size="small"
                 class="speak-button"
                 :disabled="speechStore.isSpeaking"
@@ -85,10 +85,10 @@ import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 import ky from 'ky'
 import { useSpeechStore } from '../../stores/speechStore.ts'
-import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
+import { useSettingStore } from '../../stores/settingStore.ts'
 
 const speechStore = useSpeechStore()
-const baseSettingStore = useBaseSettingStore()
+const settingStore = useSettingStore()
 
 const loading = ref(false)
 const inputText = ref('')

@@ -22,32 +22,30 @@
       </div>
       <div class="function-group">
         <el-button
-          :type="baseSettingStore.allTranslate ? 'primary' : ''"
+          :type="settingStore.allTranslate ? 'primary' : ''"
           size="small"
           circle
           title="翻译"
-          v-if="baseSettingStore.translate"
-          @click="
-            baseSettingStore.setAllTranslate(!baseSettingStore.allTranslate)
-          "
+          v-if="settingStore.translate"
+          @click="settingStore.setAllTranslate(!settingStore.allTranslate)"
         >
           译
         </el-button>
         <el-button
-          :type="baseSettingStore.furigana ? 'primary' : ''"
+          :type="settingStore.furigana ? 'primary' : ''"
           size="small"
           circle
           title="注音"
-          @click="baseSettingStore.furiganaToggle"
+          @click="settingStore.furiganaToggle"
         >
           注
         </el-button>
         <el-button
-          :type="baseSettingStore.wordLink ? 'primary' : ''"
+          :type="settingStore.wordLink ? 'primary' : ''"
           size="small"
           circle
           title="单词跳转"
-          @click="baseSettingStore.wordLinkToggle"
+          @click="settingStore.wordLinkToggle"
         >
           跳
         </el-button>
@@ -75,7 +73,7 @@
           circle
           title="播放"
           :disabled="isPlaying"
-          v-if="currentLesson?.audio && baseSettingStore.audioSpeak"
+          v-if="currentLesson?.audio && settingStore.audioSpeak"
           @click="playAudio(``, speechStore.repeatTimes)"
         >
           读
@@ -122,7 +120,7 @@
                 :disabled="isPlaying"
                 circle
                 size="small"
-                v-if="item.time && baseSettingStore.audioSpeak"
+                v-if="item.time && settingStore.audioSpeak"
                 @click="playAudio(item.time, speechStore.repeatTimes)"
               >
                 <el-icon>
@@ -133,7 +131,7 @@
                 class="speech-button"
                 circle
                 size="small"
-                v-else-if="baseSettingStore.ttsSpeak"
+                v-else-if="settingStore.ttsSpeak"
                 :disabled="isPlaying"
                 @click="speechStore.speak(speakText(item.content))"
               >
@@ -156,7 +154,7 @@
             <!--译文-->
             <div
               class="translation-line message"
-              :class="{ 'show-translation': baseSettingStore.basicsTranslate }"
+              :class="{ 'show-translation': settingStore.basicsTranslate }"
             >
               {{ item.translation }}
             </div>
@@ -189,7 +187,7 @@
                 size="small"
                 circle
                 :disabled="isPlaying"
-                v-if="message.time && baseSettingStore.audioSpeak"
+                v-if="message.time && settingStore.audioSpeak"
                 @click="playAudio(message.time, speechStore.repeatTimes)"
               >
                 <el-icon>
@@ -198,7 +196,7 @@
               </el-button>
               <el-button
                 class="speech-button"
-                v-else-if="baseSettingStore.ttsSpeak"
+                v-else-if="settingStore.ttsSpeak"
                 circle
                 size="small"
                 :disabled="isPlaying"
@@ -227,7 +225,7 @@
               class="translation-line message"
               :class="{
                 'show-translation':
-                  baseSettingStore.exchangeTranslate[exchangeIndex],
+                  settingStore.exchangeTranslate[exchangeIndex],
               }"
             >
               {{ message.translation }}
@@ -270,7 +268,7 @@
                 size="small"
                 circle
                 :disabled="isPlaying"
-                v-if="message.time && baseSettingStore.audioSpeak"
+                v-if="message.time && settingStore.audioSpeak"
                 @click="playAudio(message.time, speechStore.repeatTimes)"
               >
                 <el-icon>
@@ -279,7 +277,7 @@
               </el-button>
               <el-button
                 class="speech-button"
-                v-else-if="baseSettingStore.ttsSpeak"
+                v-else-if="settingStore.ttsSpeak"
                 circle
                 size="small"
                 :disabled="isPlaying"
@@ -308,7 +306,7 @@
               class="translation-line message"
               :class="{
                 'show-translation':
-                  baseSettingStore.exchange2Translate[exchangeIndex],
+                  settingStore.exchange2Translate[exchangeIndex],
               }"
             >
               {{ message.translation }}
@@ -330,7 +328,7 @@
             :disabled="isPlaying"
             circle
             size="small"
-            v-if="currentLesson?.article.time && baseSettingStore.audioSpeak"
+            v-if="currentLesson?.article.time && settingStore.audioSpeak"
             @click="
               playAudio(currentLesson?.article.time, speechStore.repeatTimes)
             "
@@ -340,7 +338,7 @@
             </el-icon>
           </el-button>
           <el-button
-            v-else-if="baseSettingStore.ttsSpeak"
+            v-else-if="settingStore.ttsSpeak"
             class="speech-button"
             circle
             size="small"
@@ -372,7 +370,7 @@
                 :disabled="isPlaying"
                 circle
                 size="small"
-                v-if="item.time && baseSettingStore.audioSpeak"
+                v-if="item.time && settingStore.audioSpeak"
                 @click="playAudio(item.time, speechStore.repeatTimes)"
               >
                 <el-icon>
@@ -383,7 +381,7 @@
                 class="speech-button"
                 circle
                 size="small"
-                v-else-if="baseSettingStore.ttsSpeak"
+                v-else-if="settingStore.ttsSpeak"
                 :disabled="isPlaying"
                 @click="speechStore.speak(speakText(item.content))"
               >
@@ -406,7 +404,7 @@
             <!--译文-->
             <div
               class="translation-line message article-translation"
-              :class="{ 'show-translation': baseSettingStore.basicsTranslate }"
+              :class="{ 'show-translation': settingStore.basicsTranslate }"
             >
               {{ item.translation }}
             </div>
@@ -431,14 +429,13 @@
           </el-collapse-item>
         </el-collapse>
       </section>
-
       <!-- 单词 -->
       <section id="words" class="section words-section" ref="wordsRef">
         <el-table :data="words" empty-text="暂无数据" stripe>
           <el-table-column label="单词" min-width="120">
             <template #default="scope">
               <div
-                v-if="baseSettingStore.word"
+                v-if="settingStore.word"
                 :id="speakingWordId(scope.row as WordItem)"
                 class="column-word"
                 :class="{
@@ -448,7 +445,7 @@
                 {{ scope.row.word }}
               </div>
               <div
-                v-if="baseSettingStore.kana"
+                v-if="settingStore.kana"
                 class="column-kana"
                 :class="{
                   'speaking-active': speechStore.isWordSpeaking(scope.row),
@@ -468,29 +465,29 @@
             min-width="150"
             prop="desc"
             label="释义"
-            v-if="baseSettingStore.wordDesc"
+            v-if="settingStore.wordDesc"
             show-overflow-tooltip
           />
           <el-table-column
             class-name="dict-column"
             width="70"
             label="词典"
-            v-if="baseSettingStore.wordDict"
+            v-if="settingStore.wordDict"
           >
             <template #default="scope">
-              <Dictionary :word="scope.row.word" :dict="'JapanDict'" />
+              <Dictionary :word="scope.row.word" />
             </template>
           </el-table-column>
           <el-table-column
             width="50"
-            v-if="baseSettingStore.ttsSpeak"
+            v-if="settingStore.ttsSpeak"
             fixed="right"
           >
             <template #header>
               <el-button
                 size="small"
                 circle
-                v-if="baseSettingStore.ttsSpeak"
+                v-if="settingStore.ttsSpeak"
                 :disabled="isPlaying"
                 @click="speechStore.speakList(words as WordItem[])"
               >
@@ -516,7 +513,7 @@
       </section>
     </div>
 
-    <div class="audio" v-if="baseSettingStore.audioSpeak && !fullscreen">
+    <div class="audio" v-if="settingStore.audioSpeak && !fullscreen">
       <audio
         ref="audioRef"
         :src="src"
@@ -590,7 +587,7 @@
 import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
-import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
+import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
 import { useGrammarStore } from '../../stores/grammarStore.ts'
 import type { WordItem } from '../../types'
@@ -615,11 +612,11 @@ import Dictionary from '../../components/Dictionary/Dictionary.vue'
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
-const baseSettingStore = useBaseSettingStore()
+const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 
 const { currentLesson, lessons } = storeToRefs(lessonStore)
-const { fullscreen } = storeToRefs(baseSettingStore)
+const { fullscreen } = storeToRefs(settingStore)
 
 const props = defineProps(['index'])
 const router = useRouter()
@@ -710,11 +707,11 @@ const lastElement = ref<HTMLElement | null>()
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
 watch(
-  () => baseSettingStore.translate,
+  () => settingStore.translate,
   (value, _) => {
     if (!value) {
       // 设置中关闭翻译功能时
-      baseSettingStore.setAllTranslate(false)
+      settingStore.setAllTranslate(false)
     }
   }
 )
@@ -777,16 +774,14 @@ const fullLessons = computed(() => {
 })
 
 const toggleFullscreen = (newStatus: boolean | null = null) => {
-  baseSettingStore.setFullscreen(
-    newStatus !== null ? newStatus : !fullscreen.value
-  )
+  settingStore.setFullscreen(newStatus !== null ? newStatus : !fullscreen.value)
 }
 
 const mainHeight = computed(() => {
   if (fullscreen.value) {
     // 全屏
     return `calc(100vh - var(--root-footer-height))`
-  } else if (!baseSettingStore.audioSpeak) {
+  } else if (!settingStore.audioSpeak) {
     // 非全屏 && 没有启用音频播放
     return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--root-footer-height))`
   } else {
@@ -875,11 +870,7 @@ const words = computed(() => {
 })
 
 const textView = computed(() => {
-  return textParser(
-    words.value,
-    baseSettingStore.wordLink,
-    baseSettingStore.furigana
-  )
+  return textParser(words.value, settingStore.wordLink, settingStore.furigana)
 })
 
 const goTop = () => {
@@ -1176,6 +1167,10 @@ watch(
 
 .column-word {
   font-size: 1rem;
+}
+
+:deep(.el-tooltip__trigger) {
+  outline: none;
 }
 
 :deep(.target-active) {

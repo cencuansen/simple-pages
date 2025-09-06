@@ -26,7 +26,7 @@ import { useLessonStore } from './stores/lessonStore'
 import { useWordStore } from './stores/wordStore'
 import { useGrammarStore } from './stores/grammarStore'
 import { useJlptGrammarStore } from './stores/jlptGrammarStore'
-import { useBaseSettingStore } from './stores/baseSettingStore'
+import { useSettingStore } from './stores/settingStore.ts'
 import { useConjuStore } from './stores/conjuStore.ts'
 import { useRouter, useRoute } from 'vue-router'
 import { detectBrowser } from './utils'
@@ -79,9 +79,9 @@ onMounted(() => {
 
 const router = useRouter()
 const route = useRoute()
-const baseSettingStore = useBaseSettingStore()
+const settingStore = useSettingStore()
 
-const { fullscreen } = storeToRefs(baseSettingStore)
+const { fullscreen } = storeToRefs(settingStore)
 
 const navigateTo = (path: string) => {
   router.push(path)
@@ -101,7 +101,7 @@ watch(
   () => route.path,
   () => {
     if (!isActive('/lesson')) {
-      baseSettingStore.setFullscreen(false)
+      settingStore.setFullscreen(false)
     }
     nowLabel.value = pathMap.get(paths.find(isActive) || '') || ''
   }

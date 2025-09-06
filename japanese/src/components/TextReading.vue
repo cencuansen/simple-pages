@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useSpeechStore } from '../stores/speechStore.ts'
-import { useBaseSettingStore } from '../stores/baseSettingStore.ts'
+import { useSettingStore } from '../stores/settingStore.ts'
 
 const props = defineProps<{
   time?: string
@@ -20,18 +20,18 @@ const props = defineProps<{
 const emit = defineEmits(['playAudio'])
 
 const speechStore = useSpeechStore()
-const baseSettingStore = useBaseSettingStore()
+const settingStore = useSettingStore()
 
 const isPlaying = computed(
   () => speechStore.isSpeaking
 )
 
-const useAudio = computed(() => props.time && baseSettingStore.audioSpeak)
+const useAudio = computed(() => props.time && settingStore.audioSpeak)
 
 const handlePlay = () => {
   if (useAudio.value) {
     emit('playAudio', props.time, speechStore.repeatTimes)
-  } else if (baseSettingStore.ttsSpeak && props.text) {
+  } else if (settingStore.ttsSpeak && props.text) {
     speechStore.speak(props.text)
   }
 }

@@ -5,15 +5,15 @@
         class="now-dict"
         target="_blank"
         :href="toUrl(props.word, nowDict)"
-        :title="nowDict.name"
+        :title="nowDict?.name"
       >
         <img
           class="now-dict-img"
-          v-if="nowDict.logo"
-          :src="nowDict.logo"
-          :alt="nowDict.name"
+          v-if="nowDict?.logo"
+          :src="nowDict?.logo"
+          :alt="nowDict?.name"
         />
-        <span class="now-dict-label" v-else>{{ nowDict.label }}</span>
+        <span class="now-dict-label" v-else>{{ nowDict?.label }}</span>
       </a>
       <template #dropdown>
         <el-dropdown-menu>
@@ -22,7 +22,7 @@
             v-for="dict in dictionaries"
             @click="selectOne(dict)"
           >
-            {{ `${dict.label}-${dict.name}` }}
+            {{ `${dict.name}` }}
           </el-dropdown-item>
         </el-dropdown-menu>
       </template>
@@ -31,60 +31,20 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import type { Dictionary, DictionaryProps } from './index.ts'
+import { ref } from 'vue'
+import type { Dictionary, DictionaryProps } from './types.ts'
+import { dictionaries, getDictionary, toUrl } from './index.ts'
+import { useSettingStore } from '../../stores/settingStore'
 
-const placeholder = '{word}'
-
-const imageUrlBase = import.meta.env.VITE_IMAGE_BASE
-
-const dictionaries = ref<Dictionary[]>([
-  {
-    label: 'JD',
-    name: 'JapanDict',
-    url: `https://www.japandict.com/${placeholder}?lang=eng`,
-    logo: `${imageUrlBase}/japan_dict.png`,
-  },
-  {
-    label: 'YD',
-    name: 'YouDao',
-    url: `https://youdao.com/result?word=${placeholder}&lang=ja`,
-    logo: `${imageUrlBase}/you_dao.png`,
-  },
-  {
-    label: 'MZ',
-    name: 'Mazii',
-    url: `https://mazii.net/zh-CN/search/word/jacn/${placeholder}`,
-    logo: `${imageUrlBase}/mazii.png`,
-  },
-  {
-    label: 'JS',
-    name: 'JiSho',
-    url: `https://jisho.org/search/${placeholder}`,
-    logo: `${imageUrlBase}/ji_sho.png`,
-  },
-])
+const settingStore = useSettingStore()
 
 const props = defineProps<DictionaryProps>()
 
-const defaultDict = computed(() => {
-  return (
-    dictionaries.value.find((dict) =>
-      [dict.label, dict.name].includes(props.dict || '')
-    ) || dictionaries.value[0]
-  )
-})
-
-const nowDict = ref<Dictionary>(defaultDict.value)
+const nowDict = ref<Dictionary | undefined>(
+  getDictionary(props.dict || settingStore.dictionary)
+)
 const selectOne = (dict: Dictionary): void => {
   nowDict.value = dict
-}
-
-const toUrl = (word: string, dict: Dictionary): string => {
-  if (!word) {
-    return '#'
-  }
-  return dict.url.replace(placeholder, word)
 }
 </script>
 

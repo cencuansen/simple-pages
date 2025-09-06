@@ -57,8 +57,6 @@ const process = (
     res && (originalTextMap[text][type] = res)
   }
 
-  console.log(res)
-
   return res
 }
 

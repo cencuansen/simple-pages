@@ -46,16 +46,16 @@
           class-name="dict-column"
           width="70"
           label="词典"
-          v-if="baseSettingStore.wordDict"
+          v-if="settingStore.wordDict"
         >
           <template #default="scope">
-            <Dictionary :word="scope.row.word" :dict="'JapanDict'" />
+            <Dictionary :word="scope.row.word" />
           </template>
         </el-table-column>
         <el-table-column
           label=""
           width="50"
-          v-if="baseSettingStore.ttsSpeak"
+          v-if="settingStore.ttsSpeak"
           fixed="right"
         >
           <template #default="scope">
@@ -83,7 +83,7 @@
 import { computed, type ComputedRef, onMounted, ref } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useVocabularyStore, type Vocabulary } from '../../stores/jlptWord.ts'
-import { useBaseSettingStore } from '../../stores/baseSettingStore.ts'
+import { useSettingStore } from '../../stores/settingStore.ts'
 import { ElTable, ElTableColumn } from 'element-plus'
 import SimpleSelect from '../../components/SimpleSelect.vue'
 import Row from '../../components/Row.vue'
@@ -93,7 +93,7 @@ import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
 const vocabularyStore = useVocabularyStore()
 const speechStore = useSpeechStore()
-const baseSettingStore = useBaseSettingStore()
+const settingStore = useSettingStore()
 
 // 初始化加载数据
 onMounted(() => {
