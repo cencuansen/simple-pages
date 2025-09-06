@@ -37,10 +37,10 @@ const buildAnchorLink = (match: string, words: WordItem[] = []) => {
 }
 
 // 通用预设处理
-const commonPreset = (
+const process = (
   text: string,
   type: keyof OriginalTextParsedMap,
-  fn: (val: string) => string
+  ...fns: ((val: string) => string)[]
 ): string => {
   if (!text) return ''
 
@@ -51,14 +51,21 @@ const commonPreset = (
   const cache = originalTextMap[text][type]
   if (cache) return cache
 
-  const res = fn(text) || ''
+  let res = ''
+  if (fns && fns.length) {
+    for (const fn of fns) {
+      if (fn) {
+        res = fn(text)
+      }
+    }
+  }
   originalTextMap[text][type] = res
   return res
 }
 
 // 无假名无跳转
 export const kataFalseWordFalse = ({ originalText = '' }: ConvertParam) => {
-  return commonPreset(
+  return process(
     originalText,
     'katakanaFalseWordFalse',
     (param: string) => {
@@ -77,7 +84,7 @@ export const kataFalseWordTrue = ({
   words = [],
 }: ConvertParam) => {
   const temp = kataFalseWordFalse({ originalText, words })
-  return commonPreset(temp, 'katakanaFalseWordTrue', (param: string) => {
+  return process(temp, 'katakanaFalseWordTrue', (param: string) => {
     return param.replace(wordRegEx(words), (match) =>
       buildAnchorLink(match, words)
     )
@@ -143,7 +150,7 @@ const parseKata = (input: string): ParseRuby => {
 
 // 有假名无跳转
 export const kataTrueWordFalse = ({ originalText = '' }: ConvertParam) => {
-  return commonPreset(
+  return process(
     originalText,
     'katakanaTrueWordFalse',
     (param: string) => {
@@ -192,7 +199,7 @@ export const kataTrueWordTrue = ({
   originalText = '',
   words = [],
 }: ConvertParam) => {
-  return commonPreset(originalText, 'katakanaTrueWordTrue', (param: string) => {
+  return process(originalText, 'katakanaTrueWordTrue', (param: string) => {
     return kataTrueWordTrueCore(param, words)
   })
 }
