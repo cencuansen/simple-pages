@@ -1145,12 +1145,9 @@ watch(
   line-height: var(--text-content-line-height);
 }
 
-/*:deep(.anchor-link + .anchor-link) {
-  margin-left: calc(0.5 * var(--gap12));
-}*/
 :deep(.anchor-link),
 :deep(ruby) {
-  margin: calc(0.5 * var(--gap12));
+  margin: calc(0.2 * var(--gap12));
 }
 
 :deep(.anchor-link ruby),
