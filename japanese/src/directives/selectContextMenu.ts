@@ -6,7 +6,6 @@ export const selectContextMenuEnhanced: ObjectDirective<HTMLElement> = {
   mounted(el: HTMLElement) {
     let menuApp: App<Element> | null = null
     let menuContainer: HTMLElement | null = null
-    let lastSelection = ''
 
     const showMenu = (
       x: number,
@@ -50,42 +49,35 @@ export const selectContextMenuEnhanced: ObjectDirective<HTMLElement> = {
       const selection = window.getSelection()
       const selectedText = selection?.toString().trim() || ''
 
-      if (
-        selection &&
-        selectedText &&
-        selectedText !== lastSelection &&
-        selection.rangeCount > 0
-      ) {
-        lastSelection = selectedText
-
-        const range = selection.getRangeAt(0)
-        const rect = range.getBoundingClientRect()
-
-        const menuWidth: number = 200
-        const menuHeight: number = 300
-
-        const viewportWidth = document.body.clientWidth
-        const viewportHeight = window.scrollY + document.body.clientHeight
-
-        let x = rect.left
-        let y_top = rect.top + window.scrollY
-        let y = rect.bottom + window.scrollY
-
-        if (x + menuWidth > viewportWidth) {
-          x = x - menuWidth
-        }
-        if (y + menuHeight > viewportHeight) {
-          y = y_top - menuHeight
-        }
-
-        showMenu(x, y, menuWidth, menuHeight, selectedText)
-      } else if (!selectedText) {
+      if (!selection || !selectedText) {
         hideMenu()
+        return
       }
+
+      const range = selection.getRangeAt(0)
+      const rect = range.getBoundingClientRect()
+
+      const menuWidth: number = 200
+      const menuHeight: number = 300
+      const viewportWidth = document.body.clientWidth
+      const viewportHeight = window.scrollY + document.body.clientHeight
+
+      let x = rect.left
+      let y_top = rect.top + window.scrollY
+      let y = rect.bottom + window.scrollY
+
+      if (x + menuWidth > viewportWidth) {
+        x = x - menuWidth
+      }
+      if (y + menuHeight > viewportHeight) {
+        y = y_top - menuHeight
+      }
+
+      showMenu(x, y, menuWidth, menuHeight, selectedText)
     }
 
     el.addEventListener('mouseup', handleTextSelection)
-    el.addEventListener('selectionchange', handleTextSelection)
+    el.addEventListener('touchend', handleTextSelection)
 
     const hideOnScroll = () => hideMenu()
     window.addEventListener('scroll', hideOnScroll, true)

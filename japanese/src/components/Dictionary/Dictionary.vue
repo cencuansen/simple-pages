@@ -1,6 +1,6 @@
 <template>
   <div class="dictionary">
-    <el-dropdown size="small" split-button type="default">
+    <el-dropdown size="small" split-button type="default" :disabled="disabled">
       <a
         class="now-dict"
         target="_blank"

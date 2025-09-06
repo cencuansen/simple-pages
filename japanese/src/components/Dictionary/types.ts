@@ -11,4 +11,5 @@ export interface Dictionary {
 export interface DictionaryProps {
   word?: string
   dict?: DictionaryName
+  disabled?: boolean
 }

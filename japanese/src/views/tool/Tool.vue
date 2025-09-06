@@ -4,7 +4,7 @@
       <el-tab-pane label="假名注音">
         <el-form label-width="auto" v-loading="loading">
           <el-form-item label="输入文本">
-            <div class="item-group">
+            <div class="row">
               <el-input
                 size="small"
                 v-model="inputText"
@@ -16,12 +16,11 @@
             </div>
           </el-form-item>
           <el-form-item label="-">
-            <div class="item-group">
-              <el-text v-html="hiraganaResult" class="result-item"></el-text>
+            <div class="row">
+              <el-text v-html="hiraganaResult"></el-text>
               <el-button
                 v-if="settingStore.ttsSpeak && hiraganaResult"
                 size="small"
-                class="speak-button"
                 :disabled="speechStore.isSpeaking"
                 @click="speechStore.speak(hiraganaResult)"
               >
@@ -32,27 +31,27 @@
             </div>
           </el-form-item>
           <el-form-item label="-">
-            <el-text v-html="okuriganaResult" class="result-item"></el-text>
+            <el-text v-html="okuriganaResult"></el-text>
           </el-form-item>
           <el-form-item label="-">
             <el-text
               v-html="toDataRuby(furiganaResult)"
-              class="result-item ruby-result-item"
+              class="ruby-result-item"
             ></el-text>
           </el-form-item>
         </el-form>
       </el-tab-pane>
       <el-tab-pane label="日文朗读">
-        <div class="text-speak-pane">
+        <div>
           <el-input
-            class="text-speak-textarea"
+            class="row"
             size="small"
             type="textarea"
             v-model.trim="textToSpeak"
             :autosize="{ minRows: 5, maxRows: 10 }"
             placeholder="请输入需要朗读的 '日文文本'"
           ></el-input>
-          <div class="text-speak-button-group">
+          <div class="row">
             <el-button
               size="small"
               @click="speechStore.speak(textToSpeak)"
@@ -76,6 +75,21 @@
           </div>
         </div>
       </el-tab-pane>
+      <el-tab-pane label="外部词典">
+        <div class="dictionary-pane">
+          <el-input
+            class="row"
+            size="small"
+            type="textarea"
+            v-model.trim="dictionaryText"
+            :autosize="{ minRows: 1, maxRows: 1 }"
+            placeholder="输入待查询的字、词、句"
+          ></el-input>
+          <div class="row">
+            <Dictionary :word="dictionaryText" :disabled="!dictionaryText"/>
+          </div>
+        </div>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -86,6 +100,7 @@ import { ref } from 'vue'
 import ky from 'ky'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
+import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
 const speechStore = useSpeechStore()
 const settingStore = useSettingStore()
@@ -109,7 +124,7 @@ const convertHandler = async () => {
   try {
     const response = await ky.post(hiraganaUrl, {
       headers: {
-        'Content-Type': 'application/jsons',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         input: inputText.value,
@@ -146,8 +161,10 @@ const onSpeakTextClear = () => {
 }
 
 const toDataRuby = (text: string): string => {
-  return text.replace(/<rt>(.*?)<\/rt>/g, '<rt data-ruby="$1"></rt>')
+  return text?.replace(/<rt>(.*?)<\/rt>/g, '<rt data-ruby="$1"></rt>')
 }
+
+const dictionaryText = ref<string>('')
 </script>
 
 <style scoped>
@@ -157,25 +174,21 @@ const toDataRuby = (text: string): string => {
   max-width: var(--content-max-width);
 }
 
-.item-group {
+.row {
   width: 100%;
   display: flex;
-  gap: 10px;
+  gap: var(--gap12);
   justify-content: space-between;
+}
+
+.row + .row {
+  margin-top: var(--gap12);
 }
 
 .speak-button {
   width: 48px;
   box-sizing: border-box;
   flex: none;
-}
-
-.text-speak-textarea {
-  margin-bottom: 10px;
-}
-
-.text-speak-button-group {
-  display: flex;
 }
 
 .ruby-result-item {

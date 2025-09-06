@@ -77,9 +77,9 @@ export const getDictionary = (str: string | undefined) => {
 export const toUrl = (
   word: string | undefined,
   dict: Dictionary | undefined
-): string => {
+): string | undefined => {
   if (!word || !dict || !dict.url) {
-    return '#'
+    return void 0
   }
   return dict.url.replace(placeholder, word)
 }

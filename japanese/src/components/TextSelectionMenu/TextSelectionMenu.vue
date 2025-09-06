@@ -8,8 +8,8 @@
       height: appendPxUnit(height),
     }"
   >
-    <div class="menu-item selected-text">{{ selectedText }}</div>
-    <div class="menu-item" @click="useDict">查 {{ dict?.name || '词典'}}</div>
+    <div class="selected-text">{{ selectedText }}</div>
+    <div class="menu-item" @click="useDict">查 {{ dict?.name || '词典' }}</div>
     <!--    <div class="menu-item">查课文</div>-->
     <!--    <div class="menu-item">查词汇</div>-->
     <!--    <div class="menu-item">查词汇(jlpt)</div>-->
@@ -36,8 +36,6 @@ const props = defineProps<{
 }>()
 
 const dict = ref<Dictionary | undefined>()
-const isVisible = ref(false)
-const menuRef = ref<HTMLElement | null>(null)
 
 const appendPxUnit = (n: number) => `${n}px`
 
@@ -58,37 +56,11 @@ const useDict = () => {
   window.open(url)
 }
 
-const showMenu = () => {
-  isVisible.value = true
-  requestAnimationFrame(() => {})
-}
-
-const hideMenu = () => {
-  setTimeout(() => {
-    isVisible.value = false
-  }, 150)
-}
-
-const handleClickOutside = (e: MouseEvent) => {
-  if (menuRef.value && !menuRef.value.contains(e.target as Node)) {
-    hideMenu()
-  }
-}
-
 onMounted(() => {
-  if (props.selectedText) {
-    showMenu()
-    document.addEventListener('click', handleClickOutside, true)
-  }
-
   dict.value = getDictionary(settingStore.dictionary)
 })
 
-onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside, true)
-})
-
-defineExpose({ showMenu, hideMenu })
+onUnmounted(() => {})
 </script>
 
 <style scoped>
@@ -108,7 +80,8 @@ defineExpose({ showMenu, hideMenu })
   background-color: #000;
 }
 
-.menu-item {
+.menu-item,
+.selected-text {
   width: 100%;
   border-radius: 5px;
   padding: 5px;
@@ -117,6 +90,10 @@ defineExpose({ showMenu, hideMenu })
   text-wrap: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.menu-item:hover {
+  background-color: var(--el-bg-color-overlay);
 }
 
 .menu-item:not(.disabled) {
