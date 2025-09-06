@@ -550,7 +550,7 @@
         <div
           class="model-lesson-match-content"
           v-for="content in lesson.contents"
-          v-html="searchLesson(displayText(content))"
+          v-html="content"
         ></div>
       </div>
     </el-dialog>
@@ -592,7 +592,7 @@ import { useWordStore } from '../../stores/wordStore.ts'
 import { useGrammarStore } from '../../stores/grammarStore.ts'
 import type { WordItem } from '../../types'
 import {
-  searchLessonFunc,
+  searchLesson,
   speakingId,
   speakingTextId,
   speakingWordId,
@@ -734,44 +734,7 @@ watch(
 const expands = ref<string[]>([])
 
 const keyword = ref('')
-const searchLesson = computed(() => searchLessonFunc(keyword.value || ''))
-const fullLessons = computed(() => {
-  // 用于搜索全部课文内容
-  const flatLessons = lessons.value.map((lesson) => {
-    return [
-      `${lesson.index}`,
-      lesson.title,
-      ...lesson.sentences.map((a) => displayText(a.content)),
-      ...lesson.conversations
-        .flatMap((a) => a)
-        .map((a) => displayText(a.content)),
-      ...lesson.discussions.contents
-        .flatMap((a) => a)
-        .map((a) => displayText(a.content)),
-      ...lesson.article.contents.map((a) => displayText(a.content)),
-    ].filter(Boolean) as string[]
-  })
-
-  if (!keyword.value) {
-    return flatLessons
-      .map((lesson) => {
-        const contents = lesson.slice(2)
-        return {
-          idx: lesson[0],
-          title: lesson[1],
-          contents: [...contents.slice(0, 2), '...'],
-        }
-      })
-      .filter((a) => a.contents.length > 0)
-  }
-
-  return flatLessons
-    .map((lesson) => {
-      const contents = lesson.slice(2).filter((c) => c.includes(keyword.value))
-      return { idx: lesson[0], title: lesson[1], contents }
-    })
-    .filter((a) => a.contents.length > 0)
-})
+const fullLessons = computed(() => searchLesson(lessons.value, keyword.value))
 
 const toggleFullscreen = (newStatus: boolean | null = null) => {
   settingStore.setFullscreen(newStatus !== null ? newStatus : !fullscreen.value)
