@@ -5,9 +5,9 @@ import Papa from 'papaparse'
 import ky from 'ky'
 
 export interface Vocabulary {
-  expression: string
-  reading: string
-  meaning: string
+  word: string
+  kana: string
+  desc: string
   tags: string
   level: number
   levelName: string

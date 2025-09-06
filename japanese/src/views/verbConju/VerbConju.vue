@@ -33,9 +33,14 @@
       >
         <el-table-column label="" width="50" fixed="left">
           <template #default="scope">
-            <el-button size="small" type="text" @click="rowClick(scope.row)"
-              >详情
-            </el-button>
+            <el-text
+              style="cursor: pointer"
+              size="small"
+              type="primary"
+              @click="rowClick(scope.row)"
+            >
+              详情
+            </el-text>
           </template>
         </el-table-column>
         <template v-for="col in columns">
@@ -71,10 +76,7 @@
       <div class="detail-right">
         <el-form>
           <el-form-item :label="' '">
-            <Dictionary
-              :word="(currentRow && currentRow['dictionary']) || ''"
-              :dict="'JapanDict'"
-            />
+            <Dictionary :word="currentRow && currentRow['dictionary']" />
           </el-form-item>
         </el-form>
       </div>

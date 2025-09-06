@@ -53,7 +53,7 @@
           >
             <el-option
               v-for="dict in dictionaries"
-              :label="dict.name"
+              :label="[dict.name, dict.desc].join(' - ')"
               :value="dict.name"
             />
           </el-select>

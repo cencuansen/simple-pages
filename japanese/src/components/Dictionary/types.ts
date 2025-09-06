@@ -5,7 +5,7 @@ export interface Dictionary {
   name: string
   url: string
   logo?: string
-  description?: string
+  desc?: string
 }
 
 export interface DictionaryProps {

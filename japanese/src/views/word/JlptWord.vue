@@ -22,15 +22,15 @@
       >
         <el-table-column label="词汇" min-width="120">
           <template #default="scope">
-            <div :id="`word-${scope.row.expression}`" class="column-word">
-              {{ scope.row.expression }}
+            <div :id="`word-${scope.row.word}`" class="column-word">
+              {{ scope.row.word }}
             </div>
-            <div :id="`word-${scope.row.reading}`" class="column-kana">
-              {{ scope.row.reading }}
+            <div :id="`word-${scope.row.kana}`" class="column-kana">
+              {{ scope.row.kana }}
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="meaning" label="释义" min-width="150" />
+        <el-table-column prop="desc" label="释义" min-width="150" />
         <el-table-column label="标签" min-width="80">
           <template #default="scope">
             <div
