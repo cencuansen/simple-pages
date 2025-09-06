@@ -48,30 +48,25 @@ const process = (
     originalTextMap[text] = {} as OriginalTextParsedMap
   }
 
-  const cache = originalTextMap[text][type]
-  if (cache) return cache
+  let res: string = originalTextMap[text][type]
 
-  let res = ''
-  if (fns && fns.length) {
-    for (const fn of fns) {
-      if (fn) {
-        res = fn(text)
-      }
+  if (!res) {
+    for (const fn of fns || []) {
+      res = fn?.call(this, text)
     }
+    res && (originalTextMap[text][type] = res)
   }
-  originalTextMap[text][type] = res
+
+  console.log(res)
+
   return res
 }
 
 // 无假名无跳转
 export const kataFalseWordFalse = ({ originalText = '' }: ConvertParam) => {
-  return process(
-    originalText,
-    'katakanaFalseWordFalse',
-    (param: string) => {
-      return param.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
-    }
-  )
+  return process(originalText, 'katakanaFalseWordFalse', (param: string) => {
+    return param.replace(/!([^(]+)\(([^)]+)\)/g, '$1')
+  })
 }
 
 // 对"无假名无跳转"封装
@@ -150,13 +145,9 @@ const parseKata = (input: string): ParseRuby => {
 
 // 有假名无跳转
 export const kataTrueWordFalse = ({ originalText = '' }: ConvertParam) => {
-  return process(
-    originalText,
-    'katakanaTrueWordFalse',
-    (param: string) => {
-      return parseKata(param).outputHtml
-    }
-  )
+  return process(originalText, 'katakanaTrueWordFalse', (param: string) => {
+    return parseKata(param).outputHtml
+  })
 }
 
 // 有假名有跳转核心处理

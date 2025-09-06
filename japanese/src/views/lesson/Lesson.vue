@@ -1145,8 +1145,17 @@ watch(
   line-height: var(--text-content-line-height);
 }
 
-:deep(.anchor-link + .anchor-link) {
+/*:deep(.anchor-link + .anchor-link) {
   margin-left: calc(0.5 * var(--gap12));
+}*/
+:deep(.anchor-link),
+:deep(ruby) {
+  margin: calc(0.5 * var(--gap12));
+}
+
+:deep(.anchor-link ruby),
+:deep(ruby .anchor-link) {
+  margin: 0;
 }
 
 :deep(.el-form-item__label-wrap) {
