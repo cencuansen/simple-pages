@@ -994,6 +994,7 @@ watch(
 
 .lesson-main {
   overflow-y: scroll;
+  overflow-x: hidden;
   margin: 0 auto;
   width: 100vw;
   height: v-bind(mainHeight);

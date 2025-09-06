@@ -1,173 +1,52 @@
-// directives/selectContextMenuEnhanced.ts
-import type { DirectiveBinding, ObjectDirective } from 'vue'
+import { type App, createApp, type ObjectDirective } from 'vue'
 
-interface MenuItem {
-  label: string
-  action: (selectedText: string, event: MouseEvent) => void
-  icon?: string
-  disabled?: boolean
-  divider?: boolean
-}
+import TextSelectionMenu from '../components/TextSelectionMenu/TextSelectionMenu.vue'
 
-interface SelectContextMenuBinding {
-  menuItems: MenuItem[]
-  menuClass?: string
-  maxWidth?: number
-  onBeforeShow?: (selectedText: string) => boolean
-}
-
-export const selectContextMenuEnhanced: ObjectDirective<
-  HTMLElement,
-  SelectContextMenuBinding
-> = {
-  mounted(
-    el: HTMLElement,
-    binding: DirectiveBinding<SelectContextMenuBinding>
-  ) {
-    let menuElement: HTMLElement
+export const selectContextMenuEnhanced: ObjectDirective<HTMLElement> = {
+  mounted(el: HTMLElement) {
+    let menuApp: App<Element> | null = null
+    let menuContainer: HTMLElement | null = null
     let lastSelection = ''
 
-    const createMenu = (): HTMLElement => {
-      const menu = document.createElement('div')
-      menu.className = binding.value.menuClass || 'text-selection-menu'
-      menu.style.cssText = `
-        position: fixed;
-        background: var(--el-bg-color);
-        border: 1px solid var(--el-border-color-light);
-        border-radius: 6px;
-        padding: 6px 0;
-        z-index: 10000;
-        display: none;
-        min-width: 140px;
-        max-width: ${binding.value.maxWidth || 200}px;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.15s ease, transform 0.15s ease;
-      `
-      return menu
-    }
+    const showMenu = (
+      x: number,
+      y: number,
+      w: number,
+      h: number,
+      selectedText: string
+    ) => {
+      // 如果已有菜单，先移除
+      hideMenu()
 
-    const showMenu = (x: number, y: number, selectedText: string) => {
-      // 检查是否应该显示菜单
-      if (
-        binding.value.onBeforeShow &&
-        !binding.value.onBeforeShow(selectedText)
-      ) {
-        return
-      }
+      // 创建菜单容器
+      menuContainer = document.createElement('div')
+      document.body.appendChild(menuContainer)
 
-      if (!menuElement) {
-        menuElement = createMenu()
-        document.body.appendChild(menuElement)
-      }
-
-      menuElement.innerHTML = ''
-
-      binding.value.menuItems.forEach((item, _) => {
-        if (item.divider) {
-          const divider = document.createElement('div')
-          divider.style.cssText = `
-            height: 1px;
-            background: #e2e8f0;
-            margin: 4px 0;
-          `
-          menuElement!.appendChild(divider)
-          return
-        }
-
-        const menuItem = document.createElement('div')
-        menuItem.className = `menu-item ${item.disabled ? 'disabled' : ''}`
-        menuItem.style.cssText = `
-          padding: 8px 16px;
-          cursor: ${item.disabled ? 'not-allowed' : 'pointer'};
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 14px;
-          color: inherit;
-          transition: background-color 0.1s ease;
-        `
-
-        menuItem.innerHTML = item.icon
-          ? `<span style="font-size: 16px;">${item.icon}</span> ${item.label}`
-          : item.label
-
-        if (!item.disabled) {
-          menuItem.onclick = (e) => {
-            e.stopPropagation()
-            item.action(selectedText, e as MouseEvent)
-            hideMenu()
-          }
-
-          menuItem.onmouseenter = () => {
-            menuItem.style.background = 'var(--el-bg-color-overlay)'
-          }
-          menuItem.onmouseleave = () => {
-            menuItem.style.background = 'var(--el-bg-color)'
-          }
-        }
-
-        menuElement.appendChild(menuItem)
+      // 创建Vue应用实例
+      menuApp = createApp(TextSelectionMenu, {
+        selectedText,
+        x,
+        y,
+        width: w,
+        height: h,
       })
 
-      // 确保菜单在视口内
-      const viewportWidth = window.innerWidth
-      const viewportHeight = window.innerHeight
-      const menuRect = menuElement.getBoundingClientRect()
-
-      let finalX = x
-      let finalY = y
-
-      if (x + menuRect.width > viewportWidth) {
-        finalX = viewportWidth - menuRect.width - 10
-      }
-      if (y + menuRect.height > viewportHeight) {
-        finalY = viewportHeight - menuRect.height - 10
-      }
-
-      menuElement.style.left = `${finalX}px`
-      menuElement.style.top = `${finalY}px`
-      menuElement.style.display = 'block'
-
-      // 触发动画
-      requestAnimationFrame(() => {
-        if (menuElement) {
-          menuElement.style.opacity = '1'
-          menuElement.style.transform = 'translateY(0)'
-        }
-      })
-
-      setTimeout(() => {
-        document.addEventListener('click', hideMenuOnClick, true)
-      }, 0)
+      // 挂载菜单
+      menuApp.mount(menuContainer)
     }
 
     const hideMenu = () => {
-      if (menuElement) {
-        menuElement.style.opacity = '0'
-        menuElement.style.transform = 'translateY(-10px)'
-
-        setTimeout(() => {
-          if (menuElement) {
-            menuElement.style.display = 'none'
-          }
-        }, 150)
+      if (menuApp) {
+        menuApp.unmount()
+        menuApp = null
       }
-      document.removeEventListener('click', hideMenuOnClick, true)
-    }
-
-    const hideMenuOnClick = (e: MouseEvent) => {
-      if (menuElement && !menuElement.contains(e.target as Node)) {
-        hideMenu()
+      if (menuContainer) {
+        document.body.removeChild(menuContainer)
+        menuContainer = null
       }
     }
 
-    const handleTextSelection = (event: MouseEvent) => {
-      // 如果按住了 Ctrl 键或右键，不显示自定义菜单
-      if (event.ctrlKey || event.button === 2) {
-        return
-      }
-
+    const handleTextSelection = (_: Event) => {
       const selection = window.getSelection()
       const selectedText = selection?.toString().trim() || ''
 
@@ -182,13 +61,31 @@ export const selectContextMenuEnhanced: ObjectDirective<
         const range = selection.getRangeAt(0)
         const rect = range.getBoundingClientRect()
 
-        showMenu(rect.left, rect.bottom + window.scrollY + 8, selectedText)
+        const menuWidth: number = 200
+        const menuHeight: number = 300
+
+        const viewportWidth = document.body.clientWidth
+        const viewportHeight = window.scrollY + document.body.clientHeight
+
+        let x = rect.left
+        let y_top = rect.top + window.scrollY
+        let y = rect.bottom + window.scrollY
+
+        if (x + menuWidth > viewportWidth) {
+          x = x - menuWidth
+        }
+        if (y + menuHeight > viewportHeight) {
+          y = y_top - menuHeight
+        }
+
+        showMenu(x, y, menuWidth, menuHeight, selectedText)
       } else if (!selectedText) {
         hideMenu()
       }
     }
 
     el.addEventListener('mouseup', handleTextSelection)
+    el.addEventListener('selectionchange', handleTextSelection)
 
     const hideOnScroll = () => hideMenu()
     window.addEventListener('scroll', hideOnScroll, true)
@@ -198,9 +95,7 @@ export const selectContextMenuEnhanced: ObjectDirective<
       handleTextSelection,
       hideOnScroll,
       cleanup: () => {
-        if (menuElement) {
-          document.body.removeChild(menuElement)
-        }
+        hideMenu()
       },
     }
   },
