@@ -36,30 +36,32 @@ import type { Dictionary, DictionaryProps } from './index.ts'
 
 const placeholder = '{word}'
 
+const imageUrlBase = import.meta.env.VITE_IMAGE_BASE
+
 const dictionaries = ref<Dictionary[]>([
   {
     label: 'JD',
     name: 'JapanDict',
     url: `https://www.japandict.com/${placeholder}?lang=eng`,
-    logo: '/images/japan_dict.png',
+    logo: `${imageUrlBase}/japan_dict.png`,
   },
   {
     label: 'YD',
     name: 'YouDao',
     url: `https://youdao.com/result?word=${placeholder}&lang=ja`,
-    logo: '/images/you_dao.png',
+    logo: `${imageUrlBase}/you_dao.png`,
   },
   {
     label: 'MZ',
     name: 'Mazii',
     url: `https://mazii.net/zh-CN/search/word/jacn/${placeholder}`,
-    logo: '/images/mazii.png',
+    logo: `${imageUrlBase}/mazii.png`,
   },
   {
     label: 'JS',
     name: 'JiSho',
     url: `https://jisho.org/search/${placeholder}`,
-    logo: '/images/ji_sho.png',
+    logo: `${imageUrlBase}/ji_sho.png`,
   },
 ])
 
