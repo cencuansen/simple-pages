@@ -1,7 +1,7 @@
 <template>
   <div class="words">
     <Row>
-      <LessonSelect v-model="lessonIndex" />
+      <LessonSelect v-model="lessonIndex" :lite="true"/>
       <SimpleSelect
         multiple
         :data="wordClasses"

@@ -8,8 +8,9 @@
     fit-input-width
     :style="style"
     :class="className"
+    :lite="lite"
   >
-    <template #label="{ label, value }">
+    <template #label="{ label, value }" v-if="!lite">
       <div class="option-item">
         <div class="option-prefix" :class="levelClass(value).en">
           {{ levelClass(value).cn }}
@@ -24,7 +25,11 @@
       :value="getOptionValue(item)"
       class="option-item"
     >
-      <div class="option-prefix" :class="levelClass(item.index).en">
+      <div
+        class="option-prefix"
+        :class="levelClass(item.index).en"
+        v-if="!lite"
+      >
         {{ levelClass(item.index).cn }}
       </div>
       <div class="option-content">{{ getOptionLabel(item) }}</div>
@@ -58,6 +63,8 @@ interface Props {
   className?: string
   // 是否显示索引前缀
   showIndex?: boolean
+  // 简洁模式
+  lite?: boolean
   // 自定义标签格式化函数
   formatLabel?: (lesson: Lesson) => string
   // 自定义值获取函数
@@ -71,6 +78,7 @@ const props = withDefaults(defineProps<Props>(), {
   style: () => ({}),
   className: '',
   showIndex: true,
+  lite: false,
   formatLabel: undefined,
   getValue: undefined,
 })
