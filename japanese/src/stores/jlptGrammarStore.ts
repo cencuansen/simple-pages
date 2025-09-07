@@ -16,7 +16,7 @@ export interface JlptGrammarFilter {
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
-export const useJlptGrammarStore = defineStore('JlptGrammar', () => {
+export const useJlptGrammarStore = defineStore('jlpt-grammar', () => {
   const JlptGrammars = ref<JlptGrammar[]>([])
 
   const fetchJlptGrammars = async () => {

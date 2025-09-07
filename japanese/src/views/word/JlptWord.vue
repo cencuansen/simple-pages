@@ -82,7 +82,7 @@
 <script setup lang="ts">
 import { computed, type ComputedRef, onMounted, ref } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
-import { useVocabularyStore, type Vocabulary } from '../../stores/jlptWord.ts'
+import { useJlptWordStore, type Vocabulary } from '../../stores/jlptWord.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { ElTable, ElTableColumn } from 'element-plus'
 import SimpleSelect from '../../components/SimpleSelect.vue'
@@ -91,7 +91,7 @@ import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
-const vocabularyStore = useVocabularyStore()
+const vocabularyStore = useJlptWordStore()
 const speechStore = useSpeechStore()
 const settingStore = useSettingStore()
 

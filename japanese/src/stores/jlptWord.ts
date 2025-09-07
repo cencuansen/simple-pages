@@ -16,7 +16,7 @@ export interface Vocabulary {
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
-export const useVocabularyStore = defineStore('vocabulary', () => {
+export const useJlptWordStore = defineStore('jlpt-word', () => {
   const vocabularies = ref<Vocabulary[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
