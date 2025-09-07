@@ -3,13 +3,13 @@
     <Row>
       <SimpleSelect
         multiple
-        :data="typeOptions"
+        :data="allTypes"
         v-model="selectedTypes"
         placeholder="选择类型"
       />
       <SimpleSelect
         multiple
-        :data="transitivityOptions"
+        :data="allTrans"
         v-model="selectedTransitivities"
         placeholder="选择及物性"
       />
@@ -89,11 +89,16 @@ import Row from '../../components/Row.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { ElTable } from 'element-plus'
-import { columns, typeOptions, transitivityOptions, type Conju } from './index.ts'
+import {
+  columns,
+  typeOptions,
+  transitivityOptions,
+  type Conju,
+} from './index.ts'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
 const jlptVerbConjuStore = useJlptConjuStore()
-const { jlptConjuVerbs } = storeToRefs(jlptVerbConjuStore)
+const { jlptConjuVerbs, allTypes, allTrans } = storeToRefs(jlptVerbConjuStore)
 
 const keyword = ref<string>()
 

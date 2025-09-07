@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import Papa from 'papaparse'
 import ky from 'ky'
-import type {Conju} from "../views/verbConju";
+import { type Conju } from '../views/verbConju'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -22,8 +22,19 @@ export const useJlptConjuStore = defineStore('jlpt-conju', () => {
     })
   }
 
+  const allTypes = computed(() => {
+    return [...new Set(jlptConjuVerbs.value.map((v: Conju) => v.type))].sort()
+  })
+  const allTrans = computed(() => {
+    return [
+      ...new Set(jlptConjuVerbs.value.map((v: Conju) => v.transitivity)),
+    ].sort()
+  })
+
   return {
     jlptConjuVerbs,
     init,
+    allTypes,
+    allTrans,
   }
 })
