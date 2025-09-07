@@ -17,7 +17,7 @@ export const useLessonStore = defineStore(
     const maxIndex = ref(0)
 
     // 获取课程数据
-    const fetchLessons = async () => {
+    const init = async () => {
       try {
         isLoading.value = true
         error.value = null
@@ -96,7 +96,7 @@ export const useLessonStore = defineStore(
 
       // 方法
       setCurrentIndex,
-      fetchLessons,
+      init,
       goPrevious,
       goNext,
       goLesson,

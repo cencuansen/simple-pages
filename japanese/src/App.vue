@@ -28,6 +28,7 @@ import { useGrammarStore } from './stores/grammarStore'
 import { useJlptGrammarStore } from './stores/jlptGrammarStore'
 import { useSettingStore } from './stores/settingStore.ts'
 import { useConjuStore } from './stores/conjuStore.ts'
+import { useJlptConjuStore } from './stores/jlptConjuStore.ts'
 import { useRouter, useRoute } from 'vue-router'
 import { detectBrowser } from './utils'
 import { storeToRefs } from 'pinia'
@@ -42,6 +43,7 @@ const segments = ref([
   { label: '语法', path: '/grammar' },
   { label: '语法(jlpt)', path: '/jlpt-grammar' },
   { label: '动词活用', path: '/verb-conju' },
+  { label: '动词活用(jlpt)', path: '/jlpt-verb-conju' },
   { label: '工具', path: '/tool' },
   { label: '设置', path: '/setting' },
 ])
@@ -96,6 +98,7 @@ const wordStore = useWordStore()
 const grammarStore = useGrammarStore()
 const jlptGrammarStore = useJlptGrammarStore()
 const verbConju = useConjuStore()
+const jlptConjuStore = useJlptConjuStore()
 
 watch(
   () => route.path,
@@ -112,11 +115,12 @@ onBeforeMount(() => {
 })
 
 onMounted(async () => {
-  await wordStore.fetchWords()
-  await lessonStore.fetchLessons()
-  await grammarStore.fetchGrammars()
-  await jlptGrammarStore.fetchJlptGrammars()
-  await verbConju.fetchVerbConjus()
+  await wordStore.init()
+  await lessonStore.init()
+  await grammarStore.init()
+  await jlptGrammarStore.init()
+  await verbConju.init()
+  await jlptConjuStore.init()
 })
 </script>
 

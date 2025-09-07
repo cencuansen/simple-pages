@@ -3,12 +3,6 @@
     <Row>
       <SimpleSelect
         multiple
-        :data="lessonIndexOptions"
-        v-model="selectedLessons"
-        placeholder="选择课程"
-      />
-      <SimpleSelect
-        multiple
         :data="typeOptions"
         v-model="selectedTypes"
         placeholder="选择类型"
@@ -87,7 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import { useConjuStore, type Conju } from '../../stores/conjuStore.ts'
+import { useJlptConjuStore } from '../../stores/jlptConjuStore.ts'
 import { storeToRefs } from 'pinia'
 import { computed, onMounted, ref } from 'vue'
 import SimpleSelect from '../../components/SimpleSelect.vue'
@@ -95,25 +89,22 @@ import Row from '../../components/Row.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { ElTable } from 'element-plus'
-import { columns, typeOptions, transitivityOptions } from './index.ts'
+import { columns, typeOptions, transitivityOptions, type Conju } from './index.ts'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
-const verbConjuStore = useConjuStore()
-const { conjuVerbs } = storeToRefs(verbConjuStore)
+const jlptVerbConjuStore = useJlptConjuStore()
+const { jlptConjuVerbs } = storeToRefs(jlptVerbConjuStore)
 
 const keyword = ref<string>()
 
 const beforePage = computed(() => {
-  let list = conjuVerbs.value as Conju[]
+  let list = jlptConjuVerbs.value as Conju[]
   if (keyword.value) {
     list = list.filter((item) =>
       Object.values(item)
         .join(' ')
         .includes(keyword.value || '')
     )
-  }
-  if (selectedLessons.value.length > 0) {
-    list = list.filter((item) => selectedLessons.value.includes(item.lesson))
   }
   if (selectedTypes.value.length > 0) {
     list = list.filter((item) => selectedTypes.value.includes(item.type))
@@ -132,12 +123,7 @@ const pageChange = (data: Conju[]) => {
   afterPage.value = data
 }
 
-const lessonIndexOptions = computed(() => {
-  return [...new Set(conjuVerbs.value.map((item) => item.lesson))].sort()
-})
-
 const selectedCols = ref<string[]>([])
-const selectedLessons = ref<number[]>([])
 const selectedTypes = ref<string[]>([])
 const selectedTransitivities = ref<string[]>([])
 

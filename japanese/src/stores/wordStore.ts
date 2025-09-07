@@ -27,7 +27,7 @@ export const useWordStore = defineStore('word', () => {
   })
 
   // Actions
-  const fetchWords = async () => {
+  const init = async () => {
     try {
       isLoading.value = true
       error.value = null
@@ -106,7 +106,7 @@ export const useWordStore = defineStore('word', () => {
     uniqueLessons,
 
     // Actions
-    fetchWords,
+    init,
     getByLesson,
     searchByText,
     getByPos,

@@ -6,10 +6,10 @@ import type {Conju} from "../views/verbConju";
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
-export const useConjuStore = defineStore('jlpt-conju', () => {
-  const conjuVerbs = ref<Conju[]>([])
+export const useJlptConjuStore = defineStore('jlpt-conju', () => {
+  const jlptConjuVerbs = ref<Conju[]>([])
 
-  const fetchVerbConjus = async () => {
+  const init = async () => {
     const response = await ky(`${jpJsonBase}/jlpt-verbs-conju-en.csv`)
     const csvText = await response.text()
     Papa.parse<Conju>(csvText, {
@@ -17,13 +17,13 @@ export const useConjuStore = defineStore('jlpt-conju', () => {
       skipEmptyLines: true,
       dynamicTyping: true,
       complete: (result) => {
-        conjuVerbs.value = result.data
+        jlptConjuVerbs.value = result.data
       },
     })
   }
 
   return {
-    conjuVerbs,
-    fetchVerbConjus,
+    jlptConjuVerbs,
+    init,
   }
 })

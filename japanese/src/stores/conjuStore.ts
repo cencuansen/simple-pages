@@ -9,7 +9,7 @@ const jpJsonBase = import.meta.env.VITE_JSON_BASE
 export const useConjuStore = defineStore('conju', () => {
   const conjuVerbs = ref<Conju[]>([])
 
-  const fetchVerbConjus = async () => {
+  const init = async () => {
     const response = await ky(`${jpJsonBase}/verbs-conju.csv`)
     const csvText = await response.text()
     Papa.parse<Conju>(csvText, {
@@ -24,6 +24,6 @@ export const useConjuStore = defineStore('conju', () => {
 
   return {
     conjuVerbs,
-    fetchVerbConjus,
+    init,
   }
 })

@@ -19,7 +19,7 @@ const jpJsonBase = import.meta.env.VITE_JSON_BASE
 export const useJlptGrammarStore = defineStore('jlpt-grammar', () => {
   const JlptGrammars = ref<JlptGrammar[]>([])
 
-  const fetchJlptGrammars = async () => {
+  const init = async () => {
     const response = await ky(`${jpJsonBase}/jlpt-grammars-en.json`)
     JlptGrammars.value = await response.json()
   }
@@ -42,7 +42,7 @@ export const useJlptGrammarStore = defineStore('jlpt-grammar', () => {
 
   return {
     JlptGrammars,
-    fetchJlptGrammars,
+    init,
     queryJlptGrammars,
   }
 })
