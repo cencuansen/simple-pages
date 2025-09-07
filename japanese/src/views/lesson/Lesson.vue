@@ -5,17 +5,17 @@
         <el-button
           size="small"
           class="previous-button navigation-item"
-          :disabled="!lessonStore.hasPrevious"
-          @click="lessonStore.goPrevious"
+          :disabled="!hasPrevious"
+          @click="goPrevious"
         >
           上一课
         </el-button>
-        <LessonSelect v-model="lessonStore.currentIndex" :clearable="false" />
+        <LessonSelect v-model="currentIndex" :clearable="false" />
         <el-button
           size="small"
           class="next-button navigation-item"
-          :disabled="!lessonStore.hasNext"
-          @click="lessonStore.goNext"
+          :disabled="!hasNext"
+          @click="goNext"
         >
           下一课
         </el-button>
@@ -545,7 +545,7 @@
         <div
           class="model-lesson-title"
           v-html="displayText(lesson.title)"
-          @click="lessonStore.goLesson(Number(lesson.idx))"
+          @click="goLesson(Number(lesson.idx))"
         ></div>
         <div
           class="model-lesson-match-content"
@@ -615,7 +615,12 @@ const wordStore = useWordStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 
-const { currentLesson, lessons } = storeToRefs(lessonStore)
+const { currentIndex, currentLesson, lessons, hasPrevious, hasNext } =
+  storeToRefs(lessonStore)
+const goPrevious = lessonStore.goPrevious
+const goNext = lessonStore.goNext
+const goLesson = lessonStore.goLesson
+
 const { fullscreen } = storeToRefs(settingStore)
 
 const props = defineProps(['index'])
