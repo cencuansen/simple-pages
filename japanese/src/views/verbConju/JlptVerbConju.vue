@@ -89,12 +89,7 @@ import Row from '../../components/Row.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { ElTable } from 'element-plus'
-import {
-  columns,
-  typeOptions,
-  transitivityOptions,
-  type Conju,
-} from './index.ts'
+import { columns, type Conju } from './index.ts'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
 const jlptVerbConjuStore = useJlptConjuStore()
