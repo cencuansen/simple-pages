@@ -61,9 +61,12 @@
       <div class="detail-left">
         <el-form label-width="auto" :label-position="'right'">
           <el-form-item v-for="col in columns" :label="col.label">
-            <span>{{
-              currentRow && col.formatter(null, null, currentRow[col.value], 0)
-            }}</span>
+            <span>
+              {{
+                currentRow &&
+                col.formatter(null, null, currentRow[col.value], 0)
+              }}
+            </span>
           </el-form-item>
         </el-form>
       </div>
