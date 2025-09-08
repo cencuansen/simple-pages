@@ -62,9 +62,9 @@
           size="small"
           circle
           title="播放"
-          :disabled="isPlaying"
+          :disabled="audioRef?.isPlaying"
           v-if="hasAudio && settingStore.audioSpeak"
-          @click="playAudio(``, speechStore.repeatTimes)"
+          @click="audioRef?.playAudio(``, speechStore.repeatTimes)"
         >
           读
         </el-button>
@@ -72,9 +72,9 @@
           :type="''"
           size="small"
           circle
-          v-if="isPlaying"
+          v-if="audioRef?.isPlaying"
           title="停止播放"
-          @click="pauseAudio"
+          @click="audioRef?.pauseAudio"
         >
           停
         </el-button>
@@ -106,11 +106,11 @@
               <!--原文-->
               <el-button
                 class="speech-button"
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 circle
                 size="small"
                 v-if="item.time && settingStore.audioSpeak"
-                @click="playAudio(item.time, speechStore.repeatTimes)"
+                @click="audioRef?.playAudio(item.time, speechStore.repeatTimes)"
               >
                 <el-icon>
                   <i class="icon-on-music"></i>
@@ -121,7 +121,7 @@
                 circle
                 size="small"
                 v-else-if="settingStore.ttsSpeak"
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 @click="speechStore.speak(speakText(item.content))"
               >
                 <i class="icon-on-MPIS-TTS"></i>
@@ -130,9 +130,9 @@
                 :id="speakingTextId(speakText(item.content))"
                 class="text text-content"
                 :class="{
-                  'speaking-active': speakingActive(
+                  'speaking-active': audioRef?.speakingActive(
                     item.time,
-                    currentTime,
+                    audioRef?.currentTime,
                     speakText(item.content)
                   ),
                 }"
@@ -175,9 +175,11 @@
                 class="speech-button"
                 size="small"
                 circle
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 v-if="message.time && settingStore.audioSpeak"
-                @click="playAudio(message.time, speechStore.repeatTimes)"
+                @click="
+                  audioRef?.playAudio(message.time, speechStore.repeatTimes)
+                "
               >
                 <el-icon>
                   <i class="icon-on-music"></i>
@@ -188,7 +190,7 @@
                 v-else-if="settingStore.ttsSpeak"
                 circle
                 size="small"
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 @click="speechStore.speak(speakText(message.content))"
               >
                 <el-icon>
@@ -199,9 +201,9 @@
                 :id="speakingTextId(speakText(message.content))"
                 class="text text-content"
                 :class="{
-                  'speaking-active': speakingActive(
+                  'speaking-active': audioRef?.speakingActive(
                     message.time,
-                    currentTime,
+                    audioRef?.currentTime,
                     speakText(message.content)
                   ),
                 }"
@@ -255,9 +257,11 @@
                 class="speech-button"
                 size="small"
                 circle
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 v-if="message.time && settingStore.audioSpeak"
-                @click="playAudio(message.time, speechStore.repeatTimes)"
+                @click="
+                  audioRef?.playAudio(message.time, speechStore.repeatTimes)
+                "
               >
                 <el-icon>
                   <i class="icon-on-music"></i>
@@ -268,7 +272,7 @@
                 v-else-if="settingStore.ttsSpeak"
                 circle
                 size="small"
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 @click="speechStore.speak(speakText(message.content))"
               >
                 <el-icon>
@@ -279,9 +283,9 @@
                 :id="speakingTextId(speakText(message.content))"
                 class="text text-content"
                 :class="{
-                  'speaking-active': speakingActive(
+                  'speaking-active': audioRef?.speakingActive(
                     message.time,
-                    currentTime,
+                    audioRef?.currentTime,
                     speakText(message.content)
                   ),
                 }"
@@ -304,22 +308,15 @@
       </section>
 
       <!-- 短文-->
-      <section
-        id="article"
-        v-if="hasArticle"
-        class="section"
-        ref="articleRef"
-      >
+      <section id="article" v-if="hasArticle" class="section" ref="articleRef">
         <h2 class="h2">
           <el-button
             class="speech-button"
-            :disabled="isPlaying"
+            :disabled="audioRef?.isPlaying"
             circle
             size="small"
             v-if="article?.time && settingStore.audioSpeak"
-            @click="
-              playAudio(article.time, speechStore.repeatTimes)
-            "
+            @click="audioRef?.playAudio(article.time, speechStore.repeatTimes)"
           >
             <el-icon>
               <i class="icon-on-music"></i>
@@ -330,9 +327,10 @@
             class="speech-button"
             circle
             size="small"
-            :disabled="isPlaying"
+            :disabled="audioRef?.isPlaying"
             @click="
-              speechStore.speakList(article?.contents.map((c) => speakText(c.content))
+              speechStore.speakList(
+                article?.contents.map((c) => speakText(c.content))
               )
             "
           >
@@ -354,11 +352,11 @@
               <!--原文-->
               <el-button
                 class="speech-button"
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 circle
                 size="small"
                 v-if="item.time && settingStore.audioSpeak"
-                @click="playAudio(item.time, speechStore.repeatTimes)"
+                @click="audioRef?.playAudio(item.time, speechStore.repeatTimes)"
               >
                 <el-icon>
                   <i class="icon-on-music"></i>
@@ -369,7 +367,7 @@
                 circle
                 size="small"
                 v-else-if="settingStore.ttsSpeak"
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 @click="speechStore.speak(speakText(item.content))"
               >
                 <i class="icon-on-MPIS-TTS"></i>
@@ -378,9 +376,9 @@
                 :id="speakingTextId(speakText(item.content))"
                 class="text text-content article"
                 :class="{
-                  'speaking-active': speakingActive(
+                  'speaking-active': audioRef?.speakingActive(
                     item.time,
-                    currentTime,
+                    audioRef?.currentTime,
                     speakText(item.content)
                   ),
                 }"
@@ -476,7 +474,7 @@
                 size="small"
                 circle
                 v-if="settingStore.ttsSpeak"
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 @click="speechStore.speakList(words as WordItem[])"
               >
                 <el-icon>
@@ -488,7 +486,7 @@
               <el-button
                 size="small"
                 circle
-                :disabled="isPlaying"
+                :disabled="audioRef?.isPlaying"
                 @click="speechStore.speak(scope.row as WordItem)"
               >
                 <el-icon>
@@ -501,18 +499,7 @@
       </section>
     </div>
 
-    <div class="audio" v-if="settingStore.audioSpeak && !fullscreen">
-      <audio
-        ref="audioRef"
-        :src="src"
-        controls
-        @timeupdate="onTimeUpdate"
-        @play="onPlay"
-        @pause="onPause"
-        @error="onError"
-        @abort="onAbort"
-      ></audio>
-    </div>
+    <LessonAudio ref="audioRef" />
 
     <el-dialog
       class="search-model"
@@ -596,6 +583,7 @@ import { collapseTitle } from '../grammar'
 import type { IndexItem } from '../../components/IndexBar'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
+import LessonAudio from './LessonAudio.vue'
 
 const lessonStore = useLessonStore()
 const speechStore = useSpeechStore()
@@ -620,7 +608,6 @@ const {
   hasArticle,
   article,
   hasAudio,
-  lessonAudio,
 } = storeToRefs(lessonStore)
 const goPrevious = lessonStore.goPrevious
 const goNext = lessonStore.goNext
@@ -651,70 +638,11 @@ const container = ref()
 const grammarsRef = ref()
 const articleRef = ref()
 const wordsRef = ref()
-const audioRef = ref<HTMLAudioElement>()
-
-const currentTime = ref(0)
-const audioPlaying = ref(false)
-
-const isPlaying = computed(() => speechStore.isSpeaking || audioPlaying.value)
-
-const src = computed(() => {
-  if (speechStore.isSpeaking) {
-    return void 0
-  }
-  return `${audioUrlBase}${lessonAudio.value}`
-})
-
-const pauseHandler = async (url: string, playTimes: number) => {
-  await playAudio(url, playTimes - 1)
-}
-
-let currentPauseHandler: (() => void) | null = null
-
-const playAudio = async (timeRange: string, playTimes: number) => {
-  if (!audioRef.value || !src.value || playTimes < 1) {
-    return
-  }
-
-  const url = `${src.value}${timeRange}`
-  audioRef.value.src = url
-
-  // 移除旧的监听器
-  if (currentPauseHandler) {
-    audioRef.value?.removeEventListener('pause', currentPauseHandler)
-  }
-  // 创建并存储新的处理函数
-  currentPauseHandler = () => pauseHandler(url, playTimes)
-  audioRef.value?.addEventListener('pause', currentPauseHandler)
-
-  audioRef.value.playbackRate = speechStore.rate
-  audioRef.value.volume = speechStore.volume
-
-  await audioRef.value.play()
-}
-
-const pauseAudio = () => {
-  if (!isPlaying.value) return
-
-  if (audioPlaying.value && audioRef.value) {
-    // 移除监听器
-    if (currentPauseHandler) {
-      audioRef.value.removeEventListener('pause', currentPauseHandler)
-      currentPauseHandler = null
-    }
-    audioRef.value.pause()
-  }
-
-  if (speechStore.isSpeaking) {
-    speechStore.stop()
-  }
-}
+const audioRef = ref()
 
 const scrollPosition = ref<number>(0)
 
 const lastElement = ref<HTMLElement | null>()
-
-const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
 watch(
   () => settingStore.translate,
@@ -754,7 +682,7 @@ const mainHeight = computed(() => {
   if (fullscreen.value) {
     // 全屏
     return `calc(100vh - var(--root-footer-height))`
-  } else if (!settingStore.audioSpeak || !audioPlaying.value) {
+  } else if (!audioRef?.value?.audioPlaying) {
     // 非全屏 && 没有启用音频播放
     return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--root-footer-height))`
   } else {
@@ -798,40 +726,6 @@ const aClick = (event: any) => {
       }
     }
   }
-}
-
-const onTimeUpdate = () => {
-  currentTime.value = audioRef.value?.currentTime || 0
-}
-const onPlay = () => {
-  audioPlaying.value = true
-}
-const onPause = () => {
-  audioPlaying.value = false
-}
-const onError = () => {
-  audioPlaying.value = false
-}
-const onAbort = () => {
-  audioPlaying.value = false
-}
-
-const speakingActive = (
-  timeStr: string,
-  currentTime: number,
-  text: string = ''
-): boolean => {
-  if (text !== null && text.length > 0 && speechStore.speakingText === text) {
-    return true
-  }
-  if (!audioRef.value || audioRef.value.paused) {
-    return false
-  }
-  if (!timeStr || !currentTime) {
-    return false
-  }
-  const timePart = timeStr.split(',').map(Number)
-  return currentTime > timePart[0] && currentTime < timePart[1]
 }
 
 const grammars = computed(() => {
@@ -1246,19 +1140,6 @@ watch(
 
 .speaking-active {
   color: var(--el-color-success);
-}
-
-.audio {
-  width: 100%;
-  overflow-y: scroll;
-  height: var(--audio-height);
-}
-
-audio {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  max-width: var(--content-max-width);
 }
 
 .go-top {
