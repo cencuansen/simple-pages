@@ -5,14 +5,14 @@ import { useReadingStore } from './readingStore.ts'
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
-const lessonStore = useLessonStore()
-const { lessonAudio } = storeToRefs(lessonStore)
-
-const readingStore = useReadingStore()
-const { rate, volume, isReading, repeatTimes } = storeToRefs(readingStore)
-const setIsReading = readingStore.setIsReading
-
 export const useAudioStore = defineStore('audio', () => {
+  const lessonStore = useLessonStore()
+  const { lessonAudio } = storeToRefs(lessonStore)
+
+  const readingStore = useReadingStore()
+  const { rate, volume, isReading, repeatTimes } = storeToRefs(readingStore)
+  const setIsReading = readingStore.setIsReading
+
   const audioRef = ref<HTMLAudioElement | undefined>()
   const currentTime = ref(0)
   const isPlaying = ref(false)

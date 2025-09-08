@@ -3,13 +3,13 @@ import { ref, computed, watch } from 'vue'
 import type { WordItem, VoiceOption } from '../types'
 import { useReadingStore } from './readingStore.ts'
 
-const readingStore = useReadingStore()
-const { rate, volume, pitch, repeatTimes } = storeToRefs(readingStore)
-const setIsReading = readingStore.setIsReading
-
 export const useSpeechStore = defineStore(
   'speech',
   () => {
+    const readingStore = useReadingStore()
+    const { rate, volume, pitch, repeatTimes } = storeToRefs(readingStore)
+    const setIsReading = readingStore.setIsReading
+
     // 可配置项
     const lang = ref<string>('ja-JP') // 语言
 
