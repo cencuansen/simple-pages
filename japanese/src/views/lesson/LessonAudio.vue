@@ -14,122 +14,22 @@
 </template>
 
 <script setup lang="ts">
-import { useSettingStore } from '../../stores/settingStore.ts'
-import { useLessonStore } from '../../stores/lessonStore.ts'
+import { useAudioStore } from '../../stores/audioStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 
+import { ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
-import { computed, ref, watch } from 'vue'
-import { speakingId } from '../../utils'
 
-const settingStore = useSettingStore()
-
-const lessonStore = useLessonStore()
-const { lessonAudio } = storeToRefs(lessonStore)
+const audioStore = useAudioStore()
+const { src } = storeToRefs(audioStore)
+const onTimeUpdate = audioStore.onTimeUpdate
+const onPlay = audioStore.onPlay
+const onPause = audioStore.onPause
+const onError = audioStore.onError
+const onAbort = audioStore.onAbort
 
 const speechStore = useSpeechStore()
-const { isSpeaking } = storeToRefs(speechStore)
-
 const audioRef = ref<HTMLAudioElement>()
-const currentTime = ref(0)
-const audioPlaying = ref(false)
-
-const isPlaying = computed(() => isSpeaking.value || audioPlaying.value)
-
-const src = computed(() => {
-  if (isSpeaking.value) {
-    return void 0
-  }
-  return `${audioUrlBase}${lessonAudio.value}`
-})
-
-const pauseHandler = async (url: string, playTimes: number) => {
-  await playAudio(url, playTimes - 1)
-}
-
-let currentPauseHandler: (() => void) | null = null
-
-const playAudio = async (timeRange: string, playTimes: number) => {
-  if (!audioRef.value || !src.value || playTimes < 1) {
-    return
-  }
-
-  const url = `${src.value}${timeRange}`
-  audioRef.value.src = url
-
-  // 移除旧的监听器
-  if (currentPauseHandler) {
-    audioRef.value?.removeEventListener('pause', currentPauseHandler)
-  }
-  // 创建并存储新的处理函数
-  currentPauseHandler = () => pauseHandler(url, playTimes)
-  audioRef.value?.addEventListener('pause', currentPauseHandler)
-
-  audioRef.value.playbackRate = speechStore.rate
-  audioRef.value.volume = speechStore.volume
-
-  await audioRef.value.play()
-}
-
-const pauseAudio = () => {
-  if (!isPlaying.value) return
-
-  if (audioPlaying.value && audioRef.value) {
-    // 移除监听器
-    if (currentPauseHandler) {
-      audioRef.value.removeEventListener('pause', currentPauseHandler)
-      currentPauseHandler = null
-    }
-    audioRef.value.pause()
-  }
-
-  if (isSpeaking.value) {
-    speechStore.stop()
-  }
-}
-
-const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
-
-watch(
-  () => settingStore.translate,
-  (value, _) => {
-    if (!value) {
-      // 设置中关闭翻译功能时
-      settingStore.setAllTranslate(false)
-    }
-  }
-)
-
-watch(
-  () => speechStore.lastFireTime,
-  (_) => {
-    const id = speakingId()
-    if (!id) {
-      return
-    }
-    document.getElementById(id)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'nearest',
-    })
-  }
-)
-
-const onTimeUpdate = () => {
-  currentTime.value = audioRef.value?.currentTime || 0
-}
-const onPlay = () => {
-  audioPlaying.value = true
-}
-const onPause = () => {
-  audioPlaying.value = false
-}
-const onError = () => {
-  audioPlaying.value = false
-}
-const onAbort = () => {
-  audioPlaying.value = false
-}
 
 const speakingActive = (
   timeStr: string,
@@ -149,14 +49,16 @@ const speakingActive = (
   return currentTime > timePart[0] && currentTime < timePart[1]
 }
 
+watch(
+  () => audioRef.value,
+  () => {
+    audioStore.setAudioRef(audioRef.value)
+  }
+)
+
 // 暴露方法给父组件
 defineExpose({
-  playAudio,
-  pauseAudio,
   speakingActive,
-  audioPlaying,
-  isPlaying,
-  currentTime,
 })
 </script>
 

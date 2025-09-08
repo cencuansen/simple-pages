@@ -1,85 +1,6 @@
 <template>
   <div class="lessons" v-if="hasLessons">
-    <div id="header" class="lesson-headers" v-if="!fullscreen">
-      <div class="lesson-switch">
-        <el-button size="small" :disabled="!hasPrevious" @click="goPrevious">
-          上一课
-        </el-button>
-        <LessonSelect v-model="currentIndex" :clearable="false" />
-        <el-button size="small" :disabled="!hasNext" @click="goNext">
-          下一课
-        </el-button>
-      </div>
-      <div class="function-group">
-        <el-button
-          :type="settingStore.allTranslate ? 'primary' : ''"
-          size="small"
-          circle
-          title="翻译"
-          v-if="settingStore.translate"
-          @click="settingStore.setAllTranslate(!settingStore.allTranslate)"
-        >
-          译
-        </el-button>
-        <el-button
-          :type="settingStore.furigana ? 'primary' : ''"
-          size="small"
-          circle
-          title="注音"
-          @click="settingStore.furiganaToggle"
-        >
-          注
-        </el-button>
-        <el-button
-          :type="settingStore.wordLink ? 'primary' : ''"
-          size="small"
-          circle
-          title="单词跳转"
-          @click="settingStore.wordLinkToggle"
-        >
-          跳
-        </el-button>
-        <el-button
-          :type="''"
-          size="small"
-          circle
-          title="搜索"
-          @click="dialog = !dialog"
-        >
-          搜
-        </el-button>
-        <el-button
-          size="small"
-          circle
-          title="全屏"
-          v-if="!fullscreen"
-          @click="toggleFullscreen"
-        >
-          全
-        </el-button>
-        <el-button
-          :type="''"
-          size="small"
-          circle
-          title="播放"
-          :disabled="audioRef?.isPlaying"
-          v-if="hasAudio && settingStore.audioSpeak"
-          @click="audioRef?.playAudio(``, speechStore.repeatTimes)"
-        >
-          读
-        </el-button>
-        <el-button
-          :type="''"
-          size="small"
-          circle
-          v-if="audioRef?.isPlaying"
-          title="停止播放"
-          @click="audioRef?.pauseAudio"
-        >
-          停
-        </el-button>
-      </div>
-    </div>
+    <LessonHeader id="header" v-if="!fullscreen" />
 
     <div class="lesson-main" ref="container" @scroll="onScroll">
       <h1 id="title" class="lesson-title" ref="top">
@@ -106,11 +27,11 @@
               <!--原文-->
               <el-button
                 class="speech-button"
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 circle
                 size="small"
                 v-if="item.time && settingStore.audioSpeak"
-                @click="audioRef?.playAudio(item.time, speechStore.repeatTimes)"
+                @click="playAudio(item.time)"
               >
                 <el-icon>
                   <i class="icon-on-music"></i>
@@ -178,7 +99,7 @@
                 :disabled="audioRef?.isPlaying"
                 v-if="message.time && settingStore.audioSpeak"
                 @click="
-                  audioRef?.playAudio(message.time, speechStore.repeatTimes)
+                  playAudio(message.time)
                 "
               >
                 <el-icon>
@@ -260,7 +181,7 @@
                 :disabled="audioRef?.isPlaying"
                 v-if="message.time && settingStore.audioSpeak"
                 @click="
-                  audioRef?.playAudio(message.time, speechStore.repeatTimes)
+                  playAudio(message.time)
                 "
               >
                 <el-icon>
@@ -316,7 +237,7 @@
             circle
             size="small"
             v-if="article?.time && settingStore.audioSpeak"
-            @click="audioRef?.playAudio(article.time, speechStore.repeatTimes)"
+            @click="playAudio(article.time)"
           >
             <el-icon>
               <i class="icon-on-music"></i>
@@ -356,7 +277,7 @@
                 circle
                 size="small"
                 v-if="item.time && settingStore.audioSpeak"
-                @click="audioRef?.playAudio(item.time, speechStore.repeatTimes)"
+                @click="playAudio(item.time)"
               >
                 <el-icon>
                   <i class="icon-on-music"></i>
@@ -561,7 +482,9 @@
 <script setup lang="ts">
 import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
+import { useReadingStore } from '../../stores/readingStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
+import { useAudioStore } from '../../stores/audioStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
 import { useGrammarStore } from '../../stores/grammarStore.ts'
@@ -577,26 +500,25 @@ import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 import { ElTable } from 'element-plus'
-import LessonSelect from '../../components/LessonSelect.vue'
 import { displayText, textParser } from './index.ts'
 import { collapseTitle } from '../grammar'
 import type { IndexItem } from '../../components/IndexBar'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 import LessonAudio from './LessonAudio.vue'
+import LessonHeader from './LessonHeader.vue'
 
 const lessonStore = useLessonStore()
+const readingStore = useReadingStore()
 const speechStore = useSpeechStore()
+const audioStore = useAudioStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 
 const {
-  currentIndex,
   currentLesson,
   lessons,
-  hasPrevious,
-  hasNext,
   hasLessons,
   lessonTitle,
   hasSentences,
@@ -607,13 +529,13 @@ const {
   conversations,
   hasArticle,
   article,
-  hasAudio,
 } = storeToRefs(lessonStore)
-const goPrevious = lessonStore.goPrevious
-const goNext = lessonStore.goNext
 const goLesson = lessonStore.goLesson
 
 const { fullscreen } = storeToRefs(settingStore)
+const { isReading } = storeToRefs(readingStore)
+
+const playAudio = audioStore.playAudio
 
 const props = defineProps(['index'])
 const router = useRouter()
@@ -863,37 +785,11 @@ watch(
 )
 </script>
 
-<style>
-:root {
-  --lesson-headers-height: 60px;
-}
-</style>
-
 <style scoped>
 .lessons {
   width: 100%;
   height: 100%;
   position: fixed;
-}
-
-.lesson-headers {
-  height: var(--lesson-headers-height);
-  width: 100%;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.lesson-switch {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  max-width: var(--content-max-width);
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  gap: var(--gap12);
 }
 
 .lesson-main {
@@ -907,14 +803,6 @@ watch(
 .lesson-main > * {
   max-width: var(--content-max-width);
   margin: 0 auto;
-}
-
-.function-group {
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
 }
 
 .lesson-title {

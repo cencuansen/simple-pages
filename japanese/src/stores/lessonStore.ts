@@ -16,6 +16,7 @@ export const useLessonStore = defineStore(
     const currentIndex = ref(-1)
     const minIndex = ref(0)
     const maxIndex = ref(0)
+    const dialog = ref(false)
 
     // 初始化
     const init = async () => {
@@ -49,6 +50,10 @@ export const useLessonStore = defineStore(
     // 切换课程
     const setCurrentIndex = (index: number) => {
       isValidLessonIndex(index) && (currentIndex.value = index)
+    }
+
+    const setDialog = (val: boolean): void => {
+      dialog.value = val
     }
     // -- setters end --
 
@@ -139,6 +144,7 @@ export const useLessonStore = defineStore(
       currentIndex,
       minIndex,
       maxIndex,
+      dialog,
 
       // 计算属性
       currentLesson,
@@ -157,8 +163,11 @@ export const useLessonStore = defineStore(
       hasAudio,
       lessonAudio,
 
-      // 方法
+      // setter
       setCurrentIndex,
+      setDialog,
+
+      // 方法
       init,
       goPrevious,
       goNext,
