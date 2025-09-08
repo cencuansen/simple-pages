@@ -1,6 +1,6 @@
 <template>
   <div class="words">
-    <Word2
+    <WordCore
       :data="wordList"
       :function-group="functionGroup"
       :pagination="pagination"
@@ -20,7 +20,7 @@ import { useWordStore } from '../../stores/wordStore.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
 import { storeToRefs } from 'pinia'
 
-import Word2 from './Word2.vue'
+import WordCore from './WordCore.vue'
 import { tableHeightCalc } from './index.ts'
 
 const readingStore = useReadingStore()

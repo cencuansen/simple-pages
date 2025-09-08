@@ -1,6 +1,6 @@
 <template>
   <div class="words">
-    <Word2
+    <WordCore
       :data="vocabularies"
       :function-group="functionGroup"
       :pagination="pagination"
@@ -15,7 +15,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { useJlptWordStore } from '../../stores/jlptWord.ts'
 
-import Word2 from './Word2.vue'
+import WordCore from './WordCore.vue'
 import { storeToRefs } from 'pinia'
 import { tableHeightCalc } from './index.ts'
 
@@ -57,31 +57,4 @@ const tableHeight = computed(() => {
   max-width: var(--content-max-width);
 }
 
-/*.word-main {
-  margin: 0 auto;
-  padding: 0;
-  overflow-y: scroll;
-  width: 100%;
-  height: calc(
-    100vh - var(--root-header-height) - var(--single-row-header-height) -
-      var(--pagination-height) - var(--root-footer-height)
-  );
-}
-
-.el-table {
-  margin: 0 auto;
-  max-width: var(--content-max-width);
-}
-
-:deep(.el-scrollbar__wrap) {
-  !* 解决移动端滚动不顺畅问题 *!
-  overflow-y: hidden;
-}
-
-.tag-item {
-  width: 100%;
-  overflow: hidden;
-  text-wrap: nowrap;
-  text-overflow: ellipsis;
-}*/
 </style>

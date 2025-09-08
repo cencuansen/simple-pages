@@ -199,7 +199,7 @@
 
       <!-- 单词 -->
       <section id="words" class="section words-section" ref="wordsRef">
-        <Word2 :data="words" :lesson-index="currentIndex" show-header />
+        <WordCore :data="words" :lesson-index="currentIndex" show-header />
       </section>
     </div>
 
@@ -290,7 +290,7 @@ import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
 import Reading from '../../components/Reading.vue'
-import Word2 from '../word/Word2.vue'
+import WordCore from '../word/WordCore.vue'
 
 const lessonStore = useLessonStore()
 const readingStore = useReadingStore()
