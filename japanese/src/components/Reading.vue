@@ -5,7 +5,7 @@
     v-if="isAudio"
     circle
     :disabled="isReading"
-    @click="play(audioTime)"
+    @click="audioOne(audioTime)"
   >
     <el-icon>
       <i class="icon-on-music"></i>
@@ -17,7 +17,7 @@
     v-else-if="isTts && !isArray"
     circle
     :disabled="isReading"
-    @click="tts(item)"
+    @click="ttsOne(tts)"
   >
     <el-icon>
       <i class="icon-on-MPIS-TTS"></i>
@@ -29,7 +29,7 @@
     v-else-if="isTts && isArray"
     circle
     :disabled="isReading"
-    @click="tts2(items)"
+    @click="ttsMany(items)"
   >
     <el-icon>
       <i class="icon-on-MPIS-TTS"></i>
@@ -44,33 +44,36 @@ import { useSpeechStore } from '../stores/speechStore.ts'
 import { useAudioStore } from '../stores/audioStore.ts'
 import { useSettingStore } from '../stores/settingStore.ts'
 import { storeToRefs } from 'pinia'
-import type { TextBase } from '../views/lesson/types.ts'
+import type { Article, Discussion, TextBase } from '../views/lesson/types.ts'
 import type { WordItem } from '../types'
 
 const readingStore = useReadingStore()
 const { isReading } = storeToRefs(readingStore)
 
 const speechStore = useSpeechStore()
-const tts = speechStore.speak
-const tts2 = speechStore.speakList
+const ttsOne = speechStore.speak
+const ttsMany = speechStore.speakList
 
 const audioStore = useAudioStore()
-const play = audioStore.playAudio
+const audioOne = audioStore.playAudio
 
 const settingStore = useSettingStore()
 const { audioSpeak, ttsSpeak } = storeToRefs(settingStore)
 
 const props = defineProps<{
-  item?: string | TextBase | WordItem | undefined
+  item?: string | Discussion | Article | TextBase | WordItem | undefined
   items?: TextBase[] | WordItem[] | undefined
 }>()
 
 const audioTime = computed(() => {
   if (isAudio.value) {
-    const textbase = props.item as TextBase
+    const textbase = props.item as Discussion | Article | TextBase
     return textbase.time
   }
   return ''
+})
+const tts = computed(() => {
+  return props.item as string | TextBase | WordItem | undefined
 })
 const isAudio = computed(() => {
   if (!props.item) {

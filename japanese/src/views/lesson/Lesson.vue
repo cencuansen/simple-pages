@@ -148,28 +148,7 @@
       <!-- 短文-->
       <section id="article" v-if="hasArticle" class="section" ref="articleRef">
         <h2 class="h2">
-          <el-button
-            class="speech-button"
-            :disabled="isReading"
-            circle
-            size="small"
-            v-if="article?.time && settingStore.audioSpeak"
-            @click="playAudio(article.time)"
-          >
-            <el-icon>
-              <i class="icon-on-music"></i>
-            </el-icon>
-          </el-button>
-          <el-button
-            v-else-if="settingStore.ttsSpeak"
-            class="speech-button"
-            circle
-            size="small"
-            :disabled="isReading"
-            @click="speechStore.speakList(article?.contents)"
-          >
-            <i class="icon-on-MPIS-TTS"></i>
-          </el-button>
+          <Reading :item="article" :items="article?.contents"/>
           <el-text
             class="text text-content-h2"
             v-html="textView(article?.title)"
