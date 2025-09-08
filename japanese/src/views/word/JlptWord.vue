@@ -66,11 +66,10 @@
         >
           <template #default="scope">
             <el-button
-              type="primary"
               size="small"
               circle
               :disabled="isReading"
-              @click="speechStore.speak(scope.row.reading)"
+              @click="speechStore.speak(scope.row)"
             >
               <el-icon>
                 <i class="icon-on-MPIS-TTS"></i>

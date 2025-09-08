@@ -2,9 +2,8 @@ import type { Lesson } from '../views/lesson/types.ts'
 import { displayText } from '../views/lesson'
 import { v4 as uuidv4 } from 'uuid'
 
-export const newTextId = () => uuidv4().replace(/[-]/g, '')
+export const newTextId = () => `i_${uuidv4().split('-')[4]}`
 
-// { idx: lesson[0], title: lesson[1], contents }
 export interface LessonSearch {
   idx: string
   title: string

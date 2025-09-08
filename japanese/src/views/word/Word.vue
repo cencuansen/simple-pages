@@ -91,7 +91,6 @@
             </template>
             <template #default="scope">
               <el-button
-                type="primary"
                 size="small"
                 circle
                 :disabled="isReading"

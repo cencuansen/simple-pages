@@ -3,8 +3,10 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import Papa from 'papaparse'
 import ky from 'ky'
+import { newTextId } from '../utils'
 
 export interface Vocabulary {
+  textId: string
   word: string
   kana: string
   desc: string
@@ -56,6 +58,7 @@ export const useJlptWordStore = defineStore('jlpt-word', () => {
         .split(tagDelimiter)
         .map((x) => x.toLowerCase())
         .sort((a, b) => a.length - b.length)
+      item.textId = newTextId()
     })
     return voc
   }
