@@ -39,7 +39,7 @@
             <!--译文-->
             <div
               class="translation-line message"
-              :class="{ 'show-translation': settingStore.basicsTranslate }"
+              v-if="settingStore.basicsTranslate"
             >
               {{ item.translation }}
             </div>
@@ -81,10 +81,7 @@
             <!--译文-->
             <div
               class="translation-line message"
-              :class="{
-                'show-translation':
-                  settingStore.exchangeTranslate[exchangeIndex],
-              }"
+              v-if="settingStore.exchangeTranslate[exchangeIndex]"
             >
               {{ message.translation }}
             </div>
@@ -134,10 +131,7 @@
             <!--译文-->
             <div
               class="translation-line message"
-              :class="{
-                'show-translation':
-                  settingStore.exchange2Translate[exchangeIndex],
-              }"
+              v-if="settingStore.exchange2Translate[exchangeIndex]"
             >
               {{ message.translation }}
             </div>
@@ -177,7 +171,7 @@
             <!--译文-->
             <div
               class="translation-line message article-translation"
-              :class="{ 'show-translation': settingStore.basicsTranslate }"
+              v-if="settingStore.basicsTranslate"
             >
               {{ item.translation }}
             </div>
@@ -686,12 +680,7 @@ watch(
 .translation-line {
   font-size: 0.85em;
   color: #999;
-  display: none;
   transition: opacity 0.3s ease;
-}
-
-.translation-line.show-translation {
-  display: inherit;
 }
 
 .text-row {
