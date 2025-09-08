@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import type { WordItem, FilterOptions } from '../types'
 import Papa from 'papaparse'
 import ky from 'ky'
-import { v4 as uuidv4 } from 'uuid'
+import { newTextId } from '../utils'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -62,7 +62,7 @@ export const useWordStore = defineStore('word', () => {
       return []
     }
     data.forEach((item: WordItem) => {
-      item['textId'] = uuidv4()
+      item['textId'] = newTextId()
     })
   }
 

@@ -324,7 +324,7 @@
               >
                 <div
                   v-if="settingStore.word"
-                  :id="speakingWordId(scope.row as WordItem)"
+                  :id="scope.row.textId"
                   class="column-word"
                 >
                   {{ scope.row.word }}
@@ -462,12 +462,7 @@ import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
 import { useGrammarStore } from '../../stores/grammarStore.ts'
 import type { WordItem } from '../../types'
-import {
-  searchLesson,
-  speakingId,
-  speakingWordId,
-  speakText,
-} from '../../utils'
+import { searchLesson } from '../../utils'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
@@ -505,7 +500,7 @@ const {
 const goLesson = lessonStore.goLesson
 
 const { fullscreen } = storeToRefs(settingStore)
-const { isReading } = storeToRefs(readingStore)
+const { isReading, nowTextId } = storeToRefs(readingStore)
 
 const activeText = readingStore.activeText
 
@@ -553,11 +548,7 @@ watch(
 watch(
   () => speechStore.lastFireTime,
   (_) => {
-    const id = speakingId()
-    if (!id) {
-      return
-    }
-    document.getElementById(id)?.scrollIntoView({
+    document.getElementById(nowTextId.value)?.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
       inline: 'nearest',

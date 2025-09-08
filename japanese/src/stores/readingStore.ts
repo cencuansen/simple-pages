@@ -28,6 +28,7 @@ export const useReadingStore = defineStore('reading', () => {
     pitch,
     volume,
     repeatTimes,
+    nowTextId,
 
     isReading,
 

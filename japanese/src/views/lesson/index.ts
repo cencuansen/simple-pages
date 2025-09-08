@@ -7,7 +7,6 @@ import type {
   ParseRuby,
   RubyPart,
 } from './types.ts'
-import { speakingWordId } from '../../utils'
 
 const originalTextMap: OriginalTextMap = {}
 
@@ -33,7 +32,7 @@ const buildAnchorLink = (match: string, words: WordItem[] = []) => {
   const word = words.find((w) => w.word === match || w.kana === match)
   if (!word) return match
 
-  return `<a href="#${speakingWordId(word)}" class="anchor-link">${word.word}</a>`
+  return `<a href="#${word.textId}" class="anchor-link">${word.word}</a>`
 }
 
 // 通用预设处理

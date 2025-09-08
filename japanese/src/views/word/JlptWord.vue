@@ -27,10 +27,10 @@
                 'speaking-active': activeText(scope.row),
               }"
             >
-              <div :id="`word-${scope.row.word}`" class="column-word">
+              <div :id="scope.row.textId" class="column-word">
                 {{ scope.row.word }}
               </div>
-              <div :id="`word-${scope.row.kana}`" class="column-kana">
+              <div class="column-kana">
                 {{ scope.row.kana }}
               </div>
             </div>

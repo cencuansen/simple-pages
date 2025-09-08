@@ -1,9 +1,8 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { isNumber, speakText } from '../utils'
+import { isNumber, newTextId, speakText } from '../utils'
 import type { Lesson, TextBase } from '../views/lesson/types.ts'
 import ky from 'ky'
-import { v4 as uuidv4 } from 'uuid'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -55,26 +54,26 @@ export const useLessonStore = defineStore(
       data.forEach((lesson: Lesson) => {
         lesson.sentences &&
           lesson.sentences.forEach((item: TextBase) => {
-            item['textId'] = uuidv4()
+            item['textId'] = newTextId()
             item['speakText'] = speakText(item.content)
           })
         lesson.conversations &&
           lesson.conversations.forEach((items: TextBase[]) => {
             items.forEach((item: TextBase) => {
-              item['textId'] = uuidv4()
+              item['textId'] = newTextId()
               item['speakText'] = speakText(item.content)
             })
           })
         lesson.discussions.contents &&
           lesson.discussions.contents.forEach((items: TextBase[]) => {
             items.forEach((item: TextBase) => {
-              item['textId'] = uuidv4()
+              item['textId'] = newTextId()
               item['speakText'] = speakText(item.content)
             })
           })
         lesson.article.contents &&
           lesson.article.contents.forEach((item: TextBase) => {
-            item['textId'] = uuidv4()
+            item['textId'] = newTextId()
             item['speakText'] = speakText(item.content)
           })
       })

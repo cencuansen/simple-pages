@@ -1,25 +1,8 @@
-import type { WordItem } from '../types'
-import { useSpeechStore } from '../stores/speechStore.ts'
 import type { Lesson } from '../views/lesson/types.ts'
 import { displayText } from '../views/lesson'
+import { v4 as uuidv4 } from 'uuid'
 
-export const speakingTextId = (str: string): string => `text-${str}`
-
-export const speakingWordId = (word: WordItem): string =>
-  `word-${word.lesson}-${word.idx}`
-
-export const speakingId = (): string => {
-  let id = null
-  const speechStore = useSpeechStore()
-  if (speechStore.speakingWord) {
-    id = speakingWordId(speechStore.speakingWord)
-  } else {
-    id = speakingTextId(speechStore.speakingText)
-  }
-  return id || ''
-}
-
-export type TextMatchReplacer = (text: string) => string
+export const newTextId = () => uuidv4().replace(/[-]/g, '')
 
 // { idx: lesson[0], title: lesson[1], contents }
 export interface LessonSearch {

@@ -78,7 +78,7 @@ export const useSpeechStore = defineStore(
     }
 
     // 朗读文本
-    const speak = (text: TextBase | WordItem) => {
+    const speak = (text: string | TextBase | WordItem) => {
       if (isSpeaking.value || !text) return
       lastFireTime.value = new Date().getTime()
       speakingText.value = ''
@@ -86,14 +86,18 @@ export const useSpeechStore = defineStore(
 
       beforeSpeak()
 
-      if (text.hasOwnProperty('speakText')) {
-        speakingText.value = (text as TextBase).speakText
+      if (typeof text === 'string') {
+        speakingText.value = text
       } else {
-        const item = text as WordItem
-        speakingText.value = item.kana
-        speakingWord.value = item
+        if (text.hasOwnProperty('speakText')) {
+          speakingText.value = (text as TextBase).speakText
+        } else {
+          const item = text as WordItem
+          speakingText.value = item.kana
+          speakingWord.value = item
+        }
+        setNowTextId(text.textId)
       }
-      setNowTextId(text.textId)
 
       let count = 0
       const speakLoop = () => {

@@ -122,7 +122,6 @@ import { useReadingStore } from '../../stores/readingStore.ts'
 import { storeToRefs } from 'pinia'
 
 import type { WordItem } from '../../types'
-import { speakingId } from '../../utils'
 import { ElTable } from 'element-plus'
 
 import Row from '../../components/Row.vue'
@@ -137,7 +136,7 @@ const speechStore = useSpeechStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
 
-const { isReading } = storeToRefs(readingStore)
+const { isReading, nowTextId } = storeToRefs(readingStore)
 const activeText = readingStore.activeText
 
 const lessonIndex = ref()
@@ -151,11 +150,7 @@ const top = ref()
 watch(
   () => speechStore.lastFireTime,
   (_) => {
-    const id = speakingId()
-    if (!id) {
-      return
-    }
-    document.getElementById(id)?.scrollIntoView({
+    document.getElementById(nowTextId.value)?.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
       inline: 'nearest',
