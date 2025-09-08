@@ -73,7 +73,12 @@
         circle
         v-if="isReading"
         title="停止播放"
-        @click="pauseAudio"
+        @click="
+          () => {
+            stopSpeech()
+            pauseAudio()
+          }
+        "
       >
         停
       </el-button>
@@ -86,14 +91,17 @@ import { storeToRefs } from 'pinia'
 
 import { useReadingStore } from '../../stores/readingStore.ts'
 import { useAudioStore } from '../../stores/audioStore.ts'
+import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 
 import LessonSelect from '../../components/LessonSelect.vue'
 
 const readingStore = useReadingStore()
-const lessonStore = useLessonStore()
+
 const audioStore = useAudioStore()
+const speechStore = useSpeechStore()
+const lessonStore = useLessonStore()
 const settingStore = useSettingStore()
 
 const { isReading } = storeToRefs(readingStore)
@@ -103,6 +111,8 @@ const { dialog, currentIndex, hasPrevious, hasNext, hasAudio } =
 const goPrevious = lessonStore.goPrevious
 const goNext = lessonStore.goNext
 const setDialog = lessonStore.setDialog
+
+const stopSpeech = speechStore.stop
 
 const playAudio = audioStore.playAudio
 const pauseAudio = audioStore.pauseAudio

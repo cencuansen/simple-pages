@@ -42,7 +42,7 @@
                 circle
                 size="small"
                 v-else-if="settingStore.ttsSpeak"
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 @click="speechStore.speak(speakText(item.content))"
               >
                 <i class="icon-on-MPIS-TTS"></i>
@@ -96,7 +96,7 @@
                 class="speech-button"
                 size="small"
                 circle
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 v-if="message.time && settingStore.audioSpeak"
                 @click="
                   playAudio(message.time)
@@ -111,7 +111,7 @@
                 v-else-if="settingStore.ttsSpeak"
                 circle
                 size="small"
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 @click="speechStore.speak(speakText(message.content))"
               >
                 <el-icon>
@@ -178,7 +178,7 @@
                 class="speech-button"
                 size="small"
                 circle
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 v-if="message.time && settingStore.audioSpeak"
                 @click="
                   playAudio(message.time)
@@ -193,7 +193,7 @@
                 v-else-if="settingStore.ttsSpeak"
                 circle
                 size="small"
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 @click="speechStore.speak(speakText(message.content))"
               >
                 <el-icon>
@@ -233,7 +233,7 @@
         <h2 class="h2">
           <el-button
             class="speech-button"
-            :disabled="audioRef?.isPlaying"
+            :disabled="isReading"
             circle
             size="small"
             v-if="article?.time && settingStore.audioSpeak"
@@ -248,7 +248,7 @@
             class="speech-button"
             circle
             size="small"
-            :disabled="audioRef?.isPlaying"
+            :disabled="isReading"
             @click="
               speechStore.speakList(
                 article?.contents.map((c) => speakText(c.content))
@@ -273,7 +273,7 @@
               <!--原文-->
               <el-button
                 class="speech-button"
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 circle
                 size="small"
                 v-if="item.time && settingStore.audioSpeak"
@@ -288,7 +288,7 @@
                 circle
                 size="small"
                 v-else-if="settingStore.ttsSpeak"
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 @click="speechStore.speak(speakText(item.content))"
               >
                 <i class="icon-on-MPIS-TTS"></i>
@@ -395,7 +395,7 @@
                 size="small"
                 circle
                 v-if="settingStore.ttsSpeak"
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 @click="speechStore.speakList(words as WordItem[])"
               >
                 <el-icon>
@@ -407,7 +407,7 @@
               <el-button
                 size="small"
                 circle
-                :disabled="audioRef?.isPlaying"
+                :disabled="isReading"
                 @click="speechStore.speak(scope.row as WordItem)"
               >
                 <el-icon>
