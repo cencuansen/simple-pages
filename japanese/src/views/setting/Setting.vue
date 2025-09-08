@@ -148,7 +148,7 @@
             />
             <el-button
               style="margin-left: 10px"
-              :loading="isSpeaking"
+              :loading="isReading"
               size="small"
               @click="speechStore.speak(testText)"
             >
@@ -170,6 +170,7 @@
 <script setup lang="ts">
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { useSettingStore } from '../../stores/settingStore.ts'
+import { useReadingStore } from '../../stores/readingStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
@@ -183,16 +184,19 @@ const darkMode = computed({
   set: (val) => settingStore.toggleDark(val),
 })
 
-// 语音设置
-const speechStore = useSpeechStore()
+const readingStore = useReadingStore()
 const {
   rate,
   pitch,
   volume,
   repeatTimes,
+  isReading
+} = storeToRefs(readingStore)
+
+const speechStore = useSpeechStore()
+const {
   voiceName,
   voiceOptions,
-  isSpeaking,
 } = storeToRefs(speechStore)
 </script>
 

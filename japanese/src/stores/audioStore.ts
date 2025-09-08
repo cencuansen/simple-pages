@@ -1,5 +1,5 @@
 import { defineStore, storeToRefs } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useLessonStore } from './lessonStore.ts'
 import { useReadingStore } from './readingStore.ts'
 
@@ -10,6 +10,7 @@ const { lessonAudio } = storeToRefs(lessonStore)
 
 const readingStore = useReadingStore()
 const { rate, volume, isReading, repeatTimes } = storeToRefs(readingStore)
+const setIsReading = readingStore.setIsReading
 
 export const useAudioStore = defineStore('audio', () => {
   const audioRef = ref<HTMLAudioElement | undefined>()
@@ -85,6 +86,13 @@ export const useAudioStore = defineStore('audio', () => {
   const onAbort = () => {
     isPlaying.value = false
   }
+
+  watch(
+    () => isPlaying.value,
+    () => {
+      setIsReading(isPlaying.value)
+    }
+  )
 
   return {
     src,

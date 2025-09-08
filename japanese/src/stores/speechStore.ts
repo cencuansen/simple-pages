@@ -1,16 +1,18 @@
-import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { defineStore, storeToRefs } from 'pinia'
+import { ref, computed, watch } from 'vue'
 import type { WordItem, VoiceOption } from '../types'
+import { useReadingStore } from './readingStore.ts'
+
+const readingStore = useReadingStore()
+const { rate, volume, pitch, repeatTimes } = storeToRefs(readingStore)
+const setIsReading = readingStore.setIsReading
 
 export const useSpeechStore = defineStore(
   'speech',
   () => {
     // 可配置项
     const lang = ref<string>('ja-JP') // 语言
-    const rate = ref<number>(1) // 语速 (0.1-10)
-    const pitch = ref<number>(1) // 音高 (0-2)
-    const volume = ref<number>(1) // 音量 (0-1)
-    const repeatTimes = ref<number>(1) // 重复次数 (1-5)
+
     const voice = ref<SpeechSynthesisVoice | null>(null) // 当前选中的语音
     const voiceName = ref<string>()
     const speakingText = ref<string>('')
@@ -183,11 +185,14 @@ export const useSpeechStore = defineStore(
       speakingWord.value?.lesson === word.lesson &&
       speakingWord.value?.idx === word.idx
 
+    watch(
+      () => isSpeaking.value,
+      () => {
+        setIsReading(isSpeaking.value)
+      }
+    )
+
     return {
-      rate,
-      pitch,
-      volume,
-      repeatTimes,
       voice,
       voiceName,
       voices,
@@ -207,7 +212,7 @@ export const useSpeechStore = defineStore(
   },
   {
     persist: {
-      pick: ['rate', 'pitch', 'volume', 'repeatTimes', 'voiceName'],
+      pick: ['voiceName'],
     },
   }
 )
