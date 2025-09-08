@@ -1,131 +1,34 @@
 <template>
   <div class="words">
-    <Row>
-      <LessonSelect v-model="lessonIndex" lite />
-      <SimpleSelect
-        multiple
-        :data="wordClasses"
-        v-model="selectedClasses"
-        placeholder="选词性"
-      />
-      <SimpleInput v-model.trim="keyword" />
-    </Row>
-
-    <div class="word-main" ref="container" @scroll="containerOnScroll">
-      <div ref="top"></div>
-      <!-- 单词 -->
-      <section class="section words-section">
-        <el-table
-          :data="afterPage"
-          :show-header="false"
-          empty-text="暂无数据"
-          stripe
-        >
-          <el-table-column label="单词" min-width="120">
-            <template #default="scope">
-              <div
-                :class="{
-                  'speaking-active': activeText(scope.row),
-                }"
-              >
-                <div
-                  v-if="settingStore.word"
-                  :id="(scope.row as WordItem).textId"
-                  class="column-word"
-                >
-                  {{ scope.row.word }}
-                </div>
-                <div v-if="settingStore.kana" class="column-kana">
-                  {{ scope.row.kana }}
-                </div>
-              </div>
-            </template>
-          </el-table-column>
-          <el-table-column
-            width="60"
-            prop="pos"
-            label="词性"
-            show-overflow-tooltip
-          />
-          <el-table-column
-            min-width="150"
-            prop="desc"
-            label="释义"
-            v-if="settingStore.wordDesc"
-            show-overflow-tooltip
-          />
-          <el-table-column label="课程" width="60">
-            <template #default="scope">
-              {{ scope.row.lesson }}
-            </template>
-          </el-table-column>
-          <el-table-column
-            class-name="dict-column"
-            width="70"
-            label="词典"
-            v-if="settingStore.wordDict"
-          >
-            <template #default="scope">
-              <Dictionary :word="scope.row.word" />
-            </template>
-          </el-table-column>
-          <el-table-column
-            label=""
-            width="50"
-            v-if="settingStore.ttsSpeak"
-            fixed="right"
-          >
-            <template #header>
-              <Reading :items="beforePage" />
-            </template>
-            <template #default="scope">
-              <Reading :item="scope.row" />
-            </template>
-          </el-table-column>
-        </el-table>
-      </section>
-    </div>
-
-    <SimplePagination :data="beforePage" @page-change="pageChange" />
-
+    <Word2
+      :data="wordList"
+      :function-group="functionGroup"
+      :pagination="pagination"
+      :scroll-top="scrollTop"
+      :lesson-select="lessonSelect"
+      :class-select="classSelect"
+      :keyword-filter="keywordFilter"
+    />
     <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
-import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
 import { storeToRefs } from 'pinia'
 
-import type { WordItem } from '../../types'
-import { ElTable } from 'element-plus'
-
-import Row from '../../components/Row.vue'
-import LessonSelect from '../../components/LessonSelect.vue'
-import SimpleSelect from '../../components/SimpleSelect.vue'
-import SimpleInput from '../../components/SimpleInput.vue'
-import SimplePagination from '../../components/SimplePagination.vue'
-import Dictionary from '../../components/Dictionary/Dictionary.vue'
-import Reading from '../../components/Reading.vue'
+import Word2 from './Word2.vue'
+import { tableHeightCalc } from './index.ts'
 
 const readingStore = useReadingStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
-const settingStore = useSettingStore()
 
 const { nowTextId } = storeToRefs(readingStore)
-const activeText = readingStore.activeText
-
-const lessonIndex = ref()
-const keyword = ref('')
-const selectedClasses = ref<string[]>([])
-
-const container = ref()
-const scrollPosition = ref<number>(0)
-const top = ref()
+const { wordList } = storeToRefs(wordStore)
 
 watch(
   () => speechStore.lastFireTime,
@@ -138,38 +41,7 @@ watch(
   }
 )
 
-const beforePage = computed(() => {
-  let list: WordItem[]
-  if (lessonIndex.value) {
-    list = wordStore.getByLesson(lessonIndex.value)
-  } else {
-    list = wordStore.wordList
-  }
-  if (keyword.value) {
-    list = list.filter(
-      (item) =>
-        item.kana.indexOf(keyword.value) > -1 ||
-        item.desc.indexOf(keyword.value) > -1 ||
-        item.word.indexOf(keyword.value) > -1
-    )
-  }
-  if (selectedClasses.value.length > 0) {
-    list = list.filter((item) => selectedClasses.value.includes(item.pos))
-  }
-  return list
-})
-
-// 当前页数据
-const afterPage = ref<WordItem[]>([])
-const pageChange = (data: WordItem[]) => {
-  afterPage.value = data
-}
-
-const wordClasses = computed(() => {
-  return [...new Set(wordStore.wordList.map((item) => item.pos))].sort((a, b) =>
-    a.localeCompare(b, 'zh-CN')
-  )
-})
+const top = ref()
 
 const goTop = () => {
   top.value.scrollIntoView({
@@ -183,16 +55,15 @@ onBeforeUnmount(() => {
   speechStore.stop()
 })
 
-const containerOnScroll = async () => {
-  scrollPosition.value = container.value.scrollTop
-}
+const functionGroup = ref(true)
+const pagination = ref(true)
+const scrollTop = ref(true)
+const lessonSelect = ref(true)
+const classSelect = ref(true)
+const keywordFilter = ref(true)
 
-onActivated(async () => {
-  setTimeout(() => {
-    if (container && container.value) {
-      container.value.scrollTop = scrollPosition.value
-    }
-  })
+const tableHeight = computed(() => {
+  return tableHeightCalc(functionGroup.value, pagination.value)
 })
 </script>
 
@@ -203,44 +74,15 @@ onActivated(async () => {
   position: fixed;
 }
 
-.word-main {
+:deep(.main-table) {
+  height: v-bind(tableHeight);
   width: 100vw;
   overflow-y: scroll;
-  margin: 0 auto;
-  height: calc(
-    100vh - var(--root-header-height) - var(--single-row-header-height) -
-      var(--pagination-height) - var(--root-footer-height)
-  );
 }
 
-.word-main > * {
+:deep(.el-table) {
+  margin: 0 auto;
   max-width: var(--content-max-width);
-  margin: 0 auto;
-}
-
-:deep(.el-scrollbar__wrap) {
-  /* 解决移动端滚动不顺畅问题 */
-  overflow-y: hidden;
-}
-
-:deep(.dict-column .cell) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.dict-item {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-}
-
-.dict-item img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .go-top {

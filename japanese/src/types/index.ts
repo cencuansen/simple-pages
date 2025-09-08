@@ -7,6 +7,8 @@ export interface WordItem {
   lesson: number
   idx: number
   group: number
+  tags: string
+  levels: string[]
 }
 
 export interface FilterOptions {

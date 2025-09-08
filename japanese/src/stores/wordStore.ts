@@ -66,7 +66,7 @@ export const useWordStore = defineStore('word', () => {
     })
   }
 
-  const getByLesson = (lesson: number) => {
+  const getByLesson = (lesson: number): WordItem[] => {
     return wordList.value.filter((item) => item.lesson === lesson)
   }
 

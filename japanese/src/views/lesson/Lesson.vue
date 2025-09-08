@@ -199,63 +199,7 @@
 
       <!-- 单词 -->
       <section id="words" class="section words-section" ref="wordsRef">
-        <el-table :data="words" empty-text="暂无数据" stripe>
-          <el-table-column label="单词" min-width="120">
-            <template #default="scope">
-              <div
-                :class="{
-                  'speaking-active': activeText(scope.row as WordItem),
-                }"
-              >
-                <div
-                  v-if="settingStore.word"
-                  :id="scope.row.textId"
-                  class="column-word"
-                >
-                  {{ scope.row.word }}
-                </div>
-                <div v-if="settingStore.kana" class="column-kana">
-                  {{ scope.row.kana }}
-                </div>
-              </div>
-            </template>
-          </el-table-column>
-          <el-table-column
-            width="60"
-            prop="pos"
-            label="词性"
-            show-overflow-tooltip
-          />
-          <el-table-column
-            min-width="150"
-            prop="desc"
-            label="释义"
-            v-if="settingStore.wordDesc"
-            show-overflow-tooltip
-          />
-          <el-table-column
-            class-name="dict-column"
-            width="70"
-            label="词典"
-            v-if="settingStore.wordDict"
-          >
-            <template #default="scope">
-              <Dictionary :word="scope.row.word" />
-            </template>
-          </el-table-column>
-          <el-table-column
-            width="50"
-            v-if="settingStore.ttsSpeak"
-            fixed="right"
-          >
-            <template #header>
-              <Reading :items="words" />
-            </template>
-            <template #default="scope">
-              <Reading :item="scope.row" />
-            </template>
-          </el-table-column>
-        </el-table>
+        <Word2 :data="words" :lesson-index="currentIndex" show-header />
       </section>
     </div>
 
@@ -319,7 +263,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
+import {
+  computed,
+  type ComputedRef,
+  onActivated,
+  onBeforeUnmount,
+  ref,
+  watch,
+} from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
@@ -332,15 +283,14 @@ import { searchLesson } from '../../utils'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
-import { ElTable } from 'element-plus'
 import { displayText, textParser } from './index.ts'
 import { collapseTitle } from '../grammar'
 import type { IndexItem } from '../../components/IndexBar'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
-import Dictionary from '../../components/Dictionary/Dictionary.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
 import Reading from '../../components/Reading.vue'
+import Word2 from '../word/Word2.vue'
 
 const lessonStore = useLessonStore()
 const readingStore = useReadingStore()
@@ -351,6 +301,7 @@ const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 
 const {
+  currentIndex,
   currentLesson,
   lessons,
   hasLessons,
@@ -486,7 +437,7 @@ const grammars = computed(() => {
   return grammarStore.queryGrammars({ lesson: lessonStore.currentIndex })
 })
 
-const words = computed(() => {
+const words: ComputedRef<WordItem[]> = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex)
 })
 

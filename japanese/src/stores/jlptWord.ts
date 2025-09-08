@@ -4,22 +4,12 @@ import { ref } from 'vue'
 import Papa from 'papaparse'
 import ky from 'ky'
 import { newTextId } from '../utils'
-
-export interface Vocabulary {
-  textId: string
-  word: string
-  kana: string
-  desc: string
-  tags: string
-  level: number
-  levelName: string
-  levels: string[]
-}
+import type { WordItem } from '../types'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
 export const useJlptWordStore = defineStore('jlpt-word', () => {
-  const vocabularies = ref<Vocabulary[]>([])
+  const vocabularies = ref<WordItem[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
   const tagDelimiter = /\s+/
@@ -34,7 +24,7 @@ export const useJlptWordStore = defineStore('jlpt-word', () => {
     try {
       const response = await ky(`${jpJsonBase}/jlpt-vocabularies.csv`)
       const csvText = await response.text()
-      Papa.parse<Vocabulary>(csvText, {
+      Papa.parse<WordItem>(csvText, {
         header: true,
         skipEmptyLines: true,
         dynamicTyping: true,
@@ -52,7 +42,7 @@ export const useJlptWordStore = defineStore('jlpt-word', () => {
     }
   }
 
-  function process(voc: Vocabulary[]): Vocabulary[] {
+  function process(voc: WordItem[]): WordItem[] {
     voc.forEach((item) => {
       item.levels = item.tags
         .split(tagDelimiter)
