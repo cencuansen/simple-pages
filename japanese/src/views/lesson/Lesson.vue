@@ -198,7 +198,7 @@
       </section>
 
       <!-- 单词 -->
-      <section id="words" class="section words-section" ref="wordsRef">
+      <section id="words" class="section" ref="wordsRef">
         <WordCore :data="words" :lesson-index="currentIndex" show-header />
       </section>
     </div>
