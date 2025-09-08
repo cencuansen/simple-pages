@@ -637,9 +637,9 @@ if (props.index) {
 }
 
 watch(
-  () => lessonStore.currentLesson,
+  () => currentLesson.value,
   (_) => {
-    let index = lessonStore?.currentLesson?.index
+    let index = currentLesson.value?.index
     router.push(`/lesson/${index}`)
   }
 )
@@ -754,7 +754,7 @@ const mainHeight = computed(() => {
   if (fullscreen.value) {
     // 全屏
     return `calc(100vh - var(--root-footer-height))`
-  } else if (!settingStore.audioSpeak) {
+  } else if (!settingStore.audioSpeak || !audioPlaying.value) {
     // 非全屏 && 没有启用音频播放
     return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--root-footer-height))`
   } else {
