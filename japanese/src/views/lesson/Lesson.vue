@@ -606,7 +606,8 @@ const mainHeight = computed(() => {
     return `calc(100vh - var(--root-footer-height))`
   } else if (!audioRef?.value?.audioPlaying) {
     // 非全屏 && 没有启用音频播放
-    return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--root-footer-height))`
+    // return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--root-footer-height))`
+    return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--audio-height) - var(--root-footer-height))`
   } else {
     return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--audio-height) - var(--root-footer-height))`
   }

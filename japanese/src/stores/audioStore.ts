@@ -2,6 +2,7 @@ import { defineStore, storeToRefs } from 'pinia'
 import { ref, computed, watch } from 'vue'
 import { useLessonStore } from './lessonStore.ts'
 import { useReadingStore } from './readingStore.ts'
+import { useSpeechStore } from './speechStore.ts'
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
@@ -13,12 +14,15 @@ export const useAudioStore = defineStore('audio', () => {
   const { rate, volume, isReading, repeatTimes } = storeToRefs(readingStore)
   const setIsReading = readingStore.setIsReading
 
+  const speechStore = useSpeechStore()
+  const { isSpeaking } = storeToRefs(speechStore)
+
   const audioRef = ref<HTMLAudioElement | undefined>()
   const currentTime = ref(0)
   const isPlaying = ref(false)
 
   const src = computed(() => {
-    if (isReading.value) {
+    if (isSpeaking.value) {
       return void 0
     }
     return `${audioUrlBase}${lessonAudio.value}`
@@ -43,7 +47,6 @@ export const useAudioStore = defineStore('audio', () => {
       return
     }
     const url = `${src.value}${timeRange}`
-    audioRef.value.src = url
 
     // 移除旧的监听器
     if (currentPauseHandler) {
@@ -55,6 +58,7 @@ export const useAudioStore = defineStore('audio', () => {
 
     audioRef.value.playbackRate = rate.value
     audioRef.value.volume = volume.value
+    audioRef.value.src = url
 
     await audioRef.value.play()
   }
@@ -70,9 +74,8 @@ export const useAudioStore = defineStore('audio', () => {
     }
   }
 
-  const onTimeUpdate = (something: any) => {
-    console.log('onTimeUpdate', something)
-    currentTime.value = audioRef.value?.currentTime || 0
+  const onTimeUpdate = (e: any) => {
+    currentTime.value = e.target?.currentTime || 0
   }
   const onPlay = () => {
     isPlaying.value = true
