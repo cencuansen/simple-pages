@@ -148,7 +148,7 @@
       <!-- 短文-->
       <section id="article" v-if="hasArticle" class="section" ref="articleRef">
         <h2 class="h2">
-          <Reading :item="article" :items="article?.contents"/>
+          <Reading :item="article" :items="article?.contents" />
           <el-text
             class="text text-content-h2"
             v-html="textView(article?.title)"
@@ -373,12 +373,11 @@ const {
 const goLesson = lessonStore.goLesson
 
 const { fullscreen } = storeToRefs(settingStore)
-const { isReading, nowTextId } = storeToRefs(readingStore)
+const { nowTextId } = storeToRefs(readingStore)
 
 const activeText = readingStore.activeText
 
 const { isPlaying } = storeToRefs(audioStore)
-const playAudio = audioStore.playAudio
 
 const props = defineProps(['index'])
 const router = useRouter()

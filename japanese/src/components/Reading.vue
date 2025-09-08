@@ -86,7 +86,7 @@ const isAudio = computed(() => {
   return (
     audioSpeak.value &&
     props.item.hasOwnProperty('time') &&
-    (props.item as Discussion | Article | TextBase)['time']
+    Boolean((props.item as Discussion | Article | TextBase)['time'])
   )
 })
 const isTts = computed(() => {
