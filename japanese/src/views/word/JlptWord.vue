@@ -65,16 +65,7 @@
           fixed="right"
         >
           <template #default="scope">
-            <el-button
-              size="small"
-              circle
-              :disabled="isReading"
-              @click="speechStore.speak(scope.row)"
-            >
-              <el-icon>
-                <i class="icon-on-MPIS-TTS"></i>
-              </el-icon>
-            </el-button>
+            <Reading :item="scope.row" />
           </template>
         </el-table-column>
       </el-table>
@@ -86,11 +77,9 @@
 
 <script setup lang="ts">
 import { computed, type ComputedRef, onMounted, ref } from 'vue'
-import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useJlptWordStore, type Vocabulary } from '../../stores/jlptWord.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
-import { storeToRefs } from 'pinia'
 
 import { ElTable, ElTableColumn } from 'element-plus'
 import SimpleSelect from '../../components/SimpleSelect.vue'
@@ -98,13 +87,12 @@ import Row from '../../components/Row.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
+import Reading from '../../components/Reading.vue'
 
 const readingStore = useReadingStore()
 const vocabularyStore = useJlptWordStore()
-const speechStore = useSpeechStore()
 const settingStore = useSettingStore()
 
-const { isReading } = storeToRefs(readingStore)
 const activeText = readingStore.activeText
 
 // 初始化加载数据

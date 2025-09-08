@@ -116,7 +116,7 @@ const speechStore = useSpeechStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
 
-const { isReading, nowTextId } = storeToRefs(readingStore)
+const { nowTextId } = storeToRefs(readingStore)
 const activeText = readingStore.activeText
 
 const lessonIndex = ref()
