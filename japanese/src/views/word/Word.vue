@@ -1,7 +1,7 @@
 <template>
   <div class="words">
     <Row>
-      <LessonSelect v-model="lessonIndex" lite/>
+      <LessonSelect v-model="lessonIndex" lite />
       <SimpleSelect
         multiple
         :data="wordClasses"
@@ -24,23 +24,20 @@
           <el-table-column label="单词" min-width="120">
             <template #default="scope">
               <div
-                v-if="settingStore.word"
-                :id="speakingWordId(scope.row as WordItem)"
-                class="column-word"
                 :class="{
-                  'speaking-active': speechStore.isWordSpeaking(scope.row),
+                  'speaking-active': activeText(scope.row),
                 }"
               >
-                {{ scope.row.word }}
-              </div>
-              <div
-                v-if="settingStore.kana"
-                class="column-kana"
-                :class="{
-                  'speaking-active': speechStore.isWordSpeaking(scope.row),
-                }"
-              >
-                {{ scope.row.kana }}
+                <div
+                  v-if="settingStore.word"
+                  :id="(scope.row as WordItem).textId"
+                  class="column-word"
+                >
+                  {{ scope.row.word }}
+                </div>
+                <div v-if="settingStore.kana" class="column-kana">
+                  {{ scope.row.kana }}
+                </div>
               </div>
             </template>
           </el-table-column>
@@ -69,7 +66,7 @@
             v-if="settingStore.wordDict"
           >
             <template #default="scope">
-              <Dictionary :word="scope.row.word"/>
+              <Dictionary :word="scope.row.word" />
             </template>
           </el-table-column>
           <el-table-column
@@ -84,7 +81,7 @@
                 size="small"
                 circle
                 v-if="settingStore.ttsSpeak && lessonIndex"
-                :disabled="speechStore.isSpeaking"
+                :disabled="isReading"
                 @click="speechStore.speakList(beforePage)"
               >
                 <el-icon>
@@ -97,7 +94,7 @@
                 type="primary"
                 size="small"
                 circle
-                :disabled="speechStore.isSpeaking"
+                :disabled="isReading"
                 @click="speechStore.speak(scope.row)"
               >
                 <el-icon>
@@ -121,8 +118,11 @@ import { computed, onActivated, onBeforeUnmount, ref, watch } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
+import { useReadingStore } from '../../stores/readingStore.ts'
+import { storeToRefs } from 'pinia'
+
 import type { WordItem } from '../../types'
-import { speakingId, speakingWordId } from '../../utils'
+import { speakingId } from '../../utils'
 import { ElTable } from 'element-plus'
 
 import Row from '../../components/Row.vue'
@@ -132,9 +132,13 @@ import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
+const readingStore = useReadingStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
+
+const { isReading } = storeToRefs(readingStore)
+const activeText = readingStore.activeText
 
 const lessonIndex = ref()
 const keyword = ref('')
@@ -262,10 +266,6 @@ onActivated(async () => {
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.speaking-active {
-  color: var(--el-color-success);
 }
 
 .go-top {

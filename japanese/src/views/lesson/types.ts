@@ -1,24 +1,20 @@
 import type { WordItem } from '../../types'
 
 export interface TextBase {
-  content: string
-  time: string
-  translation?: string
-}
-
-export interface Conversation {
+  textId: string
   speaker: string
   content: string
-  base?: string
-  display?: string
+  speakText: string
   time: string
   translation?: string
+  base?: string
+  display?: string
 }
 
 export interface Discussion {
   title: string
   time: string
-  contents: Conversation[][]
+  contents: TextBase[][]
 }
 
 export interface Article {
@@ -32,7 +28,7 @@ export interface Lesson {
   title: string
   audio: string
   sentences: TextBase[]
-  conversations: Conversation[][]
+  conversations: TextBase[][]
   discussions: Discussion
   article: Article
 }

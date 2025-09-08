@@ -194,6 +194,26 @@ onMounted(async () => {
   height: var(--root-footer-height);
 }
 
+:deep(.speaking-active) {
+  color: var(--el-color-success);
+}
+
+:deep(.speaking-active a:link) {
+  color: var(--el-color-success);
+}
+
+:deep(.speaking-active a:visited) {
+  color: var(--el-color-success);
+}
+
+:deep(.speaking-active a:hover) {
+  color: #4285f4;
+}
+
+:deep(.speaking-active a:active) {
+  color: #ff0000;
+}
+
 :deep(.match) {
   color: var(--el-color-success);
 }

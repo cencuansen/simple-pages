@@ -43,19 +43,15 @@
                 size="small"
                 v-else-if="settingStore.ttsSpeak"
                 :disabled="isReading"
-                @click="speechStore.speak(speakText(item.content))"
+                @click="speechStore.speak(item)"
               >
                 <i class="icon-on-MPIS-TTS"></i>
               </el-button>
               <el-text
-                :id="speakingTextId(speakText(item.content))"
+                :id="item.textId"
                 class="text text-content"
                 :class="{
-                  'speaking-active': audioRef?.speakingActive(
-                    item.time,
-                    audioRef?.currentTime,
-                    speakText(item.content)
-                  ),
+                  'speaking-active': activeText(item),
                 }"
                 v-html="textView(item.content)"
                 @click="aClick"
@@ -98,9 +94,7 @@
                 circle
                 :disabled="isReading"
                 v-if="message.time && settingStore.audioSpeak"
-                @click="
-                  playAudio(message.time)
-                "
+                @click="playAudio(message.time)"
               >
                 <el-icon>
                   <i class="icon-on-music"></i>
@@ -112,21 +106,17 @@
                 circle
                 size="small"
                 :disabled="isReading"
-                @click="speechStore.speak(speakText(message.content))"
+                @click="speechStore.speak(message)"
               >
                 <el-icon>
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
               </el-button>
               <el-text
-                :id="speakingTextId(speakText(message.content))"
+                :id="message.textId"
                 class="text text-content"
                 :class="{
-                  'speaking-active': audioRef?.speakingActive(
-                    message.time,
-                    audioRef?.currentTime,
-                    speakText(message.content)
-                  ),
+                  'speaking-active': activeText(message),
                 }"
                 v-html="textView(message.content)"
                 @click="aClick"
@@ -180,9 +170,7 @@
                 circle
                 :disabled="isReading"
                 v-if="message.time && settingStore.audioSpeak"
-                @click="
-                  playAudio(message.time)
-                "
+                @click="playAudio(message.time)"
               >
                 <el-icon>
                   <i class="icon-on-music"></i>
@@ -194,21 +182,17 @@
                 circle
                 size="small"
                 :disabled="isReading"
-                @click="speechStore.speak(speakText(message.content))"
+                @click="speechStore.speak(message)"
               >
                 <el-icon>
                   <i class="icon-on-MPIS-TTS"></i>
                 </el-icon>
               </el-button>
               <el-text
-                :id="speakingTextId(speakText(message.content))"
+                :id="message.textId"
                 class="text text-content"
                 :class="{
-                  'speaking-active': audioRef?.speakingActive(
-                    message.time,
-                    audioRef?.currentTime,
-                    speakText(message.content)
-                  ),
+                  'speaking-active': activeText(message),
                 }"
                 v-html="textView(message.content)"
                 @click="aClick"
@@ -249,11 +233,7 @@
             circle
             size="small"
             :disabled="isReading"
-            @click="
-              speechStore.speakList(
-                article?.contents.map((c) => speakText(c.content))
-              )
-            "
+            @click="speechStore.speakList(article?.contents)"
           >
             <i class="icon-on-MPIS-TTS"></i>
           </el-button>
@@ -289,19 +269,15 @@
                 size="small"
                 v-else-if="settingStore.ttsSpeak"
                 :disabled="isReading"
-                @click="speechStore.speak(speakText(item.content))"
+                @click="speechStore.speak(item)"
               >
                 <i class="icon-on-MPIS-TTS"></i>
               </el-button>
               <el-text
-                :id="speakingTextId(speakText(item.content))"
+                :id="item.textId"
                 class="text text-content article"
                 :class="{
-                  'speaking-active': audioRef?.speakingActive(
-                    item.time,
-                    audioRef?.currentTime,
-                    speakText(item.content)
-                  ),
+                  'speaking-active': activeText(item),
                 }"
                 v-html="textView(item.content)"
                 @click="aClick"
@@ -342,23 +318,20 @@
           <el-table-column label="单词" min-width="120">
             <template #default="scope">
               <div
-                v-if="settingStore.word"
-                :id="speakingWordId(scope.row as WordItem)"
-                class="column-word"
                 :class="{
-                  'speaking-active': speechStore.isWordSpeaking(scope.row),
+                  'speaking-active': activeText(scope.row as WordItem),
                 }"
               >
-                {{ scope.row.word }}
-              </div>
-              <div
-                v-if="settingStore.kana"
-                class="column-kana"
-                :class="{
-                  'speaking-active': speechStore.isWordSpeaking(scope.row),
-                }"
-              >
-                {{ scope.row.kana }}
+                <div
+                  v-if="settingStore.word"
+                  :id="speakingWordId(scope.row as WordItem)"
+                  class="column-word"
+                >
+                  {{ scope.row.word }}
+                </div>
+                <div v-if="settingStore.kana" class="column-kana">
+                  {{ scope.row.kana }}
+                </div>
               </div>
             </template>
           </el-table-column>
@@ -492,7 +465,6 @@ import type { WordItem } from '../../types'
 import {
   searchLesson,
   speakingId,
-  speakingTextId,
   speakingWordId,
   speakText,
 } from '../../utils'
@@ -534,6 +506,8 @@ const goLesson = lessonStore.goLesson
 
 const { fullscreen } = storeToRefs(settingStore)
 const { isReading } = storeToRefs(readingStore)
+
+const activeText = readingStore.activeText
 
 const playAudio = audioStore.playAudio
 
@@ -839,22 +813,6 @@ watch(
 
 .speech-button:last-child {
   margin-left: 1rem;
-}
-
-.speaking-active a:link {
-  color: var(--el-color-success);
-}
-
-:deep(.speaking-active a:visited) {
-  color: var(--el-color-success);
-}
-
-:deep(.speaking-active a:hover) {
-  color: #4285f4;
-}
-
-:deep(.speaking-active a:active) {
-  color: #ff0000;
 }
 
 .section h2 {

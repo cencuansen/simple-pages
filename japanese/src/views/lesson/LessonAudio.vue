@@ -15,7 +15,6 @@
 
 <script setup lang="ts">
 import { useAudioStore } from '../../stores/audioStore.ts'
-import { useSpeechStore } from '../../stores/speechStore.ts'
 
 import { ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
@@ -28,26 +27,7 @@ const onPause = audioStore.onPause
 const onError = audioStore.onError
 const onAbort = audioStore.onAbort
 
-const speechStore = useSpeechStore()
 const audioRef = ref<HTMLAudioElement>()
-
-const speakingActive = (
-  timeStr: string,
-  currentTime: number,
-  text: string = ''
-): boolean => {
-  if (text !== null && text.length > 0 && speechStore.speakingText === text) {
-    return true
-  }
-  if (!audioRef.value || audioRef.value.paused) {
-    return false
-  }
-  if (!timeStr || !currentTime) {
-    return false
-  }
-  const timePart = timeStr.split(',').map(Number)
-  return currentTime > timePart[0] && currentTime < timePart[1]
-}
 
 watch(
   () => audioRef.value,
@@ -55,11 +35,6 @@ watch(
     audioStore.setAudioRef(audioRef.value)
   }
 )
-
-// 暴露方法给父组件
-defineExpose({
-  speakingActive,
-})
 </script>
 
 <style scoped>

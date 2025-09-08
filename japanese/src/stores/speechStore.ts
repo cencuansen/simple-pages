@@ -2,6 +2,7 @@ import { defineStore, storeToRefs } from 'pinia'
 import { ref, computed, watch } from 'vue'
 import type { WordItem, VoiceOption } from '../types'
 import { useReadingStore } from './readingStore.ts'
+import type { TextBase } from '../views/lesson/types.ts'
 
 export const useSpeechStore = defineStore(
   'speech',
@@ -9,6 +10,7 @@ export const useSpeechStore = defineStore(
     const readingStore = useReadingStore()
     const { rate, volume, pitch, repeatTimes } = storeToRefs(readingStore)
     const setIsReading = readingStore.setIsReading
+    const setNowTextId = readingStore.setNowTextId
 
     // 可配置项
     const lang = ref<string>('ja-JP') // 语言
@@ -76,7 +78,7 @@ export const useSpeechStore = defineStore(
     }
 
     // 朗读文本
-    const speak = (text: string | WordItem) => {
+    const speak = (text: TextBase | WordItem) => {
       if (isSpeaking.value || !text) return
       lastFireTime.value = new Date().getTime()
       speakingText.value = ''
@@ -84,12 +86,14 @@ export const useSpeechStore = defineStore(
 
       beforeSpeak()
 
-      if (typeof text === 'string') {
-        speakingText.value = text
+      if (text.hasOwnProperty('speakText')) {
+        speakingText.value = (text as TextBase).speakText
       } else {
-        speakingText.value = text.kana
-        speakingWord.value = text
+        const item = text as WordItem
+        speakingText.value = item.kana
+        speakingWord.value = item
       }
+      setNowTextId(text.textId)
 
       let count = 0
       const speakLoop = () => {
@@ -115,7 +119,7 @@ export const useSpeechStore = defineStore(
       speakLoop()
     }
 
-    const speakList = (textList: string[] | WordItem[] = []) => {
+    const speakList = (textList: TextBase[] | WordItem[] = []) => {
       if (isSpeaking.value || textList.length === 0) return
 
       speakingText.value = ''
@@ -139,18 +143,18 @@ export const useSpeechStore = defineStore(
           }
         }
 
-        if (typeof textList[currentIndex] === 'string') {
-          speakingText.value = textList[currentIndex] as string
+        const text = textList[currentIndex]
+        if (text.hasOwnProperty('speakText')) {
+          speakingText.value = (text as TextBase).speakText
         } else {
-          const w = textList[currentIndex] as WordItem
-          speakingText.value = w.kana
-          speakingWord.value = w
+          const item = text as WordItem
+          speakingText.value = item.kana
+          speakingWord.value = item
         }
+        setNowTextId(text.textId)
 
         lastFireTime.value = new Date().getTime()
-
         const utterance = initSpeech(speakingText.value)
-
         utterance.onend = () => {
           currentIndex++
           speakNext() // 朗读下一句
@@ -179,12 +183,6 @@ export const useSpeechStore = defineStore(
       isSpeaking.value = false
     }
 
-    const isTextSpeaking = (text: string) => speakingText.value === text
-
-    const isWordSpeaking = (word: WordItem) =>
-      speakingWord.value?.lesson === word.lesson &&
-      speakingWord.value?.idx === word.idx
-
     watch(
       () => isSpeaking.value,
       () => {
@@ -206,8 +204,6 @@ export const useSpeechStore = defineStore(
       speakList,
       stop,
       reset,
-      isTextSpeaking,
-      isWordSpeaking,
     }
   },
   {

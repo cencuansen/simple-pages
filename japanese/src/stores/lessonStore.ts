@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { isNumber } from '../utils'
-import type { Lesson } from '../views/lesson/types.ts'
+import { isNumber, speakText } from '../utils'
+import type { Lesson, TextBase } from '../views/lesson/types.ts'
 import ky from 'ky'
+import { v4 as uuidv4 } from 'uuid'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -24,7 +25,9 @@ export const useLessonStore = defineStore(
         isLoading.value = true
         error.value = null
         const response = await ky(`${jpJsonBase}/lesson.json`)
-        lessons.value = await response.json()
+        const data: Lesson[] = await response.json()
+        process(data)
+        lessons.value = data
         minIndex.value = lessons.value[0].index
         maxIndex.value = lessons.value[lessons.value.length - 1].index
 
@@ -44,6 +47,38 @@ export const useLessonStore = defineStore(
     // 检查课程索引是否有效
     const isValidLessonIndex = (index: number): boolean =>
       isNumber(index) && index >= minIndex.value && index <= maxIndex.value
+
+    const process = (data: Lesson[]) => {
+      if (!data || data.length === 0) {
+        return []
+      }
+      data.forEach((lesson: Lesson) => {
+        lesson.sentences &&
+          lesson.sentences.forEach((item: TextBase) => {
+            item['textId'] = uuidv4()
+            item['speakText'] = speakText(item.content)
+          })
+        lesson.conversations &&
+          lesson.conversations.forEach((items: TextBase[]) => {
+            items.forEach((item: TextBase) => {
+              item['textId'] = uuidv4()
+              item['speakText'] = speakText(item.content)
+            })
+          })
+        lesson.discussions.contents &&
+          lesson.discussions.contents.forEach((items: TextBase[]) => {
+            items.forEach((item: TextBase) => {
+              item['textId'] = uuidv4()
+              item['speakText'] = speakText(item.content)
+            })
+          })
+        lesson.article.contents &&
+          lesson.article.contents.forEach((item: TextBase) => {
+            item['textId'] = uuidv4()
+            item['speakText'] = speakText(item.content)
+          })
+      })
+    }
     // -- private functions end --
 
     // -- setters start --

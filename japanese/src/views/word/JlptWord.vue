@@ -22,11 +22,17 @@
       >
         <el-table-column label="词汇" min-width="120">
           <template #default="scope">
-            <div :id="`word-${scope.row.word}`" class="column-word">
-              {{ scope.row.word }}
-            </div>
-            <div :id="`word-${scope.row.kana}`" class="column-kana">
-              {{ scope.row.kana }}
+            <div
+              :class="{
+                'speaking-active': activeText(scope.row),
+              }"
+            >
+              <div :id="`word-${scope.row.word}`" class="column-word">
+                {{ scope.row.word }}
+              </div>
+              <div :id="`word-${scope.row.kana}`" class="column-kana">
+                {{ scope.row.kana }}
+              </div>
             </div>
           </template>
         </el-table-column>
@@ -63,7 +69,7 @@
               type="primary"
               size="small"
               circle
-              :disabled="speechStore.isSpeaking"
+              :disabled="isReading"
               @click="speechStore.speak(scope.row.reading)"
             >
               <el-icon>
@@ -84,6 +90,9 @@ import { computed, type ComputedRef, onMounted, ref } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useJlptWordStore, type Vocabulary } from '../../stores/jlptWord.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
+import { useReadingStore } from '../../stores/readingStore.ts'
+import { storeToRefs } from 'pinia'
+
 import { ElTable, ElTableColumn } from 'element-plus'
 import SimpleSelect from '../../components/SimpleSelect.vue'
 import Row from '../../components/Row.vue'
@@ -91,9 +100,13 @@ import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 
+const readingStore = useReadingStore()
 const vocabularyStore = useJlptWordStore()
 const speechStore = useSpeechStore()
 const settingStore = useSettingStore()
+
+const { isReading } = storeToRefs(readingStore)
+const activeText = readingStore.activeText
 
 // 初始化加载数据
 onMounted(() => {

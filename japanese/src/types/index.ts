@@ -1,4 +1,5 @@
 export interface WordItem {
+  textId: string
   kana: string
   pos: string
   desc: string

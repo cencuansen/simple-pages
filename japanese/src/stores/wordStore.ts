@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import type { WordItem, FilterOptions } from '../types'
 import Papa from 'papaparse'
 import ky from 'ky'
+import { v4 as uuidv4 } from 'uuid'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -38,7 +39,9 @@ export const useWordStore = defineStore('word', () => {
         skipEmptyLines: true,
         dynamicTyping: true,
         complete: (result) => {
-          wordList.value = result.data
+          const data = result.data
+          process(data)
+          wordList.value = data
           isInitialized.value = true
         },
         error: (err: any) => {
@@ -54,6 +57,15 @@ export const useWordStore = defineStore('word', () => {
     }
   }
 
+  const process = (data: WordItem[]) => {
+    if (!data || data.length === 0) {
+      return []
+    }
+    data.forEach((item: WordItem) => {
+      item['textId'] = uuidv4()
+    })
+  }
+
   const getByLesson = (lesson: number) => {
     return wordList.value.filter((item) => item.lesson === lesson)
   }
@@ -61,9 +73,8 @@ export const useWordStore = defineStore('word', () => {
   const searchByText = (text: string) => {
     if (!text) return wordList.value
     const searchText = text.toLowerCase()
-    return wordList.value.filter(
-      (item) =>
-        item.kana.toLowerCase().includes(searchText)
+    return wordList.value.filter((item) =>
+      item.kana.toLowerCase().includes(searchText)
     )
   }
 
