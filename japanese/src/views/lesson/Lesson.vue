@@ -840,6 +840,18 @@ watch(
   color: var(--el-color-success);
 }
 
+.speech-button {
+  margin-bottom: 0.5rem;
+}
+
+.speech-button:first-child {
+  margin-right: 1rem;
+}
+
+.speech-button:last-child {
+  margin-left: 1rem;
+}
+
 .go-top {
   position: absolute;
   bottom: 100px;

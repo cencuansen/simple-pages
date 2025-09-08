@@ -76,30 +76,10 @@
             fixed="right"
           >
             <template #header>
-              <el-button
-                type="primary"
-                size="small"
-                circle
-                v-if="settingStore.ttsSpeak && lessonIndex"
-                :disabled="isReading"
-                @click="speechStore.speakList(beforePage)"
-              >
-                <el-icon>
-                  <i class="icon-on-MPIS-TTS"></i>
-                </el-icon>
-              </el-button>
+              <Reading :items="beforePage" />
             </template>
             <template #default="scope">
-              <el-button
-                size="small"
-                circle
-                :disabled="isReading"
-                @click="speechStore.speak(scope.row)"
-              >
-                <el-icon>
-                  <i class="icon-on-MPIS-TTS"></i>
-                </el-icon>
-              </el-button>
+              <Reading :item="scope.row" />
             </template>
           </el-table-column>
         </el-table>
@@ -129,6 +109,7 @@ import SimpleSelect from '../../components/SimpleSelect.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
+import Reading from '../../components/Reading.vue'
 
 const readingStore = useReadingStore()
 const speechStore = useSpeechStore()

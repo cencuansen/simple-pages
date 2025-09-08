@@ -100,15 +100,5 @@ const isArray = computed(() => {
 })
 </script>
 <style scoped>
-.speech-button {
-  margin-bottom: 0.5rem;
-}
 
-.speech-button:first-child {
-  margin-right: 1rem;
-}
-
-.speech-button:last-child {
-  margin-left: 1rem;
-}
 </style>
