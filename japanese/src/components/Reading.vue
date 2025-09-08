@@ -83,19 +83,20 @@ const isAudio = computed(() => {
     // 字符串场景是：工具中朗读文本功能
     return false
   }
-  return audioSpeak.value && Boolean(props.item.hasOwnProperty('time'))
+  return (
+    audioSpeak.value &&
+    props.item.hasOwnProperty('time') &&
+    (props.item as Discussion | Article | TextBase)['time']
+  )
 })
 const isTts = computed(() => {
-  if (!props.item || !props.items || !props.items.length) {
-    return false
-  }
-  return ttsSpeak
+  return !isAudio.value && ttsSpeak
 })
 const isArray = computed(() => {
-  if (props.item || !props.items || !Array.isArray(props.items)) {
+  if (!props.items) {
     return false
   }
-  return Boolean(props.items.length)
+  return Boolean((props.items as []).length)
 })
 </script>
 <style scoped>
