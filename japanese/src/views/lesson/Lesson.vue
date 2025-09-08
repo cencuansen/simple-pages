@@ -25,28 +25,7 @@
           >
             <div class="text-row">
               <!--原文-->
-              <el-button
-                class="speech-button"
-                :disabled="isReading"
-                circle
-                size="small"
-                v-if="item.time && settingStore.audioSpeak"
-                @click="playAudio(item.time)"
-              >
-                <el-icon>
-                  <i class="icon-on-music"></i>
-                </el-icon>
-              </el-button>
-              <el-button
-                class="speech-button"
-                circle
-                size="small"
-                v-else-if="settingStore.ttsSpeak"
-                :disabled="isReading"
-                @click="speechStore.speak(item)"
-              >
-                <i class="icon-on-MPIS-TTS"></i>
-              </el-button>
+              <Reading :item="item" />
               <el-text
                 :id="item.textId"
                 class="text text-content"
@@ -88,30 +67,7 @@
           >
             <div class="text-row">
               <!--原文-->
-              <el-button
-                class="speech-button"
-                size="small"
-                circle
-                :disabled="isReading"
-                v-if="message.time && settingStore.audioSpeak"
-                @click="playAudio(message.time)"
-              >
-                <el-icon>
-                  <i class="icon-on-music"></i>
-                </el-icon>
-              </el-button>
-              <el-button
-                class="speech-button"
-                v-else-if="settingStore.ttsSpeak"
-                circle
-                size="small"
-                :disabled="isReading"
-                @click="speechStore.speak(message)"
-              >
-                <el-icon>
-                  <i class="icon-on-MPIS-TTS"></i>
-                </el-icon>
-              </el-button>
+              <Reading :item="message" />
               <el-text
                 :id="message.textId"
                 class="text text-content"
@@ -164,30 +120,7 @@
           >
             <div class="text-row">
               <!--原文-->
-              <el-button
-                class="speech-button"
-                size="small"
-                circle
-                :disabled="isReading"
-                v-if="message.time && settingStore.audioSpeak"
-                @click="playAudio(message.time)"
-              >
-                <el-icon>
-                  <i class="icon-on-music"></i>
-                </el-icon>
-              </el-button>
-              <el-button
-                class="speech-button"
-                v-else-if="settingStore.ttsSpeak"
-                circle
-                size="small"
-                :disabled="isReading"
-                @click="speechStore.speak(message)"
-              >
-                <el-icon>
-                  <i class="icon-on-MPIS-TTS"></i>
-                </el-icon>
-              </el-button>
+              <Reading :item="message" />
               <el-text
                 :id="message.textId"
                 class="text text-content"
@@ -251,28 +184,7 @@
           >
             <div class="text-row">
               <!--原文-->
-              <el-button
-                class="speech-button"
-                :disabled="isReading"
-                circle
-                size="small"
-                v-if="item.time && settingStore.audioSpeak"
-                @click="playAudio(item.time)"
-              >
-                <el-icon>
-                  <i class="icon-on-music"></i>
-                </el-icon>
-              </el-button>
-              <el-button
-                class="speech-button"
-                circle
-                size="small"
-                v-else-if="settingStore.ttsSpeak"
-                :disabled="isReading"
-                @click="speechStore.speak(item)"
-              >
-                <i class="icon-on-MPIS-TTS"></i>
-              </el-button>
+              <Reading :item="item" />
               <el-text
                 :id="item.textId"
                 class="text text-content article"
@@ -364,29 +276,10 @@
             fixed="right"
           >
             <template #header>
-              <el-button
-                size="small"
-                circle
-                v-if="settingStore.ttsSpeak"
-                :disabled="isReading"
-                @click="speechStore.speakList(words as WordItem[])"
-              >
-                <el-icon>
-                  <i class="icon-on-MPIS-TTS"></i>
-                </el-icon>
-              </el-button>
+              <Reading :items="words" />
             </template>
             <template #default="scope">
-              <el-button
-                size="small"
-                circle
-                :disabled="isReading"
-                @click="speechStore.speak(scope.row as WordItem)"
-              >
-                <el-icon>
-                  <i class="icon-on-MPIS-TTS"></i>
-                </el-icon>
-              </el-button>
+              <Reading :item="scope.row" />
             </template>
           </el-table-column>
         </el-table>
@@ -474,6 +367,7 @@ import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
+import Reading from '../../components/Reading.vue'
 
 const lessonStore = useLessonStore()
 const readingStore = useReadingStore()
@@ -792,18 +686,6 @@ watch(
 
 .text-title {
   font-size: 1.8rem;
-}
-
-.speech-button {
-  margin-bottom: 0.5rem;
-}
-
-.speech-button:first-child {
-  margin-right: 1rem;
-}
-
-.speech-button:last-child {
-  margin-left: 1rem;
 }
 
 .section h2 {
