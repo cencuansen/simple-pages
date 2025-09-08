@@ -13,6 +13,7 @@ export const useAudioStore = defineStore('audio', () => {
   const readingStore = useReadingStore()
   const { rate, volume, isReading, repeatTimes } = storeToRefs(readingStore)
   const setIsReading = readingStore.setIsReading
+  const setNowTextId = readingStore.setNowTextId
 
   const speechStore = useSpeechStore()
   const { isSpeaking } = storeToRefs(speechStore)
@@ -46,6 +47,7 @@ export const useAudioStore = defineStore('audio', () => {
     if (!audioRef.value || !src.value || playTimes < 1) {
       return
     }
+    setNowTextId('')
     const url = `${src.value}${timeRange}`
 
     // 移除旧的监听器
@@ -75,6 +77,7 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   const onTimeUpdate = (e: any) => {
+    // TODO 音频-文本匹配，属于大工作量
     currentTime.value = e.target?.currentTime || 0
   }
   const onPlay = () => {
