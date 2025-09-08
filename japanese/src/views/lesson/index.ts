@@ -198,8 +198,8 @@ export const textParser = (
   words: WordItem[] = [],
   wordLink = true,
   furigana = true
-) => {
-  return (originalText: string) => {
+): ((str: string | undefined) => string) => {
+  return (originalText: string | undefined) => {
     if (!originalText) return ''
 
     if (furigana && wordLink) {

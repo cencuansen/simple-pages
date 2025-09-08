@@ -9,6 +9,7 @@ const jpJsonBase = import.meta.env.VITE_JSON_BASE
 export const useLessonStore = defineStore(
   'lessons',
   () => {
+    // props
     const lessons = ref<Lesson[]>([])
     const isLoading = ref(false)
     const error = ref<string | null>(null)
@@ -16,7 +17,7 @@ export const useLessonStore = defineStore(
     const minIndex = ref(0)
     const maxIndex = ref(0)
 
-    // 获取课程数据
+    // 初始化
     const init = async () => {
       try {
         isLoading.value = true
@@ -38,15 +39,20 @@ export const useLessonStore = defineStore(
       }
     }
 
+    // -- private functions start --
     // 检查课程索引是否有效
     const isValidLessonIndex = (index: number): boolean =>
       isNumber(index) && index >= minIndex.value && index <= maxIndex.value
+    // -- private functions end --
 
+    // -- setters start --
     // 切换课程
     const setCurrentIndex = (index: number) => {
       isValidLessonIndex(index) && (currentIndex.value = index)
     }
+    // -- setters end --
 
+    // -- computed props start --
     const currentLesson = computed(() =>
       lessons.value.find((item) => item.index === currentIndex.value)
     )
@@ -64,6 +70,49 @@ export const useLessonStore = defineStore(
       return Boolean(lessonIndexs.value[position + 1])
     })
 
+    const lessonTitle = computed(() => currentLesson.value?.title)
+
+    const hasSentences = computed(() => {
+      if (currentLesson.value) {
+        return currentLesson.value.sentences.length > 0
+      }
+      return false
+    })
+    const sentences = computed(() => currentLesson.value?.sentences)
+
+    const hasConversations = computed(() => {
+      if (currentLesson.value) {
+        return currentLesson.value.sentences.length > 0
+      }
+      return false
+    })
+    const conversations = computed(() => currentLesson.value?.conversations)
+
+    const hasDiscussions = computed(() => {
+      if (currentLesson.value && currentLesson.value.discussions) {
+        return currentLesson.value.discussions.contents.length > 0
+      }
+      return false
+    })
+    const discussions = computed(() => {
+      return currentLesson.value?.discussions
+    })
+
+    const hasArticle = computed(() => {
+      if (currentLesson.value && currentLesson.value.article) {
+        return currentLesson.value.article.contents.length > 0
+      }
+      return false
+    })
+    const article = computed(() => currentLesson.value?.article)
+
+    const hasAudio = computed(() => {
+      return currentLesson.value && Boolean(currentLesson.value.audio)
+    })
+    const lessonAudio = computed(() => currentLesson.value?.audio)
+    // -- computed props end --
+
+    // -- functions start --
     const goPrevious = () => {
       const position = lessonIndexs.value.indexOf(currentIndex.value)
       const value = lessonIndexs.value[position - 1]
@@ -79,6 +128,7 @@ export const useLessonStore = defineStore(
     const goLesson = (num: number) => {
       currentIndex.value = num
     }
+    // -- functions end --
 
     return {
       // 属性
@@ -93,6 +143,17 @@ export const useLessonStore = defineStore(
       currentLesson,
       hasNext,
       hasPrevious,
+      lessonTitle,
+      hasSentences,
+      sentences,
+      hasDiscussions,
+      discussions,
+      hasConversations,
+      conversations,
+      hasArticle,
+      article,
+      hasAudio,
+      lessonAudio,
 
       // 方法
       setCurrentIndex,

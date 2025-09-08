@@ -63,7 +63,7 @@
           circle
           title="播放"
           :disabled="isPlaying"
-          v-if="currentLesson?.audio && settingStore.audioSpeak"
+          v-if="hasAudio && settingStore.audioSpeak"
           @click="playAudio(``, speechStore.repeatTimes)"
         >
           读
@@ -85,7 +85,7 @@
       <h1 id="title" class="lesson-title" ref="top">
         <el-text
           class="text-title"
-          v-html="textView(currentLesson.title)"
+          v-html="textView(lessonTitle)"
           @click="aClick"
         ></el-text>
       </h1>
@@ -93,13 +93,13 @@
       <!-- 简单句子 -->
       <section
         id="sentences"
-        v-if="currentLesson?.sentences?.length"
+        v-if="hasSentences"
         class="section basics-section"
       >
         <el-form class="basics-list">
           <el-form-item
             class="message"
-            v-for="(item, idx) in currentLesson?.sentences"
+            v-for="(item, idx) in sentences"
             :key="`basic-${idx}`"
           >
             <div class="text-row">
@@ -154,11 +154,11 @@
       <!-- 普通对话 -->
       <section
         id="conversations"
-        v-if="currentLesson?.conversations?.length"
+        v-if="hasConversations"
         class="section conversation-section"
       >
         <el-form
-          v-for="(exchange, exchangeIndex) in currentLesson?.conversations"
+          v-for="(exchange, exchangeIndex) in conversations"
           :key="`exchange2-${exchangeIndex}`"
           class="conversation-exchange"
         >
@@ -226,20 +226,19 @@
       <!-- 情景对话 -->
       <section
         id="discussions"
-        v-if="currentLesson?.discussions?.contents.length"
+        v-if="hasDiscussions"
         class="section conversation-section"
       >
         <h2>
           <el-text
             class="text text-content-h2"
-            v-html="textView(currentLesson?.discussions.title)"
+            v-html="textView(discussions?.title)"
             @click="aClick"
           ></el-text>
         </h2>
         <el-form
           label-width="auto"
-          v-for="(exchange, exchangeIndex) in currentLesson?.discussions
-            .contents"
+          v-for="(exchange, exchangeIndex) in discussions?.contents"
           :key="`exchange2-${exchangeIndex}`"
           class="conversation-exchange"
         >
@@ -307,7 +306,7 @@
       <!-- 短文-->
       <section
         id="article"
-        v-if="currentLesson?.article.contents.length"
+        v-if="hasArticle"
         class="section"
         ref="articleRef"
       >
@@ -317,9 +316,9 @@
             :disabled="isPlaying"
             circle
             size="small"
-            v-if="currentLesson?.article.time && settingStore.audioSpeak"
+            v-if="article?.time && settingStore.audioSpeak"
             @click="
-              playAudio(currentLesson?.article.time, speechStore.repeatTimes)
+              playAudio(article.time, speechStore.repeatTimes)
             "
           >
             <el-icon>
@@ -333,8 +332,7 @@
             size="small"
             :disabled="isPlaying"
             @click="
-              speechStore.speakList(
-                currentLesson?.article.contents.map((c) => speakText(c.content))
+              speechStore.speakList(article?.contents.map((c) => speakText(c.content))
               )
             "
           >
@@ -342,14 +340,14 @@
           </el-button>
           <el-text
             class="text text-content-h2"
-            v-html="textView(currentLesson?.article.title)"
+            v-html="textView(article?.title)"
             @click="aClick"
           ></el-text>
         </h2>
         <el-form class="basics-list">
           <el-form-item
             class="message"
-            v-for="(item, idx) in currentLesson?.article.contents"
+            v-for="(item, idx) in article?.contents"
             :key="`article-${idx}`"
           >
             <div class="text-row">
@@ -418,6 +416,7 @@
           </el-collapse-item>
         </el-collapse>
       </section>
+
       <!-- 单词 -->
       <section id="words" class="section words-section" ref="wordsRef">
         <el-table :data="words" empty-text="暂无数据" stripe>
@@ -604,8 +603,24 @@ const wordStore = useWordStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 
-const { currentIndex, currentLesson, lessons, hasPrevious, hasNext } =
-  storeToRefs(lessonStore)
+const {
+  currentIndex,
+  currentLesson,
+  lessons,
+  hasPrevious,
+  hasNext,
+  lessonTitle,
+  hasSentences,
+  sentences,
+  hasDiscussions,
+  discussions,
+  hasConversations,
+  conversations,
+  hasArticle,
+  article,
+  hasAudio,
+  lessonAudio,
+} = storeToRefs(lessonStore)
 const goPrevious = lessonStore.goPrevious
 const goNext = lessonStore.goNext
 const goLesson = lessonStore.goLesson
@@ -646,7 +661,7 @@ const src = computed(() => {
   if (speechStore.isSpeaking) {
     return void 0
   }
-  return `${audioUrlBase}${currentLesson.value?.audio}`
+  return `${audioUrlBase}${lessonAudio.value}`
 })
 
 const pauseHandler = async (url: string, playTimes: number) => {
