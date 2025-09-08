@@ -1,5 +1,5 @@
 <template>
-  <div class="lessons" v-if="currentLesson">
+  <div class="lessons" v-if="hasLessons">
     <div id="header" class="lesson-headers" v-if="!fullscreen">
       <div class="lesson-switch">
         <el-button size="small" :disabled="!hasPrevious" @click="goPrevious">
@@ -609,6 +609,7 @@ const {
   lessons,
   hasPrevious,
   hasNext,
+  hasLessons,
   lessonTitle,
   hasSentences,
   sentences,

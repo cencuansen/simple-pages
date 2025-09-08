@@ -56,6 +56,7 @@ export const useLessonStore = defineStore(
     const currentLesson = computed(() =>
       lessons.value.find((item) => item.index === currentIndex.value)
     )
+    const hasLessons = computed(() => Boolean(currentLesson.value))
 
     // 全部课程号
     const lessonIndexs = computed(() => lessons.value.map((les) => les.index))
@@ -143,6 +144,7 @@ export const useLessonStore = defineStore(
       currentLesson,
       hasNext,
       hasPrevious,
+      hasLessons,
       lessonTitle,
       hasSentences,
       sentences,
