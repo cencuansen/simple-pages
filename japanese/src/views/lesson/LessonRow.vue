@@ -122,8 +122,4 @@ const aClick = (event: any) => {
 .speech-button:first-child {
   margin-right: 1rem;
 }
-
-.speech-button:last-child {
-  margin-left: 1rem;
-}
 </style>
