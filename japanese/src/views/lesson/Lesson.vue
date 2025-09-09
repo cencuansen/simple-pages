@@ -11,7 +11,6 @@
       <section id="sentences" class="section" v-if="hasSentences">
         <el-form>
           <LessonRow
-            :container="container"
             :rows="sentences"
             :words="words"
             :translate="allTranslate"
@@ -23,7 +22,6 @@
       <section id="conversations" class="section" v-if="hasConversations">
         <el-form v-for="exchange in conversations">
           <LessonRow
-            :container="container"
             :rows="exchange"
             :words="words"
             :translate="allTranslate"
@@ -36,7 +34,6 @@
         <h2 v-html="textView(discussions?.title)" @click="aClick"></h2>
         <el-form label-width="auto" v-for="exchange in discussions?.contents">
           <LessonRow
-            :container="container"
             :rows="exchange"
             :words="words"
             :translate="allTranslate"
@@ -52,7 +49,6 @@
         </h2>
         <el-form>
           <LessonRow
-            :container="container"
             :rows="article?.contents"
             :words="words"
             :translate="allTranslate"

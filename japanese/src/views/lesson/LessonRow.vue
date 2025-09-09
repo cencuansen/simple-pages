@@ -39,7 +39,6 @@ const settingStore = useSettingStore()
 const { wordLink, furigana } = storeToRefs(settingStore)
 
 interface LessonRowProps {
-  container?: any
   rows?: TextBase[]
   words?: WordItem[]
   translate?: boolean
