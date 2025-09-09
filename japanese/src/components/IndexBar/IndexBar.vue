@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, withDefaults, onMounted } from 'vue'
+import { ref, computed, withDefaults, onMounted, onUnmounted } from 'vue'
 import { newTextId } from '../../utils'
 import type { ElementInfo, Props } from './index.ts'
 
@@ -82,6 +82,45 @@ onMounted(() => {
   buildInfo()
   updateCurrentKey()
   container.value.addEventListener('scrollend', updateCurrentKey)
+})
+
+interface HotkeyRef {
+  [key: string]: Element
+}
+
+const hotkeyRefMap = computed<HotkeyRef>(() => {
+  const refs: { [key: string]: Element } = {}
+  elements.value
+    .map((item: ElementInfo, index: number) => {
+      const key: string = `${index + 1}`
+      return [key, item.ele]
+    })
+    .forEach((arr) => {
+      const key = arr[0] as string
+      refs[key] = arr[1] as Element
+    })
+  return refs
+})
+
+const onSingleKeyup = (event: KeyboardEvent) => {
+  if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey) {
+    return
+  }
+  if (Object.keys(hotkeyRefMap.value).includes(event.key)) {
+    hotkeyRefMap.value[event.key]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    })
+  }
+}
+
+onMounted(async () => {
+  document.addEventListener('keyup', onSingleKeyup)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('keyup', onSingleKeyup)
 })
 </script>
 

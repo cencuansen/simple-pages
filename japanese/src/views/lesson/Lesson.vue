@@ -454,32 +454,9 @@ onBeforeUnmount(() => {
   speechStore.stop()
 })
 
-const children = computed(() => {
-  return (container.value && Array.from(container.value.children)) || []
-})
-
 const onScrollEnd = async () => {
   scrollPosition.value = container.value.scrollTop
 }
-
-interface HotkeyRef {
-  [key: string]: HTMLElement | null
-}
-
-const hotkeyRefMap = computed<HotkeyRef>(() => {
-  const refs: { [key: string]: HTMLElement } = {}
-  children.value
-    .filter(Boolean)
-    .map((item: HTMLElement, index: number) => {
-      const key: string = `${index + 1}`
-      return [key, item]
-    })
-    .forEach((arr: [string, HTMLElement]) => {
-      const key = arr[0] as string
-      refs[key] = arr[1] as HTMLElement
-    })
-  return refs
-})
 
 const onSingleKeyup = (event: KeyboardEvent) => {
   if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey) {
@@ -492,12 +469,6 @@ const onSingleKeyup = (event: KeyboardEvent) => {
   } else if (['f'].includes(event.key)) {
     dialog.value = !dialog.value
   } else if (['r'].includes(event.key)) {
-  } else if (Object.keys(hotkeyRefMap.value).includes(event.key)) {
-    scrollTarget(hotkeyRefMap.value[event.key], {
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
-    })
   }
 }
 
