@@ -19,7 +19,7 @@
   </Row>
   <div class="main-table" ref="container" @scroll="onScroll">
     <el-table
-      :data="afterPage"
+      :data="afterPageView"
       :show-header="showHeader"
       empty-text="暂无数据"
       stripe
@@ -112,7 +112,6 @@ import {
   type ComputedRef,
   onActivated,
   onBeforeUnmount,
-  onMounted,
   ref,
   watch,
   withDefaults,
@@ -164,18 +163,6 @@ const props = withDefaults(defineProps<WordProps>(), {
 const lessonIndex = ref<number | undefined>()
 const keyword = ref<string>('')
 
-onMounted(() => {
-  if (props.lessonIndex !== undefined && props.lessonIndex !== null) {
-    lessonIndex.value = props.lessonIndex
-  }
-  if (props.keyword) {
-    keyword.value = props.keyword
-  }
-  if (!props.pagination) {
-    afterPage.value = beforePage.value
-  }
-})
-
 const readingStore = useReadingStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
@@ -206,6 +193,16 @@ watch(
 
 const beforePage = computed(() => {
   let list: WordItem[] = props.data
+  if (props.keyword) {
+    // 关键词过滤
+    list = list.filter((item) =>
+      `${item.word}_${item.kana}_${item.desc}`.includes(props.keyword)
+    )
+  }
+  if (props.lessonIndex !== undefined) {
+    // 课程过滤
+    list = list.filter((item) => item.lesson === props.lessonIndex)
+  }
   if (keyword.value) {
     // 关键词过滤
     list = list.filter((item) =>
@@ -236,6 +233,13 @@ const afterPage = ref<WordItem[]>([])
 const pageChange = (data: WordItem[]) => {
   afterPage.value = data
 }
+
+const afterPageView = computed(() => {
+  if (props.pagination) {
+    return afterPage.value
+  }
+  return beforePage.value
+})
 
 const wordClasses = computed(() => {
   return [...new Set(wordStore.wordList.map((item) => item.pos))].sort((a, b) =>

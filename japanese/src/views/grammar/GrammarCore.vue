@@ -16,7 +16,7 @@
       <div class="main">
         <el-collapse v-model="expands" :expand-icon-position="'left'">
           <el-collapse-item
-            v-for="grammar in afterPage"
+            v-for="grammar in afterPageView"
             :name="collapseTitle(grammar.title, grammar.idx)"
           >
             <template #title>
@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type ComputedRef, ref, watch, withDefaults } from 'vue'
+import { computed, type ComputedRef, ref, withDefaults } from 'vue'
 import { type Grammar } from '../../stores/grammar/grammarStore.ts'
 import Row from '../../components/Row.vue'
 import LessonSelect from '../../components/LessonSelect.vue'
@@ -80,34 +80,25 @@ const props = withDefaults(defineProps<GrammarProps>(), {
   keywordFilter: false,
 })
 
-watch(
-  () => props.data,
-  () => {
-    if (props.lessonIndex !== undefined && props.lessonIndex !== null) {
-      lessonIndex.value = props.lessonIndex
-    }
-    if (props.keyword) {
-      keyword.value = props.keyword
-    }
-    if (!props.pagination) {
-      afterPage.value = beforePage.value
-    }
-  }
-)
-
 const keyword = ref('')
-
 const lessonIndex = ref<null | number>(null)
 
 const beforePage = computed(() => {
   let list = props.data
-  const key = keyword.value
+  if (props.lessonIndex) {
+    list = list.filter((item) => item.lesson === props.lessonIndex)
+  }
+  if (props.keyword) {
+    list = list.filter((item) =>
+      `${item.lesson}${item.title}${item.desc}`.includes(props.keyword)
+    )
+  }
   if (lessonIndex.value) {
     list = list.filter((item) => item.lesson === lessonIndex.value)
   }
-  if (key) {
+  if (keyword.value) {
     list = list.filter((item) =>
-      `${item.lesson}${item.title}${item.desc}`.includes(key)
+      `${item.lesson}${item.title}${item.desc}`.includes(keyword.value)
     )
   }
   if (selectedLevels.value.length) {
@@ -116,7 +107,7 @@ const beforePage = computed(() => {
   list.forEach((item) => {
     item.displayTitle = item.title
   })
-  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const escapedKey = keyword.value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
   const highlight = (text: string) =>
     text?.replace(regex, '<span class="match">$1</span>')
@@ -131,9 +122,7 @@ const beforePage = computed(() => {
 })
 
 const expands = ref<string[]>([])
-
 const selectedLevels = ref<string[]>([])
-
 const levels: ComputedRef<string[]> = computed(() => {
   return [...new Set(props.data.map((x) => x.level))].sort()
 })
@@ -146,6 +135,13 @@ const pageChange = (data: Grammar[]) => {
     collapseTitle(grammar.title, grammar.idx)
   )
 }
+
+const afterPageView = computed(() => {
+  if (!props.pagination) {
+    return beforePage.value
+  }
+  return afterPage.value
+})
 </script>
 
 <style scoped>
