@@ -45,7 +45,7 @@
       </section>
 
       <!-- 短文-->
-      <section id="article" class="section" ref="articleRef" v-if="hasArticle">
+      <section id="article" class="section" v-if="hasArticle">
         <h2>
           <Reading :item="article" :items="article?.contents" />
           <span v-html="textView(article?.title)" @click="aClick"></span>
@@ -61,7 +61,7 @@
       </section>
 
       <!-- 语法 -->
-      <section id="grammars" class="section" ref="grammarsRef">
+      <section id="grammars" class="section">
         <GrammarCore :data="grammars" :lesson-index="currentIndex" />
       </section>
 
@@ -130,14 +130,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  computed,
-  type ComputedRef,
-  onActivated,
-  onBeforeUnmount,
-  ref,
-  watch,
-} from 'vue'
+import { computed, type ComputedRef, onActivated, ref, watch } from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
@@ -212,19 +205,7 @@ watch(
 
 const top = ref()
 const container = ref()
-const grammarsRef = ref()
-
 const scrollPosition = ref<number>(0)
-
-watch(
-  () => settingStore.translate,
-  (value, _) => {
-    if (!value) {
-      // 设置中关闭翻译功能时
-      settingStore.setAllTranslate(false)
-    }
-  }
-)
 
 watch(
   () => speechStore.lastFireTime,
@@ -262,10 +243,6 @@ const words: ComputedRef<WordItem[]> = computed(() => {
 
 const textView = computed(() => {
   return textParser(words.value, settingStore.wordLink, settingStore.furigana)
-})
-
-onBeforeUnmount(() => {
-  speechStore.stop()
 })
 
 const onScrollEnd = async () => {
@@ -306,17 +283,6 @@ onDeactivated(() => {
   deactivated = true
   document.removeEventListener('keyup', onSingleKeyup)
 })
-
-watch(
-  () => dialog.value,
-  (value, _) => {
-    if (value) {
-      document.removeEventListener('keyup', onSingleKeyup)
-    } else {
-      document.addEventListener('keyup', onSingleKeyup)
-    }
-  }
-)
 </script>
 
 <style scoped>
