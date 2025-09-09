@@ -13,7 +13,7 @@
           'speaking-active': activeText(row),
         }"
         v-html="textView(row.content)"
-        @click="aClick"
+        @click="wordRefer"
       ></el-text>
     </div>
     <div class="translation" v-if="translate">
@@ -23,32 +23,21 @@
 </template>
 
 <script setup lang="ts">
-import { aClick, displayText, textParser } from './index.ts'
+import { wordRefer, displayText } from './index.ts'
 import Reading from '../../components/Reading.vue'
 import type { TextBase } from './types.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
-import { useSettingStore } from '../../stores/settingStore.ts'
-import { storeToRefs } from 'pinia'
-import { computed } from 'vue'
-import type { WordItem } from '../../types'
 
 const readingStore = useReadingStore()
 const activeText = readingStore.activeText
 
-const settingStore = useSettingStore()
-const { wordLink, furigana } = storeToRefs(settingStore)
-
 interface LessonRowProps {
   rows?: TextBase[]
-  words?: WordItem[]
   translate?: boolean
+  textView: Function
 }
 
-const props = defineProps<LessonRowProps>()
-
-const textView = computed(() => {
-  return textParser(props.words, wordLink.value, furigana.value)
-})
+defineProps<LessonRowProps>()
 </script>
 
 <style scoped>

@@ -217,7 +217,7 @@ export const textParser = (
   }
 }
 
-export const aClick = (event: any) => {
+export const wordRefer = (event: any) => {
   const lessonStore = useLessonStore()
   const setLastElement = lessonStore.setLastElement
 

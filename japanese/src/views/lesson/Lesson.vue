@@ -12,8 +12,8 @@
         <el-form>
           <LessonRow
             :rows="sentences"
-            :words="words"
             :translate="allTranslate"
+            :text-view="textView"
           />
         </el-form>
       </section>
@@ -23,20 +23,20 @@
         <el-form v-for="exchange in conversations">
           <LessonRow
             :rows="exchange"
-            :words="words"
             :translate="allTranslate"
+            :text-view="textView"
           />
         </el-form>
       </section>
 
       <!-- 情景对话 -->
       <section id="discussions" class="section" v-if="hasDiscussions">
-        <h2 v-html="textView(discussions?.title)" @click="aClick"></h2>
+        <h2 v-html="textView(discussions?.title)" @click="wordRefer"></h2>
         <el-form label-width="auto" v-for="exchange in discussions?.contents">
           <LessonRow
             :rows="exchange"
-            :words="words"
             :translate="allTranslate"
+            :text-view="textView"
           />
         </el-form>
       </section>
@@ -45,13 +45,13 @@
       <section id="article" class="section" v-if="hasArticle">
         <h2>
           <Reading :item="article" :items="article?.contents" />
-          <span v-html="textView(article?.title)" @click="aClick"></span>
+          <span v-html="textView(article?.title)" @click="wordRefer"></span>
         </h2>
         <el-form>
           <LessonRow
             :rows="article?.contents"
-            :words="words"
             :translate="allTranslate"
+            :text-view="textView"
           />
         </el-form>
       </section>
@@ -139,7 +139,7 @@ import { searchLesson } from '../../utils'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
-import { displayText, textParser, aClick, goTop } from './index.ts'
+import { displayText, textParser, wordRefer, goTop } from './index.ts'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
@@ -178,7 +178,8 @@ const {
 const goLesson = lessonStore.goLesson
 const setDialog = lessonStore.setDialog
 
-const { fullscreen, allTranslate } = storeToRefs(settingStore)
+const { fullscreen, allTranslate, wordLink, furigana } =
+  storeToRefs(settingStore)
 const { nowTextId } = storeToRefs(readingStore)
 
 const { isPlaying } = storeToRefs(audioStore)
@@ -238,7 +239,7 @@ const words: ComputedRef<WordItem[]> = computed(() => {
 })
 
 const textView = computed(() => {
-  return textParser(words.value, settingStore.wordLink, settingStore.furigana)
+  return textParser(words.value, wordLink.value, furigana.value)
 })
 
 const onScrollEnd = async () => {
