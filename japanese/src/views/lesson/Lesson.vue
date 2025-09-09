@@ -245,7 +245,7 @@
       </svg>
     </div>
 
-    <IndexBar :data="indexData" />
+    <IndexBar bind=".lesson-main" />
   </div>
 </template>
 
@@ -271,7 +271,6 @@ import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 import { displayText, textParser } from './index.ts'
-import type { IndexItem } from '../../components/IndexBar'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
@@ -461,14 +460,6 @@ const children = computed(() => {
 
 const onScrollEnd = async () => {
   scrollPosition.value = container.value.scrollTop
-
-  let sum = 0
-  for (let i = 0; i < children.value.length; i++) {
-    sum += children.value[i].getBoundingClientRect().height
-    if (scrollPosition.value < sum) {
-      break
-    }
-  }
 }
 
 interface HotkeyRef {
@@ -479,11 +470,11 @@ const hotkeyRefMap = computed<HotkeyRef>(() => {
   const refs: { [key: string]: HTMLElement } = {}
   children.value
     .filter(Boolean)
-    .map((item: HTMLElement, _: number) => {
-      const key: string = item.id
+    .map((item: HTMLElement, index: number) => {
+      const key: string = `${index + 1}`
       return [key, item]
     })
-    .forEach((arr) => {
+    .forEach((arr: [string, HTMLElement]) => {
       const key = arr[0] as string
       refs[key] = arr[1] as HTMLElement
     })
@@ -502,7 +493,6 @@ const onSingleKeyup = (event: KeyboardEvent) => {
     dialog.value = !dialog.value
   } else if (['r'].includes(event.key)) {
   } else if (Object.keys(hotkeyRefMap.value).includes(event.key)) {
-    // 数字跳转关联键
     scrollTarget(hotkeyRefMap.value[event.key], {
       behavior: 'smooth',
       block: 'start',
@@ -510,20 +500,6 @@ const onSingleKeyup = (event: KeyboardEvent) => {
     })
   }
 }
-
-const indexData = ref<IndexItem[]>([])
-watch(
-  () => hotkeyRefMap.value,
-  () => {
-    indexData.value = []
-    Object.keys(hotkeyRefMap.value).forEach((key: string) => {
-      indexData.value.push({
-        label: key,
-        element: hotkeyRefMap.value[key],
-      })
-    })
-  }
-)
 
 // 刷新页面、切换页面 router.push 是否执行。
 // 避免刷新页面执行 onActivated 中 router.push，此时 index 为 undefined。
