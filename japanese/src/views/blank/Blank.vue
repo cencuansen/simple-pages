@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import Dictionary from '../Dictionary/Dictionary.vue'
+import Dictionary from '../../components/Dictionary/Dictionary.vue'
 </script>
 
 <style scoped></style>

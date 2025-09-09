@@ -4,10 +4,7 @@
 
     <div class="lesson-main" ref="container" @scrollend="onScrollEnd">
       <h1 id="title" class="lesson-title" ref="top">
-        <el-text
-          class="text-title"
-          v-html="textView(lessonTitle)"
-        ></el-text>
+        <el-text class="text-title" v-html="textView(lessonTitle)"></el-text>
       </h1>
 
       <!-- 简单句子 -->
@@ -54,7 +51,7 @@
       >
         <h2>
           <el-text
-            class="text text-content-h2"
+            class="text-content-h2"
             v-html="textView(discussions?.title)"
             @click="aClick"
           ></el-text>
@@ -79,7 +76,7 @@
         <h2 class="h2">
           <Reading :item="article" :items="article?.contents" />
           <el-text
-            class="text text-content-h2"
+            class="text-content-h2"
             v-html="textView(article?.title)"
             @click="aClick"
           ></el-text>

@@ -114,12 +114,4 @@ const aClick = (event: any) => {
   color: #999;
   transition: opacity 0.3s ease;
 }
-
-.speech-button {
-  margin-bottom: 0.5rem;
-}
-
-.speech-button:first-child {
-  margin-right: 1rem;
-}
 </style>
