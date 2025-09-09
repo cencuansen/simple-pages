@@ -133,7 +133,7 @@
       </div>
     </el-dialog>
 
-    <a class="go-top" href="#" @click="goTop">↑</a>
+    <a class="go-top" href="#" @click="goTop(top)">↑</a>
 
     <div
       class="close-fullscreen"
@@ -182,7 +182,7 @@ import { searchLesson } from '../../utils'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
-import { displayText, textParser } from './index.ts'
+import { displayText, textParser, aClick, goTop } from './index.ts'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
@@ -241,17 +241,11 @@ watch(
 )
 
 const dialog = ref(false)
-
 const top = ref()
 const container = ref()
 const grammarsRef = ref()
-const articleRef = ref()
-const wordsRef = ref()
-const audioRef = ref()
 
 const scrollPosition = ref<number>(0)
-
-const lastElement = ref<HTMLElement | null>()
 
 watch(
   () => settingStore.translate,
@@ -293,44 +287,6 @@ const mainHeight = computed(() => {
   }
 })
 
-const scrollTarget = (
-  target: any,
-  config: {
-    behavior?: ScrollBehavior
-    block?: ScrollLogicalPosition
-    inline?: ScrollLogicalPosition
-  } = { behavior: 'smooth', block: 'center', inline: 'nearest' }
-) => {
-  const { behavior, block, inline } = config
-  target?.scrollIntoView({
-    behavior,
-    block,
-    inline,
-  })
-}
-
-const aClick = (event: any) => {
-  event.preventDefault()
-  let target = event.target
-  if (event.target.tagName.toLowerCase() === 'ruby') {
-    target = event.target.parentElement
-  }
-  if (target.tagName.toLowerCase() === 'a') {
-    const href = target.getAttribute('href')
-    if (href && href.startsWith('#')) {
-      const targetElement = container.value.querySelector(href)
-      if (targetElement) {
-        lastElement.value = target
-        scrollTarget(targetElement)
-        targetElement.classList.add('target-active')
-        targetElement.addEventListener('animationend', () => {
-          targetElement.classList.remove('target-active')
-        })
-      }
-    }
-  }
-}
-
 const words: ComputedRef<WordItem[]> = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex)
 })
@@ -338,28 +294,6 @@ const words: ComputedRef<WordItem[]> = computed(() => {
 const textView = computed(() => {
   return textParser(words.value, settingStore.wordLink, settingStore.furigana)
 })
-
-const goTop = () => {
-  if (lastElement.value) {
-    const temp = lastElement.value
-    lastElement.value = null
-    temp.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'nearest',
-    })
-    temp.classList.add('target-active')
-    temp.addEventListener('animationend', () => {
-      temp.classList.remove('target-active')
-    })
-  } else {
-    top.value.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'nearest',
-    })
-  }
-}
 
 onBeforeUnmount(() => {
   speechStore.stop()

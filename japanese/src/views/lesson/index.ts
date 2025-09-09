@@ -7,6 +7,9 @@ import type {
   ParseRuby,
   RubyPart,
 } from './types.ts'
+import { useLessonStore } from '../../stores/lessonStore.ts'
+import { storeToRefs } from 'pinia'
+
 
 const originalTextMap: OriginalTextMap = {}
 
@@ -211,5 +214,59 @@ export const textParser = (
       return kataFalseWordTrue({ originalText, words })
     }
     return ''
+  }
+}
+
+export const aClick = (event: any) => {
+  const lessonStore = useLessonStore()
+  const setLastElement = lessonStore.setLastElement
+
+  event.preventDefault()
+  let target = event.target
+  if (event.target.tagName.toLowerCase() === 'ruby') {
+    target = event.target.parentElement
+  }
+  if (target.tagName.toLowerCase() === 'a') {
+    const href = target.getAttribute('href')
+    if (href && href.startsWith('#')) {
+      const targetElement = document.querySelector(href)
+      if (targetElement) {
+        setLastElement(target)
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'nearest',
+        })
+        targetElement.classList.add('target-active')
+        targetElement.addEventListener('animationend', () => {
+          targetElement.classList.remove('target-active')
+        })
+      }
+    }
+  }
+}
+
+export const goTop = (top: Element) => {
+  const lessonStore = useLessonStore()
+  const { lastElement } = storeToRefs(lessonStore)
+
+  if (lastElement.value) {
+    const temp = lastElement.value
+    lastElement.value = null
+    temp.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
+    })
+    temp.classList.add('target-active')
+    temp.addEventListener('animationend', () => {
+      temp.classList.remove('target-active')
+    })
+  } else {
+    top.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
+    })
   }
 }

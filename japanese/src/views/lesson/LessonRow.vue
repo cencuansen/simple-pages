@@ -26,12 +26,11 @@
 </template>
 
 <script setup lang="ts">
-import { displayText, textParser } from './index.ts'
+import { aClick, displayText, textParser } from './index.ts'
 import Reading from '../../components/Reading.vue'
 import type { TextBase } from './types.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
-import { useLessonStore } from '../../stores/lessonStore.ts'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import type { WordItem } from '../../types'
@@ -41,9 +40,6 @@ const activeText = readingStore.activeText
 
 const settingStore = useSettingStore()
 const { wordLink, furigana } = storeToRefs(settingStore)
-
-const lessonStore = useLessonStore()
-const setLastElement = lessonStore.setLastElement
 
 interface LessonRowProps {
   container?: any
@@ -57,32 +53,6 @@ const props = defineProps<LessonRowProps>()
 const textView = computed(() => {
   return textParser(props.words, wordLink.value, furigana.value)
 })
-
-const aClick = (event: any) => {
-  event.preventDefault()
-  let target = event.target
-  if (event.target.tagName.toLowerCase() === 'ruby') {
-    target = event.target.parentElement
-  }
-  if (target.tagName.toLowerCase() === 'a') {
-    const href = target.getAttribute('href')
-    if (href && href.startsWith('#')) {
-      const targetElement = props.container.querySelector(href)
-      if (targetElement) {
-        setLastElement(target)
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-          inline: 'nearest',
-        })
-        targetElement.classList.add('target-active')
-        targetElement.addEventListener('animationend', () => {
-          targetElement.classList.remove('target-active')
-        })
-      }
-    }
-  }
-}
 </script>
 
 <style scoped>
