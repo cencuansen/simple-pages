@@ -8,6 +8,8 @@ export interface Grammar {
   title: string
   displayTitle: string
   desc: string[]
+  example: string
+  level: string
 }
 
 export interface GrammarFilter {

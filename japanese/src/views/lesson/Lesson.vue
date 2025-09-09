@@ -180,26 +180,13 @@
       </section>
 
       <!-- 语法 -->
-      <section
-        id="grammars"
-        class="section grammar"
-        ref="grammarsRef"
-        v-if="grammars.length > 0"
-      >
-        <el-collapse v-model="expands" :expand-icon-position="'left'">
-          <el-collapse-item
-            v-for="grammar in grammars"
-            :title="grammar.title"
-            :name="collapseTitle(grammar.title, grammar.idx)"
-          >
-            <div v-for="row in grammar.desc" v-html="row"></div>
-          </el-collapse-item>
-        </el-collapse>
+      <section id="grammars" class="section" ref="grammarsRef">
+        <GrammarCore :data="grammars" :lesson-index="currentIndex" />
       </section>
 
       <!-- 单词 -->
       <section id="words" class="section" ref="wordsRef">
-        <WordCore :data="words" :lesson-index="currentIndex" show-header />
+        <WordCore :data="wordList" :lesson-index="currentIndex" show-header />
       </section>
     </div>
 
@@ -277,20 +264,20 @@ import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useAudioStore } from '../../stores/audioStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
-import { useGrammarStore } from '../../stores/grammarStore.ts'
+import { useGrammarStore } from '../../stores/grammar/grammarStore.ts'
 import type { WordItem } from '../../types'
 import { searchLesson } from '../../utils'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 import { displayText, textParser } from './index.ts'
-import { collapseTitle } from '../grammar'
 import type { IndexItem } from '../../components/IndexBar'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
 import Reading from '../../components/Reading.vue'
 import WordCore from '../word/WordCore.vue'
+import GrammarCore from '../grammar/GrammarCore.vue'
 
 const lessonStore = useLessonStore()
 const readingStore = useReadingStore()
@@ -299,6 +286,9 @@ const audioStore = useAudioStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
+
+const { wordList } = storeToRefs(wordStore)
+const { grammars } = storeToRefs(grammarStore)
 
 const {
   currentIndex,
@@ -374,8 +364,6 @@ watch(
   }
 )
 
-const expands = ref<string[]>([])
-
 const keyword = ref('')
 const fullLessons = computed(() => searchLesson(lessons.value, keyword.value))
 
@@ -432,10 +420,6 @@ const aClick = (event: any) => {
     }
   }
 }
-
-const grammars = computed(() => {
-  return grammarStore.queryGrammars({ lesson: lessonStore.currentIndex })
-})
 
 const words: ComputedRef<WordItem[]> = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex)
@@ -671,14 +655,6 @@ watch(
   align-items: start;
 }
 
-.column-word {
-  font-size: 1rem;
-}
-
-:deep(.el-tooltip__trigger) {
-  outline: none;
-}
-
 :deep(.target-active) {
   animation: highlight 3s ease-in-out alternate;
 }
@@ -708,28 +684,11 @@ watch(
   overflow-y: hidden;
 }
 
-.column-kana {
-  font-size: 0.8rem;
-}
-
 :deep(.dict-column .cell) {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.dict-item {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-}
-
-.dict-item img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .anchor-link {

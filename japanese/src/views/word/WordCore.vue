@@ -185,7 +185,6 @@ const { nowTextId } = storeToRefs(readingStore)
 const activeText = readingStore.activeText
 
 const selectedClasses = ref<string[]>([])
-
 const selectedLevels = ref<string[]>([])
 
 const levels: ComputedRef<string[]> = computed(() => {

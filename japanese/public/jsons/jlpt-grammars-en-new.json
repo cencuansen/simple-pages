@@ -1,0 +1,6374 @@
+[
+  {
+    "idx": 1,
+    "title": "いちばん",
+    "desc": [
+      "the most"
+    ],
+    "example": "ここがいちばん面白い場面です。",
+    "level": "n5"
+  },
+  {
+    "idx": 2,
+    "title": "が 1",
+    "desc": [
+      "as for (identifies something)"
+    ],
+    "example": "弟がいる。",
+    "level": "n5"
+  },
+  {
+    "idx": 3,
+    "title": "が 2",
+    "desc": [
+      "but; however"
+    ],
+    "example": "難しいが、楽しい。",
+    "level": "n5"
+  },
+  {
+    "idx": 4,
+    "title": "か 1",
+    "desc": [
+      "or (A or B; choice between 2 objects)"
+    ],
+    "example": "ここかそこ。",
+    "level": "n5"
+  },
+  {
+    "idx": 5,
+    "title": "か 2",
+    "desc": [
+      "question particle"
+    ],
+    "example": "雨ですか。",
+    "level": "n5"
+  },
+  {
+    "idx": 6,
+    "title": "がある",
+    "desc": [
+      "there is (used for non-living things)"
+    ],
+    "example": "川がある。",
+    "level": "n5"
+  },
+  {
+    "idx": 7,
+    "title": "がいる",
+    "desc": [
+      "there is (used for living things)"
+    ],
+    "example": "可愛い女の子がいる。",
+    "level": "n5"
+  },
+  {
+    "idx": 8,
+    "title": "から 1",
+    "desc": [
+      "because; since"
+    ],
+    "example": "車で来ましたから。",
+    "level": "n5"
+  },
+  {
+    "idx": 9,
+    "title": "から 2",
+    "desc": [
+      "from"
+    ],
+    "example": "西からの風。",
+    "level": "n5"
+  },
+  {
+    "idx": 10,
+    "title": "くらい / ぐらい",
+    "desc": [
+      "about; approximately"
+    ],
+    "example": "東京まで、３０分くらいです。",
+    "level": "n5"
+  },
+  {
+    "idx": 11,
+    "title": "けど / けれども",
+    "desc": [
+      "but; although"
+    ],
+    "example": "早く寝たけれども、まだ眠たいです。",
+    "level": "n5"
+  },
+  {
+    "idx": 12,
+    "title": "する",
+    "desc": [
+      "to do"
+    ],
+    "example": "質問する。",
+    "level": "n5"
+  },
+  {
+    "idx": 13,
+    "title": "だ / です",
+    "desc": [
+      "there is; this is"
+    ],
+    "example": "猫だ。猫です。",
+    "level": "n5"
+  },
+  {
+    "idx": 14,
+    "title": "たい",
+    "desc": [
+      "want to"
+    ],
+    "example": "何食べたい？",
+    "level": "n5"
+  },
+  {
+    "idx": 15,
+    "title": "だけ",
+    "desc": [
+      "only; just"
+    ],
+    "example": "これは水だけだ。",
+    "level": "n5"
+  },
+  {
+    "idx": 16,
+    "title": "たことがある",
+    "desc": [
+      "have done before"
+    ],
+    "example": "高い肉を食べたことがある。",
+    "level": "n5"
+  },
+  {
+    "idx": 17,
+    "title": "だろう 1",
+    "desc": [
+      "probably"
+    ],
+    "example": "ペンがあるだろう。",
+    "level": "n5"
+  },
+  {
+    "idx": 18,
+    "title": "だろう 2",
+    "desc": [
+      "isn't it?; right?"
+    ],
+    "example": "ここがいいだろう。",
+    "level": "n5"
+  },
+  {
+    "idx": 19,
+    "title": "つもり",
+    "desc": [
+      "plan to; intend to"
+    ],
+    "example": "日本に行くつもりだ。",
+    "level": "n5"
+  },
+  {
+    "idx": 20,
+    "title": "で 1",
+    "desc": [
+      "at; in"
+    ],
+    "example": "バーで飲む。",
+    "level": "n5"
+  },
+  {
+    "idx": 21,
+    "title": "で 2",
+    "desc": [
+      "with; by"
+    ],
+    "example": "バスで帰る。",
+    "level": "n5"
+  },
+  {
+    "idx": 22,
+    "title": "ている",
+    "desc": [
+      "is / are / am doing"
+    ],
+    "example": "何をしている？",
+    "level": "n5"
+  },
+  {
+    "idx": 23,
+    "title": "てから",
+    "desc": [
+      "after doing"
+    ],
+    "example": "映画を見てから、帰ります。",
+    "level": "n5"
+  },
+  {
+    "idx": 24,
+    "title": "てください",
+    "desc": [
+      "please do…"
+    ],
+    "example": "食べてください。",
+    "level": "n5"
+  },
+  {
+    "idx": 25,
+    "title": "でしょう 1",
+    "desc": [
+      "probably"
+    ],
+    "example": "雨でしょうね。",
+    "level": "n5"
+  },
+  {
+    "idx": 26,
+    "title": "でしょう 2",
+    "desc": [
+      "isn't it?; right?"
+    ],
+    "example": "いいでしょう。",
+    "level": "n5"
+  },
+  {
+    "idx": 27,
+    "title": "てはいけない",
+    "desc": [
+      "must not; may not"
+    ],
+    "example": "ここに来てはいけない。",
+    "level": "n5"
+  },
+  {
+    "idx": 28,
+    "title": "てもいい",
+    "desc": [
+      "is okay; is alright to"
+    ],
+    "example": "狭くてもいい。",
+    "level": "n5"
+  },
+  {
+    "idx": 29,
+    "title": "と 1",
+    "desc": [
+      "and"
+    ],
+    "example": "黒と白の猫。",
+    "level": "n5"
+  },
+  {
+    "idx": 30,
+    "title": "と 2",
+    "desc": [
+      "with"
+    ],
+    "example": "友達と見る。",
+    "level": "n5"
+  },
+  {
+    "idx": 31,
+    "title": "な",
+    "desc": [
+      "don't do"
+    ],
+    "example": "泣くな。",
+    "level": "n5"
+  },
+  {
+    "idx": 32,
+    "title": "ないでください",
+    "desc": [
+      "please don't"
+    ],
+    "example": "泣かないでください。",
+    "level": "n5"
+  },
+  {
+    "idx": 33,
+    "title": "なる",
+    "desc": [
+      "to become"
+    ],
+    "example": "病気になる。",
+    "level": "n5"
+  },
+  {
+    "idx": 34,
+    "title": "に / へ",
+    "desc": [
+      "to"
+    ],
+    "example": "駅に行く。駅へ行く。",
+    "level": "n5"
+  },
+  {
+    "idx": 35,
+    "title": "に",
+    "desc": [
+      "in; at; to; for"
+    ],
+    "example": "街に住む。",
+    "level": "n5"
+  },
+  {
+    "idx": 36,
+    "title": "にいく",
+    "desc": [
+      "to go, in order to do..."
+    ],
+    "example": "エレベーターで５かいにいく。",
+    "level": "n5"
+  },
+  {
+    "idx": 37,
+    "title": "にする",
+    "desc": [
+      "to decide on"
+    ],
+    "example": "この音楽にする。",
+    "level": "n5"
+  },
+  {
+    "idx": 38,
+    "title": "の 1",
+    "desc": [
+      "of (indicates possession)"
+    ],
+    "example": "私の犬です。",
+    "level": "n5"
+  },
+  {
+    "idx": 39,
+    "title": "の 2",
+    "desc": [
+      "(turns verbs into nouns)"
+    ],
+    "example": "彼は走るのが速い。",
+    "level": "n5"
+  },
+  {
+    "idx": 40,
+    "title": "のが下手",
+    "desc": [
+      "to be bad at"
+    ],
+    "example": "彼は漢字を書くのが下手。",
+    "level": "n5"
+  },
+  {
+    "idx": 41,
+    "title": "のが上手",
+    "desc": [
+      "to be good at"
+    ],
+    "example": "彼女は歌うのが上手。",
+    "level": "n5"
+  },
+  {
+    "idx": 42,
+    "title": "のが好き",
+    "desc": [
+      "like / love doing"
+    ],
+    "example": "犬と遊ぶのが好き。",
+    "level": "n5"
+  },
+  {
+    "idx": 43,
+    "title": "ので",
+    "desc": [
+      "because of; the reason is that"
+    ],
+    "example": "太いので、走るのは遅い。",
+    "level": "n5"
+  },
+  {
+    "idx": 44,
+    "title": "は",
+    "desc": [
+      "as for (introduces something)"
+    ],
+    "example": "これは何？",
+    "level": "n5"
+  },
+  {
+    "idx": 45,
+    "title": "ほうがいい 1",
+    "desc": [
+      "it'd be better to"
+    ],
+    "example": "靴を脱いだほうがいいです。",
+    "level": "n5"
+  },
+  {
+    "idx": 46,
+    "title": "ほうがいい 2",
+    "desc": [
+      "it'd be better to not"
+    ],
+    "example": "そのことを言わないほうがいいかもしれない。",
+    "level": "n5"
+  },
+  {
+    "idx": 47,
+    "title": "前に",
+    "desc": [
+      "before"
+    ],
+    "example": "犬が門の前にいる。",
+    "level": "n5"
+  },
+  {
+    "idx": 48,
+    "title": "まだ",
+    "desc": [
+      "still; not yet"
+    ],
+    "example": "娘はまだ起きていません。",
+    "level": "n5"
+  },
+  {
+    "idx": 49,
+    "title": "まで",
+    "desc": [
+      "until; till; to; even"
+    ],
+    "example": "駅まで、歩く。",
+    "level": "n5"
+  },
+  {
+    "idx": 50,
+    "title": "も",
+    "desc": [
+      "also; too; as well"
+    ],
+    "example": "服も古い。",
+    "level": "n5"
+  },
+  {
+    "idx": 51,
+    "title": "もう",
+    "desc": [
+      "already; anymore"
+    ],
+    "example": "もう帰った。",
+    "level": "n5"
+  },
+  {
+    "idx": 52,
+    "title": "や",
+    "desc": [
+      "and (etc.)"
+    ],
+    "example": "鳥や馬が山にいました。",
+    "level": "n5"
+  },
+  {
+    "idx": 53,
+    "title": "より○○のほうが○○",
+    "desc": [
+      "is more ~ than"
+    ],
+    "example": "飛行機より電車のほうが遅いです。",
+    "level": "n5"
+  },
+  {
+    "idx": 54,
+    "title": "後で",
+    "desc": [
+      "after; later"
+    ],
+    "example": "後で電話します。",
+    "level": "n4"
+  },
+  {
+    "idx": 55,
+    "title": "あまり○○ない",
+    "desc": [
+      "not very; not much"
+    ],
+    "example": "あまり肉を食べない。",
+    "level": "n4"
+  },
+  {
+    "idx": 56,
+    "title": "いたす",
+    "desc": [
+      "to do (humble する)"
+    ],
+    "example": "今確認いたします。",
+    "level": "n4"
+  },
+  {
+    "idx": 57,
+    "title": "いらっしゃる",
+    "desc": [
+      "to be; to come; to go"
+    ],
+    "example": "ここにはよくいらっしゃるんですか？",
+    "level": "n4"
+  },
+  {
+    "idx": 58,
+    "title": "お○○ください",
+    "desc": [
+      "please do (honorific)"
+    ],
+    "example": "お水をください。",
+    "level": "n4"
+  },
+  {
+    "idx": 59,
+    "title": "お○○になる",
+    "desc": [
+      "to do (honorific)"
+    ],
+    "example": "お世話になりました。",
+    "level": "n4"
+  },
+  {
+    "idx": 60,
+    "title": "おきに",
+    "desc": [
+      "repeated at intervals; every"
+    ],
+    "example": "一時間おきに電車があります。",
+    "level": "n4"
+  },
+  {
+    "idx": 61,
+    "title": "終わる",
+    "desc": [
+      "to finish; to end"
+    ],
+    "example": "終わるまで、頑張った。",
+    "level": "n4"
+  },
+  {
+    "idx": 62,
+    "title": "かい",
+    "desc": [
+      "(turns a sentence into a yes/no question)"
+    ],
+    "example": "今朝は飯を食べたかい？",
+    "level": "n4"
+  },
+  {
+    "idx": 63,
+    "title": "かしら",
+    "desc": [
+      "I wonder"
+    ],
+    "example": "裕子さんは大丈夫かしら。",
+    "level": "n4"
+  },
+  {
+    "idx": 64,
+    "title": "がする",
+    "desc": [
+      "smell; hear; taste"
+    ],
+    "example": "いい匂いがする。",
+    "level": "n4"
+  },
+  {
+    "idx": 65,
+    "title": "方",
+    "desc": [
+      "way of; method"
+    ],
+    "example": "私の考え方。",
+    "level": "n4"
+  },
+  {
+    "idx": 66,
+    "title": "かどうか",
+    "desc": [
+      "whether or not"
+    ],
+    "example": "行くかどうか　分からない。",
+    "level": "n4"
+  },
+  {
+    "idx": 67,
+    "title": "かな",
+    "desc": [
+      "I wonder"
+    ],
+    "example": "外は寒いかな。",
+    "level": "n4"
+  },
+  {
+    "idx": 68,
+    "title": "かもしれない",
+    "desc": [
+      "might; maybe"
+    ],
+    "example": "アレルギーかもしれないですね。",
+    "level": "n4"
+  },
+  {
+    "idx": 69,
+    "title": "がる",
+    "desc": [
+      "to show signs of; to feel; to think"
+    ],
+    "example": "怖がらないでください。",
+    "level": "n4"
+  },
+  {
+    "idx": 70,
+    "title": "急に",
+    "desc": [
+      "suddenly"
+    ],
+    "example": "猫が急に噛み付いた。",
+    "level": "n4"
+  },
+  {
+    "idx": 71,
+    "title": "ございます",
+    "desc": [
+      "there is (honorific　ある)"
+    ],
+    "example": "ほかにご質問はございますか。",
+    "level": "n4"
+  },
+  {
+    "idx": 72,
+    "title": "こと",
+    "desc": [
+      "(turns verbs into nouns)"
+    ],
+    "example": "これ見たことある？",
+    "level": "n4"
+  },
+  {
+    "idx": 73,
+    "title": "ことができる",
+    "desc": [
+      "can; be able to"
+    ],
+    "example": "馬に乗ることができる。",
+    "level": "n4"
+  },
+  {
+    "idx": 74,
+    "title": "ことにする",
+    "desc": [
+      "to decide on"
+    ],
+    "example": "家を買うことにした。",
+    "level": "n4"
+  },
+  {
+    "idx": 75,
+    "title": "ことになる",
+    "desc": [
+      "will become"
+    ],
+    "example": "他人に知れるとまずいことになるわね。",
+    "level": "n4"
+  },
+  {
+    "idx": 76,
+    "title": "ごろ",
+    "desc": [
+      "around; about"
+    ],
+    "example": "３時ごろに作り終わる。",
+    "level": "n4"
+  },
+  {
+    "idx": 77,
+    "title": "さ",
+    "desc": [
+      "(turns adjectives) into nouns"
+    ],
+    "example": "このテーブルは丁度良い高さだ。",
+    "level": "n4"
+  },
+  {
+    "idx": 78,
+    "title": "させられる",
+    "desc": [
+      "to be made to do something"
+    ],
+    "example": "息子は退学させられた。",
+    "level": "n4"
+  },
+  {
+    "idx": 79,
+    "title": "させる",
+    "desc": [
+      "to make/let somebody do something"
+    ],
+    "example": "この美しい話はあなたを感動させるだろう。",
+    "level": "n4"
+  },
+  {
+    "idx": 80,
+    "title": "し",
+    "desc": [
+      "and"
+    ],
+    "example": "怖かったし、悲しかった。",
+    "level": "n4"
+  },
+  {
+    "idx": 81,
+    "title": "しか○○ない",
+    "desc": [
+      "only; nothing but"
+    ],
+    "example": "四つしか椅子がない。",
+    "level": "n4"
+  },
+  {
+    "idx": 82,
+    "title": "じゃないか",
+    "desc": [
+      "isn't it"
+    ],
+    "example": "いいじゃないか。",
+    "level": "n4"
+  },
+  {
+    "idx": 83,
+    "title": "すぎる",
+    "desc": [
+      "too much"
+    ],
+    "example": "小さすぎる。",
+    "level": "n4"
+  },
+  {
+    "idx": 84,
+    "title": "ぜんぜん",
+    "desc": [
+      "(not) at all"
+    ],
+    "example": "お金がぜんぜんない。",
+    "level": "n4"
+  },
+  {
+    "idx": 85,
+    "title": "そうだ 1",
+    "desc": [
+      "I heard that; it is said that"
+    ],
+    "example": "明日は気温が下がるそうだ。",
+    "level": "n4"
+  },
+  {
+    "idx": 86,
+    "title": "そうだ 2",
+    "desc": [
+      "look like; appear; seem"
+    ],
+    "example": "眠そうだね。",
+    "level": "n4"
+  },
+  {
+    "idx": 87,
+    "title": "そうに / そうな",
+    "desc": [
+      "seem; look like"
+    ],
+    "example": "あの時計は高そうに見える。",
+    "level": "n4"
+  },
+  {
+    "idx": 88,
+    "title": "それでも",
+    "desc": [
+      "but still; and yet"
+    ],
+    "example": "明日雨降るの？それでも海に行く。",
+    "level": "n4"
+  },
+  {
+    "idx": 89,
+    "title": "そんなに",
+    "desc": [
+      "so; so much; like that"
+    ],
+    "example": "そんなに心配しないで。",
+    "level": "n4"
+  },
+  {
+    "idx": 90,
+    "title": "たがる",
+    "desc": [
+      "to want to"
+    ],
+    "example": "彼は動物園に行きたがる。",
+    "level": "n4"
+  },
+  {
+    "idx": 91,
+    "title": "だけで",
+    "desc": [
+      "just by"
+    ],
+    "example": "この寒さだけで死ぬよ。",
+    "level": "n4"
+  },
+  {
+    "idx": 92,
+    "title": "出す",
+    "desc": [
+      "to suddenly begin; to suddenly appear"
+    ],
+    "example": "トムは急に泣き出した。",
+    "level": "n4"
+  },
+  {
+    "idx": 93,
+    "title": "たところ",
+    "desc": [
+      "just finished doing; was just doing"
+    ],
+    "example": "なんか、そんな気がしていたところです。",
+    "level": "n4"
+  },
+  {
+    "idx": 94,
+    "title": "たばかり",
+    "desc": [
+      "just did; something just happened"
+    ],
+    "example": "今朝、着いたばかりです。",
+    "level": "n4"
+  },
+  {
+    "idx": 95,
+    "title": "たら",
+    "desc": [
+      "if; after; when"
+    ],
+    "example": "眠くなったら言ってね。",
+    "level": "n4"
+  },
+  {
+    "idx": 96,
+    "title": "たらどう",
+    "desc": [
+      "why don't you"
+    ],
+    "example": "もっと勉強したらどうですか？",
+    "level": "n4"
+  },
+  {
+    "idx": 97,
+    "title": "たり○○たり",
+    "desc": [
+      "do such things like"
+    ],
+    "example": "掃除をしたり、洗濯したりした。",
+    "level": "n4"
+  },
+  {
+    "idx": 98,
+    "title": "続ける",
+    "desc": [
+      "to continue"
+    ],
+    "example": "仕事を続けてください。",
+    "level": "n4"
+  },
+  {
+    "idx": 99,
+    "title": "てあげる",
+    "desc": [
+      "to do something for someone"
+    ],
+    "example": "今回だけは許してあげる。",
+    "level": "n4"
+  },
+  {
+    "idx": 100,
+    "title": "てある",
+    "desc": [
+      "something is/has been done"
+    ],
+    "example": "顔に嘘って書いてあるよ。",
+    "level": "n4"
+  },
+  {
+    "idx": 101,
+    "title": "ていく",
+    "desc": [
+      "to go and do"
+    ],
+    "example": "大丈夫！お弁当を持って行くから。",
+    "level": "n4"
+  },
+  {
+    "idx": 102,
+    "title": "ていただけませんか",
+    "desc": [
+      "could you please"
+    ],
+    "example": "窓を閉めていただけませんか？",
+    "level": "n4"
+  },
+  {
+    "idx": 103,
+    "title": "ているところ",
+    "desc": [
+      "in the process of doing"
+    ],
+    "example": "ボーナスの使い道を考えているところです。",
+    "level": "n4"
+  },
+  {
+    "idx": 104,
+    "title": "ておく / とく",
+    "desc": [
+      "to do something for later"
+    ],
+    "example": "冷蔵庫でジュースを冷やしておく。",
+    "level": "n4"
+  },
+  {
+    "idx": 105,
+    "title": "てくる",
+    "desc": [
+      "to come to; to become; to continue"
+    ],
+    "example": "泣けてくるなあ。",
+    "level": "n4"
+  },
+  {
+    "idx": 106,
+    "title": "てくれる",
+    "desc": [
+      "to do something for someone"
+    ],
+    "example": "それ取ってくれる？",
+    "level": "n4"
+  },
+  {
+    "idx": 107,
+    "title": "でございます",
+    "desc": [
+      "there is; this is (honorific である)"
+    ],
+    "example": "京都ホテルでございます。",
+    "level": "n4"
+  },
+  {
+    "idx": 108,
+    "title": "てしまう / ちゃう",
+    "desc": [
+      "to do something (regretfully); to do something (completely)"
+    ],
+    "example": "お酒を飲み過ぎると、眠くなってしまう。",
+    "level": "n4"
+  },
+  {
+    "idx": 109,
+    "title": "てすみません",
+    "desc": [
+      "I'm sorry for"
+    ],
+    "example": "遅れてすみません。",
+    "level": "n4"
+  },
+  {
+    "idx": 110,
+    "title": "てほしい",
+    "desc": [
+      "I want you to; I need you to"
+    ],
+    "example": "一緒に勉強してほしいです。",
+    "level": "n4"
+  },
+  {
+    "idx": 111,
+    "title": "てみる",
+    "desc": [
+      "to try to"
+    ],
+    "example": "今週末に野球をしてみる。",
+    "level": "n4"
+  },
+  {
+    "idx": 112,
+    "title": "ても",
+    "desc": [
+      "even if; even though"
+    ],
+    "example": "たとえ両親が反対しても私は行く。",
+    "level": "n4"
+  },
+  {
+    "idx": 113,
+    "title": "でも",
+    "desc": [
+      "or something"
+    ],
+    "example": "お茶でもどう？",
+    "level": "n4"
+  },
+  {
+    "idx": 114,
+    "title": "てもらう",
+    "desc": [
+      "to get somebody to do something"
+    ],
+    "example": "この仕事を手伝ってもらう。",
+    "level": "n4"
+  },
+  {
+    "idx": 115,
+    "title": "てよかった",
+    "desc": [
+      "I'm glad that"
+    ],
+    "example": "今日運動してよかった。",
+    "level": "n4"
+  },
+  {
+    "idx": 116,
+    "title": "と",
+    "desc": [
+      "if; when; and"
+    ],
+    "example": "母と娘。",
+    "level": "n4"
+  },
+  {
+    "idx": 117,
+    "title": "ということ",
+    "desc": [
+      "(changes a sentence or phrase into a noun)"
+    ],
+    "example": "私にパーティに来てほしくないということはわかります。",
+    "level": "n4"
+  },
+  {
+    "idx": 118,
+    "title": "と思う",
+    "desc": [
+      "I think; you think"
+    ],
+    "example": "食べようと思う。",
+    "level": "n4"
+  },
+  {
+    "idx": 119,
+    "title": "とか○○とか",
+    "desc": [
+      "among other things; such as"
+    ],
+    "example": "青とか水色が好き。",
+    "level": "n4"
+  },
+  {
+    "idx": 120,
+    "title": "とき",
+    "desc": [
+      "when; at the time"
+    ],
+    "example": "散歩するときは音楽を聴く。",
+    "level": "n4"
+  },
+  {
+    "idx": 121,
+    "title": "ところ",
+    "desc": [
+      "about to; on the verge of"
+    ],
+    "example": "今から帰るところです。",
+    "level": "n4"
+  },
+  {
+    "idx": 122,
+    "title": "ないで",
+    "desc": [
+      "without doing; don't"
+    ],
+    "example": "泣かないで。",
+    "level": "n4"
+  },
+  {
+    "idx": 123,
+    "title": "ながら",
+    "desc": [
+      "while; during; as"
+    ],
+    "example": "掃除しながら、テレビを見ます。",
+    "level": "n4"
+  },
+  {
+    "idx": 124,
+    "title": "なくてはいけない / なくてはならない",
+    "desc": [
+      "must do; have to do"
+    ],
+    "example": "毎日学校に行かなくてはいけない。",
+    "level": "n4"
+  },
+  {
+    "idx": 125,
+    "title": "なくてもいい",
+    "desc": [
+      "don't have to"
+    ],
+    "example": "急がなくてもいいよ。",
+    "level": "n4"
+  },
+  {
+    "idx": 126,
+    "title": "なければいけない / なければならない",
+    "desc": [
+      "must do; have to do"
+    ],
+    "example": "もっと勉強しなければいけないと思った。",
+    "level": "n4"
+  },
+  {
+    "idx": 127,
+    "title": "なさい",
+    "desc": [
+      "(order somebody to do something)"
+    ],
+    "example": "勉強しなさい。",
+    "level": "n4"
+  },
+  {
+    "idx": 128,
+    "title": "なさる",
+    "desc": [
+      "to do (honorific する)"
+    ],
+    "example": "お飲み物はどうなさいますか。",
+    "level": "n4"
+  },
+  {
+    "idx": 129,
+    "title": "など",
+    "desc": [
+      "such as; things like"
+    ],
+    "example": "腰や背中などが痛い。",
+    "level": "n4"
+  },
+  {
+    "idx": 130,
+    "title": "なら",
+    "desc": [
+      "if; in case; as for"
+    ],
+    "example": "君なら、できる。",
+    "level": "n4"
+  },
+  {
+    "idx": 131,
+    "title": "にくい",
+    "desc": [
+      "difficult to"
+    ],
+    "example": "箸は使いにくいです。",
+    "level": "n4"
+  },
+  {
+    "idx": 132,
+    "title": "の中で",
+    "desc": [
+      "in; among"
+    ],
+    "example": "果物の中で何が一番好きですか。",
+    "level": "n4"
+  },
+  {
+    "idx": 133,
+    "title": "のに 1",
+    "desc": [
+      "although in spite of; even though"
+    ],
+    "example": "無理って言ったのにまだやるの？",
+    "level": "n4"
+  },
+  {
+    "idx": 134,
+    "title": "のに 2",
+    "desc": [
+      "in order to"
+    ],
+    "example": "手紙が届くのに三日かかりました。",
+    "level": "n4"
+  },
+  {
+    "idx": 135,
+    "title": "のように / のような",
+    "desc": [
+      "like; similar to"
+    ],
+    "example": "お箸はこのように使います。",
+    "level": "n4"
+  },
+  {
+    "idx": 136,
+    "title": "ば",
+    "desc": [
+      "if… then"
+    ],
+    "example": "天気が良ければフジ山が見える。",
+    "level": "n4"
+  },
+  {
+    "idx": 137,
+    "title": "場合は",
+    "desc": [
+      "in the event of"
+    ],
+    "example": "なお、雨の場合は中止です。",
+    "level": "n4"
+  },
+  {
+    "idx": 138,
+    "title": "ばかり 1",
+    "desc": [
+      "only; nothing but"
+    ],
+    "example": "彼女はいつも文句ばかり言う。",
+    "level": "n4"
+  },
+  {
+    "idx": 139,
+    "title": "始める",
+    "desc": [
+      "to start; to begin to"
+    ],
+    "example": "先生はクラスを始める。",
+    "level": "n4"
+  },
+  {
+    "idx": 140,
+    "title": "はずがない",
+    "desc": [
+      "cannot be"
+    ],
+    "example": "彼なんかに出来るはずがない。",
+    "level": "n4"
+  },
+  {
+    "idx": 141,
+    "title": "はずだ",
+    "desc": [
+      "it must be; it should be"
+    ],
+    "example": "もっと良い方法があるはずだ。",
+    "level": "n4"
+  },
+  {
+    "idx": 142,
+    "title": "必要",
+    "desc": [
+      "need; necessary"
+    ],
+    "example": "これは、必要ですか。",
+    "level": "n4"
+  },
+  {
+    "idx": 143,
+    "title": "必要がある",
+    "desc": [
+      "need to"
+    ],
+    "example": "私たちは話す必要がある。",
+    "level": "n4"
+  },
+  {
+    "idx": 144,
+    "title": "ほしい",
+    "desc": [
+      "to want something; to be in need of"
+    ],
+    "example": "君がほしい！",
+    "level": "n4"
+  },
+  {
+    "idx": 145,
+    "title": "までに",
+    "desc": [
+      "by; by the time"
+    ],
+    "example": "明日までに電話をください。",
+    "level": "n4"
+  },
+  {
+    "idx": 146,
+    "title": "みたい",
+    "desc": [
+      "like; similar to; resembling"
+    ],
+    "example": "あの雲は鳥みたいだ。",
+    "level": "n4"
+  },
+  {
+    "idx": 147,
+    "title": "みたいに/みたいな",
+    "desc": [
+      "like; similar to"
+    ],
+    "example": "レモンみたいな黄色。",
+    "level": "n4"
+  },
+  {
+    "idx": 148,
+    "title": "やすい",
+    "desc": [
+      "easy to; likely to"
+    ],
+    "example": "ケーキは作りやすい。",
+    "level": "n4"
+  },
+  {
+    "idx": 149,
+    "title": "ようだ",
+    "desc": [
+      "it seems that; it appears that; it looks like"
+    ],
+    "example": "誰か来たようだ。",
+    "level": "n4"
+  },
+  {
+    "idx": 150,
+    "title": "ようと思う",
+    "desc": [
+      "I think I will"
+    ],
+    "example": "今日は早めに寝ようと思う。",
+    "level": "n4"
+  },
+  {
+    "idx": 151,
+    "title": "ように/ような",
+    "desc": [
+      "as; like; just like"
+    ],
+    "example": "お箸はこのように使います。",
+    "level": "n4"
+  },
+  {
+    "idx": 152,
+    "title": "ようにする",
+    "desc": [
+      "to try to; to make sure that"
+    ],
+    "example": "無駄にお金を使わないようにしている。",
+    "level": "n4"
+  },
+  {
+    "idx": 153,
+    "title": "ようになる",
+    "desc": [
+      "to reach the point that"
+    ],
+    "example": "泥を落としたら、なんと新品のようになった。",
+    "level": "n4"
+  },
+  {
+    "idx": 154,
+    "title": "よていだ",
+    "desc": [
+      "plan to; intend to"
+    ],
+    "example": "私は九月に行く予定です。",
+    "level": "n4"
+  },
+  {
+    "idx": 155,
+    "title": "より",
+    "desc": [
+      "than"
+    ],
+    "example": "日本より熱い。",
+    "level": "n4"
+  },
+  {
+    "idx": 156,
+    "title": "らしい",
+    "desc": [
+      "-like"
+    ],
+    "example": "彼女は女らしい。",
+    "level": "n4"
+  },
+  {
+    "idx": 157,
+    "title": "られる 1",
+    "desc": [
+      "to be able to do something"
+    ],
+    "example": "その魚は生で食べられる。",
+    "level": "n4"
+  },
+  {
+    "idx": 158,
+    "title": "られる 2",
+    "desc": [
+      "to do (by someone)"
+    ],
+    "example": "若い人達に教えられた。",
+    "level": "n4"
+  },
+  {
+    "idx": 159,
+    "title": "あまり",
+    "desc": [
+      "so much… that"
+    ],
+    "example": "あまり肉を食べない。",
+    "level": "n3"
+  },
+  {
+    "idx": 160,
+    "title": "あまりに",
+    "desc": [
+      "so much… that; too…"
+    ],
+    "example": "あまりにうるさかったので耳を塞いだわ。",
+    "level": "n3"
+  },
+  {
+    "idx": 161,
+    "title": "いくら○○ても / いくら○○でも",
+    "desc": [
+      "no matter how"
+    ],
+    "example": "いくら呼んでも彼は返事をしなかったわ。",
+    "level": "n3"
+  },
+  {
+    "idx": 162,
+    "title": "一方だ",
+    "desc": [
+      "more and more; continue to"
+    ],
+    "example": "雨はひどくなる一方だ。",
+    "level": "n3"
+  },
+  {
+    "idx": 163,
+    "title": "一方で",
+    "desc": [
+      "on one hand; on the other hand"
+    ],
+    "example": "父は自分に厳しい一方で、他人には優しい。",
+    "level": "n3"
+  },
+  {
+    "idx": 164,
+    "title": "うちに",
+    "desc": [
+      "while; before; doing"
+    ],
+    "example": "母はまだ暗いうちに起きる。",
+    "level": "n3"
+  },
+  {
+    "idx": 165,
+    "title": "おかげで",
+    "desc": [
+      "thanks to; because of"
+    ],
+    "example": "先生のおかげで大学に合格できました。",
+    "level": "n3"
+  },
+  {
+    "idx": 166,
+    "title": "おそらく",
+    "desc": [
+      "perhaps; likely; probably"
+    ],
+    "example": "おそらく私のコンピューターには何百万枚もの写真が入っています。",
+    "level": "n3"
+  },
+  {
+    "idx": 167,
+    "title": "かけ",
+    "desc": [
+      "half-; not yet finished"
+    ],
+    "example": "テーブルの上に食べかけのケーキが置いてある。",
+    "level": "n3"
+  },
+  {
+    "idx": 168,
+    "title": "がたい",
+    "desc": [
+      "hard to; difficult to"
+    ],
+    "example": "お～天ぷらも捨てがたいなあ。",
+    "level": "n3"
+  },
+  {
+    "idx": 169,
+    "title": "がち",
+    "desc": [
+      "apt to do; tend to do"
+    ],
+    "example": "急ぐととかく失敗しがちだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 170,
+    "title": "代わりに",
+    "desc": [
+      "instead of; in exchange for"
+    ],
+    "example": "手紙の代わりにメールをする。",
+    "level": "n3"
+  },
+  {
+    "idx": 171,
+    "title": "ぎみ",
+    "desc": [
+      "-like; -looking"
+    ],
+    "example": "風邪気味だったので薬を飲ませた。",
+    "level": "n3"
+  },
+  {
+    "idx": 172,
+    "title": "きり",
+    "desc": [
+      "only; just"
+    ],
+    "example": "私達は二人きりになった。",
+    "level": "n3"
+  },
+  {
+    "idx": 173,
+    "title": "きる",
+    "desc": [
+      "to do something completely"
+    ],
+    "example": "何せ朝から晩迄働いて疲れきっているんだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 174,
+    "title": "切れない",
+    "desc": [
+      "being too much to finish"
+    ],
+    "example": "銀河には数え切れないほど星がある。",
+    "level": "n3"
+  },
+  {
+    "idx": 175,
+    "title": "くせに",
+    "desc": [
+      "even though; and yet; despite"
+    ],
+    "example": "この部屋は狭いくせに家賃がすごく高い。",
+    "level": "n3"
+  },
+  {
+    "idx": 176,
+    "title": "くらい / ぐらい",
+    "desc": [
+      "probably; around"
+    ],
+    "example": "家から駅まで十分くらいです。",
+    "level": "n3"
+  },
+  {
+    "idx": 177,
+    "title": "決して○○ない",
+    "desc": [
+      "never; by no means"
+    ],
+    "example": "トムは決して笑わない。",
+    "level": "n3"
+  },
+  {
+    "idx": 178,
+    "title": "こそ",
+    "desc": [
+      "certainly (emphasises the previous word)"
+    ],
+    "example": "今年こそダイエットをする。",
+    "level": "n3"
+  },
+  {
+    "idx": 179,
+    "title": "こと",
+    "desc": [
+      "(must) do"
+    ],
+    "example": "大きい声で喋らないこと。",
+    "level": "n3"
+  },
+  {
+    "idx": 180,
+    "title": "ことか",
+    "desc": [
+      "how…? what…!"
+    ],
+    "example": "何度注意したことか。",
+    "level": "n3"
+  },
+  {
+    "idx": 181,
+    "title": "ことがある",
+    "desc": [
+      "can; sometimes happens"
+    ],
+    "example": "小さい問題が大きい問題になることがある。",
+    "level": "n3"
+  },
+  {
+    "idx": 182,
+    "title": "ことだ",
+    "desc": [
+      "should (when giving advice)"
+    ],
+    "example": "同じ過ちを繰り返さないことだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 183,
+    "title": "ことに",
+    "desc": [
+      "-ly"
+    ],
+    "example": "兄は交通事故に遭ったが、幸いなことに、軽いけがで済んだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 184,
+    "title": "ことはない",
+    "desc": [
+      "there is no need to; never happens"
+    ],
+    "example": "あなたが心配することはないよ。",
+    "level": "n3"
+  },
+  {
+    "idx": 185,
+    "title": "さえ",
+    "desc": [
+      "even"
+    ],
+    "example": "それは子供でさえ分かる。",
+    "level": "n3"
+  },
+  {
+    "idx": 186,
+    "title": "さえ○○ば / さえすれば / さえいれば",
+    "desc": [
+      "if only… then"
+    ],
+    "example": "薬を飲みさえすれば治ります。",
+    "level": "n3"
+  },
+  {
+    "idx": 187,
+    "title": "しかない",
+    "desc": [
+      "have no choice but"
+    ],
+    "example": "今やるしかない。",
+    "level": "n3"
+  },
+  {
+    "idx": 188,
+    "title": "ずに",
+    "desc": [
+      "without (doing)"
+    ],
+    "example": "彼は何も言わずに去ってしまった。",
+    "level": "n3"
+  },
+  {
+    "idx": 189,
+    "title": "ずにはいられない",
+    "desc": [
+      "can't help but feel; can't help but do"
+    ],
+    "example": "タツヤを気の毒に思わずにはいられなかったのだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 190,
+    "title": "せいで",
+    "desc": [
+      "because of"
+    ],
+    "example": "事故のせいで遅刻した。",
+    "level": "n3"
+  },
+  {
+    "idx": 191,
+    "title": "そうもない",
+    "desc": [
+      "very unlikely to"
+    ],
+    "example": "我々にはとけそうもない謎さ。",
+    "level": "n3"
+  },
+  {
+    "idx": 192,
+    "title": "その結果",
+    "desc": [
+      "as a result"
+    ],
+    "example": "その結果、無罪となっていた。",
+    "level": "n3"
+  },
+  {
+    "idx": 193,
+    "title": "だけ 2",
+    "desc": [
+      "as much as"
+    ],
+    "example": "できるだけ、日本語を話さないようにしよう。",
+    "level": "n3"
+  },
+  {
+    "idx": 194,
+    "title": "た結果 / の結果",
+    "desc": [
+      "as a result of"
+    ],
+    "example": "よく話し合った結果、やはり離婚ということになりました。",
+    "level": "n3"
+  },
+  {
+    "idx": 195,
+    "title": "だけど",
+    "desc": [
+      "but; however"
+    ],
+    "example": "飲み物だけど、辛い。",
+    "level": "n3"
+  },
+  {
+    "idx": 196,
+    "title": "確かに",
+    "desc": [
+      "surely; certainly"
+    ],
+    "example": "確かに、そうですね。",
+    "level": "n3"
+  },
+  {
+    "idx": 197,
+    "title": "たとえ○○ても",
+    "desc": [
+      "even if… is the case"
+    ],
+    "example": "たとえ、嵐になっても絶対に行く。",
+    "level": "n3"
+  },
+  {
+    "idx": 198,
+    "title": "たとえば",
+    "desc": [
+      "for example"
+    ],
+    "example": "たとえば、茎を曲げたり、方向を変えたりできます。",
+    "level": "n3"
+  },
+  {
+    "idx": 199,
+    "title": "たとたん",
+    "desc": [
+      "as soon as; just (now)"
+    ],
+    "example": "立ち上がったとたんに、目まいがした。",
+    "level": "n3"
+  },
+  {
+    "idx": 200,
+    "title": "たびに",
+    "desc": [
+      "everytime; whenever"
+    ],
+    "example": "の本を読むたびに、彼のことを思い出す。",
+    "level": "n3"
+  },
+  {
+    "idx": 201,
+    "title": "ために 1",
+    "desc": [
+      "for the sake of; in order to"
+    ],
+    "example": "誰かのために料理する。",
+    "level": "n3"
+  },
+  {
+    "idx": 202,
+    "title": "ために 2",
+    "desc": [
+      "because of; as a result of"
+    ],
+    "example": "霧のために列車がおくれてしまった。",
+    "level": "n3"
+  },
+  {
+    "idx": 203,
+    "title": "たらいい / といい 1",
+    "desc": [
+      "should"
+    ],
+    "example": "これ何分チンしたらいい？",
+    "level": "n3"
+  },
+  {
+    "idx": 204,
+    "title": "たらいい / といい 2",
+    "desc": [
+      "I hope"
+    ],
+    "example": "楽しいといいです。",
+    "level": "n3"
+  },
+  {
+    "idx": 205,
+    "title": "たらいい / といい 3",
+    "desc": [
+      "it would be nice if"
+    ],
+    "example": "今日の晩ご飯カレーだといいな。",
+    "level": "n3"
+  },
+  {
+    "idx": 206,
+    "title": "だらけ 1",
+    "desc": [
+      "covered (all over)"
+    ],
+    "example": "靴が泥だらけになったよ。",
+    "level": "n3"
+  },
+  {
+    "idx": 207,
+    "title": "だらけ 2",
+    "desc": [
+      "full of"
+    ],
+    "example": "彼の話は矛盾だらけだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 208,
+    "title": "ついでに",
+    "desc": [
+      "taking the opportunity; while (you) are at it"
+    ],
+    "example": "郵便局へ行ったついでに、葉書を買ってきた。",
+    "level": "n3"
+  },
+  {
+    "idx": 209,
+    "title": "っけ",
+    "desc": [
+      "what is… again?"
+    ],
+    "example": "ごめん、名前何だっけ？",
+    "level": "n3"
+  },
+  {
+    "idx": 210,
+    "title": "っぱなし",
+    "desc": [
+      "leaving something still in use"
+    ],
+    "example": "窓を開けっぱなしで出かけた。",
+    "level": "n3"
+  },
+  {
+    "idx": 211,
+    "title": "っぽい",
+    "desc": [
+      "-ish; -like"
+    ],
+    "example": "そのシャツは安っぽいね。",
+    "level": "n3"
+  },
+  {
+    "idx": 212,
+    "title": "つまり",
+    "desc": [
+      "in other words; that is to say"
+    ],
+    "example": "つまり、あなたは何も知らないのですね。",
+    "level": "n3"
+  },
+  {
+    "idx": 213,
+    "title": "てごらん",
+    "desc": [
+      "(please) try to; (please) look"
+    ],
+    "example": "絵を逆さにして見てごらん。",
+    "level": "n3"
+  },
+  {
+    "idx": 214,
+    "title": "て初めて",
+    "desc": [
+      "not until; only after… did I"
+    ],
+    "example": "生まれて初めて布団を敷いた。",
+    "level": "n3"
+  },
+  {
+    "idx": 215,
+    "title": "てもかまわない / てもかまいません",
+    "desc": [
+      "no problem"
+    ],
+    "example": "ドアを閉めてもかまいませんか？",
+    "level": "n3"
+  },
+  {
+    "idx": 216,
+    "title": "という",
+    "desc": [
+      "called; named"
+    ],
+    "example": "これは何という花ですか？",
+    "level": "n3"
+  },
+  {
+    "idx": 217,
+    "title": "ということ",
+    "desc": [
+      "I've heard that; it seems that"
+    ],
+    "example": "クリスさんから電話があって、少し遅れるということです。",
+    "level": "n3"
+  },
+  {
+    "idx": 218,
+    "title": "というと",
+    "desc": [
+      "speaking of; when you say…"
+    ],
+    "example": "今日では、ブラウスというと女性用のシャツの事を指す。",
+    "level": "n3"
+  },
+  {
+    "idx": 219,
+    "title": "というのは 1",
+    "desc": [
+      "means; is"
+    ],
+    "example": "謎というのは説明できない事柄のことです。",
+    "level": "n3"
+  },
+  {
+    "idx": 220,
+    "title": "というのは 2",
+    "desc": [
+      "because"
+    ],
+    "example": "わたしは肉は食べません。というのは、菜食主義だからです。",
+    "level": "n3"
+  },
+  {
+    "idx": 221,
+    "title": "というのは 3",
+    "desc": [
+      "in particular"
+    ],
+    "example": "一番最初というのは、常に一番大変です。",
+    "level": "n3"
+  },
+  {
+    "idx": 222,
+    "title": "というより",
+    "desc": [
+      "rather than"
+    ],
+    "example": "今日は涼しいというより寒いくらいだった。",
+    "level": "n3"
+  },
+  {
+    "idx": 223,
+    "title": "といっても",
+    "desc": [
+      "although one says"
+    ],
+    "example": "祝日といっても、特に特別なことは無い。",
+    "level": "n3"
+  },
+  {
+    "idx": 224,
+    "title": "とおり",
+    "desc": [
+      "in the way; the same as"
+    ],
+    "example": "真理子さんが言ったとおりだった。",
+    "level": "n3"
+  },
+  {
+    "idx": 225,
+    "title": "ところが",
+    "desc": [
+      "however; although"
+    ],
+    "example": "ところが計画は上手くいかなかった。",
+    "level": "n3"
+  },
+  {
+    "idx": 226,
+    "title": "どころか",
+    "desc": [
+      "far from; nevermind"
+    ],
+    "example": "彼はワインどころかビールも飲まない。",
+    "level": "n3"
+  },
+  {
+    "idx": 227,
+    "title": "ところで",
+    "desc": [
+      "by the way"
+    ],
+    "example": "ところで、奥さんは元気？",
+    "level": "n3"
+  },
+  {
+    "idx": 228,
+    "title": "としたら / とすれば",
+    "desc": [
+      "if it were the case that; if we assume"
+    ],
+    "example": "明日死ぬとしたら、何がしたいですか。",
+    "level": "n3"
+  },
+  {
+    "idx": 229,
+    "title": "として",
+    "desc": [
+      "as (i.e. in the role of)"
+    ],
+    "example": "私は留学生として日本に入国しました。",
+    "level": "n3"
+  },
+  {
+    "idx": 230,
+    "title": "としない / とはしない",
+    "desc": [
+      "not try to; not make an effort to"
+    ],
+    "example": "この部屋の中で遊ぶことはしないでください。",
+    "level": "n3"
+  },
+  {
+    "idx": 231,
+    "title": "とする 1",
+    "desc": [
+      "try to"
+    ],
+    "example": "彼は私の質問から逃れようとしていました。",
+    "level": "n3"
+  },
+  {
+    "idx": 232,
+    "title": "とする 2",
+    "desc": [
+      "be about to"
+    ],
+    "example": "何言おうとしたか忘れちゃった。",
+    "level": "n3"
+  },
+  {
+    "idx": 233,
+    "title": "途中に / 途中で",
+    "desc": [
+      "on the way; in the middle of"
+    ],
+    "example": "駅に行く道の途中にあります。",
+    "level": "n3"
+  },
+  {
+    "idx": 234,
+    "title": "と共に",
+    "desc": [
+      "together with"
+    ],
+    "example": "彼は妻子と共に旅行に出た。",
+    "level": "n3"
+  },
+  {
+    "idx": 235,
+    "title": "とは限らない",
+    "desc": [
+      "not necessarily so; is not always true"
+    ],
+    "example": "テレビが真実を報道しているとは限らない。",
+    "level": "n3"
+  },
+  {
+    "idx": 236,
+    "title": "どんなに○○ても",
+    "desc": [
+      "no matter how"
+    ],
+    "example": "どんなに食べても彼女は太らない。",
+    "level": "n3"
+  },
+  {
+    "idx": 237,
+    "title": "ないことはない",
+    "desc": [
+      "can; is not impossible"
+    ],
+    "example": "スキーはできないことはないけど、もう何年もやってないから…",
+    "level": "n3"
+  },
+  {
+    "idx": 238,
+    "title": "中",
+    "desc": [
+      "during; throughout"
+    ],
+    "example": "今電話中です。",
+    "level": "n3"
+  },
+  {
+    "idx": 239,
+    "title": "ながら / いながら / ながらも",
+    "desc": [
+      "although; despite"
+    ],
+    "example": "彼は毎回遅刻しないと言いながら、遅れています。",
+    "level": "n3"
+  },
+  {
+    "idx": 240,
+    "title": "なぜなら / なぜかというと",
+    "desc": [
+      "because; the reason is"
+    ],
+    "example": "学校を変えた。なぜなら、僕のレベルのクラスがなかったからだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 241,
+    "title": "なるべく",
+    "desc": [
+      "as much as possible"
+    ],
+    "example": "なるべく早く来てください。",
+    "level": "n3"
+  },
+  {
+    "idx": 242,
+    "title": "なんか / なんて",
+    "desc": [
+      "things like; something"
+    ],
+    "example": "なんか変なもの踏んじゃった。",
+    "level": "n3"
+  },
+  {
+    "idx": 243,
+    "title": "において / における",
+    "desc": [
+      "in; on; at; as for; regarding"
+    ],
+    "example": "日本において国際会議が開かれた。",
+    "level": "n3"
+  },
+  {
+    "idx": 244,
+    "title": "にかけて",
+    "desc": [
+      "over (a period); through; concerning"
+    ],
+    "example": "明日は昼から夕方にかけて雨でしょう。",
+    "level": "n3"
+  },
+  {
+    "idx": 245,
+    "title": "にかわって / にかわり",
+    "desc": [
+      "instead of; on behalf of"
+    ],
+    "example": "野球にかわり、サッカーがさかんになってきた。",
+    "level": "n3"
+  },
+  {
+    "idx": 246,
+    "title": "に関する / に関して",
+    "desc": [
+      "related to; about"
+    ],
+    "example": "生物に関する本を読む。",
+    "level": "n3"
+  },
+  {
+    "idx": 247,
+    "title": "に比べて",
+    "desc": [
+      "compared to"
+    ],
+    "example": "前年に比べて利益が上がりました。",
+    "level": "n3"
+  },
+  {
+    "idx": 248,
+    "title": "にしては",
+    "desc": [
+      "for; considering it's"
+    ],
+    "example": "この子は4才にしては語彙が豊富だ。",
+    "level": "n3"
+  },
+  {
+    "idx": 249,
+    "title": "にしても",
+    "desc": [
+      "even if"
+    ],
+    "example": "冗談にしてもそれは酷過ぎる。",
+    "level": "n3"
+  },
+  {
+    "idx": 250,
+    "title": "に対して",
+    "desc": [
+      "regarding; with regards to"
+    ],
+    "example": "彼は誰に対しても優しい。",
+    "level": "n3"
+  },
+  {
+    "idx": 251,
+    "title": "に違いない",
+    "desc": [
+      "I'm sure; no doubt that"
+    ],
+    "example": "彼女は日本人に違いない。",
+    "level": "n3"
+  },
+  {
+    "idx": 252,
+    "title": "について",
+    "desc": [
+      "concerning; about"
+    ],
+    "example": "私はその事故について証言した。",
+    "level": "n3"
+  },
+  {
+    "idx": 253,
+    "title": "につれて",
+    "desc": [
+      "as… then"
+    ],
+    "example": "黒い雲が近づくにつれて、青い空は灰色になった。",
+    "level": "n3"
+  },
+  {
+    "idx": 254,
+    "title": "にとって",
+    "desc": [
+      "to; for; concerning"
+    ],
+    "example": "私にとって貴重な体験でした。",
+    "level": "n3"
+  },
+  {
+    "idx": 255,
+    "title": "によって / による",
+    "desc": [
+      "due to; by means of"
+    ],
+    "example": "この地震による津波の心配はありません。",
+    "level": "n3"
+  },
+  {
+    "idx": 256,
+    "title": "によると / によれば",
+    "desc": [
+      "according to"
+    ],
+    "example": "天気予報によると明日は晴れです。",
+    "level": "n3"
+  },
+  {
+    "idx": 257,
+    "title": "間 / 間に 1",
+    "desc": [
+      "while; during"
+    ],
+    "example": "旅行の間、犬の世話をしてください。",
+    "level": "n3"
+  },
+  {
+    "idx": 258,
+    "title": "間 / 間に 2",
+    "desc": [
+      "between"
+    ],
+    "example": "彼は木の間にロープを張った。",
+    "level": "n3"
+  },
+  {
+    "idx": 259,
+    "title": "ば○○ほど",
+    "desc": [
+      "the more… the more/less"
+    ],
+    "example": "この計画は考えば考えるほど気に入りません。",
+    "level": "n3"
+  },
+  {
+    "idx": 260,
+    "title": "ばいい",
+    "desc": [
+      "should; can; it'd be good if"
+    ],
+    "example": "明日のデート、何着て行けばいいと思う？",
+    "level": "n3"
+  },
+  {
+    "idx": 261,
+    "title": "ばかりでなく",
+    "desc": [
+      "not only… but also; as well as"
+    ],
+    "example": "おかずばかりでなくご飯も食べなさい。",
+    "level": "n3"
+  },
+  {
+    "idx": 262,
+    "title": "ばよかった",
+    "desc": [
+      "should have; it would have been better if"
+    ],
+    "example": "電話してくれればよかったのに。",
+    "level": "n3"
+  },
+  {
+    "idx": 263,
+    "title": "ふと 1",
+    "desc": [
+      "suddenly"
+    ],
+    "example": "ふと昔の事を思い出したんだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 264,
+    "title": "ふと 2",
+    "desc": [
+      "accidentally; unexpectedly"
+    ],
+    "example": "ふと右を見たら、大きな木があった。",
+    "level": "n3"
+  },
+  {
+    "idx": 265,
+    "title": "ふりをする",
+    "desc": [
+      "to pretend; to act as if"
+    ],
+    "example": "彼女は聞こえないふりをした。",
+    "level": "n3"
+  },
+  {
+    "idx": 266,
+    "title": "べき",
+    "desc": [
+      "must do; should do"
+    ],
+    "example": "トムはもっと食べるべきだと思う。",
+    "level": "n3"
+  },
+  {
+    "idx": 267,
+    "title": "べきではない",
+    "desc": [
+      "must not do; should not do"
+    ],
+    "example": "子供の前でそんな話はするべきではない。",
+    "level": "n3"
+  },
+  {
+    "idx": 268,
+    "title": "べつに○○ない / べつに○○じゃない",
+    "desc": [
+      "not really; not particularly"
+    ],
+    "example": "コーヒーはべつに好きじゃない。",
+    "level": "n3"
+  },
+  {
+    "idx": 269,
+    "title": "ほど",
+    "desc": [
+      "the more; to the extent that; so much… that"
+    ],
+    "example": "今夜は凍えるほど寒い。",
+    "level": "n3"
+  },
+  {
+    "idx": 270,
+    "title": "ほど○○ない",
+    "desc": [
+      "is not as… as"
+    ],
+    "example": "死ほど恐ろしいものはない。",
+    "level": "n3"
+  },
+  {
+    "idx": 271,
+    "title": "最中に",
+    "desc": [
+      "in the middle of"
+    ],
+    "example": "パーティーの最中に地震があった。",
+    "level": "n3"
+  },
+  {
+    "idx": 272,
+    "title": "まま",
+    "desc": [
+      "as it is"
+    ],
+    "example": "このまま時間を止めたい。",
+    "level": "n3"
+  },
+  {
+    "idx": 273,
+    "title": "まるで",
+    "desc": [
+      "as if; as though"
+    ],
+    "example": "彼のマジックはまるで奇跡です。",
+    "level": "n3"
+  },
+  {
+    "idx": 274,
+    "title": "向き 1",
+    "desc": [
+      "towards (direction)"
+    ],
+    "example": "彼は車を後ろ向きに駐車したの。",
+    "level": "n3"
+  },
+  {
+    "idx": 275,
+    "title": "向き 2",
+    "desc": [
+      "suitable for"
+    ],
+    "example": "これは小学生向きの童話集です。",
+    "level": "n3"
+  },
+  {
+    "idx": 276,
+    "title": "向け",
+    "desc": [
+      "intended for; aimed at"
+    ],
+    "example": "それは少女向けの雑誌です。",
+    "level": "n3"
+  },
+  {
+    "idx": 277,
+    "title": "めったに",
+    "desc": [
+      "hardly; rarely; seldom"
+    ],
+    "example": "彼女はめったに怒りません。",
+    "level": "n3"
+  },
+  {
+    "idx": 278,
+    "title": "もしかしたら",
+    "desc": [
+      "perhaps; maybe"
+    ],
+    "example": "もしかしたら来年転勤になるかもしれない。",
+    "level": "n3"
+  },
+  {
+    "idx": 279,
+    "title": "もの",
+    "desc": [
+      "because (indicate reason or excuse)"
+    ],
+    "example": "「どうしてパーティーに行かないの。」 「だって、忙しいもの。」",
+    "level": "n3"
+  },
+  {
+    "idx": 280,
+    "title": "ものだ",
+    "desc": [
+      "used to do something; should do something"
+    ],
+    "example": "先人の教えには従うものだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 281,
+    "title": "ような気がする",
+    "desc": [
+      "have a feeling that; think that"
+    ],
+    "example": "いや、それを避けてきていたような気がする。",
+    "level": "n3"
+  },
+  {
+    "idx": 282,
+    "title": "ように",
+    "desc": [
+      "in order to; so that"
+    ],
+    "example": "迷わないように地図を持って行って。",
+    "level": "n3"
+  },
+  {
+    "idx": 283,
+    "title": "わけがない",
+    "desc": [
+      "there is no way that"
+    ],
+    "example": "あなたのお金をもらえるわけがない！",
+    "level": "n3"
+  },
+  {
+    "idx": 284,
+    "title": "わけだ",
+    "desc": [
+      "for that reason; no wonder; as you'd expect"
+    ],
+    "example": "雪が降ってきた。道理で寒いわけだ。",
+    "level": "n3"
+  },
+  {
+    "idx": 285,
+    "title": "わけではない",
+    "desc": [
+      "it doesn't mean that; it is not the case"
+    ],
+    "example": "私は彼を故意に傷つけたわけではない。",
+    "level": "n3"
+  },
+  {
+    "idx": 286,
+    "title": "わけにはいかない",
+    "desc": [
+      "must not; can't afford to"
+    ],
+    "example": "彼の悪事を見過ごすわけにはいきません。",
+    "level": "n3"
+  },
+  {
+    "idx": 287,
+    "title": "わりに",
+    "desc": [
+      "for; despite; unexpectedly"
+    ],
+    "example": "私の息子は、歳のわりに大きい。",
+    "level": "n3"
+  },
+  {
+    "idx": 288,
+    "title": "を中心に",
+    "desc": [
+      "focused on; centered on"
+    ],
+    "example": "地球は軸を中心に回転します。",
+    "level": "n3"
+  },
+  {
+    "idx": 289,
+    "title": "をはじめ / をはじめとする",
+    "desc": [
+      "for example; starting with"
+    ],
+    "example": "会議には中国をはじめ、アジアの国々が参加した。",
+    "level": "n3"
+  },
+  {
+    "idx": 290,
+    "title": "あるいは",
+    "desc": [
+      "or; possibly"
+    ],
+    "example": "紅茶がいいですか、あるいはコーヒーがいいですか。",
+    "level": "n2"
+  },
+  {
+    "idx": 291,
+    "title": "いきなり",
+    "desc": [
+      "suddenly; all of a sudden"
+    ],
+    "example": "後ろからいきなり肩をたたかれた。",
+    "level": "n2"
+  },
+  {
+    "idx": 292,
+    "title": "以上 1",
+    "desc": [
+      "over"
+    ],
+    "example": "あなたは18歳以上ですか？",
+    "level": "n2"
+  },
+  {
+    "idx": 293,
+    "title": "以上 2",
+    "desc": [
+      "because; now that"
+    ],
+    "example": "彼女を愛している以上、そんなことは問題ではなかった。",
+    "level": "n2"
+  },
+  {
+    "idx": 294,
+    "title": "以上に",
+    "desc": [
+      "more than; no less than"
+    ],
+    "example": "気温が30度以上になる。",
+    "level": "n2"
+  },
+  {
+    "idx": 295,
+    "title": "いよいよ",
+    "desc": [
+      "at last; finally"
+    ],
+    "example": "いよいよ夏休みが始まります。",
+    "level": "n2"
+  },
+  {
+    "idx": 296,
+    "title": "いわゆる",
+    "desc": [
+      "so-called; so to speak"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 297,
+    "title": "上で",
+    "desc": [
+      "after"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 298,
+    "title": "上に",
+    "desc": [
+      "as well; besides; in addition to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 299,
+    "title": "上は",
+    "desc": [
+      "now that; since"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 300,
+    "title": "えない",
+    "desc": [
+      "unable to; cannot"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 301,
+    "title": "える / うる",
+    "desc": [
+      "can; is possible"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 302,
+    "title": "お○○願う",
+    "desc": [
+      "could you please"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 303,
+    "title": "恐れがある",
+    "desc": [
+      "there are fears that"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 304,
+    "title": "おまけに",
+    "desc": [
+      "to make matters worse"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 305,
+    "title": "か○○ないかのうちに",
+    "desc": [
+      "right after; as soon as"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 306,
+    "title": "かいがある",
+    "desc": [
+      "it's worth one's effort to do something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 307,
+    "title": "かえって",
+    "desc": [
+      "on the contrary; rather; surprisingly"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 308,
+    "title": "限り",
+    "desc": [
+      "as long as; while… is the case"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 309,
+    "title": "かと思ったら / かと思うと",
+    "desc": [
+      "then again; just when; no sooner than"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 310,
+    "title": "か何か",
+    "desc": [
+      "or something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 311,
+    "title": "かねない",
+    "desc": [
+      "might happen; might do something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 312,
+    "title": "かねる",
+    "desc": [
+      "unable to do something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 313,
+    "title": "かのよう",
+    "desc": [
+      "as if; just like"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 314,
+    "title": "から言うと",
+    "desc": [
+      "in terms of; from the point of view of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 315,
+    "title": "からこそ",
+    "desc": [
+      "precisely because"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 316,
+    "title": "からして",
+    "desc": [
+      "judging from; based on"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 317,
+    "title": "からすると / からすれば",
+    "desc": [
+      "judging from; considering"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 318,
+    "title": "からといって",
+    "desc": [
+      "just because"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 319,
+    "title": "からには",
+    "desc": [
+      "now that; since; so long as"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 320,
+    "title": "ら見ると",
+    "desc": [
+      "from the point of view of; by the look of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 321,
+    "title": "気",
+    "desc": [
+      "feel like"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 322,
+    "title": "逆に",
+    "desc": [
+      "on the contrary"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 323,
+    "title": "げ",
+    "desc": [
+      "(giving the appearance of)"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 324,
+    "title": "ことから",
+    "desc": [
+      "from the fact that"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 325,
+    "title": "ことだから",
+    "desc": [
+      "it is exactly because"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 326,
+    "title": "ことなく",
+    "desc": [
+      "without doing something even once"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 327,
+    "title": "ごとに",
+    "desc": [
+      "each; every; at intervals of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 328,
+    "title": "ことになっている",
+    "desc": [
+      "to be expected to; to be scheduled to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 329,
+    "title": "ことにはならない",
+    "desc": [
+      "just because… doesn't mean…"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 330,
+    "title": "ことは○○が",
+    "desc": [
+      "although; but"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 331,
+    "title": "際に",
+    "desc": [
+      "at the time; in case of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 332,
+    "title": "幸い",
+    "desc": [
+      "luckily; fortunately"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 333,
+    "title": "さらに",
+    "desc": [
+      "furthermore; again; more and more"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 334,
+    "title": "ざるを得ない",
+    "desc": [
+      "can't help doing; have no choice but"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 335,
+    "title": "しかも",
+    "desc": [
+      "moreover; furthermore"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 336,
+    "title": "次第",
+    "desc": [
+      "as soon as"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 337,
+    "title": "次第だ / 次第で",
+    "desc": [
+      "depending on; so"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 338,
+    "title": "したがって",
+    "desc": [
+      "therefore; accordingly"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 339,
+    "title": "上",
+    "desc": [
+      "from the standpoint of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 340,
+    "title": "少しも○○ない",
+    "desc": [
+      "not one bit; not even a little"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 341,
+    "title": "すなわち",
+    "desc": [
+      "in other words"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 342,
+    "title": "ずに済む",
+    "desc": [
+      "get by without doing something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 343,
+    "title": "せいぜい",
+    "desc": [
+      "at the most; at best"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 344,
+    "title": "せめて",
+    "desc": [
+      "at least; at most"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 345,
+    "title": "そういえば",
+    "desc": [
+      "come to think of it"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 346,
+    "title": "そうすると",
+    "desc": [
+      "having done that"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 347,
+    "title": "そうにない",
+    "desc": [
+      "extremely unlikely to; showing no signs of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 348,
+    "title": "その上",
+    "desc": [
+      "besides; in addition; furthermore"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 349,
+    "title": "それとも",
+    "desc": [
+      "or; or else"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 350,
+    "title": "それなのに",
+    "desc": [
+      "and yet; despite this"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 351,
+    "title": "それなら",
+    "desc": [
+      "then; if that's the case"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 352,
+    "title": "それにしても",
+    "desc": [
+      "nevertheless; even so"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 353,
+    "title": "たあげく",
+    "desc": [
+      "to end up; finally"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 354,
+    "title": "だけあって",
+    "desc": [
+      "…being the case; precisely because"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 355,
+    "title": "だけでなく",
+    "desc": [
+      "not only… but also"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 356,
+    "title": "だけに",
+    "desc": [
+      "…being the case; precisely because"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 357,
+    "title": "だけのことはある",
+    "desc": [
+      "no wonder; it's not surprising that"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 358,
+    "title": "だけは",
+    "desc": [
+      "to do all that one can"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 359,
+    "title": "だけましだ",
+    "desc": [
+      "one should feel grateful for"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 360,
+    "title": "た末 / の末",
+    "desc": [
+      "as a conclusion of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 361,
+    "title": "直ちに",
+    "desc": [
+      "at once; immediately"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 362,
+    "title": "だって",
+    "desc": [
+      "because; but"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 363,
+    "title": "たって",
+    "desc": [
+      "even if; even though; no matter how"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 364,
+    "title": "たまえ",
+    "desc": [
+      "(order somebody to do something)"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 365,
+    "title": "ちっとも○○ない",
+    "desc": [
+      "not at all; not in the least"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 366,
+    "title": "っこない",
+    "desc": [
+      "no chance of; … is definitely not possible"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 367,
+    "title": "つつ",
+    "desc": [
+      "while; although"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 368,
+    "title": "つつある",
+    "desc": [
+      "to be doing"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 369,
+    "title": "つもりで",
+    "desc": [
+      "with the intention of doing"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 370,
+    "title": "ていては",
+    "desc": [
+      "if one keeps doing something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 371,
+    "title": "て以来",
+    "desc": [
+      "since"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 372,
+    "title": "てからでないと",
+    "desc": [
+      "unless; until"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 373,
+    "title": "てこそ",
+    "desc": [
+      "now that; since"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 374,
+    "title": "でしかない",
+    "desc": [
+      "merely; nothing but; no more than"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 375,
+    "title": "てしょうがない",
+    "desc": [
+      "very; extremely"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 376,
+    "title": "てたまらない",
+    "desc": [
+      "very; extremely; can't help but do"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 377,
+    "title": "てでも",
+    "desc": [
+      "even if one has to; by all means"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 378,
+    "title": "て当然だ",
+    "desc": [
+      "natural; as a matter of course"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 379,
+    "title": "てならない",
+    "desc": [
+      "very; extremely"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 380,
+    "title": "ては",
+    "desc": [
+      "if; since; one after another"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 381,
+    "title": "てはいられない",
+    "desc": [
+      "can't afford to; unable to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 382,
+    "title": "てばかりはいられない",
+    "desc": [
+      "can't keep doing something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 383,
+    "title": "ではないか",
+    "desc": [
+      "let's do something; why don't we"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 384,
+    "title": "てはならない",
+    "desc": [
+      "must not; cannot; should not"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 385,
+    "title": "手前",
+    "desc": [
+      "before; in front of; from one's standpoint"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 386,
+    "title": "ということは",
+    "desc": [
+      "that is to say"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 387,
+    "title": "というふうに",
+    "desc": [
+      "in such a way that"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 388,
+    "title": "というものだ",
+    "desc": [
+      "something like…; something called…"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 389,
+    "title": "というものでもない",
+    "desc": [
+      "there is no guarantee that…; not necessarily"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 390,
+    "title": "といった",
+    "desc": [
+      "such… as"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 391,
+    "title": "どうせ",
+    "desc": [
+      "anyway; anyhow"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 392,
+    "title": "どうやら",
+    "desc": [
+      "it seems like; it appears that"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 393,
+    "title": "とか",
+    "desc": [
+      "I heard that…"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 394,
+    "title": "と考えられる",
+    "desc": [
+      "one can think that…"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 395,
+    "title": "ところだった",
+    "desc": [
+      "was just about to do something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 396,
+    "title": "どころではない",
+    "desc": [
+      "this is not the time for…"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 397,
+    "title": "ところに / ところへ",
+    "desc": [
+      "at the time"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 398,
+    "title": "ところを見ると",
+    "desc": [
+      "judging from; seeing that"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 399,
+    "title": "としては",
+    "desc": [
+      "as for"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 400,
+    "title": "としても",
+    "desc": [
+      "assuming; even if"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 401,
+    "title": "とっくに",
+    "desc": [
+      "already; long ago"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 402,
+    "title": "と同時に",
+    "desc": [
+      "at the same time as"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 403,
+    "title": "とも",
+    "desc": [
+      "even if; no matter"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 404,
+    "title": "ないことには○○ない",
+    "desc": [
+      "unless you do something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 405,
+    "title": "ないではいられない",
+    "desc": [
+      "can't help but feel; can't help but do"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 406,
+    "title": "なお",
+    "desc": [
+      "furthermore; still; yet (used to add more information to the )"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 407,
+    "title": "中を",
+    "desc": [
+      "in; on"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 408,
+    "title": "なくはない",
+    "desc": [
+      "it's not that…; can; may be"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 409,
+    "title": "なにも○○ない",
+    "desc": [
+      "no need to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 410,
+    "title": "にあたり",
+    "desc": [
+      "at the time; on the occasion of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 411,
+    "title": "に応じて",
+    "desc": [
+      "depending on; in accordance with"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 412,
+    "title": "にかかわらず",
+    "desc": [
+      "regardless of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 413,
+    "title": "にかかわる",
+    "desc": [
+      "to relate to; to have to do with"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 414,
+    "title": "に限って",
+    "desc": [
+      "only; particularly when"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 415,
+    "title": "に限らず",
+    "desc": [
+      "not just; not only… but also"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 416,
+    "title": "に限る",
+    "desc": [
+      "nothing better than; there's nothing like"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 417,
+    "title": "に決まっている",
+    "desc": [
+      "I'm sure that…"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 418,
+    "title": "に加えて",
+    "desc": [
+      "in addition to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 419,
+    "title": "に越したことはない",
+    "desc": [
+      "it's best that; there's nothing better than"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 420,
+    "title": "に応えて",
+    "desc": [
+      "in response to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 421,
+    "title": "に基づいて",
+    "desc": [
+      "based on"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 422,
+    "title": "に際して",
+    "desc": [
+      "on the occasion of; at the time of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 423,
+    "title": "に先立ち",
+    "desc": [
+      "before; prior to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 424,
+    "title": "に従って",
+    "desc": [
+      "as; therefore"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 425,
+    "title": "にしたら",
+    "desc": [
+      "from the point of view of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 426,
+    "title": "にしても○○にしても",
+    "desc": [
+      "regardless of whether"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 427,
+    "title": "にしろ / にせよ",
+    "desc": [
+      "though; even if; whether… or"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 428,
+    "title": "にしろ○○にしろ",
+    "desc": [
+      "whether… or"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 429,
+    "title": "に過ぎない",
+    "desc": [
+      "no more than; just; merely"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 430,
+    "title": "に相違ない",
+    "desc": [
+      "without a doubt; certain; sure"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 431,
+    "title": "に沿って",
+    "desc": [
+      "along with; in accordance with"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 432,
+    "title": "につき",
+    "desc": [
+      "due to; because; per; each"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 433,
+    "title": "につけ",
+    "desc": [
+      "both… and…; every time something happens"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 434,
+    "title": "にて",
+    "desc": [
+      "in; at"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 435,
+    "title": "に伴って",
+    "desc": [
+      "as; due to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 436,
+    "title": "には",
+    "desc": [
+      "in order to; for"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 437,
+    "title": "に反して",
+    "desc": [
+      "against; contrary to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 438,
+    "title": "にほかならない",
+    "desc": [
+      "nothing but; none other than"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 439,
+    "title": "に向かって",
+    "desc": [
+      "towards; to face; to head to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 440,
+    "title": "にもかかわらず",
+    "desc": [
+      "despite; in spite of; although"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 441,
+    "title": "にわたって",
+    "desc": [
+      "throughout; over (a period of time)"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 442,
+    "title": "抜きで / 抜きにして",
+    "desc": [
+      "leaving out; cutting out"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 443,
+    "title": "抜く",
+    "desc": [
+      "to do something to the end"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 444,
+    "title": "ねばならない",
+    "desc": [
+      "have to; must"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 445,
+    "title": "のみならず",
+    "desc": [
+      "not only; besides; as well"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 446,
+    "title": "のも当然だ",
+    "desc": [
+      "it's only natural that; no wonder"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 447,
+    "title": "のもとで",
+    "desc": [
+      "under"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 448,
+    "title": "のももっともだ",
+    "desc": [
+      "no wonder; … is only natural"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 449,
+    "title": "ばかり 2",
+    "desc": [
+      "about; approximately"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 450,
+    "title": "ばかりだ",
+    "desc": [
+      "continue to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 451,
+    "title": "ばかりに",
+    "desc": [
+      "because; on account of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 452,
+    "title": "果たして",
+    "desc": [
+      "sure enough; really"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 453,
+    "title": "はともかく",
+    "desc": [
+      "whether or not"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 454,
+    "title": "は別として",
+    "desc": [
+      "aside from"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 455,
+    "title": "はもとより",
+    "desc": [
+      "also; let alone"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 456,
+    "title": "反面",
+    "desc": [
+      "on the other hand"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 457,
+    "title": "ふうに",
+    "desc": [
+      "in a way (this way/that way/what way)"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 458,
+    "title": "ふたたび",
+    "desc": [
+      "again; once more"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 459,
+    "title": "ぶりに",
+    "desc": [
+      "for the first time in"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 460,
+    "title": "まい",
+    "desc": [
+      "won't; intend not to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 461,
+    "title": "まったく○○ない",
+    "desc": [
+      "not~at all"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 462,
+    "title": "むしろ",
+    "desc": [
+      "rather; instead"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 463,
+    "title": "も○○ば○○も",
+    "desc": [
+      "…and…"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 464,
+    "title": "もう少しで",
+    "desc": [
+      "almost; nearly"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 465,
+    "title": "もかまわず",
+    "desc": [
+      "without worrying about"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 466,
+    "title": "もっとも",
+    "desc": [
+      "but then; although"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 467,
+    "title": "ものか",
+    "desc": [
+      "as if"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 468,
+    "title": "ものがある",
+    "desc": [
+      "(sentence-ending expression of strong judgement)"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 469,
+    "title": "ものだから",
+    "desc": [
+      "because; the reason is"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 470,
+    "title": "ものではない",
+    "desc": [
+      "shouldn't do something; it's impossible to do something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 471,
+    "title": "ものなら",
+    "desc": [
+      "if one can do something"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 472,
+    "title": "ものの",
+    "desc": [
+      "but; although"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 473,
+    "title": "やがて",
+    "desc": [
+      "soon; before long; eventually"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 474,
+    "title": "やら○○やら",
+    "desc": [
+      "such things as"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 475,
+    "title": "ようがない / ようもない",
+    "desc": [
+      "there's no way to; it's impossible to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 476,
+    "title": "要するに",
+    "desc": [
+      "the point is"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 477,
+    "title": "ようでは",
+    "desc": [
+      "if"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 478,
+    "title": "よりほかない",
+    "desc": [
+      "to have no choice but"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 479,
+    "title": "ろくに○○ない",
+    "desc": [
+      "not doing something properly"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 480,
+    "title": "わずかに",
+    "desc": [
+      "slightly"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 481,
+    "title": "を○○として",
+    "desc": [
+      "as"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 482,
+    "title": "をきっかけに",
+    "desc": [
+      "with… as a start; as a result of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 483,
+    "title": "を契機に",
+    "desc": [
+      "as a good opportunity to; as a result of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 484,
+    "title": "をこめて",
+    "desc": [
+      "filled with"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 485,
+    "title": "を通じて / を通して",
+    "desc": [
+      "via; through"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 486,
+    "title": "を問わず",
+    "desc": [
+      "regardless of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 487,
+    "title": "を除いて",
+    "desc": [
+      "except; with the exception of"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 488,
+    "title": "をめぐって",
+    "desc": [
+      "concerning; in regard to"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 489,
+    "title": "をもとに",
+    "desc": [
+      "based on; from"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 490,
+    "title": "んだって",
+    "desc": [
+      "I heard that"
+    ],
+    "example": "",
+    "level": "n2"
+  },
+  {
+    "idx": 491,
+    "title": "あえて",
+    "desc": [
+      "dare to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 492,
+    "title": "あくまでも",
+    "desc": [
+      "to the end; to the utmost degree"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 493,
+    "title": "案の定",
+    "desc": [
+      "just as one thought"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 494,
+    "title": "あらかじめ",
+    "desc": [
+      "beforehand; in advance"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 495,
+    "title": "あっての",
+    "desc": [
+      "to owe everything to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 496,
+    "title": "場合によっては",
+    "desc": [
+      "depending on the situation"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 497,
+    "title": "ばこそ",
+    "desc": [
+      "only because"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 498,
+    "title": "ばそれまでだ",
+    "desc": [
+      "if… then it's over"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 499,
+    "title": "べからず",
+    "desc": [
+      "must not; should not"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 500,
+    "title": "べく",
+    "desc": [
+      "in order to; should"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 501,
+    "title": "べくもない",
+    "desc": [
+      "can't"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 502,
+    "title": "びる",
+    "desc": [
+      "seeming to be"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 503,
+    "title": "ぶり",
+    "desc": [
+      "style; manner"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 504,
+    "title": "ぶる",
+    "desc": [
+      "behaving like"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 505,
+    "title": "だに",
+    "desc": [
+      "even"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 506,
+    "title": "だの○○だの",
+    "desc": [
+      "and; and so forth"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 507,
+    "title": "であれ○○であれ",
+    "desc": [
+      "whether A or B"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 508,
+    "title": "であれ / であろうと",
+    "desc": [
+      "whoever / whatever / however"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 509,
+    "title": "でも何でもない",
+    "desc": [
+      "not in the least"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 510,
+    "title": "でなくてなんだろう",
+    "desc": [
+      "must be; is definitely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 511,
+    "title": "(で)すら",
+    "desc": [
+      "even"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 512,
+    "title": "ではあるまいか",
+    "desc": [
+      "I wonder if it's not"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 513,
+    "title": "ではあるまいし",
+    "desc": [
+      "it's not like; it isn't as if"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 514,
+    "title": "ではすまない",
+    "desc": [
+      "it doesn't end with just"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 515,
+    "title": "どうにも○○ない",
+    "desc": [
+      "not … by any means"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 516,
+    "title": "がてら",
+    "desc": [
+      "on the same occasion"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 517,
+    "title": "が早いか",
+    "desc": [
+      "as soon as"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 518,
+    "title": "が最後",
+    "desc": [
+      "once something occurs; something else happens"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 519,
+    "title": "ごとき / ごとく",
+    "desc": [
+      "like; as if"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 520,
+    "title": "ぐるみ",
+    "desc": [
+      "together with"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 521,
+    "title": "羽目になる",
+    "desc": [
+      "to end up with (something unpleasant)"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 522,
+    "title": "ひとつ",
+    "desc": [
+      "to give something a try"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 523,
+    "title": "ほどのことはない",
+    "desc": [
+      "not worth; no need to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 524,
+    "title": "ほかに○○ない",
+    "desc": [
+      "no other"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 525,
+    "title": "ほうがましだ",
+    "desc": [
+      "I would rather"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 526,
+    "title": "いかなる",
+    "desc": [
+      "any kind of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 527,
+    "title": "いかんでは / いかんによっては",
+    "desc": [
+      "depending on"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 528,
+    "title": "いかんによらず",
+    "desc": [
+      "regardless of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 529,
+    "title": "いかに",
+    "desc": [
+      "how"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 530,
+    "title": "いかにも",
+    "desc": [
+      "indeed; really"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 531,
+    "title": "いまだに",
+    "desc": [
+      "still; even now"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 532,
+    "title": "いずれにせよ",
+    "desc": [
+      "at any rate; in any case"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 533,
+    "title": "じみた",
+    "desc": [
+      "to look like"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 534,
+    "title": "限りだ",
+    "desc": [
+      "I feel so"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 535,
+    "title": "かいもなく",
+    "desc": [
+      "even though"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 536,
+    "title": "か否か",
+    "desc": [
+      "whether or not"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 537,
+    "title": "可能性がある",
+    "desc": [
+      "there's a possibility"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 538,
+    "title": "からある",
+    "desc": [
+      "as much as; as many as"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 539,
+    "title": "かれ○○かれ",
+    "desc": [
+      "or"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 540,
+    "title": "かたがた",
+    "desc": [
+      "while; for the purpose of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 541,
+    "title": "かたわら",
+    "desc": [
+      "while; at the same time"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 542,
+    "title": "かつて",
+    "desc": [
+      "once; before"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 543,
+    "title": "嫌いがある",
+    "desc": [
+      "to have a tendency to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 544,
+    "title": "きっての",
+    "desc": [
+      "the most … of all"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 545,
+    "title": "きりがない",
+    "desc": [
+      "there's no end to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 546,
+    "title": "極まる / 極まりない",
+    "desc": [
+      "extremely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 547,
+    "title": "極めて",
+    "desc": [
+      "extremely; exceedingly"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 548,
+    "title": "ことだし",
+    "desc": [
+      "because; since"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 549,
+    "title": "ことごとく",
+    "desc": [
+      "altogether; entirely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 550,
+    "title": "ことなしに",
+    "desc": [
+      "without doing something"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 551,
+    "title": "ことのないよう",
+    "desc": [
+      "so as not to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 552,
+    "title": "こととて",
+    "desc": [
+      "because; since"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 553,
+    "title": "くらいなら",
+    "desc": [
+      "rather than"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 554,
+    "title": "くらいのものだ",
+    "desc": [
+      "only"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 555,
+    "title": "までだ",
+    "desc": [
+      "only"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 556,
+    "title": "までもない",
+    "desc": [
+      "it's not necessary to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 557,
+    "title": "まじき",
+    "desc": [
+      "should not; must not"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 558,
+    "title": "ままに",
+    "desc": [
+      "to do as"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 559,
+    "title": "まみれ",
+    "desc": [
+      "to be covered in"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 560,
+    "title": "まるっきり",
+    "desc": [
+      "totally; completely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 561,
+    "title": "めく",
+    "desc": [
+      "to show signs of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 562,
+    "title": "もはや",
+    "desc": [
+      "already; no longer"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 563,
+    "title": "も顧みず / を顧みず",
+    "desc": [
+      "regardless of; despite"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 564,
+    "title": "もしないで",
+    "desc": [
+      "without even doing"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 565,
+    "title": "もので",
+    "desc": [
+      "because; for that reason"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 566,
+    "title": "ものを",
+    "desc": [
+      "I wish; if only"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 567,
+    "title": "ものと思われる",
+    "desc": [
+      "to think; to suppose"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 568,
+    "title": "ものとして",
+    "desc": [
+      "to assume; to suppose"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 569,
+    "title": "もさることながら",
+    "desc": [
+      "not only… but also"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 570,
+    "title": "もしくは",
+    "desc": [
+      "or; otherwise"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 571,
+    "title": "ながらに / ながらの",
+    "desc": [
+      "while; during"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 572,
+    "title": "ないではおかない / ずにはおかない",
+    "desc": [
+      "will definitely; cannot not"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 573,
+    "title": "ないではすまない / ずにはすまない",
+    "desc": [
+      "must"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 574,
+    "title": "ないまでも",
+    "desc": [
+      "even if something isn't done"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 575,
+    "title": "ないものか",
+    "desc": [
+      "can't we…?; can't I…?"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 576,
+    "title": "ないものでもない",
+    "desc": [
+      "(something) is not entirely impossible"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 577,
+    "title": "ないとも限らない",
+    "desc": [
+      "might"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 578,
+    "title": "なくして",
+    "desc": [
+      "without"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 579,
+    "title": "何しろ",
+    "desc": [
+      "in any case; as you know"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 580,
+    "title": "なしに",
+    "desc": [
+      "without"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 581,
+    "title": "ならでは",
+    "desc": [
+      "uniquely applying to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 582,
+    "title": "ならいざしらず",
+    "desc": [
+      "I don't know about A; but B"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 583,
+    "title": "なり",
+    "desc": [
+      "as soon as"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 584,
+    "title": "なり○○なり",
+    "desc": [
+      "or"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 585,
+    "title": "なりに / なりの",
+    "desc": [
+      "in one's own way or style"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 586,
+    "title": "なりとも",
+    "desc": [
+      "even a little; at least"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 587,
+    "title": "に値する",
+    "desc": [
+      "to be worth; to deserve"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 588,
+    "title": "にあたらない",
+    "desc": [
+      "it's not worth; there's no need to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 589,
+    "title": "にあって",
+    "desc": [
+      "at; during; in the condition of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 590,
+    "title": "にひきかえ",
+    "desc": [
+      "in contrast to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 591,
+    "title": "に至るまで",
+    "desc": [
+      "until; as far as"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 592,
+    "title": "に至っては",
+    "desc": [
+      "as for; when it comes to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 593,
+    "title": "に言わせれば",
+    "desc": [
+      "if you ask; if one may say"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 594,
+    "title": "にかかっている",
+    "desc": [
+      "to depend on"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 595,
+    "title": "にかたくない",
+    "desc": [
+      "it's not hard to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 596,
+    "title": "にまつわる",
+    "desc": [
+      "to be related to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 597,
+    "title": "にもほどがある",
+    "desc": [
+      "to have a limit; to go too far"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 598,
+    "title": "にもまして",
+    "desc": [
+      "more than; above"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 599,
+    "title": "に則って",
+    "desc": [
+      "in accordance with"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 600,
+    "title": "に先駆けて",
+    "desc": [
+      "to be the first"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 601,
+    "title": "にしたって",
+    "desc": [
+      "even; even if"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 602,
+    "title": "にして",
+    "desc": [
+      "only; in (time span)"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 603,
+    "title": "に即して",
+    "desc": [
+      "in keeping with"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 604,
+    "title": "にたえる / にたえない",
+    "desc": [
+      "can/can't do something"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 605,
+    "title": "に足る / に足りる",
+    "desc": [
+      "to be enough; to be worthy of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 606,
+    "title": "に足りない",
+    "desc": [
+      "to be not worth"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 607,
+    "title": "に照らして",
+    "desc": [
+      "in comparison with; according to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 608,
+    "title": "にとどまらず",
+    "desc": [
+      "not limited to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 609,
+    "title": "には及ばない",
+    "desc": [
+      "there's no need to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 610,
+    "title": "によらず",
+    "desc": [
+      "regardless of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 611,
+    "title": "んばかりに",
+    "desc": [
+      "as if; as though"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 612,
+    "title": "んがため",
+    "desc": [
+      "in order to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 613,
+    "title": "の至り",
+    "desc": [
+      "utmost"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 614,
+    "title": "の極み",
+    "desc": [
+      "utmost"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 615,
+    "title": "のみか",
+    "desc": [
+      "not only… but also"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 616,
+    "title": "のなんのって",
+    "desc": [
+      "extremely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 617,
+    "title": "を踏まえて",
+    "desc": [
+      "based on"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 618,
+    "title": "を経て",
+    "desc": [
+      "through; after; via"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 619,
+    "title": "をいいことに",
+    "desc": [
+      "to take advantage of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 620,
+    "title": "を限りに",
+    "desc": [
+      "starting from"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 621,
+    "title": "を兼ねて",
+    "desc": [
+      "also for the purpose of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 622,
+    "title": "を皮切りに",
+    "desc": [
+      "starting with"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 623,
+    "title": "を機に",
+    "desc": [
+      "as an opportunity to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 624,
+    "title": "を禁じえない",
+    "desc": [
+      "can't help but"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 625,
+    "title": "をものともせず",
+    "desc": [
+      "in defiance of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 626,
+    "title": "をもって 1",
+    "desc": [
+      "by means of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 627,
+    "title": "をもって 2",
+    "desc": [
+      "at the time"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 628,
+    "title": "をおいて",
+    "desc": [
+      "other than; without"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 629,
+    "title": "を余儀なくされる",
+    "desc": [
+      "to be forced to do something"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 630,
+    "title": "をよそに",
+    "desc": [
+      "despite"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 631,
+    "title": "思いをする",
+    "desc": [
+      "to feel"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 632,
+    "title": "折に",
+    "desc": [
+      "when; on the occasion"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 633,
+    "title": "およそ",
+    "desc": [
+      "totally; (not) at all"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 634,
+    "title": "さもないと",
+    "desc": [
+      "otherwise; else; if not so"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 635,
+    "title": "さぞ",
+    "desc": [
+      "I'm sure; I'm certain"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 636,
+    "title": "始末だ",
+    "desc": [
+      "end up; in the end"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 637,
+    "title": "そばから",
+    "desc": [
+      "as soon as"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 638,
+    "title": "さも",
+    "desc": [
+      "truly; really"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 639,
+    "title": "それなりに",
+    "desc": [
+      "as it is; in its own way"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 640,
+    "title": "そうにもない",
+    "desc": [
+      "impossible; unlikely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 641,
+    "title": "ただ○○のみだ",
+    "desc": [
+      "can do nothing but"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 642,
+    "title": "た拍子に",
+    "desc": [
+      "the instant"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 643,
+    "title": "ためしがない",
+    "desc": [
+      "(something) is never the case"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 644,
+    "title": "たりとも",
+    "desc": [
+      "(not) even; (not) any"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 645,
+    "title": "た瞬間に",
+    "desc": [
+      "the moment"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 646,
+    "title": "てっきり",
+    "desc": [
+      "surely; certainly"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 647,
+    "title": "たところで",
+    "desc": [
+      "even if one does something"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 648,
+    "title": "てからというもの",
+    "desc": [
+      "after; since"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 649,
+    "title": "てかなわない",
+    "desc": [
+      "can't stand; unable to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 650,
+    "title": "てまで",
+    "desc": [
+      "even"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 651,
+    "title": "てみせる",
+    "desc": [
+      "I'll definitely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 652,
+    "title": "てもどうにもならない",
+    "desc": [
+      "it's no use"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 653,
+    "title": "ても始まらない",
+    "desc": [
+      "it's no use"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 654,
+    "title": "ても差し支えない",
+    "desc": [
+      "can; it's okay if"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 655,
+    "title": "てしかるべきだ",
+    "desc": [
+      "should"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 656,
+    "title": "ってば",
+    "desc": [
+      "I said; I told you to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 657,
+    "title": "てやまない",
+    "desc": [
+      "always; never stop"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 658,
+    "title": "と相まって",
+    "desc": [
+      "together with"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 659,
+    "title": "とあれば",
+    "desc": [
+      "if; if it's the case that"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 660,
+    "title": "とあって",
+    "desc": [
+      "because of"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 661,
+    "title": "とばかりに",
+    "desc": [
+      "as if; as though"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 662,
+    "title": "といえども",
+    "desc": [
+      "even; even if"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 663,
+    "title": "といい○○といい",
+    "desc": [
+      "and; or"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 664,
+    "title": "といったらない",
+    "desc": [
+      "very; extremely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 665,
+    "title": "という",
+    "desc": [
+      "all; every"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 666,
+    "title": "というか",
+    "desc": [
+      "or; or more precisely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 667,
+    "title": "というか○○というか",
+    "desc": [
+      "(I'm not sure if it's) A or B"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 668,
+    "title": "というところだ / といったところだ",
+    "desc": [
+      "approximately; about"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 669,
+    "title": "というもの",
+    "desc": [
+      "during a period of time"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 670,
+    "title": "というわけだ",
+    "desc": [
+      "this means"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 671,
+    "title": "というわけではない",
+    "desc": [
+      "it's not that; it doesn't mean that"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 672,
+    "title": "といわず",
+    "desc": [
+      "not just; both"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 673,
+    "title": "ときたら",
+    "desc": [
+      "when it comes to; concerning"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 674,
+    "title": "ときている",
+    "desc": [
+      "because"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 675,
+    "title": "ところがある",
+    "desc": [
+      "there is"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 676,
+    "title": "ところから",
+    "desc": [
+      "from the fact that"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 677,
+    "title": "とみられる",
+    "desc": [
+      "to be regarded as; to be expected to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 678,
+    "title": "とみるや",
+    "desc": [
+      "at the sight of; upon seeing"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 679,
+    "title": "ともなく",
+    "desc": [
+      "to do something without thinking about it"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 680,
+    "title": "ともなると / ともなれば",
+    "desc": [
+      "when; once (something happens)"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 681,
+    "title": "ともすれば",
+    "desc": [
+      "apt to; prone to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 682,
+    "title": "と思いきや",
+    "desc": [
+      "I thought"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 683,
+    "title": "とりわけ",
+    "desc": [
+      "especially"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 684,
+    "title": "とされる",
+    "desc": [
+      "is considered"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 685,
+    "title": "とっさに",
+    "desc": [
+      "at once; right away"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 686,
+    "title": "としたって / としたところで",
+    "desc": [
+      "even if"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 687,
+    "title": "として○○ない",
+    "desc": [
+      "not even one"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 688,
+    "title": "とて",
+    "desc": [
+      "even if; even though"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 689,
+    "title": "とても○○ない",
+    "desc": [
+      "cannot possibly"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 690,
+    "title": "とは",
+    "desc": [
+      "(indicates word or phrase being defined)"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 691,
+    "title": "とはいえ",
+    "desc": [
+      "nonetheless; although"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 692,
+    "title": "とはいうものの",
+    "desc": [
+      "having said that; be that as it may"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 693,
+    "title": "つ○○つ",
+    "desc": [
+      "(indicates two contrasting actions)"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 694,
+    "title": "はおろか",
+    "desc": [
+      "let alone; not to mention"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 695,
+    "title": "はさておき",
+    "desc": [
+      "setting aside"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 696,
+    "title": "や否や",
+    "desc": [
+      "the moment that; as soon as"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 697,
+    "title": "やしない",
+    "desc": [
+      "not (emphatic negative)"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 698,
+    "title": "(よ)うが / (よ)うと",
+    "desc": [
+      "no matter how/what"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 699,
+    "title": "(よ)うが○○まいが / (よ)うと○○まいと",
+    "desc": [
+      "whether or not"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 700,
+    "title": "(よ)うか○○まいか",
+    "desc": [
+      "whether or not"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 701,
+    "title": "(よ)うものなら",
+    "desc": [
+      "if one chooses to"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 702,
+    "title": "(よ)うにも○○ない",
+    "desc": [
+      "even if one tries to do something; it can't be done"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 703,
+    "title": "ようによっては",
+    "desc": [
+      "depending on"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 704,
+    "title": "ゆえに",
+    "desc": [
+      "therefore; consequently"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 705,
+    "title": "ざる",
+    "desc": [
+      "not; -un"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 706,
+    "title": "ずじまい",
+    "desc": [
+      "never"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 707,
+    "title": "ずくめ",
+    "desc": [
+      "entirely; completely"
+    ],
+    "example": "",
+    "level": "n1"
+  },
+  {
+    "idx": 708,
+    "title": "ずとも",
+    "desc": [
+      "even without doing"
+    ],
+    "example": "",
+    "level": "n1"
+  }
+]

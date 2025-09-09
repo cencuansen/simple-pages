@@ -1,111 +1,38 @@
 <template>
   <div class="grammar">
-    <Row>
-      <SimpleSelect
-        multiple
-        :data="levels"
-        v-model="selectedLevels"
-        placeholder="选等级"
-      />
-      <SimpleInput v-model.trim="keyword" />
-    </Row>
-
-    <div class="grammar-main">
-      <div class="main">
-        <el-table
-          class="table"
-          :data="afterPage"
-          :show-header="false"
-          empty-text="暂无数据"
-          stripe
-        >
-          <el-table-column label="语法" prop="grammar" min-width="200">
-            <template #default="scope">
-              <div v-html="scope.row.grammar"></div>
-            </template>
-          </el-table-column>
-          <el-table-column label="含义" prop="meaning" min-width="200">
-            <template #default="scope">
-              <div v-html="scope.row.meaning"></div>
-            </template>
-          </el-table-column>
-          <el-table-column label="示例" prop="example" min-width="200">
-            <template #default="scope">
-              <div v-html="scope.row.example"></div>
-            </template>
-          </el-table-column>
-          <el-table-column label="级别" prop="level" width="60">
-            <template #default="scope">
-              <div v-html="scope.row.level"></div>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-    </div>
-    <SimplePagination :data="beforePage" @page-change="pageChange" />
+    <GrammarCore
+      :data="jlptGrammars"
+      :function-group="functionGroup"
+      :pagination="pagination"
+      :level-select="levelSelect"
+      :keyword-filter="keywordFilter"
+      :scrollTop="scrollTop"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, type ComputedRef, ref } from 'vue'
-import {
-  type JlptGrammar,
-  useJlptGrammarStore,
-} from '../../stores/jlptGrammarStore.ts'
-import { ElTable } from 'element-plus'
-import SimpleSelect from '../../components/SimpleSelect.vue'
-import Row from '../../components/Row.vue'
-import SimpleInput from '../../components/SimpleInput.vue'
-import SimplePagination from '../../components/SimplePagination.vue'
+import { useJlptGrammarStore } from '../../stores/grammar/jlptGrammarStore.ts'
+import { storeToRefs } from 'pinia'
+import { tableHeightCalc } from '../word'
+import GrammarCore from './GrammarCore.vue'
 
 const grammarStore = useJlptGrammarStore()
+const { jlptGrammars } = storeToRefs(grammarStore)
 const keyword = ref('')
 
 const selectedLevels = ref<string[]>([])
 
-const levels: ComputedRef<string[]> = computed(() => {
-  return [...new Set(grammarStore.JlptGrammars.map((x) => x.level))].sort()
-})
+const functionGroup = ref(true)
+const levelSelect = ref(true)
+const keywordFilter = ref(true)
+const pagination = ref(true)
+const scrollTop = ref(true)
 
-const beforePage = computed(() => {
-  let list = grammarStore.JlptGrammars
-  const key = keyword.value
-  if (key) {
-    const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
-    list = list
-      .filter((item) => {
-        return (
-          item.grammar?.toString().includes(key) ||
-          item.meaning?.includes(key) ||
-          item.example?.includes(key) ||
-          item.level?.includes(key)
-        )
-      })
-      .map((item) => {
-        const highlighted = { ...item }
-        const highlight = (text: string) =>
-          text?.replace(regex, '<span class="match">$1</span>')
-        if (highlighted.grammar)
-          highlighted.grammar = highlight(highlighted.grammar)
-        if (highlighted.meaning)
-          highlighted.meaning = highlight(highlighted.meaning)
-        if (highlighted.example)
-          highlighted.example = highlight(highlighted.example)
-        return highlighted
-      })
-  }
-  if (selectedLevels.value.length > 0) {
-    list = list.filter((item) => selectedLevels.value.includes(item.level))
-  }
-  return list
+const tableHeight = computed(() => {
+  return tableHeightCalc(functionGroup.value, pagination.value)
 })
-
-// 当前页数据
-const afterPage = ref<JlptGrammar[]>([])
-const pageChange = (data: JlptGrammar[]) => {
-  afterPage.value = data
-}
 </script>
 
 <style>
@@ -121,15 +48,13 @@ const pageChange = (data: JlptGrammar[]) => {
   position: fixed;
 }
 
-.main {
+:deep(.grammar-main) {
+  width: 100vw;
   overflow-y: scroll;
-  height: calc(
-    100vh - var(--root-header-height) - var(--single-row-header-height) -
-      var(--pagination-height) - var(--root-footer-height)
-  );
+  height: v-bind(tableHeight);
 }
 
-.table {
+:deep(.main) {
   max-width: var(--content-max-width);
   margin: 0 auto;
 }
