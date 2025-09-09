@@ -12,7 +12,7 @@
       <SimpleInput v-model.trim="keyword" v-if="keywordFilter" />
     </Row>
 
-    <div class="grammar-main">
+    <div class="grammar-main" ref="container" @scroll="onScroll">
       <div class="main">
         <el-collapse v-model="expands" :expand-icon-position="'left'">
           <el-collapse-item
@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type ComputedRef, ref, withDefaults } from 'vue'
+import { computed, type ComputedRef, onActivated, ref, withDefaults } from 'vue'
 import { type Grammar } from '../../stores/grammar/grammarStore.ts'
 import Row from '../../components/Row.vue'
 import LessonSelect from '../../components/LessonSelect.vue'
@@ -56,6 +56,7 @@ import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { collapseTitle } from './index.ts'
 import SimpleSelect from '../../components/SimpleSelect.vue'
+import { isNumber } from '../../utils'
 
 interface GrammarProps {
   data: Grammar[]
@@ -85,7 +86,7 @@ const lessonIndex = ref<null | number>(null)
 
 const beforePage = computed(() => {
   let list = props.data
-  if (props.lessonIndex) {
+  if (isNumber(props.lessonIndex)) {
     list = list.filter((item) => item.lesson === props.lessonIndex)
   }
   if (props.keyword) {
@@ -93,7 +94,7 @@ const beforePage = computed(() => {
       `${item.lesson}${item.title}${item.desc}`.includes(props.keyword)
     )
   }
-  if (lessonIndex.value) {
+  if (isNumber(lessonIndex.value)) {
     list = list.filter((item) => item.lesson === lessonIndex.value)
   }
   if (keyword.value) {
@@ -134,37 +135,35 @@ const pageChange = (data: Grammar[]) => {
   expands.value = afterPage.value.map((grammar) =>
     collapseTitle(grammar.title, grammar.idx)
   )
+  container.value.scrollTop = 0
 }
 
 const afterPageView = computed(() => {
-  if (!props.pagination) {
-    return beforePage.value
+  if (props.pagination) {
+    return afterPage.value
   }
-  return afterPage.value
+  return beforePage.value
+})
+
+const container = ref()
+const scrollPosition = ref<number>(0)
+const onScroll = async () => {
+  if (props.scrollTop) {
+    scrollPosition.value = container.value.scrollTop
+  }
+}
+onActivated(async () => {
+  if (props.scrollTop) {
+    setTimeout(() => {
+      if (container && container.value) {
+        container.value.scrollTop = scrollPosition.value
+      }
+    })
+  }
 })
 </script>
 
 <style scoped>
-/*
-.grammar {
-  width: 100%;
-  height: 100%;
-}
-
-.grammar-main {
-  overflow-y: scroll;
-  height: calc(
-    100vh - var(--root-header-height) - var(--single-row-header-height) -
-      var(--pagination-height) - var(--root-footer-height)
-  );
-}
-
-.main {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-}
-*/
-
 .grammar-title-row {
   display: flex;
 }

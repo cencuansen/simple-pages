@@ -132,6 +132,7 @@ import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 import Reading from '../../components/Reading.vue'
+import { isNumber } from '../../utils'
 
 interface WordProps {
   data: WordItem[]
@@ -194,31 +195,26 @@ watch(
 const beforePage = computed(() => {
   let list: WordItem[] = props.data
   if (props.keyword) {
-    // 关键词过滤
     list = list.filter((item) =>
       `${item.word}_${item.kana}_${item.desc}`.includes(props.keyword)
     )
   }
-  if (props.lessonIndex !== undefined) {
-    // 课程过滤
+  if (isNumber(props.lessonIndex)) {
     list = list.filter((item) => item.lesson === props.lessonIndex)
   }
+
   if (keyword.value) {
-    // 关键词过滤
     list = list.filter((item) =>
       `${item.word}_${item.kana}_${item.desc}`.includes(keyword.value)
     )
   }
-  if (lessonIndex.value !== undefined) {
-    // 课程过滤
+  if (isNumber(lessonIndex.value)) {
     list = list.filter((item) => item.lesson === lessonIndex.value)
   }
-  if (selectedClasses.value.length > 0) {
-    // 类别过滤
+  if (selectedClasses.value.length) {
     list = list.filter((item) => selectedClasses.value.includes(item.pos))
   }
-  if (selectedLevels.value.length > 0) {
-    // 等级过滤
+  if (selectedLevels.value.length) {
     list = list.filter((item) =>
       item.levels.some((level) =>
         selectedLevels.value.some((sl) => level.includes(sl))
@@ -232,6 +228,7 @@ const beforePage = computed(() => {
 const afterPage = ref<WordItem[]>([])
 const pageChange = (data: WordItem[]) => {
   afterPage.value = data
+  container.value.scrollTop = 0
 }
 
 const afterPageView = computed(() => {
@@ -247,6 +244,10 @@ const wordClasses = computed(() => {
   )
 })
 
+onBeforeUnmount(() => {
+  speechStore.stop()
+})
+
 const container = ref()
 const scrollPosition = ref<number>(0)
 const onScroll = async () => {
@@ -254,10 +255,6 @@ const onScroll = async () => {
     scrollPosition.value = container.value.scrollTop
   }
 }
-
-onBeforeUnmount(() => {
-  speechStore.stop()
-})
 
 onActivated(async () => {
   if (props.scrollTop) {

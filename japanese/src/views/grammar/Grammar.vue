@@ -4,9 +4,9 @@
       :data="grammars"
       :function-group="functionGroup"
       :pagination="pagination"
-      :lessonSelect="lessonSelect"
+      :lesson-select="lessonSelect"
       :keyword-filter="keywordFilter"
-      :scrollTop="scrollTop"
+      :scroll-top="scrollTop"
     />
   </div>
 </template>

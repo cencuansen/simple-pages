@@ -6,7 +6,7 @@
       :pagination="pagination"
       :level-select="levelSelect"
       :keyword-filter="keywordFilter"
-      :scrollTop="scrollTop"
+      :scroll-top="scrollTop"
     />
   </div>
 </template>
