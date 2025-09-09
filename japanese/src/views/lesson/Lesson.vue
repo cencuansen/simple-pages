@@ -7,7 +7,6 @@
         <el-text
           class="text-title"
           v-html="textView(lessonTitle)"
-          @click="aClick"
         ></el-text>
       </h1>
 
@@ -18,32 +17,12 @@
         class="section basics-section"
       >
         <el-form class="basics-list">
-          <el-form-item
-            class="message"
-            v-for="(item, idx) in sentences"
-            :key="`basic-${idx}`"
-          >
-            <div class="text-row">
-              <!--原文-->
-              <Reading :item="item" />
-              <el-text
-                :id="item.textId"
-                class="text text-content"
-                :class="{
-                  'speaking-active': activeText(item),
-                }"
-                v-html="textView(item.content)"
-                @click="aClick"
-              ></el-text>
-            </div>
-            <!--译文-->
-            <div
-              class="translation-line message"
-              v-if="settingStore.basicsTranslate"
-            >
-              {{ item.translation }}
-            </div>
-          </el-form-item>
+          <LessonRow
+            :container="container"
+            :rows="sentences"
+            :words="words"
+            :translate="settingStore.basicsTranslate"
+          />
         </el-form>
       </section>
 
@@ -58,34 +37,12 @@
           :key="`exchange2-${exchangeIndex}`"
           class="conversation-exchange"
         >
-          <el-form-item
-            :label="message.speaker"
-            class="message speaker"
-            :class="[`speaker-${message.speaker}`]"
-            v-for="(message, messageIndex) in exchange"
-            :key="`message2-${exchangeIndex}-${messageIndex}`"
-          >
-            <div class="text-row">
-              <!--原文-->
-              <Reading :item="message" />
-              <el-text
-                :id="message.textId"
-                class="text text-content"
-                :class="{
-                  'speaking-active': activeText(message),
-                }"
-                v-html="textView(message.content)"
-                @click="aClick"
-              ></el-text>
-            </div>
-            <!--译文-->
-            <div
-              class="translation-line message"
-              v-if="settingStore.exchangeTranslate[exchangeIndex]"
-            >
-              {{ message.translation }}
-            </div>
-          </el-form-item>
+          <LessonRow
+            :container="container"
+            :rows="exchange"
+            :words="words"
+            :translate="settingStore.exchangeTranslate[exchangeIndex]"
+          />
         </el-form>
       </section>
 
@@ -108,34 +65,12 @@
           :key="`exchange2-${exchangeIndex}`"
           class="conversation-exchange"
         >
-          <el-form-item
-            :label="displayText(message.speaker)"
-            class="message speaker"
-            :class="[`speaker-${message.speaker}`]"
-            v-for="(message, messageIndex) in exchange"
-            :key="`message2-${exchangeIndex}-${messageIndex}`"
-          >
-            <div class="text-row">
-              <!--原文-->
-              <Reading :item="message" />
-              <el-text
-                :id="message.textId"
-                class="text text-content"
-                :class="{
-                  'speaking-active': activeText(message),
-                }"
-                v-html="textView(message.content)"
-                @click="aClick"
-              ></el-text>
-            </div>
-            <!--译文-->
-            <div
-              class="translation-line message"
-              v-if="settingStore.exchange2Translate[exchangeIndex]"
-            >
-              {{ message.translation }}
-            </div>
-          </el-form-item>
+          <LessonRow
+            :container="container"
+            :rows="exchange"
+            :words="words"
+            :translate="settingStore.exchange2Translate[exchangeIndex]"
+          />
         </el-form>
       </section>
 
@@ -150,32 +85,12 @@
           ></el-text>
         </h2>
         <el-form class="basics-list">
-          <el-form-item
-            class="message"
-            v-for="(item, idx) in article?.contents"
-            :key="`article-${idx}`"
-          >
-            <div class="text-row">
-              <!--原文-->
-              <Reading :item="item" />
-              <el-text
-                :id="item.textId"
-                class="text text-content article"
-                :class="{
-                  'speaking-active': activeText(item),
-                }"
-                v-html="textView(item.content)"
-                @click="aClick"
-              ></el-text>
-            </div>
-            <!--译文-->
-            <div
-              class="translation-line message article-translation"
-              v-if="settingStore.basicsTranslate"
-            >
-              {{ item.translation }}
-            </div>
-          </el-form-item>
+          <LessonRow
+            :container="container"
+            :rows="article?.contents"
+            :words="words"
+            :translate="settingStore.basicsTranslate"
+          />
         </el-form>
       </section>
 
@@ -274,6 +189,7 @@ import { displayText, textParser } from './index.ts'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
+import LessonRow from './LessonRow.vue'
 import Reading from '../../components/Reading.vue'
 import WordCore from '../word/WordCore.vue'
 import GrammarCore from '../grammar/GrammarCore.vue'
@@ -308,8 +224,6 @@ const goLesson = lessonStore.goLesson
 
 const { fullscreen } = storeToRefs(settingStore)
 const { nowTextId } = storeToRefs(readingStore)
-
-const activeText = readingStore.activeText
 
 const { isPlaying } = storeToRefs(audioStore)
 
@@ -556,27 +470,8 @@ watch(
   font-size: 1.5rem;
 }
 
-.text-content {
-  display: inline;
-  font-size: 1.2rem;
-}
-
 .section {
   margin-bottom: 40px;
-}
-
-.translation-line {
-  font-size: 0.85em;
-  color: #999;
-  transition: opacity 0.3s ease;
-}
-
-.text-row {
-  position: relative;
-  display: inline;
-  align-items: center;
-  letter-spacing: 1px;
-  line-height: var(--text-content-line-height);
 }
 
 :deep(.anchor-link),
@@ -600,12 +495,6 @@ watch(
   white-space: nowrap;
   font-size: 1.2rem;
   line-height: var(--text-content-line-height);
-}
-
-:deep(.message .el-form-item__content) {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
 }
 
 :deep(.target-active) {
@@ -686,22 +575,6 @@ watch(
   user-select: auto;
   box-sizing: border-box;
   padding-left: 20px;
-}
-
-.speaking-active {
-  color: var(--el-color-success);
-}
-
-.speech-button {
-  margin-bottom: 0.5rem;
-}
-
-.speech-button:first-child {
-  margin-right: 1rem;
-}
-
-.speech-button:last-child {
-  margin-left: 1rem;
 }
 
 .go-top {

@@ -17,6 +17,7 @@ export const useLessonStore = defineStore(
     const minIndex = ref(0)
     const maxIndex = ref(0)
     const dialog = ref(false)
+    const lastElement = ref<HTMLElement | null>()
 
     // 初始化
     const init = async () => {
@@ -88,6 +89,10 @@ export const useLessonStore = defineStore(
 
     const setDialog = (val: boolean): void => {
       dialog.value = val
+    }
+
+    const setLastElement = (el: HTMLElement | null): void => {
+      lastElement.value = el
     }
     // -- setters end --
 
@@ -179,6 +184,7 @@ export const useLessonStore = defineStore(
       minIndex,
       maxIndex,
       dialog,
+      lastElement,
 
       // 计算属性
       currentLesson,
@@ -200,6 +206,7 @@ export const useLessonStore = defineStore(
       // setter
       setCurrentIndex,
       setDialog,
+      setLastElement,
 
       // 方法
       init,
