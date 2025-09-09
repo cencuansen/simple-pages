@@ -1,40 +1,7 @@
 <template>
-  <el-button
-    class="speech-button"
-    size="small"
-    v-if="isAudio"
-    circle
-    :disabled="isReading"
-    @click="audioOne(audioTime)"
-  >
-    <el-icon>
-      <i class="icon-on-music"></i>
-    </el-icon>
-  </el-button>
-  <el-button
-    class="speech-button"
-    size="small"
-    v-else-if="isTts && !isArray"
-    circle
-    :disabled="isReading"
-    @click="ttsOne(tts)"
-  >
-    <el-icon>
-      <i class="icon-on-MPIS-TTS"></i>
-    </el-icon>
-  </el-button>
-  <el-button
-    class="speech-button"
-    size="small"
-    v-else-if="isTts && isArray"
-    circle
-    :disabled="isReading"
-    @click="ttsMany(items)"
-  >
-    <el-icon>
-      <i class="icon-on-MPIS-TTS"></i>
-    </el-icon>
-  </el-button>
+  <IconVoice class="icon" v-if="isAudio" @click="audioOne(audioTime)" />
+  <IconBot class="icon" v-else-if="isTts && !isArray" @click="ttsOne(tts)" />
+  <IconBot class="icon" v-else-if="isTts && isArray" @click="ttsMany(items)" />
 </template>
 
 <script setup lang="ts">
@@ -46,6 +13,8 @@ import { useSettingStore } from '../stores/settingStore.ts'
 import { storeToRefs } from 'pinia'
 import type { Article, Discussion, TextBase } from '../views/lesson/types.ts'
 import type { WordItem } from '../types'
+import IconVoice from './IconVoice.vue'
+import IconBot from './IconBot.vue'
 
 const readingStore = useReadingStore()
 const { isReading } = storeToRefs(readingStore)
@@ -99,6 +68,12 @@ const isArray = computed(() => {
   return Boolean((props.items as []).length)
 })
 </script>
+<style>
+</style>
 <style scoped>
-
+.icon {
+  font-size: 18px;
+  cursor: pointer;
+  color: #63a35c;
+}
 </style>

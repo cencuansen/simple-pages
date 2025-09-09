@@ -89,6 +89,7 @@
         width="50"
         v-if="settingStore.ttsSpeak"
         fixed="right"
+        class-name="reading-column"
       >
         <template #header>
           <Reading :items="afterPage" />
@@ -267,4 +268,10 @@ onActivated(async () => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+:deep(.reading-column .cell) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
