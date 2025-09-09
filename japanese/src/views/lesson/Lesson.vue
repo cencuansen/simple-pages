@@ -3,90 +3,59 @@
     <LessonHeader id="header" v-if="!fullscreen" />
 
     <div class="lesson-main" ref="container" @scrollend="onScrollEnd">
-      <h1 id="title" class="lesson-title" ref="top">
-        <el-text class="text-title" v-html="textView(lessonTitle)"></el-text>
-      </h1>
+      <section class="section">
+        <h1 id="title" ref="top" v-html="textView(lessonTitle)"></h1>
+      </section>
 
       <!-- 简单句子 -->
-      <section
-        id="sentences"
-        v-if="hasSentences"
-        class="section basics-section"
-      >
-        <el-form class="basics-list">
+      <section id="sentences" class="section" v-if="hasSentences">
+        <el-form>
           <LessonRow
             :container="container"
             :rows="sentences"
             :words="words"
-            :translate="settingStore.basicsTranslate"
+            :translate="allTranslate"
           />
         </el-form>
       </section>
 
       <!-- 普通对话 -->
-      <section
-        id="conversations"
-        v-if="hasConversations"
-        class="section conversation-section"
-      >
-        <el-form
-          v-for="(exchange, exchangeIndex) in conversations"
-          :key="`exchange2-${exchangeIndex}`"
-          class="conversation-exchange"
-        >
+      <section id="conversations" class="section" v-if="hasConversations">
+        <el-form v-for="exchange in conversations">
           <LessonRow
             :container="container"
             :rows="exchange"
             :words="words"
-            :translate="settingStore.exchangeTranslate[exchangeIndex]"
+            :translate="allTranslate"
           />
         </el-form>
       </section>
 
       <!-- 情景对话 -->
-      <section
-        id="discussions"
-        v-if="hasDiscussions"
-        class="section conversation-section"
-      >
-        <h2>
-          <el-text
-            class="text-content-h2"
-            v-html="textView(discussions?.title)"
-            @click="aClick"
-          ></el-text>
-        </h2>
-        <el-form
-          label-width="auto"
-          v-for="(exchange, exchangeIndex) in discussions?.contents"
-          :key="`exchange2-${exchangeIndex}`"
-          class="conversation-exchange"
-        >
+      <section id="discussions" class="section" v-if="hasDiscussions">
+        <h2 v-html="textView(discussions?.title)" @click="aClick"></h2>
+        <el-form label-width="auto" v-for="exchange in discussions?.contents">
           <LessonRow
             :container="container"
             :rows="exchange"
             :words="words"
-            :translate="settingStore.exchange2Translate[exchangeIndex]"
+            :translate="allTranslate"
           />
         </el-form>
       </section>
 
       <!-- 短文-->
-      <section id="article" v-if="hasArticle" class="section" ref="articleRef">
-        <h2 class="h2">
+      <section id="article" class="section" ref="articleRef" v-if="hasArticle">
+        <h2>
           <Reading :item="article" :items="article?.contents" />
-          <el-text
-            class="text-content-h2"
-            v-html="textView(article?.title)"
-            @click="aClick"
-          ></el-text>
+          <span v-html="textView(article?.title)" @click="aClick"></span>
         </h2>
-        <el-form class="basics-list">
+        <el-form>
           <LessonRow
             :container="container"
             :rows="article?.contents"
             :words="words"
-            :translate="settingStore.basicsTranslate"
+            :translate="allTranslate"
           />
         </el-form>
       </section>
@@ -145,7 +114,6 @@
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -203,6 +171,7 @@ const { wordList } = storeToRefs(wordStore)
 const { grammars } = storeToRefs(grammarStore)
 
 const {
+  dialog,
   currentIndex,
   currentLesson,
   lessons,
@@ -218,8 +187,9 @@ const {
   article,
 } = storeToRefs(lessonStore)
 const goLesson = lessonStore.goLesson
+const setDialog = lessonStore.setDialog
 
-const { fullscreen } = storeToRefs(settingStore)
+const { fullscreen, allTranslate } = storeToRefs(settingStore)
 const { nowTextId } = storeToRefs(readingStore)
 
 const { isPlaying } = storeToRefs(audioStore)
@@ -240,7 +210,6 @@ watch(
   }
 )
 
-const dialog = ref(false)
 const top = ref()
 const container = ref()
 const grammarsRef = ref()
@@ -312,7 +281,7 @@ const onSingleKeyup = (event: KeyboardEvent) => {
   } else if (['ArrowRight'].includes(event.key)) {
     lessonStore.goNext()
   } else if (['f'].includes(event.key)) {
-    dialog.value = !dialog.value
+    setDialog(!dialog.value)
   } else if (['r'].includes(event.key)) {
   }
 }
@@ -358,51 +327,14 @@ watch(
 }
 
 .lesson-main {
-  overflow-y: scroll;
   overflow-x: hidden;
-  margin: 0 auto;
   width: 100vw;
   height: v-bind(mainHeight);
 }
 
-.lesson-main > * {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-}
-
-.lesson-title {
-  margin: 10px auto 40px;
-  display: flex;
-  align-items: end;
-  justify-content: center;
-}
-
-.lesson-switch,
-.lesson-title,
-.basics-section,
-.conversation-section {
-  padding: 0 5px;
-}
-
-.h2 {
-  position: relative;
-  line-height: var(--text-content-line-height);
-}
-
-.text-title {
-  font-size: 1.8rem;
-}
-
-.section h2 {
-  margin-bottom: 10px;
-}
-
-.text-content-h2 {
-  font-size: 1.5rem;
-}
-
 .section {
-  margin-bottom: 40px;
+  margin: 10px auto 10px;
+  max-width: var(--content-max-width);
 }
 
 :deep(.anchor-link),
@@ -413,19 +345,6 @@ watch(
 :deep(.anchor-link ruby),
 :deep(ruby .anchor-link) {
   margin: 0;
-}
-
-:deep(.el-form-item__label-wrap) {
-  align-items: start;
-}
-
-:deep(.el-form-item__label) {
-  font-weight: bolder;
-  color: var(--el-text-color-regular);
-  user-select: none;
-  white-space: nowrap;
-  font-size: 1.2rem;
-  line-height: var(--text-content-line-height);
 }
 
 :deep(.target-active) {
@@ -455,26 +374,6 @@ watch(
 :deep(.el-scrollbar__wrap) {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
-}
-
-:deep(.dict-column .cell) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.anchor-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.anchor-link span {
-  border-bottom: 1px dashed #1976d2;
-}
-
-.anchor-link:hover span {
-  background-color: #e0f7fa;
 }
 
 :deep(.search-model) {

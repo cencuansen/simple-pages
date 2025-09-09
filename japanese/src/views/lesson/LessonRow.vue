@@ -1,12 +1,10 @@
 <template>
   <el-form-item
     :label="displayText(row.speaker)"
-    class="message"
     v-for="row in rows"
     :key="row.textId"
   >
     <div class="text-row">
-      <!--原文-->
       <Reading :item="row" />
       <el-text
         :id="row.textId"
@@ -18,8 +16,7 @@
         @click="aClick"
       ></el-text>
     </div>
-    <!--译文-->
-    <div class="translation-line" v-if="translate">
+    <div class="translation" v-if="translate">
       {{ row.translation }}
     </div>
   </el-form-item>
@@ -56,22 +53,28 @@ const textView = computed(() => {
 </script>
 
 <style scoped>
-:deep(.message .el-form-item__content) {
+:deep(.el-form-item__label) {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  user-select: none;
+  white-space: nowrap;
+  color: var(--el-text-color-regular);
+  line-height: var(--text-content-line-height);
+}
+
+:deep(.el-form-item__content) {
   display: flex;
-  flex-direction: column;
   align-items: start;
+  flex-direction: column;
 }
 
 .text-row {
-  position: relative;
   display: inline;
-  align-items: center;
   letter-spacing: 1px;
   line-height: var(--text-content-line-height);
 }
 
 .text-content {
-  display: inline;
   font-size: 1.2rem;
 }
 
@@ -79,7 +82,7 @@ const textView = computed(() => {
   color: var(--el-color-success);
 }
 
-.translation-line {
+.translation {
   font-size: 0.85em;
   color: #999;
   transition: opacity 0.3s ease;
