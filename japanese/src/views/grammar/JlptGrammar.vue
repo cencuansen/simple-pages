@@ -32,12 +32,6 @@ const tableHeight = computed(() => {
 })
 </script>
 
-<style>
-:root {
-  --grammar-headers-height: 35px;
-}
-</style>
-
 <style scoped>
 .grammar {
   width: 100%;

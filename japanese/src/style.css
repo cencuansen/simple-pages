@@ -5,6 +5,44 @@
     --go-top-bgc: #333;
 
     --text-content-line-height: 3rem;
+    --grammar-headers-height: 35px;
+    --lesson-headers-height: 60px;
+
+    --gap12: 12px;
+    --audio-height: 54px;
+    --root-header-height: 30px;
+    --pagination-height: 35px;
+    --single-row-header-height: 35px;
+    /* default */
+    --root-footer-height: 0px;
+    /* desktop */
+    /*--root-footer-height: 0px;*/
+    /* android chrome */
+    /*--root-footer-height: 55px;*/
+    /* android edge */
+    /*--root-footer-height: 105px;*/
+
+    --ib-width: 12px;
+    --ib-height: 300px;
+    --ib-item-w: calc(var(--ib-width) - 2px);
+    --ib-item-h: var(--ib-item-w);
+    --ib-item-fs: calc(0.5 * var(--ib-item-w));
+    --ib-bg: inherit;
+    --ib-hover-bg: #333;
+    --ib-item-bg: #666;
+    --ib-item-active-bg: #f00;
+}
+
+@media (min-width: 700px) {
+    :root {
+        --ib-offset: calc((100vw - var(--content-max-width)) * 0.25);
+    }
+}
+
+@media (max-width: 700px) {
+    :root {
+        --ib-offset: 0;
+    }
 }
 
 html.dark {

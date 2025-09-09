@@ -124,32 +124,6 @@ onUnmounted(() => {
 })
 </script>
 
-<style>
-:root {
-  --ib-width: 12px;
-  --ib-height: 300px;
-  --ib-item-w: calc(var(--ib-width) - 2px);
-  --ib-item-h: var(--ib-item-w);
-  --ib-item-fs: calc(0.5 * var(--ib-item-w));
-  --ib-bg: inherit;
-  --ib-hover-bg: #333;
-  --ib-item-bg: #666;
-  --ib-item-active-bg: #f00;
-}
-
-@media (min-width: 700px) {
-  :root {
-    --ib-offset: calc((100vw - var(--content-max-width)) * 0.25);
-  }
-}
-
-@media (max-width: 700px) {
-  :root {
-    --ib-offset: 0;
-  }
-}
-</style>
-
 <style scoped>
 .index-bar {
   position: fixed;

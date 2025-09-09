@@ -123,11 +123,7 @@ const toggleFullscreen = (newStatus: boolean | null = null) => {
   settingStore.setFullscreen(newStatus !== null ? newStatus : !fullscreen.value)
 }
 </script>
-<style>
-:root {
-  --lesson-headers-height: 60px;
-}
-</style>
+
 <style scoped>
 .lesson-headers {
   height: var(--lesson-headers-height);
