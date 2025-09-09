@@ -772,6 +772,12 @@ watch(
   text-decoration: none;
 }
 
+@media (min-width: 700px) {
+  .go-top {
+    right: calc((100vw - var(--content-max-width)) * 0.25);
+  }
+}
+
 .close-fullscreen {
   width: 30px;
   height: 30px;

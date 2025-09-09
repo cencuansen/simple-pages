@@ -9,7 +9,6 @@
       :class-select="classSelect"
       :keyword-filter="keywordFilter"
     />
-    <a class="go-top" href="#" @click="goTop">↑</a>
   </div>
 </template>
 
@@ -40,16 +39,6 @@ watch(
     })
   }
 )
-
-const top = ref()
-
-const goTop = () => {
-  top.value.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center',
-    inline: 'nearest',
-  })
-}
 
 onBeforeUnmount(() => {
   speechStore.stop()
@@ -83,26 +72,5 @@ const tableHeight = computed(() => {
 :deep(.el-table) {
   margin: 0 auto;
   max-width: var(--content-max-width);
-}
-
-.go-top {
-  position: absolute;
-  bottom: 100px;
-  right: 50px;
-  width: 30px;
-  height: 30px;
-  border: none;
-  border-radius: 50%;
-  line-height: 25px;
-  text-align: center;
-  user-select: none;
-  z-index: 999;
-  color-scheme: inherit;
-  font-weight: bolder;
-  font-size: 1.5rem;
-  color: var(--el-color-primary);
-  background-color: inherit;
-  backdrop-filter: blur(1000px);
-  text-decoration: none;
 }
 </style>

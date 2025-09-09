@@ -228,13 +228,13 @@ onUnmounted(() => {
   --index-bar-item-current-bg: #666;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 700px) {
   :root {
-    --index-bar-offset: calc((100vw - 768px) * 0.25);
+    --index-bar-offset: calc((100vw - var(--content-max-width)) * 0.25);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   :root {
     --index-bar-offset: 0;
   }
