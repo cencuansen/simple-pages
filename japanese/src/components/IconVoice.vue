@@ -1,5 +1,5 @@
 <template>
-  <el-icon class="voice-icon">
+  <el-icon>
     <svg
       width="800px"
       height="800px"
@@ -18,4 +18,3 @@
     </svg>
   </el-icon>
 </template>
-

@@ -1,7 +1,22 @@
 <template>
-  <IconVoice class="icon" v-if="isAudio" @click="audioOne(audioTime)" />
-  <IconBot class="icon" v-else-if="isTts && !isArray" @click="ttsOne(tts)" />
-  <IconBot class="icon" v-else-if="isTts && isArray" @click="ttsMany(items)" />
+  <IconVoice
+    class="icon"
+    :class="{ disabled: isReading }"
+    v-if="isAudio"
+    @click="audioOne(audioTime)"
+  />
+  <IconBot
+    class="icon"
+    :class="{ disabled: isReading }"
+    v-else-if="isTts && !isArray"
+    @click="ttsOne(tts)"
+  />
+  <IconBot
+    class="icon"
+    :class="{ disabled: isReading }"
+    v-else-if="isTts && isArray"
+    @click="ttsMany(items)"
+  />
 </template>
 
 <script setup lang="ts">
@@ -68,12 +83,16 @@ const isArray = computed(() => {
   return Boolean((props.items as []).length)
 })
 </script>
-<style>
-</style>
+<style></style>
 <style scoped>
 .icon {
   font-size: 18px;
   cursor: pointer;
   color: #63a35c;
+}
+
+.disabled {
+  color: #666;
+  cursor: not-allowed;
 }
 </style>
