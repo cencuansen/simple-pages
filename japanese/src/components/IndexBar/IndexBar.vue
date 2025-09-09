@@ -12,7 +12,7 @@
   >
     <div
       v-for="(item, index) in normalizedData"
-      :key="index"
+      :key="item.id"
       class="index-bar__item"
       :class="{
         'index-bar__item--active': activeIndex === index,
@@ -21,7 +21,7 @@
       @click="scrollTo(item.target)"
       @mouseenter="setActive(index)"
     >
-      <span v-if="item.label" class="index-bar__label">{{ item.label }}</span>
+<!--      <span v-if="item.label" class="index-bar__label">{{ item.label }}</span>-->
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
   <div class="lessons" v-if="hasLessons">
     <LessonHeader id="header" v-if="!fullscreen" />
 
-    <div class="lesson-main" ref="container" @scroll="onScroll">
+    <div class="lesson-main" ref="container" @scrollend="onScrollEnd">
       <h1 id="title" class="lesson-title" ref="top">
         <el-text
           class="text-title"
@@ -455,8 +455,20 @@ onBeforeUnmount(() => {
   speechStore.stop()
 })
 
-const onScroll = async () => {
+const children = computed(() => {
+  return (container.value && Array.from(container.value.children)) || []
+})
+
+const onScrollEnd = async () => {
   scrollPosition.value = container.value.scrollTop
+
+  let sum = 0
+  for (let i = 0; i < children.value.length; i++) {
+    sum += children.value[i].getBoundingClientRect().height
+    if (scrollPosition.value < sum) {
+      break
+    }
+  }
 }
 
 interface HotkeyRef {
@@ -465,16 +477,10 @@ interface HotkeyRef {
 
 const hotkeyRefMap = computed<HotkeyRef>(() => {
   const refs: { [key: string]: HTMLElement } = {}
-  const elements = [
-    top.value,
-    articleRef.value,
-    grammarsRef.value,
-    wordsRef.value,
-  ] as HTMLElement[]
-  elements
+  children.value
     .filter(Boolean)
-    .map((item: HTMLElement, index: number) => {
-      const key: string = `${index + 1}`
+    .map((item: HTMLElement, _: number) => {
+      const key: string = item.id
       return [key, item]
     })
     .forEach((arr) => {
