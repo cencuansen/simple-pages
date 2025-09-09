@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type ComputedRef, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useJlptGrammarStore } from '../../stores/grammar/jlptGrammarStore.ts'
 import { storeToRefs } from 'pinia'
 import { tableHeightCalc } from '../word'
@@ -20,9 +20,6 @@ import GrammarCore from './GrammarCore.vue'
 
 const grammarStore = useJlptGrammarStore()
 const { jlptGrammars } = storeToRefs(grammarStore)
-const keyword = ref('')
-
-const selectedLevels = ref<string[]>([])
 
 const functionGroup = ref(true)
 const levelSelect = ref(true)
