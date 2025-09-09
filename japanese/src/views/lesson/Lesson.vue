@@ -755,8 +755,8 @@ watch(
   position: absolute;
   bottom: 100px;
   right: 50px;
-  width: 30px;
-  height: 30px;
+  width: 12px;
+  height: 12px;
   border: none;
   border-radius: 50%;
   line-height: 25px;
