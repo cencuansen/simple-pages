@@ -40,7 +40,6 @@
         </el-table-column>
         <template v-for="col in columns">
           <el-table-column
-            v-if="col.value.includes(col.value)"
             :prop="col.value"
             :label="col.label"
             :formatter="col.formatter"
@@ -55,8 +54,6 @@
       class="conju-detail"
       :modal="true"
       v-model="dialogModel"
-      center
-      align-center
       width="400"
     >
       <div class="detail-left">
@@ -170,6 +167,10 @@ const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-he
   height: v-bind(mainHeight);
 }
 
+.el-form-item {
+  margin-bottom: 0;
+}
+
 :deep(.el-scrollbar__wrap) {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
@@ -178,11 +179,6 @@ const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-he
 :deep(.el-dialog__body) {
   display: flex;
   gap: var(--gap12);
-}
-
-.detail-left,
-.detail-right {
-  height: 100%;
 }
 
 :deep(.el-overlay) {
