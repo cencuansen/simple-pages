@@ -13,32 +13,18 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
-import { useReadingStore } from '../../stores/readingStore.ts'
 import { storeToRefs } from 'pinia'
 
 import WordCore from './WordCore.vue'
 import { tableHeightCalc } from './index.ts'
 
-const readingStore = useReadingStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
 
-const { nowTextId } = storeToRefs(readingStore)
 const { wordList } = storeToRefs(wordStore)
-
-watch(
-  () => speechStore.lastFireTime,
-  (_) => {
-    document.getElementById(nowTextId.value)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'nearest',
-    })
-  }
-)
 
 onBeforeUnmount(() => {
   speechStore.stop()

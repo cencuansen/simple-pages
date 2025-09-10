@@ -114,14 +114,12 @@ import {
   onActivated,
   onBeforeUnmount,
   ref,
-  watch,
   withDefaults,
 } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
-import { storeToRefs } from 'pinia'
 
 import type { WordItem } from '../../types'
 import { ElTable } from 'element-plus'
@@ -170,7 +168,6 @@ const speechStore = useSpeechStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
 
-const { nowTextId } = storeToRefs(readingStore)
 const activeText = readingStore.activeText
 
 const selectedClasses = ref<string[]>([])
@@ -181,17 +178,6 @@ const levels: ComputedRef<string[]> = computed(() => {
     ...new Set(props.data.flatMap((item: WordItem) => item.levels)),
   ].sort()
 })
-
-watch(
-  () => speechStore.lastFireTime,
-  (_) => {
-    document.getElementById(nowTextId.value)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'nearest',
-    })
-  }
-)
 
 const beforePage = computed(() => {
   let list: WordItem[] = props.data

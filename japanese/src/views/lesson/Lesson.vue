@@ -128,8 +128,6 @@
 <script setup lang="ts">
 import { computed, type ComputedRef, onActivated, ref, watch } from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
-import { useReadingStore } from '../../stores/readingStore.ts'
-import { useSpeechStore } from '../../stores/speechStore.ts'
 import { useAudioStore } from '../../stores/audioStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
@@ -150,8 +148,6 @@ import WordCore from '../word/WordCore.vue'
 import GrammarCore from '../grammar/GrammarCore.vue'
 
 const lessonStore = useLessonStore()
-const readingStore = useReadingStore()
-const speechStore = useSpeechStore()
 const audioStore = useAudioStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
@@ -181,7 +177,6 @@ const setDialog = lessonStore.setDialog
 
 const { fullscreen, allTranslate, wordLink, furigana } =
   storeToRefs(settingStore)
-const { nowTextId } = storeToRefs(readingStore)
 
 const { isPlaying } = storeToRefs(audioStore)
 
@@ -204,17 +199,6 @@ watch(
 const top = ref()
 const container = ref()
 const scrollPosition = ref<number>(0)
-
-watch(
-  () => speechStore.lastFireTime,
-  (_) => {
-    document.getElementById(nowTextId.value)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'nearest',
-    })
-  }
-)
 
 const keyword = ref('')
 const fullLessons = computed(() => searchLesson(lessons.value, keyword.value))

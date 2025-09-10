@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useReadingStore } from '../stores/readingStore.ts'
 import { useSpeechStore } from '../stores/speechStore.ts'
 import { useAudioStore } from '../stores/audioStore.ts'
@@ -32,9 +32,10 @@ import IconVoice from './IconVoice.vue'
 import IconBot from './IconBot.vue'
 
 const readingStore = useReadingStore()
-const { isReading } = storeToRefs(readingStore)
+const { isReading, nowTextId } = storeToRefs(readingStore)
 
 const speechStore = useSpeechStore()
+const { lastFireTime } = storeToRefs(speechStore)
 const ttsOne = speechStore.speak
 const ttsMany = speechStore.speakList
 
@@ -82,8 +83,21 @@ const isArray = computed(() => {
   }
   return Boolean((props.items as []).length)
 })
+
+watch(
+  () => lastFireTime.value,
+  (_) => {
+    document.getElementById(nowTextId.value)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest',
+    })
+  }
+)
 </script>
+
 <style></style>
+
 <style scoped>
 .icon {
   font-size: 18px;
