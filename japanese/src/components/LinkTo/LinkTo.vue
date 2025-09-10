@@ -1,5 +1,5 @@
 <template>
-  <a class="go-top" href="#" @click="back">↑</a>
+  <a class="link-to" href="#" @click="back">↑</a>
 </template>
 
 <script setup lang="ts">
@@ -96,7 +96,7 @@ onMounted(() => {
 </style>
 
 <style scoped>
-.go-top {
+.link-to {
   position: absolute;
   bottom: 100px;
   right: 50px;

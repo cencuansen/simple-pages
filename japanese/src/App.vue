@@ -1,12 +1,10 @@
 <template>
-  <div class="header" v-if="!fullscreen">
-    <div class="button-group">
-      <el-segmented
-        v-model="nowLabel"
-        :options="labels"
-        @change="segmentChange"
-      />
-    </div>
+  <div class="root-header" v-if="!fullscreen">
+    <el-segmented
+      v-model="nowLabel"
+      :options="labels"
+      @change="segmentChange"
+    />
   </div>
   <div class="router-view">
     <el-config-provider :locale="locale">
@@ -124,53 +122,21 @@ onMounted(async () => {
 })
 </script>
 
-<style>
-#app {
-  height: 100vh;
-}
-
-.el-form-item {
-  margin-bottom: 0 !important;
-}
-</style>
-
 <style scoped>
-.header {
+.root-header {
   display: flex;
-  align-items: center;
-  padding: 0 5px;
-  height: var(--root-header-height);
-  width: 100%;
   justify-content: center;
   overflow-y: scroll;
   user-select: none;
-}
-
-.button-group {
-  display: flex;
-  align-items: center;
-  overflow-x: scroll;
-}
-
-.el-segmented {
-  padding: 0;
-}
-
-.button-group::-webkit-scrollbar {
-  display: none;
+  height: var(--root-header-height);
 }
 
 .router-view {
   width: 100vw;
-  height: calc(100vh - var(--root-header-height) - var(--root-footer-height));
-  position: fixed;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-:deep(.el-tabs__content) {
-  padding: 0 !important;
+  height: calc(100vh - var(--root-header-height) - var(--root-footer-height));
 }
 
 .footer {
@@ -178,27 +144,7 @@ onMounted(async () => {
   height: var(--root-footer-height);
 }
 
-:deep(.speaking-active) {
-  color: var(--el-color-success);
-}
-
-:deep(.speaking-active a:link) {
-  color: var(--el-color-success);
-}
-
-:deep(.speaking-active a:visited) {
-  color: var(--el-color-success);
-}
-
-:deep(.speaking-active a:hover) {
-  color: #4285f4;
-}
-
-:deep(.speaking-active a:active) {
-  color: #ff0000;
-}
-
-:deep(.match) {
+:deep(.active) {
   color: var(--el-color-success);
 }
 </style>

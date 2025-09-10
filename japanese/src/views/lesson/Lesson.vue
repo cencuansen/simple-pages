@@ -321,12 +321,6 @@ onDeactivated(() => {
   padding-left: 20px;
 }
 
-@media (min-width: 700px) {
-  .go-top {
-    right: calc((100vw - var(--content-max-width)) * 0.25);
-  }
-}
-
 .close-fullscreen {
   width: 30px;
   height: 30px;
@@ -343,5 +337,11 @@ onDeactivated(() => {
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   backdrop-filter: blur(10000px);
+}
+
+@media (min-width: 700px) {
+  .link-to {
+    right: calc((100vw - var(--content-max-width)) * 0.25);
+  }
 }
 </style>

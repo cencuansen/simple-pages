@@ -124,6 +124,20 @@ onUnmounted(() => {
 })
 </script>
 
+<style>
+:root {
+  --ib-width: 12px;
+  --ib-height: 300px;
+  --ib-item-w: calc(var(--ib-width) - 2px);
+  --ib-item-h: var(--ib-item-w);
+  --ib-item-fs: calc(0.5 * var(--ib-item-w));
+  --ib-bg: inherit;
+  --ib-hover-bg: #333;
+  --ib-item-bg: #666;
+  --ib-item-active-bg: #f00;
+}
+</style>
+
 <style scoped>
 .index-bar {
   position: fixed;
@@ -254,11 +268,6 @@ onUnmounted(() => {
   /* 触摸设备优化 */
   .index-bar {
     padding: 6px 3px;
-  }
-
-  .ib__item:active {
-    /*background-color: var(--ib-item-active-bg);*/
-    transform: scale(1.15);
   }
 }
 </style>

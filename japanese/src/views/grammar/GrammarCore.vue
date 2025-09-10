@@ -111,7 +111,7 @@ const beforePage = computed(() => {
   const escapedKey = keyword.value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
   const highlight = (text: string) =>
-    text?.replace(regex, '<span class="match">$1</span>')
+    text?.replace(regex, '<span class="active">$1</span>')
 
   list = list.map((item) => {
     const tem = { ...item }

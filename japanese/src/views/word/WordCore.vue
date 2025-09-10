@@ -28,7 +28,7 @@
         <template #default="scope">
           <div
             :class="{
-              'speaking-active': activeText(scope.row),
+              'active': activeText(scope.row),
             }"
           >
             <div

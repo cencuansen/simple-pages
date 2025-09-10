@@ -10,7 +10,7 @@
         :id="row.textId"
         class="text-content"
         :class="{
-          'speaking-active': activeText(row),
+          'active': activeText(row),
         }"
         v-html="textView(row.content)"
       ></el-text>
@@ -73,10 +73,6 @@ defineProps<LessonRowProps>()
 :deep(.anchor-link ruby),
 :deep(ruby .anchor-link) {
   margin: 0;
-}
-
-.speaking-active {
-  color: var(--el-color-success);
 }
 
 .translation {
