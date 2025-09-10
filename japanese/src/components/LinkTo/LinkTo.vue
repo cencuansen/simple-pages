@@ -27,6 +27,11 @@ const linkActive = (ele: Element) => {
   })
 }
 
+const scrollTo = (to: Element) => {
+  to.scrollIntoView(scrollParams)
+  linkActive(to)
+}
+
 const forward = (event: any) => {
   event.preventDefault()
   let from = event.target
@@ -36,20 +41,18 @@ const forward = (event: any) => {
   if (from.tagName.toLowerCase() === 'a') {
     const href = from.getAttribute('href')
     if (href && href.startsWith('#')) {
-      const to = document.querySelector(href)
-      if (to) {
+      const next = document.querySelector(href)
+      if (next) {
         linkHistory.value.push(from)
-        to.scrollIntoView(scrollParams)
-        linkActive(to)
+        scrollTo(next)
       }
     }
   }
 }
 
 const back = () => {
-  const last = linkHistory.value.pop() || props.top
-  linkActive(last)
-  last.scrollIntoView(scrollParams)
+  const previous = linkHistory.value.pop() || props.top
+  scrollTo(previous)
 }
 
 onMounted(() => {
