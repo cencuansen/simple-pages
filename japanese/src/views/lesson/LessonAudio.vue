@@ -2,7 +2,6 @@
   <div class="audio">
     <audio
       ref="audioRef"
-      :src="src"
       controls
       @timeupdate="onTimeUpdate"
       @play="onPlay"
@@ -17,10 +16,8 @@
 import { useAudioStore } from '../../stores/audioStore.ts'
 
 import { ref, watch } from 'vue'
-import { storeToRefs } from 'pinia'
 
 const audioStore = useAudioStore()
-const { src } = storeToRefs(audioStore)
 const onTimeUpdate = audioStore.onTimeUpdate
 const onPlay = audioStore.onPlay
 const onPause = audioStore.onPause

@@ -63,7 +63,7 @@
         title="播放"
         :disabled="isReading"
         v-if="hasAudio && settingStore.audioSpeak"
-        @click="playAudio()"
+        @click="playAudio(lessonAudio)"
       >
         读
       </el-button>
@@ -106,7 +106,7 @@ const settingStore = useSettingStore()
 
 const { isReading } = storeToRefs(readingStore)
 
-const { dialog, currentIndex, hasPrevious, hasNext, hasAudio } =
+const { dialog, currentIndex, hasPrevious, hasNext, hasAudio, lessonAudio } =
   storeToRefs(lessonStore)
 const goPrevious = lessonStore.goPrevious
 const goNext = lessonStore.goNext

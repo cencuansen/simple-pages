@@ -28,7 +28,7 @@
         <template #default="scope">
           <div
             :class="{
-              'active': activeText(scope.row),
+              active: activeText(scope.row),
             }"
           >
             <div
@@ -92,10 +92,10 @@
         class-name="reading-column"
       >
         <template #header>
-          <Reading :items="afterPage" />
+          <Reading :words="afterPage as WordItem[]" />
         </template>
         <template #default="scope">
-          <Reading :item="scope.row" />
+          <Reading :word="scope.row as WordItem" />
         </template>
       </el-table-column>
     </el-table>

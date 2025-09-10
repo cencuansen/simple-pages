@@ -44,7 +44,7 @@
       <!-- 短文-->
       <section id="article" class="section" v-if="hasArticle">
         <h2>
-          <Reading :item="article" :items="article?.contents" />
+          <Reading :row-items="article?.contents as TextBase[]" />
           <span v-html="textView(article?.title)"></span>
         </h2>
         <el-form>
@@ -141,6 +141,7 @@ import Reading from '../../components/Reading.vue'
 import WordCore from '../word/WordCore.vue'
 import GrammarCore from '../grammar/GrammarCore.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
+import type { TextBase } from './types.ts'
 
 const lessonStore = useLessonStore()
 const audioStore = useAudioStore()

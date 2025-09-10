@@ -9,6 +9,8 @@ export interface WordItem {
   group: number
   tags: string
   levels: string[]
+  ttsAudio?: string
+  audio?: string
 }
 
 export interface FilterOptions {

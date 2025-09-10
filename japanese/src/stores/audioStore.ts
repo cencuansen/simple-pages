@@ -1,15 +1,11 @@
 import { defineStore, storeToRefs } from 'pinia'
-import { ref, computed, watch } from 'vue'
-import { useLessonStore } from './lessonStore.ts'
+import { ref, watch } from 'vue'
 import { useReadingStore } from './readingStore.ts'
 import { useSpeechStore } from './speechStore.ts'
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 
 export const useAudioStore = defineStore('audio', () => {
-  const lessonStore = useLessonStore()
-  const { lessonAudio } = storeToRefs(lessonStore)
-
   const readingStore = useReadingStore()
   const { rate, volume, isReading, repeatTimes } = storeToRefs(readingStore)
   const setIsReading = readingStore.setIsReading
@@ -22,12 +18,12 @@ export const useAudioStore = defineStore('audio', () => {
   const currentTime = ref(0)
   const isPlaying = ref(false)
 
-  const src = computed(() => {
+  const getSrc = (path: string): string => {
     if (isSpeaking.value) {
-      return void 0
+      return ''
     }
-    return `${audioUrlBase}${lessonAudio.value}`
-  })
+    return `${audioUrlBase}${path}`
+  }
 
   const setAudioRef = (ref: HTMLAudioElement | undefined) => {
     audioRef.value = ref
@@ -39,28 +35,32 @@ export const useAudioStore = defineStore('audio', () => {
     await doPlayAudio(url, playTimes - 1)
   }
 
-  const playAudio = async (timeRange: string = '') => {
-    await doPlayAudio(timeRange, repeatTimes.value)
+  const playAudio = async (url: string = '') => {
+    await doPlayAudio(url, repeatTimes.value)
   }
 
-  const doPlayAudio = async (timeRange: string = '', playTimes: number = 1) => {
-    if (!audioRef.value || !src.value || playTimes < 1) {
+  const playAudios = async (urls: string[] = []) => {
+    await doPlayAudio(urls[0], repeatTimes.value)
+  }
+
+  const doPlayAudio = async (path: string = '', playTimes: number = 1) => {
+    const src = getSrc(path)
+    if (!audioRef.value || !src || playTimes < 1) {
       return
     }
     setNowTextId('')
-    const url = `${src.value}${timeRange}`
 
     // 移除旧的监听器
     if (currentPauseHandler) {
       audioRef.value?.removeEventListener('pause', currentPauseHandler)
     }
     // 创建并存储新的处理函数
-    currentPauseHandler = () => pauseHandler(url, playTimes)
+    currentPauseHandler = () => pauseHandler(src, playTimes)
     audioRef.value?.addEventListener('pause', currentPauseHandler)
 
     audioRef.value.playbackRate = rate.value
     audioRef.value.volume = volume.value
-    audioRef.value.src = url
+    audioRef.value.src = src
 
     await audioRef.value.play()
   }
@@ -77,7 +77,6 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   const onTimeUpdate = (e: any) => {
-    // TODO 音频-文本匹配，属于大工作量
     currentTime.value = e.target?.currentTime || 0
   }
   const onPlay = () => {
@@ -101,7 +100,6 @@ export const useAudioStore = defineStore('audio', () => {
   )
 
   return {
-    src,
     audioRef,
     currentTime,
     isPlaying,
@@ -109,6 +107,7 @@ export const useAudioStore = defineStore('audio', () => {
     setAudioRef,
 
     playAudio,
+    playAudios,
     pauseAudio,
 
     onTimeUpdate,

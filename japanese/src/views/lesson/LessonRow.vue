@@ -5,12 +5,12 @@
     :key="row.textId"
   >
     <div class="text-row">
-      <Reading :item="row" />
+      <Reading :row-item="row as TextBase" />
       <el-text
         :id="row.textId"
         class="text-content"
         :class="{
-          'active': activeText(row),
+          active: activeText(row),
         }"
         v-html="textView(row.content)"
       ></el-text>

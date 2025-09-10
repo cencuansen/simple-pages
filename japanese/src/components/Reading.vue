@@ -1,32 +1,119 @@
 <template>
+  <!-- 纯文本 -->
+  <IconBot
+    class="icon 纯文本-tts"
+    :class="{ disabled: isReading }"
+    v-if="ttsText"
+    @click="ttsOne(ttsText)"
+  />
+
+  <!-- 课文行 一行 -->
   <IconVoice
-    class="icon"
+    class="icon 单课文行-audio"
     :class="{ disabled: isReading }"
-    v-if="isAudio"
-    @click="audioOne(audioTime)"
+    v-else-if="rowItem?.audio"
+    @click="audioOne(rowItem?.audio)"
   />
+
   <IconBot
-    class="icon"
+    class="icon 单课文行-tts-audio"
+    :data="rowItem?.ttsAudio"
     :class="{ disabled: isReading }"
-    v-else-if="isTts && !isArray"
-    @click="ttsOne(tts)"
+    v-else-if="rowItem?.ttsAudio"
+    @click="audioOne(rowItem?.ttsAudio)"
   />
+
   <IconBot
-    class="icon"
+    class="icon 单课文行-tts"
     :class="{ disabled: isReading }"
-    v-else-if="isTts && isArray"
-    @click="ttsMany(items)"
+    v-else-if="rowItem?.speakText"
+    @click="ttsOne(rowItem?.speakText)"
+  />
+
+  <!-- 课文行 多行 -->
+  <IconVoice
+    class="icon 多课文行-audio"
+    :class="{ disabled: isReading }"
+    v-else-if="rowItems && rowItems[0].audio"
+    @click="
+      audioMany(rowItems?.map((item) => item.audio || '').filter(Boolean) || [])
+    "
+  />
+
+  <IconBot
+    class="icon 多课文行-tts-audio"
+    :class="{ disabled: isReading }"
+    v-else-if="rowItems && rowItems[0].ttsAudio"
+    @click="
+      audioMany(
+        rowItems?.map((item) => item.ttsAudio || '').filter(Boolean) || []
+      )
+    "
+  />
+
+  <IconBot
+    class="icon 多课文行-tts"
+    :class="{ disabled: isReading }"
+    v-else-if="rowItems && rowItems[0].speakText"
+    @click="ttsMany(rowItems)"
+  />
+
+  <!--单词 单个-->
+  <IconVoice
+    class="icon 单单词-audio"
+    :class="{ disabled: isReading }"
+    v-else-if="word?.audio"
+    @click="audioOne(word.audio)"
+  />
+
+  <IconBot
+    class="icon 单单词-tts-audio"
+    :class="{ disabled: isReading }"
+    v-else-if="word?.ttsAudio"
+    @click="audioOne(word.ttsAudio)"
+  />
+
+  <IconBot
+    class="icon 单单词-tts"
+    :class="{ disabled: isReading }"
+    v-else-if="word?.kana"
+    @click="ttsOne(word)"
+  />
+
+  <!--单词 多个-->
+  <IconVoice
+    class="icon 多单词-audio"
+    :class="{ disabled: isReading }"
+    v-else-if="words && words[0]?.audio"
+    @click="
+      audioMany(words?.map((item) => item.audio || '').filter(Boolean) || [])
+    "
+  />
+
+  <IconBot
+    class="icon 多单词-tts-audio"
+    :class="{ disabled: isReading }"
+    v-else-if="words && words[0]?.ttsAudio"
+    @click="
+      audioMany(words?.map((item) => item.ttsAudio || '').filter(Boolean) || [])
+    "
+  />
+
+  <IconBot
+    class="icon 多单词-tts"
+    :class="{ disabled: isReading }"
+    v-else-if="words && words[0]?.kana"
+    @click="ttsMany(words)"
   />
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { watch } from 'vue'
 import { useReadingStore } from '../stores/readingStore.ts'
 import { useSpeechStore } from '../stores/speechStore.ts'
 import { useAudioStore } from '../stores/audioStore.ts'
-import { useSettingStore } from '../stores/settingStore.ts'
 import { storeToRefs } from 'pinia'
-import type { Article, Discussion, TextBase } from '../views/lesson/types.ts'
+import type { TextBase } from '../views/lesson/types.ts'
 import type { WordItem } from '../types'
 import IconVoice from './IconVoice.vue'
 import IconBot from './IconBot.vue'
@@ -41,48 +128,15 @@ const ttsMany = speechStore.speakList
 
 const audioStore = useAudioStore()
 const audioOne = audioStore.playAudio
+const audioMany = audioStore.playAudios
 
-const settingStore = useSettingStore()
-const { audioSpeak, ttsSpeak } = storeToRefs(settingStore)
-
-const props = defineProps<{
-  item?: string | Discussion | Article | TextBase | WordItem | undefined
-  items?: TextBase[] | WordItem[] | undefined
+defineProps<{
+  ttsText?: string
+  rowItem?: TextBase | undefined | null
+  rowItems?: TextBase[] | undefined | null
+  word?: WordItem | undefined | null
+  words?: WordItem[] | undefined | null
 }>()
-
-const audioTime = computed(() => {
-  if (isAudio.value) {
-    const textbase = props.item as Discussion | Article | TextBase
-    return textbase.time
-  }
-  return ''
-})
-const tts = computed(() => {
-  return props.item as string | TextBase | WordItem | undefined
-})
-const isAudio = computed(() => {
-  if (!props.item) {
-    return false
-  }
-  if (typeof props.item === 'string') {
-    // 字符串场景是：工具中朗读文本功能
-    return false
-  }
-  return (
-    audioSpeak.value &&
-    props.item.hasOwnProperty('time') &&
-    Boolean((props.item as Discussion | Article | TextBase)['time'])
-  )
-})
-const isTts = computed(() => {
-  return !isAudio.value && ttsSpeak
-})
-const isArray = computed(() => {
-  if (!props.items) {
-    return false
-  }
-  return Boolean((props.items as []).length)
-})
 
 watch(
   () => lastFireTime.value,

@@ -55,7 +55,7 @@ data1.forEach((lesson: Lesson) => {
   lesson.sentences &&
     lesson.sentences.forEach((item: TextBase) => {
       // item['textId'] = newTextId()
-      item['ttsAudio'] = `/${item['textId']}.mp3`
+      item['ttsAudio'] = `/${lesson.index}/${item.textId}.mp3`
       // item['speakText'] = speakText(item.content)
       if (item.time) {
         item['audio'] = `/${lesson.index}.mp3#t=${item.time}`
@@ -71,7 +71,7 @@ data1.forEach((lesson: Lesson) => {
     lesson.conversations.forEach((items: TextBase[]) => {
       items.forEach((item: TextBase) => {
         // item['textId'] = newTextId()
-        item['ttsAudio'] = `/${item['textId']}.mp3`
+        item['ttsAudio'] = `/${lesson.index}/${item.textId}.mp3`
         // item['speakText'] = speakText(item.content)
         if (item.time) {
           item['audio'] = `/${lesson.index}.mp3#t=${item.time}`
@@ -88,7 +88,7 @@ data1.forEach((lesson: Lesson) => {
     lesson.discussions.contents.forEach((items: TextBase[]) => {
       items.forEach((item: TextBase) => {
         // item['textId'] = newTextId()
-        item['ttsAudio'] = `/${item['textId']}.mp3`
+        item['ttsAudio'] = `/${lesson.index}/${item.textId}.mp3`
         // item['speakText'] = speakText(item.content)
         if (item.time) {
           item['audio'] = `/${lesson.index}.mp3#t=${item.time}`
@@ -104,7 +104,7 @@ data1.forEach((lesson: Lesson) => {
   lesson.article.contents &&
     lesson.article.contents.forEach((item: TextBase) => {
       // item['textId'] = newTextId()
-      item['ttsAudio'] = `/${item['textId']}.mp3`
+      item['ttsAudio'] = `/${lesson.index}/${item.textId}.mp3`
       // item['speakText'] = speakText(item.content)
       if (item.time) {
         item['audio'] = `/${lesson.index}.mp3#t=${item.time}`
