@@ -76,13 +76,7 @@
       :modal="true"
     >
       <template #header>
-        <el-input
-          v-model.lazy="keyword"
-          size="small"
-          placeholder="搜索"
-          clearable
-          v-focus
-        />
+        <SimpleInput v-model.lazy="keyword" v-focus />
       </template>
       <div class="model-result-item" v-for="lesson in fullLessons">
         <div
@@ -146,6 +140,7 @@ import LessonRow from './LessonRow.vue'
 import Reading from '../../components/Reading.vue'
 import WordCore from '../word/WordCore.vue'
 import GrammarCore from '../grammar/GrammarCore.vue'
+import SimpleInput from '../../components/SimpleInput.vue'
 
 const lessonStore = useLessonStore()
 const audioStore = useAudioStore()
