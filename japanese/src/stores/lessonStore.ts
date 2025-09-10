@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { isNumber, newTextId, speakText } from '../utils'
-import type { Lesson, TextBase } from '../views/lesson/types.ts'
+import { isNumber } from '../utils'
+import type { Lesson } from '../views/lesson/types.ts'
 import ky from 'ky'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
@@ -52,32 +52,33 @@ export const useLessonStore = defineStore(
       if (!data || data.length === 0) {
         return []
       }
-      data.forEach((lesson: Lesson) => {
-        lesson.sentences &&
-          lesson.sentences.forEach((item: TextBase) => {
-            item['textId'] = newTextId()
-            item['speakText'] = speakText(item.content)
-          })
-        lesson.conversations &&
-          lesson.conversations.forEach((items: TextBase[]) => {
-            items.forEach((item: TextBase) => {
-              item['textId'] = newTextId()
-              item['speakText'] = speakText(item.content)
-            })
-          })
-        lesson.discussions.contents &&
-          lesson.discussions.contents.forEach((items: TextBase[]) => {
-            items.forEach((item: TextBase) => {
-              item['textId'] = newTextId()
-              item['speakText'] = speakText(item.content)
-            })
-          })
-        lesson.article.contents &&
-          lesson.article.contents.forEach((item: TextBase) => {
-            item['textId'] = newTextId()
-            item['speakText'] = speakText(item.content)
-          })
-      })
+      return data
+      // data.forEach((lesson: Lesson) => {
+      //   lesson.sentences &&
+      //     lesson.sentences.forEach((item: TextBase) => {
+      //       item['textId'] = newTextId()
+      //       item['speakText'] = speakText(item.content)
+      //     })
+      //   lesson.conversations &&
+      //     lesson.conversations.forEach((items: TextBase[]) => {
+      //       items.forEach((item: TextBase) => {
+      //         item['textId'] = newTextId()
+      //         item['speakText'] = speakText(item.content)
+      //       })
+      //     })
+      //   lesson.discussions.contents &&
+      //     lesson.discussions.contents.forEach((items: TextBase[]) => {
+      //       items.forEach((item: TextBase) => {
+      //         item['textId'] = newTextId()
+      //         item['speakText'] = speakText(item.content)
+      //       })
+      //     })
+      //   lesson.article.contents &&
+      //     lesson.article.contents.forEach((item: TextBase) => {
+      //       item['textId'] = newTextId()
+      //       item['speakText'] = speakText(item.content)
+      //     })
+      // })
     }
     // -- private functions end --
 

@@ -7,8 +7,9 @@ export interface TextBase {
   speakText: string
   time: string
   translation?: string
-  base?: string
   display?: string
+  ttsAudio?: string
+  audio?: string
 }
 
 export interface Discussion {

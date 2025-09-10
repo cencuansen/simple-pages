@@ -1,0 +1,7568 @@
+[
+  {
+    "lesson": 101,
+    "module": "sentences",
+    "textId": "i_2c027957a20f",
+    "speakText": "りさんは　ちゅうごくじんです。"
+  },
+  {
+    "lesson": 101,
+    "module": "sentences",
+    "textId": "i_a6bcd1174ee2",
+    "speakText": "もりさんは　がくせいでは　ありません。"
+  },
+  {
+    "lesson": 101,
+    "module": "sentences",
+    "textId": "i_7ee0c256f86d",
+    "speakText": "はやしさんは　にほんじんですか。"
+  },
+  {
+    "lesson": 101,
+    "module": "sentences",
+    "textId": "i_0bd205ea2a9f",
+    "speakText": "りさんは　ジェーシーきかくの　しゃいんです。"
+  },
+  {
+    "lesson": 101,
+    "module": "conversations",
+    "textId": "i_80d3da42b9a0",
+    "speakText": "わたしは　りです。おのさんですか。"
+  },
+  {
+    "lesson": 101,
+    "module": "conversations",
+    "textId": "i_d5147087aaec",
+    "speakText": "はい，そうです。おのです。"
+  },
+  {
+    "lesson": 101,
+    "module": "conversations",
+    "textId": "i_d3208b1605b2",
+    "speakText": "もりさんは　がくせいですか。"
+  },
+  {
+    "lesson": 101,
+    "module": "conversations",
+    "textId": "i_78c806e0ef37",
+    "speakText": "いいえ，がくせいでは　ありません。かいしゃいんです。"
+  },
+  {
+    "lesson": 101,
+    "module": "conversations",
+    "textId": "i_354a3ce94de1",
+    "speakText": "よしださんですか。"
+  },
+  {
+    "lesson": 101,
+    "module": "conversations",
+    "textId": "i_fd319ec32b55",
+    "speakText": "いいえ，ちがいます。もりです。"
+  },
+  {
+    "lesson": 101,
+    "module": "conversations",
+    "textId": "i_647eba4d41c7",
+    "speakText": "りさんは　ジェーシーきかくの　しゃいんですか。"
+  },
+  {
+    "lesson": 101,
+    "module": "conversations",
+    "textId": "i_677390a77528",
+    "speakText": "はい，そうです。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_d1cc26a9a8c9",
+    "speakText": "ジェーシーきかくの　おのさんですか。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_60ad50a9c3b8",
+    "speakText": "はい，おのです。りしゅうれいさんですか。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_379755b40eb0",
+    "speakText": "はい，りしゅうれいです。はじめまして。どうぞ　よろしく　おねがいします。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_3355a04d59a5",
+    "speakText": "はじめまして，おのみどりです。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_574ac4e47d22",
+    "speakText": "りさん，こんにちは。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_6b7077a2961d",
+    "speakText": "よしださんですか。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_05c030fe3b7a",
+    "speakText": "いいえ，わたしは　よしだじゃ　ありません。もりです。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_4f492fb36ff8",
+    "speakText": "あっ，もりさんですか。どうも　すみません。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_88f8a224393d",
+    "speakText": "いいえ，どうぞ　よろしく。"
+  },
+  {
+    "lesson": 101,
+    "module": "discussions",
+    "textId": "i_251ebe0236b2",
+    "speakText": "りしゅうれいです。こちらこそ，よろしく　おねがいします。"
+  },
+  {
+    "lesson": 102,
+    "module": "sentences",
+    "textId": "i_1d17227caffd",
+    "speakText": "これは　ほんです。"
+  },
+  {
+    "lesson": 102,
+    "module": "sentences",
+    "textId": "i_6f3f5435c85e",
+    "speakText": "それは　なんですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "sentences",
+    "textId": "i_c767aeb95b17",
+    "speakText": "あれは　だれの　かさですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "sentences",
+    "textId": "i_91d55edbb22c",
+    "speakText": "この　カメラは　スミスさんのです。"
+  },
+  {
+    "lesson": 102,
+    "module": "conversations",
+    "textId": "i_0935d724d522",
+    "speakText": "これは　テレビですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "conversations",
+    "textId": "i_11e09617a984",
+    "speakText": "いいえ，それは　テレビでは　ありません。パソコンです。"
+  },
+  {
+    "lesson": 102,
+    "module": "conversations",
+    "textId": "i_985a05b2026e",
+    "speakText": "それは　なんですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "conversations",
+    "textId": "i_201e5e7c4da0",
+    "speakText": "これは　にほんごの　ほんです。"
+  },
+  {
+    "lesson": 102,
+    "module": "conversations",
+    "textId": "i_59767c08104c",
+    "speakText": "もりさんの　かばんは　どれですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "conversations",
+    "textId": "i_4b931eba787c",
+    "speakText": "あの　かばんです。"
+  },
+  {
+    "lesson": 102,
+    "module": "conversations",
+    "textId": "i_e90736cd085b",
+    "speakText": "その　ノートは　だれのですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "conversations",
+    "textId": "i_539e827aea19",
+    "speakText": "わたしのです。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_45150c7a9bc0",
+    "speakText": "りさん，それは　なんですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_4e73db02bca4",
+    "speakText": "これですか。かぞくの　しゃしんです。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_c93fc4aed74e",
+    "speakText": "この　かたは　どなたですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_e928ea41d039",
+    "speakText": "わたしの　ははです。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_fa9ee19789cf",
+    "speakText": "おかあさんは　おいくつですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_208d393bbf67",
+    "speakText": "ごじゅうにさいです。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_3973e185f848",
+    "speakText": "おのさん，これ，どうぞ。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_a28cb7119b78",
+    "speakText": "えっ，なんですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_591b41ed4b14",
+    "speakText": "おみやげです。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_27e927d208d9",
+    "speakText": "わあ，シルクの　ハンカチですか。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_1cec1bfdc6c1",
+    "speakText": "ええ。スワトウの　ハンカチです。ちゅうごくの　めいさんひんです。"
+  },
+  {
+    "lesson": 102,
+    "module": "discussions",
+    "textId": "i_bb20f2a8e3c6",
+    "speakText": "どうも　ありがとう　ございます。"
+  },
+  {
+    "lesson": 103,
+    "module": "sentences",
+    "textId": "i_f1fb0376fb3a",
+    "speakText": "ここは　デパートです。"
+  },
+  {
+    "lesson": 103,
+    "module": "sentences",
+    "textId": "i_386c5a4e9621",
+    "speakText": "しょくどうは　デパートの　ななかいです。"
+  },
+  {
+    "lesson": 103,
+    "module": "sentences",
+    "textId": "i_654d25b2b486",
+    "speakText": "あそこも　ジェーシーきかくの　ビルです。"
+  },
+  {
+    "lesson": 103,
+    "module": "sentences",
+    "textId": "i_ae21299ea0c7",
+    "speakText": "かばんうりばは　いっかいですか，にかいですか。"
+  },
+  {
+    "lesson": 103,
+    "module": "conversations",
+    "textId": "i_0fa1d0b32f17",
+    "speakText": "トイレは　どこですか。"
+  },
+  {
+    "lesson": 103,
+    "module": "conversations",
+    "textId": "i_ee4584b664f8",
+    "speakText": "あちらです。"
+  },
+  {
+    "lesson": 103,
+    "module": "conversations",
+    "textId": "i_9d03a564e67a",
+    "speakText": "ここは　ゆうびんきょくですか，ぎんこうですか。"
+  },
+  {
+    "lesson": 103,
+    "module": "conversations",
+    "textId": "i_d1bf5441ecbc",
+    "speakText": "ぎんこうです。"
+  },
+  {
+    "lesson": 103,
+    "module": "conversations",
+    "textId": "i_05d6865a2935",
+    "speakText": "これは　いくらですか。"
+  },
+  {
+    "lesson": 103,
+    "module": "conversations",
+    "textId": "i_68449a6fc974",
+    "speakText": "それは　ごせんはっぴゃくえんです。"
+  },
+  {
+    "lesson": 103,
+    "module": "conversations",
+    "textId": "i_f08e4f427a77",
+    "speakText": "あれは？"
+  },
+  {
+    "lesson": 103,
+    "module": "conversations",
+    "textId": "i_d998e3728a0f",
+    "speakText": "あれも　ごせんはっぴゃくえんです。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_f1a813270a88",
+    "speakText": "ここは　コンビニです。となりは　きっさてんです。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_dc1fe0c54dad",
+    "speakText": "あの　たてものは　ホテルですか、マンションですか。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_2a5c47f53d0f",
+    "speakText": "あそこは　マンションです。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_ebe5f33182e2",
+    "speakText": "あの　たてものは　なんですか。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_c0d6c4702a39",
+    "speakText": "あそこも　マンションです。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_4f8996bb2069",
+    "speakText": "マンションの　となりは？"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_b063fdcd342e",
+    "speakText": "マンションの　となりは　びょういんです。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_734b3abe290b",
+    "speakText": "ほんやは　どこですか。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_8535dfedd7f3",
+    "speakText": "そこです。その　ビルの　にかいです。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_5fa33b79836f",
+    "speakText": "あのう，とうきょうの　ちずは　どこですか。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_cec9276936b6",
+    "speakText": "ちずですか。そちらです。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_d7cacf24330d",
+    "speakText": "いくらですか。"
+  },
+  {
+    "lesson": 103,
+    "module": "discussions",
+    "textId": "i_969d2dd368fd",
+    "speakText": "ごひゃくえんです。 "
+  },
+  {
+    "lesson": 104,
+    "module": "sentences",
+    "textId": "i_c381709e551e",
+    "speakText": "へやに　つくえと　いすが　あります。"
+  },
+  {
+    "lesson": 104,
+    "module": "sentences",
+    "textId": "i_142f6b7de825",
+    "speakText": "つくえの　うえに　ねこが　います。"
+  },
+  {
+    "lesson": 104,
+    "module": "sentences",
+    "textId": "i_9434ce12ae08",
+    "speakText": "ばいてんは　えきの　そとに　あります。"
+  },
+  {
+    "lesson": 104,
+    "module": "sentences",
+    "textId": "i_34f4d440b164",
+    "speakText": "よしださんは　にわに　います。"
+  },
+  {
+    "lesson": 104,
+    "module": "conversations",
+    "textId": "i_eea5e9c14f8d",
+    "speakText": "その　はこの　なかに　なにが　ありますか。"
+  },
+  {
+    "lesson": 104,
+    "module": "conversations",
+    "textId": "i_793472218107",
+    "speakText": "とけいと　めがねが　あります。"
+  },
+  {
+    "lesson": 104,
+    "module": "conversations",
+    "textId": "i_3f1f8e3d6a13",
+    "speakText": "へやに　だれが　いますか。"
+  },
+  {
+    "lesson": 104,
+    "module": "conversations",
+    "textId": "i_8062bdc2c613",
+    "speakText": "だれも　いません。"
+  },
+  {
+    "lesson": 104,
+    "module": "conversations",
+    "textId": "i_f5ed4afe6cf3",
+    "speakText": "おのさんの　いえは　どこに　ありますか"
+  },
+  {
+    "lesson": 104,
+    "module": "conversations",
+    "textId": "i_73d2fa482b63",
+    "speakText": "よこはまに　あります。"
+  },
+  {
+    "lesson": 104,
+    "module": "conversations",
+    "textId": "i_4bc09ede557e",
+    "speakText": "あそこに　いぬが　いますね。"
+  },
+  {
+    "lesson": 104,
+    "module": "conversations",
+    "textId": "i_644f65a5b25a",
+    "speakText": "ええ，わたしの　いぬです。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_6cf1697bd4d0",
+    "speakText": "おのさん，かいしゃは　どこに　ありますか。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_4cc4e9596566",
+    "speakText": "ええと，　ここです。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_eaa9dd16b3d0",
+    "speakText": "ちかくに　えきが　ありますか。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_1a7bbeedd0d0",
+    "speakText": "ええ。ジェーアールと　ちかてつの　えきが　あります。ジェーアールの　えきは　ここです。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_ecf50d10f4f0",
+    "speakText": "ちかてつの　えきは　ここですね。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_2bac38eb9c58",
+    "speakText": "ええ，そうです。ジェーアールの　えきの　となりに　ちかてつの　えきが　あります。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_a7f463b3241e",
+    "speakText": "おのさんの　いえは　どちらですか。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_b823d5c7b4c6",
+    "speakText": "わたしの　いえは　よこはまです。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_3cd0af984425",
+    "speakText": "ごかぞくも　よこはまですか。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_75689f7e80d3",
+    "speakText": "いいえ，わたしは　ひとりぐらしです。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_ffc06535ac5c",
+    "speakText": "ごりょうしんは　どちらですか。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_617540e7c0cd",
+    "speakText": "りょうしんは　なごやに　います。"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_adcb065b35a2",
+    "speakText": "ごきょうだいは？"
+  },
+  {
+    "lesson": 104,
+    "module": "discussions",
+    "textId": "i_98886b2abd75",
+    "speakText": "おおさかに　いもうとが　います。"
+  },
+  {
+    "lesson": 105,
+    "module": "sentences",
+    "textId": "i_7760dfe12858",
+    "speakText": "いま　よじです。"
+  },
+  {
+    "lesson": 105,
+    "module": "sentences",
+    "textId": "i_e83875d515a2",
+    "speakText": "もりさんは　しちじに　おきます。"
+  },
+  {
+    "lesson": 105,
+    "module": "sentences",
+    "textId": "i_a4f660a25040",
+    "speakText": "もりさんは　せんしゅう　やすみました。"
+  },
+  {
+    "lesson": 105,
+    "module": "sentences",
+    "textId": "i_567a286ab1e8",
+    "speakText": "わたしは　きのう　はたらきませんでした。"
+  },
+  {
+    "lesson": 105,
+    "module": "conversations",
+    "textId": "i_4e973cda09ca",
+    "speakText": "まいにち，なんじに　ねますか。"
+  },
+  {
+    "lesson": 105,
+    "module": "conversations",
+    "textId": "i_a035baae34c0",
+    "speakText": "じゅういちじさんじゅうぷんに　ねます。"
+  },
+  {
+    "lesson": 105,
+    "module": "conversations",
+    "textId": "i_fa4a29745b5f",
+    "speakText": "きのう，なんじから　なんじまで　はたらきましたか。"
+  },
+  {
+    "lesson": 105,
+    "module": "conversations",
+    "textId": "i_12478549af7d",
+    "speakText": "くじから　ろくじまで　はたらきました。"
+  },
+  {
+    "lesson": 105,
+    "module": "conversations",
+    "textId": "i_7a52b2c33a79",
+    "speakText": "せんしゅう　やすみましたか。"
+  },
+  {
+    "lesson": 105,
+    "module": "conversations",
+    "textId": "i_7fb167aa0e25",
+    "speakText": "いいえ，やすみませんでした。"
+  },
+  {
+    "lesson": 105,
+    "module": "conversations",
+    "textId": "i_97c30d19dae9",
+    "speakText": "しけんは　いつ　はじまりますか。"
+  },
+  {
+    "lesson": 105,
+    "module": "conversations",
+    "textId": "i_c5a0b470b898",
+    "speakText": "らいしゅうの　もくようびです。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_a29221cf7cd5",
+    "speakText": "おのさん，りさんの　かんげいかいは　いつですか。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_54f9e90ab042",
+    "speakText": "あさっての　よるです。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_996bf29de297",
+    "speakText": "なんじからですか。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_08592bc791ab",
+    "speakText": "ろくじからです。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_3066617d0d2d",
+    "speakText": "もりくん，おはよう。いま　なんじですか。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_e1dfdaa2bc2e",
+    "speakText": "じゅうじじゅうごふんです。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_09d329add670",
+    "speakText": "ちこくですね。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_f04aebc4b9f8",
+    "speakText": "すみません，かちょう。けさ　くじに　おきました。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_396fc3c493c0",
+    "speakText": "もりさんは　まいあさ　なんじに　おきますか。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_15a9f2bf95dd",
+    "speakText": "いつもは　しちじごろです。りさんは？"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_aec40916620b",
+    "speakText": "わたしは　ろくじごろです。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_17994e50d1fd",
+    "speakText": "ぺキンししゃは　なんじに　はじまりますか。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_9abfc93dab1c",
+    "speakText": "はちじです。ごぜん　はちじから　ごご　ごじまで　はたらきます。"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_fb6b77968deb",
+    "speakText": "どようびは？"
+  },
+  {
+    "lesson": 105,
+    "module": "discussions",
+    "textId": "i_397b5709d63d",
+    "speakText": "どようびは　はたらきません。どようびと　にちようびは　やすみです。"
+  },
+  {
+    "lesson": 106,
+    "module": "sentences",
+    "textId": "i_29a832a28a29",
+    "speakText": "よしださんは　らいげつ　ちゅうごくへ　いきます。"
+  },
+  {
+    "lesson": 106,
+    "module": "sentences",
+    "textId": "i_75014e3620f3",
+    "speakText": "りさんは　せんげつ　ぺキンから　きました。"
+  },
+  {
+    "lesson": 106,
+    "module": "sentences",
+    "textId": "i_d3875ce7f7b2",
+    "speakText": "おのさんは　ともだちと　かえりました。"
+  },
+  {
+    "lesson": 106,
+    "module": "sentences",
+    "textId": "i_1dc78297b03e",
+    "speakText": "もりさんは　とうきょうから　ひろしままで　しんかんせんで　いきます。"
+  },
+  {
+    "lesson": 106,
+    "module": "conversations",
+    "textId": "i_b185c3b22166",
+    "speakText": "いつ　アメリカへ　いきますか。"
+  },
+  {
+    "lesson": 106,
+    "module": "conversations",
+    "textId": "i_0cc0cee51389",
+    "speakText": "じゅうがつに　いきます。"
+  },
+  {
+    "lesson": 106,
+    "module": "conversations",
+    "textId": "i_6d3562090eaf",
+    "speakText": "えきへ　なにで　いきますか。"
+  },
+  {
+    "lesson": 106,
+    "module": "conversations",
+    "textId": "i_1ddb6aed956f",
+    "speakText": "じてんしゃで　いきます。"
+  },
+  {
+    "lesson": 106,
+    "module": "conversations",
+    "textId": "i_4cc9375f87d7",
+    "speakText": "だれと　びじゅつかんへ　いきますか。"
+  },
+  {
+    "lesson": 106,
+    "module": "conversations",
+    "textId": "i_f144c3fb2546",
+    "speakText": "ともだちと　いきます。"
+  },
+  {
+    "lesson": 106,
+    "module": "conversations",
+    "textId": "i_1b529d097ac1",
+    "speakText": "おおさかから　シャンハィまで　ひこうきで　いきますか。"
+  },
+  {
+    "lesson": 106,
+    "module": "conversations",
+    "textId": "i_7d5725d97fab",
+    "speakText": "いいえ，フェリーで　いきます。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_d9406fc759e4",
+    "speakText": "りさん，きのうは　なんじに　アパートへ　かえりましたか。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_a162b5c0cf9a",
+    "speakText": "ええと，たしか　じゅういちじはんごろです。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_08c290a15801",
+    "speakText": "なにで　かえりましたか。タクシーですか。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_e06420fd8bcd",
+    "speakText": "でんしゃです。しぶやまで　でんしゃで　いきました。えきから　アパートまで　あるいて　かえりました。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_6cbde7d62719",
+    "speakText": "おのさんは？"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_de2d28961f3d",
+    "speakText": "わたしも　でんしゃです。えきからは　タクシーで うちへ　かえりました。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_ac55711f11a8",
+    "speakText": "なんじに　かえりましたか。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_3a6846e51e4d",
+    "speakText": "じゅうにじごろです。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_60dfc4768a25",
+    "speakText": "もりさん，ゆうべは　まっすぐ　かえりましたか。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_86d8daf583ad",
+    "speakText": "いいえ，かちょうと　いっしょに　ぎんざへ　いきました。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_8f2ec93941d3",
+    "speakText": "えっ，ぎんざですか？"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_85342daab91a",
+    "speakText": "なんじに　うちへ　かえりましたか。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_fb7209f4b988",
+    "speakText": "よなかの　にじです。"
+  },
+  {
+    "lesson": 106,
+    "module": "discussions",
+    "textId": "i_769bd976260e",
+    "speakText": "にじですか。それは　おつかれさまでした。"
+  },
+  {
+    "lesson": 107,
+    "module": "sentences",
+    "textId": "i_c9a2c7739ce8",
+    "speakText": "りさんは　まいにち　コーヒーを　のみます。"
+  },
+  {
+    "lesson": 107,
+    "module": "sentences",
+    "textId": "i_29b67bf0dcb6",
+    "speakText": "りさんは　としょかんで　べんきょうします。"
+  },
+  {
+    "lesson": 107,
+    "module": "sentences",
+    "textId": "i_03a0a46cd83e",
+    "speakText": "わたしは　まいあさ　パンか　おかゆを　たべます。"
+  },
+  {
+    "lesson": 107,
+    "module": "sentences",
+    "textId": "i_b499990f92f1",
+    "speakText": "コーラと　ケーキを　ください。"
+  },
+  {
+    "lesson": 107,
+    "module": "conversations",
+    "textId": "i_e5373cea94b2",
+    "speakText": "りさん，けさ　うちで　しんぶんを　よみましたか。"
+  },
+  {
+    "lesson": 107,
+    "module": "conversations",
+    "textId": "i_a2f20e056cbb",
+    "speakText": "いいえ，よみませんでした。"
+  },
+  {
+    "lesson": 107,
+    "module": "conversations",
+    "textId": "i_e65bcf2c202f",
+    "speakText": "けさ　なにを　たべましたか。"
+  },
+  {
+    "lesson": 107,
+    "module": "conversations",
+    "textId": "i_078506163b1a",
+    "speakText": "なにも　たべませんでした。"
+  },
+  {
+    "lesson": 107,
+    "module": "conversations",
+    "textId": "i_89d1bed15ace",
+    "speakText": "よしださん，にちようび　なにを　しますか。"
+  },
+  {
+    "lesson": 107,
+    "module": "conversations",
+    "textId": "i_b8cb58c2aece",
+    "speakText": "テニスか　ジョギングを　します。"
+  },
+  {
+    "lesson": 107,
+    "module": "conversations",
+    "textId": "i_b1b893f2ad24",
+    "speakText": "いらっしゃいませ。"
+  },
+  {
+    "lesson": 107,
+    "module": "conversations",
+    "textId": "i_434b4ee47670",
+    "speakText": "この ノートと　えんぴつを　ください。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_7786587f03a0",
+    "speakText": "りさん，これから　ひるごはんですか。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_3f5df79a3399",
+    "speakText": "はい，おのさんと　いっしょに　いきます。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_34dfc9a30859",
+    "speakText": "かちょうは？"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_df28b20787e3",
+    "speakText": "コンビニで　おべんとうと　おちゃを　かいました。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_3a5834b877e0",
+    "speakText": "いつも　コンビニですか。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_cc4e6c6dd08f",
+    "speakText": "いいえ。いつもは　そばやで　そばか　うどんを　たべます。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_05ff9c283ed7",
+    "speakText": "そうですか。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_c0533f532fb8",
+    "speakText": "りさん，きょうは　そばやへ　いきますか。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_e2b35c032413",
+    "speakText": "そうですね。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_15c1f08d50f5",
+    "speakText": "じゃあ，かちょう，しつれいします。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_6e16b69a1b03",
+    "speakText": "いってらっしゃい。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_f7932c03e18b",
+    "speakText": "いらっしゃいませ。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_cdc3a33a2ed9",
+    "speakText": "すみません，おやこどんを　ください。りさんは？"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_07ae7c66de8b",
+    "speakText": "わたしも　それを　ください。"
+  },
+  {
+    "lesson": 107,
+    "module": "discussions",
+    "textId": "i_93334d9f55c9",
+    "speakText": "かしこまりました。"
+  },
+  {
+    "lesson": 108,
+    "module": "sentences",
+    "textId": "i_dccadb9644f5",
+    "speakText": "りさんは　にほんごで　てがみを　かきます。"
+  },
+  {
+    "lesson": 108,
+    "module": "sentences",
+    "textId": "i_37557ade30a1",
+    "speakText": "わたしは　おのさんに　おみやげを　あげます。"
+  },
+  {
+    "lesson": 108,
+    "module": "sentences",
+    "textId": "i_99557d958e09",
+    "speakText": "わたしは　おのさんに　じしょを　もらいました。"
+  },
+  {
+    "lesson": 108,
+    "module": "sentences",
+    "textId": "i_ee6f0579010d",
+    "speakText": "りさんは　あした　ながしまさんに　あいます。"
+  },
+  {
+    "lesson": 108,
+    "module": "conversations",
+    "textId": "i_419b2246ac3b",
+    "speakText": "きのう，ははに　たんじょうびの　プレゼントを　おくりました。"
+  },
+  {
+    "lesson": 108,
+    "module": "conversations",
+    "textId": "i_25d9d8f6162b",
+    "speakText": "なにで　おくりましたか。"
+  },
+  {
+    "lesson": 108,
+    "module": "conversations",
+    "textId": "i_4d72318998aa",
+    "speakText": "こうくうびんで　おくりました。"
+  },
+  {
+    "lesson": 108,
+    "module": "conversations",
+    "textId": "i_8bb5dbcbb2d6",
+    "speakText": "その　えいがの　チケットを　だれに　あげますか。"
+  },
+  {
+    "lesson": 108,
+    "module": "conversations",
+    "textId": "i_6b44b0fc2c11",
+    "speakText": "りさんに　あげます。"
+  },
+  {
+    "lesson": 108,
+    "module": "conversations",
+    "textId": "i_a04517261817",
+    "speakText": "だれに　その　パンフレットを　もらいましたか。"
+  },
+  {
+    "lesson": 108,
+    "module": "conversations",
+    "textId": "i_6b4638f672f0",
+    "speakText": "ながしまさんに　もらいました。"
+  },
+  {
+    "lesson": 108,
+    "module": "conversations",
+    "textId": "i_b0cc89ab64f8",
+    "speakText": "すみません，りさんは　いますか。"
+  },
+  {
+    "lesson": 108,
+    "module": "conversations",
+    "textId": "i_613f8d6e72cf",
+    "speakText": "もう　かえりましたよ。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_9530b6439b69",
+    "speakText": "さっき　ながしまさんに　でんわを　もらいました。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_2a968e8fe1f0",
+    "speakText": "スケジュールひょうの　けんですか。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_74f1885c6d0a",
+    "speakText": "はい。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_8c64ada70f4e",
+    "speakText": "もう　ファックスで　おくりましたよ。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_a54185a8368a",
+    "speakText": "いつですか。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_dd2cce845106",
+    "speakText": "きのうの　ゆうがたです。もう　いちど　おくりますか。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_c5712a408dae",
+    "speakText": "ええ，おねがいします。わたしは　メールで　おくります。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_9becabad6677",
+    "speakText": "わかりました。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_fb481446df64",
+    "speakText": "りさん、たった　いま　ながしまさんに　メールを　もらいました。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_430de4e3dc90",
+    "speakText": "ファックスは　とどきましたか。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_d7cf7b05d7f7",
+    "speakText": "ええ，ファックスも　メールも　とどきましたよ。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_6390e577fc71",
+    "speakText": "そうですか。よかったです。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_62fa85b2b4fd",
+    "speakText": "りさん，これ，どうぞ。はこねの　しゃしんしゅうです。まえに　ながしまさんに　もらいました。"
+  },
+  {
+    "lesson": 108,
+    "module": "discussions",
+    "textId": "i_604110f5cc34",
+    "speakText": "ありがとう　ございます。"
+  },
+  {
+    "lesson": 109,
+    "module": "sentences",
+    "textId": "i_4bbb3ce7330c",
+    "speakText": "しせんりょうりは　からいです。"
+  },
+  {
+    "lesson": 109,
+    "module": "sentences",
+    "textId": "i_14d4a14eca1e",
+    "speakText": "この　スープは　あまり　あつく　ないです。"
+  },
+  {
+    "lesson": 109,
+    "module": "sentences",
+    "textId": "i_710ea61b2c80",
+    "speakText": "りょこうは　とても　たのしかったです。"
+  },
+  {
+    "lesson": 109,
+    "module": "sentences",
+    "textId": "i_99f0b4bcbf4c",
+    "speakText": "ちゅうごくは　ひろい　くにです。"
+  },
+  {
+    "lesson": 109,
+    "module": "conversations",
+    "textId": "i_53b353b19cce",
+    "speakText": "てんきは　よかったですか。"
+  },
+  {
+    "lesson": 109,
+    "module": "conversations",
+    "textId": "i_a018fe5ca559",
+    "speakText": "いいえ，あまり　よく　なかったです。"
+  },
+  {
+    "lesson": 109,
+    "module": "conversations",
+    "textId": "i_9a0882873475",
+    "speakText": "てんあんもんへ　いきましたか。"
+  },
+  {
+    "lesson": 109,
+    "module": "conversations",
+    "textId": "i_81dc182dfc01",
+    "speakText": "はい。とても　おおきい　たてものですね。"
+  },
+  {
+    "lesson": 109,
+    "module": "conversations",
+    "textId": "i_806b59d8c7f5",
+    "speakText": "ばんりの　ちょうじょうは　ペキンから　とおいですか。"
+  },
+  {
+    "lesson": 109,
+    "module": "conversations",
+    "textId": "i_fcd064d987e6",
+    "speakText": "いいえ，あまり　とおく　ないです。"
+  },
+  {
+    "lesson": 109,
+    "module": "conversations",
+    "textId": "i_0f26a465f232",
+    "speakText": "ペキンダックは　たべましたか。"
+  },
+  {
+    "lesson": 109,
+    "module": "conversations",
+    "textId": "i_612d9de72bc6",
+    "speakText": "はい，たべました。とても　おいしかったですよ。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_8e6c385b7b96",
+    "speakText": "おのさん，この　ゆかたは　ちょっと　ちいさいです。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_db63730534ca",
+    "speakText": "あら，それは　こどもようですよ。これを　どうぞ。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_1c87d968145d",
+    "speakText": "それは　ちょうど　いいです。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_108ed8459ac6",
+    "speakText": "りさん，あつく　ないですか。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_317b305e75e7",
+    "speakText": "いいえ，ちょうど　いいです。とても　きもちが　いいですね。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_366bd6c3ffa2",
+    "speakText": "おのさん，すばらしい　ながめですね。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_f1826c878238",
+    "speakText": "ええ，ほんとうに。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_f2f3888b9796",
+    "speakText": "おのさん，それは　なんですか。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_8f2cc93a7d7c",
+    "speakText": "ああ，これは　おんせんの　おゆです。りさんも　のみますか。"
+  },
+  {
+    "lesson": 109,
+    "module": "discussions",
+    "textId": "i_dd2f1f3eb24a",
+    "speakText": "ええ。あまり　おいしくないですね。"
+  },
+  {
+    "lesson": 110,
+    "module": "sentences",
+    "textId": "i_eb25ca83eb10",
+    "speakText": "きょうとの　もみじは　ゆうめいです。"
+  },
+  {
+    "lesson": 110,
+    "module": "sentences",
+    "textId": "i_73efde9fc6ab",
+    "speakText": "この　とおりは　にぎやかでは　ありません。"
+  },
+  {
+    "lesson": 110,
+    "module": "sentences",
+    "textId": "i_f9a208525142",
+    "speakText": "ならは　しずかな　まちです。"
+  },
+  {
+    "lesson": 110,
+    "module": "sentences",
+    "textId": "i_f10c3d5e63bb",
+    "speakText": "きのうは　にちようびでした。"
+  },
+  {
+    "lesson": 110,
+    "module": "conversations",
+    "textId": "i_4bec3afebfd1",
+    "speakText": "どんな　おみやげを　かいましたか。"
+  },
+  {
+    "lesson": 110,
+    "module": "conversations",
+    "textId": "i_d06512dd07e4",
+    "speakText": "きれいな　にんぎょうを　かいました。"
+  },
+  {
+    "lesson": 110,
+    "module": "conversations",
+    "textId": "i_194a5e953b14",
+    "speakText": "きょうとは　どうでしたか。"
+  },
+  {
+    "lesson": 110,
+    "module": "conversations",
+    "textId": "i_d61ffe202af8",
+    "speakText": "とても　きれいでした。でも，しずかでは　ありませんでした。"
+  },
+  {
+    "lesson": 110,
+    "module": "conversations",
+    "textId": "i_66e8f284156e",
+    "speakText": "よこはまは　どんな　まちですか。"
+  },
+  {
+    "lesson": 110,
+    "module": "conversations",
+    "textId": "i_b227fe3e336c",
+    "speakText": "おおきい　まちです。そして，にぎやかな　まちです。"
+  },
+  {
+    "lesson": 110,
+    "module": "conversations",
+    "textId": "i_672bd654dfb5",
+    "speakText": "とうきょうの　てんきは　どうでしたか。"
+  },
+  {
+    "lesson": 110,
+    "module": "conversations",
+    "textId": "i_dd14dc8299f2",
+    "speakText": "きのうは　はれでした。でも，おとといは　あめでした。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_bc5051ad6522",
+    "speakText": "きのう　きょうとへ　ぃきました。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_fe8c70d990e5",
+    "speakText": "きょうとですか。きょうとの　もみじは　どうでしたか。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_7b05e81a44e6",
+    "speakText": "とても　きれいでした。でも，まちは　あまり　しずかじゃ　ありませんでした。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_5091030a5f11",
+    "speakText": "えっ？"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_db3646e679e9",
+    "speakText": "いま　ちょうど　しゅうがくりょこうの　シーズンです。とても　にぎやかでした。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_4752f2ce4866",
+    "speakText": "この　とおりは　しずかですね。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_5ce5221600c4",
+    "speakText": "ああ，きょうはへいじつですね。でも，やすみの　ひは かんこうきゃくが おおいです。とても にぎやかですよ。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_4a1c54b0ee5e",
+    "speakText": "そうですか。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_e75b73e1d54b",
+    "speakText": "あれえ，だれも　いませんね。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_a4fafc003faf",
+    "speakText": "そうですね。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_77e7fe4ba20f",
+    "speakText": "ところで，この　びじゅつかんには　どんな　さくひんが　ありますか。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_3b8735643c13",
+    "speakText": "せかいじゅうの　ゆうめいな さっかの　ちょうこくです。"
+  },
+  {
+    "lesson": 110,
+    "module": "discussions",
+    "textId": "i_87d23eb18e8d",
+    "speakText": "びじゅつかんの　にわにも　いろいろ　おもしろいのが　ありますよ。"
+  },
+  {
+    "lesson": 111,
+    "module": "sentences",
+    "textId": "i_c7a082604edc",
+    "speakText": "おのさんは　うたが　すきです。"
+  },
+  {
+    "lesson": 111,
+    "module": "sentences",
+    "textId": "i_dfb4fc6d443d",
+    "speakText": "スミスさんは　かんこくごが　わかります。"
+  },
+  {
+    "lesson": 111,
+    "module": "sentences",
+    "textId": "i_1fb9a90f5752",
+    "speakText": "よしださんは　ときどき　ちゅうごくや　かんこくへ　いきます。"
+  },
+  {
+    "lesson": 111,
+    "module": "sentences",
+    "textId": "i_62adc813c664",
+    "speakText": "もりさんは　おさけが　すきですから。まいにち　のみます。"
+  },
+  {
+    "lesson": 111,
+    "module": "conversations",
+    "textId": "i_82ee24d7edd7",
+    "speakText": "よしださんは　りょうりが　できますか。"
+  },
+  {
+    "lesson": 111,
+    "module": "conversations",
+    "textId": "i_c459c7190975",
+    "speakText": "いいえ，ぜんぜん　できません。"
+  },
+  {
+    "lesson": 111,
+    "module": "conversations",
+    "textId": "i_9b5cddd22a7d",
+    "speakText": "どんな　おんがくが　すきですか。"
+  },
+  {
+    "lesson": 111,
+    "module": "conversations",
+    "textId": "i_c5c462287609",
+    "speakText": "ロックや　ポップスなどが　すきです。"
+  },
+  {
+    "lesson": 111,
+    "module": "conversations",
+    "textId": "i_e4113166609a",
+    "speakText": "ながしまさん，スペインごが　わかりますか。"
+  },
+  {
+    "lesson": 111,
+    "module": "conversations",
+    "textId": "i_e0e92271fd5f",
+    "speakText": "ええ，だいがくで　ならいましたから，すこし　わかります。"
+  },
+  {
+    "lesson": 111,
+    "module": "conversations",
+    "textId": "i_65d3e4549733",
+    "speakText": "おのさん，よく　おんがくを　ききますか。"
+  },
+  {
+    "lesson": 111,
+    "module": "conversations",
+    "textId": "i_611610e0f5a8",
+    "speakText": "ええ，いえで　シーディーを　よく　ききます。そして，たまに　コンサートへ　いきます。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_70368ceee6cd",
+    "speakText": "はこねは　ホテルや　りょかんが　おおいですね。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_81a0abe2d477",
+    "speakText": "そうですね。かいしゃの　べっそうも　たくさん　あります。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_3bbb383a1537",
+    "speakText": "ながしまさんや　おのさんも　よく　きますか。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_2bbce042eac2",
+    "speakText": "ええ，くるまで　ときどき　きます。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_c9cb29e8eba3",
+    "speakText": "わたしは　うんてんが　できませんから，いつも　でんしゃです。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_28e70425dc7f",
+    "speakText": "ぼくは　らいげつ　また　きますよ。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_29059ea2945d",
+    "speakText": "どうしてですか。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_7b4aa05ba554",
+    "speakText": "この　ちかくの　ホテルで　ともだちの　しゃしんてんが　ありますから。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_ed44d41d0c97",
+    "speakText": "はこねの　おみやげは　なにが　いいですか。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_b9658111db3f",
+    "speakText": "うーん，そうですね…，まよいますね。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_fcf8e5bf997d",
+    "speakText": "よせぎざいくは　いかがですか。とても　ゆうめいですよ。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_a021a7791d6a",
+    "speakText": "きれいな　もようですね。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_81c21b1a8888",
+    "speakText": "ええ。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_8c4b4c2819de",
+    "speakText": "きに　いりましたか。"
+  },
+  {
+    "lesson": 111,
+    "module": "discussions",
+    "textId": "i_b5a766ff55f7",
+    "speakText": "はい，とても。"
+  },
+  {
+    "lesson": 112,
+    "module": "sentences",
+    "textId": "i_cc1e5624231e",
+    "speakText": "りさんは　もりさんより　わかいです。"
+  },
+  {
+    "lesson": 112,
+    "module": "sentences",
+    "textId": "i_3d0f8fe883bc",
+    "speakText": "にほんより　ちゅうごくの　ほうが　ひろいです。"
+  },
+  {
+    "lesson": 112,
+    "module": "sentences",
+    "textId": "i_b7b7b57473b2",
+    "speakText": "こうべは　おおさかほど　にぎやかでは　ありません。"
+  },
+  {
+    "lesson": 112,
+    "module": "sentences",
+    "textId": "i_beda96d8783e",
+    "speakText": "スポーツの　なかで　サッカーが　いちばん　おもしろいです。"
+  },
+  {
+    "lesson": 112,
+    "module": "conversations",
+    "textId": "i_59c15ff9b55c",
+    "speakText": "ペキンは　とうきょうより　さむいですか。"
+  },
+  {
+    "lesson": 112,
+    "module": "conversations",
+    "textId": "i_dedd3e33fd2f",
+    "speakText": "ええ，ふゆの　ペキンは　とうきょうより　ずっと　さむいです。"
+  },
+  {
+    "lesson": 112,
+    "module": "conversations",
+    "textId": "i_33068aa650e9",
+    "speakText": "にほんごと　えいごと　どちらが　むずかしいですか。"
+  },
+  {
+    "lesson": 112,
+    "module": "conversations",
+    "textId": "i_4ca16a6965e2",
+    "speakText": "にほんごの　ほうが　むずかしいです。"
+  },
+  {
+    "lesson": 112,
+    "module": "conversations",
+    "textId": "i_862a1990a84d",
+    "speakText": "もりさんは　テニスが　じょうずですね。"
+  },
+  {
+    "lesson": 112,
+    "module": "conversations",
+    "textId": "i_07e933b4409e",
+    "speakText": "いいえ，ながしまさんほど　じょうずでは　ありません。"
+  },
+  {
+    "lesson": 112,
+    "module": "conversations",
+    "textId": "i_c512c881e225",
+    "speakText": "きせつの　なかで　いつが　いちばん　すきですか。"
+  },
+  {
+    "lesson": 112,
+    "module": "conversations",
+    "textId": "i_500637b482a0",
+    "speakText": "わたしは　はるが　いちばん　すきです。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_7ae336c90a0b",
+    "speakText": "ながしまさんは　よく　おさけを　のみますか。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_5b66f901c543",
+    "speakText": "ええ。おさけは　だいすきですから，まいばん　のみますよ。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_a1544a0265ed",
+    "speakText": "ビールと　にほんしゅと，どちらが　すきですか。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_1f5891c0d050",
+    "speakText": "どちらも　すきです。でも　しょうちゅうが　いちばん　すきです。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_012f1f8221d1",
+    "speakText": "しょうちゅうは　さいきん　にんきが　ありますね。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_e37dc183b03e",
+    "speakText": "おのさんは　しょうちゅうが　すきですか。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_a35b8c89b4e0",
+    "speakText": "いいえ。わたしは　しょうちゅうより　ワインの　ほうが　いいです。でも　ビールも　よく　のみますよ。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_8a319be35d69",
+    "speakText": "ちゅうごくは　おちゃの　しゅるいが　おおいですね。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_30334ba487d4",
+    "speakText": "ええ。ウーロンちゃ，ジャスミンちゃ，りょくちゃなど，たくさん　あります。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_9acd7f561a50",
+    "speakText": "どの　おちゃが　いちばん　にんきが　ありますか。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_e08abedbe342",
+    "speakText": "やっぱり　ウーロンちゃです。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_59b3ea162911",
+    "speakText": "りさんも　よく　のみますか。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_023d1a6d9569",
+    "speakText": "ええ。まいにち　ウーロンちゃか　ジャスミンちゃを　のみます。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_ae29c53f809f",
+    "speakText": "どちらが　おいしいですか。"
+  },
+  {
+    "lesson": 112,
+    "module": "discussions",
+    "textId": "i_c7e9fc6ef39e",
+    "speakText": "どちらも　おいしいですよ。わたしは　ジャスミンちゃの　ほうが　すきですが…"
+  },
+  {
+    "lesson": 113,
+    "module": "sentences",
+    "textId": "i_202555b366e5",
+    "speakText": "つくえの　うえに　ほんが　さんさつ　あります。"
+  },
+  {
+    "lesson": 113,
+    "module": "sentences",
+    "textId": "i_3a40a627f452",
+    "speakText": "りさんは　まいにち　しちじかん　はたらきます。"
+  },
+  {
+    "lesson": 113,
+    "module": "sentences",
+    "textId": "i_342cbea4f1e9",
+    "speakText": "りさんは　いっしゅうかんに　にかい　プールへ　いきます。"
+  },
+  {
+    "lesson": 113,
+    "module": "sentences",
+    "textId": "i_cca271461ad7",
+    "speakText": "ごご　ゆうびんきょくへ　にもつを　だしに　いきます。"
+  },
+  {
+    "lesson": 113,
+    "module": "conversations",
+    "textId": "i_9c37a056473e",
+    "speakText": "すみません，はがきを　ごまい　ください。"
+  },
+  {
+    "lesson": 113,
+    "module": "conversations",
+    "textId": "i_594dc0eb95be",
+    "speakText": "はい。ごまいで　にひゃくごじゅうえんです。"
+  },
+  {
+    "lesson": 113,
+    "module": "conversations",
+    "textId": "i_4855ce5cb256",
+    "speakText": "よく　えいがを　みますか。"
+  },
+  {
+    "lesson": 113,
+    "module": "conversations",
+    "textId": "i_796362dc43a2",
+    "speakText": "ええ，いっかげつに　にかいぐらい　みます。"
+  },
+  {
+    "lesson": 113,
+    "module": "conversations",
+    "textId": "i_a0cbd3ed282d",
+    "speakText": "いえから　かいしゃまで　どのぐらい　かかりますか。"
+  },
+  {
+    "lesson": 113,
+    "module": "conversations",
+    "textId": "i_6627f804dd5d",
+    "speakText": "でんしゃで　いちじかんぐらい　かかります。"
+  },
+  {
+    "lesson": 113,
+    "module": "conversations",
+    "textId": "i_01b98c7de79e",
+    "speakText": "きのう　なにを　しましたか。"
+  },
+  {
+    "lesson": 113,
+    "module": "conversations",
+    "textId": "i_82792b793888",
+    "speakText": "しんじゅくへ　えいがを　みに　いきました。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_6651f9a7fdd9",
+    "speakText": "これから　もりさんと　ちかくの　おみせへ　のみに　いきます。りさんも　いっしょに　どうですか。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_f574339d753d",
+    "speakText": "えっ，いいですか。おねがいします。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_7aa7165f1e6a",
+    "speakText": "もりさんたちは　この　おみせへ　よく　きますか。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_6cdbc5c0a93c",
+    "speakText": "ええ，ぼくは　しゅうに　にかいぐらい　きます。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_5090284c5231",
+    "speakText": "わたしも　よく　きます。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_219057792a79",
+    "speakText": "あのう，すみません。とりあえず　なまビールを　みっつ　おねがいします。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_8a362e6bd74b",
+    "speakText": "なまビールが　いっぱいさんびゃくえんですか。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_919547df0781",
+    "speakText": "ここは　おさけも　たべものも　やすいです。やきとりは　ごほんで　よんひゃくえんですからね。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_3acd515bd890",
+    "speakText": "からあげや　にくじゃがは　ひとさらさんびゃくごじゅうえんです。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_faec7ae79a1e",
+    "speakText": "ほかの　おみせは　いくらぐらいですか。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_aaa605051577",
+    "speakText": "なまビールは　だいたい　いっぱい　よんひゃくえんか　よんひゃくごじゅうえんですね。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_4ba4b85ff3df",
+    "speakText": "やきとりは　いっぽん　ひゃくごじゅうえんぐらいですよ。"
+  },
+  {
+    "lesson": 113,
+    "module": "discussions",
+    "textId": "i_cd622c6549f0",
+    "speakText": "じゃあ，ここは　やすいですね。 "
+  },
+  {
+    "lesson": 114,
+    "module": "sentences",
+    "textId": "i_82ffd9bfb7ae",
+    "speakText": "きのう　デパートへ　いって　かいものしました。"
+  },
+  {
+    "lesson": 114,
+    "module": "sentences",
+    "textId": "i_6956df61ed76",
+    "speakText": "りさんは　まいばん　ラジオを　きいてから　ねます。"
+  },
+  {
+    "lesson": 114,
+    "module": "sentences",
+    "textId": "i_bcf722af376f",
+    "speakText": "ここに　じゅうしょと　なまえを　かいて　ください。"
+  },
+  {
+    "lesson": 114,
+    "module": "sentences",
+    "textId": "i_8f8734d1bb44",
+    "speakText": "りさんは　まいあさ　しちじに　いえを　でます。"
+  },
+  {
+    "lesson": 114,
+    "module": "conversations",
+    "textId": "i_51550ff6beba",
+    "speakText": "きょうの　ごごは　なにを　しますか。"
+  },
+  {
+    "lesson": 114,
+    "module": "conversations",
+    "textId": "i_19974aff4703",
+    "speakText": "としょかんへ　いって，べんきょうを　します。それから　いえへ　かえって，てがみを　かきます。"
+  },
+  {
+    "lesson": 114,
+    "module": "conversations",
+    "textId": "i_061135f4af84",
+    "speakText": "いつ　でかけますか。"
+  },
+  {
+    "lesson": 114,
+    "module": "conversations",
+    "textId": "i_b49e8ef2f739",
+    "speakText": "ひるごはんを　たべてから　でかけます。"
+  },
+  {
+    "lesson": 114,
+    "module": "conversations",
+    "textId": "i_3db675724b75",
+    "speakText": "すみません，この　にもつを　ちゅうごくへ　おくって　ください。"
+  },
+  {
+    "lesson": 114,
+    "module": "conversations",
+    "textId": "i_733e8e79b34f",
+    "speakText": "ふなびんですか，こうくうびんですか。"
+  },
+  {
+    "lesson": 114,
+    "module": "conversations",
+    "textId": "i_1f95076cbb1a",
+    "speakText": "ふなびんで　おねがいします。"
+  },
+  {
+    "lesson": 114,
+    "module": "conversations",
+    "textId": "i_2f12f38e57d3",
+    "speakText": "この　バスは　えきまえを　とおりますか。"
+  },
+  {
+    "lesson": 114,
+    "module": "conversations",
+    "textId": "i_887683f8db65",
+    "speakText": "はい，とおります。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_0aa00b4509bc",
+    "speakText": "よしだかちょう，げんこうが　できました。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_47ab1f742e94",
+    "speakText": "はこねの　きじですね。ちょっと　みせて　ください。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_ab4a20d4e4c3",
+    "speakText": "なかなか　いいですね。いつ　かきましたか。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_a0f3ea6e8d41",
+    "speakText": "きのう　かいしゃで　メモを　せいりして，おのさんに　みせました。そして，アパートへ　かえってからかきました。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_845a6e139bc0",
+    "speakText": "そうですか。たいへんでしたね。しゃしんも　できましたか。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_7afa2722e5c6",
+    "speakText": "はい。これから　ながしまさんの　じむしょへ　いって，しゃしんを　えらびます。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_9ac08d1de9bd",
+    "speakText": "そうですか。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_759123d1c52d",
+    "speakText": "あとで　しゃしんも　みて　くださいませんか。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_07eec75bdd0f",
+    "speakText": "りさん，もう　かいしゃを　でますか。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_3ff84a6652ad",
+    "speakText": "はい。ぎんこうで　おかねを　おろしてから　いきます。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_8abcf90b07d1",
+    "speakText": "じゃあ，ゆうびんきょくの　ちかくを　とおりますね。すみませんが，この　てがみを　だして　ください。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_cce2c803ba59",
+    "speakText": "はい。そくたつで　だしますか。"
+  },
+  {
+    "lesson": 114,
+    "module": "discussions",
+    "textId": "i_0caabdc3a86a",
+    "speakText": "ええ，そうして　ください。"
+  },
+  {
+    "lesson": 115,
+    "module": "sentences",
+    "textId": "i_2a1128d6dbd9",
+    "speakText": "おのさんは　いま　しんぶんを　よんで　います。"
+  },
+  {
+    "lesson": 115,
+    "module": "sentences",
+    "textId": "i_b254e66448b7",
+    "speakText": "ここで　しゃしんを　とっても　いいですか。"
+  },
+  {
+    "lesson": 115,
+    "module": "sentences",
+    "textId": "i_42920be8d5ca",
+    "speakText": "ひこうきの　なかで　タバコを　すっては　いけません。"
+  },
+  {
+    "lesson": 115,
+    "module": "sentences",
+    "textId": "i_694737206efd",
+    "speakText": "にちようび，おのさんは　こうえんで　ボートに　のりました。"
+  },
+  {
+    "lesson": 115,
+    "module": "conversations",
+    "textId": "i_60101328648c",
+    "speakText": "もしもし，もりさん？いま　どこですか。"
+  },
+  {
+    "lesson": 115,
+    "module": "conversations",
+    "textId": "i_69093a93e416",
+    "speakText": "いま　しやくしょの　まえを　あるいて　います。"
+  },
+  {
+    "lesson": 115,
+    "module": "conversations",
+    "textId": "i_9b490fa4f641",
+    "speakText": "すみません。この　じしょを　かりても　いいですか。"
+  },
+  {
+    "lesson": 115,
+    "module": "conversations",
+    "textId": "i_831005083ed7",
+    "speakText": "いえ，ちょっと．．．。いま　つかって　います。"
+  },
+  {
+    "lesson": 115,
+    "module": "conversations",
+    "textId": "i_fdbbfa236c7f",
+    "speakText": "すみません。ここに　すわっても　いいですか。"
+  },
+  {
+    "lesson": 115,
+    "module": "conversations",
+    "textId": "i_7153519da700",
+    "speakText": "ええ，どうぞ"
+  },
+  {
+    "lesson": 115,
+    "module": "conversations",
+    "textId": "i_c891d5c9577d",
+    "speakText": "あっ，ここで　けいたいでんわを　つかっては　いけませんよ。"
+  },
+  {
+    "lesson": 115,
+    "module": "conversations",
+    "textId": "i_9ede8cd49d46",
+    "speakText": "すみません。これから　きを　つけます。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_d130fc366384",
+    "speakText": "もしもし，おのです。どうしました？"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_cc1a6af14e77",
+    "speakText": "ちょっと　ねつが　あります。きょう　かいしゃを　やすんでも　いいですか。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_d8840870cd70",
+    "speakText": "ええ，もちろんです。あまり　むりを　しては　いけませんよ。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_663ca5ebed4b",
+    "speakText": "はい，わかりました。あのう，よしだかちょうは？"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_1a4f3e8426db",
+    "speakText": "いま　かいぎしつで　うちあわせを　して　います。あとで　つたえます。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_8f802b5a3621",
+    "speakText": "おねがいします。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_ed5a3563fd02",
+    "speakText": "もう　びょういんに　いきましたか。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_c2aa08f1d0bc",
+    "speakText": "いいえ，まだです。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_9a83ce7de848",
+    "speakText": "じゃあ　びょういんに　いってから，ゆっくり　やすんで　ください。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_532d370aa093",
+    "speakText": "はい，ありがとう　ございます。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_0f900af97fe9",
+    "speakText": "かぜですね。あたたかい　ものを　たべて，じゅうぶん　すいみんを　とって　ください。それから　こんばん　おふろに　はいっては　いけませんよ。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_6ad8ded61a52",
+    "speakText": "わかりました。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_f122fbc359f2",
+    "speakText": "では，くすりを　だします。やっきょくに　いって　もらって　ください。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_4b4465bc3b9c",
+    "speakText": "ありがとう　ございました。"
+  },
+  {
+    "lesson": 115,
+    "module": "discussions",
+    "textId": "i_9a51ede1d8ea",
+    "speakText": "おだいじに。"
+  },
+  {
+    "lesson": 116,
+    "module": "sentences",
+    "textId": "i_97768c433aae",
+    "speakText": "ホテルの　へやは　ひろくて　あかるいです。"
+  },
+  {
+    "lesson": 116,
+    "module": "sentences",
+    "textId": "i_479903a9b7d2",
+    "speakText": "この　コンピュータの　そうさは　かんたんで　べんりです。"
+  },
+  {
+    "lesson": 116,
+    "module": "sentences",
+    "textId": "i_117f0911c7e3",
+    "speakText": "もりさんは　くるまを　もって　います。"
+  },
+  {
+    "lesson": 116,
+    "module": "sentences",
+    "textId": "i_856fa51e6eb9",
+    "speakText": "さんかげつ　パソコンを　れんしゅうしましたが，まだ　あまり　できません。"
+  },
+  {
+    "lesson": 116,
+    "module": "conversations",
+    "textId": "i_ec4f55577597",
+    "speakText": "もりさんは　どんな　ひとですか。"
+  },
+  {
+    "lesson": 116,
+    "module": "conversations",
+    "textId": "i_34ced81842a8",
+    "speakText": "せが　たかくて　あしが　ながくて，ハンサムな　ひとです。"
+  },
+  {
+    "lesson": 116,
+    "module": "conversations",
+    "textId": "i_3129b52ca691",
+    "speakText": "にほんは　どうですか。"
+  },
+  {
+    "lesson": 116,
+    "module": "conversations",
+    "textId": "i_82589fca773e",
+    "speakText": "まちが　きれいで　あんぜんですが，ものが　たかいですね。"
+  },
+  {
+    "lesson": 116,
+    "module": "conversations",
+    "textId": "i_7743a52190c4",
+    "speakText": "スミスさんは　かいしゃいんですか。"
+  },
+  {
+    "lesson": 116,
+    "module": "conversations",
+    "textId": "i_4a8cab09004a",
+    "speakText": "ええ。りょこうがいしゃの　しゃいんで　えいぎょうぶの　ぶちょうです。"
+  },
+  {
+    "lesson": 116,
+    "module": "conversations",
+    "textId": "i_83f5e9088dc3",
+    "speakText": "ながしまさんは　どこに　すんで　いますか。"
+  },
+  {
+    "lesson": 116,
+    "module": "conversations",
+    "textId": "i_9109150c5d87",
+    "speakText": "かぞくと　いっしょに　しぶやに　すんで　います。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_af430e875c25",
+    "speakText": "おおきくて　きれいな　たてものですね。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_3bc5d6135030",
+    "speakText": "ええ。にほんの　ゆうめいな　けんちくかの　せっけいで，さいしんの　てんじじょうです。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_d0c78c5e01b4",
+    "speakText": "デザインが　ユニークで，かたちが　おもしろいですね。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_bc29a80dc366",
+    "speakText": "けいびの　ひとが　いろいろな　ところに　いますね。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_0952fca86b74",
+    "speakText": "ここは　えきから　ちかくて，にゅうじょうりょうも　やすいです。たくさんの　ひとが　きますから，けいびが　げんじゅうです。あっ，りさん，アイデイーカードは　ありますか。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_b92206251293",
+    "speakText": "あんしんして　ください。ちゃんと　もって　います。ほら。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_4dfb79d1e542",
+    "speakText": "いりぐちは　せまいですが，なかは　とてもひろいですね。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_77cbc0421f8f",
+    "speakText": "ええ。てんじょうが　たかくて，まどが　おおくて，とても　あかるいです。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_b9328605980b",
+    "speakText": "クリスマスツリーの　よこに　あかくて　おおきい　かんばんが　ありますね。あれは　なんですか。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_c8fb6ab06883",
+    "speakText": "ああ，あれは　こうくうがいしゃの　こうこくですよ。ずいぶん　はでですね。"
+  },
+  {
+    "lesson": 116,
+    "module": "discussions",
+    "textId": "i_a22f3505403e",
+    "speakText": "はでですが，わたしは　きらいじゃ　ありませんよ。"
+  },
+  {
+    "lesson": 117,
+    "module": "sentences",
+    "textId": "i_a0c0d1b99ef9",
+    "speakText": "わたしは　あたらしい　ようふくが　ほしいです。"
+  },
+  {
+    "lesson": 117,
+    "module": "sentences",
+    "textId": "i_51dc73db3322",
+    "speakText": "わたしは　えいがを　みたいです。"
+  },
+  {
+    "lesson": 117,
+    "module": "sentences",
+    "textId": "i_af4fa484b4e8",
+    "speakText": "いっしょに　おちゃを　のみませんか。"
+  },
+  {
+    "lesson": 117,
+    "module": "sentences",
+    "textId": "i_ae861cfad665",
+    "speakText": "ちょっと　やすみましょう。"
+  },
+  {
+    "lesson": 117,
+    "module": "conversations",
+    "textId": "i_535fcd1d7d13",
+    "speakText": "今　なにが　いちばん　ほしいですか。"
+  },
+  {
+    "lesson": 117,
+    "module": "conversations",
+    "textId": "i_8cb2c91286ab",
+    "speakText": "やすい　くるまが　ほしいです。"
+  },
+  {
+    "lesson": 117,
+    "module": "conversations",
+    "textId": "i_8d54b475d69c",
+    "speakText": "きょう　でぱーとへ　かいものに　いきます。りさんも　いっしょに　どうですか。"
+  },
+  {
+    "lesson": 117,
+    "module": "conversations",
+    "textId": "i_f3e79a2c2ae6",
+    "speakText": "はい，ぜひ　いきたいです。"
+  },
+  {
+    "lesson": 117,
+    "module": "conversations",
+    "textId": "i_1d2dbac66d1c",
+    "speakText": "りさん，なにを　たべたいですか。"
+  },
+  {
+    "lesson": 117,
+    "module": "conversations",
+    "textId": "i_664b8670c469",
+    "speakText": "なんでも　いいです。"
+  },
+  {
+    "lesson": 117,
+    "module": "conversations",
+    "textId": "i_28f02d7a05e2",
+    "speakText": "どようびの　ごご，こんさーとへ　いきませんか。"
+  },
+  {
+    "lesson": 117,
+    "module": "conversations",
+    "textId": "i_cae063ffe285",
+    "speakText": "いいですね。いきましょう。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_f9f6930a855d",
+    "speakText": "おのさんは　なにを　おねがいしましたか。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_f9f855be5f11",
+    "speakText": "けんこうと　れんあいです。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_bb2539612b98",
+    "speakText": "れんあいですか？"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_0d0181a4dbf8",
+    "speakText": "ええ。ことしじゅうに　けっこんしたいです。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_7c74a669f6d7",
+    "speakText": "あいては　いますか。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_0e495ce5179b",
+    "speakText": "いいえ。まず　こいびとが　ほしいですね。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_634d0ff6e08e",
+    "speakText": "どんな　だんせいが　いいですか。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_49185aa1800b",
+    "speakText": "まじめで　やさしい　ひとが　いいですね。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_e13036e62172",
+    "speakText": "じゃあ，もりさんは　どうですか。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_f462a2d35637",
+    "speakText": "ええ？"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_62e7da48ed4a",
+    "speakText": "ちょっと　さむいですね。あたたかい　ものを　たべませんか。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_346a6cb0e9f4",
+    "speakText": "そうですね。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_86ad3a6a0371",
+    "speakText": "なにが　いいですか。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_1150631aeceb",
+    "speakText": "なんでも　いいですよ。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_a9b83fae9624",
+    "speakText": "じゃあ，おしるこは　どうですか。いい　みせを　しって　います。　そこに　いきましょう。"
+  },
+  {
+    "lesson": 117,
+    "module": "discussions",
+    "textId": "i_ddc8a31a06b2",
+    "speakText": "おしるこ？ぜひ　たべたいです。"
+  },
+  {
+    "lesson": 118,
+    "module": "sentences",
+    "textId": "i_8b8b94b1848f",
+    "speakText": "けいたいでんわは　とても　ちいさく　なりました。"
+  },
+  {
+    "lesson": 118,
+    "module": "sentences",
+    "textId": "i_9e75c122f544",
+    "speakText": "てれびの　おとを　おおきく　します。"
+  },
+  {
+    "lesson": 118,
+    "module": "sentences",
+    "textId": "i_1c992a962f54",
+    "speakText": "むすこは　いしゃに　なりました。"
+  },
+  {
+    "lesson": 118,
+    "module": "sentences",
+    "textId": "i_423335de0424",
+    "speakText": "へやを　きれいに　して　ください。"
+  },
+  {
+    "lesson": 118,
+    "module": "conversations",
+    "textId": "i_f005122a6975",
+    "speakText": "かぜは　どうですか。"
+  },
+  {
+    "lesson": 118,
+    "module": "conversations",
+    "textId": "i_5710d1c4fc80",
+    "speakText": "ゆうべ　くすりを　のみましたが，まだ　よく　なりません。"
+  },
+  {
+    "lesson": 118,
+    "module": "conversations",
+    "textId": "i_a93f7ba5508e",
+    "speakText": "りょこうの　にもつは　かるい　ほうが　いいですよ。"
+  },
+  {
+    "lesson": 118,
+    "module": "conversations",
+    "textId": "i_59ebb711458d",
+    "speakText": "はい。できるだけ　かるく　します。"
+  },
+  {
+    "lesson": 118,
+    "module": "conversations",
+    "textId": "i_2960d1f91130",
+    "speakText": "おじょうさんは　おいくつですか。"
+  },
+  {
+    "lesson": 118,
+    "module": "conversations",
+    "textId": "i_9884c40ff02e",
+    "speakText": "ことし　ななさいに　なりました。"
+  },
+  {
+    "lesson": 118,
+    "module": "conversations",
+    "textId": "i_9dea14d11825",
+    "speakText": "あのう，ちょっと　うるさいですよ。"
+  },
+  {
+    "lesson": 118,
+    "module": "conversations",
+    "textId": "i_10733d5eea6b",
+    "speakText": "あっ，すみません。しずかに　します。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_11f1769d5cc9",
+    "speakText": "おのさん，きょうは　たくさん　かいますか。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_5cb2be7b00c4",
+    "speakText": "ええ。おしょうがつは　ようふくが　やすく　なりますから，まとめて　かいます。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_9a4b66a85b65",
+    "speakText": "どのぐらい　やすく　なりますか。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_07c426522f82",
+    "speakText": "だいたい　ていかの　さんわりびきか　はんがくに　なります。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_ee2747bf5f20",
+    "speakText": "はんがくですか？わたしも　あたらしい　ようふくが　ほしく　なりました。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_e7e40a9679b1",
+    "speakText": "あかと　あおと，どちらが　いいですか。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_b4dd3c9c75ac",
+    "speakText": "あかい　ほうが　いいですね。よく　にあいますよ。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_75bf5d54a52b",
+    "speakText": "そうですか。じゃあ，これに　します。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_bffdd91581e6",
+    "speakText": "まもなく　タイムサービスの　じかんです。さらに　やすく　しますよ。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_e7e9a3dba301",
+    "speakText": "もうすぐ　ろくじに　なりますから，タイムサービスが　はじまります。"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_e0e4cfc7498c",
+    "speakText": "タイムサービス？"
+  },
+  {
+    "lesson": 118,
+    "module": "discussions",
+    "textId": "i_eebd772c4cc6",
+    "speakText": "ええ，いまから　しちじまで　もっと　やすく　なります。さあ，いきましょう。"
+  },
+  {
+    "lesson": 119,
+    "module": "sentences",
+    "textId": "i_045ee1da7d2b",
+    "speakText": "へやの　かぎを　わすれないで　ください。"
+  },
+  {
+    "lesson": 119,
+    "module": "sentences",
+    "textId": "i_41287010dee8",
+    "speakText": "りさんは　きょう　はやく　かえらなければ　なりません。"
+  },
+  {
+    "lesson": 119,
+    "module": "sentences",
+    "textId": "i_4a06d86bde53",
+    "speakText": "あしたは　ざんぎょうしなくても　いいですよ。"
+  },
+  {
+    "lesson": 119,
+    "module": "sentences",
+    "textId": "i_615eb5bbd245",
+    "speakText": "あの　ひとが　よしだかちょうですよ。"
+  },
+  {
+    "lesson": 119,
+    "module": "conversations",
+    "textId": "i_acd6925e1b9c",
+    "speakText": "その　しなものに　さわらないで　ください。"
+  },
+  {
+    "lesson": 119,
+    "module": "conversations",
+    "textId": "i_ec847bdbce60",
+    "speakText": "あっ，すみません。"
+  },
+  {
+    "lesson": 119,
+    "module": "conversations",
+    "textId": "i_99a95c491109",
+    "speakText": "りさん，いっしょに　しょくじに　いきませんか。"
+  },
+  {
+    "lesson": 119,
+    "module": "conversations",
+    "textId": "i_e2eb4c0ec2fc",
+    "speakText": "すみません。きょうは　はやく　かえって，レポートを　かかなければ　なりません。"
+  },
+  {
+    "lesson": 119,
+    "module": "conversations",
+    "textId": "i_a9614892cd4a",
+    "speakText": "せんせい，もう　くすりを　のまなくても　いいですか。"
+  },
+  {
+    "lesson": 119,
+    "module": "conversations",
+    "textId": "i_375d50448354",
+    "speakText": "はい，いいですよ。"
+  },
+  {
+    "lesson": 119,
+    "module": "conversations",
+    "textId": "i_7fa5bc1d9332",
+    "speakText": "よしだかちょうは　いますか"
+  },
+  {
+    "lesson": 119,
+    "module": "conversations",
+    "textId": "i_a3595ea2055a",
+    "speakText": "わたしが　よしだですが…"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_277b10c12581",
+    "speakText": "おのさん，はじめてですから，ちょっと　こわいです。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_2de70025b7fc",
+    "speakText": "しんぱいしなくても　いいですよ。ここは　しょしんしゃコースですから。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_fa24654d8628",
+    "speakText": "もりさん，おのさん，まって　ください。さきに　いかないで　ください。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_6591d36cc5e9",
+    "speakText": "いそがなくても　いいですよ。わたしたちも　ゆっくり　すべりますから。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_7c18085b18a2",
+    "speakText": "りさん，スキーは　どうですか。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_e5254945459f",
+    "speakText": "なんども　ころびましたが，とても　おもしろいです。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_067d7f39e7c6",
+    "speakText": "そうですか。だいぶ　じょうずに　なりましたよ。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_e854e6e20701",
+    "speakText": "ほんとうですか。でも，もっと　じょうずに　なりたいです。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_7663310017a4",
+    "speakText": "じゃあ，もっと　れんしゅうしなければ　なりませんね。もう　いちど　すべりますか。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_952fd6a7b0f7",
+    "speakText": "はい。こんどは　さきに　すべっても　いいですか。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_9362651adf33",
+    "speakText": "いいですよ。でも，じょうきゅうしゃの　コースには　はいらないで　ください。"
+  },
+  {
+    "lesson": 119,
+    "module": "discussions",
+    "textId": "i_8968546f7755",
+    "speakText": "だいじょうぶです。しんぱいしないて　ください。"
+  },
+  {
+    "lesson": 120,
+    "module": "sentences",
+    "textId": "i_b4451f6b37c5",
+    "speakText": "スミスさんは　ピアノを　ひく　ことが　できます。"
+  },
+  {
+    "lesson": 120,
+    "module": "sentences",
+    "textId": "i_d5d94557e56a",
+    "speakText": "わたしの　しゅみは　きってを　あつめる　ことです。"
+  },
+  {
+    "lesson": 120,
+    "module": "sentences",
+    "textId": "i_9e9183651008",
+    "speakText": "こちらへ　くる　まえに，でんわを　かけて　ください。"
+  },
+  {
+    "lesson": 120,
+    "module": "sentences",
+    "textId": "i_39c1cc086a14",
+    "speakText": "ふゆやすみ，　どこかへ　いきたいです。"
+  },
+  {
+    "lesson": 120,
+    "module": "conversations",
+    "textId": "i_9deaf8b4807f",
+    "speakText": "りさんは　くるまを　うんてんする　ことが　できますか。"
+  },
+  {
+    "lesson": 120,
+    "module": "conversations",
+    "textId": "i_45a946b20901",
+    "speakText": "はい，できます。"
+  },
+  {
+    "lesson": 120,
+    "module": "conversations",
+    "textId": "i_fc628d36b712",
+    "speakText": "ここで　しゃしんを　とっても　いいですか。"
+  },
+  {
+    "lesson": 120,
+    "module": "conversations",
+    "textId": "i_67bd0fabe506",
+    "speakText": "いいえ，ここでは　とる　ことが　できません。"
+  },
+  {
+    "lesson": 120,
+    "module": "conversations",
+    "textId": "i_3cbcc580d743",
+    "speakText": "なにか　しゅみが　ありますか。"
+  },
+  {
+    "lesson": 120,
+    "module": "conversations",
+    "textId": "i_2c3af558d0ce",
+    "speakText": "ええ。おんがくを　きく　ことです。"
+  },
+  {
+    "lesson": 120,
+    "module": "conversations",
+    "textId": "i_f8bf08fae99e",
+    "speakText": "もりさんは　いつ　ギターを　れんしゅうしますか。"
+  },
+  {
+    "lesson": 120,
+    "module": "conversations",
+    "textId": "i_c9aa5fa497f2",
+    "speakText": "まいばん，ねる　まえに　れんしゅうします。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_68db74318b0d",
+    "speakText": "りさん，しゅんせつは　ちゅうごくへ　かえりますか。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_ade09681d0f6",
+    "speakText": "いいえ，今　にほんの　しごとが　いそがしいですから，かえりません。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_a936398521ca",
+    "speakText": "じゃあ，いっしょに　どこかへ　いきませんか。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_b6d6692d2be1",
+    "speakText": "よこはまの　ちゅうかがいへ　いきましょうよ。ちゅうごくの　ししまいを　みることが　できますよ。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_68dcaa35b00a",
+    "speakText": "りょうりは　どうでしたか。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_401d0442aa8b",
+    "speakText": "とても　おいしかったですよ。とくに　ギョーザは。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_a87376bfce3c",
+    "speakText": "りさんは　ギョーザを　つくる　ことが　できますか。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_24acdcd7142b",
+    "speakText": "ええ。ぺきんでは　しゅんせつの　まえに，かぞくみんなで　ギョーザを　つくります。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_4ebdf140a762",
+    "speakText": "てづくりの　ギョーザは　かわが　おいしいですよね。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_eba77efac206",
+    "speakText": "おのさんも　つくる　ことが　できますか。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_22e09bc6d380",
+    "speakText": "ええ，もちろん。わたしの　しゅみは　おいしい　ものを　つくる　ことですから。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_544f17609d85",
+    "speakText": "ほんとうですか？じゃあ，いっか　ごちそうして　ください。"
+  },
+  {
+    "lesson": 120,
+    "module": "discussions",
+    "textId": "i_3f1929f00336",
+    "speakText": "いいですよ。りさんが　きこくする　まえに，ぜひ　いっしょに　うちに　きて　ください。"
+  },
+  {
+    "lesson": 121,
+    "module": "sentences",
+    "textId": "i_9e58c1fdbfaa",
+    "speakText": "わたしは　すきやきを　たべた　ことが　あります。"
+  },
+  {
+    "lesson": 121,
+    "module": "sentences",
+    "textId": "i_7a88293d131b",
+    "speakText": "りさんは　かいしゃが　おわった　あとで，のみに　いきます。"
+  },
+  {
+    "lesson": 121,
+    "module": "sentences",
+    "textId": "i_50051282ffd8",
+    "speakText": "もっと　やさいを　たべた　ほうが　いいですよ。"
+  },
+  {
+    "lesson": 121,
+    "module": "sentences",
+    "textId": "i_b6fddfae89ff",
+    "speakText": "まどを　しめましょうか。"
+  },
+  {
+    "lesson": 121,
+    "module": "conversations",
+    "textId": "i_f7f093a06265",
+    "speakText": "おすしを　たべた　ことが　ありますか。"
+  },
+  {
+    "lesson": 121,
+    "module": "conversations",
+    "textId": "i_8d527332f588",
+    "speakText": "いいえ，いちども　ありません。てんぷらは　たべた　ことが　あります。"
+  },
+  {
+    "lesson": 121,
+    "module": "conversations",
+    "textId": "i_5f0be4e0a9c5",
+    "speakText": "この　しりょうを　みても　いいですか。"
+  },
+  {
+    "lesson": 121,
+    "module": "conversations",
+    "textId": "i_44f32f304beb",
+    "speakText": "はい。よんだ　あとで，もりさんに　わたして　ください。"
+  },
+  {
+    "lesson": 121,
+    "module": "conversations",
+    "textId": "i_25d8048028fa",
+    "speakText": "ホテルを　よやくした　ほうが　いいですか。"
+  },
+  {
+    "lesson": 121,
+    "module": "conversations",
+    "textId": "i_dd50c688ccdb",
+    "speakText": "そうですね。れんきゅうですから，その　ほうが　いいですね。"
+  },
+  {
+    "lesson": 121,
+    "module": "conversations",
+    "textId": "i_0976d20f9755",
+    "speakText": "なにか　たべましょうか。"
+  },
+  {
+    "lesson": 121,
+    "module": "conversations",
+    "textId": "i_183871d18896",
+    "speakText": "いいえ。ねる　まえに　たべない　ほうが　いいですよ。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_a9793f9caa07",
+    "speakText": "すこし　いそぎましょうか。おくれない　ほうが　いいですから。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_cbb47c58c090",
+    "speakText": "そうしましょう。ところで，おのさんは　よく　かぶきを　みますか。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_16d6d7615266",
+    "speakText": "しごとの　あとで，なんどか　みに　いった　ことが　あります。おわりは　くじすぎですね。しょくじは　どうしますか。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_b362750654ce",
+    "speakText": "かぶきを　みた　あとで，たべますか。それとも，みる　まえに　なにか　たべますか。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_d86392fc3337",
+    "speakText": "そうですね…，きゅうけいじかんに　しょくじを　しましょうか。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_cd54cde9b4b5",
+    "speakText": "ええ，いいですよ。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_f65e5e3493b2",
+    "speakText": "じゃあ，はやく　いって　おべんとうを　かった　ほうが　いいですね。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_c9e519c13d44",
+    "speakText": "ことばは　わかりませんでしたが，とても　よかったです。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_18e95f55ad83",
+    "speakText": "そうですね。かちょうに　かんしゃしましょう。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_a97643445c15",
+    "speakText": "ええ。きょうげきも　いいですが，かぶきも すばらしいですね。おのさんは　きょうげきを　みた　ことが　ありますか。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_192e45e7e391",
+    "speakText": "いいえ，いちども　ありません。いつか　みたいですね。"
+  },
+  {
+    "lesson": 121,
+    "module": "discussions",
+    "textId": "i_fee50ac94197",
+    "speakText": "じゃあ，ぜひ　ペキンへ　きょうげきを　みに　きて　ください。"
+  },
+  {
+    "lesson": 122,
+    "module": "sentences",
+    "textId": "i_e215c5694852",
+    "speakText": "もりさんは　まいばん　テレビを　みる。"
+  },
+  {
+    "lesson": 122,
+    "module": "sentences",
+    "textId": "i_300219c994cc",
+    "speakText": "きのうは　とても　いそがしかった。"
+  },
+  {
+    "lesson": 122,
+    "module": "sentences",
+    "textId": "i_df855fc13a09",
+    "speakText": "コンピュータは　かんたんでは　ない。"
+  },
+  {
+    "lesson": 122,
+    "module": "sentences",
+    "textId": "i_89bd2d42fca2",
+    "speakText": "きょうは　くもりだ。"
+  },
+  {
+    "lesson": 122,
+    "module": "conversations",
+    "textId": "i_130645f02e72",
+    "speakText": "あした　ボーリングに　ぃかない？"
+  },
+  {
+    "lesson": 122,
+    "module": "conversations",
+    "textId": "i_71f904daf971",
+    "speakText": "ごめん。　あしたは　しごとが　あるから…"
+  },
+  {
+    "lesson": 122,
+    "module": "conversations",
+    "textId": "i_9e0a69ee6b4d",
+    "speakText": "きのうの　しけん，どうだった？"
+  },
+  {
+    "lesson": 122,
+    "module": "conversations",
+    "textId": "i_5369073e17da",
+    "speakText": "ちょっと　むずかしかったけど，まあまあ　できたよ。"
+  },
+  {
+    "lesson": 122,
+    "module": "conversations",
+    "textId": "i_ab10a84080da",
+    "speakText": "この　ネクタイ，はで？"
+  },
+  {
+    "lesson": 122,
+    "module": "conversations",
+    "textId": "i_9d46a77e54df",
+    "speakText": "ううん，ぜんぜん　はでじゃないわ。"
+  },
+  {
+    "lesson": 122,
+    "module": "conversations",
+    "textId": "i_7d2c98d149c2",
+    "speakText": "もりさんの　でんわばんごう，しってる？"
+  },
+  {
+    "lesson": 122,
+    "module": "conversations",
+    "textId": "i_456e08779767",
+    "speakText": "うん，しってる。さんよんきゅうさんのさんきゅうよんごだよ。"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_9eada54052c2",
+    "speakText": "もしもし，おのです。"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_398bd0eff390",
+    "speakText": "おのさん？しみずだけど。"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_29e2d519c71b",
+    "speakText": "ああ，しみずくん，どうしたの？"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_2544cd3906b0",
+    "speakText": "さいきん　おおたから　れんらく　あった？"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_ad47ff8b5456",
+    "speakText": "おおたくんから？ううん，ないわよ。どうして？"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_155c5d68d9ed",
+    "speakText": "おおた，こんど　ちゅうごくへ　てんきんだって。"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_55a512f7e88d",
+    "speakText": "ほんとうに？いつ　いくの？"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_7c2c439f5309",
+    "speakText": "たしか　らいげつだよ。"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_ef33e044cee6",
+    "speakText": "きゅうね。ちゅうごくの　どこ？きかんは　どのぐらい？"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_37ef8d0d775e",
+    "speakText": "ペキンだって。きかんは　よねんか　ごねんかな。"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_b21d1661610d",
+    "speakText": "ずいぶん　ながいわね。おおたくん　ひとりで　いくの？"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_64eff866d2be",
+    "speakText": "いや，おくさんも　いっしょだよ。らいしゅう　そうべつかいを　するけど，つごうは　どうかな？"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_84d795d39d86",
+    "speakText": "ええと，かようびは　よていが　あるけど，それいがいは　だいじょうぶよ。"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_c884f71d94b2",
+    "speakText": "わかった。じゃあ，また　れんらくするよ。"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_886354aa36e2",
+    "speakText": "おともだちからですか，おのさん？"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_ec2df8712791",
+    "speakText": "あっ，わかりました？"
+  },
+  {
+    "lesson": 122,
+    "module": "discussions",
+    "textId": "i_652d0322a8aa",
+    "speakText": "ええ。いつもの　はなしかたじゃ　ありませんでしたから。 "
+  },
+  {
+    "lesson": 123,
+    "module": "sentences",
+    "textId": "i_e9c0189f0d96",
+    "speakText": "おのさんは　やすみの　ひ，さんぽしたり　かいものに　いったり　します。"
+  },
+  {
+    "lesson": 123,
+    "module": "sentences",
+    "textId": "i_380ed511bcfe",
+    "speakText": "にほんごの　せんせいは　ちゅうごくじんだったり　にほんじんだったりです。"
+  },
+  {
+    "lesson": 123,
+    "module": "sentences",
+    "textId": "i_846f7578bf0e",
+    "speakText": "わたしは　ことしの　なつ，ペキンへ　いくか　どうか　わかりません。"
+  },
+  {
+    "lesson": 123,
+    "module": "sentences",
+    "textId": "i_13d88cf08e97",
+    "speakText": "かぎが　どこに　あるか　おしえて　ください。"
+  },
+  {
+    "lesson": 123,
+    "module": "conversations",
+    "textId": "i_f3c0b528c2f3",
+    "speakText": "しゅうまつに　なにを　しましたか。"
+  },
+  {
+    "lesson": 123,
+    "module": "conversations",
+    "textId": "i_034b81d9230b",
+    "speakText": "スケートを　したり，ボーリングを　したり　しました。"
+  },
+  {
+    "lesson": 123,
+    "module": "conversations",
+    "textId": "i_33a4b5099136",
+    "speakText": "ペキンまで，ひこうきの　チケットは　いくらぐらいですか。"
+  },
+  {
+    "lesson": 123,
+    "module": "conversations",
+    "textId": "i_bc3c8afe9d48",
+    "speakText": "きせつに　よって　たかかったり　やすかったりです。"
+  },
+  {
+    "lesson": 123,
+    "module": "conversations",
+    "textId": "i_5a638d7a2fad",
+    "speakText": "りさん，しごとは　いそがしいですか。"
+  },
+  {
+    "lesson": 123,
+    "module": "conversations",
+    "textId": "i_eaf56b5ba904",
+    "speakText": "ええ，ひに　よって　ひまだったり　いそがしかったりです。"
+  },
+  {
+    "lesson": 123,
+    "module": "conversations",
+    "textId": "i_4d4c0b3fac68",
+    "speakText": "もりさんが　なんじごろ　くるか　しって　いますか。"
+  },
+  {
+    "lesson": 123,
+    "module": "conversations",
+    "textId": "i_247face511f0",
+    "speakText": "いいえ。きょうは　くるか　どうか　わかりません。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_d940d449e8d6",
+    "speakText": "おのさん，なにを　かうか　きまりましたか。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_f8e96a4ba06a",
+    "speakText": "ゆかたは　どうですか。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_91d7798c2c75",
+    "speakText": "いいですね。でも　たかく　ないですか。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_f3be9df7e099",
+    "speakText": "たかかったり　やすかったり，いろいろ　あります。あっ，そうだ。きじを　かって，わたしが　つくりますよ。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_d6cef7601cda",
+    "speakText": "にほんの　せいかつは　どうでしたか。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_3a19d773cf58",
+    "speakText": "おんせんに　はいったり　かぶきを　みたり　して，とても　たのしかったです。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_f57575a568d5",
+    "speakText": "ごりょうしんに　いつ　かえるか　しらせましたか。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_740a62608626",
+    "speakText": "はい，きのう　ははに　メールで　しらせましたか。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_f13dac87b7fa",
+    "speakText": "ごりょうしんは　メールが　できますか。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_1123b97252d9",
+    "speakText": "ははは　できますが，ちちは　でんわか　てがみですね。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_037bf2e3767e",
+    "speakText": "ペキンへ　かえった　あと，どうしますか。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_0907a0608cf0",
+    "speakText": "いっしゅうかんぐらい　やすみたいですね。しゅんせつに　やすみが　なかったですから。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_04a47be52014",
+    "speakText": "やすみに　なにを　しますか。りょこうに　いきますか。"
+  },
+  {
+    "lesson": 123,
+    "module": "discussions",
+    "textId": "i_5e2930ea6f2d",
+    "speakText": "りょこうに　いくか　どうか，わかりません。たぶん　ともだちに　あったり，しょくじに　いったり　します。"
+  },
+  {
+    "lesson": 124,
+    "module": "sentences",
+    "textId": "i_7264b19aca46",
+    "speakText": "りさんは　もう　すぐ　くると　おもいます。"
+  },
+  {
+    "lesson": 124,
+    "module": "sentences",
+    "textId": "i_bf3d6c5a4d51",
+    "speakText": "ちんさんは　パーティーに　いくと　いいました。"
+  },
+  {
+    "lesson": 124,
+    "module": "sentences",
+    "textId": "i_4cae09b3eaa6",
+    "speakText": "すみません，あたまが　いたいんです。"
+  },
+  {
+    "lesson": 124,
+    "module": "sentences",
+    "textId": "i_e8f3a5922b16",
+    "speakText": "とうきょうタワーへ　いきたいんですが，どうやって　いきますか。"
+  },
+  {
+    "lesson": 124,
+    "module": "conversations",
+    "textId": "i_8e419d065355",
+    "speakText": "にほんの　おんがくに　ついて　どう　おもいますか。"
+  },
+  {
+    "lesson": 124,
+    "module": "conversations",
+    "textId": "i_a8d2b18281f5",
+    "speakText": "すばらしいと　おもいます。"
+  },
+  {
+    "lesson": 124,
+    "module": "conversations",
+    "textId": "i_ef6d3089ecca",
+    "speakText": "かちょうは　なんと　いいましたか。"
+  },
+  {
+    "lesson": 124,
+    "module": "conversations",
+    "textId": "i_cae05ec597c7",
+    "speakText": "ごごから　でかけると　いいました。"
+  },
+  {
+    "lesson": 124,
+    "module": "conversations",
+    "textId": "i_ebd10c6df0cb",
+    "speakText": "どうして　たべないんですか。"
+  },
+  {
+    "lesson": 124,
+    "module": "conversations",
+    "textId": "i_26ca054188f0",
+    "speakText": "もう　おなかが　いっぱいなんです。"
+  },
+  {
+    "lesson": 124,
+    "module": "conversations",
+    "textId": "i_7beef0799a25",
+    "speakText": "りさんを　さがして　いるんですが，どこに　いますか。"
+  },
+  {
+    "lesson": 124,
+    "module": "conversations",
+    "textId": "i_2198142a2172",
+    "speakText": "かいぎしつに　いると　おもいます。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_057058ffb031",
+    "speakText": "とうとう　おわかれですね。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_92925c996bac",
+    "speakText": "ありがとう　ございました。ほんとうに　おせわに　なりました。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_ee14f5a97eb3",
+    "speakText": "こちらこそ。みじかい　あいだでしたが，とても　たのしかったですよ。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_a33588940022",
+    "speakText": "かちょうは　しゅっちょうちゅうですが，りさんに　よろしくと　いって　いましたよ。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_9f6073796fc5",
+    "speakText": "そうですか。どうぞ　よしだかちょうに　よろしく　おつたえ　ください。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_1a3167168f51",
+    "speakText": "ええ，かならず　つたえます。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_da5d9dfe877a",
+    "speakText": "これ，ゆかたです。わたしが　つくったんですが，どうぞ。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_30a0afdec9dd",
+    "speakText": "おのさんが　つくったんですか。すごいですね。ありがとう　ございます。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_668c53abeab5",
+    "speakText": "おのさん，もりさん，いつか　ペキンへ　きて　ください。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_b9db82de3fc1",
+    "speakText": "ええ，かならず　いきます。こんどは　きょうげきを　みましょう。りさん，おげんきで。"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_e5b575695d99",
+    "speakText": "ぼくも　いつか　ペキンへ　いきたいと　おもいます。りさん，どうぞ　おきを　つけて。“再见！”"
+  },
+  {
+    "lesson": 124,
+    "module": "discussions",
+    "textId": "i_2f656f9253d6",
+    "speakText": "さようなら。こんどは　ペキンで　あいましょう。"
+  },
+  {
+    "lesson": 125,
+    "module": "sentences",
+    "textId": "i_311ccacb51bb",
+    "speakText": "これは　あした　かいぎで　つかう　しりょうです。"
+  },
+  {
+    "lesson": 125,
+    "module": "sentences",
+    "textId": "i_91db186b985e",
+    "speakText": "わたしが　あした　のる　ひこうきは　ちゅうごくこうくうです。"
+  },
+  {
+    "lesson": 125,
+    "module": "sentences",
+    "textId": "i_58de4d4d900c",
+    "speakText": "ちゅうごくで　かった　CDを　ともだちに　かしました。"
+  },
+  {
+    "lesson": 125,
+    "module": "sentences",
+    "textId": "i_62b3260b0046",
+    "speakText": "そうさが　かんたんな　パソコンが　ほしいです。"
+  },
+  {
+    "lesson": 125,
+    "module": "conversations",
+    "textId": "i_e24b9bf5c70b",
+    "speakText": "りさん，この　ひとは　だれですか。"
+  },
+  {
+    "lesson": 125,
+    "module": "conversations",
+    "textId": "i_56318067fd05",
+    "speakText": "その　ひとは　ちゅうごくで　とても　にんきがある　じょゆうです。"
+  },
+  {
+    "lesson": 125,
+    "module": "conversations",
+    "textId": "i_c6275578cc7f",
+    "speakText": "あの　まどの　ところに　いる　ひとは　だれですか。"
+  },
+  {
+    "lesson": 125,
+    "module": "conversations",
+    "textId": "i_5fe54a398b1c",
+    "speakText": "あれは　うけつけの　たいさんですよ。"
+  },
+  {
+    "lesson": 125,
+    "module": "conversations",
+    "textId": "i_c4d4687447c9",
+    "speakText": "なにを　しているんですか。"
+  },
+  {
+    "lesson": 125,
+    "module": "conversations",
+    "textId": "i_f457702f2b19",
+    "speakText": "きのう　りさんに　もらった　ほんを　よんでいます。"
+  },
+  {
+    "lesson": 125,
+    "module": "conversations",
+    "textId": "i_45bb7519cc5e",
+    "speakText": "この　かいしゃで　うたが　いちばん　じょうずな　ひとは　だれですか。"
+  },
+  {
+    "lesson": 125,
+    "module": "conversations",
+    "textId": "i_34f51528254a",
+    "speakText": "もりさんだと　おもいます。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_1007f219c852",
+    "speakText": "きょう　とまる　ホテルは　てんあん　はんてんでしたね。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_d121da8c8654",
+    "speakText": "ええ。１か　げつぐらい　ホテルに　とまってください。ゆっくり　すむを　さがしましょう。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_cde6c74525e4",
+    "speakText": "ずいぶん　まっすぐな　どうろですね。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_d5a4e781ee49",
+    "speakText": "これは　くうこうと　ぺきん　しがいを　むすぶ　こうそくどうろで，しがいまで　だいたい　さんじゅっぷんぐらいです。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_7f11b5a6953e",
+    "speakText": "あっ，これ，にほんの　うたですね。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_764448389caf",
+    "speakText": "はい，そうです。にほんじんの　ともだちに　もらった　CDです。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_a842a5568aa0",
+    "speakText": "にほんの　うたが　すきなんですか。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_5df4d5af7999",
+    "speakText": "ええ，だいすきです。ちゅうごくには　にほんの　うたが　すきな　ひとが　たくさんいますよ。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_5703670cdbad",
+    "speakText": "あそこにある　おおきな　しろい　たてものは　なんですか。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_f1a7ee86e4ac",
+    "speakText": "あれは　さいきん　できた　たてものですね。ばさん　しっていますか。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_3f5e7ad0341b",
+    "speakText": "ああ，あれは　じどうしゃの　ぶひん　こうじょうですよ。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_a790a3002573",
+    "speakText": "だいぶ　くるまが　おおく　なりましたね。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_ece2670119e1",
+    "speakText": "ええ，いま　はしっている　どうろは　さんかんろですが，この　あたりは　よく　じゅうたいします。"
+  },
+  {
+    "lesson": 125,
+    "module": "discussions",
+    "textId": "i_661c7b88487f",
+    "speakText": "さんかんろは　ぺきんで　いちばん　こうつう　りょうが　おおい　どうろですからね。"
+  },
+  {
+    "lesson": 126,
+    "module": "sentences",
+    "textId": "i_2b82efe243f6",
+    "speakText": "じてんしゃにふたりでのるのはあぶないです。"
+  },
+  {
+    "lesson": 126,
+    "module": "sentences",
+    "textId": "i_af519e77e6de",
+    "speakText": "てがみをだすのをわすれました。"
+  },
+  {
+    "lesson": 126,
+    "module": "sentences",
+    "textId": "i_72e17990f8f3",
+    "speakText": "あしたのあさはおおあめになるでしょう。"
+  },
+  {
+    "lesson": 126,
+    "module": "sentences",
+    "textId": "i_4acd6abb1e81",
+    "speakText": "もりさんはきょうかいしゃをやすむかもしれません。"
+  },
+  {
+    "lesson": 126,
+    "module": "conversations",
+    "textId": "i_1e8cf9e61b4d",
+    "speakText": "りさんはえをかくのがすきですね。"
+  },
+  {
+    "lesson": 126,
+    "module": "conversations",
+    "textId": "i_6233865d54ca",
+    "speakText": "ええ，だいすきです。でも，あまりじょうずではありませんよ。"
+  },
+  {
+    "lesson": 126,
+    "module": "conversations",
+    "textId": "i_6e646dabb59a",
+    "speakText": "よしださんがてんきんしたのをしっていますか。"
+  },
+  {
+    "lesson": 126,
+    "module": "conversations",
+    "textId": "i_c62d186fb5df",
+    "speakText": "えつ，ほんとうですか。しりませんでした。"
+  },
+  {
+    "lesson": 126,
+    "module": "conversations",
+    "textId": "i_fd97b8ce0c6d",
+    "speakText": "かいぎはなんじにおわりますか。"
+  },
+  {
+    "lesson": 126,
+    "module": "conversations",
+    "textId": "i_c2235d0faef4",
+    "speakText": "にじにおわるでしょう。"
+  },
+  {
+    "lesson": 126,
+    "module": "conversations",
+    "textId": "i_25765fa7e24e",
+    "speakText": "ばさんはまだきませんね。"
+  },
+  {
+    "lesson": 126,
+    "module": "conversations",
+    "textId": "i_1dff420b585e",
+    "speakText": "もしかしたら，きょうはこないかもしれませんよ。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_058e9b21e5af",
+    "speakText": "はじめまして，ようです。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_ebd076620219",
+    "speakText": "はじめまして，もりです，よろしくおねがいします。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_4c6aae7f888a",
+    "speakText": "にほんにはあくしゅのしゅうかんがないんですね。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_8f3b0df088c0",
+    "speakText": "ええ，そうなんです，それで，ついあくしゅするのをわすれます。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_606690bee453",
+    "speakText": "ちゅうごくではあくしゅするのがふつうなんですか。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_fc618a047275",
+    "speakText": "ええ，そうですよ。にほんにはおじぎのほかのあいさつはないんですか。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_70dfa12e109f",
+    "speakText": "そうですね…。てをあげたり，あくしゅしたりするひともいますが，ほとんどおじぎですね。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_7ca189ae4d35",
+    "speakText": "ちんさん，もりさんのごごのよていはあいさつまわりですね。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_972627028743",
+    "speakText": "ええ，いまいちじはんですから，これからよんしゃぐらいまわることができるでしょう。"
+  },
+  {
+    "lesson": 126,
+    "module": "discussions",
+    "textId": "i_73c317b0d906",
+    "speakText": "そうですね，ごしゃいくことができるかもしれませんよ。もりさん，つぎはあくしゅするのをわすれないでくださいね。"
+  },
+  {
+    "lesson": 127,
+    "module": "sentences",
+    "textId": "i_4234da6f2b1e",
+    "speakText": "こどものとき，おおきなじしんがありました。"
+  },
+  {
+    "lesson": 127,
+    "module": "sentences",
+    "textId": "i_299f744f3f3c",
+    "speakText": "えいがをみるとき，いつもいちばんうしろのせきにすわります。"
+  },
+  {
+    "lesson": 127,
+    "module": "sentences",
+    "textId": "i_a137ff02a15b",
+    "speakText": "りさんはテレビをみながらしょくじをしています。"
+  },
+  {
+    "lesson": 127,
+    "module": "sentences",
+    "textId": "i_9b32136d9599",
+    "speakText": "りさん，あした　パーティーにいくでしょう？"
+  },
+  {
+    "lesson": 127,
+    "module": "conversations",
+    "textId": "i_e7e802a41c16",
+    "speakText": "がくせいのとき，なにをべんきょうしましたか。"
+  },
+  {
+    "lesson": 127,
+    "module": "conversations",
+    "textId": "i_3da0128f16bb",
+    "speakText": "にほんのけいざいについてべんきょうしました。"
+  },
+  {
+    "lesson": 127,
+    "module": "conversations",
+    "textId": "i_7ffc5632f3f6",
+    "speakText": "ばさん，ひまなとき，このしょるいをせいりしてください。"
+  },
+  {
+    "lesson": 127,
+    "module": "conversations",
+    "textId": "i_fc4e702864a2",
+    "speakText": "はい，わかりました。"
+  },
+  {
+    "lesson": 127,
+    "module": "conversations",
+    "textId": "i_00e97ba8bcdf",
+    "speakText": "ようこさんはアルバイトをしながらがっこうにかよっているんですよ。"
+  },
+  {
+    "lesson": 127,
+    "module": "conversations",
+    "textId": "i_1cbb9400eecd",
+    "speakText": "そうですか。なかなかたいへんですね。"
+  },
+  {
+    "lesson": 127,
+    "module": "conversations",
+    "textId": "i_9ab3020f7d39",
+    "speakText": "もりさん，きのう，えきまえのきっさてんにいたでしょう？"
+  },
+  {
+    "lesson": 127,
+    "module": "conversations",
+    "textId": "i_df2188495cff",
+    "speakText": "はい。しごとで，ようさんとあっていたんです"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_95033e8c9391",
+    "speakText": "けさ，こうえんをさんぽしているとき，おおぜいのひとがあつまっているのをみました。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_016ab7ab2ac1",
+    "speakText": "ああ，おとしよりがおおかったでしょう？"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_63a1253502f6",
+    "speakText": "ええ。たいきょくけんやラジオたいそうをしていました。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_42db75f86e0c",
+    "speakText": "あさのうんどうですよ。しゃこうダンスをしているひとたちもいたでしょう？"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_e7f49433b1e4",
+    "speakText": "ええ，いました。ほかに，おどりながらうたをうたっているひともいましたよ。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_0df3de6b6a75",
+    "speakText": "こうえんにはいるとき，にゅうえんりょうをはらいましたが，どのこうえんもゆうりょうですか。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_d6d496543691",
+    "speakText": "ええ，ゆうりょうのこうえんがおおいですね。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_89952b4e1949",
+    "speakText": "じゃあ，あさのうんどうをしているおとしよりたちもにゅうえんりょうをはらうんですか。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_f82a7be3ccda",
+    "speakText": "そうですよ。でも，まいにちりようするひとはわりびきがあるんです。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_67181e9a0967",
+    "speakText": "そういえば，ちいさいとき，よくそぼといっしょにこうえんヘいきました。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_9a0f9d388d09",
+    "speakText": "へえ，いっしょにうんどうをしたんですか。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_3c6a16b42d00",
+    "speakText": "いいえ，わたしはあそびながらそぼがたいきょくけんをするのをみていました。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_9cf25efa3fd5",
+    "speakText": "やすみのとき，わたしもこうえんでジョギングをしています。"
+  },
+  {
+    "lesson": 127,
+    "module": "discussions",
+    "textId": "i_ac4de4c39c0a",
+    "speakText": "あさやゆうがたのすずしいときにスポーツをするのはきもちがいいですよね。"
+  },
+  {
+    "lesson": 128,
+    "module": "sentences",
+    "textId": "i_02d9d9eb9faf",
+    "speakText": "ばさんはわたしにちずをくれました。"
+  },
+  {
+    "lesson": 128,
+    "module": "sentences",
+    "textId": "i_51efa306d463",
+    "speakText": "もりさんはおとしよりのにもつをもってあげました。"
+  },
+  {
+    "lesson": 128,
+    "module": "sentences",
+    "textId": "i_17c04b6e5df4",
+    "speakText": "もりさんはりさんにぺきんをあんないしてもらいました。"
+  },
+  {
+    "lesson": 128,
+    "module": "sentences",
+    "textId": "i_d944ad246afb",
+    "speakText": "おんなのひとがわたしのさいふをひろってくれました。"
+  },
+  {
+    "lesson": 128,
+    "module": "conversations",
+    "textId": "i_3892ea441152",
+    "speakText": "すてきなマフラーですね。"
+  },
+  {
+    "lesson": 128,
+    "module": "conversations",
+    "textId": "i_c1add4879277",
+    "speakText": "ええ，おのさんがたんじょうびにくれたんです。"
+  },
+  {
+    "lesson": 128,
+    "module": "conversations",
+    "textId": "i_28e87cb8e1b1",
+    "speakText": "もりさんはあしたひっこしですね。"
+  },
+  {
+    "lesson": 128,
+    "module": "conversations",
+    "textId": "i_ebf8b535e154",
+    "speakText": "ええ，みんなでてつだってあげましょう。"
+  },
+  {
+    "lesson": 128,
+    "module": "conversations",
+    "textId": "i_d7145d62b90e",
+    "speakText": "このぶんしょうのいみがわからないんですが…"
+  },
+  {
+    "lesson": 128,
+    "module": "conversations",
+    "textId": "i_11097619c95c",
+    "speakText": "たいさんにやくしてもらいましょう，えいごがとくいですから。"
+  },
+  {
+    "lesson": 128,
+    "module": "conversations",
+    "textId": "i_99e25b4a424d",
+    "speakText": "おいしいおちゃをおくってくれて，どうもありがとう。"
+  },
+  {
+    "lesson": 128,
+    "module": "conversations",
+    "textId": "i_5af4b7802d1c",
+    "speakText": "いいえ，どういたしまして。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_195e89d8d476",
+    "speakText": "もりくん，すむところはもうきまったの？"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_efd15d109dbe",
+    "speakText": "いいえ，まだなんです。さっき，ちんさんにふどうさんやさんをしょうかいしてもらいました。それに，りさんやばさんもいろいろとさがしてくれています"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_268a59515004",
+    "speakText": "ししゃちょう，ひっこしさきがきまりました。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_f73a730e0647",
+    "speakText": "それはよかった。どのへん？"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_ced46901266a",
+    "speakText": "こくさいぼうえきセンターのちかくです。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_9e9aef4e293e",
+    "speakText": "「こくぼう」ですか。あのへんはよくしっています。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_288e295855ff",
+    "speakText": "そうなんですか。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_53dd619209c6",
+    "speakText": "ええ，こんどきんじょをあんないしてあげますよ。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_ce496071621b",
+    "speakText": "ありがとうございます。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_1493a09db390",
+    "speakText": "もりさん，ひっこしはあしたですね。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_51f3aad4985a",
+    "speakText": "ええ，ばさんとりさんがてつだいにきてくれます。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_931423e0c6e7",
+    "speakText": "かぐはどうしたんですか。"
+  },
+  {
+    "lesson": 128,
+    "module": "discussions",
+    "textId": "i_9417706601fa",
+    "speakText": "もうかいました。あしたとどけてもらいます。れいぞうこは，ししゃちょうがくれました。"
+  },
+  {
+    "lesson": 129,
+    "module": "sentences",
+    "textId": "i_450c97a417ec",
+    "speakText": "でんきをけせ。"
+  },
+  {
+    "lesson": 129,
+    "module": "sentences",
+    "textId": "i_e150d96966db",
+    "speakText": "つぎのぶんしょうをよんで，しつもんにこたえなさい。"
+  },
+  {
+    "lesson": 129,
+    "module": "sentences",
+    "textId": "i_d37a25b00a0d",
+    "speakText": "ここにくるまをとめるな。"
+  },
+  {
+    "lesson": 129,
+    "module": "sentences",
+    "textId": "i_5fe07947ca2f",
+    "speakText": "このマークは「タバコをすうな」といういみです。"
+  },
+  {
+    "lesson": 129,
+    "module": "conversations",
+    "textId": "i_8805ad52420a",
+    "speakText": "さっきぶちょうはなんといいましたか。"
+  },
+  {
+    "lesson": 129,
+    "module": "conversations",
+    "textId": "i_495fd5805df7",
+    "speakText": "「しょるいをはやくていしゅつしろ」といいました。"
+  },
+  {
+    "lesson": 129,
+    "module": "conversations",
+    "textId": "i_3f26325eeba0",
+    "speakText": "まこと，はやくおふろにはいりなさい。"
+  },
+  {
+    "lesson": 129,
+    "module": "conversations",
+    "textId": "i_2698e8d82fe1",
+    "speakText": "いましゅくだいしているんだ。おかあさんさきにはいってよ。"
+  },
+  {
+    "lesson": 129,
+    "module": "conversations",
+    "textId": "i_b2d5449adea6",
+    "speakText": "すみません，これはなんとよみますか。"
+  },
+  {
+    "lesson": 129,
+    "module": "conversations",
+    "textId": "i_a04925a24385",
+    "speakText": "「たちいりきんし（ ）」とよみます。「ここにはいるな」といういみですよ。"
+  },
+  {
+    "lesson": 129,
+    "module": "conversations",
+    "textId": "i_cbb6dfdbb69a",
+    "speakText": "このはなのなまえをしっていますか。"
+  },
+  {
+    "lesson": 129,
+    "module": "conversations",
+    "textId": "i_050b928dc404",
+    "speakText": "ええ，それはフジというはなです。"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_30e0d918cda8",
+    "speakText": "もりくん，つぎ，うたいなさいよ！"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_832b9b62d0ac",
+    "speakText": "そう，そう。もりさん，うたいなさい！"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_1ed025bce8d0",
+    "speakText": "たいさん，じぶんよりとしうえのもりさんに「うたいなさい」というのはしつれいですよ。"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_8896a6715df5",
+    "speakText": "そうだね。このばあいは「うたってください」といわないとね。"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_7f4a14069c98",
+    "speakText": "はい，わかりました。もりさん，すみませんでした。"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_37155856e67f",
+    "speakText": "にほんにいるとき，にほんじんのだんせいがともだちに，「こい」「えんりょするな」などといっているのをよくききました。これはしたしいひとにつかうんですね。"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_1f086e42384a",
+    "speakText": "ええ。でも，じょせいはあまりつかいません。「きてください」「えんりょしないでください」といったほうがいいですよ。"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_623e6b59d58d",
+    "speakText": "「ください」をとって，「きて」「えんりょしないで」などといういいかたをしているじょせいもいました。"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_fabdc9791ccb",
+    "speakText": "そうですか。ちゅうごくごでもしたしいあいてには，“ ， ！”“ ！”といって“ ”をつけませんから，おなじですね。"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_21c0c782fed7",
+    "speakText": "そうですね。それから，やきゅうじょうでおんなのひとが「がんばれ！」というのをききました。"
+  },
+  {
+    "lesson": 129,
+    "module": "discussions",
+    "textId": "i_a24fbb363689",
+    "speakText": "きけんなときやていねいにいうひまがないときはつかってもいいんです。"
+  },
+  {
+    "lesson": 130,
+    "module": "sentences",
+    "textId": "i_e479beb8e9fe",
+    "speakText": "もう11じだからねよう。"
+  },
+  {
+    "lesson": 130,
+    "module": "sentences",
+    "textId": "i_b4cbb4a5c8da",
+    "speakText": "きょう，かいしゃをやすもうとおもいます。"
+  },
+  {
+    "lesson": 130,
+    "module": "sentences",
+    "textId": "i_ab333f349cd0",
+    "speakText": "あした，びょういんヘいこうとおもっています。"
+  },
+  {
+    "lesson": 130,
+    "module": "sentences",
+    "textId": "i_3722b02f130a",
+    "speakText": "にもつがおもいので，たくはいびんでおくります。"
+  },
+  {
+    "lesson": 130,
+    "module": "conversations",
+    "textId": "i_009b40da448f",
+    "speakText": "しごとがおわってから，のみにいこうよ。"
+  },
+  {
+    "lesson": 130,
+    "module": "conversations",
+    "textId": "i_e109b95af2f9",
+    "speakText": "ごめん。あしたはやいから，きょうはちょっと…"
+  },
+  {
+    "lesson": 130,
+    "module": "conversations",
+    "textId": "i_e928cc3c7930",
+    "speakText": "もうおそいので，そろそろかえろうとおもいます。"
+  },
+  {
+    "lesson": 130,
+    "module": "conversations",
+    "textId": "i_e6d71884a6ea",
+    "speakText": "おつかれさまでした。きをつけて。"
+  },
+  {
+    "lesson": 130,
+    "module": "conversations",
+    "textId": "i_a194e0900dbe",
+    "speakText": "もうすぐゴールデンウィークですね。なにかよていがありますか。"
+  },
+  {
+    "lesson": 130,
+    "module": "conversations",
+    "textId": "i_1d0f1cfce92d",
+    "speakText": "ちょうこうくだりをしようとおもっています。"
+  },
+  {
+    "lesson": 130,
+    "module": "conversations",
+    "textId": "i_fd5ef048cb5e",
+    "speakText": "どようびもしごとですか。"
+  },
+  {
+    "lesson": 130,
+    "module": "conversations",
+    "textId": "i_98333dbce39a",
+    "speakText": "ええ。ほんこんからおきゃくさんがくるので，くうこうへむかえにいきます。"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_aae3e6ee00d5",
+    "speakText": "こんどのしゅうまつ，みんなでピクニックにいこうとおもっているんですが…"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_b5b25af81343",
+    "speakText": "いいですね，どこへいくんですか"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_7b78d65fce62",
+    "speakText": "こうざんへいこうとおもいます"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_8104b0c0d49d",
+    "speakText": "もりくん，おそいよ"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_9e0e4648dbe9",
+    "speakText": "すみません，でかけようとしたときに，でんわがあったんです"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_9685780cecfc",
+    "speakText": "そうか。それじゃ，まあ，しかたないな。ばさん，みんなそろったから，そろそろしゅっぱつしましょうか。"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_cb737ea8df3f",
+    "speakText": "ええ，そうしましょう。"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_60bfb4c9431e",
+    "speakText": "ちかくにぺきんしょくぶつえんがあるので，かえりによろうとおもうんです。"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_65590da04ac8",
+    "speakText": "いいですね，わたしははながすきなので，たのしみです。"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_136ccc15c16e",
+    "speakText": "ひとがおおいですね。"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_e1c8e7ea8043",
+    "speakText": "いまはちょうどピクニックのシーズンですから。"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_0e839e47edfa",
+    "speakText": "このきせつは，どのこうらくちもひとでいっぱいですよ。"
+  },
+  {
+    "lesson": 130,
+    "module": "discussions",
+    "textId": "i_5e83073cf56c",
+    "speakText": "あきのこうざんもいいですよ，こんどはこうようをみにこようとおもっています。"
+  },
+  {
+    "lesson": 131,
+    "module": "sentences",
+    "textId": "i_78c7fd9c4b1c",
+    "speakText": "このボタンをおすと，でんげんがはいります。"
+  },
+  {
+    "lesson": 131,
+    "module": "sentences",
+    "textId": "i_f8d53ce5e9dd",
+    "speakText": "そのパソコンは，たまにフリーズすることがあります。"
+  },
+  {
+    "lesson": 131,
+    "module": "sentences",
+    "textId": "i_b8b07664d774",
+    "speakText": "ばさんはとてもじょうずにレポートをまとめました。"
+  },
+  {
+    "lesson": 131,
+    "module": "sentences",
+    "textId": "i_86fc407a1462",
+    "speakText": "りさんはくるでしょうか。"
+  },
+  {
+    "lesson": 131,
+    "module": "conversations",
+    "textId": "i_165c336544d1",
+    "speakText": "すみません，しやくしょへはどういくんですか。"
+  },
+  {
+    "lesson": 131,
+    "module": "conversations",
+    "textId": "i_ec01ae628310",
+    "speakText": "このみちをまっすぐいくと，デパートがあります。しやくしょはそのとなりですよ。"
+  },
+  {
+    "lesson": 131,
+    "module": "conversations",
+    "textId": "i_5590cfe0a4c6",
+    "speakText": "ありがとうございます。"
+  },
+  {
+    "lesson": 131,
+    "module": "conversations",
+    "textId": "i_2de88afe197a",
+    "speakText": "あさごはんはまいにちきちんとたべますか。"
+  },
+  {
+    "lesson": 131,
+    "module": "conversations",
+    "textId": "i_7db4315952c6",
+    "speakText": "ええ，でも，たまにたべないことがあります。"
+  },
+  {
+    "lesson": 131,
+    "module": "conversations",
+    "textId": "i_97737c550d22",
+    "speakText": "あっ，あめですよ。"
+  },
+  {
+    "lesson": 131,
+    "module": "conversations",
+    "textId": "i_98fbccdfdc20",
+    "speakText": "ほんとうですね，はやくいえにかえりましょう。"
+  },
+  {
+    "lesson": 131,
+    "module": "conversations",
+    "textId": "i_591f92acf2c1",
+    "speakText": "すみません，ばさんはどちらでしょうか。"
+  },
+  {
+    "lesson": 131,
+    "module": "conversations",
+    "textId": "i_dedd404fbb43",
+    "speakText": "ばさんはさっきでかけましたよ。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_6dff1a8fab03",
+    "speakText": "ここをまがるとちいさなこうえんがあって，こどもたちがよくたっきゅうをしているんですよ。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_3e0d9c031920",
+    "speakText": "たっきゅうですか？こうえんで？"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_e3e94a995d4f",
+    "speakText": "そうです。そのこうえんにはコンクリートでできたたっきゅうだいがあるんです。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_94edb32a7dd5",
+    "speakText": "コンクリートのたっきゅうだい？へえ，おもしろいですね。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_cdad88066668",
+    "speakText": "ええ，たっきゅうをしたいときにいつでもできるんです。たまにこうえんのそばをとおることがあるんですが，かならずだれかがやっていますね。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_6e4662857426",
+    "speakText": "ここから300メートルほどいくと，スポーツセンターがあります。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_42f6b5f58cf9",
+    "speakText": "スポーツセンター？だれでもじゆうにりようすることができるんでしょうか。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_601ab0f8690f",
+    "speakText": "ええ，だれでもりようすることができます。ただし，ゆうりょうですが。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_ab2d695766b2",
+    "speakText": "ばさんもよくりようするんですか。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_142136e56b30",
+    "speakText": "たまにプールでおよぐことがあります。でもかいいんじゃないとよる８じいこうはりようすることができないんです。だからかいいんになろうとおもっているんです。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_e4e46163a936",
+    "speakText": "かいいんになると，なにかほかにもとくてんがあるんですか。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_67b525c86c8e",
+    "speakText": "かいいんのかぞくもやすくりようすることができるんです。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_2bc1c4ec96d1",
+    "speakText": "いまなんじでしょうか。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_9c1ee473c823",
+    "speakText": "もうすぐ1じ15ふんになります。"
+  },
+  {
+    "lesson": 131,
+    "module": "discussions",
+    "textId": "i_184d58b82367",
+    "speakText": "じゃあ，はやくかえらないと，ごごのかいぎがはじまりますね。"
+  },
+  {
+    "lesson": 132,
+    "module": "sentences",
+    "textId": "i_e5d570f0e0ab",
+    "speakText": "こんどのにちようびにゆうえんちへいくつもりです。"
+  },
+  {
+    "lesson": 132,
+    "module": "sentences",
+    "textId": "i_8833ca51f5d0",
+    "speakText": "あした，ともだちとえいがをみにいくことにしました。"
+  },
+  {
+    "lesson": 132,
+    "module": "sentences",
+    "textId": "i_c6d59a09c76a",
+    "speakText": "らいげつからきゅうりょうがあがることになりました。"
+  },
+  {
+    "lesson": 132,
+    "module": "sentences",
+    "textId": "i_b226e82c18e0",
+    "speakText": "ばさんのむすこさんはことししょうがっこうににゅうがくするそうです。"
+  },
+  {
+    "lesson": 132,
+    "module": "conversations",
+    "textId": "i_e2d0a3ad0ced",
+    "speakText": "こんどのボーナスでくるまをかうつもりです。"
+  },
+  {
+    "lesson": 132,
+    "module": "conversations",
+    "textId": "i_5015eb017b10",
+    "speakText": "へえ，いいですね。"
+  },
+  {
+    "lesson": 132,
+    "module": "conversations",
+    "textId": "i_8608d7b626aa",
+    "speakText": "こうしゅうへはれっしゃでいくんですか。"
+  },
+  {
+    "lesson": 132,
+    "module": "conversations",
+    "textId": "i_3880ded43d10",
+    "speakText": "いいえ，ひこうきでいくことにしました。"
+  },
+  {
+    "lesson": 132,
+    "module": "conversations",
+    "textId": "i_e37856b0f5a5",
+    "speakText": "りさん，しゅっちょうですか。"
+  },
+  {
+    "lesson": 132,
+    "module": "conversations",
+    "textId": "i_7e2b3f9d4641",
+    "speakText": "ええ，げつようからみっかかん，ほんこんへいくことになりました。"
+  },
+  {
+    "lesson": 132,
+    "module": "conversations",
+    "textId": "i_d8832eb911b7",
+    "speakText": "ニュースによると，ことしのふゆはインフルエンザがりゅうこうするそうです。"
+  },
+  {
+    "lesson": 132,
+    "module": "conversations",
+    "textId": "i_fe76a4a480e2",
+    "speakText": "そうですか。きをつけましょうね。"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_fe9dbbd1e9a7",
+    "speakText": "りさん，こんどのれんきゅうのよていは？"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_232b645a41b1",
+    "speakText": "おのさんをぺきんのいろんなところへあんないするつもりです。"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_c3928467e0ec",
+    "speakText": "てんきはだいじょうぶでしょうか"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_2baa455ec9ae",
+    "speakText": "てんきよほうによると，れんきゅうちゅうはずっとはれだそうですよ。"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_35ecf95b0880",
+    "speakText": "おのさんは，ともだちのおおたさんのいえにいくそうです。わたしもいっしょにいくことになったんですが，もりさんは？"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_30b9a2f0f611",
+    "speakText": "ぼくにもメールがあって，いっしょにおじゃますることにしましたよ。"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_120020db4219",
+    "speakText": "おのさんのメールによると，おおたさんのいえでぎょうざパーティーをするそうです。だから，わたしにもてつだってほしいっていっていました。"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_4e611ce43356",
+    "speakText": "ぎょうざパーティー？それはいいですね。"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_a384eeca1110",
+    "speakText": "ところで，おおたさんって，どんなひとですか？"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_fce444ea4ac8",
+    "speakText": "ぺきんにきてからいちどあったことがありますが，とてもきさくなひとですよ。スポーツようひんのかいしゃで，せんでんをたんとうしているそうです。"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_49ebf3a2380d",
+    "speakText": "じゃあ，これからいっしょにしごとをすることになるかもしれませんね。"
+  },
+  {
+    "lesson": 132,
+    "module": "discussions",
+    "textId": "i_453d332780e1",
+    "speakText": "ええ，だから，できるだけれんらくをとろうとおもっています。"
+  },
+  {
+    "lesson": 133,
+    "module": "sentences",
+    "textId": "i_f9280a4eb696",
+    "speakText": "でんしゃがきゅうにとまりました。"
+  },
+  {
+    "lesson": 133,
+    "module": "sentences",
+    "textId": "i_adbb3fd285e5",
+    "speakText": "へやのでんきがきえています。"
+  },
+  {
+    "lesson": 133,
+    "module": "sentences",
+    "textId": "i_90e10a83b6e6",
+    "speakText": "もりさんはボーナスをぜんぶつかってしまいました。"
+  },
+  {
+    "lesson": 133,
+    "module": "sentences",
+    "textId": "i_babfe7572465",
+    "speakText": "このケーキはとてもおいしそうです。"
+  },
+  {
+    "lesson": 133,
+    "module": "conversations",
+    "textId": "i_7517fa286347",
+    "speakText": "あなたがまどをあけたんですか。"
+  },
+  {
+    "lesson": 133,
+    "module": "conversations",
+    "textId": "i_d88d76354efa",
+    "speakText": "いいえ，かぜであいたんです。"
+  },
+  {
+    "lesson": 133,
+    "module": "conversations",
+    "textId": "i_abcec83a9123",
+    "speakText": "はさみはどこですか。"
+  },
+  {
+    "lesson": 133,
+    "module": "conversations",
+    "textId": "i_b27b7f7db0c4",
+    "speakText": "ひきだしにはいっていますよ。"
+  },
+  {
+    "lesson": 133,
+    "module": "conversations",
+    "textId": "i_1f818f06150e",
+    "speakText": "おじいさんにもらったうでどけいがこわれてしまいました。"
+  },
+  {
+    "lesson": 133,
+    "module": "conversations",
+    "textId": "i_3f6d0756b073",
+    "speakText": "それはざんねんですね。"
+  },
+  {
+    "lesson": 133,
+    "module": "conversations",
+    "textId": "i_be5eaad708dd",
+    "speakText": "あめがふりそうですね。"
+  },
+  {
+    "lesson": 133,
+    "module": "conversations",
+    "textId": "i_7bf6c10010e8",
+    "speakText": "じゃあ，あしたのうんどうかいはちゅうしかもしれませんね。"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_68374c98c440",
+    "speakText": "ちょっとはやくついてしまったけど，もりさんたちはもうきているかしら。それにしても，おおぜいならんでいるわね"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_aa155ad4a7bd",
+    "speakText": "りさん！"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_c61e0d77a963",
+    "speakText": "おのさん，おひさしぶりです。"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_e48e60f0b0f4",
+    "speakText": "ほんとうにおひさしぶり。おげんきそうですね。"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_6125b0a72155",
+    "speakText": "ええ，おのさんも。"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_9e3b31bd2e85",
+    "speakText": "すみません，おのさん，ちこくしてしまいました。"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_1a5b9107bebe",
+    "speakText": "あいかわらずですね，もりさん，でも，おげんきそうで，なによりです"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_7aa6e2e078f6",
+    "speakText": "おのさん，ずいぶんおもそうなスーツケースですね。"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_f571004b5d93",
+    "speakText": "そうですか？ふくやこものがはいっていますが，なかはほとんどからですよ。ぺきんははじめてなので，おみやげをたくさんかって，いれようとおもっているんです"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_836d6d7419c0",
+    "speakText": "あれっ，トランクがあいていないな。"
+  },
+  {
+    "lesson": 133,
+    "module": "discussions",
+    "textId": "i_efa59b262572",
+    "speakText": "うんてんしゅさんにあけてもらいましょう。"
+  },
+  {
+    "lesson": 134,
+    "module": "sentences",
+    "textId": "i_de6ab02f6c60",
+    "speakText": "かべにカレンダーがかけてあります。"
+  },
+  {
+    "lesson": 134,
+    "module": "sentences",
+    "textId": "i_0cf58e4ac25b",
+    "speakText": "おきゃくさんがくるまえに，へやをそうじしておきます。"
+  },
+  {
+    "lesson": 134,
+    "module": "sentences",
+    "textId": "i_2011c81341e6",
+    "speakText": "おおたさんはちゅうごくごでてがみをかいてみました。"
+  },
+  {
+    "lesson": 134,
+    "module": "sentences",
+    "textId": "i_995f9b0c0a3a",
+    "speakText": "にほんへりゅうがくするために，おかねをためています。"
+  },
+  {
+    "lesson": 134,
+    "module": "conversations",
+    "textId": "i_21c0d1eff3e2",
+    "speakText": "もりさん，くるまをどこにとめましたか。"
+  },
+  {
+    "lesson": 134,
+    "module": "conversations",
+    "textId": "i_70e29bfbea43",
+    "speakText": "こうえんのまえにとめてあります"
+  },
+  {
+    "lesson": 134,
+    "module": "conversations",
+    "textId": "i_fe2e76dd2f8f",
+    "speakText": "もりさん，かいぎのしりょうはどうしますか。"
+  },
+  {
+    "lesson": 134,
+    "module": "conversations",
+    "textId": "i_3510c8d0160f",
+    "speakText": "10ぶコピーしておいてください。"
+  },
+  {
+    "lesson": 134,
+    "module": "conversations",
+    "textId": "i_af41a09828b9",
+    "speakText": "カレーライスをつくってみました。たべてみてください"
+  },
+  {
+    "lesson": 134,
+    "module": "conversations",
+    "textId": "i_7a6378b51cfe",
+    "speakText": "ああ，おいしそうですね，いただきます。"
+  },
+  {
+    "lesson": 134,
+    "module": "conversations",
+    "textId": "i_1fab3d634e96",
+    "speakText": "おおたさん，タバコをやめたんですか。"
+  },
+  {
+    "lesson": 134,
+    "module": "conversations",
+    "textId": "i_e246b01ed8f1",
+    "speakText": "ええ，けんこうのためにやめました。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_40bffb292070",
+    "speakText": "おのさんをかんげいするために，とっておきのおみせをよやくしておきましたよ。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_35c055169749",
+    "speakText": "ほんとう？ありがとうございます。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_5eeb5c6ef097",
+    "speakText": "ぺきんダックがおいしいおみせなんですよ。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_30a82a9e9557",
+    "speakText": "うわあ，きれいにやいてありますね。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_a042ad9eec7c",
+    "speakText": "ええ。おいしそうないろでしょう。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_8c530ab0fae2",
+    "speakText": "おいしい！いままで，こんなにおいしいのたべたことありません。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_001a7114e2b2",
+    "speakText": "ほんばのりょうりはさいこうでしょう？"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_012350aa461c",
+    "speakText": "ええ，さいこう！こんどはじぶんでつつんでみます。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_ac7150ce31b3",
+    "speakText": "ほかにもりょうりはたくさんたのんでありますからね。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_078909a4d198",
+    "speakText": "おのさん，きょうはしっかりたべておいてください。あしたからハードスケジュールで，あちこちいきますからね。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_21225e23f9d9",
+    "speakText": "こんなにのこってしまいました。もったいないですね。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_f66c06fde76c",
+    "speakText": "ほんとうですね。じゃあ，もちかえりにしましょう。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_5b107d479257",
+    "speakText": "おのさん，カラオケもよやくしてあるんですが，どうしますか。"
+  },
+  {
+    "lesson": 134,
+    "module": "discussions",
+    "textId": "i_af8271bad03c",
+    "speakText": "もちろんいきますよ。"
+  },
+  {
+    "lesson": 135,
+    "module": "sentences",
+    "textId": "i_2e21f3148796",
+    "speakText": "あしたあめがふったら，マラソンたいかいはちゅうしです。"
+  },
+  {
+    "lesson": 135,
+    "module": "sentences",
+    "textId": "i_279df3849280",
+    "speakText": "にほんへかえっても，ちゅうごくごのべんきょうをつづけてください。"
+  },
+  {
+    "lesson": 135,
+    "module": "sentences",
+    "textId": "i_7b9cd5138328",
+    "speakText": "ことしのなつやすみはみっかだけです。"
+  },
+  {
+    "lesson": 135,
+    "module": "sentences",
+    "textId": "i_d8b133232091",
+    "speakText": "かいぎしつには　りさんしかいません。"
+  },
+  {
+    "lesson": 135,
+    "module": "conversations",
+    "textId": "i_45bccc8baec1",
+    "speakText": "だいがくをそつぎょうしたらどうしますか。"
+  },
+  {
+    "lesson": 135,
+    "module": "conversations",
+    "textId": "i_bc0e1b1357be",
+    "speakText": "がいこくではたらきたいです。"
+  },
+  {
+    "lesson": 135,
+    "module": "conversations",
+    "textId": "i_1dbc8dadccef",
+    "speakText": "ばさんはげんきがないね。なにかあったのかな。"
+  },
+  {
+    "lesson": 135,
+    "module": "conversations",
+    "textId": "i_cfff0d73f3e1",
+    "speakText": "いくらきいても　なにもいわないんだよ。"
+  },
+  {
+    "lesson": 135,
+    "module": "conversations",
+    "textId": "i_4d08caaecf0e",
+    "speakText": "りさん，しりょうはまだできませんか。"
+  },
+  {
+    "lesson": 135,
+    "module": "conversations",
+    "textId": "i_c27b7a7e913e",
+    "speakText": "すみません，あとすこしだけまってください。"
+  },
+  {
+    "lesson": 135,
+    "module": "conversations",
+    "textId": "i_cdd4646ea06c",
+    "speakText": "このゴーカートはおとなでものることができますか。"
+  },
+  {
+    "lesson": 135,
+    "module": "conversations",
+    "textId": "i_2af8fb2bb2b1",
+    "speakText": "いいえ，こどもしかのることができません。"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_dc1563e50c4c",
+    "speakText": "あのう，おさけがあったら，すこしいれてくれませんか。"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_b5121451de70",
+    "speakText": "いっばいだけでいいですか。"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_245843a75692",
+    "speakText": "いえ，さんばいぐらいいれてください。"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_912894c1c3cd",
+    "speakText": "りさん，ぎょうざをつくるのがじょうずですね。"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_1477ec98629c",
+    "speakText": "ええ，ぺきんでは，ぎょうざはどのいえでも，じぶんたちでつくってたべます。ちいさなこどもでもじょうずですよ"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_27e6268f2150",
+    "speakText": "わたし，ほんのとおりにつくっても，なかなかうまくできないんですが，どうやったらおいしくなるんでしょうか。"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_35576fc5ee19",
+    "speakText": "なんどもつくると，だんだんじょうずになりますよ。"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_f7fdd88bf6de",
+    "speakText": "もしじかんがあったら，またいっしょにつくりましょう。"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_f15486060ec2",
+    "speakText": "じゅんびができたら，かんぱいしましょう"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_5c460480ed5b",
+    "speakText": "みなさんのけんこうをいわって，カンパーイ！"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_f313c17fe742",
+    "speakText": "もりさん，たくさんたべますね，わたしはいくらがんばっても，にじゅっこぐらいしかたべることができません。"
+  },
+  {
+    "lesson": 135,
+    "module": "discussions",
+    "textId": "i_b019da63126a",
+    "speakText": "ぼくは，おのさんがつくったぎょうざだったら，さんじゅっこはだいじょうぶですよ"
+  },
+  {
+    "lesson": 136,
+    "module": "sentences",
+    "textId": "i_18400bc819b4",
+    "speakText": "おそくなって，すみません。"
+  },
+  {
+    "lesson": 136,
+    "module": "sentences",
+    "textId": "i_0538f2154a02",
+    "speakText": "このしゃしんはパスポートのしんせいにつかいます。"
+  },
+  {
+    "lesson": 136,
+    "module": "sentences",
+    "textId": "i_4bdf6dc59ce7",
+    "speakText": "ちょうさんはまいにちおさけをのんでばかりいます。"
+  },
+  {
+    "lesson": 136,
+    "module": "sentences",
+    "textId": "i_5dcdbce7df2b",
+    "speakText": "くうこうのいりぐちにけいかんがたっているのがみえます。"
+  },
+  {
+    "lesson": 136,
+    "module": "conversations",
+    "textId": "i_795d678f5c9d",
+    "speakText": "ちんさん，あしたのパーティーにいきますか。"
+  },
+  {
+    "lesson": 136,
+    "module": "conversations",
+    "textId": "i_3726632ebd1e",
+    "speakText": "いいえ，あしたはしごとで，いくことができません。"
+  },
+  {
+    "lesson": 136,
+    "module": "conversations",
+    "textId": "i_c435524bb096",
+    "speakText": "わあ，とてもちいさいカメラですね。"
+  },
+  {
+    "lesson": 136,
+    "module": "conversations",
+    "textId": "i_f76fc6cf1835",
+    "speakText": "ええ，これはかるくて，もちあるくのにとてもべんりなんですよ。"
+  },
+  {
+    "lesson": 136,
+    "module": "conversations",
+    "textId": "i_30304e5ae9ad",
+    "speakText": "なんでやさいばかりたべているんですか。"
+  },
+  {
+    "lesson": 136,
+    "module": "conversations",
+    "textId": "i_ff68e98fad02",
+    "speakText": "いま，ダイエットちゅうなんです。"
+  },
+  {
+    "lesson": 136,
+    "module": "conversations",
+    "textId": "i_afa0a21f4554",
+    "speakText": "りさんがよんでいたのがきこえましたか。"
+  },
+  {
+    "lesson": 136,
+    "module": "conversations",
+    "textId": "i_d9f876ea03fd",
+    "speakText": "いいえ，きこえませんでした。"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_c048f65fe85b",
+    "speakText": "なにかへんなおとがきこえませんか？"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_92756da90cf4",
+    "speakText": "たこのおとですよ。ほら，あそこでたこをあげているのがみえるでしょう？"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_10d84b098ace",
+    "speakText": "あら，ほんと。たこがなっているのがきこえたんですね。"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_7ff725f1d5db",
+    "speakText": "おくさんは，ぺきんのせいかつになれるのにくろうしましたか。"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_591a682247ea",
+    "speakText": "ええ。とにかくさいしょはことばがつうじなくて，とてもこまりました。"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_e019968e2254",
+    "speakText": "いまはどうですか。もうぺらぺらでしょう？"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_a9cc763ff512",
+    "speakText": "いえ，まだまだです。でも，にちじょうかいわにはこまりません。"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_951efb923c82",
+    "speakText": "かいものは？"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_cc46edc73a0e",
+    "speakText": "じぶんでいちばへいきますよ。いちばはたべもののほかにもいろいろうっていて，かいものにべんりですね。"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_f611e382e1ae",
+    "speakText": "そうですね。でも，いちばははかりうりのおみせがおおいでしょう？"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_7170ab1399bb",
+    "speakText": "そうなんですよ。たべものをかうのに，しっているいいかたばかりくりかえしていました。だから，たまごもいっきん，リンゴもいっきん…"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_c953ff70b34b",
+    "speakText": "ところで，こちらへきてから，ごしゅじんとどこかヘりょこうにいきましたか。"
+  },
+  {
+    "lesson": 136,
+    "module": "discussions",
+    "textId": "i_b198efff7fa8",
+    "speakText": "いいえ。しゅじんははたらいてばかりで，どこへもいかないんですよ。"
+  },
+  {
+    "lesson": 137,
+    "module": "sentences",
+    "textId": "i_0f4070fea5b7",
+    "speakText": "ゆうしょうすれば，オリンピックにしゅつじょうすることができます。"
+  },
+  {
+    "lesson": 137,
+    "module": "sentences",
+    "textId": "i_e5516887ac0c",
+    "speakText": "てんあんもんへいくなら，ちかてつがべんりですよ。"
+  },
+  {
+    "lesson": 137,
+    "module": "sentences",
+    "textId": "i_7d3e44efa57a",
+    "speakText": "えいがでもみにいきませんか。"
+  },
+  {
+    "lesson": 137,
+    "module": "sentences",
+    "textId": "i_90be09cba015",
+    "speakText": "パーティーで，たいさんとかようさんとか，いろいろなひとにあいました。"
+  },
+  {
+    "lesson": 137,
+    "module": "conversations",
+    "textId": "i_a0dbf3753fe7",
+    "speakText": "ちんさんのけいたいでんわのばんごうがわからないんですが…"
+  },
+  {
+    "lesson": 137,
+    "module": "conversations",
+    "textId": "i_34cc214cfe85",
+    "speakText": "りさんにきけば，わかりますよ。"
+  },
+  {
+    "lesson": 137,
+    "module": "conversations",
+    "textId": "i_5a9bb6baaf1a",
+    "speakText": "りさん，プールにいきませんか。"
+  },
+  {
+    "lesson": 137,
+    "module": "conversations",
+    "textId": "i_21b270cc074a",
+    "speakText": "きょうはちょっとようじがあるんです。あしたならひまですが…"
+  },
+  {
+    "lesson": 137,
+    "module": "conversations",
+    "textId": "i_87ee04877f33",
+    "speakText": "さいきん，ちょっとふとりました。"
+  },
+  {
+    "lesson": 137,
+    "module": "conversations",
+    "textId": "i_5fdbc123d11f",
+    "speakText": "じゃあ，うんどうでもしたらどうですか。"
+  },
+  {
+    "lesson": 137,
+    "module": "conversations",
+    "textId": "i_8d0a13fd94b2",
+    "speakText": "ようこさん，きのうバーゲンにいったの？"
+  },
+  {
+    "lesson": 137,
+    "module": "conversations",
+    "textId": "i_9541c5d26ec8",
+    "speakText": "うん，コートとかくつとか，いっぱいかっちゃった。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_1fda239f14a9",
+    "speakText": "「はったつれい」までどのぐらいですか。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_7a958a2a4fe8",
+    "speakText": "こうそくどうろをりようすれば，だいたいいちじかんぐらいです。てつどうならにじかんちょっとですね。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_cb1f2547641a",
+    "speakText": "てつどうでもいくことができるんですか。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_96ef1ef4c171",
+    "speakText": "ええ，てつどうでいくなら，ぺきんきたえきがべんりです。ちょくつうれっしゃがでていますから。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_cb0e88ee1edb",
+    "speakText": "「はったつれい」はばんりのちょうじょうのかんこうスポットのひとつです。ぺきんからちかくて，いちばんゆうめいなばしょです。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_509da1e7ac46",
+    "speakText": "テレビとかしゃしんしゅうとかでみたことがありますが，じっさいにみると，ほんとうにきぼがおおきいですね。さすが「せかいいさん」です。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_e42865a0c246",
+    "speakText": "どうして「ばんりのちょうじょう」というんですか。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_da46c5e4a802",
+    "speakText": "ちょうじょうのぜんちょうはごせんキロメートルいじょうあります。ちゅうごくでは「いちり」はれいてんごキロメートルですから，ちゅうごくのたんいにかんさんすれば，いちまんりをこえるんですよ。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_196388a3121b",
+    "speakText": "なにかおみやげをかおうとおもうんですが…"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_5f7e6fd57eb2",
+    "speakText": "おみやげなら，Tシャツとかメダルとか，いろいろありますよ。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_a44fe4e8f704",
+    "speakText": "そうですか。じゃあ，メダルでもかおうかな。"
+  },
+  {
+    "lesson": 137,
+    "module": "discussions",
+    "textId": "i_0598e4f42615",
+    "speakText": "ゆっくりさがせば，ほかにもいいおみやげがあるとおもいますよ。"
+  },
+  {
+    "lesson": 138,
+    "module": "sentences",
+    "textId": "i_15e6e22eb11e",
+    "speakText": "たいさんはえいごがはなせます。"
+  },
+  {
+    "lesson": 138,
+    "module": "sentences",
+    "textId": "i_7c2f645daed7",
+    "speakText": "よくみえるように，おおきくかきました。"
+  },
+  {
+    "lesson": 138,
+    "module": "sentences",
+    "textId": "i_5626b942629c",
+    "speakText": "けががなおって，あるけるようになりました。"
+  },
+  {
+    "lesson": 138,
+    "module": "sentences",
+    "textId": "i_3a53abea0c4a",
+    "speakText": "ちんさんはまいにちえいじしんぶんをよむようにしています。"
+  },
+  {
+    "lesson": 138,
+    "module": "conversations",
+    "textId": "i_37255eb91e93",
+    "speakText": "たいさんはおすしがたべられますか。"
+  },
+  {
+    "lesson": 138,
+    "module": "conversations",
+    "textId": "i_25bd1a336f11",
+    "speakText": "ええ，だいじょうぶですよ。わたしはなんでもたべられます。"
+  },
+  {
+    "lesson": 138,
+    "module": "conversations",
+    "textId": "i_507569d5e8eb",
+    "speakText": "りさん，２じごろかいしゃをでますよ。"
+  },
+  {
+    "lesson": 138,
+    "module": "conversations",
+    "textId": "i_9a9110e10453",
+    "speakText": "はい，いつでもでられるように，じゅんびしてあります。"
+  },
+  {
+    "lesson": 138,
+    "module": "conversations",
+    "textId": "i_a3611e7d0c45",
+    "speakText": "おのさん，きものをじぶんできることができますか。"
+  },
+  {
+    "lesson": 138,
+    "module": "conversations",
+    "textId": "i_e7b672157411",
+    "speakText": "ええ，ははにならって，きられるようになりました。"
+  },
+  {
+    "lesson": 138,
+    "module": "conversations",
+    "textId": "i_5432940f9db3",
+    "speakText": "けんこうのためになにかしていますか。"
+  },
+  {
+    "lesson": 138,
+    "module": "conversations",
+    "textId": "i_f796588d1244",
+    "speakText": "ええ，まいあさ１じかんさんぽするようにしています。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_7907275a7bb9",
+    "speakText": "このろじが「フートン」ですね。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_3322b316b4f7",
+    "speakText": "ええ，このへんはペキンのでんとうてきなまちです。ひとがじっさいにせいかつしているところですから，しゃしんはとらないようにしてくださいね。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_77204db50888",
+    "speakText": "わかりました。ところで，このみちはとおりぬけられますか。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_429025a3d375",
+    "speakText": "だいじょうぶです。いりくんでいますが，とおりぬけられますよ。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_54f92bb75e44",
+    "speakText": "フートンは，ふるいペキンがかんじられて，たのしいですね。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_80d0c1322823",
+    "speakText": "ええ。だから，じかんがあるときや，がいこくじんのともだちがきたときは，フートンをあるくようにしているんですよ。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_d318f719e816",
+    "speakText": "おのさん，「ヨウティアオ」はたべられますか。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_527b2d7d0f01",
+    "speakText": "ええ，だいすきです。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_f6897637a263",
+    "speakText": "あついですから，やけどしないようにきをつけてくださいね。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_423a6196a287",
+    "speakText": "さいきん，マンションやビルがたって，フートンがだいぶへってしまいました。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_378bd7ad448e",
+    "speakText": "なんだかざんねんですね。"
+  },
+  {
+    "lesson": 138,
+    "module": "discussions",
+    "textId": "i_2a590d46c180",
+    "speakText": "そうなんです。いまではフートンがみられるばしょはほんとうにすくなくなりました。"
+  },
+  {
+    "lesson": 139,
+    "module": "sentences",
+    "textId": "i_5cc933a47e11",
+    "speakText": "めがねをかけてほんをよみます。"
+  },
+  {
+    "lesson": 139,
+    "module": "sentences",
+    "textId": "i_7664695b5449",
+    "speakText": "どうろこうじのために，みちがこんでいます。"
+  },
+  {
+    "lesson": 139,
+    "module": "sentences",
+    "textId": "i_e40cc8f1f887",
+    "speakText": "りさんは　いそいでかえっていきました。"
+  },
+  {
+    "lesson": 139,
+    "module": "sentences",
+    "textId": "i_b6aed3fd6ec3",
+    "speakText": "きょねん，にほんでかぶきをみてきました。"
+  },
+  {
+    "lesson": 139,
+    "module": "conversations",
+    "textId": "i_7d9746738857",
+    "speakText": "もりさんは　かさをもっていきましたか。"
+  },
+  {
+    "lesson": 139,
+    "module": "conversations",
+    "textId": "i_15af99ae6d98",
+    "speakText": "いいえ，もたないででかけました。"
+  },
+  {
+    "lesson": 139,
+    "module": "conversations",
+    "textId": "i_f36625347ced",
+    "speakText": "りさん，おそかったですね。"
+  },
+  {
+    "lesson": 139,
+    "module": "conversations",
+    "textId": "i_b6a85a7d124e",
+    "speakText": "すみません。じこがあったために，でんしゃがおくれたんです。"
+  },
+  {
+    "lesson": 139,
+    "module": "conversations",
+    "textId": "i_700e47e8d431",
+    "speakText": "ずいぶんたくさんひとがのってきましたね。"
+  },
+  {
+    "lesson": 139,
+    "module": "conversations",
+    "textId": "i_597303ef534a",
+    "speakText": "ええ，ちょうどつうきんラッシュのじかんですから。"
+  },
+  {
+    "lesson": 139,
+    "module": "conversations",
+    "textId": "i_4fb2fb68bec0",
+    "speakText": "ちょっとてがみをだしてきます。"
+  },
+  {
+    "lesson": 139,
+    "module": "conversations",
+    "textId": "i_92d39ead7d1b",
+    "speakText": "じゃあ，これもおねがいします。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_55bcf4c2ce86",
+    "speakText": "このもんは，むかし，かじのためににどもやけたことがあるんですよ。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_13659c353bfa",
+    "speakText": "そうなんですか，それにしてもりっぱなたてものですね。なかにはいれるんですか。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_179c63789a35",
+    "speakText": "ええ，はいれますよ。チケットをかってきましょうか。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_e2ea23de75c3",
+    "speakText": "かばんをもってはいることができませんから，ここにあずけていきましょう。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_8f9af702a85e",
+    "speakText": "てんあんもんからは　いろんなたてものが　みわたせるんですか。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_2bd2bc04734a",
+    "speakText": "ええ，でもけさはきりがかかっているために，とおくまでみえないとおもいますが…。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_8bb34d285c76",
+    "speakText": "ここは，べつめい「しきんじょう」といって，えいがのぶたいになったところです。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_375024c63e4c",
+    "speakText": "そうそう。わたしはえいがをみて，ぜったいきたいとおもっていたんです。せっかくペキンへきて，ここをみないでかえることはできませんよ。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_aaba8612fb15",
+    "speakText": "やねがきいろで，とてもきれいですね。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_4651410a5b65",
+    "speakText": "ええ，あれは「るりがわら」といいます。あおいそらにとてもよくあいますね。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_e1a929dc4126",
+    "speakText": "りさん，あのたてものをバックにして，いっしょにしゃしんをとりませんか。"
+  },
+  {
+    "lesson": 139,
+    "module": "discussions",
+    "textId": "i_4e9e09b7cd6f",
+    "speakText": "いいですね。"
+  },
+  {
+    "lesson": 140,
+    "module": "sentences",
+    "textId": "i_a33afb4cf276",
+    "speakText": "これからともだちとしょくじにいくところです。"
+  },
+  {
+    "lesson": 140,
+    "module": "sentences",
+    "textId": "i_5cdd2b4a6ac0",
+    "speakText": "もりさんは　かいぎのしりょうをそろえているところです。"
+  },
+  {
+    "lesson": 140,
+    "module": "sentences",
+    "textId": "i_2facd1ce2626",
+    "speakText": "ばさんは，いま，くうこうについたところです。"
+  },
+  {
+    "lesson": 140,
+    "module": "sentences",
+    "textId": "i_ecdbd9a2486b",
+    "speakText": "このモノレールはきょねんかいつうしたばかりです。"
+  },
+  {
+    "lesson": 140,
+    "module": "conversations",
+    "textId": "i_6e3ad78ecac2",
+    "speakText": "もしもし，もりさん，いまどこですか。"
+  },
+  {
+    "lesson": 140,
+    "module": "conversations",
+    "textId": "i_0d49f2a5e60a",
+    "speakText": "これからいえをでるところです。"
+  },
+  {
+    "lesson": 140,
+    "module": "conversations",
+    "textId": "i_66d16ed30be4",
+    "speakText": "もりさん，シャンハイいきのさいしゅうびんはなんじかわかりましたか。"
+  },
+  {
+    "lesson": 140,
+    "module": "conversations",
+    "textId": "i_0789ad05941a",
+    "speakText": "いましらべているところです。すこしまってください。"
+  },
+  {
+    "lesson": 140,
+    "module": "conversations",
+    "textId": "i_8b39380084a8",
+    "speakText": "らいげつ，しみずさんがけっこんするのをしっていますか。"
+  },
+  {
+    "lesson": 140,
+    "module": "conversations",
+    "textId": "i_d2479e899597",
+    "speakText": "ええ，たったいまきいたところです。"
+  },
+  {
+    "lesson": 140,
+    "module": "conversations",
+    "textId": "i_db17239ebc4f",
+    "speakText": "りさん，このほんはもうよみおわりましたか。"
+  },
+  {
+    "lesson": 140,
+    "module": "conversations",
+    "textId": "i_a7f6fa7505ec",
+    "speakText": "いいえ，きのうよみはじめたばかりです。"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_b568ea841034",
+    "speakText": "すみません。おまたせして。"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_75becd2e2a80",
+    "speakText": "いいえ，わたしたちもちょうどまえについたところです。"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_fb81659ccc0d",
+    "speakText": "そうですか。よかった。チケットは？"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_5975c6a33ced",
+    "speakText": "これからかうところです。"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_dddb2191dd92",
+    "speakText": "じゃあ，ぼくがかってきますよ。ここでまっていてください。"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_0fe9e99ac027",
+    "speakText": "このげきじょう，あたらしいそうですね。"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_998373d7f7f8",
+    "speakText": "ええ，きょねんかいちくしたばかりです。それまでは，しんのじだいにできたたてものをしゅうりしながらつかいつづけていました。"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_20b12961d458",
+    "speakText": "おのさん，いかがでしたか。"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_512e11a70cf3",
+    "speakText": "すばらしかったです。みおわったばかりで，まだみみのおくにおんがくがのこっています。"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_255d2c8083d5",
+    "speakText": "あれっ，おのさんは？"
+  },
+  {
+    "lesson": 140,
+    "module": "discussions",
+    "textId": "i_d285d776e741",
+    "speakText": "おのさんなら，あそこです。いま，ぶたいのうえで，やくしゃさんといっしょにしゃしんをとっているところですよ。"
+  },
+  {
+    "lesson": 141,
+    "module": "sentences",
+    "textId": "i_920b050fd7eb",
+    "speakText": "りさんは　ぶちょうに　ほめられました。"
+  },
+  {
+    "lesson": 141,
+    "module": "sentences",
+    "textId": "i_d4bf25ab06ac",
+    "speakText": "ばさんは　もりさんに　カメラを　こわされました。"
+  },
+  {
+    "lesson": 141,
+    "module": "sentences",
+    "textId": "i_befbe3ff6546",
+    "speakText": "ちんさんは　かっていたことりに　にげられました。"
+  },
+  {
+    "lesson": 141,
+    "module": "sentences",
+    "textId": "i_a58eb9741ed0",
+    "speakText": "にせんじゅう　ねんに　シャンハイで　ばんぱくが　ひらかれます。"
+  },
+  {
+    "lesson": 141,
+    "module": "conversations",
+    "textId": "i_a2133cb4b13e",
+    "speakText": "おおたくん，どうしたんだ。げんきがないね。"
+  },
+  {
+    "lesson": 141,
+    "module": "conversations",
+    "textId": "i_b1612f11d563",
+    "speakText": "ええ。ぶちょうにしかられたんです。"
+  },
+  {
+    "lesson": 141,
+    "module": "conversations",
+    "textId": "i_ab1c3cd71958",
+    "speakText": "りさん，どうしたんですか。"
+  },
+  {
+    "lesson": 141,
+    "module": "conversations",
+    "textId": "i_76c5509275fd",
+    "speakText": "きのういぬにてをかまれたんです。"
+  },
+  {
+    "lesson": 141,
+    "module": "conversations",
+    "textId": "i_bf7e873c0a74",
+    "speakText": "しゅうまつにキャンプにいきました。"
+  },
+  {
+    "lesson": 141,
+    "module": "conversations",
+    "textId": "i_fb7900f2dee4",
+    "speakText": "へえ。たのしかったですか。"
+  },
+  {
+    "lesson": 141,
+    "module": "conversations",
+    "textId": "i_15f415f53b02",
+    "speakText": "ふつかともあめにふられて，たいへんでしたよ。"
+  },
+  {
+    "lesson": 141,
+    "module": "conversations",
+    "textId": "i_8f814154ae44",
+    "speakText": "このくるまのデザインはとてもいいですね。"
+  },
+  {
+    "lesson": 141,
+    "module": "conversations",
+    "textId": "i_bc6c461c5d3a",
+    "speakText": "ええ。にほんのゆうめいなデザイナーによってせっけいされました。"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_abdfcbb89177",
+    "speakText": "あっ，もりさん，おつかれさまでした。おそかったですね。"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_000464f0e7e7",
+    "speakText": "いやあ，まいりましたよ。タクシーでかえってきたんですが，じゅうたいにまきこまれて。ペキンのこうつうじじょうはたいへんですね。"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_93060bfb9392",
+    "speakText": "ええ，そうなんです。わたしもまいにち，バスのなかであしをふまれていますよ。"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_4a7758fa75c7",
+    "speakText": "もりさん，ししゃちょうによばれてなにかいわれたんですか。"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_c8ef688649cc",
+    "speakText": "ええ。ＣＳコンスからいらいされたちょうさのレポートがおそいって，しかられました。"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_118b30051710",
+    "speakText": "シーエスコンスちょうさほうこくしょ　　もりけんたろう"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_de6d91047eba",
+    "speakText": "さくねんはつばいされたせいりょういんりょうすいはごしゅるいあり，もっともうれているのは，ちゅうごくのＡしゃによってかいはつされた「シュワンクワイ」である。"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_7b357a1e7573",
+    "speakText": "ていかがもっともやすく，こどもからおとしよりまで，はばひろいせだいににんきがある。"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_b99149ca2251",
+    "speakText": "いっさくねん，ＡしゃとにほんのＢしゃによってペキンにごうべんがいしゃがつくられ，「シュワンクワイ」はさくねんからたいりょうにせいぞうされるようになった。"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_4fa441db9425",
+    "speakText": "せいぞうからしゅっかにいたるまですべてコンピュータでかんりされ，おおはばなコストダウンがはかられているため，ていかかくがじつげんできたとかんがえられる。…"
+  },
+  {
+    "lesson": 141,
+    "module": "discussions",
+    "textId": "i_9c7fe6769a4e",
+    "speakText": "せいりょういんりょうすいのしじょうはこんごもせいちょうがみこまれるが，あたらしいしょうひんにもとめられるのは，みりょくあるネーミングとせんれんされたデザインである。…"
+  },
+  {
+    "lesson": 142,
+    "module": "sentences",
+    "textId": "i_a6221fe600bb",
+    "speakText": "テレビをつけたまま，でかけてしまいました。"
+  },
+  {
+    "lesson": 142,
+    "module": "sentences",
+    "textId": "i_9e9fa6f528f1",
+    "speakText": "めざましをかけておいたのに，けさはおきられませんでした。"
+  },
+  {
+    "lesson": 142,
+    "module": "sentences",
+    "textId": "i_16cd1e193896",
+    "speakText": "かいぎは５じまでですから，もうすぐおわるはずです。"
+  },
+  {
+    "lesson": 142,
+    "module": "sentences",
+    "textId": "i_26084acdbd0b",
+    "speakText": "ちょうさんはにゅういんちゅうですから，りょこうにいくはずがありません。"
+  },
+  {
+    "lesson": 142,
+    "module": "conversations",
+    "textId": "i_bf1f2fecbef0",
+    "speakText": "きのう，まどをあけたままねたので，かぜをひいてしまいました。"
+  },
+  {
+    "lesson": 142,
+    "module": "conversations",
+    "textId": "i_5919aed681fe",
+    "speakText": "それはいけませんね。おだいじに。"
+  },
+  {
+    "lesson": 142,
+    "module": "conversations",
+    "textId": "i_b5e4b01d24da",
+    "speakText": "すみません，このパソコン，でんげんをいれたのにうごかないんですが…。"
+  },
+  {
+    "lesson": 142,
+    "module": "conversations",
+    "textId": "i_3184938e8d4a",
+    "speakText": "ああ，そのパソコンはこわれているんです。"
+  },
+  {
+    "lesson": 142,
+    "module": "conversations",
+    "textId": "i_aff67a120ad5",
+    "speakText": "もりさんはどこですか。"
+  },
+  {
+    "lesson": 142,
+    "module": "conversations",
+    "textId": "i_e5572c48c9ee",
+    "speakText": "１じかんほどまえにかいしゃをでましたから，もういえについているはずです。"
+  },
+  {
+    "lesson": 142,
+    "module": "conversations",
+    "textId": "i_d851f6dcb376",
+    "speakText": "おおたさん，おそいですね。"
+  },
+  {
+    "lesson": 142,
+    "module": "conversations",
+    "textId": "i_e4bc4f86fa11",
+    "speakText": "ええ。でも，おおたさんはせきにんしゃですから，おくれるはずはないんですが…。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_1a88caeddffa",
+    "speakText": "いま，おおたさんからでんわがあったんだけど，まだきかくあんがとどいていないそうだよ。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_88b1821b078b",
+    "speakText": "へんですね。もりさんがおとといおくったはずですが。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_0cfd5d22e4fa",
+    "speakText": "ええ？おかしいな。そんなはずはないですよ。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_240f6dfd4c3f",
+    "speakText": "そうですよね。おとといおくったんですものね。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_979c07497975",
+    "speakText": "いえ，じぶんでとどけたんです。にしちょうあんがいのほうへいくようじがあったので。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_3e9078f6403e",
+    "speakText": "じゃあ，おおたさんにちょくせつわたしたんですか。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_9c6eda43fafc",
+    "speakText": "いえ，おおたさんはがいしゅつちゅうでしたから，かいしゃのひとにあずけてきました。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_26b07a8c21fd",
+    "speakText": "すみません。きかくあん，とどいていました。どうりょうがあずかったままだったんです。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_3de6caff70df",
+    "speakText": "そうだったんですか。よかったです。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_b7b355b8260d",
+    "speakText": "せっかくきてくれたのに，るすにして，すみませんでした。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_9afc53d84975",
+    "speakText": "いえ，こちらこそ。れんらくもせずに，たずねてしまって。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_550703f95b03",
+    "speakText": "さっそく，きかくあんをけんとうしてみます。らいしゅうちゅうには，おへんじできるはずです。"
+  },
+  {
+    "lesson": 142,
+    "module": "discussions",
+    "textId": "i_ce43b763afe5",
+    "speakText": "よろしくおねがいします。"
+  },
+  {
+    "lesson": 143,
+    "module": "sentences",
+    "textId": "i_ab6acdb917a1",
+    "speakText": "ちんさんはむすこをアメリカにりゅうがくさせます。"
+  },
+  {
+    "lesson": 143,
+    "module": "sentences",
+    "textId": "i_4244a1479b91",
+    "speakText": "ぶちょうはおおたさんにレポートをかかせました。"
+  },
+  {
+    "lesson": 143,
+    "module": "sentences",
+    "textId": "i_88c839a4747b",
+    "speakText": "つかれました。すこしやすませてください。"
+  },
+  {
+    "lesson": 143,
+    "module": "sentences",
+    "textId": "i_b82ce4917781",
+    "speakText": "このボールペンはとてもかきやすいです。"
+  },
+  {
+    "lesson": 143,
+    "module": "conversations",
+    "textId": "i_f155a9192c08",
+    "speakText": "いま，こどもをかいものにいかせています。"
+  },
+  {
+    "lesson": 143,
+    "module": "conversations",
+    "textId": "i_4d44c772f752",
+    "speakText": "おてつだいですか。わたしもよくこどもにいえのしごとをてつだわせます。"
+  },
+  {
+    "lesson": 143,
+    "module": "conversations",
+    "textId": "i_5e9b1b1dd667",
+    "speakText": "とおいですから，えきまでぶかにおくらせましょうか。"
+  },
+  {
+    "lesson": 143,
+    "module": "conversations",
+    "textId": "i_ff797c3eaa0b",
+    "speakText": "だいじょうぶです。ありがとうございます。"
+  },
+  {
+    "lesson": 143,
+    "module": "conversations",
+    "textId": "i_2c630816f2a3",
+    "speakText": "ぶちょう，きぶんがわるいので，はやくかえらせてください。"
+  },
+  {
+    "lesson": 143,
+    "module": "conversations",
+    "textId": "i_87d3e6f20593",
+    "speakText": "ええ，いいですよ。おだいじに。"
+  },
+  {
+    "lesson": 143,
+    "module": "conversations",
+    "textId": "i_c694a90a1fa2",
+    "speakText": "このえきはのりかえがわかりにくいですね。"
+  },
+  {
+    "lesson": 143,
+    "module": "conversations",
+    "textId": "i_d325b65377ab",
+    "speakText": "ええ，とてもおおきいえきですからね。"
+  },
+  {
+    "lesson": 143,
+    "module": "discussions",
+    "textId": "i_97eeaf7b0615",
+    "speakText": "ＣＳコンスのプレゼン，だれにいってもらいましょうか。"
+  },
+  {
+    "lesson": 143,
+    "module": "discussions",
+    "textId": "i_40a8738dec6c",
+    "speakText": "もりくんとりさんをいかせるつもりです。"
+  },
+  {
+    "lesson": 143,
+    "module": "discussions",
+    "textId": "i_1488784e8c8a",
+    "speakText": "……いうまでもなくひんしつはじゅうようですが，ネーミングとデザインもとてもたいせつです。まず，ネーミングですが，りかいしやすくてたんじゅんなものがいいとかんがえます。しかも，おおくのひとにしんきんかんをかんじさせるものがりそうてきです。アルファベットはわかりにくいので，さけたほうがいいのではないでしょうか。"
+  },
+  {
+    "lesson": 143,
+    "module": "discussions",
+    "textId": "i_89d03dac2e15",
+    "speakText": "では，ネーミングについてぐたいてきにていあんさせてください。たとえば，「トンリー」はどうでしょう？ちからづよいかんじをうけませんか。［Ｅｎｅｒｇｙ］や［Ｐｏｗｅｒ］などのえいごをつかうこともできますが，えいごがわからないひとにはしょうひんのイメージがうかびにくいとおもいます。……"
+  },
+  {
+    "lesson": 143,
+    "module": "discussions",
+    "textId": "i_c5bbcc6172ff",
+    "speakText": "つぎに，デザインですが，やはりインパクトのあるものがひつようです。そこで，こんかい，あかときいろをつかったざんしんなデザインをかんがえてみました。いま，デザイナーにいくつかしさくさせています……"
+  },
+  {
+    "lesson": 143,
+    "module": "discussions",
+    "textId": "i_e2e2c4ff2357",
+    "speakText": "ていかについては，すこしたかいほうがいいとかんがえます。しょうひんのイメージがぐっとよくなって，しょうひしゃがあんしんしてかえるとおもいます。……"
+  },
+  {
+    "lesson": 144,
+    "module": "sentences",
+    "textId": "i_5ff412b9a246",
+    "speakText": "げんかんのところにだれかいるようです。"
+  },
+  {
+    "lesson": 144,
+    "module": "sentences",
+    "textId": "i_2e82ca8cbc4b",
+    "speakText": "おのさんはもりさんがすきみたいです。"
+  },
+  {
+    "lesson": 144,
+    "module": "sentences",
+    "textId": "i_13fd35efa582",
+    "speakText": "こんどのしゃいんりょこうはかんこくへいくらしいです。"
+  },
+  {
+    "lesson": 144,
+    "module": "sentences",
+    "textId": "i_76e7e1019742",
+    "speakText": "ひるごはんをたべすぎました。"
+  },
+  {
+    "lesson": 144,
+    "module": "conversations",
+    "textId": "i_6483bf745247",
+    "speakText": "ようこさんはりゅうがくしけんにごうかくしたようですよ。"
+  },
+  {
+    "lesson": 144,
+    "module": "conversations",
+    "textId": "i_e30cf7a45da4",
+    "speakText": "それはよかったですね。"
+  },
+  {
+    "lesson": 144,
+    "module": "conversations",
+    "textId": "i_a65282c5e239",
+    "speakText": "まいにちあついですね。このあつさはいつまでつづくんでしょう。"
+  },
+  {
+    "lesson": 144,
+    "module": "conversations",
+    "textId": "i_05f6a69a0535",
+    "speakText": "てんきよほうによると，まだまだつづくみたいですよ。"
+  },
+  {
+    "lesson": 144,
+    "module": "conversations",
+    "textId": "i_f89e8c6a4b67",
+    "speakText": "あたらしいゆうえんちは，とてもにんきがあるみたいですね。"
+  },
+  {
+    "lesson": 144,
+    "module": "conversations",
+    "textId": "i_78ba20238ace",
+    "speakText": "ええ。ばさんたちもらいしゅういくらしいですよ。"
+  },
+  {
+    "lesson": 144,
+    "module": "conversations",
+    "textId": "i_5936a37dac3c",
+    "speakText": "ゆうべいったビアガーデンはなかなかよかったですね。"
+  },
+  {
+    "lesson": 144,
+    "module": "conversations",
+    "textId": "i_8440ed594b30",
+    "speakText": "ええ。でも，ちょっとのみすぎました。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_6ad621ffddff",
+    "speakText": "もりさん，「トンリー」，うれゆきがこうちょうのようですね。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_56aaf0b1b755",
+    "speakText": "ええ，おかげさまで。とりあえず，ペキンとシャンハイでうりだしたんですが，けっこうひょうばんがいいみたいなんですよ。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_9174ad780c4b",
+    "speakText": "どのへんがうけたんでしょうか。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_8c24e7a0c7c2",
+    "speakText": "なんといってもおいしさですが，ようきのデザインもこうひょうらしいです。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_06c3004e5d0b",
+    "speakText": "デザインがしゃれていて，にんきがあるみたいですね。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_2a6b60a445b1",
+    "speakText": "そうなんです。それに，ネーミングもうけたようです。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_e34c75dc5e4f",
+    "speakText": "よかったですね。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_c971da4b0115",
+    "speakText": "ええ。ネーミングとデザインのじゅうようさをじっかんしましたね。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_02e494c2c821",
+    "speakText": "ひょうばんがいいので，こんどは，ちゅうごくぜんどでうりだすようです。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_6ae0bf8767bd",
+    "speakText": "うれゆきがどうなるか，たのしみですね。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_8d759a4dd472",
+    "speakText": "うれすぎて，わらいがとまらなくなるかもしれませんよ。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_94809150d773",
+    "speakText": "そうだといいんですが…"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_3fa6a301680d",
+    "speakText": "ＣＳコンスでは，もうつぎのしょうひんのかいはつをはじめているらしいですよ。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_0231ec671563",
+    "speakText": "すごいパワーですね！"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_af95a37ba401",
+    "speakText": "あまさがひかえめで，たしかにおいしいですね。"
+  },
+  {
+    "lesson": 144,
+    "module": "discussions",
+    "textId": "i_aa16fb8b43c0",
+    "speakText": "それに，けんこうにもいいらしいですよ。"
+  },
+  {
+    "lesson": 145,
+    "module": "sentences",
+    "textId": "i_c8e43c643536",
+    "speakText": "しょうしかがすすんで，にほんのじんこうはだんだんへっていくでしょう。"
+  },
+  {
+    "lesson": 145,
+    "module": "sentences",
+    "textId": "i_556b1e683241",
+    "speakText": "ずっとほんをよんでいたので，めがつかれてきました。"
+  },
+  {
+    "lesson": 145,
+    "module": "sentences",
+    "textId": "i_c63a349ebb18",
+    "speakText": "おいしいし，てがるだし，わたしはれいとうしょくひんをよくたべます。"
+  },
+  {
+    "lesson": 145,
+    "module": "sentences",
+    "textId": "i_bf7a4d8236fa",
+    "speakText": "このほんはよめばよむほどおもしろいです。"
+  },
+  {
+    "lesson": 145,
+    "module": "conversations",
+    "textId": "i_36f5149ce8d2",
+    "speakText": "さいきん，ちゅうごくへりょこうにいくにほんじんがふえてきましたね。"
+  },
+  {
+    "lesson": 145,
+    "module": "conversations",
+    "textId": "i_ed18e40c3e01",
+    "speakText": "ええ，ホテルやこうつうのびんがよくなりましたからね。"
+  },
+  {
+    "lesson": 145,
+    "module": "conversations",
+    "textId": "i_9efcafd42075",
+    "speakText": "おかあさん，あめがふってきたよ。"
+  },
+  {
+    "lesson": 145,
+    "module": "conversations",
+    "textId": "i_5048f52d40aa",
+    "speakText": "あら，たいへん。まこと，せんたくものいれてよ。"
+  },
+  {
+    "lesson": 145,
+    "module": "conversations",
+    "textId": "i_5889ab2db22d",
+    "speakText": "やすみだし，てんきもいいし，どこかにでかけませんか。"
+  },
+  {
+    "lesson": 145,
+    "module": "conversations",
+    "textId": "i_0079d5357236",
+    "speakText": "いいですね，わたしはハイキングにいきたいです。"
+  },
+  {
+    "lesson": 145,
+    "module": "conversations",
+    "textId": "i_05c9e9a009cd",
+    "speakText": "しょうひんはやすければやすいほどうれるんでしょう？"
+  },
+  {
+    "lesson": 145,
+    "module": "conversations",
+    "textId": "i_57c83c64b03e",
+    "speakText": "いいえ，ひんしつがわるいと，やすくてもうれません。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_fbb9441973f9",
+    "speakText": "もりさん，みえてきましたよ。あそこがシャンハイのちゅうしんちです。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_9a227d795315",
+    "speakText": "ライトアップされていますね。うーん，みればみるほどきれいだなあ。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_6271e636cc65",
+    "speakText": "いぜんすんでいたことがあるんですが，とてもすみやすいところですよ。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_5e4915e2c4f7",
+    "speakText": "ちんさんシャンハイにすんでいたんですか。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_c5e373029b74",
+    "speakText": "ええ。ほんとうにいいところです。すめばすむほど，シャンハイのよさがわかりますよ。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_d5ecc9da7e0e",
+    "speakText": "にぎやかだし，たかいビルがおおいし，なんかとうきょうににていますね。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_9d68cda14f59",
+    "speakText": "シャンハイはきゅうそくにきんだいかがすすんで，まちなみがおおきくかわってきましたからね。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_80bbe80a691b",
+    "speakText": "そういえば，なんねんかまえにリニアモーターカーがかいつうしたんですよね。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_6e1610a9b051",
+    "speakText": "ええ。くうこうからしないまでのアクセスがよくなりましたから，ひともふえてきたし，これからもっとかわっていくとおもいますよ。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_958040faaf30",
+    "speakText": "あら，あめがふってきましたね。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_a656b59ce2f2",
+    "speakText": "ひどくなりそうですね。ちょっとあまやどりしましょうか。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_0f64e39e969e",
+    "speakText": "ええ。じゃあ，このきっさてんにはいりましょう。ひともすくないし，みせもきれいだし。"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_c62ea648237a",
+    "speakText": "そうですね。ところで，おなかがすいてきたんですが…"
+  },
+  {
+    "lesson": 145,
+    "module": "discussions",
+    "textId": "i_a40ee0441d1f",
+    "speakText": "そうですか。じゃあ，なにかかるくたべていきましょう。"
+  },
+  {
+    "lesson": 146,
+    "module": "sentences",
+    "textId": "i_542131f162c0",
+    "speakText": "これはやわらかくて，まるでほんもののけがわのようです。"
+  },
+  {
+    "lesson": 146,
+    "module": "sentences",
+    "textId": "i_c05cf8e38ea5",
+    "speakText": "このきものはいかにもにほんらしいがらですね。"
+  },
+  {
+    "lesson": 146,
+    "module": "sentences",
+    "textId": "i_56c3875771f7",
+    "speakText": "あしたのくじまでにこのしょるいかんせいさせなければなりません。"
+  },
+  {
+    "lesson": 146,
+    "module": "sentences",
+    "textId": "i_557c0277fd5f",
+    "speakText": "わたしがりゅうがくしているあいだに，いえのまわりもずいぶんかわりました。"
+  },
+  {
+    "lesson": 146,
+    "module": "conversations",
+    "textId": "i_1244d9c30fb2",
+    "speakText": "このやさい，レモンのようなあじがしますね。"
+  },
+  {
+    "lesson": 146,
+    "module": "conversations",
+    "textId": "i_c52031b95190",
+    "speakText": "ええ，ほんとうに。まるでくだものみたいですね。"
+  },
+  {
+    "lesson": 146,
+    "module": "conversations",
+    "textId": "i_53d702a6f769",
+    "speakText": "うちのこどもはしょうらい，うちゅうひこうしになりたいんだって。"
+  },
+  {
+    "lesson": 146,
+    "module": "conversations",
+    "textId": "i_8a9fbd126e84",
+    "speakText": "いかにもこどもらしいゆめね。"
+  },
+  {
+    "lesson": 146,
+    "module": "conversations",
+    "textId": "i_ebc8ad3b2bd5",
+    "speakText": "このしょるい，いつはっそうしますか。"
+  },
+  {
+    "lesson": 146,
+    "module": "conversations",
+    "textId": "i_6f7c532cbe5b",
+    "speakText": "そうですね。こんげつのすえまでにとどくようにだしてください。"
+  },
+  {
+    "lesson": 146,
+    "module": "conversations",
+    "textId": "i_dc1a1140f8d8",
+    "speakText": "オートバイをかうそうだね。たかいだろう。"
+  },
+  {
+    "lesson": 146,
+    "module": "conversations",
+    "textId": "i_f308fe47d433",
+    "speakText": "うん，がっこうがやすみのあいだ，アルバイトをするつもりなんだ。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_34970202300d",
+    "speakText": "ちんさん，きょうちゅうにじむしょのこうほちをさがすんですよね。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_7b9cd43f2ce6",
+    "speakText": "ええ，らいげつのはじめまでには，かいせつのじゅんびをすませたいので。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_9799af9bdedd",
+    "speakText": "ここ，いいんじゃないですか？"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_d617cdc5a0fc",
+    "speakText": "うーん，でも，なんだかきょうしつみたいなところですね。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_5ff1dd92ef9e",
+    "speakText": "ひろくて，あかるくて，こうつうのべんもいいし，はたらきやすいとおもいますよ。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_40a5609c1b7f",
+    "speakText": "さっきのはもっとひろかったんじゃないですか。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_1a34632c3e89",
+    "speakText": "でも，ちょっとうるさかったですね，へやのなかをみているあいだ，そこでずっとくるまのおとがしていましたよ。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_03d7a7ddfa3e",
+    "speakText": "そうですね…。じゃあ，ここにしましょうか。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_4fceb6b5817e",
+    "speakText": "このへんは「ワイタン」といって，ふるいたてものがおおいんです。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_87ed5f456fbe",
+    "speakText": "ここが「ワイタン」ですか，まるでヨーロッパのまちなみをみているようですね。ちゅうごくにいるあいだに，いちどはきたいとおもっていたんです。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_cc4011905c80",
+    "speakText": "しゅっぱつまでにじかんがありますよね。どこかちょっとよりませんか。"
+  },
+  {
+    "lesson": 146,
+    "module": "discussions",
+    "textId": "i_625c78dfb0be",
+    "speakText": "じゃあ，ナンキンろへいきましょう，いかにもシャンハイらしいところですよ。"
+  },
+  {
+    "lesson": 147,
+    "module": "sentences",
+    "textId": "i_06d0d22862fb",
+    "speakText": "しゅうせんせいはあしたにほんへいかれます。"
+  },
+  {
+    "lesson": 147,
+    "module": "sentences",
+    "textId": "i_2e6f3423f2fd",
+    "speakText": "おきゃくさまはもうおかえりになりました。"
+  },
+  {
+    "lesson": 147,
+    "module": "sentences",
+    "textId": "i_35a0533289ed",
+    "speakText": "どうぞおすわりください。"
+  },
+  {
+    "lesson": 147,
+    "module": "sentences",
+    "textId": "i_c3a2e2c36c77",
+    "speakText": "せんせい，なにをめしあがりますか。"
+  },
+  {
+    "lesson": 147,
+    "module": "conversations",
+    "textId": "i_ec4940b6e973",
+    "speakText": "おみやげはもうかわれましたか。"
+  },
+  {
+    "lesson": 147,
+    "module": "conversations",
+    "textId": "i_dbbe59abdff1",
+    "speakText": "はい，かいました。"
+  },
+  {
+    "lesson": 147,
+    "module": "conversations",
+    "textId": "i_72f3f1eeff22",
+    "speakText": "もうそのしりょうをごらんになりましたか。"
+  },
+  {
+    "lesson": 147,
+    "module": "conversations",
+    "textId": "i_0a6986632fcb",
+    "speakText": "いえ，まだです。いそがしくて，よむひまがありませんでした。"
+  },
+  {
+    "lesson": 147,
+    "module": "conversations",
+    "textId": "i_b4b968e50b8d",
+    "speakText": "あのう，くつうりばはなんかいですか。"
+  },
+  {
+    "lesson": 147,
+    "module": "conversations",
+    "textId": "i_de9a5e7e5a18",
+    "speakText": "よんかいです。エスカレーターをごりようください。"
+  },
+  {
+    "lesson": 147,
+    "module": "conversations",
+    "textId": "i_5a7a7002c1e6",
+    "speakText": "おのさん，きむらぶちょう，なんじにもどるっておっしゃいましたか。"
+  },
+  {
+    "lesson": 147,
+    "module": "conversations",
+    "textId": "i_311a34eb9115",
+    "speakText": "きむらぶちょうですか。さきほどもどっていらっしゃいましたよ。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_2e30d048b88a",
+    "speakText": "おしょくじはもうおすみになりましたか。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_af811c2557bf",
+    "speakText": "うん，ひこうきのなかでたべてきたよ。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_e8db2aa07b98",
+    "speakText": "では，まずホテルにチェックインなさいますか，それとも，さきにじむしょをごらんになりますか。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_70ca34043089",
+    "speakText": "そうだな，じむしょへちょっこうしようか。はやくみてみたいからな。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_66eb13dce7cf",
+    "speakText": "こちらのドアからおはいりください。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_e212aaef688a",
+    "speakText": "ひろくてあかるいね。あのえは？"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_6a97fea64650",
+    "speakText": "ああ，あれはにっちゅうしょうじのしゃちょうがくださったえです。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_1f3b1621faa0",
+    "speakText": "あっ，そう，なかなかいいじゃないか。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_89ad3e6d81eb",
+    "speakText": "はい，ところで，しゃちょうがおっしゃっていたスタッフのけんですが，りさんにシャンハイにきてもらおうとおもうんですが…"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_e13a4fafacca",
+    "speakText": "いいじむしょだって，しゃちょうがほめていらっしゃいましたよ。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_4e571930812d",
+    "speakText": "そうですか，よかったです。きにいってくださって。"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_e9789bdf06e7",
+    "speakText": "それで，しゃちょうはこちらにもおよりになるのかしら？"
+  },
+  {
+    "lesson": 147,
+    "module": "discussions",
+    "textId": "i_c5748ee2abad",
+    "speakText": "いいえ，そちらへはよらずに，あしたのあさのびんで，とうきょうにもどられるよていです。"
+  },
+  {
+    "lesson": 148,
+    "module": "sentences",
+    "textId": "i_ee93a4d6c0f9",
+    "speakText": "おにもつはわたくしがおもちします。"
+  },
+  {
+    "lesson": 148,
+    "module": "sentences",
+    "textId": "i_bb31c5babf82",
+    "speakText": "みょうにちわたくしがそちらへうかがいます。"
+  },
+  {
+    "lesson": 148,
+    "module": "sentences",
+    "textId": "i_22b770c91996",
+    "speakText": "コピーはわたくしがいたします。"
+  },
+  {
+    "lesson": 148,
+    "module": "sentences",
+    "textId": "i_5d85b38f00cf",
+    "speakText": "こうきょうじゅにろんぶんをみていただきました。"
+  },
+  {
+    "lesson": 148,
+    "module": "conversations",
+    "textId": "i_718efe227c3e",
+    "speakText": "さくじつ，メールをおおくりしたんですが…。"
+  },
+  {
+    "lesson": 148,
+    "module": "conversations",
+    "textId": "i_5e16c432164a",
+    "speakText": "ええ，はいけんしました。さきほどへんじをおだししました。"
+  },
+  {
+    "lesson": 148,
+    "module": "conversations",
+    "textId": "i_0880c9b61703",
+    "speakText": "どちらからいらっしゃったんですか。"
+  },
+  {
+    "lesson": 148,
+    "module": "conversations",
+    "textId": "i_c6869163ddde",
+    "speakText": "ちゅうごくのペキンからまいりました。"
+  },
+  {
+    "lesson": 148,
+    "module": "conversations",
+    "textId": "i_0df48be928d6",
+    "speakText": "そろそろしつれいいたします，どうもおじゃまいたしました。"
+  },
+  {
+    "lesson": 148,
+    "module": "conversations",
+    "textId": "i_00cdaddda551",
+    "speakText": "なんのおかまいもしませんで。"
+  },
+  {
+    "lesson": 148,
+    "module": "conversations",
+    "textId": "i_4aaf289ebf01",
+    "speakText": "このふく，ちょっとちいさいので，とりかえていただけますか。"
+  },
+  {
+    "lesson": 148,
+    "module": "conversations",
+    "textId": "i_303ef47955ba",
+    "speakText": "しょうちいたしました。しょうしょうおまちください。"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_75be01d1f7fc",
+    "speakText": "おはようございます。やまだです。きょうからおせわになります。だいがくをそつぎょうしたばかりで，みぎもひだりもわかりませんが，いっしょうけんめいがんばりますので，ごしどうよろしくおねがいいたします。"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_4b0cebfd4b98",
+    "speakText": "きたいしていますよ。こちらこそよろしく。"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_35bf4c0be0c1",
+    "speakText": "よろしくおねがいします。いっしょにがんばりましょう。"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_054db6e70887",
+    "speakText": "はい，ＪＣきかくシャンハイじむしょでございます。"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_64033d459a3a",
+    "speakText": "わたくし，にっちゅうしょうじのさとうともうします。おおくりいただいたあんないじょう，はいけんしました。"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_1fc26105adfd",
+    "speakText": "いつもおせわになっております。また，このたびは，とつぜんおてがみをさしあげ，しつれいいたしました。"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_54678a0bce70",
+    "speakText": "いえ。じつは，わたくしどもでは，これからしんしょうひんのかいはつをすすめていくよていなんです。そこで，ぜひ，くわしいおはなしをうかがいたいのですが。"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_ce84e50d347f",
+    "speakText": "ありがとうございます。さっそく，しりょうをとどけさせていただきます。"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_974154b482f2",
+    "speakText": "そうですか。では，いちどしゃのほうにおいでいただけますか。あすならごごはずっとしゃにおりますが…"
+  },
+  {
+    "lesson": 148,
+    "module": "discussions",
+    "textId": "i_4e0892798ac3",
+    "speakText": "しょうちいたしました。わたくし，りしゅうれいともうします。では，みょうにちのごご，おうかがいします。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_5a0154ab3433",
+    "speakText": "あのう、すみません。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_b61aadc0c60d",
+    "speakText": "えっ？"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_16d650cc0d42",
+    "speakText": "これ、おちましたよ。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_16515944c741",
+    "speakText": "あっ！すみません。ありがとうございます。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_1d3d46183b51",
+    "speakText": "あのう、しつれいですが、さきほどのかたじゃありませんか。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_eb1ebcb33649",
+    "speakText": "ああ。さっきは、どうもありがとうございました。たすかりました。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_0d70b63ef58a",
+    "speakText": "いいえ、どういたしまして。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_4b416c068499",
+    "speakText": "ちゅうごくのかたですか、にほんごがおじょうずですね。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_73d2200b5d04",
+    "speakText": "いいえ、まだまだです。べんきょうすればするほど、むずかしくなるかんじがします。シャンハイへは、おしごとでいらっしゃったんですか。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_11b8d0441952",
+    "speakText": "ええ、こちらにてんきんになったんです。くうこうはすっかりかわりましたね。おどろきました。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_1687643fa0b9",
+    "speakText": "まちもずいぶんかわっていますよ。へんかがはやくて、わたしたちもついていけないくらいです。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_0c2ee28e5664",
+    "speakText": "そうでしょうね。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_3631632457c0",
+    "speakText": "ほら、こうそうビルがみえてきたでしょう？あのへんはシャンハイのあたらしいちゅうしんちなんです。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_9b5650522a36",
+    "speakText": "すごい。まるでニューヨークみたいですね。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_d8fe5eaad1c0",
+    "speakText": "じゃあ、ここで。"
+  },
+  {
+    "lesson": 201,
+    "module": "discussions",
+    "textId": "i_48392719f6d1",
+    "speakText": "ええ、どうもありがとうございました。さようなら。"
+  },
+  {
+    "lesson": 201,
+    "module": "article",
+    "textId": "i_efe3d613bdbd",
+    "speakText": "にほんには、JR、してつ、こうえいのさんしゅるいのてつどうかいしゃがあります。JRとは、ジャパン レールウェイズのりゃくです。いぜんはこくえいのてつどうでしたが、せんきゅうひゃくはちじゅうななねんにみんえいかされました。せかいてきにゆうめいなしんかんせんもJRのろせんのひとつで、にほんのしゅようなとしととしをむすんでいます。さいこうじそくはさんびゃくキロをこえます。さいしょにかんせいしたのはとうかいどうしんかんせんですか、さんようしんかんせん、とうほくしんかんせん、きゅうしゅうしんかんせんなど、ろせんがどんどんのびています。"
+  },
+  {
+    "lesson": 201,
+    "module": "article",
+    "textId": "i_55538a6c20d5",
+    "speakText": "してつとは、JRいがいのみんかんきぎょうがけいえいするてつどうかいしゃで、だいとしにはおおきなしてつがたくさんあります。また，こうえいのてつどうは，ちほうじちたいなどがけいえいするものです。"
+  },
+  {
+    "lesson": 201,
+    "module": "article",
+    "textId": "i_a92216c35d07",
+    "speakText": "ちゅうごくのてつどうは、ほとんどこくえいです。しゅようとしをむすぶろせんはもちろん，せかいではじめてじつようかされたリニアモーターカーもこくえいです。"
+  },
+  {
+    "lesson": 201,
+    "module": "article",
+    "textId": "i_a8cb40b29991",
+    "speakText": "ところで，JRやしてつのかくろせんでは，うんこうのほうこうをあらわすのにとくべつなことばをつかっています。それは、「のぼり」「くだり」ということばです。とくにほんしゅうでは，ちほうからとうきょうほうめんへむかうろせんを「のぼり」といい，とうきょうからちほうへむかうろせんを「くだり」といいます。"
+  },
+  {
+    "lesson": 201,
+    "module": "article",
+    "textId": "i_0bf940dcd137",
+    "speakText": "そこで，こんななぞなぞがあります。「にほんでいちばんたかいえきはどこでしょう。」こたえはとうきょうえきです。とうきょうえきは「のぼり」のさいしゅうのえきになっているからです。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_db5d6e198111",
+    "speakText": "すみません，おまたせしました。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_6ddb030a9737",
+    "speakText": "どうもごぶさたしています。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_3a417ad03ed9",
+    "speakText": "ほんとうにおひさしぶりです。さとうさんといっしょにしごとをするのは，よねんぶりですね。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_1df576b28319",
+    "speakText": "ええ、はやいものですね。そのせつはおせわになりました。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_c3395055cdc8",
+    "speakText": "いいえ、こちらこそ。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_6cd616d0e5cf",
+    "speakText": "こんかいもよろしくおねがいします。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_333d90c07765",
+    "speakText": "おはなしちゅう，しつれいします。JCきかくのりさんがいらっしゃいました。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_319530b17718",
+    "speakText": "あ、そうですか、じゃあ，こちらにおねがいします。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_4284f7190cdb",
+    "speakText": "こんにちは。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_14101cfdcfd9",
+    "speakText": "こんにちは，りさん。しょうかいします。こちらは，こんどの「きんせい」ぷろじぇくとのせきにんしゃで、さとうです。"
+  },
+  {
+    "lesson": 202,
+    "module": "discussions",
+    "textId": "i_77d0208b3eca",
+    "speakText": "はじめまして……。あれっ，きのうの…！"
+  },
+  {
+    "lesson": 202,
+    "module": "article",
+    "textId": "i_f4351826a841",
+    "speakText": "にほんじんどうしがあいさつするときは、ふつうおじぎをします。ちゅうごくではあいさつをするとき、あくしゅをするのはふつうですが、にほんじんは、あくしゅよりもおじぎをするのがいっぱんてきです。おじぎをするときはこしからうえをまえのほうにかたむけます。おじぎのかくどには、くびをまげるだけのかるいものからふかくあたまをさげるものまで、いろいろあります。ふつう、しょたいめんのときにはふかくあたまをさげて、ていねいなおじぎをします。"
+  },
+  {
+    "lesson": 202,
+    "module": "article",
+    "textId": "i_dc6ec17fed7d",
+    "speakText": "しごとでしょたいめんのひとにあったときは、めいしをだします。めいしのだしかたとうけとりかたにもきまりがあります。あいてがめうえのときは、まずじぶんからさきにめいしをだしてふかいおじぎをし、つぎにあいてのめいしをおじぎをしながらうけとります。だすときもうけとるときも、りょうてをつかうほうがていねいです。"
+  },
+  {
+    "lesson": 202,
+    "module": "article",
+    "textId": "i_4b5c0c1ee540",
+    "speakText": "また、はなすないようにもきをつけなければなりません。しょたいめんのときは、こじんてきなことをきかないのがふつうです。とくにしごとのばでであったあいてには、こじんてきなしつもんはさけたほうがいいでしょう。けっこんしているかどうか、きゅうりょうはいくらか、としはいくつかなどは、ふつうはききません。"
+  },
+  {
+    "lesson": 202,
+    "module": "article",
+    "textId": "i_348c13fdc186",
+    "speakText": "だいじなのは、あいてにふかいかんをあたえないことです。いくらていねいなことばであいさつしても、こわいかおをしていては、あいてにいいいんしょうをあたえることはできません。きもちがこもっているかどうかは、よそういじょうにあいてにつたわってしまうものです。"
+  },
+  {
+    "lesson": 203,
+    "module": "discussions",
+    "textId": "i_cb24793fb465",
+    "speakText": "JCきかくシャンハイししゃのりしゅうれいです。こんかい「きんせい」プロジェクトは，わたしをふくめてよんめいのスタッフがたんとういたします。"
+  },
+  {
+    "lesson": 203,
+    "module": "discussions",
+    "textId": "i_689b638747c9",
+    "speakText": "はじめまして、のだりえです。シャンハイししゃにきて，にねんめです。おもにえいぎょうをたんとうさせていただきます。どうぞよろしくおねがいします。"
+  },
+  {
+    "lesson": 203,
+    "module": "discussions",
+    "textId": "i_bfb6e1ef4f42",
+    "speakText": "はじめまして，おうふうともうします。おうはおうさまのおう，ふうはかぜとかきます。こうこくやホームページのデザインをたんとうしております。どうぞよろしくおねがいします。"
+  },
+  {
+    "lesson": 203,
+    "module": "discussions",
+    "textId": "i_f1e3d1614a60",
+    "speakText": "このほかになかいというだんせいしゃいんがくわわります。"
+  },
+  {
+    "lesson": 203,
+    "module": "discussions",
+    "textId": "i_820ae0204396",
+    "speakText": "よろしくおねがいします。りさんもにほんごがじょうずですけど，おうさんもじょうずですね。"
+  },
+  {
+    "lesson": 203,
+    "module": "discussions",
+    "textId": "i_9102a9ff3b7b",
+    "speakText": "ありがとうございます，しゅっしんはせっこうしょうのしょうこうですが，だいがくじだい，にほんにりゅうがくしていたんです。ですから，こんかいのプロジェクトにたいへんきょうみがあります。"
+  },
+  {
+    "lesson": 203,
+    "module": "discussions",
+    "textId": "i_b0931ec2b663",
+    "speakText": "しょうこうですか。じゅうねんまえに，いちどだけいったことがあります。"
+  },
+  {
+    "lesson": 203,
+    "module": "discussions",
+    "textId": "i_8cfb44a6846f",
+    "speakText": "そうですか。"
+  },
+  {
+    "lesson": 203,
+    "module": "discussions",
+    "textId": "i_70302fa3aeea",
+    "speakText": "ええ。わたしにとっては，はじめてのかいがいりょこうでしたが，しょうこうでのんだしょうこうしゅのあじはいまでもおぼえていますよ。"
+  },
+  {
+    "lesson": 203,
+    "module": "article",
+    "textId": "i_7e5a37e578ab",
+    "speakText": "ちゅうごくごの「みんしー」はおおくのばあい，せいとなのりょうほうをさしますが，にほんごではかぞくのせいを「みょうじ」といいます。"
+  },
+  {
+    "lesson": 203,
+    "module": "article",
+    "textId": "i_062148a123d7",
+    "speakText": "すべてのにほんじんがみょうじをもつようになったのは，めいじじだいになってからです。とうじのせいふが，すべてのこくみんがみょうじをもつことをほうりつできめました。それまでみょうじをもっていたのはぶしやきぞくだけでした。ですから，とつぜんみょうじをもてといわれても，どんなみょうじをもてばいいのかわかりません。ひとびとはあわてました。"
+  },
+  {
+    "lesson": 203,
+    "module": "article",
+    "textId": "i_3a40cab92a8d",
+    "speakText": "しかし，みょうじをつけないわけにはいきません。そこで，おおくのひとが，ちめいやちけいからみょうじをつけました。にほんのみょうじに，「き」「はやし」「やま」「かわ」などしぜんにかんけいするかんじがおおいのは，そのためです。いえがたにのなかにあるから「なかたに」，ちかくにおおきなすぎのきがあるから「おおすぎ」とつけられたみょうじもたくさんあります。また，にほんでもっともおおい「さとう」や「すずき」は，むかしのぶしのみょうじや，ちめいからつけられたみょうじだといわれています。"
+  },
+  {
+    "lesson": 203,
+    "module": "article",
+    "textId": "i_673bf7bf6bee",
+    "speakText": "にほんじんのみょうじのしゅるいは，さんじゅうまんちかくあります。それでもせかいのだいにいです。だいいちいはたみんぞくこっかのアメリカで，そのかずはひゃくろくじゅうまんをこえています。いっぽう，もっともすくないのがかんこくでさんびゃくていどしかありません。また，せかいでいちばんにんずうのおおいせいは「り」で，やくいちおくにんいるそうです。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_98726a794d05",
+    "speakText": "もしもし、やまださん、うちのあおきしゅにんが、ちょっとはなしをしたいと言っていました。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_3510934345b6",
+    "speakText": "わたしにですか。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_e8a3847f3d34",
+    "speakText": "ええ、あおきしゅにんは、ごごならなんじでもかまわないそうです。やまださんのごつごうはいかがですか。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_f5efabe3a96e",
+    "speakText": "そうですね…。いちじはんはどうでしょう？"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_bcc38a266be9",
+    "speakText": "ありがとうございます、そのようにおつたえします。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_9305b1410bbd",
+    "speakText": "おいそがしいところ，すみません。じつは，シャンハイししゃですすめている「きんせい」おもったよりたいへんなしごとになりそうなんです。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_1a0f97ca60d5",
+    "speakText": "そうですか。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_7426bea7e24a",
+    "speakText": "それで、とうきょうほんしゃでも「きんせい」プロジェクトのたんとうしゃをきめることになりました。とつぜんですが、やまださん、このしごとをしてもらえませんか。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_48d81957e292",
+    "speakText": "わたしが「きんせい」たんとうしゃに？"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_b06cd4f51ce0",
+    "speakText": "はい、シャンハイししゃのりさんからのようぼうなんです。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_538016d6cf7e",
+    "speakText": "りさんが、わたしをすいせんしてくれたんですが。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_f4f7ef8c0037",
+    "speakText": "ええ。やまださんはシャンハイししゃにいたこともあるし、ちゅうとくのじじょうにくわしいからということでした。"
+  },
+  {
+    "lesson": 204,
+    "module": "discussions",
+    "textId": "i_fdbe05a08113",
+    "speakText": "わかりました。ちゅうごくとかんけいのあるしごとなら、ぜひやってみたいとおもいます。"
+  },
+  {
+    "lesson": 204,
+    "module": "article",
+    "textId": "i_cd112d8620c3",
+    "speakText": "かつて、にほんのサラリーマンといえば、あさはやくいえをでていえにかえるのはしんやになり、ざんぎょうやきゅうじつしゅっきんをするのはあたりまえでした。きんねん、しゅうきゅうふつかせいのどうにゅうやろうどうじかんをへらすとりくみなどがじっしされ、せいかつはへんかしてきました。"
+  },
+  {
+    "lesson": 204,
+    "module": "article",
+    "textId": "i_f6b29ea9926a",
+    "speakText": "しゅうきゅうふつかせいはせんきゅうひゃくはちじゅうねんだいからきぎょうにどうにゅうされてきました。せんきゅうひゃくきゅうじゅうにねんにはこっかこうむいんに、にせんにねんにはしょうちゅうがっこうにこのせいどがどうにゅうされました。にせんごねんのちょうさによるとにほんのきぎょうのはちじゅうきゅうパーセントが、しゅうきゅうふつかせいをじっししています。"
+  },
+  {
+    "lesson": 204,
+    "module": "article",
+    "textId": "i_1c732a93bfa5",
+    "speakText": "さらに、フレックスタイムせいどをどうにゅうするかいしゃもふえています。これは、じぶんのしゅっきんとたいきんのじかんをじゆうにきめられるせいどです。ろうどうしゃがじぶんのせいかつとしごとのバランスをとりながら、はたらくことができるようにもうけられました。"
+  },
+  {
+    "lesson": 204,
+    "module": "article",
+    "textId": "i_384c8dacf323",
+    "speakText": "また、にほんのかいしゃには、いくじきゅうかのせいどがありますが、これまでこのせいどをりようするのは、ほとんどがじょせいでした。だんせいのばあい、かいしゃでのりかいがえられないのではないか、しゅっせのさまたげとなるのではないかとかんがえるひとがおおかったからです。きんねん、かぞくとのじかんをたいせつにしたいとかんがえて、このせいどをりようするだんせいがみられるようになりました。"
+  },
+  {
+    "lesson": 204,
+    "module": "article",
+    "textId": "i_93f866ec1406",
+    "speakText": "このように、にほんのサラリーマンのはたらきかたは、かつてとくレベルとおおきくへんかしています。とかいでのじかんにおわれるせいかつをやめて、いなかにひっこすひともいます。"
+  }
+]
