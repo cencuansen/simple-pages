@@ -63,7 +63,7 @@
         title="播放"
         :disabled="isReading"
         v-if="hasAudio && settingStore.audioSpeak"
-        @click="playAudio(lessonAudio)"
+        @click="playAudio({ id: lessonAudio || '', text: lessonAudio || '' })"
       >
         读
       </el-button>

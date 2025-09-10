@@ -150,7 +150,7 @@
               style="margin-left: 10px"
               :loading="isReading"
               size="small"
-              @click="speechStore.speak(testText)"
+              @click="ttsOne({ id: testText, text: testText })"
             >
               测试
             </el-button>
@@ -185,19 +185,12 @@ const darkMode = computed({
 })
 
 const readingStore = useReadingStore()
-const {
-  rate,
-  pitch,
-  volume,
-  repeatTimes,
-  isReading
-} = storeToRefs(readingStore)
+const { rate, pitch, volume, repeatTimes, isReading } =
+  storeToRefs(readingStore)
 
 const speechStore = useSpeechStore()
-const {
-  voiceName,
-  voiceOptions,
-} = storeToRefs(speechStore)
+const { voiceName, voiceOptions } = storeToRefs(speechStore)
+const ttsOne = speechStore.speak
 </script>
 
 <style scoped>

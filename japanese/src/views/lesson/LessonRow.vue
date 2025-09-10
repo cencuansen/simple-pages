@@ -10,7 +10,7 @@
         :id="row.textId"
         class="text-content"
         :class="{
-          active: activeText(row),
+          active: activeText(row.textId),
         }"
         v-html="textView(row.content)"
       ></el-text>

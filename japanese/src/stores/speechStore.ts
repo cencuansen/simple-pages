@@ -1,24 +1,19 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { ref, computed, watch } from 'vue'
-import type { WordItem, VoiceOption } from '../types'
-import { useReadingStore } from './readingStore.ts'
-import type { TextBase } from '../views/lesson/types.ts'
+import { useReadingStore, type ReadingItem } from './readingStore.ts'
 
 export const useSpeechStore = defineStore(
   'speech',
   () => {
     const readingStore = useReadingStore()
     const { rate, volume, pitch, repeatTimes } = storeToRefs(readingStore)
-    const setIsReading = readingStore.setIsReading
-    const setNowTextId = readingStore.setNowTextId
+    const { setIsReading, setNowTextId } = readingStore
 
     // 可配置项
     const lang = ref<string>('ja-JP') // 语言
-
     const voice = ref<SpeechSynthesisVoice | null>(null) // 当前选中的语音
-    const voiceName = ref<string>()
+    const voiceName = ref<string>('')
     const speakingText = ref<string>('')
-    const speakingWord = ref<WordItem | null>()
     const lastFireTime = ref<number>(0)
 
     // 系统可用语音列表
@@ -28,7 +23,7 @@ export const useSpeechStore = defineStore(
     const isSpeaking = ref(false)
 
     // 获取语音选项 (用于UI选择)
-    const voiceOptions = computed<VoiceOption[]>(() => {
+    const voiceOptions = computed(() => {
       return voices.value.map((voice) => ({
         name: voice.name,
         lang: voice.lang,
@@ -45,7 +40,7 @@ export const useSpeechStore = defineStore(
     }
 
     // 监听语音列表变化
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.onvoiceschanged = initVoices
       initVoices() // 立即初始化
     }
@@ -53,13 +48,14 @@ export const useSpeechStore = defineStore(
     const beforeSpeak = () => {
       if (voices.value.length > 0) {
         if (voiceName.value) {
-          ;[voice.value] = voices.value.filter(
+          const foundVoice = voices.value.find(
             (v) => v.name === voiceName.value
           )
+          voice.value = foundVoice || voices.value[0]
         } else {
-          ;[voice.value] = voices.value
+          voice.value = voices.value[0]
         }
-        voiceName.value = voice.value?.name
+        voiceName.value = voice.value?.name || ''
       }
       lang.value = voice.value?.lang || lang.value
 
@@ -77,27 +73,15 @@ export const useSpeechStore = defineStore(
       return utterance
     }
 
-    // 朗读文本
-    const speak = (text: string | TextBase | WordItem | undefined) => {
-      if (isSpeaking.value || !text) return
-      lastFireTime.value = new Date().getTime()
-      speakingText.value = ''
-      speakingWord.value = null
+    // 朗读单个文本
+    const speak = (item: ReadingItem | undefined) => {
+      if (isSpeaking.value || !item) return
+
+      lastFireTime.value = Date.now()
+      speakingText.value = item.text
+      setNowTextId(item.id)
 
       beforeSpeak()
-
-      if (typeof text === 'string') {
-        speakingText.value = text
-      } else {
-        if (text.hasOwnProperty('speakText')) {
-          speakingText.value = (text as TextBase).speakText
-        } else {
-          const item = text as WordItem
-          speakingText.value = item.kana
-          speakingWord.value = item
-        }
-        setNowTextId(text.textId)
-      }
 
       let count = 0
       const speakLoop = () => {
@@ -106,8 +90,7 @@ export const useSpeechStore = defineStore(
           return
         }
 
-        const utterance = initSpeech(speakingText.value)
-
+        const utterance = initSpeech(item.text)
         utterance.onend = () => {
           count++
           if (count < repeatTimes.value) {
@@ -123,11 +106,12 @@ export const useSpeechStore = defineStore(
       speakLoop()
     }
 
-    const speakList = (textList: TextBase[] | WordItem[] | undefined = []) => {
-      if (!textList || isSpeaking.value) return
+    // 朗读文本列表
+    const speakList = (items: ReadingItem[] | undefined = []) => {
+      if (!items || items.length === 0 || isSpeaking.value) return
 
       speakingText.value = ''
-      speakingWord.value = null
+      setNowTextId('')
 
       beforeSpeak()
 
@@ -135,7 +119,7 @@ export const useSpeechStore = defineStore(
       let currentIndex = 0
 
       const speakNext = () => {
-        if (currentIndex >= textList.length) {
+        if (currentIndex >= items.length) {
           // 完成一轮列表朗读
           currentIndex = 0
           listRepeatCount++
@@ -147,18 +131,12 @@ export const useSpeechStore = defineStore(
           }
         }
 
-        const text = textList[currentIndex]
-        if (text.hasOwnProperty('speakText')) {
-          speakingText.value = (text as TextBase).speakText
-        } else {
-          const item = text as WordItem
-          speakingText.value = item.kana
-          speakingWord.value = item
-        }
-        setNowTextId(text.textId)
+        const item = items[currentIndex]
+        speakingText.value = item.text
+        setNowTextId(item.id)
 
-        lastFireTime.value = new Date().getTime()
-        const utterance = initSpeech(speakingText.value)
+        lastFireTime.value = Date.now()
+        const utterance = initSpeech(item.text)
         utterance.onend = () => {
           currentIndex++
           speakNext() // 朗读下一句
@@ -172,27 +150,22 @@ export const useSpeechStore = defineStore(
 
     // 停止朗读
     const stop = () => {
-      window.speechSynthesis.cancel()
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel()
+      }
       isSpeaking.value = false
     }
 
     const reset = () => {
       lang.value = 'ja-JP'
-      rate.value = 1
-      pitch.value = 1
-      volume.value = 1
-      repeatTimes.value = 1
       voice.value = null
-      voiceName.value = undefined
+      voiceName.value = ''
       isSpeaking.value = false
     }
 
-    watch(
-      () => isSpeaking.value,
-      () => {
-        setIsReading(isSpeaking.value)
-      }
-    )
+    watch(isSpeaking, (newVal) => {
+      setIsReading(newVal)
+    })
 
     return {
       voice,
@@ -201,7 +174,6 @@ export const useSpeechStore = defineStore(
       voiceOptions,
       isSpeaking,
       speakingText,
-      speakingWord,
       lastFireTime,
       initVoices,
       speak,

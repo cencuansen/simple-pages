@@ -28,7 +28,7 @@
         <template #default="scope">
           <div
             :class="{
-              active: activeText(scope.row),
+              active: activeText((scope.row as WordItem).textId),
             }"
           >
             <div

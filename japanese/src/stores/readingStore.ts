@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import type { TextBase } from '../views/lesson/types.ts'
-import type { WordItem } from '../types'
+import { ref, computed } from 'vue'
+
+export interface ReadingItem {
+  id: string
+  text: string
+}
 
 // audio playing + tts speeching = reading
 export const useReadingStore = defineStore('reading', () => {
@@ -15,13 +18,24 @@ export const useReadingStore = defineStore('reading', () => {
   const setIsReading = (value: boolean): void => {
     isReading.value = value
   }
-  const setNowTextId = (value: string): void => {
+
+  const setNowTextId = (value: string): boolean => {
     nowTextId.value = value
+    return true
   }
 
-  const activeText = (text: TextBase | WordItem): boolean => {
-    return nowTextId.value === text.textId
+  const activeText = (id: string): boolean => {
+    return nowTextId.value === id
   }
+
+  // 检测浏览器功能兼容性
+  const isTTSAvailable = computed(() => {
+    return 'speechSynthesis' in window
+  })
+
+  const isAudioAvailable = computed(() => {
+    return 'HTMLAudioElement' in window
+  })
 
   return {
     rate,
@@ -29,12 +43,12 @@ export const useReadingStore = defineStore('reading', () => {
     volume,
     repeatTimes,
     nowTextId,
-
     isReading,
+    isTTSAvailable,
+    isAudioAvailable,
 
     setIsReading,
     setNowTextId,
-
-    activeText
+    activeText,
   }
 })

@@ -12,21 +12,22 @@
                 clearable
                 @clear="onClear"
               ></el-input>
-              <el-button size="small" @click="convertHandler">转换</el-button>
+              <el-button
+                size="small"
+                :disabled="!inputText"
+                @click="convertHandler"
+                >转换
+              </el-button>
             </div>
           </el-form-item>
           <el-form-item label="-">
             <div class="row">
               <el-text v-html="hiraganaResult"></el-text>
               <el-button
-                v-if="settingStore.ttsSpeak && hiraganaResult"
                 size="small"
-                :disabled="speechStore.isSpeaking"
-                @click="speechStore.speak(hiraganaResult)"
-              >
-                <el-icon>
-                  <i class="icon-on-MPIS-TTS"></i>
-                </el-icon>
+                :disabled="!hiraganaResult || isReading"
+                @click="ttsOne({ id: hiraganaResult, text: hiraganaResult })"
+                >朗读
               </el-button>
             </div>
           </el-form-item>
@@ -54,15 +55,15 @@
           <div class="row">
             <el-button
               size="small"
-              @click="speechStore.speak(textToSpeak)"
-              :disabled="speechStore.isSpeaking"
+              @click="ttsOne({ id: textToSpeak, text: textToSpeak })"
+              :disabled="!textToSpeak || isReading"
               >朗读
             </el-button>
             <el-button
               size="small"
               type="warning"
               @click="speechStore.stop"
-              v-if="speechStore.isSpeaking"
+              v-if="isReading"
               >终止
             </el-button>
             <el-button
@@ -86,7 +87,7 @@
             placeholder="输入待查询的字、词、句"
           ></el-input>
           <div class="row">
-            <Dictionary :word="dictionaryText" :disabled="!dictionaryText"/>
+            <Dictionary :word="dictionaryText" :disabled="!dictionaryText" />
           </div>
         </div>
       </el-tab-pane>
@@ -98,12 +99,16 @@
 import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 import ky from 'ky'
+import { useReadingStore } from '../../stores/readingStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
-import { useSettingStore } from '../../stores/settingStore.ts'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
+import { storeToRefs } from 'pinia'
+
+const readingStore = useReadingStore()
+const { isReading } = storeToRefs(readingStore)
 
 const speechStore = useSpeechStore()
-const settingStore = useSettingStore()
+const ttsOne = speechStore.speak
 
 const loading = ref(false)
 const inputText = ref('')
