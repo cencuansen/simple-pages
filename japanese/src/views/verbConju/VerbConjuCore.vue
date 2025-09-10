@@ -93,7 +93,6 @@ import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { ElTable } from 'element-plus'
 import {
-  columns,
   typeOptions,
   transitivityOptions,
   type Conju,
