@@ -13,7 +13,6 @@
           'speaking-active': activeText(row),
         }"
         v-html="textView(row.content)"
-        @click="wordRefer"
       ></el-text>
     </div>
     <div class="translation" v-if="translate">
@@ -23,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { wordRefer, displayText } from './index.ts'
+import { displayText } from './index.ts'
 import Reading from '../../components/Reading.vue'
 import type { TextBase } from './types.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'

@@ -31,7 +31,7 @@
 
       <!-- 情景对话 -->
       <section id="discussions" class="section" v-if="hasDiscussions">
-        <h2 v-html="textView(discussions?.title)" @click="wordRefer"></h2>
+        <h2 v-html="textView(discussions?.title)"></h2>
         <el-form label-width="auto" v-for="exchange in discussions?.contents">
           <LessonRow
             :rows="exchange"
@@ -45,7 +45,7 @@
       <section id="article" class="section" v-if="hasArticle">
         <h2>
           <Reading :item="article" :items="article?.contents" />
-          <span v-html="textView(article?.title)" @click="wordRefer"></span>
+          <span v-html="textView(article?.title)"></span>
         </h2>
         <el-form>
           <LessonRow
@@ -98,7 +98,7 @@
       </div>
     </el-dialog>
 
-    <a class="go-top" href="#" @click="goTop(top)">↑</a>
+    <LinkTo :top="top" :bind="['.anchor-link']" />
 
     <div
       class="close-fullscreen"
@@ -139,8 +139,9 @@ import { searchLesson } from '../../utils'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
-import { displayText, textParser, wordRefer, goTop } from './index.ts'
+import { displayText, textParser } from './index.ts'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
+import LinkTo from '../../components/LinkTo/LinkTo.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
 import LessonRow from './LessonRow.vue'
