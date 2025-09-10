@@ -285,40 +285,6 @@ onDeactivated(() => {
   max-width: var(--content-max-width);
 }
 
-:deep(.anchor-link),
-:deep(ruby) {
-  margin: calc(0.2 * var(--gap12));
-}
-
-:deep(.anchor-link ruby),
-:deep(ruby .anchor-link) {
-  margin: 0;
-}
-
-:deep(.target-active) {
-  animation: highlight 3s ease-in-out alternate;
-}
-
-@keyframes highlight {
-  0%,
-  20%,
-  40%,
-  60%,
-  80% {
-    color: #ff0000;
-  }
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    color: #ff9900;
-  }
-  100% {
-    color: inherit;
-  }
-}
-
 :deep(.el-scrollbar__wrap) {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
@@ -353,27 +319,6 @@ onDeactivated(() => {
   user-select: auto;
   box-sizing: border-box;
   padding-left: 20px;
-}
-
-.go-top {
-  position: absolute;
-  bottom: 100px;
-  right: 50px;
-  width: 12px;
-  height: 12px;
-  border: none;
-  border-radius: 50%;
-  line-height: 25px;
-  text-align: center;
-  user-select: none;
-  z-index: 999;
-  color-scheme: inherit;
-  font-weight: bolder;
-  font-size: 1.5rem;
-  color: var(--el-color-primary);
-  background-color: inherit;
-  backdrop-filter: blur(10000px);
-  text-decoration: none;
 }
 
 @media (min-width: 700px) {

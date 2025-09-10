@@ -65,6 +65,16 @@ defineProps<LessonRowProps>()
   font-size: 1.2rem;
 }
 
+:deep(.anchor-link),
+:deep(ruby) {
+  margin: calc(0.2 * var(--gap12));
+}
+
+:deep(.anchor-link ruby),
+:deep(ruby .anchor-link) {
+  margin: 0;
+}
+
 .speaking-active {
   color: var(--el-color-success);
 }
