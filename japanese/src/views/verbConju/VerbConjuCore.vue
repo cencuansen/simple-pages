@@ -26,7 +26,7 @@
     </Row>
 
     <div class="verb-conju-main">
-      <el-table :data="_afterPage" empty-text="暂无数据" stripe>
+      <el-table :data="afterPage" empty-text="暂无数据" stripe>
         <el-table-column label="" width="60" fixed="left">
           <template #default="scope">
             <el-text
@@ -136,14 +136,10 @@ const beforePage = computed(() => {
 })
 
 // 当前页数据
-const _afterPage = ref<Conju[]>([])
+const afterPage = ref<Conju[]>([])
 const pageChange = (data: Conju[]) => {
-  _afterPage.value = data
+  afterPage.value = data
 }
-
-const afterPage = computed(() => {
-  return _afterPage.value
-})
 
 const lessonIndexOptions = computed(() => {
   return [...new Set(props.data.map((item) => item.lesson))].sort()
