@@ -1,6 +1,7 @@
 <template>
   <VerbConjuCore
     :data="conjuVerbs"
+    :columns="columns"
     lesson-select
     type-select
     transitivity-select
@@ -12,6 +13,7 @@
 import { useConjuStore } from '../../stores/conjuStore.ts'
 import { storeToRefs } from 'pinia'
 import VerbConjuCore from './VerbConjuCore.vue'
+import { columns } from './index.ts'
 
 const verbConjuStore = useConjuStore()
 const { conjuVerbs } = storeToRefs(verbConjuStore)

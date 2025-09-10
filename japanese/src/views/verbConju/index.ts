@@ -2,10 +2,18 @@ import { ref } from 'vue'
 
 const emptyFn = (_1: any, _2: any, cellValue: any, _3: number) => cellValue
 
+export interface VerbConjuColumn {
+  value: string
+  label: string
+  formatter?: (_1: any, _2: any, cellValue: any, _3: number) => any
+  show?: boolean
+  width?: number
+}
+
 export const typeOptions = ['五段动词', '一段动词', '不规则动词']
 export const transitivityOptions = ['他动词', '自动词', '自他动词']
 
-export const columns = ref([
+export const baseColumns = ref<VerbConjuColumn[]>([
   {
     value: 'dictionary',
     label: '辞书',
@@ -132,6 +140,10 @@ export const columns = ref([
     show: true,
     width: 180,
   },
+])
+
+export const columns = ref<VerbConjuColumn[]>([
+  ...baseColumns.value,
   {
     value: 'lesson',
     label: '课程',
@@ -142,7 +154,7 @@ export const columns = ref([
 ])
 
 export interface Conju {
-  [key: string]: any; // 添加索引签名
+  [key: string]: any // 添加索引签名
   dictionary: string // 辞书
   hiragana: string // 平假名
   meaning: string // 释义
