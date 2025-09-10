@@ -19,7 +19,7 @@
   </Row>
   <div class="main-table" ref="container" @scroll="onScroll">
     <el-table
-      :data="afterPageView"
+      :data="afterPage"
       :show-header="showHeader"
       empty-text="暂无数据"
       stripe
@@ -45,15 +45,15 @@
         </template>
       </el-table-column>
       <el-table-column
+        label="词性"
         width="60"
         prop="pos"
-        label="词性"
         show-overflow-tooltip
       />
       <el-table-column
+        label="释义"
         min-width="150"
         prop="desc"
-        label="释义"
         v-if="settingStore.wordDesc"
         show-overflow-tooltip
       />
@@ -212,15 +212,15 @@ const beforePage = computed(() => {
 })
 
 // 当前页数据
-const afterPage = ref<WordItem[]>([])
+const _afterPage = ref<WordItem[]>([])
 const pageChange = (data: WordItem[]) => {
-  afterPage.value = data
+  _afterPage.value = data
   container.value.scrollTop = 0
 }
 
-const afterPageView = computed(() => {
+const afterPage = computed(() => {
   if (props.pagination) {
-    return afterPage.value
+    return _afterPage.value
   }
   return beforePage.value
 })
