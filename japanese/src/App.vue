@@ -1,10 +1,12 @@
 <template>
   <div class="root-header" v-if="!fullscreen">
-    <el-segmented
-      v-model="nowLabel"
-      :options="labels"
-      @change="segmentChange"
-    />
+    <div class="button-group">
+      <el-segmented
+        v-model="nowLabel"
+        :options="labels"
+        @change="segmentChange"
+      />
+    </div>
   </div>
   <div class="router-view">
     <el-config-provider :locale="locale">
@@ -129,6 +131,18 @@ onMounted(async () => {
   overflow-y: scroll;
   user-select: none;
   height: var(--root-header-height);
+}
+
+.button-group {
+  overflow-x: scroll;
+}
+
+.button-group::-webkit-scrollbar {
+  display: none;
+}
+
+.el-segmented {
+  padding: 0;
 }
 
 .router-view {
