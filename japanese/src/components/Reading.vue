@@ -8,12 +8,12 @@
   />
 
   <!-- 课文行 一行 -->
-  <IconVoice
+<!--  <IconVoice
     class="icon 单课文行-audio"
     :class="{ disabled: isReading }"
     v-else-if="rowItem?.audio"
     @click="audioOne({ id: rowItem.textId, text: rowItem.audio })"
-  />
+  />-->
 
   <IconBot
     class="icon 单课文行-tts-audio"
