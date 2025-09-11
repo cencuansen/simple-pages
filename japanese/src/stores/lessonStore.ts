@@ -18,6 +18,9 @@ export const useLessonStore = defineStore(
     const maxIndex = ref(0)
     const dialog = ref(false)
     const lastElement = ref<HTMLElement | null>()
+    const wordIds = ref<Map<number, string[]>>(
+      new Map<number, string[]>()
+    )
 
     // 初始化
     const init = async () => {
@@ -53,32 +56,6 @@ export const useLessonStore = defineStore(
         return []
       }
       return data
-      // data.forEach((lesson: Lesson) => {
-      //   lesson.sentences &&
-      //     lesson.sentences.forEach((item: TextBase) => {
-      //       item['textId'] = newTextId()
-      //       item['speakText'] = speakText(item.content)
-      //     })
-      //   lesson.conversations &&
-      //     lesson.conversations.forEach((items: TextBase[]) => {
-      //       items.forEach((item: TextBase) => {
-      //         item['textId'] = newTextId()
-      //         item['speakText'] = speakText(item.content)
-      //       })
-      //     })
-      //   lesson.discussions.contents &&
-      //     lesson.discussions.contents.forEach((items: TextBase[]) => {
-      //       items.forEach((item: TextBase) => {
-      //         item['textId'] = newTextId()
-      //         item['speakText'] = speakText(item.content)
-      //       })
-      //     })
-      //   lesson.article.contents &&
-      //     lesson.article.contents.forEach((item: TextBase) => {
-      //       item['textId'] = newTextId()
-      //       item['speakText'] = speakText(item.content)
-      //     })
-      // })
     }
     // -- private functions end --
 
@@ -94,6 +71,17 @@ export const useLessonStore = defineStore(
 
     const setLastElement = (el: HTMLElement | null): void => {
       lastElement.value = el
+    }
+
+    const addWordIds = (lesson: number, ids: string[]): void => {
+      if (!wordIds.value.has(lesson)) {
+        wordIds.value.set(lesson, [])
+      }
+      const oldIds: string[] = wordIds.value.get(lesson) || []
+      const newIds = ids.filter(id => !oldIds.includes(id))
+      if (newIds.length) {
+        oldIds.push(...newIds)
+      }
     }
     // -- setters end --
 
@@ -186,6 +174,7 @@ export const useLessonStore = defineStore(
       maxIndex,
       dialog,
       lastElement,
+      wordIds,
 
       // 计算属性
       currentLesson,
@@ -208,6 +197,7 @@ export const useLessonStore = defineStore(
       setCurrentIndex,
       setDialog,
       setLastElement,
+      addWordIds,
 
       // 方法
       init,

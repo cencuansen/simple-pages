@@ -63,7 +63,7 @@
 
       <!-- 单词 -->
       <section id="words" class="section" ref="wordsRef">
-        <WordCore :data="wordList" :lesson-index="currentIndex" show-header />
+        <WordCore :data="words" show-header />
       </section>
     </div>
 
@@ -120,7 +120,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type ComputedRef, onActivated, ref, watch } from 'vue'
+import {
+  computed,
+  type ComputedRef,
+  onActivated,
+  onMounted,
+  ref,
+  watch,
+} from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useAudioStore } from '../../stores/audioStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
@@ -149,7 +156,6 @@ const wordStore = useWordStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 
-const { wordList } = storeToRefs(wordStore)
 const { grammars } = storeToRefs(grammarStore)
 
 const {
@@ -260,6 +266,13 @@ onActivated(async () => {
 onDeactivated(() => {
   deactivated = true
   document.removeEventListener('keyup', onSingleKeyup)
+})
+
+onMounted(() => {
+  // const links: HTMLAnchorElement[] =
+  //   container.value.querySelectAll('.anchor-link')
+  // const textIds: string[] = links.map((link) => link.href.slice(1))
+  // addWordIds(currentIndex.value, textIds)
 })
 </script>
 
