@@ -6,7 +6,6 @@ export interface Grammar {
   idx: number
   lesson: number
   title: string
-  displayTitle: string
   desc: string[]
   example: string
   level: string

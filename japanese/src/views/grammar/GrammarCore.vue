@@ -21,7 +21,7 @@
           >
             <template #title>
               <div class="grammar-title-row">
-                <div class="grammar-title" v-html="grammar.displayTitle"></div>
+                <div class="grammar-title" v-html="grammar.title"></div>
                 <div class="grammar-lesson" v-if="grammar.lesson">
                   {{ grammar.lesson }}
                 </div>
@@ -31,8 +31,10 @@
               </div>
             </template>
             <el-form>
-              <div v-for="row in grammar.desc" v-html="row"></div>
-              <div v-if="grammar.example">{{ grammar.example }}</div>
+              <div>
+                <div v-for="row in grammar.desc" v-html="row"></div>
+                <div v-if="grammar.example">{{ grammar.example }}</div>
+              </div>
             </el-form>
           </el-collapse-item>
         </el-collapse>
@@ -105,17 +107,13 @@ const beforePage = computed(() => {
   if (selectedLevels.value.length) {
     list = list.filter((item) => selectedLevels.value.includes(item.level))
   }
-  list.forEach((item) => {
-    item.displayTitle = item.title
-  })
-  const escapedKey = keyword.value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const regex = new RegExp(`(${escapedKey})`, 'g') // 添加捕获组
+  const regex = new RegExp(`(${keyword.value})`, 'g') // 添加捕获组
   const highlight = (text: string) =>
     text?.replace(regex, '<span class="active">$1</span>')
 
   list = list.map((item) => {
     const tem = { ...item }
-    tem.displayTitle = highlight(tem.displayTitle)
+    tem.title = highlight(tem.title)
     tem.desc = tem.desc.map(highlight)
     return tem
   })
