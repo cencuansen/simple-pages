@@ -7,6 +7,7 @@
     ]"
   >
     <div
+      :id="item.ele?.id"
       v-for="item in elements"
       :key="item.key"
       class="ib__item"
@@ -14,13 +15,13 @@
         'ib__item--active': currentKey === item.key,
       }"
       @click="scrollTo(item)"
-      @mouseenter="scrollTo(item)"
+      @mouseenter="onMouseEnter(item)"
     ></div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, withDefaults, onMounted, onUnmounted } from 'vue'
+import { ref, computed, withDefaults, onMounted } from 'vue'
 import { newTextId } from '../../utils'
 import type { ElementInfo, Props } from './index.ts'
 
@@ -28,10 +29,11 @@ const props = withDefaults(defineProps<Props>(), {
   position: 'right',
 })
 
+const minGap = 100
 const elements = ref<ElementInfo[]>([])
 const currentKey = ref<string>()
 
-const container = computed(() => document.querySelector(props.bind))
+const container = ref<Element | null>(null)
 
 const isHorizontal = computed(
   () => props.position === 'top' || props.position === 'bottom'
@@ -51,7 +53,9 @@ const scrollTo = (target: ElementInfo | null | undefined) => {
 const buildInfo = () => {
   if (!container.value) return []
   elements.value = Array.from(container.value.children)
-    .filter(Boolean)
+    .filter((ele: Element) => {
+      return (ele.getBoundingClientRect().height || 0) > minGap
+    })
     .map((ele) => {
       const key = `ib_${newTextId()}`
       return {
@@ -77,16 +81,11 @@ const updateCurrentKey = () => {
   currentKey.value = last?.key
 }
 
-onMounted(() => {
-  if (!container.value) return []
-  buildInfo()
-  updateCurrentKey()
-  container.value.addEventListener('scrollend', updateCurrentKey)
-})
-
 interface HotkeyRef {
   [key: string]: Element
 }
+
+const isCtrlPressed = ref(false)
 
 const hotkeyRefMap = computed<HotkeyRef>(() => {
   const refs: { [key: string]: Element } = {}
@@ -102,7 +101,18 @@ const hotkeyRefMap = computed<HotkeyRef>(() => {
   return refs
 })
 
-const onSingleKeyup = (event: KeyboardEvent) => {
+const onMouseEnter = (item: ElementInfo) => {
+  if (isCtrlPressed.value) {
+    scrollTo(item)
+  }
+}
+
+const onKeydown = (event: KeyboardEvent) => {
+  isCtrlPressed.value = event.ctrlKey
+}
+
+const onKeyup = (event: KeyboardEvent) => {
+  isCtrlPressed.value = event.ctrlKey
   if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey) {
     return
   }
@@ -115,12 +125,29 @@ const onSingleKeyup = (event: KeyboardEvent) => {
   }
 }
 
-onMounted(async () => {
-  document.addEventListener('keyup', onSingleKeyup)
-})
+const unitFns = () => {
+  buildInfo()
+  updateCurrentKey()
+  container.value &&
+    container.value.addEventListener('scrollend', updateCurrentKey)
+}
 
-onUnmounted(() => {
-  document.removeEventListener('keyup', onSingleKeyup)
+onMounted(() => {
+  container.value = document.querySelector(props.bind)
+
+  unitFns()
+
+  const observer = new MutationObserver(unitFns)
+
+  container.value &&
+    observer.observe(container.value, {
+      childList: true, // 监听子节点变化
+      subtree: true, // 监听子树变化
+      attributes: true, // 监听属性变化
+    })
+
+  document.addEventListener('keydown', onKeydown)
+  document.addEventListener('keyup', onKeyup)
 })
 </script>
 

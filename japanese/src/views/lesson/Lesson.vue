@@ -58,7 +58,7 @@
 
       <!-- 语法 -->
       <section id="grammars" class="section">
-        <GrammarCore :data="grammars" :lesson-index="currentIndex" />
+        <!--        <GrammarCore :data="grammars" :lesson-index="currentIndex" />-->
       </section>
 
       <!-- 单词 -->
@@ -125,7 +125,6 @@ import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useAudioStore } from '../../stores/audioStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
-import { useGrammarStore } from '../../stores/grammar/grammarStore.ts'
 import type { WordItem } from '../../types'
 import { searchLesson } from '../../utils'
 import { storeToRefs } from 'pinia'
@@ -139,7 +138,6 @@ import LessonHeader from './LessonHeader.vue'
 import LessonRow from './LessonRow.vue'
 import Reading from '../../components/Reading.vue'
 import WordCore from '../word/WordCore.vue'
-import GrammarCore from '../grammar/GrammarCore.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import type { TextBase } from './types.ts'
 
@@ -147,10 +145,8 @@ const lessonStore = useLessonStore()
 const audioStore = useAudioStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
-const grammarStore = useGrammarStore()
 
 const { wordList } = storeToRefs(wordStore)
-const { grammars } = storeToRefs(grammarStore)
 
 const {
   dialog,
