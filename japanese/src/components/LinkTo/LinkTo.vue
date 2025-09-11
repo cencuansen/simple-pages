@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 interface LinkToProps {
   top: HTMLElement
@@ -55,9 +55,11 @@ const back = () => {
   scrollTo(previous)
 }
 
-onMounted(() => {
+const targets: Element[] = []
+
+const bindElements = () => {
+  targets.length = 0
   const multi = Array.isArray(props.bind)
-  const targets: Element[] = []
   if (multi) {
     const binds = props.bind as string[]
     binds.forEach((item) => {
@@ -70,6 +72,33 @@ onMounted(() => {
   targets.forEach((target) => {
     target.addEventListener('click', forward)
   })
+}
+
+let observer: MutationObserver | null = null
+
+onMounted(() => {
+  bindElements()
+  observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        bindElements()
+      }
+    })
+  })
+  targets.forEach((target) => {
+    observer &&
+      target.parentNode &&
+      observer.observe(target.parentNode, {
+        childList: true,
+        subtree: true,
+      })
+  })
+})
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+  }
 })
 </script>
 
