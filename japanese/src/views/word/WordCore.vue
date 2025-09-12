@@ -59,7 +59,9 @@
       />
       <el-table-column label="课程" width="60" v-if="!props.lessonIndex">
         <template #default="scope">
-          {{ scope.row.lesson }}
+          <a href="#" @click="lessonClick(scope.row.lesson)">
+            {{ scope.row.lesson }}
+          </a>
         </template>
       </el-table-column>
       <el-table-column
@@ -230,6 +232,14 @@ const wordClasses = computed(() => {
     a.localeCompare(b, 'zh-CN')
   )
 })
+
+const lessonClick = (val: number) => {
+  if (isNumber(lessonIndex.value)) {
+    lessonIndex.value = void 0
+  } else {
+    lessonIndex.value = val
+  }
+}
 
 onBeforeUnmount(() => {
   speechStore.stop()

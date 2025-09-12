@@ -23,7 +23,9 @@
               <div class="grammar-title-row">
                 <div class="grammar-title" v-html="grammar.title"></div>
                 <div class="grammar-lesson" v-if="grammar.lesson">
-                  {{ grammar.lesson }}
+                  <a href="#" @click.stop.prevent="lessonClick(grammar.lesson)">
+                    {{ grammar.lesson }}
+                  </a>
                 </div>
                 <div class="grammar-level" v-if="grammar.level">
                   {{ grammar.level }}
@@ -84,7 +86,7 @@ const props = withDefaults(defineProps<GrammarProps>(), {
 })
 
 const keyword = ref('')
-const lessonIndex = ref<null | number>(null)
+const lessonIndex = ref<number | undefined>()
 
 const beforePage = computed(() => {
   let list = props.data
@@ -142,6 +144,14 @@ const afterPageView = computed(() => {
   }
   return beforePage.value
 })
+
+const lessonClick = (val: number) => {
+  if (isNumber(lessonIndex.value)) {
+    lessonIndex.value = void 0
+  } else {
+    lessonIndex.value = val
+  }
+}
 
 const container = ref()
 const scrollPosition = ref<number>(0)
