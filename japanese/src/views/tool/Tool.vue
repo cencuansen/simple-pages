@@ -2,45 +2,7 @@
   <div class="tool-container">
     <el-tabs class="setting-container">
       <el-tab-pane label="假名注音">
-        <el-form label-width="auto" v-loading="loading">
-          <el-form-item label="输入文本">
-            <div class="row">
-              <el-input
-                size="small"
-                v-model="inputText"
-                type="textarea"
-                clearable
-                @clear="onClear"
-              ></el-input>
-              <el-button
-                size="small"
-                :disabled="!inputText"
-                @click="convertHandler"
-                >转换
-              </el-button>
-            </div>
-          </el-form-item>
-          <el-form-item label="-">
-            <div class="row">
-              <el-text v-html="hiraganaResult"></el-text>
-              <el-button
-                size="small"
-                :disabled="!hiraganaResult || isReading"
-                @click="ttsOne({ id: hiraganaResult, text: hiraganaResult })"
-                >朗读
-              </el-button>
-            </div>
-          </el-form-item>
-          <el-form-item label="-">
-            <el-text v-html="okuriganaResult"></el-text>
-          </el-form-item>
-          <el-form-item label="-">
-            <el-text
-              v-html="toDataRuby(furiganaResult)"
-              class="ruby-result-item"
-            ></el-text>
-          </el-form-item>
-        </el-form>
+        <KanjiTool />
       </el-tab-pane>
       <el-tab-pane label="日文朗读">
         <div>
@@ -103,6 +65,7 @@ import { useReadingStore } from '../../stores/readingStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import Dictionary from '../../components/Dictionary/Dictionary.vue'
 import { storeToRefs } from 'pinia'
+import KanjiTool from './KanjiTool.vue'
 
 const readingStore = useReadingStore()
 const { isReading } = storeToRefs(readingStore)
@@ -183,7 +146,7 @@ const dictionaryText = ref<string>('')
   width: 100%;
   display: flex;
   gap: var(--gap12);
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .row + .row {
@@ -194,10 +157,5 @@ const dictionaryText = ref<string>('')
   width: 48px;
   box-sizing: border-box;
   flex: none;
-}
-
-.ruby-result-item {
-  font-size: 1.5rem;
-  line-height: 3rem;
 }
 </style>

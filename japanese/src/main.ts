@@ -15,7 +15,7 @@ const pinia = createPinia()
 pinia.use(piniaPersist)
 
 createApp(App)
-  .use(ElementPlus)
+  .use(ElementPlus, { size: 'small' })
   .use(pinia)
   .use(router)
   .directive('focus', vFocus)
