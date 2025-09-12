@@ -220,11 +220,11 @@ const mainHeight = computed(() => {
 })
 
 const words: ComputedRef<WordItem[]> = computed(() => {
-  return wordStore.getByLesson(lessonStore.currentIndex)
+  return wordStore.getByLesson(currentIndex.value)
 })
 
 const grammars = computed(() => {
-  return grammarStore.queryGrammars({ lesson: lessonStore.currentIndex })
+  return grammarStore.queryGrammars({ lesson: currentIndex.value })
 })
 
 const textView = computed(() => {
