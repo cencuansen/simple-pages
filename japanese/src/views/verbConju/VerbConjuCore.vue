@@ -56,6 +56,7 @@
       v-model="dialogModel"
       width="400"
       fullscreen
+      center
     >
       <div class="dialog-main">
         <div class="detail-left">
@@ -169,11 +170,7 @@ const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-he
   height: v-bind(mainHeight);
 }
 
-.el-form-item {
-  margin-bottom: 0;
-}
-
-:deep(.el-scrollbar__wrap) {
+:deep(.el-table .el-scrollbar__wrap) {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
 }
@@ -187,6 +184,10 @@ const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-he
   border-radius: 5px;
   padding: 15px;
   background-color: var(--el-bg-color-overlay);
+}
+
+.el-form-item {
+  margin-bottom: 0;
 }
 
 .detail-left {
