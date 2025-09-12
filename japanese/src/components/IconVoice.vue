@@ -1,5 +1,5 @@
 <template>
-  <el-icon>
+  <IconCore>
     <svg
       width="800px"
       height="800px"
@@ -16,5 +16,9 @@
         d="M30,36.7c0,0-3.6-6.7-13-6.7S4,36.7,4,36.7V40h26V36.7z"
       />
     </svg>
-  </el-icon>
+  </IconCore>
 </template>
+
+<script setup lang="ts">
+import IconCore from './IconCore.vue'
+</script>

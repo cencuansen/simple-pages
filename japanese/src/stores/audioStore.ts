@@ -19,7 +19,9 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   const getSrc = (path: string): string => {
-    return `${audioUrlBase}${path}?t=${Date.now()}`
+    let str = `${audioUrlBase}${path}`
+    if (path.includes('t=')) return str
+    return `${str}?t=${Date.now()}`
   }
 
   let currentPauseHandler: (() => void) | null = null

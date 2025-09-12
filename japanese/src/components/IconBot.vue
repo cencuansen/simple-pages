@@ -1,5 +1,5 @@
 <template>
-  <el-icon>
+  <IconCore>
     <svg
       width="24px"
       height="24px"
@@ -13,9 +13,9 @@
       <ellipse cx="15.5" cy="12" rx="1.5" ry="2" />
       <path d="M8 16h8v2H8z" />
     </svg>
-  </el-icon>
+  </IconCore>
 </template>
 
-<script setup lang="ts"></script>
-
-<style scoped></style>
+<script setup lang="ts">
+import IconCore from './IconCore.vue'
+</script>
