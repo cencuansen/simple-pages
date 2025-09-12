@@ -52,6 +52,4 @@ const clear = () => {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
