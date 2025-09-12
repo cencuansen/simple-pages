@@ -57,7 +57,7 @@
         v-if="settingStore.wordDesc"
         show-overflow-tooltip
       />
-      <el-table-column label="课程" width="60" v-if="!props.lessonIndex">
+      <el-table-column label="课程" width="60">
         <template #default="scope">
           <a href="#" @click="lessonClick(scope.row.lesson)">
             {{ scope.row.lesson }}
@@ -234,7 +234,7 @@ const wordClasses = computed(() => {
 })
 
 const lessonClick = (val: number) => {
-  if (isNumber(lessonIndex.value)) {
+  if (Boolean(lessonIndex.value)) {
     lessonIndex.value = void 0
   } else {
     lessonIndex.value = val

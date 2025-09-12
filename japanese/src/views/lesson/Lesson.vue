@@ -58,7 +58,7 @@
 
       <!-- 语法 -->
       <section id="grammars" class="section">
-        <GrammarCore :data="grammars" :lesson-index="currentIndex" />
+        <GrammarCore :data="grammars" />
       </section>
 
       <!-- 单词 -->
@@ -156,8 +156,6 @@ const wordStore = useWordStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 
-const { grammars } = storeToRefs(grammarStore)
-
 const {
   dialog,
   currentIndex,
@@ -223,6 +221,10 @@ const mainHeight = computed(() => {
 
 const words: ComputedRef<WordItem[]> = computed(() => {
   return wordStore.getByLesson(lessonStore.currentIndex)
+})
+
+const grammars = computed(() => {
+  return grammarStore.queryGrammars({ lesson: lessonStore.currentIndex })
 })
 
 const textView = computed(() => {
