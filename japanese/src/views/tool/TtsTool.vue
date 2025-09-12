@@ -19,12 +19,13 @@
         </el-button>
       </div>
       <div>
-        <el-button type="warning" @click="speechStore.stop" v-if="isReading">
-          终止
-        </el-button>
+        <VoiceVox :text="text" :disabled="!text || isReading" />
       </div>
-      <div>
-        <el-button type="danger" @click="clear" v-if="text"> 清空</el-button>
+      <div v-if="isReading">
+        <el-button type="warning" @click="speechStore.stop"> 终止</el-button>
+      </div>
+      <div v-if="text && !isReading">
+        <el-button type="danger" @click="clear">清空</el-button>
       </div>
     </div>
   </div>
@@ -35,6 +36,7 @@ import { ref } from 'vue'
 import { useReadingStore } from '../../stores/readingStore.ts'
 import { useSpeechStore } from '../../stores/speechStore.ts'
 import { storeToRefs } from 'pinia'
+import VoiceVox from '../../components/VoiceVox/VoiceVox.vue'
 
 const readingStore = useReadingStore()
 const { isReading } = storeToRefs(readingStore)
@@ -50,4 +52,10 @@ const clear = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.row {
+  width: 100%;
+  display: flex;
+  gap: var(--gap12);
+}
+</style>
