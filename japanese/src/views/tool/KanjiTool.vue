@@ -1,16 +1,15 @@
 <template>
-  <div class="kanji-tool" v-loading="loading">
+  <div class="tool" v-loading="loading">
     <div class="row">
-      <el-input type="textarea" v-model="text"></el-input>
+      <el-input
+        type="textarea"
+        v-model="text"
+        :autosize="{ minRows: 5 }"
+        placeholder="输入包含汉字词的字、词、句"
+      />
     </div>
     <div class="row">
       <el-button :disabled="!text" @click="convert">转换</el-button>
-      <el-button
-        :disabled="!hiragana || isReading"
-        @click="ttsOne({ id: hiragana, text })"
-      >
-        朗读
-      </el-button>
     </div>
     <div class="result">
       <el-text v-html="hiragana" />
@@ -24,18 +23,9 @@
 import { ElMessage } from 'element-plus'
 import { ref } from 'vue'
 import ky from 'ky'
-import { useReadingStore } from '../../stores/readingStore.ts'
-import { useSpeechStore } from '../../stores/speechStore.ts'
-import { storeToRefs } from 'pinia'
-
-const readingStore = useReadingStore()
-const { isReading } = storeToRefs(readingStore)
-
-const speechStore = useSpeechStore()
-const ttsOne = speechStore.speak
 
 const loading = ref(false)
-const text = ref('世界の第一位です')
+const text = ref('')
 const hiragana = ref('')
 const okurigana = ref('')
 const furigana = ref('')
@@ -83,18 +73,6 @@ const process = (text: string): string => {
 </script>
 
 <style scoped>
-.kanji-tool {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap12);
-}
-
-.row {
-  width: 100%;
-  display: flex;
-  gap: var(--gap12);
-}
-
 .result {
   display: flex;
   flex-direction: column;
