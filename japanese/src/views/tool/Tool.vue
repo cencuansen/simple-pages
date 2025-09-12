@@ -33,7 +33,7 @@ import DictTool from './DictTool.vue'
   gap: var(--gap12);
 }
 
-.row {
+:deep(.row) {
   width: 100%;
   display: flex;
   gap: var(--gap12);

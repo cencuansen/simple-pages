@@ -53,9 +53,5 @@ const clear = () => {
 </script>
 
 <style scoped>
-.row {
-  width: 100%;
-  display: flex;
-  gap: var(--gap12);
-}
+
 </style>
