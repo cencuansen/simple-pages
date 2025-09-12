@@ -1,15 +1,15 @@
 <template>
   <el-form>
     <el-form-item label="音频播放">
-      <el-switch v-model="settingStore.audioSpeak" inline-prompt />
+      <el-switch v-model="audioSpeak" inline-prompt />
     </el-form-item>
 
     <el-form-item label="TTS 朗读">
-      <el-switch v-model="settingStore.ttsSpeak" inline-prompt />
+      <el-switch v-model="ttsSpeak" inline-prompt />
     </el-form-item>
 
-    <div v-if="settingStore.ttsSpeak">
-      <el-form-item label="语音">
+    <div v-if="ttsSpeak">
+      <el-form-item label="声音">
         <el-select
           v-model="voiceName"
           placeholder="选择语音"
@@ -72,7 +72,7 @@ import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
 const settingStore = useSettingStore()
-const testText = ref('こんにちは')
+const { audioSpeak, ttsSpeak } = storeToRefs(settingStore)
 
 const readingStore = useReadingStore()
 const { rate, pitch, volume, repeatTimes, isReading } =
@@ -81,6 +81,8 @@ const { rate, pitch, volume, repeatTimes, isReading } =
 const speechStore = useSpeechStore()
 const { voiceName, voiceOptions } = storeToRefs(speechStore)
 const ttsOne = speechStore.speak
+
+const testText = ref('こんにちは')
 </script>
 
 <style scoped></style>
