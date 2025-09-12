@@ -55,26 +55,29 @@
       :modal="true"
       v-model="dialogModel"
       width="400"
+      fullscreen
     >
-      <div class="detail-left">
-        <el-form label-width="auto" :label-position="'right'">
-          <el-form-item v-for="col in columns" :label="col.label">
-            <span>
-              {{
-                currentRow &&
-                col.formatter &&
-                col.formatter(null, null, currentRow[col.value], 0)
-              }}
-            </span>
-          </el-form-item>
-        </el-form>
-      </div>
-      <div class="detail-right">
-        <el-form>
-          <el-form-item :label="' '">
-            <Dictionary :word="currentRow && currentRow['dictionary']" />
-          </el-form-item>
-        </el-form>
+      <div class="dialog-main">
+        <div class="detail-left">
+          <el-form label-width="auto" :label-position="'right'">
+            <el-form-item v-for="col in columns" :label="col.label">
+              <span>
+                {{
+                  currentRow &&
+                  col.formatter &&
+                  col.formatter(null, null, currentRow[col.value], 0)
+                }}
+              </span>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div class="detail-right">
+          <el-form>
+            <el-form-item :label="' '">
+              <Dictionary :word="currentRow && currentRow['dictionary']" />
+            </el-form-item>
+          </el-form>
+        </div>
       </div>
     </el-dialog>
 
@@ -157,7 +160,6 @@ const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-he
 
 <style scoped>
 .verb-conju {
-  position: fixed;
   width: 100%;
   height: 100%;
 }
@@ -176,12 +178,22 @@ const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-he
   overflow-y: hidden;
 }
 
-:deep(.el-dialog__body) {
+.dialog-main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 350px;
   display: flex;
   gap: var(--gap12);
+  border-radius: 5px;
+  padding: 15px;
+  background-color: var(--el-bg-color-overlay);
 }
 
-:deep(.el-overlay) {
-  background-color: rgba(0, 0, 0, 0.9);
+.detail-left {
+  flex: 2 0 auto;
+}
+
+.detail-right {
+  flex: 1 1 auto;
 }
 </style>

@@ -260,4 +260,9 @@ onActivated(async () => {
   align-items: center;
   justify-content: center;
 }
+
+:deep(.el-table .el-scrollbar__wrap) {
+  /* 解决移动端滚动不顺畅问题 */
+  overflow-y: hidden;
+}
 </style>
