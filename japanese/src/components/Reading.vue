@@ -83,7 +83,7 @@
     class="icon 单单词-tts"
     :class="{ disabled: isReading }"
     v-else-if="word?.kana"
-    @click="ttsOne({ id: word.textId, text: word.kana })"
+    @click="ttsOne({ id: word.textId, text: word.word })"
   />
 
   <!--单词 多个-->
