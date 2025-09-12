@@ -14,7 +14,7 @@ const setIsReading = readingStore.setIsReading
 const props = defineProps({
   text: {
     type: String,
-    default: '世界の第一位です',
+    default: '',
   },
   disabled: {
     type: Boolean,
