@@ -42,19 +42,20 @@
       </el-form-item>
 
       <el-form-item label="测试">
-        <el-input
-          v-model.trim="testText"
-          placeholder="输入测试文本"
-          style="width: 55%"
-          disabled
-        />
-        <el-button
-          style="margin-left: 10px"
-          :loading="isReading"
-          @click="ttsOne({ id: testText, text: testText })"
-        >
-          测试
-        </el-button>
+        <div class="row">
+          <el-input
+            v-model.trim="testText"
+            placeholder="输入测试文本"
+            disabled
+          />
+          <el-button
+            style="margin-left: 10px"
+            :loading="isReading"
+            @click="ttsOne({ id: testText, text: testText })"
+          >
+            测试
+          </el-button>
+        </div>
       </el-form-item>
 
       <el-form-item>
@@ -85,4 +86,9 @@ const ttsOne = speechStore.speak
 const testText = ref('こんにちは')
 </script>
 
-<style scoped></style>
+<style scoped>
+.row {
+  display: flex;
+  gap: var(--gap12);
+}
+</style>

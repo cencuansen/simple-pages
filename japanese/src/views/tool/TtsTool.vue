@@ -19,7 +19,7 @@
         </el-button>
       </div>
       <div>
-        <VoiceVox :text="text" :disabled="!text || isReading" />
+        <VoiceVox :text="text" :disabled="!text" />
       </div>
       <div v-if="isReading">
         <el-button type="warning" @click="speechStore.stop"> 终止</el-button>

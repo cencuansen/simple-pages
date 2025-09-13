@@ -8,8 +8,14 @@
     <div v-if="enable">
       <el-form-item label="服务地址">
         <div class="row">
-          <el-input class="host-name" v-model="host" />
-          <el-input-number class="port" v-model="port" :min="1" :max="65535" />
+          <el-input class="host-name" v-model="_hostname" @blur="blur" />
+          <el-input-number
+            class="port"
+            v-model="_port"
+            :min="1"
+            :max="65535"
+            @blur="blur"
+          />
         </div>
       </el-form-item>
       <el-form-item label="是否可用">
@@ -77,7 +83,7 @@
         <el-slider
           v-model="volumeScale"
           :min="0"
-          :max="2"
+          :max="3"
           :step="0.1"
           show-input
         />
@@ -118,29 +124,38 @@
         <el-switch v-model="outputStereo" />
       </el-form-item>
 
-      <!-- 假名 -->
-      <el-form-item label="假名">
-        <el-input
-          type="textarea"
-          v-model="kana"
-          placeholder="可选：假名表示的发音"
-        />
+      <!-- 测试 -->
+      <el-form-item label="测试">
+        <div class="row">
+          <el-input
+            type="textarea"
+            v-model="text"
+            placeholder="请输入待朗读的字、词、句"
+          />
+          <VoiceVox :text="text" :disabled="!text" />
+        </div>
+      </el-form-item>
+
+      <!-- 重置 -->
+      <el-form-item label=" ">
+        <el-button @click="reset">重置</el-button>
       </el-form-item>
     </div>
   </el-form>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useVoiceVoxStore } from '../../stores/voiceVox/voiceVoxStore'
+import VoiceVox from '../../components/VoiceVox/VoiceVox.vue'
 
 const store = useVoiceVoxStore()
 const {
   enable,
   usable,
   info,
-  host,
+  hostname,
   port,
   speakers,
   speakerId,
@@ -152,8 +167,20 @@ const {
   postPhonemeLength,
   outputSamplingRate,
   outputStereo,
-  kana,
+  text,
 } = storeToRefs(store)
+
+const reset = store.reset
+const setHostname = store.setHostname
+const setPort = store.setPort
+
+const _hostname = ref(hostname.value)
+const _port = ref(port.value)
+
+const blur = () => {
+  setHostname(_hostname.value)
+  setPort(_port.value)
+}
 
 onMounted(async () => {
   setTimeout(store.init)
