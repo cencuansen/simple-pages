@@ -2,7 +2,7 @@
   <el-button :disabled="isReading || disabled" :loading="isReading" v-if="usable" @click="req">
     {{ content }}
   </el-button>
-  <audio ref="audio" autoplay v-if="usable" />
+  <audio ref="audio" autoplay />
 </template>
 
 <script setup lang="ts">

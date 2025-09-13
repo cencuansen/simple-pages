@@ -171,6 +171,16 @@ export const useVoiceVoxStore = defineStore(
       })
       const audioQueryResult = await audioQueryResponse.json()
 
+      // 应用配置
+      audioQueryResult.speedScale = speedScale.value
+      audioQueryResult.pitchScale = pitchScale.value
+      audioQueryResult.intonationScale = intonationScale.value
+      audioQueryResult.volumeScale = volumeScale.value
+      audioQueryResult.prePhonemeLength = prePhonemeLength.value
+      audioQueryResult.postPhonemeLength = postPhonemeLength.value
+      audioQueryResult.outputSamplingRate = outputSamplingRate.value
+      audioQueryResult.outputStereo = outputStereo.value
+
       const synthesisResponse = await fetch(synthesis, {
         method: 'POST',
         headers: {

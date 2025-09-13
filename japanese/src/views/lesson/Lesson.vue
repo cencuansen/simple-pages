@@ -29,10 +29,10 @@
 
       <!-- 短文-->
       <section id="article" class="section" v-if="hasArticle">
-          <h2>
-            <Reading :row-items="article?.contents as TextBase[]" />
-            <span v-html="textView(article?.title)"></span>
-          </h2>
+        <h2>
+          <Reading :row-items="article?.contents as TextBase[]" />
+          <span v-html="textView(article?.title)"></span>
+        </h2>
 
         <el-form>
           <LessonRow :rows="article?.contents" :translate="allTranslate" :text-view="textView" />
