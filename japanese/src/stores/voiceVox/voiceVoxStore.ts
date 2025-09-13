@@ -138,7 +138,6 @@ export const useVoiceVoxStore = defineStore(
     }
 
     const init = async () => {
-      _reset()
       await fetchVersion()
       if (!usable.value) {
         return
