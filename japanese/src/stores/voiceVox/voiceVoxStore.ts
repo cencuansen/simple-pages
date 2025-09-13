@@ -113,7 +113,8 @@ export const useVoiceVoxStore = defineStore(
     }
 
     const _reset = () => {
-      enable.value = _enable
+      hostname.value = _hostname
+      port.value = _port
       version.value = _version
       info.value = _info
       speakers.value = _speakers
@@ -131,9 +132,7 @@ export const useVoiceVoxStore = defineStore(
     }
 
     const reset = async () => {
-      hostname.value = _hostname
-      port.value = _port
-
+      _reset()
       await init()
     }
 
