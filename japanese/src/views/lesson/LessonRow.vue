@@ -23,7 +23,7 @@
           v-html="textView(row.content)"
         />
       </div>
-      <div class="translation" v-if="translate">
+      <div class="translate" v-if="translate">
         <el-text>{{ row.translation }}</el-text>
       </div>
     </div>
@@ -88,9 +88,7 @@ const click = async (id: string) => {
 }
 
 .row {
-  display: flex;
-  align-items: baseline;
-  gap: calc(var(--gap12) * 0.4);
+  display: inline;
 }
 
 .row-icon,
@@ -99,11 +97,12 @@ const click = async (id: string) => {
 }
 
 .row-text {
-  font-size: 1.25em;
+  margin-left: 0.3em;
+  font-size: 1.1em;
   letter-spacing: 1px;
 }
 
-.translation {
+.translate {
   font-size: 0.75em;
   margin-left: 2em;
 }
