@@ -5,14 +5,14 @@
     </el-form-item>
 
     <!-- 服务配置 -->
-    <div>
-      <el-form-item label="服务地址" v-if="enable">
+    <div v-if="enable">
+      <el-form-item label="服务地址">
         <div class="row">
           <el-input class="host-name" v-model="host" />
           <el-input-number class="port" v-model="port" :min="1" :max="65535" />
         </div>
       </el-form-item>
-      <el-form-item label="是否可用" v-if="enable">
+      <el-form-item label="是否可用">
         <div class="row">
           <el-text :type="info?.message ? 'danger' : 'success'">
             {{ info?.status }}
@@ -156,7 +156,7 @@ const {
 } = storeToRefs(store)
 
 onMounted(async () => {
-  await store.init()
+  setTimeout(store.init)
 })
 </script>
 
