@@ -1,11 +1,17 @@
 <template>
-  <component v-if="iconConfig" :is="iconConfig.component" class="icon" :class="iconConfig.className"
-    :disabled="isReading" v-bind="iconConfig.extraProps" @click="iconConfig.onClick" />
-  <audio ref="audio"></audio>
+  <component
+    class="icon"
+    v-if="iconConfig"
+    :is="iconConfig.component"
+    :class="iconConfig.className"
+    :disabled="isReading"
+    v-bind="iconConfig.extraProps"
+    @click="iconConfig.onClick"
+  />
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
+import { computed, watch, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useReadingStore } from '../stores/readingStore'
 import { useSpeechStore } from '../stores/speechStore'
@@ -24,8 +30,6 @@ const props = defineProps<{
   word?: WordItem | null
   words?: WordItem[] | null
 }>()
-
-const audio = ref<HTMLAudioElement | null>(null)
 
 // store
 const { isReading, nowTextId } = storeToRefs(useReadingStore())
@@ -53,7 +57,7 @@ const iconConfig = computed(() => {
     return {
       component: IconBot,
       className: '纯文本-tts',
-      onClick: () => ttsOne({ id: props.ttsText!, text: props.ttsText! })
+      onClick: () => ttsOne({ id: props.ttsText!, text: props.ttsText! }),
     }
   }
 
@@ -62,30 +66,37 @@ const iconConfig = computed(() => {
     return {
       component: IconVoice,
       className: '单课文行-audio',
-      onClick: () => audioOne({ id: props.rowItem!.textId, text: props.rowItem!.audio || '' })
+      onClick: () =>
+        audioOne({
+          id: props.rowItem!.textId,
+          text: props.rowItem!.audio || '',
+        }),
     }
-  }
-  else if (audioSpeak.value && props.rowItem?.ttsAudio) {
+  } else if (audioSpeak.value && props.rowItem?.ttsAudio) {
     return {
       component: IconBot,
       className: '单课文行-tts-audio',
       extraProps: { data: props.rowItem.ttsAudio },
-      onClick: () => audioOne({ id: props.rowItem!.textId, text: props.rowItem!.ttsAudio! })
+      onClick: () =>
+        audioOne({ id: props.rowItem!.textId, text: props.rowItem!.ttsAudio! }),
     }
-  }
-  else if (voiceVoxUsable.value && props.rowItem?.speakText) {
+  } else if (voiceVoxUsable.value && props.rowItem?.speakText) {
     return {
       component: IconBot,
       className: '单课文行-voicevox-tts-audio',
       extraProps: { data: props.rowItem.speakText },
-      onClick: () => voiceVoxOne({ id: props.rowItem!.textId, text: props.rowItem!.speakText! })
+      onClick: () =>
+        voiceVoxOne({
+          id: props.rowItem!.textId,
+          text: props.rowItem!.speakText!,
+        }),
     }
-  }
-  else if (ttsSpeak.value && props.rowItem?.speakText) {
+  } else if (ttsSpeak.value && props.rowItem?.speakText) {
     return {
       component: IconBot,
       className: '单课文行-tts',
-      onClick: () => ttsOne({ id: props.rowItem!.textId, text: props.rowItem!.speakText! })
+      onClick: () =>
+        ttsOne({ id: props.rowItem!.textId, text: props.rowItem!.speakText! }),
     }
   }
 
@@ -94,28 +105,37 @@ const iconConfig = computed(() => {
     return {
       component: IconVoice,
       className: '多课文行-audio',
-      onClick: () => audioMany(props.rowItems!.map(i => ({ id: i.textId, text: i.audio || '' })))
+      onClick: () =>
+        audioMany(
+          props.rowItems!.map((i) => ({ id: i.textId, text: i.audio || '' }))
+        ),
     }
-  }
-  else if (audioSpeak.value && props.rowItems?.[0]?.ttsAudio) {
+  } else if (audioSpeak.value && props.rowItems?.[0]?.ttsAudio) {
     return {
       component: IconBot,
       className: '多课文行-tts-audio',
-      onClick: () => audioMany(props.rowItems!.map(i => ({ id: i.textId, text: i.ttsAudio || '' })))
+      onClick: () =>
+        audioMany(
+          props.rowItems!.map((i) => ({ id: i.textId, text: i.ttsAudio || '' }))
+        ),
     }
-  }
-  else if (voiceVoxUsable.value && props.rowItems?.[0]?.speakText) {
+  } else if (voiceVoxUsable.value && props.rowItems?.[0]?.speakText) {
     return {
       component: IconBot,
       className: '多课文行-voicevox-tts-audio',
-      onClick: () => voiceVoxList(props.rowItems!.map(i => ({ id: i.textId, text: i.speakText })))
+      onClick: () =>
+        voiceVoxList(
+          props.rowItems!.map((i) => ({ id: i.textId, text: i.speakText }))
+        ),
     }
-  }
-  else if (ttsSpeak.value && props.rowItems?.[0]?.speakText) {
+  } else if (ttsSpeak.value && props.rowItems?.[0]?.speakText) {
     return {
       component: IconBot,
       className: '多课文行-tts',
-      onClick: () => ttsMany(props.rowItems!.map(i => ({ id: i.textId, text: i.speakText })))
+      onClick: () =>
+        ttsMany(
+          props.rowItems!.map((i) => ({ id: i.textId, text: i.speakText }))
+        ),
     }
   }
 
@@ -124,28 +144,28 @@ const iconConfig = computed(() => {
     return {
       component: IconVoice,
       className: '单单词-audio',
-      onClick: () => audioOne({ id: props.word!.textId, text: props.word!.audio || '' })
+      onClick: () =>
+        audioOne({ id: props.word!.textId, text: props.word!.audio || '' }),
     }
-  }
-  else if (audioSpeak.value && props.word?.ttsAudio) {
+  } else if (audioSpeak.value && props.word?.ttsAudio) {
     return {
       component: IconBot,
       className: '单单词-tts-audio',
-      onClick: () => audioOne({ id: props.word!.textId, text: props.word!.ttsAudio! })
+      onClick: () =>
+        audioOne({ id: props.word!.textId, text: props.word!.ttsAudio! }),
     }
-  }
-  else if (voiceVoxUsable.value && props.word?.word) {
+  } else if (voiceVoxUsable.value && props.word?.word) {
     return {
       component: IconBot,
       className: '单单词-voicevox-tts-audio',
-      onClick: () => voiceVoxOne({ id: props.word!.textId, text: props.word!.word })
+      onClick: () =>
+        voiceVoxOne({ id: props.word!.textId, text: props.word!.word }),
     }
-  }
-  else if (ttsSpeak.value && props.word?.word) {
+  } else if (ttsSpeak.value && props.word?.word) {
     return {
       component: IconBot,
       className: '单单词-tts',
-      onClick: () => ttsOne({ id: props.word!.textId, text: props.word!.word })
+      onClick: () => ttsOne({ id: props.word!.textId, text: props.word!.word }),
     }
   }
 
@@ -154,28 +174,33 @@ const iconConfig = computed(() => {
     return {
       component: IconVoice,
       className: '多单词-audio',
-      onClick: () => audioMany(props.words!.map(i => ({ id: i.textId, text: i.audio || '' })))
+      onClick: () =>
+        audioMany(
+          props.words!.map((i) => ({ id: i.textId, text: i.audio || '' }))
+        ),
     }
-  }
-  else if (audioSpeak.value && props.words?.[0]?.ttsAudio) {
+  } else if (audioSpeak.value && props.words?.[0]?.ttsAudio) {
     return {
       component: IconBot,
       className: '多单词-tts-audio',
-      onClick: () => audioMany(props.words!.map(i => ({ id: i.textId, text: i.ttsAudio || '' })))
+      onClick: () =>
+        audioMany(
+          props.words!.map((i) => ({ id: i.textId, text: i.ttsAudio || '' }))
+        ),
     }
-  }
-  else if (voiceVoxUsable.value && props.words?.[0]?.word) {
+  } else if (voiceVoxUsable.value && props.words?.[0]?.word) {
     return {
       component: IconBot,
       className: '多单词-voicevox-tts-audio',
-      onClick: () => voiceVoxList(props.words!.map(i => ({ id: i.textId, text: i.word })))
+      onClick: () =>
+        voiceVoxList(props.words!.map((i) => ({ id: i.textId, text: i.word }))),
     }
-  }
-  else if (ttsSpeak.value && props.words?.[0]?.word) {
+  } else if (ttsSpeak.value && props.words?.[0]?.word) {
     return {
       component: IconBot,
       className: '多单词-tts',
-      onClick: () => ttsMany(props.words!.map(i => ({ id: i.textId, text: i.word })))
+      onClick: () =>
+        ttsMany(props.words!.map((i) => ({ id: i.textId, text: i.word }))),
     }
   }
 
@@ -189,12 +214,24 @@ watch(
     document.getElementById(nowTextId.value)?.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
-      inline: 'nearest'
+      inline: 'nearest',
     })
   }
 )
 
+const createUniqueAudio = (): HTMLAudioElement => {
+  const id = 'voicevox-audio'
+  let audio = document.getElementById(id)
+  if (audio) {
+    return audio as HTMLAudioElement
+  }
+  audio = document.createElement('audio')
+  audio.id = id
+  document.body.appendChild(audio)
+  return audio as HTMLAudioElement
+}
+
 onMounted(() => {
-  setAudioRef(audio.value)
+  setAudioRef(createUniqueAudio())
 })
 </script>
