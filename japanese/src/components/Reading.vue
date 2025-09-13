@@ -1,122 +1,62 @@
 <template>
   <!-- 纯文本 -->
-  <IconBot
-    class="icon 纯文本-tts"
-    :disabled="isReading"
-    v-if="ttsText"
-    @click="ttsOne({ id: ttsText, text: ttsText })"
-  />
+  <IconBot class="icon 纯文本-tts" :disabled="isReading" v-if="ttsText" @click="ttsOne({ id: ttsText, text: ttsText })" />
 
   <!-- 课文行 一行 -->
-  <IconVoice
-    class="icon 单课文行-audio"
-    :disabled="isReading"
-    v-else-if="rowItem?.audio"
-    @click="audioOne({ id: rowItem.textId, text: rowItem.audio })"
-  />
+  <IconVoice class="icon 单课文行-audio" :disabled="isReading" v-else-if="rowItem?.audio"
+    @click="audioOne({ id: rowItem.textId, text: rowItem.audio })" />
 
-  <IconBot
-    class="icon 单课文行-tts-audio"
-    :data="rowItem?.ttsAudio"
-    :disabled="isReading"
-    v-else-if="rowItem?.ttsAudio"
-    @click="audioOne({ id: rowItem.textId, text: rowItem.ttsAudio })"
-  />
+  <IconBot class="icon 单课文行-tts-audio" :data="rowItem?.ttsAudio" :disabled="isReading" v-else-if="rowItem?.ttsAudio"
+    @click="audioOne({ id: rowItem.textId, text: rowItem.ttsAudio })" />
 
-  <IconBot
-    class="icon 单课文行-tts"
-    :disabled="isReading"
-    v-else-if="rowItem?.speakText"
-    @click="ttsOne({ id: rowItem.textId, text: rowItem.speakText })"
-  />
+  <IconBot class="icon 单课文行-tts" :disabled="isReading" v-else-if="rowItem?.speakText"
+    @click="ttsOne({ id: rowItem.textId, text: rowItem.speakText })" />
 
   <!-- 课文行 多行 -->
-  <IconVoice
-    class="icon 多课文行-audio"
-    :disabled="isReading"
-    v-else-if="rowItems && rowItems[0].audio"
-    @click="
-      audioMany(
-        rowItems.map((item) => ({ id: item.textId, text: item.audio || '' }))
-      )
-    "
-  />
+  <IconVoice class="icon 多课文行-audio" :disabled="isReading" v-else-if="rowItems && rowItems[0].audio" @click="
+    audioMany(
+      rowItems.map((item) => ({ id: item.textId, text: item.audio || '' }))
+    )
+    " />
 
-  <IconBot
-    class="icon 多课文行-tts-audio"
-    :disabled="isReading"
-    v-else-if="rowItems && rowItems[0].ttsAudio"
-    @click="
-      audioMany(
-        rowItems.map((item) => ({ id: item.textId, text: item.ttsAudio || '' }))
-      )
-    "
-  />
+  <IconBot class="icon 多课文行-tts-audio" :disabled="isReading" v-else-if="rowItems && rowItems[0].ttsAudio" @click="
+    audioMany(
+      rowItems.map((item) => ({ id: item.textId, text: item.ttsAudio || '' }))
+    )
+    " />
 
-  <IconBot
-    class="icon 多课文行-tts"
-    :disabled="isReading"
-    v-else-if="rowItems && rowItems[0].speakText"
-    @click="
-      ttsMany(
-        rowItems.map((item) => ({ id: item.textId, text: item.speakText }))
-      )
-    "
-  />
+  <IconBot class="icon 多课文行-tts" :disabled="isReading" v-else-if="rowItems && rowItems[0].speakText" @click="
+    ttsMany(
+      rowItems.map((item) => ({ id: item.textId, text: item.speakText }))
+    )
+    " />
 
   <!--单词 单个-->
-  <IconVoice
-    class="icon 单单词-audio"
-    :disabled="isReading"
-    v-else-if="word?.audio"
-    @click="audioOne({ id: word.textId, text: word.audio })"
-  />
+  <IconVoice class="icon 单单词-audio" :disabled="isReading" v-else-if="word?.audio"
+    @click="audioOne({ id: word.textId, text: word.audio })" />
 
-  <IconBot
-    class="icon 单单词-tts-audio"
-    :disabled="isReading"
-    v-else-if="word?.ttsAudio"
-    @click="audioOne({ id: word.textId, text: word.ttsAudio })"
-  />
+  <IconBot class="icon 单单词-tts-audio" :disabled="isReading" v-else-if="word?.ttsAudio"
+    @click="audioOne({ id: word.textId, text: word.ttsAudio })" />
 
-  <IconBot
-    class="icon 单单词-tts"
-    :disabled="isReading"
-    v-else-if="word?.kana"
-    @click="ttsOne({ id: word.textId, text: word.word })"
-  />
+  <IconBot class="icon 单单词-tts" :disabled="isReading" v-else-if="word?.kana"
+    @click="ttsOne({ id: word.textId, text: word.word })" />
 
   <!--单词 多个-->
-  <IconVoice
-    class="icon 多单词-audio"
-    :disabled="isReading"
-    v-else-if="words && words[0]?.audio"
-    @click="
-      audioMany(
-        words.map((item) => ({ id: item.textId, text: item.audio || '' }))
-      )
-    "
-  />
+  <IconVoice class="icon 多单词-audio" :disabled="isReading" v-else-if="words && words[0]?.audio" @click="
+    audioMany(
+      words.map((item) => ({ id: item.textId, text: item.audio || '' }))
+    )
+    " />
 
-  <IconBot
-    class="icon 多单词-tts-audio"
-    :disabled="isReading"
-    v-else-if="words && words[0]?.ttsAudio"
-    @click="
-      audioMany(
-        words.map((item) => ({ id: item.textId, text: item.ttsAudio || '' }))
-      )
-    "
-  />
+  <IconBot class="icon 多单词-tts-audio" :disabled="isReading" v-else-if="words && words[0]?.ttsAudio" @click="
+    audioMany(
+      words.map((item) => ({ id: item.textId, text: item.ttsAudio || '' }))
+    )
+    " />
 
-  <IconBot
-    class="icon 多单词-tts"
-    :disabled="isReading"
-    v-else-if="words && words[0]?.kana"
-    @click="
-      ttsMany(words.map((item) => ({ id: item.textId, text: item.kana })))
-    "
-  />
+  <IconBot class="icon 多单词-tts" :disabled="isReading" v-else-if="words && words[0]?.kana" @click="
+    ttsMany(words.map((item) => ({ id: item.textId, text: item.kana })))
+    " />
 </template>
 
 <script setup lang="ts">

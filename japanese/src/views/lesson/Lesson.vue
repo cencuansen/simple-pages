@@ -9,50 +9,33 @@
 
       <!-- 简单句子 -->
       <section id="sentences" class="section" v-if="hasSentences">
-        <el-form>
-          <LessonRow
-            :rows="sentences"
-            :translate="allTranslate"
-            :text-view="textView"
-          />
-        </el-form>
+        <LessonRow :rows="sentences" :translate="allTranslate" :text-view="textView" />
       </section>
 
       <!-- 普通对话 -->
       <section id="conversations" class="section" v-if="hasConversations">
         <el-form v-for="exchange in conversations">
-          <LessonRow
-            :rows="exchange"
-            :translate="allTranslate"
-            :text-view="textView"
-          />
+          <LessonRow :rows="exchange" :translate="allTranslate" :text-view="textView" />
         </el-form>
       </section>
 
       <!-- 情景对话 -->
       <section id="discussions" class="section" v-if="hasDiscussions">
         <h2 v-html="textView(discussions?.title)"></h2>
-        <el-form label-width="auto" v-for="exchange in discussions?.contents">
-          <LessonRow
-            :rows="exchange"
-            :translate="allTranslate"
-            :text-view="textView"
-          />
-        </el-form>
+        <div class="discussions" v-for="exchange in discussions?.contents">
+          <LessonRow :rows="exchange" :translate="allTranslate" :text-view="textView" />
+        </div>
       </section>
 
       <!-- 短文-->
       <section id="article" class="section" v-if="hasArticle">
-        <h2>
-          <Reading :row-items="article?.contents as TextBase[]" />
-          <span v-html="textView(article?.title)"></span>
-        </h2>
+          <h2>
+            <Reading :row-items="article?.contents as TextBase[]" />
+            <span v-html="textView(article?.title)"></span>
+          </h2>
+
         <el-form>
-          <LessonRow
-            :rows="article?.contents"
-            :translate="allTranslate"
-            :text-view="textView"
-          />
+          <LessonRow :rows="article?.contents" :translate="allTranslate" :text-view="textView" />
         </el-form>
       </section>
 
@@ -69,49 +52,21 @@
 
     <LessonAudio ref="audioRef" />
 
-    <el-dialog
-      class="search-model"
-      v-model="dialog"
-      v-if="dialog"
-      :modal="true"
-    >
+    <el-dialog class="search-model" v-model="dialog" v-if="dialog" :modal="true">
       <template #header>
         <SimpleInput v-model.lazy="keyword" v-focus />
       </template>
       <div class="model-result-item" v-for="lesson in fullLessons">
-        <div
-          class="model-lesson-title"
-          v-html="displayText(lesson.title)"
-          @click="goLesson(Number(lesson.idx))"
-        ></div>
-        <div
-          class="model-lesson-match-content"
-          v-for="content in lesson.contents"
-          v-html="content"
-        ></div>
+        <div class="model-lesson-title" v-html="displayText(lesson.title)" @click="goLesson(Number(lesson.idx))"></div>
+        <div class="model-lesson-match-content" v-for="content in lesson.contents" v-html="content"></div>
       </div>
     </el-dialog>
 
     <LinkTo :top="top" :bind="['.anchor-link']" />
 
-    <div
-      class="close-fullscreen"
-      title="退出全屏"
-      v-if="fullscreen"
-      @click="toggleFullscreen(false)"
-    >
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M18 6L6 18M6 6L18 18"
-          stroke="white"
-          stroke-width="2"
-          stroke-linecap="round"
-        />
+    <div class="close-fullscreen" title="退出全屏" v-if="fullscreen" @click="toggleFullscreen(false)">
+      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" />
       </svg>
     </div>
 
@@ -292,8 +247,19 @@ onMounted(() => {
 }
 
 .section {
-  margin: 10px auto 10px;
+  margin: 10px auto;
   max-width: var(--content-max-width);
+}
+
+h1 {
+  margin-bottom: 12px;
+}
+
+h2 {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--gap12) * 0.5);
 }
 
 :deep(.el-scrollbar__wrap) {
@@ -344,9 +310,12 @@ onMounted(() => {
   font-size: 24px;
   user-select: none;
   z-index: 999;
-  display: flex; /* 使用Flexbox */
-  justify-content: center; /* 水平居中 */
-  align-items: center; /* 垂直居中 */
+  display: flex;
+  /* 使用Flexbox */
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
   backdrop-filter: blur(10000px);
 }
 

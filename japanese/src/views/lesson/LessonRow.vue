@@ -1,24 +1,36 @@
 <template>
-  <el-form-item
-    :label="displayText(row.speaker)"
-    v-for="row in rows"
-    :key="row.textId"
-  >
-    <div class="text-row">
-      <Reading :row-item="row as TextBase" />
-      <el-text
-        :id="row.textId"
-        class="text-content"
-        :class="{
-          active: activeText(row.textId),
-        }"
-        v-html="textView(row.content)"
-      ></el-text>
+  <!--  <el-form-item
+      :label="displayText(row.speaker)"
+      v-for="row in rows"
+      :key="row.textId"
+    >
+      <div class="text-row">
+        <Reading :row-item="row as TextBase" />
+        <el-text
+          :id="row.textId"
+          class="text-content"
+          :class="{
+            active: activeText(row.textId),
+          }"
+          v-html="textView(row.content)"
+        ></el-text>
+      </div>
+      <div class="translation" v-if="translate">
+        {{ row.translation }}
+      </div>
+    </el-form-item>-->
+  <div :id="row.textId" class="lesson-row" v-for="row in rows" :key="row.textId">
+    <div class="left" v-if="row.speaker">{{ displayText(row.speaker.trim()) }}</div>
+    <div class="right">
+      <div class="row">
+        <Reading class="row-icon" :row-item="row as TextBase" />
+        <el-text class="row-text" v-html="textView(row.content)" />
+      </div>
+      <div class="translation" v-if="translate">
+        <el-text>{{ row.translation }}</el-text>
+      </div>
     </div>
-    <div class="translation" v-if="translate">
-      {{ row.translation }}
-    </div>
-  </el-form-item>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -40,7 +52,56 @@ defineProps<LessonRowProps>()
 </script>
 
 <style scoped>
-:deep(.el-form-item__label) {
+.lesson-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--gap12);
+  margin-bottom: var(--gap12);
+  line-height: 2.3;
+}
+
+.left {
+  width: 35px;
+  flex-shrink: 1;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: none;
+  color: #999;
+  font-weight: bold;
+  display: flex;
+  align-items: start;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--gap12) * 0.4);
+}
+
+.row-icon,
+.row-text {
+  align-self: baseline;
+}
+
+.row-text {
+  font-size: 1.25em;
+  letter-spacing: 1px;
+}
+
+.translation {
+  font-size: 0.75em;
+  margin-left: 2em;
+}
+
+/*:deep(.el-form-item__label) {
   font-size: 1.2rem;
   font-weight: bolder;
   user-select: none;
@@ -79,5 +140,5 @@ defineProps<LessonRowProps>()
   font-size: 0.85em;
   color: #999;
   transition: opacity 0.3s ease;
-}
+}*/
 </style>
