@@ -146,6 +146,20 @@
       </el-form-item>
     </div>
   </el-form>
+
+  <div class="more-info">
+    <el-form label-width="auto">
+      <el-form-item label="voicevox">
+        <a target="_blank" href="//github.com/VOICEVOX/voicevox">访问</a>
+      </el-form-item>
+
+      <el-form-item label="nemo engine">
+        <a target="_blank" href="//github.com/VOICEVOX/voicevox_nemo_engine">
+          访问
+        </a>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -224,5 +238,9 @@ onMounted(async () => {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.more-info a {
+  cursor: alias;
 }
 </style>

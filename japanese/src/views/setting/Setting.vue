@@ -27,9 +27,12 @@ import VoiceVoxSetting from './VoiceVoxSetting.vue'
 }
 
 .el-tabs {
+  height: calc(100vh - var(--root-header-height) - var(--root-footer-height));
+}
+
+:deep(.el-tab-pane) {
   margin: 0 auto;
   max-width: var(--content-max-width);
-  height: calc(100vh - var(--root-header-height) - var(--root-footer-height));
 }
 
 :deep(.el-tabs__content) {
@@ -39,5 +42,10 @@ import VoiceVoxSetting from './VoiceVoxSetting.vue'
 
 :deep(.el-tabs__content::-webkit-scrollbar) {
   display: none;
+}
+
+:deep(.el-tabs__header.is-top) {
+  margin: 0 auto 15px;
+  width: var(--content-max-width);
 }
 </style>
