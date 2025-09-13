@@ -6,12 +6,16 @@
     <el-tab-pane label="语音">
       <TtsSetting />
     </el-tab-pane>
+    <el-tab-pane label="VoiceVox">
+      <VoiceVoxSetting />
+    </el-tab-pane>
   </el-tabs>
 </template>
 
 <script setup lang="ts">
 import GeneralSetting from './GeneralSetting.vue'
 import TtsSetting from './TtsSetting.vue'
+import VoiceVoxSetting from './VoiceVoxSetting.vue'
 </script>
 
 <style scoped>
