@@ -1,15 +1,17 @@
 <template>
   <component v-if="iconConfig" :is="iconConfig.component" class="icon" :class="iconConfig.className"
     :disabled="isReading" v-bind="iconConfig.extraProps" @click="iconConfig.onClick" />
+  <audio ref="audio"></audio>
 </template>
 
 <script setup lang="ts">
-import { computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useReadingStore } from '../stores/readingStore'
 import { useSpeechStore } from '../stores/speechStore'
 import { useAudioStore } from '../stores/audioStore'
 import { useSettingStore } from '../stores/settingStore'
+import { useVoiceVoxStore } from '../stores/voiceVox/voiceVoxStore'
 import type { TextBase } from '../views/lesson/types'
 import type { WordItem } from '../types'
 import IconVoice from './IconVoice.vue'
@@ -23,6 +25,8 @@ const props = defineProps<{
   words?: WordItem[] | null
 }>()
 
+const audio = ref<HTMLAudioElement | null>(null)
+
 // store
 const { isReading, nowTextId } = storeToRefs(useReadingStore())
 const speechStore = useSpeechStore()
@@ -35,6 +39,12 @@ const audioOne = audioStore.playAudio
 const audioMany = audioStore.playAudioList
 
 const { audioSpeak, ttsSpeak } = storeToRefs(useSettingStore())
+
+const voiceVoxStore = useVoiceVoxStore()
+const { usable } = storeToRefs(voiceVoxStore)
+const setAudioRef = voiceVoxStore.setAudioRef
+const voiceVoxOne = voiceVoxStore.voiceVoxOne
+const voiceVoxList = voiceVoxStore.voiceVoxList
 
 // 计算属性：决定渲染哪个图标
 const iconConfig = computed(() => {
@@ -55,7 +65,7 @@ const iconConfig = computed(() => {
       onClick: () => audioOne({ id: props.rowItem!.textId, text: props.rowItem!.audio || '' })
     }
   }
-  if (audioSpeak.value && props.rowItem?.ttsAudio) {
+  else if (audioSpeak.value && props.rowItem?.ttsAudio) {
     return {
       component: IconBot,
       className: '单课文行-tts-audio',
@@ -63,7 +73,15 @@ const iconConfig = computed(() => {
       onClick: () => audioOne({ id: props.rowItem!.textId, text: props.rowItem!.ttsAudio! })
     }
   }
-  if (ttsSpeak.value && props.rowItem?.speakText) {
+  else if (usable.value && props.rowItem?.speakText) {
+    return {
+      component: IconBot,
+      className: '单课文行-voicevox-tts-audio',
+      extraProps: { data: props.rowItem.speakText },
+      onClick: () => voiceVoxOne({ id: props.rowItem!.textId, text: props.rowItem!.speakText! })
+    }
+  }
+  else if (ttsSpeak.value && props.rowItem?.speakText) {
     return {
       component: IconBot,
       className: '单课文行-tts',
@@ -79,14 +97,21 @@ const iconConfig = computed(() => {
       onClick: () => audioMany(props.rowItems!.map(i => ({ id: i.textId, text: i.audio || '' })))
     }
   }
-  if (audioSpeak.value && props.rowItems?.[0]?.ttsAudio) {
+  else if (audioSpeak.value && props.rowItems?.[0]?.ttsAudio) {
     return {
       component: IconBot,
       className: '多课文行-tts-audio',
       onClick: () => audioMany(props.rowItems!.map(i => ({ id: i.textId, text: i.ttsAudio || '' })))
     }
   }
-  if (ttsSpeak.value && props.rowItems?.[0]?.speakText) {
+  else if (usable.value && props.rowItems?.[0]?.speakText) {
+    return {
+      component: IconBot,
+      className: '多课文行-voicevox-tts-audio',
+      onClick: () => voiceVoxList(props.rowItems!.map(i => ({ id: i.textId, text: i.speakText })))
+    }
+  }
+  else if (ttsSpeak.value && props.rowItems?.[0]?.speakText) {
     return {
       component: IconBot,
       className: '多课文行-tts',
@@ -99,17 +124,24 @@ const iconConfig = computed(() => {
     return {
       component: IconVoice,
       className: '单单词-audio',
-      onClick: () => audioOne({ id: props.word!.textId, text: props.word!.audio || ''})
+      onClick: () => audioOne({ id: props.word!.textId, text: props.word!.audio || '' })
     }
   }
-  if (audioSpeak.value && props.word?.ttsAudio) {
+  else if (audioSpeak.value && props.word?.ttsAudio) {
     return {
       component: IconBot,
       className: '单单词-tts-audio',
       onClick: () => audioOne({ id: props.word!.textId, text: props.word!.ttsAudio! })
     }
   }
-  if (ttsSpeak.value && props.word?.kana) {
+  else if (usable.value && props.word?.kana) {
+    return {
+      component: IconBot,
+      className: '单单词-voicevox-tts-audio',
+      onClick: () => voiceVoxOne({ id: props.word!.textId, text: props.word!.word })
+    }
+  }
+  else if (ttsSpeak.value && props.word?.kana) {
     return {
       component: IconBot,
       className: '单单词-tts',
@@ -125,18 +157,25 @@ const iconConfig = computed(() => {
       onClick: () => audioMany(props.words!.map(i => ({ id: i.textId, text: i.audio || '' })))
     }
   }
-  if (audioSpeak.value && props.words?.[0]?.ttsAudio) {
+  else if (audioSpeak.value && props.words?.[0]?.ttsAudio) {
     return {
       component: IconBot,
       className: '多单词-tts-audio',
       onClick: () => audioMany(props.words!.map(i => ({ id: i.textId, text: i.ttsAudio || '' })))
     }
   }
-  if (ttsSpeak.value && props.words?.[0]?.kana) {
+  else if (usable.value && props.words?.[0]?.kana) {
+    return {
+      component: IconBot,
+      className: '多单词-voicevox-tts-audio',
+      onClick: () => voiceVoxList(props.words!.map(i => ({ id: i.textId, text: i.word })))
+    }
+  }
+  else if (ttsSpeak.value && props.words?.[0]?.kana) {
     return {
       component: IconBot,
       className: '多单词-tts',
-      onClick: () => ttsMany(props.words!.map(i => ({ id: i.textId, text: i.kana })))
+      onClick: () => ttsMany(props.words!.map(i => ({ id: i.textId, text: i.word })))
     }
   }
 
@@ -154,4 +193,8 @@ watch(
     })
   }
 )
+
+onMounted(() => {
+  setAudioRef(audio.value)
+})
 </script>

@@ -29,6 +29,7 @@ import { useJlptGrammarStore } from './stores/grammar/jlptGrammarStore.ts'
 import { useSettingStore } from './stores/settingStore.ts'
 import { useConjuStore } from './stores/conjuStore.ts'
 import { useJlptConjuStore } from './stores/jlptConjuStore.ts'
+import { useVoiceVoxStore } from './stores/voiceVox/voiceVoxStore.ts'
 import { useRouter, useRoute } from 'vue-router'
 import { detectBrowser } from './utils'
 import { storeToRefs } from 'pinia'
@@ -99,6 +100,7 @@ const grammarStore = useGrammarStore()
 const jlptGrammarStore = useJlptGrammarStore()
 const verbConju = useConjuStore()
 const jlptConjuStore = useJlptConjuStore()
+const voiceVoxStore = useVoiceVoxStore()
 
 watch(
   () => route.path,
@@ -121,6 +123,7 @@ onMounted(async () => {
   await jlptGrammarStore.init()
   await verbConju.init()
   await jlptConjuStore.init()
+  await voiceVoxStore.init()
 })
 </script>
 

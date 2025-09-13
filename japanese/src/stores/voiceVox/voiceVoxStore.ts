@@ -1,7 +1,8 @@
 // src/stores/voiceVoxStore.ts
-import { defineStore } from 'pinia'
+import { defineStore, storeToRefs } from 'pinia'
 import { computed, ref, watch } from 'vue'
 import type { Speaker, VoiceVoxInfo } from './types'
+import { useReadingStore, type ReadingItem } from '../readingStore.ts'
 
 export const useVoiceVoxStore = defineStore(
   'voice-vox',
@@ -159,7 +160,7 @@ export const useVoiceVoxStore = defineStore(
       if (!text) {
         throw new Error('请输入待朗读的字、词、句')
       }
-      const audio_query = `${host.value}/audio_query?text=${encodeURIComponent(text)}&speaker=${speakerId.value}`
+      const audio_query = `${host.value}/audio_query?text=${encodeURIComponent(text)}&speaker=${speakerId.value}&enable_ruby=true`
       const synthesis = `${host.value}/synthesis?speaker=${speakerId.value}`
       const audioQueryResponse = await fetch(audio_query, {
         method: 'POST',
@@ -188,6 +189,167 @@ export const useVoiceVoxStore = defineStore(
       })
       return await synthesisResponse.arrayBuffer()
     }
+
+    // 播放相关
+    const readingStore = useReadingStore()
+    const { rate, volume, repeatTimes } = storeToRefs(readingStore)
+    const { setIsReading, setNowTextId } = readingStore
+
+    const audioRef = ref<HTMLAudioElement>()
+    const isPlaying = ref(false)
+    const currentAudio = ref('')
+    const currentTime = ref(0)
+
+    const setAudioRef = (refEl: HTMLAudioElement | undefined | null) => {
+      audioRef.value = refEl || void 0
+    }
+
+    // 播放单个 ReadingItem
+    const voiceVoxOne = async (item: ReadingItem) => {
+      if (!audioRef.value || !item) return
+
+      isPlaying.value = true
+      setNowTextId(item.id)
+      currentAudio.value = item.text
+
+      let playCount = 0
+
+      const playLoop = async () => {
+        if (playCount >= repeatTimes.value) {
+          isPlaying.value = false
+          return
+        }
+
+        try {
+          // 1. 调用 synthesis 获取音频数据
+          const buffer = await synthesis(item.text)
+          const blob = new Blob([buffer], { type: 'audio/wav' })
+          const url = URL.createObjectURL(blob)
+
+          // 2. 设置播放参数
+          audioRef.value!.playbackRate = rate.value
+          audioRef.value!.volume = volume.value
+          audioRef.value!.src = url
+
+          audioRef.value!.ontimeupdate = onTimeUpdate
+          audioRef.value!.onplay = onPlay
+          audioRef.value!.onpause = onPause
+          audioRef.value!.onabort = onAbort
+          audioRef.value!.onerror = onError
+
+          // 3. 播放
+          await audioRef.value!.play()
+          playCount++
+
+          // 4. 播放结束监听
+          audioRef.value!.addEventListener(
+            'ended',
+            () => {
+              URL.revokeObjectURL(url) // 释放 URL
+              if (playCount < repeatTimes.value) {
+                playLoop()
+              } else {
+                isPlaying.value = false
+              }
+            },
+            { once: true }
+          )
+        } catch (err) {
+          console.error('播放失败:', err)
+          isPlaying.value = false
+        }
+      }
+
+      await playLoop()
+    }
+
+    // 播放多个 ReadingItem
+    const voiceVoxList = async (items: ReadingItem[]) => {
+      if (!audioRef.value || items.length === 0) return
+
+      isPlaying.value = true
+      let listRepeatCount = 0
+      let currentIndex = 0
+
+      const playNext = async () => {
+        if (currentIndex >= items.length) {
+          currentIndex = 0
+          listRepeatCount++
+          if (listRepeatCount >= repeatTimes.value) {
+            isPlaying.value = false
+            return
+          }
+        }
+
+        const item = items[currentIndex]
+        setNowTextId(item.id)
+        currentAudio.value = item.text
+
+        try {
+          const buffer = await synthesis(item.text)
+          const blob = new Blob([buffer], { type: 'audio/wav' })
+          const url = URL.createObjectURL(blob)
+
+          audioRef.value!.playbackRate = rate.value
+          audioRef.value!.volume = volume.value
+          audioRef.value!.src = url
+
+          audioRef.value!.ontimeupdate = onTimeUpdate
+          audioRef.value!.onplay = onPlay
+          audioRef.value!.onpause = onPause
+          audioRef.value!.onabort = onAbort
+          audioRef.value!.onerror = onError
+
+          await audioRef.value!.play()
+
+          audioRef.value!.addEventListener(
+            'ended',
+            () => {
+              URL.revokeObjectURL(url)
+              currentIndex++
+              playNext()
+            },
+            { once: true }
+          )
+        } catch (err) {
+          console.error('播放失败:', err)
+          isPlaying.value = false
+        }
+      }
+
+      await playNext()
+    }
+
+    const voiceVoxPause = () => {
+      if (isPlaying.value && audioRef.value) {
+        audioRef.value.pause()
+        isPlaying.value = false
+      }
+    }
+
+    const onTimeUpdate = (e: Event) => {
+      currentTime.value = (e.target as HTMLAudioElement)?.currentTime || 0
+    }
+
+    const onPlay = () => {
+      isPlaying.value = true
+    }
+
+    const onPause = () => {
+      isPlaying.value = false
+    }
+
+    const onError = () => {
+      isPlaying.value = false
+    }
+
+    const onAbort = () => {
+      isPlaying.value = false
+    }
+
+    watch(isPlaying, (newVal) => {
+      setIsReading(newVal)
+    })
 
     return {
       reset,
@@ -235,8 +397,14 @@ export const useVoiceVoxStore = defineStore(
       setOutputSamplingRate,
       setOutputStereo,
       setText,
+      setAudioRef,
+
+      isPlaying,
 
       synthesis,
+      voiceVoxOne,
+      voiceVoxList,
+      voiceVoxPause,
     }
   },
   {
