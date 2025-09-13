@@ -4,7 +4,7 @@
     :loading="isReading"
     @click="req"
   >
-    VoiceVox
+    {{ content }}
   </el-button>
   <audio ref="audio" autoplay></audio>
 </template>
@@ -31,6 +31,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false,
+  },
+  content: {
+    type: String,
+    default: 'VoiceVox',
   },
 })
 

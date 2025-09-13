@@ -133,9 +133,10 @@
           <el-input
             type="textarea"
             v-model="text"
+            :autosize="{ minRows: 5 }"
             placeholder="请输入待朗读的字、词、句"
           />
-          <VoiceVox :text="text" :disabled="!text" />
+          <VoiceVox :text="text" :disabled="!text" :content="'朗读'" />
         </div>
       </el-form-item>
 
@@ -181,12 +182,14 @@ const setPort = store.setPort
 const _hostname = ref(hostname.value)
 const _port = ref(port.value)
 
+const loading = ref(false)
+
 const blur = () => {
+  loading.value = true
   setHostname(_hostname.value)
   setPort(_port.value)
+  loading.value = false
 }
-
-const loading = ref(false)
 
 const _init = async () => {
   loading.value = true
