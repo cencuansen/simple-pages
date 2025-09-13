@@ -41,7 +41,7 @@ const audioMany = audioStore.playAudioList
 const { audioSpeak, ttsSpeak } = storeToRefs(useSettingStore())
 
 const voiceVoxStore = useVoiceVoxStore()
-const { usable } = storeToRefs(voiceVoxStore)
+const { usable: voiceVoxUsable } = storeToRefs(voiceVoxStore)
 const setAudioRef = voiceVoxStore.setAudioRef
 const voiceVoxOne = voiceVoxStore.voiceVoxOne
 const voiceVoxList = voiceVoxStore.voiceVoxList
@@ -73,7 +73,7 @@ const iconConfig = computed(() => {
       onClick: () => audioOne({ id: props.rowItem!.textId, text: props.rowItem!.ttsAudio! })
     }
   }
-  else if (usable.value && props.rowItem?.speakText) {
+  else if (voiceVoxUsable.value && props.rowItem?.speakText) {
     return {
       component: IconBot,
       className: '单课文行-voicevox-tts-audio',
@@ -104,7 +104,7 @@ const iconConfig = computed(() => {
       onClick: () => audioMany(props.rowItems!.map(i => ({ id: i.textId, text: i.ttsAudio || '' })))
     }
   }
-  else if (usable.value && props.rowItems?.[0]?.speakText) {
+  else if (voiceVoxUsable.value && props.rowItems?.[0]?.speakText) {
     return {
       component: IconBot,
       className: '多课文行-voicevox-tts-audio',
@@ -134,14 +134,14 @@ const iconConfig = computed(() => {
       onClick: () => audioOne({ id: props.word!.textId, text: props.word!.ttsAudio! })
     }
   }
-  else if (usable.value && props.word?.kana) {
+  else if (voiceVoxUsable.value && props.word?.word) {
     return {
       component: IconBot,
       className: '单单词-voicevox-tts-audio',
       onClick: () => voiceVoxOne({ id: props.word!.textId, text: props.word!.word })
     }
   }
-  else if (ttsSpeak.value && props.word?.kana) {
+  else if (ttsSpeak.value && props.word?.word) {
     return {
       component: IconBot,
       className: '单单词-tts',
@@ -164,14 +164,14 @@ const iconConfig = computed(() => {
       onClick: () => audioMany(props.words!.map(i => ({ id: i.textId, text: i.ttsAudio || '' })))
     }
   }
-  else if (usable.value && props.words?.[0]?.kana) {
+  else if (voiceVoxUsable.value && props.words?.[0]?.word) {
     return {
       component: IconBot,
       className: '多单词-voicevox-tts-audio',
       onClick: () => voiceVoxList(props.words!.map(i => ({ id: i.textId, text: i.word })))
     }
   }
-  else if (ttsSpeak.value && props.words?.[0]?.kana) {
+  else if (ttsSpeak.value && props.words?.[0]?.word) {
     return {
       component: IconBot,
       className: '多单词-tts',
