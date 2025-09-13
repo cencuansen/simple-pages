@@ -293,7 +293,7 @@ onMounted(() => {
 }
 
 .section {
-  margin: 10px auto;
+  margin: 0 auto 10px;
   max-width: var(--content-max-width);
 }
 

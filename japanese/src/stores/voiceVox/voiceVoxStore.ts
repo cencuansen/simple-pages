@@ -86,13 +86,13 @@ export const useVoiceVoxStore = defineStore(
         const res = await fetch(url)
         version.value = await res.json()
         info.value = {
-          status: '服务可用',
+          status: '服务正常',
           message: '',
         }
         return res.ok
       } catch (err: Error | any) {
         info.value = {
-          status: '服务不可用',
+          status: '服务异常',
           message: err.message,
         }
         return false
@@ -410,6 +410,7 @@ export const useVoiceVoxStore = defineStore(
   {
     persist: {
       pick: [
+        'enable',
         'hostname',
         'port',
         'speakerId',

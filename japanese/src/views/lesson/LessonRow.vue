@@ -68,17 +68,18 @@ const click = async (id: string) => {
 }
 
 .left {
-  width: 35px;
-  flex-shrink: 1;
+  width: 2em;
+  display: inline-block;
   text-wrap: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-x: scroll;
   user-select: none;
   color: #999;
-  font-weight: bold;
-  display: flex;
-  align-items: start;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.left::-webkit-scrollbar {
+  display: none;
 }
 
 .right {
@@ -106,45 +107,4 @@ const click = async (id: string) => {
   font-size: 0.75em;
   margin-left: 2em;
 }
-
-/*:deep(.el-form-item__label) {
-  font-size: 1.2rem;
-  font-weight: bolder;
-  user-select: none;
-  white-space: nowrap;
-  color: var(--el-text-color-regular);
-  line-height: var(--text-content-line-height);
-}
-
-:deep(.el-form-item__content) {
-  display: flex;
-  align-items: start;
-  flex-direction: column;
-}
-
-.text-row {
-  display: inline;
-  letter-spacing: 1px;
-  line-height: var(--text-content-line-height);
-}
-
-.text-content {
-  font-size: 1.2rem;
-}
-
-:deep(.anchor-link),
-:deep(ruby) {
-  margin: calc(0.2 * var(--gap12));
-}
-
-:deep(.anchor-link ruby),
-:deep(ruby .anchor-link) {
-  margin: 0;
-}
-
-.translation {
-  font-size: 0.85em;
-  color: #999;
-  transition: opacity 0.3s ease;
-}*/
 </style>
