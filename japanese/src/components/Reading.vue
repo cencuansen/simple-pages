@@ -1,85 +1,30 @@
 <template>
-
-  <!-- 纯文本 -->
-  <IconBot class="icon 纯文本-tts" :disabled="isReading" v-if="ttsSpeak && ttsText"
-    @click="ttsOne({ id: ttsText, text: ttsText })" />
-
-  <!-- 课文行 一行 -->
-  <IconVoice class="icon 单课文行-audio" :disabled="isReading" v-else-if="audioSpeak && rowItem?.audio"
-    @click="audioOne({ id: rowItem.textId, text: rowItem.audio })" />
-
-  <IconBot class="icon 单课文行-tts-audio" :data="rowItem?.ttsAudio" :disabled="isReading"
-    v-else-if="audioSpeak && rowItem?.ttsAudio" @click="audioOne({ id: rowItem.textId, text: rowItem.ttsAudio })" />
-
-  <IconBot class="icon 单课文行-tts" :disabled="isReading" v-else-if="ttsSpeak && rowItem?.speakText"
-    @click="ttsOne({ id: rowItem.textId, text: rowItem.speakText })" />
-
-  <!-- 课文行 多行 -->
-  <IconVoice class="icon 多课文行-audio" :disabled="isReading" v-else-if="audioSpeak && rowItems && rowItems[0].audio"
-    @click="
-      audioMany(
-        rowItems.map((item) => ({ id: item.textId, text: item.audio || '' }))
-      )
-      " />
-
-  <IconBot class="icon 多课文行-tts-audio" :disabled="isReading" v-else-if="audioSpeak && rowItems && rowItems[0].ttsAudio"
-    @click="
-      audioMany(
-        rowItems.map((item) => ({ id: item.textId, text: item.ttsAudio || '' }))
-      )
-      " />
-
-  <IconBot class="icon 多课文行-tts" :disabled="isReading" v-else-if="ttsSpeak && rowItems && rowItems[0].speakText" @click="
-    ttsMany(
-      rowItems.map((item) => ({ id: item.textId, text: item.speakText }))
-    )
-    " />
-
-  <!--单词 单个-->
-  <IconVoice class="icon 单单词-audio" :disabled="isReading" v-else-if="audioSpeak && word?.audio"
-    @click="audioOne({ id: word.textId, text: word.audio })" />
-
-  <IconBot class="icon 单单词-tts-audio" :disabled="isReading" v-else-if="audioSpeak && word?.ttsAudio"
-    @click="audioOne({ id: word.textId, text: word.ttsAudio })" />
-
-  <IconBot class="icon 单单词-tts" :disabled="isReading" v-else-if="ttsSpeak && word?.kana"
-    @click="ttsOne({ id: word.textId, text: word.word })" />
-
-  <!--单词 多个-->
-  <IconVoice class="icon 多单词-audio" :disabled="isReading" v-else-if="audioSpeak && words && words[0]?.audio" @click="
-    audioMany(
-      words.map((item) => ({ id: item.textId, text: item.audio || '' }))
-    )
-    " />
-
-  <IconBot class="icon 多单词-tts-audio" :disabled="isReading" v-else-if="audioSpeak && words && words[0]?.ttsAudio"
-    @click="
-      audioMany(
-        words.map((item) => ({ id: item.textId, text: item.ttsAudio || '' }))
-      )
-      " />
-
-  <IconBot class="icon 多单词-tts" :disabled="isReading" v-else-if="ttsSpeak && words && words[0]?.kana" @click="
-    ttsMany(words.map((item) => ({ id: item.textId, text: item.kana })))
-    " />
-
+  <component v-if="iconConfig" :is="iconConfig.component" class="icon" :class="iconConfig.className"
+    :disabled="isReading" v-bind="iconConfig.extraProps" @click="iconConfig.onClick" />
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
-import { useReadingStore } from '../stores/readingStore.ts'
-import { useSpeechStore } from '../stores/speechStore.ts'
-import { useAudioStore } from '../stores/audioStore.ts'
-import { useSettingStore } from '../stores/settingStore.ts'
+import { computed, watch } from 'vue'
 import { storeToRefs } from 'pinia'
-import type { TextBase } from '../views/lesson/types.ts'
+import { useReadingStore } from '../stores/readingStore'
+import { useSpeechStore } from '../stores/speechStore'
+import { useAudioStore } from '../stores/audioStore'
+import { useSettingStore } from '../stores/settingStore'
+import type { TextBase } from '../views/lesson/types'
 import type { WordItem } from '../types'
 import IconVoice from './IconVoice.vue'
 import IconBot from './IconBot.vue'
 
-const readingStore = useReadingStore()
-const { isReading, nowTextId } = storeToRefs(readingStore)
+const props = defineProps<{
+  ttsText?: string | null
+  rowItem?: TextBase | null
+  rowItems?: TextBase[] | null
+  word?: WordItem | null
+  words?: WordItem[] | null
+}>()
 
+// store
+const { isReading, nowTextId } = storeToRefs(useReadingStore())
 const speechStore = useSpeechStore()
 const { lastFireTime } = storeToRefs(speechStore)
 const ttsOne = speechStore.speak
@@ -89,36 +34,124 @@ const audioStore = useAudioStore()
 const audioOne = audioStore.playAudio
 const audioMany = audioStore.playAudioList
 
-const settingStore = useSettingStore()
-const { audioSpeak, ttsSpeak } = storeToRefs(settingStore)
+const { audioSpeak, ttsSpeak } = storeToRefs(useSettingStore())
 
-const props = defineProps<{
-  ttsText?: string | undefined | null
-  rowItem?: TextBase | undefined | null
-  rowItems?: TextBase[] | undefined | null
-  word?: WordItem | undefined | null
-  words?: WordItem[] | undefined | null
-}>()
+// 计算属性：决定渲染哪个图标
+const iconConfig = computed(() => {
+  // 纯文本
+  if (ttsSpeak.value && props.ttsText) {
+    return {
+      component: IconBot,
+      className: '纯文本-tts',
+      onClick: () => ttsOne({ id: props.ttsText!, text: props.ttsText! })
+    }
+  }
 
+  // 课文行 - 单行
+  if (audioSpeak.value && props.rowItem?.audio) {
+    return {
+      component: IconVoice,
+      className: '单课文行-audio',
+      onClick: () => audioOne({ id: props.rowItem!.textId, text: props.rowItem!.audio || '' })
+    }
+  }
+  if (audioSpeak.value && props.rowItem?.ttsAudio) {
+    return {
+      component: IconBot,
+      className: '单课文行-tts-audio',
+      extraProps: { data: props.rowItem.ttsAudio },
+      onClick: () => audioOne({ id: props.rowItem!.textId, text: props.rowItem!.ttsAudio! })
+    }
+  }
+  if (ttsSpeak.value && props.rowItem?.speakText) {
+    return {
+      component: IconBot,
+      className: '单课文行-tts',
+      onClick: () => ttsOne({ id: props.rowItem!.textId, text: props.rowItem!.speakText! })
+    }
+  }
+
+  // 课文行 - 多行
+  if (audioSpeak.value && props.rowItems?.[0]?.audio) {
+    return {
+      component: IconVoice,
+      className: '多课文行-audio',
+      onClick: () => audioMany(props.rowItems!.map(i => ({ id: i.textId, text: i.audio || '' })))
+    }
+  }
+  if (audioSpeak.value && props.rowItems?.[0]?.ttsAudio) {
+    return {
+      component: IconBot,
+      className: '多课文行-tts-audio',
+      onClick: () => audioMany(props.rowItems!.map(i => ({ id: i.textId, text: i.ttsAudio || '' })))
+    }
+  }
+  if (ttsSpeak.value && props.rowItems?.[0]?.speakText) {
+    return {
+      component: IconBot,
+      className: '多课文行-tts',
+      onClick: () => ttsMany(props.rowItems!.map(i => ({ id: i.textId, text: i.speakText })))
+    }
+  }
+
+  // 单词 - 单个
+  if (audioSpeak.value && props.word?.audio) {
+    return {
+      component: IconVoice,
+      className: '单单词-audio',
+      onClick: () => audioOne({ id: props.word!.textId, text: props.word!.audio || ''})
+    }
+  }
+  if (audioSpeak.value && props.word?.ttsAudio) {
+    return {
+      component: IconBot,
+      className: '单单词-tts-audio',
+      onClick: () => audioOne({ id: props.word!.textId, text: props.word!.ttsAudio! })
+    }
+  }
+  if (ttsSpeak.value && props.word?.kana) {
+    return {
+      component: IconBot,
+      className: '单单词-tts',
+      onClick: () => ttsOne({ id: props.word!.textId, text: props.word!.word })
+    }
+  }
+
+  // 单词 - 多个
+  if (audioSpeak.value && props.words?.[0]?.audio) {
+    return {
+      component: IconVoice,
+      className: '多单词-audio',
+      onClick: () => audioMany(props.words!.map(i => ({ id: i.textId, text: i.audio || '' })))
+    }
+  }
+  if (audioSpeak.value && props.words?.[0]?.ttsAudio) {
+    return {
+      component: IconBot,
+      className: '多单词-tts-audio',
+      onClick: () => audioMany(props.words!.map(i => ({ id: i.textId, text: i.ttsAudio || '' })))
+    }
+  }
+  if (ttsSpeak.value && props.words?.[0]?.kana) {
+    return {
+      component: IconBot,
+      className: '多单词-tts',
+      onClick: () => ttsMany(props.words!.map(i => ({ id: i.textId, text: i.kana })))
+    }
+  }
+
+  return null
+})
+
+// 滚动监听
 watch(
   () => lastFireTime.value,
-  (_) => {
+  () => {
     document.getElementById(nowTextId.value)?.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
-      inline: 'nearest',
+      inline: 'nearest'
     })
   }
 )
-
-watch(
-  () => props.ttsText,
-  () => {
-    console.log('props.ttsText', props.ttsText)
-  }
-)
 </script>
-
-<style></style>
-
-<style scoped></style>
