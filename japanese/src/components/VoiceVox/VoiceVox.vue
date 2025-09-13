@@ -1,12 +1,8 @@
 <template>
-  <el-button
-    :disabled="isReading || disabled"
-    :loading="isReading"
-    @click="req"
-  >
+  <el-button :disabled="isReading || disabled" :loading="isReading" v-if="usable" @click="req">
     {{ content }}
   </el-button>
-  <audio ref="audio" autoplay></audio>
+  <audio ref="audio" autoplay v-if="usable" />
 </template>
 
 <script setup lang="ts">
@@ -22,6 +18,7 @@ const setIsReading = readingStore.setIsReading
 
 const voiceVoxStore = useVoiceVoxStore()
 const synthesis = voiceVoxStore.synthesis
+const { usable } = storeToRefs(voiceVoxStore)
 
 const props = defineProps({
   text: {

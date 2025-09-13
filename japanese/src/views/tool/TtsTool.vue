@@ -1,26 +1,16 @@
 <template>
   <div class="tool">
     <div class="row">
-      <el-input
-        class="row"
-        type="textarea"
-        v-model.trim="text"
-        :autosize="{ minRows: 5 }"
-        placeholder="请输入需要朗读的 '日文文本'"
-      ></el-input>
+      <el-input class="row" type="textarea" v-model.trim="text" :autosize="{ minRows: 5 }"
+        placeholder="请输入需要朗读的 '日文文本'"></el-input>
     </div>
     <div class="row">
       <div>
-        <el-button
-          :disabled="!text || isReading"
-          @click="ttsOne({ id: text, text: text })"
-        >
+        <el-button :disabled="!text || isReading" @click="ttsOne({ id: text, text: text })">
           朗读
         </el-button>
       </div>
-      <div>
-        <VoiceVox :text="text" :disabled="!text" />
-      </div>
+      <VoiceVox :text="text" :disabled="!text" />
       <div v-if="isReading">
         <el-button type="warning" @click="speechStore.stop"> 终止</el-button>
       </div>
