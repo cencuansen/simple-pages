@@ -1,12 +1,27 @@
 <template>
-  <div :id="row.textId" class="lesson-row" v-for="row in rows" :key="row.textId">
-    <div class="left" v-if="row.speaker">{{ displayText(row.speaker.trim()) }}</div>
+  <div
+    :id="row.textId"
+    class="lesson-row"
+    v-for="row in rows"
+    :key="row.textId"
+  >
+    <div class="left" v-if="row.speaker">
+      {{ displayText(row.speaker.trim()) }}
+    </div>
     <div class="right">
       <div class="row">
-        <Reading class="row-icon" :row-item="row as TextBase" @click="click(row.textId)" />
-        <el-text class="row-text" :class="{
-          active: activeText(row.textId),
-        }" v-html="textView(row.content)" />
+        <Reading
+          class="row-icon"
+          :row-item="row as TextBase"
+          @click="click(row.textId)"
+        />
+        <el-text
+          class="row-text"
+          :class="{
+            active: activeText(row.textId),
+          }"
+          v-html="textView(row.content)"
+        />
       </div>
       <div class="translation" v-if="translate">
         <el-text>{{ row.translation }}</el-text>
@@ -35,7 +50,11 @@ defineProps<LessonRowProps>()
 const click = async (id: string) => {
   const target = document.querySelector(`#${id}`)
   if (!target) return
-  target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+  target.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+    inline: 'nearest',
+  })
 }
 </script>
 
