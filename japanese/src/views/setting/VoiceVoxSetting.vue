@@ -20,10 +20,16 @@
       </el-form-item>
       <el-form-item label="是否可用">
         <div class="row">
-          <el-text :type="info?.message ? 'danger' : 'success'">
+          <el-button @click="_init" :loading="loading">刷新</el-button>
+          <el-text
+            class="info-status"
+            :type="info?.message ? 'danger' : 'success'"
+          >
             {{ info?.status }}
           </el-text>
-          <el-text type="danger">{{ info?.message }}</el-text>
+          <el-text class="info-message" type="danger"
+            >{{ info?.message }}
+          </el-text>
         </div>
       </el-form-item>
     </div>
@@ -170,6 +176,7 @@ const {
   text,
 } = storeToRefs(store)
 
+const init = store.init
 const reset = store.reset
 const setHostname = store.setHostname
 const setPort = store.setPort
@@ -182,8 +189,16 @@ const blur = () => {
   setPort(_port.value)
 }
 
+const loading = ref(false)
+
+const _init = async () => {
+  loading.value = true
+  await init()
+  loading.value = false
+}
+
 onMounted(async () => {
-  setTimeout(store.init)
+  setTimeout(init)
 })
 </script>
 
@@ -200,5 +215,13 @@ onMounted(async () => {
 
 .port {
   flex: 1;
+}
+
+.info-status {
+  width: 60px;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

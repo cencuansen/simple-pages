@@ -37,9 +37,13 @@ const props = defineProps({
 const audio = ref()
 
 const req = async () => {
-  const bytes = await synthesis(props.text)
-  setIsReading(true)
-  audio.value.src = URL.createObjectURL(new Blob([bytes]))
+  try {
+    setIsReading(true)
+    const bytes = await synthesis(props.text)
+    audio.value.src = URL.createObjectURL(new Blob([bytes]))
+  } catch (_) {
+    setIsReading(false)
+  }
 }
 
 onMounted(() => {
