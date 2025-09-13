@@ -31,6 +31,7 @@ import VoiceVoxSetting from './VoiceVoxSetting.vue'
 }
 
 :deep(.el-tab-pane) {
+  width: 100%;
   margin: 0 auto;
   max-width: var(--content-max-width);
 }
@@ -45,7 +46,8 @@ import VoiceVoxSetting from './VoiceVoxSetting.vue'
 }
 
 :deep(.el-tabs__header.is-top) {
+  width: 100%;
   margin: 0 auto 15px;
-  width: var(--content-max-width);
+  max-width: var(--content-max-width);
 }
 </style>

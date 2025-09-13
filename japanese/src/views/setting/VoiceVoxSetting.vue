@@ -128,7 +128,7 @@
       </el-form-item>
 
       <!-- 测试 -->
-      <el-form-item label="测试">
+      <el-form-item label="朗读测试">
         <div class="row">
           <el-input
             type="textarea"
@@ -141,25 +141,21 @@
       </el-form-item>
 
       <!-- 重置 -->
-      <el-form-item label=" ">
-        <el-button @click="reset">重置</el-button>
+      <el-form-item label="默认配置">
+        <el-button @click="reset">恢复</el-button>
       </el-form-item>
     </div>
+
+    <el-form-item label="voicevox">
+      <a target="_blank" href="//github.com/VOICEVOX/voicevox">访问</a>
+    </el-form-item>
+
+    <el-form-item label="nemo engine">
+      <a target="_blank" href="//github.com/VOICEVOX/voicevox_nemo_engine">
+        访问
+      </a>
+    </el-form-item>
   </el-form>
-
-  <div class="more-info">
-    <el-form label-width="auto">
-      <el-form-item label="voicevox">
-        <a target="_blank" href="//github.com/VOICEVOX/voicevox">访问</a>
-      </el-form-item>
-
-      <el-form-item label="nemo engine">
-        <a target="_blank" href="//github.com/VOICEVOX/voicevox_nemo_engine">
-          访问
-        </a>
-      </el-form-item>
-    </el-form>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -240,7 +236,7 @@ onMounted(async () => {
   white-space: nowrap;
 }
 
-.more-info a {
+.el-form-item a {
   cursor: alias;
 }
 </style>
