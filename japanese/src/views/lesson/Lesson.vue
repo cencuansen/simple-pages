@@ -9,13 +9,21 @@
 
       <!-- 简单句子 -->
       <section id="sentences" class="section" v-if="hasSentences">
-        <LessonRow :rows="sentences" :translate="allTranslate" :text-view="textView" />
+        <LessonRow
+          :rows="sentences"
+          :translate="allTranslate"
+          :text-view="textView"
+        />
       </section>
 
       <!-- 普通对话 -->
       <section id="conversations" class="section" v-if="hasConversations">
         <el-form v-for="exchange in conversations">
-          <LessonRow :rows="exchange" :translate="allTranslate" :text-view="textView" />
+          <LessonRow
+            :rows="exchange"
+            :translate="allTranslate"
+            :text-view="textView"
+          />
         </el-form>
       </section>
 
@@ -23,7 +31,11 @@
       <section id="discussions" class="section" v-if="hasDiscussions">
         <h2 v-html="textView(discussions?.title)"></h2>
         <div class="discussions" v-for="exchange in discussions?.contents">
-          <LessonRow :rows="exchange" :translate="allTranslate" :text-view="textView" />
+          <LessonRow
+            :rows="exchange"
+            :translate="allTranslate"
+            :text-view="textView"
+          />
         </div>
       </section>
 
@@ -35,7 +47,11 @@
         </h2>
 
         <el-form>
-          <LessonRow :rows="article?.contents" :translate="allTranslate" :text-view="textView" />
+          <LessonRow
+            :rows="article?.contents"
+            :translate="allTranslate"
+            :text-view="textView"
+          />
         </el-form>
       </section>
 
@@ -52,21 +68,49 @@
 
     <LessonAudio ref="audioRef" />
 
-    <el-dialog class="search-model" v-model="dialog" v-if="dialog" :modal="true">
+    <el-dialog
+      class="search-model"
+      v-model="dialog"
+      v-if="dialog"
+      :modal="true"
+    >
       <template #header>
         <SimpleInput v-model.lazy="keyword" v-focus />
       </template>
       <div class="model-result-item" v-for="lesson in fullLessons">
-        <div class="model-lesson-title" v-html="displayText(lesson.title)" @click="goLesson(Number(lesson.idx))"></div>
-        <div class="model-lesson-match-content" v-for="content in lesson.contents" v-html="content"></div>
+        <div
+          class="model-lesson-title"
+          v-html="displayText(lesson.title)"
+          @click="goLesson(Number(lesson.idx))"
+        ></div>
+        <div
+          class="model-lesson-match-content"
+          v-for="content in lesson.contents"
+          v-html="content"
+        ></div>
       </div>
     </el-dialog>
 
     <LinkTo :top="top" :bind="['.anchor-link']" />
 
-    <div class="close-fullscreen" title="退出全屏" v-if="fullscreen" @click="toggleFullscreen(false)">
-      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" />
+    <div
+      class="close-fullscreen"
+      title="退出全屏"
+      v-if="fullscreen"
+      @click="toggleFullscreen(false)"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18 6L6 18M6 6L18 18"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
       </svg>
     </div>
 
@@ -107,9 +151,9 @@ import type { TextBase } from './types.ts'
 
 const lessonStore = useLessonStore()
 const audioStore = useAudioStore()
-const wordStore = useWordStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
+const wordStore = useWordStore()
 
 const {
   dialog,
@@ -175,7 +219,9 @@ const mainHeight = computed(() => {
 })
 
 const words: ComputedRef<WordItem[]> = computed(() => {
-  return wordStore.getByLesson(currentIndex.value)
+  return wordStore.queryWords({
+    lesson: currentIndex.value,
+  })
 })
 
 const grammars = computed(() => {

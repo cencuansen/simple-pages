@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import type { WordItem, FilterOptions } from '../types'
+import type { WordItem, WordFilter } from '../types'
 import Papa from 'papaparse'
 import ky from 'ky'
 import { newTextId } from '../utils'
@@ -48,10 +48,7 @@ export const useWordStore = defineStore('word', () => {
           error.value = err.message
         },
       })
-    } catch (err) {
-      error.value =
-        err instanceof Error ? err.message : 'Failed to fetch word data'
-      console.error('Error fetching word:', err)
+    } catch (_) {
     } finally {
       isLoading.value = false
     }
@@ -66,43 +63,13 @@ export const useWordStore = defineStore('word', () => {
     })
   }
 
-  const getByLesson = (lesson: number): WordItem[] => {
-    return wordList.value.filter((item) => item.lesson === lesson)
-  }
-
-  const searchByText = (text: string) => {
-    if (!text) return wordList.value
-    const searchText = text.toLowerCase()
-    return wordList.value.filter((item) =>
-      item.kana.toLowerCase().includes(searchText)
-    )
-  }
-
-  const getByPos = (pos: string) => {
-    return wordList.value.filter((item) => item.pos === pos)
-  }
-
-  const filterWord = (options: FilterOptions) => {
-    let result = [...wordList.value]
-
-    if (options.lesson) {
-      result = result.filter((item) => item.lesson === options.lesson)
-    }
-
-    if (options.pos) {
-      result = result.filter((item) => item.pos === options.pos)
-    }
-
-    if (options.searchText) {
-      const text = options.searchText.toLowerCase()
-      result = result.filter(
-        (item) =>
-          item.kana.toLowerCase().includes(text) ||
-          (item.desc && item.desc.toLowerCase().includes(text))
-      )
-    }
-
-    return result
+  const queryWords = (filter: WordFilter): WordItem[] => {
+    return wordList.value.filter((item) => {
+      const matchesLesson = filter.lesson ? item.lesson === filter.lesson : true
+      const matchesKeyword = filter.keyword ? item.kana.includes(filter.keyword) || item.desc.includes(filter.keyword) : true
+      const matchesTextId = filter.textIds ? filter.textIds.includes(item.textId) : true
+      return matchesLesson && matchesKeyword && matchesTextId
+    })
   }
 
   return {
@@ -118,9 +85,6 @@ export const useWordStore = defineStore('word', () => {
 
     // Actions
     init,
-    getByLesson,
-    searchByText,
-    getByPos,
-    filterWord,
+    queryWords
   }
 })

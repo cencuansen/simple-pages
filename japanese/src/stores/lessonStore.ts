@@ -18,9 +18,7 @@ export const useLessonStore = defineStore(
     const maxIndex = ref(0)
     const dialog = ref(false)
     const lastElement = ref<HTMLElement | null>()
-    const wordIds = ref<Map<number, string[]>>(
-      new Map<number, string[]>()
-    )
+    const wordIds = ref<Map<number, string[]>>(new Map<number, string[]>())
 
     // 初始化
     const init = async () => {
@@ -78,7 +76,7 @@ export const useLessonStore = defineStore(
         wordIds.value.set(lesson, [])
       }
       const oldIds: string[] = wordIds.value.get(lesson) || []
-      const newIds = ids.filter(id => !oldIds.includes(id))
+      const newIds = ids.filter((id) => !oldIds.includes(id))
       if (newIds.length) {
         oldIds.push(...newIds)
       }
@@ -162,6 +160,10 @@ export const useLessonStore = defineStore(
     const goLesson = (num: number) => {
       currentIndex.value = num
     }
+
+    const getWordIds = (lesson: number) => {
+      return wordIds.value.get(lesson) || []
+    }
     // -- functions end --
 
     return {
@@ -204,6 +206,7 @@ export const useLessonStore = defineStore(
       goPrevious,
       goNext,
       goLesson,
+      getWordIds
     }
   },
   {

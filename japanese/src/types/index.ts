@@ -13,10 +13,10 @@ export interface WordItem {
   audio?: string
 }
 
-export interface FilterOptions {
+export interface WordFilter {
   lesson?: number
-  pos?: string
-  searchText?: string
+  keyword?: string
+  textIds?: string[]
 }
 
 export interface VoiceOption {
