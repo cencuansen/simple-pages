@@ -27,9 +27,6 @@
           >
             {{ info?.status }}
           </el-text>
-          <el-text class="info-message" type="danger"
-            >{{ info?.message }}
-          </el-text>
         </div>
       </el-form-item>
     </div>
@@ -210,11 +207,12 @@ onMounted(async () => {
 }
 
 .host-name {
-  flex: 4;
+  flex: 1;
 }
 
 .port {
-  flex: 1;
+  width: 130px;
+  flex-shrink: 0;
 }
 
 .info-status {

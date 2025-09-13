@@ -127,11 +127,11 @@ export const useVoiceVoxStore = defineStore('voice-vox', () => {
     text.value = _text
   }
 
-  const reset = () => {
+  const reset = async () => {
     hostname.value = _hostname
     port.value = _port
 
-    _reset()
+    await init()
   }
 
   const init = async () => {
