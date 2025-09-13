@@ -50,7 +50,6 @@ const setAudioRef = voiceVoxStore.setAudioRef
 const voiceVoxOne = voiceVoxStore.voiceVoxOne
 const voiceVoxList = voiceVoxStore.voiceVoxList
 
-// 计算属性：决定渲染哪个图标
 const iconConfig = computed(() => {
   // 纯文本
   if (ttsSpeak.value && props.ttsText) {
