@@ -23,9 +23,10 @@
 import { ref, onMounted, onUnmounted, computed, type ComputedRef } from 'vue'
 import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
 import type { Dictionary } from '../Dictionary/types.ts'
+import { toUrl } from '@/components/Dictionary/utils.ts'
 
 const dictionaryStore = useDictionaryStore()
-const { getOne, toUrl } = dictionaryStore
+const { getOne } = dictionaryStore
 
 const props = defineProps<{
   selectedText: string

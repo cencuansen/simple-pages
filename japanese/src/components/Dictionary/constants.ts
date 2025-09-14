@@ -1,10 +1,8 @@
-import type { Dictionary } from './types.ts'
+const imageUrlBase: string = import.meta.env.VITE_IMAGE_BASE
 
 export const placeholder: string = '{word}'
 
-const imageUrlBase: string = import.meta.env.VITE_IMAGE_BASE
-
-export const dictionaries: Dictionary[] = [
+export const dictionaries = [
   {
     label: 'JD',
     name: 'JapanDict',
@@ -61,8 +59,8 @@ export const dictionaries: Dictionary[] = [
     logo: `${imageUrlBase}/bai_du.webp`,
     desc: '释义、读音',
   },
-] as const
-
-//
+]
 
 export type DictionaryName = (typeof dictionaries)[number]['name']
+
+

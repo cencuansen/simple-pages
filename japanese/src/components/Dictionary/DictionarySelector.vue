@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import type { Dictionary, DictionarySelector } from './types.ts'
-import { dictionaries } from './index.ts'
+import { dictionaries } from './constants.ts'
 import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
 import DictionaryCore from './DictionaryCore.vue'
 

@@ -16,13 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import type { DictionaryCoreProps } from './types.ts'
-import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
+import type { DictionaryCore } from './types.ts'
+import { toUrl } from './utils.ts';
 
-const dictionaryStore = useDictionaryStore()
-const toUrl = dictionaryStore.toUrl
-
-const props = defineProps<DictionaryCoreProps>()
+const props = defineProps<DictionaryCore>()
 </script>
 
 <style scoped>

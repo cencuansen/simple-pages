@@ -1,4 +1,4 @@
-import { type DictionaryName } from './index.ts'
+import { type DictionaryName } from './constants.ts'
 
 export interface Dictionary {
   label: string
@@ -14,7 +14,7 @@ export interface DictionarySelector {
   disabled?: boolean
 }
 
-export interface DictionaryCoreProps {
+export interface DictionaryCore {
   word: string
   dict: Dictionary
   disabled?: boolean

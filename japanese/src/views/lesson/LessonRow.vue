@@ -98,7 +98,7 @@ const speak = async (id: string) => {
 }
 
 .row-icon + .row-text {
-  margin-left: 0.3em;
+  margin-left: 0.1em;
 }
 
 .row-text {
@@ -108,6 +108,5 @@ const speak = async (id: string) => {
 
 .translate {
   font-size: 0.75em;
-  margin-left: 2em;
 }
 </style>
