@@ -160,7 +160,7 @@ export const useVoiceVoxStore = defineStore(
       if (!text) {
         throw new Error('请输入待朗读的字、词、句')
       }
-      const audio_query = `${host.value}/audio_query?text=${encodeURIComponent(text)}&speaker=${speakerId.value}&enable_ruby=true`
+      const audio_query = `${host.value}/audio_query?text=${encodeURIComponent(text)}&speaker=${speakerId.value}`
       const synthesis = `${host.value}/synthesis?speaker=${speakerId.value}`
       const audioQueryResponse = await fetch(audio_query, {
         method: 'POST',

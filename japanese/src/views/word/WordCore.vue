@@ -89,7 +89,7 @@
       <el-table-column
         label=""
         width="50"
-        v-if="settingStore.ttsSpeak"
+        v-if="settingStore.ttsSpeak || voiceVoxStore.usable"
         fixed="right"
         class-name="reading-column"
       >
@@ -119,6 +119,7 @@ import {
   withDefaults,
 } from 'vue'
 import { useSpeechStore } from '../../stores/speechStore.ts'
+import { useVoiceVoxStore } from '../../stores/voiceVox/voiceVoxStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
@@ -172,6 +173,7 @@ const readingStore = useReadingStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
+const voiceVoxStore = useVoiceVoxStore()
 
 const activeText = readingStore.activeText
 
