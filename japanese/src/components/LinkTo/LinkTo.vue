@@ -3,16 +3,20 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { nextTick, onMounted, ref, watch } from 'vue'
 
 import { useLessonStore } from '../../stores/lessonStore.ts'
+import { useSettingStore } from '../../stores/settingStore.ts'
 import { storeToRefs } from 'pinia'
 const lessonStore = useLessonStore()
 const { currentIndex } = storeToRefs(lessonStore)
 const setActiveWord = lessonStore.setActiveWord
 
+const settingStore = useSettingStore()
+const { wordLink } = storeToRefs(settingStore)
+
 interface LinkToProps {
-  top: HTMLElement
+  container: HTMLElement
   bind: string | string[]
 }
 
@@ -60,7 +64,8 @@ const forward = async (event: any) => {
 }
 
 const back = () => {
-  const previous = linkHistory.value.pop() || props.top
+  const previous =
+    linkHistory.value.pop() || (props.container.children[0] as HTMLElement)
   setActiveWord(null)
   scrollTo(previous)
 }
@@ -84,30 +89,24 @@ const bindElements = () => {
   })
 }
 
-let observer: MutationObserver | null = null
+watch(
+  () => wordLink.value,
+  (val) => {
+    if (val) {
+      nextTick(() => {
+        bindElements()
+      })
+    } else {
+      targets.forEach((target) => {
+        target.removeEventListener('click', forward)
+      })
+    }
+  }
+)
 
 onMounted(() => {
-  bindElements()
-  observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === 'childList') {
-        bindElements()
-      }
-    })
-  })
-  targets.forEach((target) => {
-    observer &&
-      target.parentNode &&
-      observer.observe(target.parentNode, {
-        childList: true,
-        subtree: true,
-      })
-  })
-})
-
-onUnmounted(() => {
-  if (observer) {
-    observer.disconnect()
+  if (wordLink.value) {
+    bindElements()
   }
 })
 </script>

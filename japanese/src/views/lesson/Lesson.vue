@@ -96,7 +96,7 @@
       </div>
     </el-dialog>
 
-    <LinkTo :top="top" :bind="['.anchor-link']" />
+    <LinkTo :container="container" :bind="['.anchor-link']" />
 
     <div
       class="close-fullscreen"

@@ -97,8 +97,11 @@ const speak = async (id: string) => {
   align-self: baseline;
 }
 
-.row-text {
+.row-icon + .row-text {
   margin-left: 0.3em;
+}
+
+.row-text {
   font-size: 1.1em;
   letter-spacing: 1px;
 }
