@@ -99,7 +99,7 @@ import {
   type Conju,
   type VerbConjuColumn,
 } from './index.ts'
-import Dictionary from '../../components/Dictionary/Dictionary.vue'
+import Dictionary from '../../components/Dictionary/DictionarySelector.vue'
 
 interface VerbConjuProps {
   data: Conju[]

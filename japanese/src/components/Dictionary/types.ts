@@ -8,8 +8,14 @@ export interface Dictionary {
   desc?: string
 }
 
-export interface DictionaryProps {
+export interface DictionarySelector {
   word?: string
-  dict?: DictionaryName
+  dictName?: DictionaryName
+  disabled?: boolean
+}
+
+export interface DictionaryCoreProps {
+  word: string
+  dict: Dictionary
   disabled?: boolean
 }

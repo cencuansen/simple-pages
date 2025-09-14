@@ -21,11 +21,11 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted, computed, type ComputedRef } from 'vue'
-import { useSettingStore } from '../../stores/settingStore.ts'
-import { getDictionary, toUrl } from '../Dictionary'
+import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
 import type { Dictionary } from '../Dictionary/types.ts'
 
-const settingStore = useSettingStore()
+const dictionaryStore = useDictionaryStore()
+const { getOne, toUrl } = dictionaryStore
 
 const props = defineProps<{
   selectedText: string
@@ -57,7 +57,7 @@ const useDict = () => {
 }
 
 onMounted(() => {
-  dict.value = getDictionary(settingStore.dictionary)
+  dict.value = getOne()
 })
 
 onUnmounted(() => {})

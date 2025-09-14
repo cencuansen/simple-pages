@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Dictionary from '../../components/Dictionary/Dictionary.vue'
+import Dictionary from '../../components/Dictionary/DictionarySelector.vue'
 
 const text = ref<string>('')
 </script>

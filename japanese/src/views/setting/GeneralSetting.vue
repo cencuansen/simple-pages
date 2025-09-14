@@ -27,7 +27,7 @@
       <el-switch v-model="settingStore.wordDesc" inline-prompt />
     </el-form-item>
     <el-form-item label="默认词典">
-      <el-select fit-input-width v-model="settingStore.dictionary">
+      <el-select fit-input-width v-model="dictionary">
         <el-option
           v-for="dict in dictionaries"
           :label="[dict.name, dict.desc].join(' - ')"
@@ -39,15 +39,18 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Sunny, Moon } from '@element-plus/icons-vue'
 import { useSettingStore } from '../../stores/settingStore.ts'
-import { computed } from 'vue'
-import { dictionaries } from '../../components/Dictionary'
+import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
 import { storeToRefs } from 'pinia'
 
 const settingStore = useSettingStore()
 const { isDark } = storeToRefs(settingStore)
 const toggleDark = settingStore.toggleDark
+
+const dictionaryStore = useDictionaryStore()
+const { dictionary, dictionaries } = storeToRefs(dictionaryStore)
 
 const darkMode = computed({
   get: () => isDark.value,

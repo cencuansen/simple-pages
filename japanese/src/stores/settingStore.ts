@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia'
 import { useDark, useToggle } from '@vueuse/core'
 import { ref } from 'vue'
-import type { Dictionary } from '../components/Dictionary/types.ts'
-import { dictionaries } from '../components/Dictionary'
 
 export const useSettingStore = defineStore(
   'baseSetting',
@@ -67,13 +65,6 @@ export const useSettingStore = defineStore(
       setExchange2Translate(newStatus)
     }
 
-    const dictionary = ref<string>(dictionaries[0].name)
-    const setDictionary = (dict: Dictionary) => {
-      if (dict) {
-        dictionary.value = dict.name
-      }
-    }
-
     return {
       isDark,
       style,
@@ -92,7 +83,6 @@ export const useSettingStore = defineStore(
       basicsTranslate,
       exchangeTranslate,
       exchange2Translate,
-      dictionary,
       furiganaToggle,
       wordLinkToggle,
       setFullscreen,
@@ -100,7 +90,6 @@ export const useSettingStore = defineStore(
       setBasicsTranslate,
       setExchangeTranslate,
       setExchange2Translate,
-      setDictionary,
     }
   },
   {

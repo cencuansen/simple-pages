@@ -66,20 +66,3 @@ export const dictionaries: Dictionary[] = [
 //
 
 export type DictionaryName = (typeof dictionaries)[number]['name']
-
-export const getDictionary = (str: string | undefined) => {
-  if (!str) {
-    return void 0
-  }
-  return dictionaries.find((d) => d.label === str || d.name === str)
-}
-
-export const toUrl = (
-  word: string | undefined,
-  dict: Dictionary | undefined
-): string | undefined => {
-  if (!word || !dict || !dict.url) {
-    return void 0
-  }
-  return dict.url.replace(placeholder, word)
-}

@@ -1,6 +1,11 @@
 <template>
   <Row v-if="functionGroup">
-    <LessonSelect v-model="lessonIndex" lite fit-input-width v-if="lessonSelect" />
+    <LessonSelect
+      v-model="lessonIndex"
+      lite
+      fit-input-width
+      v-if="lessonSelect"
+    />
     <SimpleSelect
       v-if="levelSelect"
       multiple
@@ -82,8 +87,14 @@
         label="词典"
         v-if="settingStore.wordDict"
       >
+        <template #header>
+          <DictionarySelector @change="dictionaryChange" />
+        </template>
         <template #default="scope">
-          <Dictionary :word="scope.row.word" />
+          <DictionaryCore
+            :word="scope.row.word"
+            :dict="nowDict"
+          />
         </template>
       </el-table-column>
       <el-table-column
@@ -123,6 +134,7 @@ import { useVoiceVoxStore } from '../../stores/voiceVox/voiceVoxStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
+import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
 
 import type { ActiveWord, WordItem } from '../../types'
 import { ElTable } from 'element-plus'
@@ -132,9 +144,12 @@ import LessonSelect from '../../components/LessonSelect.vue'
 import SimpleSelect from '../../components/SimpleSelect.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
-import Dictionary from '../../components/Dictionary/Dictionary.vue'
 import Reading from '../../components/Reading.vue'
+import DictionarySelector from '../../components/Dictionary/DictionarySelector.vue'
+import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
 import { isNumber } from '../../utils'
+
+import type { Dictionary as DictionaryType } from '../../components/Dictionary/types.ts'
 
 interface WordProps {
   data: WordItem[]
@@ -174,8 +189,15 @@ const speechStore = useSpeechStore()
 const wordStore = useWordStore()
 const settingStore = useSettingStore()
 const voiceVoxStore = useVoiceVoxStore()
+const dictionaryStore = useDictionaryStore()
 
 const activeText = readingStore.activeText
+
+const initDict = dictionaryStore.getOne()
+const nowDict = ref<DictionaryType>(initDict)
+const dictionaryChange = (newDict: DictionaryType) => {
+  nowDict.value = newDict
+}
 
 const selectedClasses = ref<string[]>([])
 const selectedLevels = ref<string[]>([])
@@ -190,8 +212,8 @@ const beforePage = computed(() => {
   let list: WordItem[] = props.data
   if (props.activeWord) {
     const { textId, lesson } = props.activeWord
-    list = list.filter((item) =>
-      item.textId === textId && item.lesson === lesson
+    list = list.filter(
+      (item) => item.textId === textId && item.lesson === lesson
     )
   }
   if (props.keyword) {
