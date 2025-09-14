@@ -1,20 +1,20 @@
 <template>
   <el-input
-    class="simple-input"
     v-model.trim="inputValue"
-    :size="size"
-    :placeholder="placeholder"
+    :class="className"
     :clearable="clearable"
     :disabled="disabled"
-    :show-word-limit="showWordLimit"
     :maxlength="maxlength"
+    :placeholder="placeholder"
+    :show-word-limit="showWordLimit"
+    :size="size"
     :style="style"
-    :class="className"
-    @input="handleInput"
+    class="simple-input"
+    @blur="handleBlur"
     @change="handleChange"
     @clear="handleClear"
-    @blur="handleBlur"
     @focus="handleFocus"
+    @input="handleInput"
   >
     <!-- 前置内容插槽 -->
     <template v-if="$slots.prepend" #prepend>
@@ -38,7 +38,7 @@
   </el-input>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from 'vue'
 
 interface Props {

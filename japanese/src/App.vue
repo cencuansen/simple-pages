@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, onBeforeMount } from 'vue'
+import { onBeforeMount, onMounted, ref, watch } from 'vue'
 import { useLessonStore } from './stores/lessonStore'
 import { useWordStore } from './stores/wordStore'
 import { useGrammarStore } from './stores/grammar/grammarStore.ts'
@@ -30,7 +30,7 @@ import { useSettingStore } from './stores/settingStore.ts'
 import { useConjuStore } from './stores/conjuStore.ts'
 import { useJlptConjuStore } from './stores/jlptConjuStore.ts'
 import { useVoiceVoxStore } from './stores/voiceVox/voiceVoxStore.ts'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { detectBrowser } from './utils'
 import { storeToRefs } from 'pinia'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'

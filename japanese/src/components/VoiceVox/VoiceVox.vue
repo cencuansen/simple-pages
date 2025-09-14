@@ -1,11 +1,16 @@
 <template>
-  <el-button :disabled="isReading || disabled" :loading="isReading" v-if="usable" @click="req">
+  <el-button
+    v-if="usable"
+    :disabled="isReading || disabled"
+    :loading="isReading"
+    @click="req"
+  >
     {{ content }}
   </el-button>
   <audio ref="audio" autoplay />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 
 import { useReadingStore } from '../../stores/readingStore.ts'

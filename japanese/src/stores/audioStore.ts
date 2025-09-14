@@ -1,6 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
 import { ref, watch } from 'vue'
-import { useReadingStore, type ReadingItem } from './readingStore.ts'
+import { type ReadingItem, useReadingStore } from './readingStore.ts'
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
 

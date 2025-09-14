@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import type { WordItem, WordFilter } from '../types'
+import type { WordFilter, WordItem } from '../types'
 import Papa from 'papaparse'
 import ky from 'ky'
 import { newTextId } from '../utils'
@@ -66,8 +66,13 @@ export const useWordStore = defineStore('word', () => {
   const queryWords = (filter: WordFilter): WordItem[] => {
     return wordList.value.filter((item) => {
       const matchesLesson = filter.lesson ? item.lesson === filter.lesson : true
-      const matchesKeyword = filter.keyword ? item.kana.includes(filter.keyword) || item.desc.includes(filter.keyword) : true
-      const matchesTextId = filter.textIds ? filter.textIds.includes(item.textId) : true
+      const matchesKeyword = filter.keyword
+        ? item.kana.includes(filter.keyword) ||
+          item.desc.includes(filter.keyword)
+        : true
+      const matchesTextId = filter.textIds
+        ? filter.textIds.includes(item.textId)
+        : true
       return matchesLesson && matchesKeyword && matchesTextId
     })
   }
@@ -85,6 +90,6 @@ export const useWordStore = defineStore('word', () => {
 
     // Actions
     init,
-    queryWords
+    queryWords,
   }
 })

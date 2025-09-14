@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useJlptWordStore } from '../../stores/jlptWord.ts'
+import { useJlptWordStore } from '../../stores/jlptWordStore.ts'
 
 import WordCore from './WordCore.vue'
 import { storeToRefs } from 'pinia'
@@ -57,5 +57,4 @@ const tableHeight = computed(() => {
   margin: 0 auto;
   max-width: var(--content-max-width);
 }
-
 </style>

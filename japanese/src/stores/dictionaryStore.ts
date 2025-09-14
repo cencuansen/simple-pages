@@ -20,8 +20,6 @@ export const useDictionaryStore = defineStore('dictionary', () => {
     dictionary.value = getOne(name)
   }
 
-
-
   return {
     dictionary,
     dictionaries,

@@ -1,28 +1,28 @@
 <template>
   <Row v-if="functionGroup">
     <LessonSelect
-      v-model="lessonIndex"
-      lite
-      fit-input-width
       v-if="lessonSelect"
+      v-model="lessonIndex"
+      fit-input-width
+      lite
     />
     <SimpleSelect
       v-if="levelSelect"
-      multiple
-      :data="levels"
       v-model="selectedLevels"
+      :data="levels"
+      multiple
       placeholder="选等级"
     />
     <SimpleSelect
       v-if="classSelect"
-      multiple
-      :data="wordClasses"
       v-model="selectedClasses"
+      :data="wordClasses"
+      multiple
       placeholder="选词性"
     />
-    <SimpleInput v-model="keyword" v-if="keywordFilter" />
+    <SimpleInput v-if="keywordFilter" v-model="keyword" />
   </Row>
-  <div class="main-table" ref="container" @scrollend="scrollend">
+  <div ref="container" class="main-table" @scrollend="scrollend">
     <el-table
       :data="afterPage"
       :show-header="showHeader"
@@ -51,18 +51,18 @@
       </el-table-column>
       <el-table-column
         label="词性"
-        width="60"
         prop="pos"
         show-overflow-tooltip
+        width="60"
       />
       <el-table-column
+        v-if="settingStore.wordDesc"
         label="释义"
         min-width="150"
         prop="desc"
-        v-if="settingStore.wordDesc"
         show-overflow-tooltip
       />
-      <el-table-column label="课程" width="60" v-if="showLesson">
+      <el-table-column v-if="showLesson" label="课程" width="60">
         <template #default="scope">
           <a href="#" @click="lessonClick(scope.row.lesson)">
             {{ scope.row.lesson }}
@@ -70,10 +70,10 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="等级"
-        width="80"
-        show-overflow-tooltip
         v-if="props.levelSelect"
+        label="等级"
+        show-overflow-tooltip
+        width="80"
       >
         <template #default="scope">
           <div v-for="level in scope.row.levels">
@@ -82,27 +82,24 @@
         </template>
       </el-table-column>
       <el-table-column
-        class-name="dict-column"
-        width="60"
-        label="词典"
         v-if="settingStore.wordDict"
+        class-name="dict-column"
+        label="词典"
+        width="60"
       >
         <template #header>
           <DictionarySelector @change="dictionaryChange" />
         </template>
         <template #default="scope">
-          <DictionaryCore
-            :word="scope.row.word"
-            :dict="nowDict"
-          />
+          <DictionaryCore :dict="nowDict" :word="scope.row.word" />
         </template>
       </el-table-column>
       <el-table-column
+        v-if="settingStore.ttsSpeak || voiceVoxStore.usable"
+        class-name="reading-column"
+        fixed="right"
         label=""
         width="50"
-        v-if="settingStore.ttsSpeak || voiceVoxStore.usable"
-        fixed="right"
-        class-name="reading-column"
       >
         <template #header>
           <Reading :words="afterPage as WordItem[]" />
@@ -120,7 +117,7 @@
   />
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import {
   computed,
   type ComputedRef,

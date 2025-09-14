@@ -1,6 +1,6 @@
 import { defineStore, storeToRefs } from 'pinia'
-import { ref, computed, watch } from 'vue'
-import { useReadingStore, type ReadingItem } from './readingStore.ts'
+import { computed, ref, watch } from 'vue'
+import { type ReadingItem, useReadingStore } from './readingStore.ts'
 
 export const useSpeechStore = defineStore(
   'speech',

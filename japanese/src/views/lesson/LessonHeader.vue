@@ -4,7 +4,7 @@
       <el-button size="small" :disabled="!hasPrevious" @click="goPrevious">
         上一课
       </el-button>
-      <LessonSelect v-model="currentIndex" :clearable="false" fit-input-width/>
+      <LessonSelect v-model="currentIndex" :clearable="false" fit-input-width />
       <el-button size="small" :disabled="!hasNext" @click="goNext">
         下一课
       </el-button>

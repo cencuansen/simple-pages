@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, watch, onMounted } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useReadingStore } from '../stores/readingStore'
 import { useSpeechStore } from '../stores/speechStore'

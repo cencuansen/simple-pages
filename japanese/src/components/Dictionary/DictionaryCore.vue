@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import type { DictionaryCore } from './types.ts'
-import { toUrl } from './utils.ts';
+import { toUrl } from './utils.ts'
 
 const props = defineProps<DictionaryCore>()
 </script>

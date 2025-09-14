@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted, computed, type ComputedRef } from 'vue'
+import { computed, type ComputedRef, onMounted, onUnmounted, ref } from 'vue'
 import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
 import type { Dictionary } from '../Dictionary/types.ts'
 import { toUrl } from '@/components/Dictionary/utils.ts'

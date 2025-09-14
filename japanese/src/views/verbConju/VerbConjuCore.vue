@@ -94,9 +94,9 @@ import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { ElTable } from 'element-plus'
 import {
-  typeOptions,
-  transitivityOptions,
   type Conju,
+  transitivityOptions,
+  typeOptions,
   type VerbConjuColumn,
 } from './index.ts'
 import Dictionary from '../../components/Dictionary/DictionarySelector.vue'

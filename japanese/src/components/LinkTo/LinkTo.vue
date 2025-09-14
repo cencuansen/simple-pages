@@ -5,9 +5,10 @@
 <script setup lang="ts">
 import { nextTick, onMounted, ref, watch } from 'vue'
 
-import { useLessonStore } from '../../stores/lessonStore.ts'
-import { useSettingStore } from '../../stores/settingStore.ts'
+import { useLessonStore } from '@/stores/lessonStore.ts'
+import { useSettingStore } from '@/stores/settingStore.ts'
 import { storeToRefs } from 'pinia'
+
 const lessonStore = useLessonStore()
 const { currentIndex } = storeToRefs(lessonStore)
 const setActiveWord = lessonStore.setActiveWord
@@ -148,7 +149,7 @@ onMounted(() => {
   z-index: 999;
   color-scheme: inherit;
   font-size: 1.5rem;
-  color: var(--el-color-base);
+  color: var(--el-color-info);
   text-decoration: none;
   background-color: var(--el-color-primary);
 }

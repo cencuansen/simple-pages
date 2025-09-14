@@ -1,10 +1,9 @@
-/* src/modules/vocabulary/store/vocabulary.ts */
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import Papa from 'papaparse'
 import ky from 'ky'
-import { newTextId } from '../utils'
-import type { WordItem } from '../types'
+import { newTextId } from '@/utils'
+import type { WordItem } from '@/types'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
