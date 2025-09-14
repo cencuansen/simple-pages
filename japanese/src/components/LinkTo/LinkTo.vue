@@ -155,7 +155,7 @@ onMounted(() => {
 
 @media (min-width: 700px) {
   .link-to {
-    right: calc(var(--right-site-center) + var(--width-10) * 0.5);
+    right: calc(var(--right-site-center) + var(--width-12) * 0.5);
     transform: translateX(50%);
   }
 }

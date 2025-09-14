@@ -153,10 +153,12 @@ onMounted(() => {
 
 <style>
 :root {
-  --ib-width: var(--width-10);
-  --ib-height: 300px;
+  --ib-width: var(--width-12);
+  --ib-height: 80px;
   --ib-item-w: calc(var(--ib-width) * 0.5);
+  --ib-item-active-w: calc(var(--ib-item-w) * 1.4);
   --ib-item-h: var(--ib-item-w);
+  --ib-item-active-h: var(--ib-item-active-w);
   --ib-item-fs: calc(0.5 * var(--ib-item-w));
   --ib-bg: inherit;
   --ib-hover-bg: #333;
@@ -167,18 +169,18 @@ onMounted(() => {
 
 <style scoped>
 .index-bar {
+  box-sizing: border-box;
   position: fixed;
   display: flex;
-  user-select: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 4px;
+  justify-content: space-around;
+  user-select: none;
   z-index: 999;
-  border-radius: calc(0.5 * var(--ib-width));
-  background-color: var(--ib-bg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
+  /*border-radius: calc(0.5 * var(--ib-width));*/
+  /*background-color: var(--ib-bg);*/
+  /*box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
+  /*backdrop-filter: blur(5px);*/
   transition: background-color 0.2s ease;
 }
 
@@ -192,7 +194,7 @@ onMounted(() => {
   transform: translateY(-50%);
   left: var(--ib-offset);
   width: var(--ib-width);
-  max-height: var(--ib-height);
+  height: var(--ib-height);
 }
 
 .index-bar--right {
@@ -200,7 +202,7 @@ onMounted(() => {
   transform: translateY(-50%);
   right: var(--ib-offset);
   width: var(--ib-width);
-  max-height: var(--ib-height);
+  height: var(--ib-height);
 }
 
 .index-bar--top {
@@ -209,7 +211,7 @@ onMounted(() => {
   flex-direction: row;
   transform: translateX(-50%);
   height: var(--ib-width);
-  max-width: var(--ib-height);
+  width: var(--ib-height);
 }
 
 .index-bar--bottom {
@@ -218,7 +220,7 @@ onMounted(() => {
   flex-direction: row;
   transform: translateX(-50%);
   height: var(--ib-width);
-  max-width: var(--ib-height);
+  width: var(--ib-height);
 }
 
 .index-bar--horizontal {
@@ -228,22 +230,15 @@ onMounted(() => {
 .ib__item {
   width: var(--ib-item-w);
   height: var(--ib-item-h);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 4px;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: var(--ib-item-fs);
-  font-weight: 500;
-  color: #333;
-  position: relative;
   background-color: var(--ib-item-bg);
 }
 
 .ib__item--active {
-  transform: scale(1.4);
+  width: var(--ib-item-active-w);
+  height: var(--ib-item-active-h);
   background-color: var(--ib-item-active-bg);
 }
 

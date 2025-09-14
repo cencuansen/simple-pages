@@ -23,7 +23,7 @@
     /* android edge */
     /*--root-footer-height: 105px;*/
 
-    --width-10: 10px;
+    --width-12: 12px;
 
     --right-site-center: calc((100vw - var(--content-max-width)) * 0.25)
 }
