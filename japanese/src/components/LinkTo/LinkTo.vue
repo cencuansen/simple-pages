@@ -136,18 +136,20 @@ onMounted(() => {
 <style scoped>
 .link-to {
   position: absolute;
+  right: 50px;
   bottom: 100px;
   border: none;
-  width: 12px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
   border-radius: 50%;
   text-align: center;
   user-select: none;
   z-index: 999;
   color-scheme: inherit;
-  font-weight: bolder;
   font-size: 1.5rem;
-  color: var(--el-color-primary);
+  color: var(--el-color-base);
   text-decoration: none;
-  background: none;
+  background-color: var(--el-color-primary);
 }
 </style>

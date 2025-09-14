@@ -153,15 +153,15 @@ onMounted(() => {
 
 <style>
 :root {
-  --ib-width: 12px;
+  --ib-width: 10px;
   --ib-height: 300px;
-  --ib-item-w: calc(var(--ib-width) - 2px);
+  --ib-item-w: calc(var(--ib-width) * 0.5);
   --ib-item-h: var(--ib-item-w);
   --ib-item-fs: calc(0.5 * var(--ib-item-w));
   --ib-bg: inherit;
   --ib-hover-bg: #333;
   --ib-item-bg: #666;
-  --ib-item-active-bg: #f00;
+  --ib-item-active-bg: var(--el-color-primary);
 }
 </style>
 
@@ -243,7 +243,7 @@ onMounted(() => {
 }
 
 .ib__item--active {
-  transform: scale(1.2);
+  transform: scale(1.4);
   background-color: var(--ib-item-active-bg);
 }
 
