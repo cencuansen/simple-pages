@@ -161,7 +161,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useVoiceVoxStore } from '../../stores/voiceVox/voiceVoxStore'
+import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
 import VoiceVox from '../../components/VoiceVox/VoiceVox.vue'
 
 const store = useVoiceVoxStore()

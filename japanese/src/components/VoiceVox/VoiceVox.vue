@@ -13,8 +13,8 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 
-import { useReadingStore } from '../../stores/readingStore.ts'
-import { useVoiceVoxStore } from '../../stores/voiceVox/voiceVoxStore.ts'
+import { useReadingStore } from '@/stores/readingStore.ts'
+import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
 import { storeToRefs } from 'pinia'
 
 const readingStore = useReadingStore()

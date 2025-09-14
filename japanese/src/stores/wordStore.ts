@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import type { WordFilter, WordItem } from '../types'
+import type { WordFilter, WordItem } from '@/types'
 import Papa from 'papaparse'
 import ky from 'ky'
-import { newTextId } from '../utils'
+import { newTextId } from '@/utils'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 

@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useJlptWordStore } from '../../stores/jlptWordStore.ts'
+import { useJlptWordStore } from '@/stores/jlptWordStore.ts'
 
 import WordCore from './WordCore.vue'
 import { storeToRefs } from 'pinia'

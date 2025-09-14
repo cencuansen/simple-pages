@@ -34,7 +34,7 @@
 import { displayText } from './index.ts'
 import Reading from '../../components/Reading.vue'
 import type { TextBase } from './types.ts'
-import { useReadingStore } from '../../stores/readingStore.ts'
+import { useReadingStore } from '@/stores/readingStore.ts'
 
 const readingStore = useReadingStore()
 const activeText = readingStore.activeText

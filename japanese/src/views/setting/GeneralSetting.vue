@@ -41,8 +41,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { Moon, Sunny } from '@element-plus/icons-vue'
-import { useSettingStore } from '../../stores/settingStore.ts'
-import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
+import { useSettingStore } from '@/stores/settingStore.ts'
+import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
 import { storeToRefs } from 'pinia'
 
 const settingStore = useSettingStore()

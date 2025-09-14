@@ -89,11 +89,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 
-import { useReadingStore } from '../../stores/readingStore.ts'
-import { useAudioStore } from '../../stores/audioStore.ts'
-import { useSpeechStore } from '../../stores/speechStore.ts'
-import { useLessonStore } from '../../stores/lessonStore.ts'
-import { useSettingStore } from '../../stores/settingStore.ts'
+import { useReadingStore } from '@/stores/readingStore.ts'
+import { useAudioStore } from '@/stores/audioStore.ts'
+import { useSpeechStore } from '@/stores/speechStore.ts'
+import { useLessonStore } from '@/stores/lessonStore.ts'
+import { useSettingStore } from '@/stores/settingStore.ts'
 
 import LessonSelect from '../../components/LessonSelect.vue'
 

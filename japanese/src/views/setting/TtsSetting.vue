@@ -66,9 +66,9 @@
 </template>
 
 <script setup lang="ts">
-import { useSettingStore } from '../../stores/settingStore.ts'
-import { useReadingStore } from '../../stores/readingStore.ts'
-import { useSpeechStore } from '../../stores/speechStore.ts'
+import { useSettingStore } from '@/stores/settingStore.ts'
+import { useReadingStore } from '@/stores/readingStore.ts'
+import { useSpeechStore } from '@/stores/speechStore.ts'
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 

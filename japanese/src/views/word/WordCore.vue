@@ -126,14 +126,14 @@ import {
   ref,
   withDefaults,
 } from 'vue'
-import { useSpeechStore } from '../../stores/speechStore.ts'
-import { useVoiceVoxStore } from '../../stores/voiceVox/voiceVoxStore.ts'
-import { useSettingStore } from '../../stores/settingStore.ts'
-import { useWordStore } from '../../stores/wordStore.ts'
-import { useReadingStore } from '../../stores/readingStore.ts'
-import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
+import { useSpeechStore } from '@/stores/speechStore.ts'
+import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
+import { useSettingStore } from '@/stores/settingStore.ts'
+import { useWordStore } from '@/stores/wordStore.ts'
+import { useReadingStore } from '@/stores/readingStore.ts'
+import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
 
-import type { ActiveWord, WordItem } from '../../types'
+import type { ActiveWord, WordItem } from '@/types'
 import { ElTable } from 'element-plus'
 
 import Row from '../../components/Row.vue'
@@ -144,7 +144,7 @@ import SimplePagination from '../../components/SimplePagination.vue'
 import Reading from '../../components/Reading.vue'
 import DictionarySelector from '../../components/Dictionary/DictionarySelector.vue'
 import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
-import { isNumber } from '../../utils'
+import { isNumber } from '@/utils'
 
 import type { Dictionary as DictionaryType } from '../../components/Dictionary/types.ts'
 

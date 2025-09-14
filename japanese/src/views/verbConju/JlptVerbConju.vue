@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { baseColumns } from './index.ts'
-import { useJlptConjuStore } from '../../stores/jlptConjuStore.ts'
+import { useJlptConjuStore } from '@/stores/jlptConjuStore.ts'
 import { storeToRefs } from 'pinia'
 import VerbConjuCore from './VerbConjuCore.vue'
 

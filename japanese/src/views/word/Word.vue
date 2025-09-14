@@ -16,8 +16,8 @@
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from 'vue'
-import { useSpeechStore } from '../../stores/speechStore.ts'
-import { useWordStore } from '../../stores/wordStore.ts'
+import { useSpeechStore } from '@/stores/speechStore.ts'
+import { useWordStore } from '@/stores/wordStore.ts'
 import { storeToRefs } from 'pinia'
 
 import WordCore from './WordCore.vue'
