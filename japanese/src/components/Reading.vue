@@ -22,6 +22,7 @@ import type { TextBase } from '../views/lesson/types'
 import type { WordItem } from '../types'
 import IconVoice from './IconVoice.vue'
 import IconBot from './IconBot.vue'
+import IconVoiceVox from './IconVoiceVox.vue'
 
 const props = defineProps<{
   ttsText?: string | null
@@ -73,7 +74,7 @@ const iconConfig = computed(() => {
     }
   } else if (audioSpeak.value && props.rowItem?.ttsAudio) {
     return {
-      component: IconBot,
+      component: IconVoiceVox,
       className: '单课文行-tts-audio',
       extraProps: { data: props.rowItem.ttsAudio },
       onClick: () =>
@@ -81,7 +82,7 @@ const iconConfig = computed(() => {
     }
   } else if (voiceVoxUsable.value && props.rowItem?.speakText) {
     return {
-      component: IconBot,
+      component: IconVoiceVox,
       className: '单课文行-voicevox-tts-audio',
       extraProps: { data: props.rowItem.speakText },
       onClick: () =>
@@ -111,7 +112,7 @@ const iconConfig = computed(() => {
     }
   } else if (audioSpeak.value && props.rowItems?.[0]?.ttsAudio) {
     return {
-      component: IconBot,
+      component: IconVoiceVox,
       className: '多课文行-tts-audio',
       onClick: () =>
         audioMany(
@@ -120,7 +121,7 @@ const iconConfig = computed(() => {
     }
   } else if (voiceVoxUsable.value && props.rowItems?.[0]?.speakText) {
     return {
-      component: IconBot,
+      component: IconVoiceVox,
       className: '多课文行-voicevox-tts-audio',
       onClick: () =>
         voiceVoxList(
@@ -148,14 +149,14 @@ const iconConfig = computed(() => {
     }
   } else if (audioSpeak.value && props.word?.ttsAudio) {
     return {
-      component: IconBot,
+      component: IconVoiceVox,
       className: '单单词-tts-audio',
       onClick: () =>
         audioOne({ id: props.word!.textId, text: props.word!.ttsAudio! }),
     }
   } else if (voiceVoxUsable.value && props.word?.word) {
     return {
-      component: IconBot,
+      component: IconVoiceVox,
       className: '单单词-voicevox-tts-audio',
       onClick: () =>
         voiceVoxOne({ id: props.word!.textId, text: props.word!.word }),
@@ -180,7 +181,7 @@ const iconConfig = computed(() => {
     }
   } else if (audioSpeak.value && props.words?.[0]?.ttsAudio) {
     return {
-      component: IconBot,
+      component: IconVoiceVox,
       className: '多单词-tts-audio',
       onClick: () =>
         audioMany(
@@ -189,7 +190,7 @@ const iconConfig = computed(() => {
     }
   } else if (voiceVoxUsable.value && props.words?.[0]?.word) {
     return {
-      component: IconBot,
+      component: IconVoiceVox,
       className: '多单词-voicevox-tts-audio',
       onClick: () =>
         voiceVoxList(props.words!.map((i) => ({ id: i.textId, text: i.word }))),

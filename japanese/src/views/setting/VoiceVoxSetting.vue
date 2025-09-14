@@ -18,7 +18,7 @@
           />
         </div>
       </el-form-item>
-      <el-form-item label="是否可用">
+      <el-form-item label="服务状态">
         <div class="row">
           <el-button @click="_init" :loading="loading">刷新</el-button>
           <el-text
