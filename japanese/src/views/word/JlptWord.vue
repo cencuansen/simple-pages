@@ -7,7 +7,7 @@
       :scroll-top="scrollTop"
       :levelSelect="levelSelect"
       :keyword-filter="keywordFilter"
-      show-lesson
+      show-header
     />
   </div>
 </template>
