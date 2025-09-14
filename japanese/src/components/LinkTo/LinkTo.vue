@@ -137,12 +137,9 @@ onMounted(() => {
 .link-to {
   position: absolute;
   bottom: 100px;
-  right: 50px;
-  width: 12px;
-  height: 12px;
   border: none;
+  width: 12px;
   border-radius: 50%;
-  line-height: 25px;
   text-align: center;
   user-select: none;
   z-index: 999;
@@ -150,8 +147,7 @@ onMounted(() => {
   font-weight: bolder;
   font-size: 1.5rem;
   color: var(--el-color-primary);
-  background-color: inherit;
-  backdrop-filter: blur(10000px);
   text-decoration: none;
+  background: none;
 }
 </style>
