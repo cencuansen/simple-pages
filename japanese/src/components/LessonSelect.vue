@@ -5,7 +5,7 @@
     v-model="selectedValue"
     placeholder="选课程"
     :clearable="clearable"
-    fit-input-width
+    :fit-input-width="fitInputWidth"
     :style="style"
     :class="className"
     :lite="lite"
@@ -65,6 +65,8 @@ interface Props {
   showIndex?: boolean
   // 简洁模式
   lite?: boolean
+  // 输入框宽度自适应内容
+  fitInputWidth?: boolean
   // 自定义标签格式化函数
   formatLabel?: (lesson: Lesson) => string
   // 自定义值获取函数
@@ -78,6 +80,7 @@ const props = withDefaults(defineProps<Props>(), {
   style: () => ({}),
   className: '',
   showIndex: true,
+  fitInputWidth: false,
   lite: false,
   formatLabel: undefined,
   getValue: undefined,
