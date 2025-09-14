@@ -7,6 +7,7 @@
       :lesson-select="lessonSelect"
       :keyword-filter="keywordFilter"
       :scroll-top="scrollTop"
+      auto-expand
     />
   </div>
 </template>

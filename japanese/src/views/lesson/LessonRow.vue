@@ -13,7 +13,7 @@
         <Reading
           class="row-icon"
           :row-item="row as TextBase"
-          @click="click(row.textId)"
+          @click="speak(row.textId)"
         />
         <el-text
           class="row-text"
@@ -47,7 +47,7 @@ interface LessonRowProps {
 
 defineProps<LessonRowProps>()
 
-const click = async (id: string) => {
+const speak = async (id: string) => {
   const target = document.querySelector(`#${id}`)
   if (!target) return
   target.scrollIntoView({

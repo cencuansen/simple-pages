@@ -64,6 +64,7 @@ import { isNumber } from '../../utils'
 
 interface GrammarProps {
   data: Grammar[]
+  autoExpand?: boolean
   keyword?: string
   scrollTop?: boolean
   functionGroup?: boolean
@@ -76,6 +77,7 @@ interface GrammarProps {
 
 const props = withDefaults(defineProps<GrammarProps>(), {
   keyword: '',
+  autoExpand: false,
   scrollTop: false,
   functionGroup: false,
   lessonIndex: null,
@@ -132,9 +134,13 @@ const levels: ComputedRef<string[]> = computed(() => {
 const afterPage = ref<Grammar[]>([])
 const pageChange = (data: Grammar[]) => {
   afterPage.value = data
-  expands.value = afterPage.value.map((grammar) =>
-    collapseTitle(grammar.title, grammar.idx)
-  )
+  if (props.autoExpand) {
+    expands.value = afterPage.value.map((grammar) =>
+      collapseTitle(grammar.title, grammar.idx)
+    )
+  } else {
+    expands.value = []
+  }
   container.value.scrollTop = 0
 }
 

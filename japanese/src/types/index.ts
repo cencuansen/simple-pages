@@ -13,6 +13,11 @@ export interface WordItem {
   audio?: string
 }
 
+export interface ActiveWord {
+  textId: string
+  lesson: number
+}
+
 export interface WordFilter {
   lesson?: number
   keyword?: string

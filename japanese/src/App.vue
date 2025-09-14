@@ -138,6 +138,8 @@ onMounted(async () => {
 
 .button-group {
   overflow-x: scroll;
+  display: flex;
+  align-self: center;
 }
 
 .button-group::-webkit-scrollbar {

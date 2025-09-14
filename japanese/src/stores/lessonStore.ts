@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { isNumber } from '../utils'
 import type { Lesson } from '../views/lesson/types.ts'
 import ky from 'ky'
+import type { ActiveWord } from '../types/index.ts'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -18,7 +19,7 @@ export const useLessonStore = defineStore(
     const maxIndex = ref(0)
     const dialog = ref(false)
     const lastElement = ref<HTMLElement | null>()
-    const wordIds = ref<Map<number, string[]>>(new Map<number, string[]>())
+    const activeWord = ref<ActiveWord | null>(null)
 
     // 初始化
     const init = async () => {
@@ -71,15 +72,8 @@ export const useLessonStore = defineStore(
       lastElement.value = el
     }
 
-    const addWordIds = (lesson: number, ids: string[]): void => {
-      if (!wordIds.value.has(lesson)) {
-        wordIds.value.set(lesson, [])
-      }
-      const oldIds: string[] = wordIds.value.get(lesson) || []
-      const newIds = ids.filter((id) => !oldIds.includes(id))
-      if (newIds.length) {
-        oldIds.push(...newIds)
-      }
+    const setActiveWord = (word: ActiveWord | null): void => {
+      activeWord.value = word
     }
     // -- setters end --
 
@@ -160,10 +154,6 @@ export const useLessonStore = defineStore(
     const goLesson = (num: number) => {
       currentIndex.value = num
     }
-
-    const getWordIds = (lesson: number) => {
-      return wordIds.value.get(lesson) || []
-    }
     // -- functions end --
 
     return {
@@ -176,7 +166,7 @@ export const useLessonStore = defineStore(
       maxIndex,
       dialog,
       lastElement,
-      wordIds,
+      activeWord,
 
       // 计算属性
       currentLesson,
@@ -199,14 +189,13 @@ export const useLessonStore = defineStore(
       setCurrentIndex,
       setDialog,
       setLastElement,
-      addWordIds,
+      setActiveWord,
 
       // 方法
       init,
       goPrevious,
       goNext,
       goLesson,
-      getWordIds
     }
   },
   {

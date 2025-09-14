@@ -7,6 +7,7 @@
       :level-select="levelSelect"
       :keyword-filter="keywordFilter"
       :scroll-top="scrollTop"
+      auto-expand
     />
   </div>
 </template>

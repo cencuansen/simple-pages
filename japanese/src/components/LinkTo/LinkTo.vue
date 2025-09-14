@@ -3,7 +3,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref } from 'vue'
+
+import { useLessonStore } from '../../stores/lessonStore.ts'
+import { storeToRefs } from 'pinia'
+const lessonStore = useLessonStore()
+const { currentIndex } = storeToRefs(lessonStore)
+const setActiveWord = lessonStore.setActiveWord
 
 interface LinkToProps {
   top: HTMLElement
@@ -32,7 +38,8 @@ const scrollTo = (to: HTMLElement) => {
   linkActive(to)
 }
 
-const forward = (event: any) => {
+const forward = async (event: any) => {
+  // 点击课文中单词跳转到单词表
   event.preventDefault()
   let from = event.target
   if (from.tagName.toLowerCase() === 'ruby') {
@@ -41,6 +48,8 @@ const forward = (event: any) => {
   if (from.tagName.toLowerCase() === 'a') {
     const href = from.getAttribute('href')
     if (href && href.startsWith('#')) {
+      setActiveWord({ textId: href.slice(1), lesson: currentIndex.value })
+      await nextTick()
       const next = document.querySelector(href)
       if (next) {
         linkHistory.value.push(from)
@@ -52,6 +61,7 @@ const forward = (event: any) => {
 
 const back = () => {
   const previous = linkHistory.value.pop() || props.top
+  setActiveWord(null)
   scrollTo(previous)
 }
 

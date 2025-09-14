@@ -57,12 +57,17 @@
 
       <!-- 语法 -->
       <section id="grammars" class="section">
-        <GrammarCore :data="grammars" />
+        <GrammarCore :data="grammars" pagination />
       </section>
 
       <!-- 单词 -->
       <section id="words" class="section" ref="wordsRef">
-        <WordCore :data="words" show-header />
+        <WordCore
+          :data="words"
+          :active-word="activeWord"
+          show-header
+          pagination
+        />
       </section>
     </div>
 
@@ -119,14 +124,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  computed,
-  type ComputedRef,
-  onActivated,
-  onMounted,
-  ref,
-  watch,
-} from 'vue'
+import { computed, type ComputedRef, onActivated, ref, watch } from 'vue'
 import { useLessonStore } from '../../stores/lessonStore.ts'
 import { useAudioStore } from '../../stores/audioStore.ts'
 import { useSettingStore } from '../../stores/settingStore.ts'
@@ -170,6 +168,7 @@ const {
   conversations,
   hasArticle,
   article,
+  activeWord,
 } = storeToRefs(lessonStore)
 const goLesson = lessonStore.goLesson
 const setDialog = lessonStore.setDialog
@@ -270,13 +269,6 @@ onDeactivated(() => {
   deactivated = true
   document.removeEventListener('keyup', onSingleKeyup)
 })
-
-onMounted(() => {
-  // const links: HTMLAnchorElement[] =
-  //   container.value.querySelectAll('.anchor-link')
-  // const textIds: string[] = links.map((link) => link.href.slice(1))
-  // addWordIds(currentIndex.value, textIds)
-})
 </script>
 
 <style scoped>
@@ -308,9 +300,13 @@ h2 {
   gap: calc(var(--gap12) * 0.5);
 }
 
-:deep(.el-scrollbar__wrap) {
+:deep(.el-table .el-scrollbar__wrap) {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
+}
+
+:deep(.simple-pagination) {
+  overflow: hidden;
 }
 
 :deep(.search-model) {

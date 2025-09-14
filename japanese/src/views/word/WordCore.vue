@@ -17,7 +17,7 @@
     />
     <SimpleInput v-model="keyword" v-if="keywordFilter" />
   </Row>
-  <div class="main-table" ref="container" @scroll="onScroll">
+  <div class="main-table" ref="container" @scrollend="scrollend">
     <el-table
       :data="afterPage"
       :show-header="showHeader"
@@ -123,7 +123,7 @@ import { useSettingStore } from '../../stores/settingStore.ts'
 import { useWordStore } from '../../stores/wordStore.ts'
 import { useReadingStore } from '../../stores/readingStore.ts'
 
-import type { WordItem } from '../../types'
+import type { ActiveWord, WordItem } from '../../types'
 import { ElTable } from 'element-plus'
 
 import Row from '../../components/Row.vue'
@@ -137,6 +137,7 @@ import { isNumber } from '../../utils'
 
 interface WordProps {
   data: WordItem[]
+  activeWord?: ActiveWord | null
   keyword?: string
   scrollTop?: boolean
   functionGroup?: boolean
@@ -183,6 +184,12 @@ const levels: ComputedRef<string[]> = computed(() => {
 
 const beforePage = computed(() => {
   let list: WordItem[] = props.data
+  if (props.activeWord) {
+    const { textId, lesson } = props.activeWord
+    list = list.filter((item) =>
+      item.textId === textId && item.lesson === lesson
+    )
+  }
   if (props.keyword) {
     list = list.filter((item) =>
       `${item.word}_${item.kana}_${item.desc}`.includes(props.keyword)
@@ -247,7 +254,7 @@ onBeforeUnmount(() => {
 
 const container = ref()
 const scrollPosition = ref<number>(0)
-const onScroll = async () => {
+const scrollend = async () => {
   if (props.scrollTop) {
     scrollPosition.value = container.value.scrollTop
   }
