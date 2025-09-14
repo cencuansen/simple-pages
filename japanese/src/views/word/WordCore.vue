@@ -1,6 +1,6 @@
 <template>
   <Row v-if="functionGroup">
-    <LessonSelect v-model="lessonIndex" lite v-if="lessonSelect" />
+    <LessonSelect v-model="lessonIndex" lite fit-input-width v-if="lessonSelect" />
     <SimpleSelect
       v-if="levelSelect"
       multiple

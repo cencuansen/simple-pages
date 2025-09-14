@@ -1,7 +1,7 @@
 <template>
   <div class="grammar">
     <Row v-if="functionGroup">
-      <LessonSelect v-model="lessonIndex" v-if="lessonSelect" />
+      <LessonSelect v-model="lessonIndex" fit-input-width v-if="lessonSelect" />
       <SimpleSelect
         v-if="levelSelect"
         multiple
