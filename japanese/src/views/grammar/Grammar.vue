@@ -8,6 +8,7 @@
       :keyword-filter="keywordFilter"
       :scroll-top="scrollTop"
       auto-expand
+      show-lesson
     />
   </div>
 </template>

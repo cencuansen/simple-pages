@@ -8,6 +8,7 @@
       :lesson-select="lessonSelect"
       :class-select="classSelect"
       :keyword-filter="keywordFilter"
+      show-lesson
     />
   </div>
 </template>

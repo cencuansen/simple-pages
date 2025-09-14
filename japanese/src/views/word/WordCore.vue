@@ -57,7 +57,7 @@
         v-if="settingStore.wordDesc"
         show-overflow-tooltip
       />
-      <el-table-column label="课程" width="60">
+      <el-table-column label="课程" width="60" v-if="showLesson">
         <template #default="scope">
           <a href="#" @click="lessonClick(scope.row.lesson)">
             {{ scope.row.lesson }}
@@ -138,6 +138,7 @@ import { isNumber } from '../../utils'
 interface WordProps {
   data: WordItem[]
   activeWord?: ActiveWord | null
+  showLesson?: boolean
   keyword?: string
   scrollTop?: boolean
   functionGroup?: boolean
@@ -153,6 +154,7 @@ interface WordProps {
 const props = withDefaults(defineProps<WordProps>(), {
   keyword: '',
   scrollTop: false,
+  showLesson: false,
   functionGroup: false,
   showHeader: false,
   lessonIndex: null,

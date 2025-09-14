@@ -22,7 +22,7 @@
             <template #title>
               <div class="grammar-title-row">
                 <div class="grammar-title" v-html="grammar.title"></div>
-                <div class="grammar-lesson" v-if="grammar.lesson">
+                <div class="grammar-lesson" v-if="grammar.lesson && showLesson">
                   <a href="#" @click.stop.prevent="lessonClick(grammar.lesson)">
                     {{ grammar.lesson }}
                   </a>
@@ -65,6 +65,7 @@ import { isNumber } from '../../utils'
 interface GrammarProps {
   data: Grammar[]
   autoExpand?: boolean
+  showLesson?: boolean
   keyword?: string
   scrollTop?: boolean
   functionGroup?: boolean
@@ -78,6 +79,7 @@ interface GrammarProps {
 const props = withDefaults(defineProps<GrammarProps>(), {
   keyword: '',
   autoExpand: false,
+  showLesson: false,
   scrollTop: false,
   functionGroup: false,
   lessonIndex: null,
