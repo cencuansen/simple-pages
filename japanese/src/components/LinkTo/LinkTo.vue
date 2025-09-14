@@ -149,7 +149,6 @@ onMounted(() => {
   z-index: 999;
   color-scheme: inherit;
   font-size: 1.5rem;
-  color: var(--el-color-info);
   text-decoration: none;
   background-color: var(--el-color-primary);
 }
