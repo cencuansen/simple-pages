@@ -137,7 +137,7 @@ onMounted(() => {
 <style scoped>
 .link-to {
   position: absolute;
-  right: 50px;
+  right: 30px;
   bottom: 100px;
   border: none;
   width: 25px;
@@ -151,5 +151,12 @@ onMounted(() => {
   font-size: 1.5rem;
   text-decoration: none;
   background-color: var(--el-color-primary);
+}
+
+@media (min-width: 700px) {
+  .link-to {
+    right: calc(var(--right-site-center) + var(--width-10) * 0.5);
+    transform: translateX(50%);
+  }
 }
 </style>

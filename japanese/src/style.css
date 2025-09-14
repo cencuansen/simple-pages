@@ -9,6 +9,7 @@
     --lesson-headers-height: 60px;
 
     --gap12: 12px;
+    --gap-12: 12px;
     --audio-height: 54px;
     --root-header-height: 30px;
     --pagination-height: 35px;
@@ -21,11 +22,15 @@
     /*--root-footer-height: 55px;*/
     /* android edge */
     /*--root-footer-height: 105px;*/
+
+    --width-10: 10px;
+
+    --right-site-center: calc((100vw - var(--content-max-width)) * 0.25)
 }
 
 @media (min-width: 700px) {
     :root {
-        --ib-offset: calc((100vw - var(--content-max-width)) * 0.25);
+        --ib-offset: var(--right-site-center);
     }
 }
 

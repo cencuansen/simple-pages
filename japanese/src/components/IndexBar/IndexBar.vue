@@ -153,7 +153,7 @@ onMounted(() => {
 
 <style>
 :root {
-  --ib-width: 10px;
+  --ib-width: var(--width-10);
   --ib-height: 300px;
   --ib-item-w: calc(var(--ib-width) * 0.5);
   --ib-item-h: var(--ib-item-w);
@@ -285,16 +285,5 @@ onMounted(() => {
 .ib__item--current .ib__label {
   opacity: 1;
   visibility: visible;
-}
-
-@media (max-width: 768px) {
-  .ib__item {
-    margin: 5px;
-  }
-
-  /* 触摸设备优化 */
-  .index-bar {
-    padding: 6px 3px;
-  }
 }
 </style>
