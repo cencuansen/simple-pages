@@ -24,7 +24,6 @@
           </el-button>
         </el-form-item>
       </el-form>
-
       <el-input
         v-model="text"
         type="textarea"
@@ -86,6 +85,8 @@
         </svg>
       </div>
     </div>
+
+    <el-empty v-else description="基于 VoiceVox 实现" />
   </div>
 </template>
 
@@ -250,20 +251,24 @@ function getAccentX(ap: AccentPhrase) {
   gap: 16px;
 }
 
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap12);
+}
+
 .tool-row {
-  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.el-form-item {
+  margin-bottom: 0;
 }
 
 .svg-list {
   display: grid;
   gap: 12px;
-}
-
-.svg-wrap {
-  overflow: hidden;
-  border: 1px dashed var(--el-border-color);
-  border-radius: 6px;
-  background: #555;
 }
 
 .mora-label {
