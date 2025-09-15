@@ -164,6 +164,6 @@ onMounted(async () => {
 }
 
 :deep(.active) {
-  color: var(--el-color-success);
+  color: var(--el-color-primary);
 }
 </style>

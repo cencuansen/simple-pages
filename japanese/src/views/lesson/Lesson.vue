@@ -300,6 +300,10 @@ h2 {
   gap: calc(var(--gap12) * 0.5);
 }
 
+h1,h2 {
+  color: var(--el-text-color-regular);
+}
+
 :deep(.el-table .el-scrollbar__wrap) {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
