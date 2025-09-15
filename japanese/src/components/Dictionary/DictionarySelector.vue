@@ -1,6 +1,6 @@
 <template>
   <div class="dictionary">
-    <el-dropdown size="small" split-button type="default" :disabled="disabled">
+    <el-dropdown split-button type="default" :disabled="disabled">
       <DictionaryCore :word="word || ''" :dict="nowDict" />
       <template #dropdown>
         <el-dropdown-menu>

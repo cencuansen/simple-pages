@@ -1,7 +1,7 @@
 <template>
   <el-select
     class="lesson-select"
-    size="small"
+
     v-model="selectedValue"
     placeholder="选课程"
     :clearable="clearable"

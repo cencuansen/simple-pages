@@ -1,18 +1,18 @@
 <template>
   <div class="lesson-headers">
     <div class="lesson-switch">
-      <el-button size="small" :disabled="!hasPrevious" @click="goPrevious">
+      <el-button :disabled="!hasPrevious" @click="goPrevious">
         上一课
       </el-button>
       <LessonSelect v-model="currentIndex" :clearable="false" fit-input-width />
-      <el-button size="small" :disabled="!hasNext" @click="goNext">
+      <el-button :disabled="!hasNext" @click="goNext">
         下一课
       </el-button>
     </div>
     <div class="function-group">
       <el-button
         :type="settingStore.allTranslate ? 'primary' : ''"
-        size="small"
+
         circle
         title="翻译"
         v-if="settingStore.translate"
@@ -22,7 +22,7 @@
       </el-button>
       <el-button
         :type="settingStore.furigana ? 'primary' : ''"
-        size="small"
+
         circle
         title="注音"
         @click="settingStore.furiganaToggle"
@@ -31,7 +31,7 @@
       </el-button>
       <el-button
         :type="settingStore.wordLink ? 'primary' : ''"
-        size="small"
+
         circle
         title="单词跳转"
         @click="settingStore.wordLinkToggle"
@@ -40,7 +40,7 @@
       </el-button>
       <el-button
         :type="''"
-        size="small"
+
         circle
         title="搜索"
         @click="setDialog(!dialog)"
@@ -48,7 +48,7 @@
         搜
       </el-button>
       <el-button
-        size="small"
+
         circle
         title="全屏"
         v-if="!fullscreen"
@@ -58,7 +58,7 @@
       </el-button>
       <el-button
         :type="''"
-        size="small"
+
         circle
         title="播放"
         :disabled="isReading"
@@ -69,7 +69,7 @@
       </el-button>
       <el-button
         :type="''"
-        size="small"
+
         circle
         v-if="isReading"
         title="停止播放"

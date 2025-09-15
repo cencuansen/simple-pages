@@ -113,6 +113,7 @@
   <SimplePagination
     v-if="pagination"
     :data="beforePage"
+    :page-size="pageSize"
     @page-change="pageChange"
   />
 </template>
@@ -150,6 +151,7 @@ import type { Dictionary as DictionaryType } from '../../components/Dictionary/t
 
 interface WordProps {
   data: WordItem[]
+  pageSize?: number
   activeWord?: ActiveWord | null
   showLesson?: boolean
   keyword?: string

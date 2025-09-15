@@ -7,6 +7,7 @@
       :scroll-top="scrollTop"
       :levelSelect="levelSelect"
       :keyword-filter="keywordFilter"
+      :page-size="20"
       show-header
     />
   </div>

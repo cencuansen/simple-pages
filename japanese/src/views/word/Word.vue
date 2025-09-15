@@ -8,6 +8,7 @@
       :lesson-select="lessonSelect"
       :class-select="classSelect"
       :keyword-filter="keywordFilter"
+      :page-size="20"
       show-header
       show-lesson
     />

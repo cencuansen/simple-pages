@@ -82,7 +82,7 @@
       </div>
     </el-dialog>
 
-    <SimplePagination :data="beforePage" @page-change="pageChange" />
+    <SimplePagination :data="beforePage" :page-size="pageSize" @page-change="pageChange" />
   </div>
 </template>
 
@@ -103,6 +103,7 @@ import Dictionary from '../../components/Dictionary/DictionarySelector.vue'
 
 interface VerbConjuProps {
   data: Conju[]
+  pageSize?: number
   lessonSelect?: boolean
   typeSelect?: boolean
   transitivitySelect?: boolean

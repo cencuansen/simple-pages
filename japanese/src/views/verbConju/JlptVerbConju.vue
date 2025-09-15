@@ -5,6 +5,7 @@
     type-select
     transitivity-select
     keyword-filter
+    :page-size="20"
   />
 </template>
 
