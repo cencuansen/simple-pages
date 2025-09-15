@@ -27,9 +27,14 @@
       <el-switch v-model="settingStore.wordDesc" inline-prompt />
     </el-form-item>
     <el-form-item label="默认词典">
-      <el-select fit-input-width v-model="dictionary">
+      <el-select
+        fit-input-width
+        v-model="selectedDictionary"
+        default-first-option
+      >
         <el-option
           v-for="dict in dictionaries"
+          :key="dict.name"
           :label="[dict.name, dict.desc].join(' - ')"
           :value="dict.name"
         />
@@ -51,10 +56,16 @@ const toggleDark = settingStore.toggleDark
 
 const dictionaryStore = useDictionaryStore()
 const { dictionary, dictionaries } = storeToRefs(dictionaryStore)
+const { setOne } = dictionaryStore
 
 const darkMode = computed({
   get: () => isDark.value,
   set: (val) => toggleDark(val),
+})
+
+const selectedDictionary = computed({
+  get: () => dictionary.value.name,
+  set: (val) => setOne(val),
 })
 </script>
 
