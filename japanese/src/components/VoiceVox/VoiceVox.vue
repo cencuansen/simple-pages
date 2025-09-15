@@ -1,6 +1,7 @@
 <template>
   <el-button
     v-if="usable"
+    :type="type"
     :disabled="isReading || disabled"
     :loading="isReading"
     @click="req"
@@ -11,7 +12,8 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, type PropType } from 'vue'
+import type { ButtonProps } from 'element-plus/es/components/button'
 
 import { useReadingStore } from '@/stores/readingStore.ts'
 import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
@@ -25,6 +27,8 @@ const voiceVoxStore = useVoiceVoxStore()
 const synthesis = voiceVoxStore.synthesis
 const { usable } = storeToRefs(voiceVoxStore)
 
+type ButtonType = ButtonProps['type']
+
 const props = defineProps({
   text: {
     type: String,
@@ -37,6 +41,10 @@ const props = defineProps({
   content: {
     type: String,
     default: 'VoiceVox',
+  },
+  type: {
+    type: String as PropType<ButtonType>,
+    default: 'default',
   },
 })
 

@@ -23,7 +23,11 @@
             查询
           </el-button>
         </el-form-item>
+        <el-form-item>
+          <VoiceVox type="primary" :text="text" :disabled="!text" :content="'朗读'" />
+        </el-form-item>
       </el-form>
+
       <el-input
         v-model="text"
         type="textarea"
@@ -95,6 +99,7 @@ import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
 import { storeToRefs } from 'pinia'
+import VoiceVox from '@/components/VoiceVox/VoiceVox.vue'
 
 const voiceVoxStore = useVoiceVoxStore()
 const { usable, hostname, port, speakerId } = storeToRefs(voiceVoxStore)
