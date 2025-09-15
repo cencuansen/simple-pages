@@ -8,7 +8,7 @@ export const dictionaries = [
     name: 'JapanDict',
     url: `https://www.japandict.com/${placeholder}?lang=eng`,
     logo: `${imageUrlBase}/japan_dict.png`,
-    desc: '释义、读音、活用、例句',
+    desc: '释义、读音、音调、活用、例句',
   },
   {
     label: 'MZ',

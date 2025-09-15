@@ -1,19 +1,20 @@
 import { defineStore } from 'pinia'
 import type { Dictionary } from '../components/Dictionary/types.ts'
 import { ref } from 'vue'
-import { dictionaries } from '@/components/Dictionary/constants.ts'
+import { dictionaries as dicts } from '@/components/Dictionary/constants.ts'
 
 export const useDictionaryStore = defineStore('dictionary', () => {
-  const dictionary = ref<Dictionary>(dictionaries[0])
+  const dictionaries = ref(dicts)
+  const dictionary = ref<Dictionary>(dicts[0])
 
   const getOne = (name: string | undefined = ''): Dictionary => {
     if (!name) {
-      return dictionaries[0]
+      return dictionaries.value[0]
     }
-    let dict = dictionaries.find(
+    let dict = dictionaries.value.find(
       (dict) => dict.name === name || dict.label === name
     )
-    return dict || dictionaries[0]
+    return dict || dictionaries.value[0]
   }
 
   const setOne = (name: string | undefined) => {

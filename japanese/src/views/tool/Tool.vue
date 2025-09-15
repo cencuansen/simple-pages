@@ -1,13 +1,13 @@
 <template>
   <div class="tool-container">
     <el-tabs class="setting-container">
-      <el-tab-pane label="假名注音">
+      <el-tab-pane label="注音">
         <KanjiTool />
       </el-tab-pane>
-      <el-tab-pane label="日文朗读">
+      <el-tab-pane label="朗读">
         <TtsTool />
       </el-tab-pane>
-      <el-tab-pane label="外部词典">
+      <el-tab-pane label="词典">
         <DictTool />
       </el-tab-pane>
       <el-tab-pane label="音调">
