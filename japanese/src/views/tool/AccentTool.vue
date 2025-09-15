@@ -46,20 +46,10 @@
           <!-- 背景：深色 -->
           <rect x="0" y="0" :width="svgWidth" :height="'100%'" fill="#1e1e1e" />
           <!-- 曲线：亮色 -->
-          <path
-            :d="getPathD(ap)"
-            fill="none"
-            stroke="#555"
-            stroke-width="2"
-          />
+          <path :d="getPathD(ap)" fill="none" stroke="#555" stroke-width="2" />
           <!-- 数据点 + 标签 -->
           <g v-for="(m, i) in ap.moras" :key="i">
-            <circle
-              :cx="getX(ap, i)"
-              :cy="getY(ap, i)"
-              r="3.5"
-              fill="#555"
-            />
+            <circle :cx="getX(ap, i)" :cy="getY(ap, i)" r="3.5" fill="#555" />
             <text
               :x="getX(ap, i)"
               :y="svgHeight - pad.bottom + 18"
@@ -139,17 +129,16 @@ const svgWidth = ref(720)
 const svgHeight = 200
 const pad = { top: 34, right: 24, bottom: 44, left: 48 }
 
-const updateSvgWidth = () => {
+const calculateSvgWidth = () => {
   svgWidth.value = container.value?.getBoundingClientRect().width || 720
 }
 
 onMounted(() => {
-  updateSvgWidth()
-  window.addEventListener('resize', updateSvgWidth)
+  window.addEventListener('resize', calculateSvgWidth)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateSvgWidth)
+  window.removeEventListener('resize', calculateSvgWidth)
 })
 
 // const isInterrogative = computed(() =>
@@ -168,6 +157,9 @@ async function fetchAccentPhrases() {
       headers: { 'Content-Type': 'application/json' },
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
+
+    calculateSvgWidth()
+
     const data = (await res.json()) as AccentPhrase[]
 
     // pitch 兜底处理
