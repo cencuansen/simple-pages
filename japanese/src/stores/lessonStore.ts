@@ -26,7 +26,7 @@ export const useLessonStore = defineStore(
       try {
         isLoading.value = true
         error.value = null
-        const response = await ky(`${jpJsonBase}/lesson.json`)
+        const response = await ky(`${jpJsonBase}/lesson.json?t=${Date.now()}`)
         const data: Lesson[] = await response.json()
         process(data)
         lessons.value = data

@@ -32,7 +32,7 @@ export const useWordStore = defineStore('word', () => {
     try {
       isLoading.value = true
       error.value = null
-      const response = await ky(`${jpJsonBase}/words.csv`)
+      const response = await ky(`${jpJsonBase}/words.csv?t=${Date.now()}`)
       const csvText = await response.text()
       Papa.parse<WordItem>(csvText, {
         header: true,

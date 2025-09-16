@@ -14,7 +14,7 @@ export const useJlptGrammarStore = defineStore('jlpt-grammar', () => {
   const jlptGrammars = ref<Grammar[]>([])
 
   const init = async () => {
-    const response = await ky(`${jpJsonBase}/jlpt-grammars-en-new.json`)
+    const response = await ky(`${jpJsonBase}/jlpt-grammars-en-new.json?t=${Date.now()}`)
     jlptGrammars.value = await response.json()
   }
 

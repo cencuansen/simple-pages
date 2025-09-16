@@ -21,7 +21,7 @@ export const useJlptWordStore = defineStore('jlpt-word', () => {
     loading.value = true
     error.value = null
     try {
-      const response = await ky(`${jpJsonBase}/jlpt-vocabularies.csv`)
+      const response = await ky(`${jpJsonBase}/jlpt-vocabularies.csv?t=${Date.now()}`)
       const csvText = await response.text()
       Papa.parse<WordItem>(csvText, {
         header: true,

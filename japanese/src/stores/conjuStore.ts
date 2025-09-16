@@ -10,7 +10,7 @@ export const useConjuStore = defineStore('conju', () => {
   const conjuVerbs = ref<Conju[]>([])
 
   const init = async () => {
-    const response = await ky(`${jpJsonBase}/verbs-conju.csv`)
+    const response = await ky(`${jpJsonBase}/verbs-conju.csv?t=${Date.now()}`)
     const csvText = await response.text()
     Papa.parse<Conju>(csvText, {
       header: true,
