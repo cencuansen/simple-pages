@@ -13,6 +13,24 @@ export interface VerbConjuColumn {
 export const typeOptions = ['五段动词', '一段动词', '不规则动词']
 export const transitivityOptions = ['他动词', '自动词', '自他动词']
 
+export const verbConjuCoreColumns: string[] = [
+  'dictionary',
+  'hiragana',
+  'te',
+  'past',
+  'negative',
+  'negativePast',
+  'polite',
+  'potential',
+  'passive',
+  'causative',
+  'causativePassive',
+  'conditional',
+  'imperative',
+  'volitional',
+  'prohibitive',
+]
+
 export const baseColumns = ref<VerbConjuColumn[]>([
   {
     value: 'dictionary',

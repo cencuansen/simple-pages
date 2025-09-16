@@ -14,11 +14,11 @@ const wordRegEx = (words: WordItem[]) => {
   const wordCopy = [...words].sort((a, b) => b.word.length - a.word.length)
   return new RegExp(
     wordCopy
-      .map((word) =>
-        word.word
-          .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-          .split('')
-          .join('\\s*')
+      .map(
+        (word) => word.word
+        // .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        // .split('')
+        // .join('\\s*')
       )
       .join('|'),
     'g'
@@ -28,11 +28,9 @@ const wordRegEx = (words: WordItem[]) => {
 const buildAnchorLink = (match: string, words: WordItem[] = []) => {
   match = match.replace(/\s/g, '')
   if (!match) return match
-
   const word = words.find((w) => w.word === match || w.kana === match)
   if (!word) return match
-
-  return `<a href="#${word.textId}" class="anchor-link">${word.word}</a>`
+  return `<a href="#${word.textId}" class="anchor-link">${match}</a>`
 }
 
 // 通用预设处理
@@ -41,21 +39,25 @@ const process = (
   type: keyof OriginalTextParsedMap,
   ...fns: ((val: string) => string)[]
 ): string => {
-  if (!text) return ''
+  if (!text || !type) return ''
 
-  if (!originalTextMap[text]) {
-    originalTextMap[text] = {} as OriginalTextParsedMap
+  // if (!originalTextMap[text]) {
+  //   originalTextMap[text] = {} as OriginalTextParsedMap
+  // }
+
+  // let res: string = originalTextMap[text][type]
+
+  // if (!res) {
+  //   for (const fn of fns || []) {
+  //     res = fn?.call(this, text)
+  //   }
+  //   res && (originalTextMap[text][type] = res)
+  // }
+
+  let res: string = text
+  for (const fn of fns || []) {
+    res = fn?.call(this, res)
   }
-
-  let res: string = originalTextMap[text][type]
-
-  if (!res) {
-    for (const fn of fns || []) {
-      res = fn?.call(this, text)
-    }
-    res && (originalTextMap[text][type] = res)
-  }
-
   return res
 }
 
@@ -77,9 +79,8 @@ export const kataFalseWordTrue = ({
 }: ConvertParam) => {
   const temp = kataFalseWordFalse({ originalText, words })
   return process(temp, 'katakanaFalseWordTrue', (param: string) => {
-    return param.replace(wordRegEx(words), (match) =>
-      buildAnchorLink(match, words)
-    )
+    const regexp = wordRegEx(words)
+    return param.replace(regexp, (match) => buildAnchorLink(match, words))
   })
 }
 
@@ -200,7 +201,6 @@ export const textParser = (
 ): ((str: string | undefined) => string) => {
   return (originalText: string | undefined) => {
     if (!originalText) return ''
-
     if (furigana && wordLink) {
       return kataTrueWordTrue({ originalText, words })
     } else if (!furigana && !wordLink) {

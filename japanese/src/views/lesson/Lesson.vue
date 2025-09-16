@@ -130,6 +130,8 @@ import { useAudioStore } from '@/stores/audioStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
 import { useWordStore } from '@/stores/wordStore.ts'
 import { useGrammarStore } from '@/stores/grammar/grammarStore.ts'
+import { useConjuStore } from '@/stores/conjuStore.ts'
+import { useJlptConjuStore } from '@/stores/jlptConjuStore.ts'
 import type { WordItem } from '@/types'
 import { searchLesson } from '@/utils'
 import { storeToRefs } from 'pinia'
@@ -146,12 +148,15 @@ import WordCore from '../word/WordCore.vue'
 import GrammarCore from '../grammar/GrammarCore.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import type { TextBase } from './types.ts'
+import { verbConjuCoreColumns as columns } from '@/views/verbConju/index.ts'
 
 const lessonStore = useLessonStore()
 const audioStore = useAudioStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 const wordStore = useWordStore()
+const conjuStore = useConjuStore()
+const jlptConjuStore = useJlptConjuStore()
 
 const {
   dialog,
@@ -170,13 +175,15 @@ const {
   article,
   activeWord,
 } = storeToRefs(lessonStore)
-const goLesson = lessonStore.goLesson
-const setDialog = lessonStore.setDialog
+const { goLesson, setDialog } = lessonStore
 
 const { fullscreen, allTranslate, wordLink, furigana } =
   storeToRefs(settingStore)
 
 const { isPlaying } = storeToRefs(audioStore)
+
+const { conjuVerbs } = storeToRefs(conjuStore)
+const { jlptConjuVerbs } = storeToRefs(jlptConjuStore)
 
 const props = defineProps(['index'])
 const router = useRouter()
@@ -227,8 +234,38 @@ const grammars = computed(() => {
   return grammarStore.queryGrammars({ lesson: currentIndex.value })
 })
 
+const finalWords = computed(() => {
+  const res: WordItem[] = []
+  const conjus = [...conjuVerbs.value, ...jlptConjuVerbs.value]
+
+  if (!conjus.length) return res
+
+  words.value.forEach((word) => {
+    const match = conjus.find((c) =>
+      columns.some((col) => c[col] === word.word)
+    )
+    if (match) {
+      const relatedWords: WordItem[] = columns
+        .map(
+          (col) =>
+            ({
+              word: match[col],
+              textId: word.textId,
+            }) as WordItem
+        )
+        .filter((w) => Boolean(w.word))
+      res.push(...relatedWords)
+    } else {
+      res.push({
+        ...word,
+      })
+    }
+  })
+  return res
+})
+
 const textView = computed(() => {
-  return textParser(words.value, wordLink.value, furigana.value)
+  return textParser(finalWords.value, wordLink.value, furigana.value)
 })
 
 const onScrollEnd = async () => {
@@ -300,7 +337,8 @@ h2 {
   gap: calc(var(--gap12) * 0.5);
 }
 
-h1,h2 {
+h1,
+h2 {
   color: var(--el-text-color-regular);
 }
 
