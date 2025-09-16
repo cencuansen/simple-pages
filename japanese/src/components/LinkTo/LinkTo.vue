@@ -3,8 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from 'vue'
-
+import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useLessonStore } from '@/stores/lessonStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
 import { storeToRefs } from 'pinia'
@@ -23,6 +22,7 @@ interface LinkToProps {
 
 const props = defineProps<LinkToProps>()
 
+// 历史记录
 const linkHistory = ref<HTMLElement[]>([])
 
 const scrollParams: ScrollIntoViewOptions = {
@@ -33,9 +33,13 @@ const scrollParams: ScrollIntoViewOptions = {
 
 const linkActive = (ele: HTMLElement) => {
   ele.style.animation = 'highlight 3s ease-in-out alternate'
-  ele.addEventListener('animationend', () => {
-    ele.style.animation = 'none'
-  })
+  ele.addEventListener(
+    'animationend',
+    () => {
+      ele.style.animation = 'none'
+    },
+    { once: true }
+  )
 }
 
 const scrollTo = (to: HTMLElement) => {
@@ -43,13 +47,23 @@ const scrollTo = (to: HTMLElement) => {
   linkActive(to)
 }
 
-const forward = async (event: any) => {
-  // 点击课文中单词跳转到单词表
+// 点击课文中单词 → 跳转到单词表
+const forward = async (event: MouseEvent) => {
+  const selector = Array.isArray(props.bind)
+    ? (props.bind as string[]).join(',')
+    : (props.bind as string)
+
+  let from = (event.target as HTMLElement).closest(
+    selector
+  ) as HTMLElement | null
+  if (!from) return
+
   event.preventDefault()
-  let from = event.target
+
   if (from.tagName.toLowerCase() === 'ruby') {
-    from = from.parentElement
+    from = from.parentElement as HTMLElement
   }
+
   if (from.tagName.toLowerCase() === 'a') {
     const href = from.getAttribute('href')
     if (href && href.startsWith('#')) {
@@ -58,57 +72,51 @@ const forward = async (event: any) => {
       const next = document.querySelector(href)
       if (next) {
         linkHistory.value.push(from)
-        scrollTo(next)
+        scrollTo(next as HTMLElement)
       }
     }
   }
 }
 
-const back = () => {
+// 返回上一个位置
+const back = (event: MouseEvent) => {
+  event.preventDefault()
   const previous =
     linkHistory.value.pop() || (props.container.children[0] as HTMLElement)
   setActiveWord(null)
   scrollTo(previous)
 }
 
-const targets: Element[] = []
-
-const bindElements = () => {
-  targets.length = 0
-  const multi = Array.isArray(props.bind)
-  if (multi) {
-    const binds = props.bind as string[]
-    binds.forEach((item) => {
-      targets.push(...document.querySelectorAll(item))
-    })
-  } else {
-    const bind = props.bind as string
-    targets.push(...document.querySelectorAll(bind))
-  }
-  targets.forEach((target) => {
-    target.addEventListener('click', forward)
-  })
+// 绑定/解绑父级监听
+const bindParentListener = () => {
+  props.container.addEventListener('click', forward)
+}
+const unbindParentListener = () => {
+  props.container.removeEventListener('click', forward)
 }
 
 watch(
   () => wordLink.value,
   (val) => {
     if (val) {
-      nextTick(() => {
-        bindElements()
-      })
+      nextTick(bindParentListener)
     } else {
-      targets.forEach((target) => {
-        target.removeEventListener('click', forward)
-      })
+      unbindParentListener()
     }
   }
 )
 
-onMounted(() => {
-  if (wordLink.value) {
-    bindElements()
+watch(
+  () => props.container,
+  (val) => {
+    if (val && wordLink.value) {
+      nextTick(bindParentListener)
+    }
   }
+)
+
+onBeforeUnmount(() => {
+  unbindParentListener()
 })
 </script>
 

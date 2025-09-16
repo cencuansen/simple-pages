@@ -41,23 +41,17 @@ const process = (
 ): string => {
   if (!text || !type) return ''
 
-  // if (!originalTextMap[text]) {
-  //   originalTextMap[text] = {} as OriginalTextParsedMap
-  // }
+  if (!originalTextMap[text]) {
+    originalTextMap[text] = {} as OriginalTextParsedMap
+  }
 
   // let res: string = originalTextMap[text][type]
-
-  // if (!res) {
-  //   for (const fn of fns || []) {
-  //     res = fn?.call(this, text)
-  //   }
-  //   res && (originalTextMap[text][type] = res)
-  // }
 
   let res: string = text
   for (const fn of fns || []) {
     res = fn?.call(this, res)
   }
+  res && (originalTextMap[text][type] = res)
   return res
 }
 

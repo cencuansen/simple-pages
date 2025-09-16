@@ -15,7 +15,6 @@ export const transitivityOptions = ['他动词', '自动词', '自他动词']
 
 export const verbConjuCoreColumns: string[] = [
   'dictionary',
-  'hiragana',
   'te',
   'past',
   'negative',
