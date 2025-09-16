@@ -97,7 +97,8 @@ const selectedDictionary = computed({
 }
 
 .dict-selector {
-  width: 50%;
+  width: 100%;
+  max-width: 300px;
 }
 
 .option {
