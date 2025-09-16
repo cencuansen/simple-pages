@@ -214,6 +214,8 @@ const beforePage = computed(() => {
     list = list.filter(
       (item) => item.textId === textId && item.lesson === lesson
     )
+    // 短路。只根据点击的单词过滤
+    return list
   }
   if (props.keyword) {
     list = list.filter((item) =>
