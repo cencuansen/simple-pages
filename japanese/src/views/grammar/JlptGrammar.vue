@@ -17,7 +17,7 @@
 import { computed, ref } from 'vue'
 import { useJlptGrammarStore } from '@/stores/grammar/jlptGrammarStore.ts'
 import { storeToRefs } from 'pinia'
-import { tableHeightCalc } from '../word'
+import { tableHeightCalc } from '../../utils/word'
 import GrammarCore from './GrammarCore.vue'
 
 const grammarStore = useJlptGrammarStore()

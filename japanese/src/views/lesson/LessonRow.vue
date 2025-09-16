@@ -31,9 +31,9 @@
 </template>
 
 <script setup lang="ts">
-import { displayText } from './index.ts'
+import { displayText } from '../../utils/lesson.ts'
 import Reading from '../../components/Reading.vue'
-import type { TextBase } from './types.ts'
+import type { TextBase } from '../../types/lesson.ts'
 import { useReadingStore } from '@/stores/readingStore.ts'
 
 const readingStore = useReadingStore()

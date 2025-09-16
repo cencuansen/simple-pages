@@ -1,4 +1,4 @@
-import { type DictionaryName } from './constants.ts'
+import { type DictionaryName } from '@/constants/dictionary'
 
 export interface Dictionary {
   label: string

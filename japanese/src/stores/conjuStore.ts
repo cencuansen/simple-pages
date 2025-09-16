@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import Papa from 'papaparse'
 import ky from 'ky'
-import type { Conju } from '@/views/verbConju'
+import type { Conju } from '@/types/verbConju.ts'
+import { newTextId } from '@/utils'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -17,10 +18,14 @@ export const useConjuStore = defineStore('conju', () => {
       skipEmptyLines: true,
       dynamicTyping: true,
       complete: (result) => {
+        result.data.forEach((item) => {
+          item.textId = newTextId()
+        })
         conjuVerbs.value = result.data
       },
     })
   }
+
 
   return {
     conjuVerbs,

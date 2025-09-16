@@ -82,7 +82,11 @@
       </div>
     </el-dialog>
 
-    <SimplePagination :data="beforePage" :page-size="pageSize" @page-change="pageChange" />
+    <SimplePagination
+      :data="beforePage"
+      :page-size="pageSize"
+      @page-change="pageChange"
+    />
   </div>
 </template>
 
@@ -93,12 +97,8 @@ import Row from '../../components/Row.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { ElTable } from 'element-plus'
-import {
-  type Conju,
-  transitivityOptions,
-  typeOptions,
-  type VerbConjuColumn,
-} from './index.ts'
+import { transitivityOptions, typeOptions } from '../../constants/verbConju.ts'
+import type { Conju, VerbConjuColumn } from '@/types/verbConju.ts'
 import Dictionary from '../../components/Dictionary/DictionarySelector.vue'
 
 interface VerbConjuProps {

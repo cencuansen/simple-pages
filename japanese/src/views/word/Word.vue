@@ -22,7 +22,7 @@ import { useWordStore } from '@/stores/wordStore.ts'
 import { storeToRefs } from 'pinia'
 
 import WordCore from './WordCore.vue'
-import { tableHeightCalc } from './index.ts'
+import { tableHeightCalc } from '../../utils/word.ts'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()

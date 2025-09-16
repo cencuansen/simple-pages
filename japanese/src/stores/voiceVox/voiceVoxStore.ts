@@ -1,7 +1,7 @@
 // src/stores/voiceVoxStore.ts
 import { defineStore, storeToRefs } from 'pinia'
 import { computed, ref, watch } from 'vue'
-import type { Speaker, VoiceVoxInfo } from './types'
+import type { Speaker, VoiceVoxInfo } from '@/types/voiceVox.ts'
 import { type ReadingItem, useReadingStore } from '../readingStore.ts'
 
 export const useVoiceVoxStore = defineStore(

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import type { WordFilter, WordItem } from '@/types'
+import type { WordFilter, WordItem } from '@/types/word'
 import Papa from 'papaparse'
 import ky from 'ky'
 import { newTextId } from '@/utils'

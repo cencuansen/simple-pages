@@ -40,7 +40,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLessonStore } from '../stores/lessonStore.ts'
-import { displayText } from '@/views/lesson'
+import { displayText } from '@/utils/lesson.ts'
 
 interface Lesson {
   index: number

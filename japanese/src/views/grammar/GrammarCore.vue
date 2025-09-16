@@ -58,7 +58,7 @@ import Row from '../../components/Row.vue'
 import LessonSelect from '../../components/LessonSelect.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
-import { collapseTitle } from './index.ts'
+import { collapseTitle } from '../../utils/grammar.ts'
 import SimpleSelect from '../../components/SimpleSelect.vue'
 import { isNumber } from '@/utils'
 

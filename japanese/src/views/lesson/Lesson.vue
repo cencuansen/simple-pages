@@ -130,14 +130,12 @@ import { useAudioStore } from '@/stores/audioStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
 import { useWordStore } from '@/stores/wordStore.ts'
 import { useGrammarStore } from '@/stores/grammar/grammarStore.ts'
-import { useConjuStore } from '@/stores/conjuStore.ts'
-import { useJlptConjuStore } from '@/stores/jlptConjuStore.ts'
-import type { WordItem } from '@/types'
+import type { WordItem } from '@/types/word.ts'
 import { searchLesson } from '@/utils'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
-import { displayText, textParser } from './index.ts'
+import { displayText, textParser } from '../../utils/lesson.ts'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LinkTo from '../../components/LinkTo/LinkTo.vue'
 import LessonAudio from './LessonAudio.vue'
@@ -147,16 +145,13 @@ import Reading from '../../components/Reading.vue'
 import WordCore from '../word/WordCore.vue'
 import GrammarCore from '../grammar/GrammarCore.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
-import type { TextBase } from './types.ts'
-import { verbConjuCoreColumns as columns } from '@/views/verbConju/index.ts'
+import type { TextBase } from '../../types/lesson.ts'
 
 const lessonStore = useLessonStore()
 const audioStore = useAudioStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 const wordStore = useWordStore()
-const conjuStore = useConjuStore()
-const jlptConjuStore = useJlptConjuStore()
 
 const {
   dialog,
@@ -181,9 +176,6 @@ const { fullscreen, allTranslate, wordLink, furigana } =
   storeToRefs(settingStore)
 
 const { isPlaying } = storeToRefs(audioStore)
-
-const { conjuVerbs } = storeToRefs(conjuStore)
-const { jlptConjuVerbs } = storeToRefs(jlptConjuStore)
 
 const props = defineProps(['index'])
 const router = useRouter()
@@ -235,36 +227,38 @@ const grammars = computed(() => {
 })
 
 const finalWords = computed(() => {
-  const res: WordItem[] = []
-  const conjus = [...conjuVerbs.value, ...jlptConjuVerbs.value]
+  return words.value
+  // const res: WordItem[] = []
+  // const conjus = [...conjuVerbs.value, ...jlptConjuVerbs.value]
 
-  if (!conjus.length) return res
+  // if (!conjus.length) return res
 
-  words.value.forEach((word) => {
-    const match = conjus.find((c) =>
-      columns.some((col) => c[col] === word.word)
-    )
-    if (match) {
-      const relatedWords: WordItem[] = columns
-        .map(
-          (col) =>
-            ({
-              word: match[col],
-              textId: word.textId,
-            }) as WordItem
-        )
-        .filter((w) => Boolean(w.word))
-      res.push(...relatedWords)
-    } else {
-      res.push({
-        ...word,
-      })
-    }
-  })
-  return res
+  // words.value.forEach((word) => {
+  //   const match = conjus.find((c) =>
+  //     columns.some((col) => c[col] === word.word)
+  //   )
+  //   if (match) {
+  //     const relatedWords: WordItem[] = columns
+  //       .map(
+  //         (col) =>
+  //           ({
+  //             word: match[col],
+  //             textId: word.textId,
+  //           }) as WordItem
+  //       )
+  //       .filter((w) => Boolean(w.word))
+  //     res.push(...relatedWords)
+  //   } else {
+  //     res.push({
+  //       ...word,
+  //     })
+  //   }
+  // })
+  // return res
 })
 
 const textView = computed(() => {
+  if (!finalWords.value.length) return () => ''
   return textParser(finalWords.value, wordLink.value, furigana.value)
 })
 

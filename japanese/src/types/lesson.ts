@@ -1,4 +1,4 @@
-import type { WordItem } from '@/types'
+import type { WordItem } from '@/types/word.ts'
 
 export interface TextBase {
   textId: string

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import type { Dictionary } from '../components/Dictionary/types.ts'
+import type { Dictionary } from '../types/dictionary.ts'
 import { ref } from 'vue'
-import { dictionaries as dicts } from '@/components/Dictionary/constants.ts'
+import { dictionaries as dicts } from '@/constants/dictionary.ts'
 
 export const useDictionaryStore = defineStore('dictionary', () => {
   const dictionaries = ref(dicts)

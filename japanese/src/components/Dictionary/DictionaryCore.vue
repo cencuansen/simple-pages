@@ -16,8 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import type { DictionaryCore } from './types.ts'
-import { toUrl } from './utils.ts'
+import type { DictionaryCore } from '../../types/dictionary.ts'
+import { toUrl } from '../../utils/dictionary.ts'
 
 const props = defineProps<DictionaryCore>()
 </script>

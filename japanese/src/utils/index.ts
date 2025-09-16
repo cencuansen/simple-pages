@@ -1,5 +1,5 @@
-import type { Lesson } from '../views/lesson/types.ts'
-import { displayText } from '@/views/lesson'
+import type { Lesson } from '../types/lesson.ts'
+import { displayText } from '@/utils/lesson.ts'
 import { v4 as uuidv4 } from 'uuid'
 
 export const newTextId = () => `i_${uuidv4().split('-')[4]}`

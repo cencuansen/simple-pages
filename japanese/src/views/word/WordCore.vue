@@ -134,7 +134,7 @@ import { useWordStore } from '@/stores/wordStore.ts'
 import { useReadingStore } from '@/stores/readingStore.ts'
 import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
 
-import type { ActiveWord, WordItem } from '@/types'
+import type { ActiveWord, WordItem } from '@/types/word.ts'
 import { ElTable } from 'element-plus'
 
 import Row from '../../components/Row.vue'
@@ -147,7 +147,7 @@ import DictionarySelector from '../../components/Dictionary/DictionarySelector.v
 import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
 import { isNumber } from '@/utils'
 
-import type { Dictionary as DictionaryType } from '../../components/Dictionary/types.ts'
+import type { Dictionary as DictionaryType } from '../../types/dictionary.ts'
 
 interface WordProps {
   data: WordItem[]

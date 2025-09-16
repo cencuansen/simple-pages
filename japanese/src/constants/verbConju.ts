@@ -1,16 +1,9 @@
 import { ref } from 'vue'
-
-const emptyFn = (_1: any, _2: any, cellValue: any, _3: number) => cellValue
-
-export interface VerbConjuColumn {
-  value: string
-  label: string
-  formatter?: (_1: any, _2: any, cellValue: any, _3: number) => any
-  show?: boolean
-  width?: number
-}
+import type { VerbConjuColumn } from '@/types/verbConju'
+import { emptyFn } from '@/utils/verbConju.ts'
 
 export const typeOptions = ['五段动词', '一段动词', '不规则动词']
+
 export const transitivityOptions = ['他动词', '自动词', '自他动词']
 
 export const verbConjuCoreColumns: string[] = [
@@ -169,24 +162,3 @@ export const columns = ref<VerbConjuColumn[]>([
     width: 60,
   },
 ])
-
-export interface Conju {
-  [key: string]: any // 添加索引签名
-  dictionary: string // 辞书
-  hiragana: string // 平假名
-  meaning: string // 释义
-  type: string // 类型
-  transitivity: string // 及物性
-  negative: string // 否定
-  polite: string // 丁寧
-  conditional: string // 条件
-  volitional: string // 意向
-  te: string // て
-  past: string // 過去
-  negativePast: string // 過去否定
-  passive: string // 被动
-  causative: string // 使役
-  potential: string // 可能
-  imperative: string // 命令
-  lesson: number // 课程号
-}

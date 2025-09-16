@@ -1,12 +1,12 @@
 // 创建单词正则表达式
-import type { WordItem } from '@/types'
+import type { WordItem } from '@/types/word.ts'
 import type {
   ConvertParam,
   OriginalTextMap,
   OriginalTextParsedMap,
   ParseRuby,
   RubyPart,
-} from './types.ts'
+} from '../types/lesson.ts'
 
 const originalTextMap: OriginalTextMap = {}
 

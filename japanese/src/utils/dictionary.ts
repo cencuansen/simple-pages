@@ -1,5 +1,5 @@
-import type { Dictionary } from './types'
-import { placeholder } from './constants'
+import type { Dictionary } from '../types/dictionary'
+import { placeholder } from '../constants/dictionary'
 
 export const toUrl = (
   word: string | undefined,

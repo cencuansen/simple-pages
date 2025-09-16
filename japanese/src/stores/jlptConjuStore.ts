@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import Papa from 'papaparse'
 import ky from 'ky'
-import { type Conju } from '@/views/verbConju'
+import { type Conju } from '@/types/verbConju.ts'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
