@@ -57,7 +57,12 @@
 
       <!-- 语法 -->
       <section id="grammars" class="section">
-        <GrammarCore :data="grammars" pagination />
+        <GrammarCore
+          :data="grammars"
+          function-group
+          keyword-filter
+          pagination
+        />
       </section>
 
       <!-- 单词 -->
@@ -65,6 +70,8 @@
         <WordCore
           :data="words"
           :active-word="activeWord"
+          function-group
+          keyword-filter
           show-header
           pagination
         />
@@ -341,7 +348,8 @@ h2 {
   overflow-y: hidden;
 }
 
-:deep(.simple-pagination) {
+:deep(section .row),
+:deep(section .simple-pagination) {
   overflow: hidden;
 }
 

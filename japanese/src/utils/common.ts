@@ -2,7 +2,6 @@ import { v4 as uuidv4 } from 'uuid'
 
 export const newTextId = () => `i_${uuidv4().split('-')[4]}`
 
-
 export const detectBrowser = () => {
   const ua = navigator.userAgent
   const isMobile =
