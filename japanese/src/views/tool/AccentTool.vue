@@ -24,7 +24,12 @@
           </el-button>
         </el-form-item>
         <el-form-item>
-          <VoiceVox type="primary" :text="text" :disabled="!text" :content="'朗读'" />
+          <VoiceVox
+            type="primary"
+            :text="text"
+            :disabled="!text"
+            :content="'朗读'"
+          />
         </el-form-item>
       </el-form>
 
@@ -47,16 +52,33 @@
           :key="idx"
         >
           <!-- 背景：深色 -->
-          <rect x="0" y="0" :width="svgWidth" :height="'100%'" fill="#1e1e1e" />
+          <rect
+            x="0"
+            y="0"
+            :width="svgWidth"
+            :height="'100%'"
+            :fill="backColor"
+          />
           <!-- 曲线：亮色 -->
-          <path :d="getPathD(ap)" fill="none" stroke="#555" stroke-width="2" />
+          <path
+            :d="getPathD(ap)"
+            fill="none"
+            :stroke="foreColor"
+            stroke-width="2"
+          />
           <!-- 数据点 + 标签 -->
           <g v-for="(m, i) in ap.moras" :key="i">
-            <circle :cx="getX(ap, i)" :cy="getY(ap, i)" r="3.5" fill="#555" />
+            <circle
+              :cx="getX(ap, i)"
+              :cy="getY(ap, i)"
+              r="3.5"
+              :fill="foreColor"
+            />
             <text
               :x="getX(ap, i)"
-              :y="svgHeight - pad.bottom + 18"
+              :y="svgHeight - pad.bottom + 25"
               text-anchor="middle"
+              :fill="foreColor"
               class="mora-label"
             >
               {{ m.text }}
@@ -69,21 +91,21 @@
               :y1="pad.top - 8"
               :x2="getAccentX(ap)"
               :y2="svgHeight - pad.bottom"
-              stroke="#ff4d4f"
+              :stroke="redColor"
               stroke-dasharray="4,4"
             />
             <text
               :x="getAccentX(ap)"
               :y="svgHeight * 0.5"
               text-anchor="middle"
-              fill="#ff4d4f"
+              :fill="redColor"
               font-size="12"
             >
               <!--降调点: {{ ap.accent }}-->
             </text>
           </g>
           <!-- 标题 -->
-          <text :x="pad.left" y="18" font-size="12" fill="#555">
+          <text :x="pad.left" y="18" font-size="12" :fill="foreColor">
             #{{ idx + 1 }}
           </text>
         </svg>
@@ -130,6 +152,9 @@ const text = ref(
 )
 const loading = ref(false)
 const accentPhrases = ref<AccentPhrase[]>([])
+const backColor = ref('#1e1e1e')
+const foreColor = ref('#dddddd')
+const redColor = ref('#ff4d4f')
 
 const svgWidth = ref(720)
 const svgHeight = 200
@@ -271,19 +296,7 @@ function getAccentX(ap: AccentPhrase) {
   margin-bottom: 0;
 }
 
-.svg-list {
-  display: grid;
-  gap: 12px;
-}
-
 .mora-label {
-  font-size: 12px;
-  fill: #555;
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 20px;
 }
 </style>
