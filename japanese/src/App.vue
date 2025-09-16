@@ -31,7 +31,7 @@ import { useConjuStore } from './stores/conjuStore.ts'
 import { useJlptConjuStore } from './stores/jlptConjuStore.ts'
 import { useVoiceVoxStore } from './stores/voiceVox/voiceVoxStore.ts'
 import { useRoute, useRouter } from 'vue-router'
-import { detectBrowser } from './utils'
+import { detectBrowser } from './utils/common.ts'
 import { storeToRefs } from 'pinia'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 

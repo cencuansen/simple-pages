@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { isNumber } from '@/utils'
+import { isNumber } from '@/utils/common.ts'
 import type { Lesson } from '../types/lesson.ts'
 import ky from 'ky'
 import type { ActiveWord } from '@/types/word.ts'

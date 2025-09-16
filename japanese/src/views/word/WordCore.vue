@@ -145,7 +145,7 @@ import SimplePagination from '../../components/SimplePagination.vue'
 import Reading from '../../components/Reading.vue'
 import DictionarySelector from '../../components/Dictionary/DictionarySelector.vue'
 import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
-import { isNumber } from '@/utils'
+import { isNumber } from '@/utils/common.ts'
 
 import type { Dictionary as DictionaryType } from '../../types/dictionary.ts'
 

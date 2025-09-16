@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import Papa from 'papaparse'
 import ky from 'ky'
 import type { Conju } from '@/types/verbConju.ts'
-import { newTextId } from '@/utils'
+import { newTextId } from '@/utils/common'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 

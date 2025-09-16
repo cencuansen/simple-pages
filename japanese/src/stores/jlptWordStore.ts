@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import Papa from 'papaparse'
 import ky from 'ky'
-import { newTextId } from '@/utils'
+import { newTextId } from '@/utils/common'
 import type { WordItem } from '@/types/word'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE

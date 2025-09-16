@@ -65,3 +65,9 @@ export interface ConvertParam {
   originalText: string
   words?: WordItem[]
 }
+
+export interface LessonSearch {
+  idx: string
+  title: string
+  contents: string[]
+}

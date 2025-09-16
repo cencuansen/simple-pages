@@ -60,7 +60,7 @@ import SimpleInput from '../../components/SimpleInput.vue'
 import SimplePagination from '../../components/SimplePagination.vue'
 import { collapseTitle } from '../../utils/grammar.ts'
 import SimpleSelect from '../../components/SimpleSelect.vue'
-import { isNumber } from '@/utils'
+import { isNumber } from '@/utils/common.ts'
 
 interface GrammarProps {
   data: Grammar[]

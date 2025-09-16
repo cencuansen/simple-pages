@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, withDefaults } from 'vue'
-import { newTextId } from '@/utils'
+import { newTextId } from '@/utils/common.ts'
 import type { ElementInfo, Props } from '../../types/indexBar.ts'
 
 const props = withDefaults(defineProps<Props>(), {

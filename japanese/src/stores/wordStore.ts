@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import type { WordFilter, WordItem } from '@/types/word'
 import Papa from 'papaparse'
 import ky from 'ky'
-import { newTextId } from '@/utils'
+import { newTextId } from '@/utils/common'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
