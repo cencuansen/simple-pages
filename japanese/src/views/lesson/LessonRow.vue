@@ -11,6 +11,7 @@
     <div class="right">
       <div class="row">
         <Reading
+          v-if="isNormalText(row.content)"
           class="row-icon"
           :row-item="row as TextBase"
           @click="speak(row.textId)"
@@ -20,10 +21,10 @@
           :class="{
             active: activeText(row.textId),
           }"
-          v-html="textView(row.content)"
+          v-html="textView(nonTextProcess(row.content))"
         />
       </div>
-      <div class="translate" v-if="translate">
+      <div class="translate" v-if="translate && isNormalText(row.content)">
         <el-text>{{ row.translation }}</el-text>
       </div>
     </div>
@@ -55,6 +56,29 @@ const speak = async (id: string) => {
     block: 'center',
     inline: 'nearest',
   })
+}
+
+const nonTextPatten = /(\{(\w+)\|([^}]+)\})/
+
+const isNormalText = (text: string) => {
+  return !nonTextPatten.test(text)
+}
+
+const nonTextProcess = (text: string): string => {
+  if (!text) return text
+  const match = text.match(nonTextPatten)
+  if (match) {
+    const matchedText = match[1]
+    const type = match[2]
+    const filename = match[3]
+
+    if (type === 'img') {
+      const imageUrlBase: string = import.meta.env.VITE_IMAGE_BASE
+      const real = `${imageUrlBase}/${filename}`
+      text = text.replace(matchedText, real)
+    }
+  }
+  return text
 }
 </script>
 
