@@ -51,71 +51,47 @@ export interface Lesson {
 // const file1 = join(__dirname, '../public/jsons/lesson.jsons')
 const file1 = './lesson.json'
 const data1: Lesson[] = JSON.parse(fs.readFileSync(file1).toString())
-const ttsSource: TtsSource[] = []
+const allIds: string[] = []
 data1.forEach((lesson: Lesson) => {
   lesson.sentences &&
     lesson.sentences.forEach((item: TextBase) => {
-      // item['textId'] = newTextId()
-      item['ttsAudio'] = `/${lesson.index}/${item.textId}.mp3`
-      // item['speakText'] = speakText(item.content)
-      if (item.time) {
-        item['audio'] = `/${lesson.index}.mp3#t=${item.time}`
+      if (lesson.index > 204) {
+        const id = newTextId()
+        item.textId = id
+        item.ttsAudio = `/${lesson.index}/${id}.mp3`
+        item.speakText = speakText(item.content)
       }
-      ttsSource.push({
-        lesson: lesson.index,
-        module: 'sentences',
-        textId: item.textId,
-        speakText: item.speakText,
-      })
     })
   lesson.conversations &&
     lesson.conversations.forEach((items: TextBase[]) => {
       items.forEach((item: TextBase) => {
-        // item['textId'] = newTextId()
-        item['ttsAudio'] = `/${lesson.index}/${item.textId}.mp3`
-        // item['speakText'] = speakText(item.content)
-        if (item.time) {
-          item['audio'] = `/${lesson.index}.mp3#t=${item.time}`
+        if (lesson.index > 204) {
+          const id = newTextId()
+          item.textId = id
+          item.ttsAudio = `/${lesson.index}/${id}.mp3`
+          item.speakText = speakText(item.content)
         }
-        ttsSource.push({
-          lesson: lesson.index,
-          module: 'conversations',
-          textId: item.textId,
-          speakText: item.speakText,
-        })
       })
     })
   lesson.discussions.contents &&
     lesson.discussions.contents.forEach((items: TextBase[]) => {
       items.forEach((item: TextBase) => {
-        // item['textId'] = newTextId()
-        item['ttsAudio'] = `/${lesson.index}/${item.textId}.mp3`
-        // item['speakText'] = speakText(item.content)
-        if (item.time) {
-          item['audio'] = `/${lesson.index}.mp3#t=${item.time}`
+        if (lesson.index > 204) {
+          const id = newTextId()
+          item.textId = id
+          item.ttsAudio = `/${lesson.index}/${id}.mp3`
+          item.speakText = speakText(item.content)
         }
-        ttsSource.push({
-          lesson: lesson.index,
-          module: 'discussions',
-          textId: item.textId,
-          speakText: item.speakText,
-        })
       })
     })
   lesson.article.contents &&
     lesson.article.contents.forEach((item: TextBase) => {
-      // item['textId'] = newTextId()
-      item['ttsAudio'] = `/${lesson.index}/${item.textId}.mp3`
-      // item['speakText'] = speakText(item.content)
-      if (item.time) {
-        item['audio'] = `/${lesson.index}.mp3#t=${item.time}`
+      if (lesson.index > 204) {
+        const id = newTextId()
+        item.textId = id
+        item.ttsAudio = `/${lesson.index}/${id}.mp3`
+        item.speakText = speakText(item.content)
       }
-      ttsSource.push({
-        lesson: lesson.index,
-        module: 'article',
-        textId: item.textId,
-        speakText: item.speakText,
-      })
     })
 })
 fs.writeFileSync('./lesson-new.json', JSON.stringify(data1, null, 2))
