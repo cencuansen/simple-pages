@@ -95,4 +95,3 @@ data1.forEach((lesson: Lesson) => {
     })
 })
 fs.writeFileSync('./lesson-new.json', JSON.stringify(data1, null, 2))
-// fs.writeFileSync('./lesson-tts-source.json', JSON.stringify(ttsSource, null, 2))
