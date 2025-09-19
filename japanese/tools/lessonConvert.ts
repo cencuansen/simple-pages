@@ -1,7 +1,8 @@
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, resolve, join } from 'path'
-import { newTextId, speakText } from '../src/utils'
+import { newTextId } from '../src/utils/common'
+import { speakText } from '../src/utils/lesson'
 // 获取当前文件的 __filename 和 __dirname 等效值
 // const __filename = fileURLToPath(import.meta.url)
 // const __dirname = dirname(__filename)
