@@ -29,7 +29,17 @@
       empty-text="暂无数据"
       stripe
     >
-      <el-table-column label="单词" min-width="100">
+      <el-table-column min-width="100">
+        <template #header>
+          <div class="column-header">
+            <SimpleInput
+              v-model="wordFilter"
+              placeholder="单词"
+              class="header-filter"
+              @input="applyFilters"
+            />
+          </div>
+        </template>
         <template #default="scope">
           <div
             :class="{
@@ -57,11 +67,23 @@
       />
       <el-table-column
         v-if="settingStore.wordDesc"
-        label="释义"
         min-width="150"
-        prop="desc"
         show-overflow-tooltip
-      />
+      >
+        <template #header>
+          <div class="column-header">
+            <SimpleInput
+              v-model="descFilter"
+              placeholder="释义"
+              class="header-filter"
+              @input="applyFilters"
+            />
+          </div>
+        </template>
+        <template #default="scope">
+          {{ scope.row.desc }}
+        </template>
+      </el-table-column>
       <el-table-column v-if="showLesson" label="课程" width="60">
         <template #default="scope">
           <a href="#" @click="lessonClick(scope.row.lesson)">
@@ -183,6 +205,10 @@ const props = withDefaults(defineProps<WordProps>(), {
 const lessonIndex = ref<number | undefined>()
 const keyword = ref<string>('')
 
+// 新增：单词和释义的过滤条件
+const wordFilter = ref<string>('')
+const descFilter = ref<string>('')
+
 const readingStore = useReadingStore()
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()
@@ -244,6 +270,19 @@ const beforePage = computed(() => {
       )
     )
   }
+  // 新增：应用单词和释义过滤
+  if (wordFilter.value) {
+    list = list.filter((item) =>
+      item.word.includes(wordFilter.value) ||
+      (item.kana && item.kana.includes(wordFilter.value))
+    )
+  }
+  if (descFilter.value) {
+    list = list.filter((item) =>
+      item.desc && item.desc.includes(descFilter.value)
+    )
+  }
+
   return list
 })
 
@@ -273,6 +312,12 @@ const lessonClick = (val: number) => {
   } else {
     lessonIndex.value = val
   }
+}
+
+// 新增：应用过滤
+const applyFilters = () => {
+  // 过滤逻辑已集成在beforePage计算属性中
+  // 这里只需要触发重新计算
 }
 
 onBeforeUnmount(() => {
@@ -308,5 +353,17 @@ onActivated(async () => {
 :deep(.el-table .el-scrollbar__wrap) {
   /* 解决移动端滚动不顺畅问题 */
   overflow-y: hidden;
+}
+
+/* 新增：表头过滤样式 */
+.column-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.header-filter {
+  width: 100%;
+  min-width: 80px;
 }
 </style>
