@@ -43,7 +43,6 @@
             :prop="col.value"
             :label="col.label"
             :formatter="col.formatter"
-            :width="col.width"
             show-overflow-tooltip
           ></el-table-column>
         </template>
