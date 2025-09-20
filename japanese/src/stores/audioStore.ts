@@ -149,7 +149,7 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   const onAbort = () => {
-    isPlaying.value = false
+    // isPlaying.value = false
   }
 
   watch(isPlaying, (newVal) => {

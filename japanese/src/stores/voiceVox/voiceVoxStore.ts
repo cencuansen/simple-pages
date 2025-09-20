@@ -344,10 +344,11 @@ export const useVoiceVoxStore = defineStore(
     }
 
     const onAbort = () => {
-      isPlaying.value = false
+      // isPlaying.value = false
     }
 
-    watch(isPlaying, (newVal) => {
+    watch(() => isPlaying.value, (newVal) => {
+      console.log('voicevox watch isPlaying', newVal)
       setIsReading(newVal)
     })
 
