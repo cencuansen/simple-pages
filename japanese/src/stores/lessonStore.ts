@@ -1,17 +1,25 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { isNumber } from '@/utils/common.ts'
-import type { Lesson } from '../types/lesson.ts'
+import type { Lesson, TextBase } from '../types/lesson.ts'
 import ky from 'ky'
 import type { ActiveWord } from '@/types/word.ts'
+import Papa from 'papaparse'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
+
+interface LessonRelation {
+  textId: string
+  content: string
+}
 
 export const useLessonStore = defineStore(
   'lessons',
   () => {
     // props
     const lessons = ref<Lesson[]>([])
+    const lessonContentMap = ref<Map<string, string>>(new Map())
+    const lessonTranslationMap = ref<Map<string, string>>(new Map())
     const isLoading = ref(false)
     const error = ref<string | null>(null)
     const currentIndex = ref(-1)
@@ -26,9 +34,49 @@ export const useLessonStore = defineStore(
       try {
         isLoading.value = true
         error.value = null
-        const response = await ky(`${jpJsonBase}/lesson.json?t=${Date.now()}`)
-        const data: Lesson[] = await response.json()
-        process(data)
+        const lessonLiteResponse = await ky(
+          `${jpJsonBase}/lesson-lite.json?t=${Date.now()}`
+        )
+        const data: Lesson[] = await lessonLiteResponse.json()
+
+        const lessonContentResponse = await ky(
+          `${jpJsonBase}/lesson-contents.csv?t=${Date.now()}`
+        )
+        const lessonContentText = await lessonContentResponse.text()
+        Papa.parse<LessonRelation>(lessonContentText, {
+          header: true,
+          skipEmptyLines: true,
+          dynamicTyping: true,
+          complete: (result) => {
+            result.data.forEach((item) => {
+              lessonContentMap.value.set(item.textId, item.content)
+            })
+          },
+          error: (err: any) => {
+            error.value = err.message
+          },
+        })
+
+        const lessonTranslationResponse = await ky(
+          `${jpJsonBase}/lesson-translations.csv?t=${Date.now()}`
+        )
+        const lessonTranslationText = await lessonTranslationResponse.text()
+        Papa.parse<LessonRelation>(lessonTranslationText, {
+          header: true,
+          skipEmptyLines: true,
+          dynamicTyping: true,
+          complete: (result) => {
+            result.data.forEach((item) => {
+              lessonTranslationMap.value.set(item.textId, item.content)
+            })
+          },
+          error: (err: any) => {
+            error.value = err.message
+          },
+        })
+
+        process(data, lessonContentMap.value, lessonTranslationMap.value)
+
         lessons.value = data
         minIndex.value = lessons.value[0].index
         maxIndex.value = lessons.value[lessons.value.length - 1].index
@@ -50,10 +98,45 @@ export const useLessonStore = defineStore(
     const isValidLessonIndex = (index: number): boolean =>
       isNumber(index) && index >= minIndex.value && index <= maxIndex.value
 
-    const process = (data: Lesson[]) => {
+    const process = (
+      data: Lesson[],
+      contents: Map<string, string>,
+      translations: Map<string, string>
+    ) => {
       if (!data || data.length === 0) {
         return []
       }
+
+      function initItem(item: TextBase, lesson: Lesson) {
+        item.content = contents.get(item.textId) || ''
+        item.translation = translations.get(item.textId)
+        item.ttsAudio = `/${lesson.index}/${item.textId}.mp3`
+      }
+
+      data.forEach((lesson: Lesson) => {
+        lesson.audio = `/${lesson.index}.mp3`
+
+        lesson.sentences?.forEach((item: TextBase) => {
+          initItem(item, lesson)
+        })
+
+        lesson.conversations?.forEach((items: TextBase[]) => {
+          items.forEach((item: TextBase) => {
+            initItem(item, lesson)
+          })
+        })
+
+        lesson.discussions?.contents?.forEach((items: TextBase[]) => {
+          items.forEach((item: TextBase) => {
+            initItem(item, lesson)
+          })
+        })
+
+        lesson.article?.contents?.forEach((item: TextBase) => {
+          initItem(item, lesson)
+        })
+      })
+
       return data
     }
     // -- private functions end --

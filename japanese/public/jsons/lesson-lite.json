@@ -1,0 +1,9155 @@
+[
+  {
+    "index": 101,
+    "title": "第 1 課 [{李|り}|i_2c1a13eb3f96]さんは[{中国人|ちゅうごくじん}|i_c618f65eab9f]です",
+    "sentences": [
+      {
+        "textId": "i_2c027957a20f"
+      },
+      {
+        "textId": "i_a6bcd1174ee2"
+      },
+      {
+        "textId": "i_7ee0c256f86d"
+      },
+      {
+        "textId": "i_0bd205ea2a9f"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_80d3da42b9a0"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_d5147087aaec"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_d3208b1605b2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_78c806e0ef37"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_354a3ce94de1"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_fd319ec32b55"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_647eba4d41c7"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_677390a77528"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{出迎|でむか}え",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_d1cc26a9a8c9"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_60ad50a9c3b8"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_379755b40eb0"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_3355a04d59a5"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_574ac4e47d22"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_6b7077a2961d"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_05c030fe3b7a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4f492fb36ff8"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_88f8a224393d"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_251ebe0236b2"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 102,
+    "title": "第 2 課 これは[{本|ほん}|i_e6f223ed7a13]です",
+    "sentences": [
+      {
+        "textId": "i_1d17227caffd"
+      },
+      {
+        "textId": "i_6f3f5435c85e"
+      },
+      {
+        "textId": "i_c767aeb95b17"
+      },
+      {
+        "textId": "i_91d55edbb22c"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_0935d724d522"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_11e09617a984"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_985a05b2026e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_201e5e7c4da0"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_59767c08104c"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_4b931eba787c"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_e90736cd085b"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_539e827aea19"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{家族|かぞく}|i_7c00de0bad5e]の[{写真|しゃしん}|i_65849b220a23]",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_45150c7a9bc0"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4e73db02bca4"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_c93fc4aed74e"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e928ea41d039"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_fa9ee19789cf"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_208d393bbf67"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_3973e185f848"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_a28cb7119b78"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_591b41ed4b14"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_27e927d208d9"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1cec1bfdc6c1"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_bb20f2a8e3c6"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 103,
+    "title": "第 3 課 ここはデパートです",
+    "sentences": [
+      {
+        "textId": "i_f1fb0376fb3a"
+      },
+      {
+        "textId": "i_386c5a4e9621"
+      },
+      {
+        "textId": "i_654d25b2b486"
+      },
+      {
+        "textId": "i_ae21299ea0c7"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_0fa1d0b32f17"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_ee4584b664f8"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9d03a564e67a"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_d1bf5441ecbc"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_05d6865a2935"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_68449a6fc974"
+        },
+        {
+          "speaker": "甲",
+          "textId": "i_f08e4f427a77"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_d998e3728a0f"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "ホテルの[{周辺|しゅうへん}|i_df9839df48b2]",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_f1a813270a88"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_dc1fe0c54dad"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_2a5c47f53d0f"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ebe5f33182e2"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_c0d6c4702a39"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4f8996bb2069"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_b063fdcd342e"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_734b3abe290b"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_8535dfedd7f3"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_5fa33b79836f"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_cec9276936b6"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_d7cacf24330d"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_969d2dd368fd"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 104,
+    "title": "第 4 課 [{部屋|へや}|i_c3c85cd0cd01]に{机|つくえ}といすがあります",
+    "sentences": [
+      {
+        "textId": "i_c381709e551e"
+      },
+      {
+        "textId": "i_142f6b7de825"
+      },
+      {
+        "textId": "i_9434ce12ae08"
+      },
+      {
+        "textId": "i_34f4d440b164"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_eea5e9c14f8d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_793472218107"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_3f1f8e3d6a13"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_8062bdc2c613"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_f5ed4afe6cf3"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_73d2fa482b63"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_4bc09ede557e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_644f65a5b25a"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{会社|かいしゃ}の[{場所|ばしょ}|i_df8e5cdca291]",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_6cf1697bd4d0"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_4cc4e9596566"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_eaa9dd16b3d0"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_1a7bbeedd0d0"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_ecf50d10f4f0"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_2bac38eb9c58"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_a7f463b3241e"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_b823d5c7b4c6"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3cd0af984425"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_75689f7e80d3"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ffc06535ac5c"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_617540e7c0cd"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_adcb065b35a2"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_98886b2abd75"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 105,
+    "title": "第 5 課 {森|もり}さんは{七時|しちじ}に{起|お}きます",
+    "sentences": [
+      {
+        "textId": "i_7760dfe12858"
+      },
+      {
+        "textId": "i_e83875d515a2"
+      },
+      {
+        "textId": "i_a4f660a25040"
+      },
+      {
+        "textId": "i_567a286ab1e8"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_4e973cda09ca"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_a035baae34c0"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_fa4a29745b5f"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_12478549af7d"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_7a52b2c33a79"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_7fb167aa0e25"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_97c30d19dae9"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c5a0b470b898"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{遅刻|ちこく}|i_e065ca35d994]",
+      "contents": [
+        [
+          {
+            "speaker": "吉田",
+            "textId": "i_a29221cf7cd5"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_54f9e90ab042"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_996bf29de297"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_08592bc791ab"
+          }
+        ],
+        [
+          {
+            "speaker": "吉田",
+            "textId": "i_3066617d0d2d"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_e1dfdaa2bc2e"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_09d329add670"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_f04aebc4b9f8"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_396fc3c493c0"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_15a9f2bf95dd"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_aec40916620b"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_17994e50d1fd"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_9abfc93dab1c"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_fb6b77968deb"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_397b5709d63d"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 106,
+    "title": "第 6 課 {吉田|よしだ}さんは[{来月|らいげつ}|i_57d20834591a]{中国|ちゅうごく}へ{行|い}きます",
+    "sentences": [
+      {
+        "textId": "i_29a832a28a29"
+      },
+      {
+        "textId": "i_75014e3620f3"
+      },
+      {
+        "textId": "i_d3875ce7f7b2"
+      },
+      {
+        "textId": "i_1dc78297b03e"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_b185c3b22166"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_0cc0cee51389"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_6d3562090eaf"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_1ddb6aed956f"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_4cc9375f87d7"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_f144c3fb2546"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_1b529d097ac1"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_7d5725d97fab"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{交通機関|こうつうきかん}|i_efcdd4036c80]",
+      "contents": [
+        [
+          {
+            "speaker": "吉田",
+            "textId": "i_d9406fc759e4"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_a162b5c0cf9a"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_08c290a15801"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e06420fd8bcd"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_6cbde7d62719"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_de2d28961f3d"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ac55711f11a8"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_3a6846e51e4d"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_60dfc4768a25"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_86d8daf583ad"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_8f2ec93941d3"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_85342daab91a"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_fb7209f4b988"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_769bd976260e"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 107,
+    "title": "第 7 課 {李|り}さんは{毎日|まいにち}コーヒーを{飲|の}みます",
+    "sentences": [
+      {
+        "textId": "i_c9a2c7739ce8"
+      },
+      {
+        "textId": "i_29b67bf0dcb6"
+      },
+      {
+        "textId": "i_03a0a46cd83e"
+      },
+      {
+        "textId": "i_b499990f92f1"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_e5373cea94b2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_a2f20e056cbb"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_e65bcf2c202f"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_078506163b1a"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_89d1bed15ace"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_b8cb58c2aece"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_b1b893f2ad24"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_434b4ee47670"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{昼|ひる}ご{飯|はん}",
+      "contents": [
+        [
+          {
+            "speaker": "吉田",
+            "textId": "i_7786587f03a0"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3f5df79a3399"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_34dfc9a30859"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_df28b20787e3"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3a5834b877e0"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_cc4e6c6dd08f"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_05ff9c283ed7"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_c0533f532fb8"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e2b35c032413"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_15c1f08d50f5"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_6e16b69a1b03"
+          }
+        ],
+        [
+          {
+            "speaker": "店員",
+            "textId": "i_f7932c03e18b"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_cdc3a33a2ed9"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_07ae7c66de8b"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_93334d9f55c9"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 108,
+    "title": "第 8 課 {李|り}さんは{日本語|にほんご}で{手紙|てがみ}を{書|か}きます",
+    "sentences": [
+      {
+        "textId": "i_dccadb9644f5"
+      },
+      {
+        "textId": "i_37557ade30a1"
+      },
+      {
+        "textId": "i_99557d958e09"
+      },
+      {
+        "textId": "i_ee6f0579010d"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_419b2246ac3b"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_25d9d8f6162b"
+        },
+        {
+          "speaker": "甲",
+          "textId": "i_4d72318998aa"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_8bb5dbcbb2d6"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_6b44b0fc2c11"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_a04517261817"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_6b4638f672f0"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_b0cc89ab64f8"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_613f8d6e72cf"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "スケジュール{表|ひょう}",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_9530b6439b69"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_2a968e8fe1f0"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_74f1885c6d0a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_8c64ada70f4e"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_a54185a8368a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_dd2cce845106"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_c5712a408dae"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_9becabad6677"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_fb481446df64"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_430de4e3dc90"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_d7cf7b05d7f7"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_6390e577fc71"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_62fa85b2b4fd"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_604110f5cc34"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 109,
+    "title": "第 9 課 [{四川料理|しせんりょうり}|i_f07e87cf5073]は{辛|から}いです",
+    "sentences": [
+      {
+        "textId": "i_4bbb3ce7330c"
+      },
+      {
+        "textId": "i_14d4a14eca1e"
+      },
+      {
+        "textId": "i_710ea61b2c80"
+      },
+      {
+        "textId": "i_99f0b4bcbf4c"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_53b353b19cce"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_a018fe5ca559"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9a0882873475"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_81dc182dfc01"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_806b59d8c7f5"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_fcd064d987e6"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_0f26a465f232"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_612d9de72bc6"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{温泉|おんせん}|i_33eab2b8949f]",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_8e6c385b7b96"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_db63730534ca"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1c87d968145d"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_108ed8459ac6"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_317b305e75e7"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_366bd6c3ffa2"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_f1826c878238"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_f2f3888b9796"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_8f2cc93a7d7c"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_dd2f1f3eb24a"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 110,
+    "title": "第 10 課 {京都|きょうと}の[{紅葉|もみじ}|i_75be8d3c040d]は[{有名|ゆうめい}|i_549bb6592796]です",
+    "sentences": [
+      {
+        "textId": "i_eb25ca83eb10"
+      },
+      {
+        "textId": "i_73efde9fc6ab"
+      },
+      {
+        "textId": "i_f9a208525142"
+      },
+      {
+        "textId": "i_f10c3d5e63bb"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_4bec3afebfd1"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_d06512dd07e4"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_194a5e953b14"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_d61ffe202af8"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_66e8f284156e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_b227fe3e336c"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_672bd654dfb5"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_dd14dc8299f2"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{美術館|びじゅつかん}",
+      "contents": [
+        [
+          {
+            "speaker": "長島",
+            "textId": "i_bc5051ad6522"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_fe8c70d990e5"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_7b05e81a44e6"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_5091030a5f11"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_db3646e679e9"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_4752f2ce4866"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_5ce5221600c4"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4a1c54b0ee5e"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_e75b73e1d54b"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_a4fafc003faf"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_77e7fe4ba20f"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_3b8735643c13"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_87d23eb18e8d"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 111,
+    "title": "第 11 課 {小野|おの}さんは[{歌|うた}|i_d401f9c48e3e]が{好|す}きです",
+    "sentences": [
+      {
+        "textId": "i_c7a082604edc"
+      },
+      {
+        "textId": "i_dfb4fc6d443d"
+      },
+      {
+        "textId": "i_1fb9a90f5752"
+      },
+      {
+        "textId": "i_62adc813c664"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_82ee24d7edd7"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c459c7190975"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9b5cddd22a7d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c5c462287609"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_e4113166609a"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_e0e92271fd5f"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_65d3e4549733"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_611610e0f5a8"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "お{土産|みやげ}",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_70368ceee6cd"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_81a0abe2d477"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3bbb383a1537"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_2bbce042eac2"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_c9cb29e8eba3"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_28e70425dc7f"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_29059ea2945d"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_7b4aa05ba554"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_ed44d41d0c97"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_b9658111db3f"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_fcf8e5bf997d"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_a021a7791d6a"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_81c21b1a8888"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_8c4b4c2819de"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_b5a766ff55f7"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 112,
+    "title": "第 12 課 {李|り}さんは{森|もり}さんより{若|わか}いです",
+    "sentences": [
+      {
+        "textId": "i_cc1e5624231e"
+      },
+      {
+        "textId": "i_3d0f8fe883bc"
+      },
+      {
+        "textId": "i_b7b7b57473b2"
+      },
+      {
+        "textId": "i_beda96d8783e"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_59c15ff9b55c"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_dedd3e33fd2f"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_33068aa650e9"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_4ca16a6965e2"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_862a1990a84d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_07e933b4409e"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_c512c881e225"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_500637b482a0"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "お{酒|さけ}とお{茶|ちゃ}",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_7ae336c90a0b"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_5b66f901c543"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_a1544a0265ed"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_1f5891c0d050"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_012f1f8221d1"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e37dc183b03e"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_a35b8c89b4e0"
+          }
+        ],
+        [
+          {
+            "speaker": "長島",
+            "textId": "i_8a319be35d69"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_30334ba487d4"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_9acd7f561a50"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e08abedbe342"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_59b3ea162911"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_023d1a6d9569"
+          },
+          {
+            "speaker": "長島",
+            "textId": "i_ae29c53f809f"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_c7e9fc6ef39e"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 113,
+    "title": "第 13 課 {机|つくえ}の{上|うえ}に{本|ほん}が{三冊|さんさつ}あります",
+    "sentences": [
+      {
+        "textId": "i_202555b366e5"
+      },
+      {
+        "textId": "i_3a40a627f452"
+      },
+      {
+        "textId": "i_342cbea4f1e9"
+      },
+      {
+        "textId": "i_cca271461ad7"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9c37a056473e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_594dc0eb95be"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_4855ce5cb256"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_796362dc43a2"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_a0cbd3ed282d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_6627f804dd5d"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_01b98c7de79e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_82792b793888"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{居酒屋|いざかや}|i_519c9cadfd56]",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_6651f9a7fdd9"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_f574339d753d"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_7aa7165f1e6a"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_6cdbc5c0a93c"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_5090284c5231"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_219057792a79"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_8a362e6bd74b"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_919547df0781"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_3acd515bd890"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_faec7ae79a1e"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_aaa605051577"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_4ba4b85ff3df"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_cd622c6549f0"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 114,
+    "title": "第 14 課 {昨日|きのう}デパートへいって{買|か}い{物|もの}しました",
+    "sentences": [
+      {
+        "textId": "i_82ffd9bfb7ae"
+      },
+      {
+        "textId": "i_6956df61ed76"
+      },
+      {
+        "textId": "i_bcf722af376f"
+      },
+      {
+        "textId": "i_8f8734d1bb44"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_51550ff6beba"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_19974aff4703"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_061135f4af84"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_b49e8ef2f739"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_3db675724b75"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_733e8e79b34f"
+        },
+        {
+          "speaker": "甲",
+          "textId": "i_1f95076cbb1a"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_2f12f38e57d3"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_887683f8db65"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{原稿|げんこう}|i_f1fd7eeb6733]",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_0aa00b4509bc"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_47ab1f742e94"
+          }
+        ],
+        [
+          {
+            "speaker": "吉田",
+            "textId": "i_ab4a20d4e4c3"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_a0f3ea6e8d41"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_845a6e139bc0"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_7afa2722e5c6"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_9ac08d1de9bd"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_759123d1c52d"
+          }
+        ],
+        [
+          {
+            "speaker": "吉田",
+            "textId": "i_07eec75bdd0f"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3ff84a6652ad"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_8abcf90b07d1"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_cce2c803ba59"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_0caabdc3a86a"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 115,
+    "title": "第 15 課 {小野|おの}さんは{今|いま}{新聞|しんぶん}を{読|よ}んでいます",
+    "sentences": [
+      {
+        "textId": "i_2a1128d6dbd9"
+      },
+      {
+        "textId": "i_b254e66448b7"
+      },
+      {
+        "textId": "i_42920be8d5ca"
+      },
+      {
+        "textId": "i_694737206efd"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_60101328648c"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_69093a93e416"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9b490fa4f641"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_831005083ed7"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_fdbbfa236c7f"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_7153519da700"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_c891d5c9577d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_9ede8cd49d46"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{風邪|かぜ}|i_2b44199d028e]",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_d130fc366384"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_cc1a6af14e77"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_d8840870cd70"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_663ca5ebed4b"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_1a4f3e8426db"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_8f802b5a3621"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_ed5a3563fd02"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_c2aa08f1d0bc"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_9a83ce7de848"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_532d370aa093"
+          }
+        ],
+        [
+          {
+            "speaker": "医者",
+            "textId": "i_0f900af97fe9"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_6ad8ded61a52"
+          },
+          {
+            "speaker": "医者",
+            "textId": "i_f122fbc359f2"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4b4465bc3b9c"
+          },
+          {
+            "speaker": "医者",
+            "textId": "i_9a51ede1d8ea"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 116,
+    "title": "第 16 課 ホテルの{部屋|へや}は{広|ひろ}くて{明|あか}るいです。",
+    "sentences": [
+      {
+        "textId": "i_97768c433aae"
+      },
+      {
+        "textId": "i_479903a9b7d2"
+      },
+      {
+        "textId": "i_117f0911c7e3"
+      },
+      {
+        "textId": "i_856fa51e6eb9"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_ec4f55577597"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_34ced81842a8"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_3129b52ca691"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_82589fca773e"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_7743a52190c4"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_4a8cab09004a"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_83f5e9088dc3"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_9109150c5d87"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{展示場|てんじじょう}|i_7a44e6ecedd4]",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_af430e875c25"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_3bc5d6135030"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_d0c78c5e01b4"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_bc29a80dc366"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_0952fca86b74"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_b92206251293"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_4dfb79d1e542"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_77cbc0421f8f"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_b9328605980b"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_c8fb6ab06883"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_a22f3505403e"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 117,
+    "title": "第 17 課 わたしは{新|あたら}しい[{洋服|ようふく}|i_eb5f5952aaa8]が{欲|ほ}しいです",
+    "sentences": [
+      {
+        "textId": "i_a0c0d1b99ef9"
+      },
+      {
+        "textId": "i_51dc73db3322"
+      },
+      {
+        "textId": "i_af4fa484b4e8"
+      },
+      {
+        "textId": "i_ae861cfad665"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_535fcd1d7d13"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_8cb2c91286ab"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_8d54b475d69c"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_f3e79a2c2ae6"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_1d2dbac66d1c"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_664b8670c469"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_28f02d7a05e2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_cae063ffe285"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{初詣|はつもうで}|i_3d4206a3bbca]",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_f9f6930a855d"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_f9f855be5f11"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_bb2539612b98"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_0d0181a4dbf8"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_7c74a669f6d7"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_0e495ce5179b"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_634d0ff6e08e"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_49185aa1800b"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e13036e62172"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_f462a2d35637"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_62e7da48ed4a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_346a6cb0e9f4"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_86ad3a6a0371"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1150631aeceb"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_a9b83fae9624"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ddc8a31a06b2"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 118,
+    "title": "第 18 課 {携帯電話|けいたいでんわ}はとても{小|ちい}さく{成|な}りました",
+    "sentences": [
+      {
+        "textId": "i_8b8b94b1848f"
+      },
+      {
+        "textId": "i_9e75c122f544"
+      },
+      {
+        "textId": "i_1c992a962f54"
+      },
+      {
+        "textId": "i_423335de0424"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_f005122a6975"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_5710d1c4fc80"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_a93f7ba5508e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_59ebb711458d"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_2960d1f91130"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_9884c40ff02e"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9dea14d11825"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_10733d5eea6b"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{新春|しんしゅん}セール",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_11f1769d5cc9"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_5cb2be7b00c4"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_9a4b66a85b65"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_07c426522f82"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ee2747bf5f20"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_e7e40a9679b1"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_b4dd3c9c75ac"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_75bf5d54a52b"
+          }
+        ],
+        [
+          {
+            "speaker": "店員",
+            "textId": "i_bffdd91581e6"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_e7e9a3dba301"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e0e4cfc7498c"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_eebd772c4cc6"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 119,
+    "title": "第 19 課 {部屋|へや}のかぎを{忘|わす}れないでください",
+    "sentences": [
+      {
+        "textId": "i_045ee1da7d2b"
+      },
+      {
+        "textId": "i_41287010dee8"
+      },
+      {
+        "textId": "i_4a06d86bde53"
+      },
+      {
+        "textId": "i_615eb5bbd245"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_acd6925e1b9c"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_ec847bdbce60"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_99a95c491109"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_e2eb4c0ec2fc"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_a9614892cd4a"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_375d50448354"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_7fa5bc1d9332"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_a3595ea2055a"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "スキー",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_277b10c12581"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_2de70025b7fc"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_fa24654d8628"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_6591d36cc5e9"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_7c18085b18a2"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e5254945459f"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_067d7f39e7c6"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e854e6e20701"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_7663310017a4"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_952fd6a7b0f7"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_9362651adf33"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_8968546f7755"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 120,
+    "title": "第 20 課 スミスさんはピアノを{弾|ひ}くことができます",
+    "sentences": [
+      {
+        "textId": "i_b4451f6b37c5"
+      },
+      {
+        "textId": "i_d5d94557e56a"
+      },
+      {
+        "textId": "i_9e9183651008"
+      },
+      {
+        "textId": "i_39c1cc086a14"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9deaf8b4807f"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_45a946b20901"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_fc628d36b712"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_67bd0fabe506"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_3cbcc580d743"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_2c3af558d0ce"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_f8bf08fae99e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c9aa5fa497f2"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{春節|しゅんせつ}|i_4dd56a8e1cc4]",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_68db74318b0d"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ade09681d0f6"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_a936398521ca"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_b6d6692d2be1"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_68dcaa35b00a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_401d0442aa8b"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_a87376bfce3c"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_24acdcd7142b"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_4ebdf140a762"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_eba77efac206"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_22e09bc6d380"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_544f17609d85"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_3f1929f00336"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 121,
+    "title": "第 21 課 わたしはすき{焼|や}きを{食|た}べたことがあります",
+    "sentences": [
+      {
+        "textId": "i_9e58c1fdbfaa"
+      },
+      {
+        "textId": "i_7a88293d131b"
+      },
+      {
+        "textId": "i_50051282ffd8"
+      },
+      {
+        "textId": "i_b6fddfae89ff"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_f7f093a06265"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_8d527332f588"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_5f0be4e0a9c5"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_44f32f304beb"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_25d8048028fa"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_dd50c688ccdb"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_0976d20f9755"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_183871d18896"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{歌舞伎|かぶき}",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_a9793f9caa07"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_cbb47c58c090"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_16d6d7615266"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_b362750654ce"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_d86392fc3337"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_cd54cde9b4b5"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_f65e5e3493b2"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_c9e519c13d44"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_18e95f55ad83"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_a97643445c15"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_192e45e7e391"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_fee50ac94197"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 122,
+    "title": "第 22 課 {森|もり}さんは{毎晩|まいばん}テレビを{見|み}る",
+    "sentences": [
+      {
+        "textId": "i_e215c5694852"
+      },
+      {
+        "textId": "i_300219c994cc"
+      },
+      {
+        "textId": "i_df855fc13a09"
+      },
+      {
+        "textId": "i_89bd2d42fca2"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_130645f02e72"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_71f904daf971"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9e0a69ee6b4d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_5369073e17da"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_ab10a84080da"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_9d46a77e54df"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_7d2c98d149c2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_456e08779767"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "友達",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_9eada54052c2"
+          },
+          {
+            "speaker": "清水",
+            "textId": "i_398bd0eff390"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_29e2d519c71b"
+          },
+          {
+            "speaker": "清水",
+            "textId": "i_2544cd3906b0"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_ad47ff8b5456"
+          },
+          {
+            "speaker": "清水",
+            "textId": "i_155c5d68d9ed"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_55a512f7e88d"
+          },
+          {
+            "speaker": "清水",
+            "textId": "i_7c2c439f5309"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_ef33e044cee6"
+          },
+          {
+            "speaker": "清水",
+            "textId": "i_37ef8d0d775e"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_b21d1661610d"
+          },
+          {
+            "speaker": "清水",
+            "textId": "i_64eff866d2be"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_84d795d39d86"
+          },
+          {
+            "speaker": "清水",
+            "textId": "i_c884f71d94b2"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_886354aa36e2"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_ec2df8712791"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_652d0322a8aa"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 123,
+    "title": "第 23 課 {休|やす}みの{日|ひ}，{散歩|さんぽ}したり{買|か}い{物|もの}に{行|い}ったりします",
+    "sentences": [
+      {
+        "textId": "i_e9c0189f0d96"
+      },
+      {
+        "textId": "i_380ed511bcfe"
+      },
+      {
+        "textId": "i_846f7578bf0e"
+      },
+      {
+        "textId": "i_13d88cf08e97"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_f3c0b528c2f3"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_034b81d9230b"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_33a4b5099136"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_bc3c8afe9d48"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_5a638d7a2fad"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_eaf56b5ba904"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_4d4c0b3fac68"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_247face511f0"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{送別会|そうべつかい}",
+      "contents": [
+        [
+          {
+            "speaker": "森",
+            "textId": "i_d940d449e8d6"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_f8e96a4ba06a"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_91d7798c2c75"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_f3be9df7e099"
+          }
+        ],
+        [
+          {
+            "speaker": "吉田",
+            "textId": "i_d6cef7601cda"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3a19d773cf58"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_f57575a568d5"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_740a62608626"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_f13dac87b7fa"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1123b97252d9"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_037bf2e3767e"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_0907a0608cf0"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_04a47be52014"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_5e2930ea6f2d"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 124,
+    "title": "第 24 課 {李|り}さんはもうすぐ{来|く}ると{思|おも}います",
+    "sentences": [
+      {
+        "textId": "i_7264b19aca46"
+      },
+      {
+        "textId": "i_bf3d6c5a4d51"
+      },
+      {
+        "textId": "i_4cae09b3eaa6"
+      },
+      {
+        "textId": "i_e8f3a5922b16"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_8e419d065355"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_a8d2b18281f5"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_ef6d3089ecca"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_cae05ec597c7"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_ebd10c6df0cb"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_26ca054188f0"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_7beef0799a25"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_2198142a2172"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{見送|みおく}り",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_057058ffb031"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_92925c996bac"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_ee14f5a97eb3"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_a33588940022"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_9f6073796fc5"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_1a3167168f51"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_da5d9dfe877a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_30a0afdec9dd"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_668c53abeab5"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_b9db82de3fc1"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_e5b575695d99"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_2f656f9253d6"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 125,
+    "title": "第 25 課 これは{明日|あした}{会議|かいぎ}で{使う|つかう}{資料|しりょう}です",
+    "sentences": [
+      {
+        "textId": "i_311ccacb51bb"
+      },
+      {
+        "textId": "i_91db186b985e"
+      },
+      {
+        "textId": "i_58de4d4d900c"
+      },
+      {
+        "textId": "i_62b3260b0046"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_e24b9bf5c70b"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_56318067fd05"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_c6275578cc7f"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_5fe54a398b1c"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_c4d4687447c9"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_f457702f2b19"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_45bb7519cc5e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_34f51528254a"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{北京|ぺきん}[{市街|しがい}|i_b6a1a31acb4d]ヘ",
+      "contents": [
+        [
+          {
+            "speaker": "森",
+            "textId": "i_1007f219c852"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_d121da8c8654"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_cde6c74525e4"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_d5a4e781ee49"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_7f11b5a6953e"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_764448389caf"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_a842a5568aa0"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_5df4d5af7999"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_5703670cdbad"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_f1a7ee86e4ac"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_3f5e7ad0341b"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_a790a3002573"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_ece2670119e1"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_661c7b88487f"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 126,
+    "title": "第 26 課 {自転車|じてんしゃ}に{2人|ふたり}で{乗|の}るのは{危|あぶ}ないです",
+    "sentences": [
+      {
+        "textId": "i_2b82efe243f6"
+      },
+      {
+        "textId": "i_af519e77e6de"
+      },
+      {
+        "textId": "i_72e17990f8f3"
+      },
+      {
+        "textId": "i_4acd6abb1e81"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_1e8cf9e61b4d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_6233865d54ca"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_6e646dabb59a"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c62d186fb5df"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_fd97b8ce0c6d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c2235d0faef4"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_25765fa7e24e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_1dff420b585e"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{握手|あくしゅ}|i_c35a6b5dfef5]とお{辞儀|じぎ}",
+      "contents": [
+        [
+          {
+            "speaker": "楊",
+            "textId": "i_058e9b21e5af"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_ebd076620219"
+          }
+        ],
+        [
+          {
+            "speaker": "陳",
+            "textId": "i_4c6aae7f888a"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_8f3b0df088c0"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_606690bee453"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_fc618a047275"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_70dfa12e109f"
+          }
+        ],
+        [
+          {
+            "speaker": "戴",
+            "textId": "i_7ca189ae4d35"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_972627028743"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_73c317b0d906"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 127,
+    "title": "第 27 課 {子供|こども}の{時|とき}，{大|おお}きな{地震|じしん}がありました",
+    "sentences": [
+      {
+        "textId": "i_4234da6f2b1e"
+      },
+      {
+        "textId": "i_299f744f3f3c"
+      },
+      {
+        "textId": "i_a137ff02a15b"
+      },
+      {
+        "textId": "i_9b32136d9599"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_e7e802a41c16"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_3da0128f16bb"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_7ffc5632f3f6"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_fc4e702864a2"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_00e97ba8bcdf"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_1cbb9400eecd"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9ab3020f7d39"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_df2188495cff"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{朝|あさ}の{公園|こうえん}",
+      "contents": [
+        [
+          {
+            "speaker": "森",
+            "textId": "i_95033e8c9391"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_016ab7ab2ac1"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_63a1253502f6"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_42db75f86e0c"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_e7f49433b1e4"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_0df3de6b6a75"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_d6d496543691"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_89952b4e1949"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_f82a7be3ccda"
+          }
+        ],
+        [
+          {
+            "speaker": "戴",
+            "textId": "i_67181e9a0967"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_9a0f9d388d09"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_3c6a16b42d00"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_9cf25efa3fd5"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_ac4de4c39c0a"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 128,
+    "title": "第 28 課 {馬|ば}さんは{私|わたし}に{地図|ちず}をくれました",
+    "sentences": [
+      {
+        "textId": "i_02d9d9eb9faf"
+      },
+      {
+        "textId": "i_51efa306d463"
+      },
+      {
+        "textId": "i_17c04b6e5df4"
+      },
+      {
+        "textId": "i_d944ad246afb"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_3892ea441152"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c1add4879277"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_28e87cb8e1b1"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_ebf8b535e154"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_d7145d62b90e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_11097619c95c"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_99e25b4a424d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_5af4b7802d1c"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{森|もり}さんの[{新居|しんきょ}|i_9ae6887c26b0]",
+      "contents": [
+        [
+          {
+            "speaker": "加藤",
+            "textId": "i_195e89d8d476"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_efd15d109dbe"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_268a59515004"
+          },
+          {
+            "speaker": "加藤",
+            "textId": "i_f73a730e0647"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_ced46901266a"
+          }
+        ],
+        [
+          {
+            "speaker": "馬",
+            "textId": "i_9e9aef4e293e"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_288e295855ff"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_53dd619209c6"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_ce496071621b"
+          }
+        ],
+        [
+          {
+            "speaker": "戴",
+            "textId": "i_1493a09db390"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_51f3aad4985a"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_931423e0c6e7"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_9417706601fa"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 129,
+    "title": "第 29 課 {電気|でんき}を{消|け}せ",
+    "sentences": [
+      {
+        "textId": "i_450c97a417ec"
+      },
+      {
+        "textId": "i_e150d96966db"
+      },
+      {
+        "textId": "i_d37a25b00a0d"
+      },
+      {
+        "textId": "i_5fe07947ca2f"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_8805ad52420a"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_495fd5805df7"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_3f26325eeba0"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_2698e8d82fe1"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_b2d5449adea6"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_a04925a24385"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_cbb6dfdbb69a"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_050b928dc404"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "カラオケ",
+      "contents": [
+        [
+          {
+            "speaker": "加藤",
+            "textId": "i_30e0d918cda8"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_832b9b62d0ac"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_1ed025bce8d0"
+          },
+          {
+            "speaker": "加藤",
+            "textId": "i_8896a6715df5"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_7f4a14069c98"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_37155856e67f"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_1f086e42384a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_623e6b59d58d"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_fabdc9791ccb"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_21c0c782fed7"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_a24fbb363689"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 130,
+    "title": "第 30 課 もう11{時|じ}だから{寝|ね}よう",
+    "sentences": [
+      {
+        "textId": "i_e479beb8e9fe"
+      },
+      {
+        "textId": "i_b4cbb4a5c8da"
+      },
+      {
+        "textId": "i_ab333f349cd0"
+      },
+      {
+        "textId": "i_3722b02f130a"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_009b40da448f"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_e109b95af2f9"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_e928cc3c7930"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_e6d71884a6ea"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_a194e0900dbe"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_1d0f1cfce92d"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_fd5ef048cb5e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_98333dbce39a"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{春|はる}のピクニック",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_aae3e6ee00d5"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_b5b25af81343"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_7b78d65fce62"
+          }
+        ],
+        [
+          {
+            "speaker": "加藤",
+            "textId": "i_8104b0c0d49d"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_9e0e4648dbe9"
+          },
+          {
+            "speaker": "加藤",
+            "textId": "i_9685780cecfc"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_cb737ea8df3f"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_60bfb4c9431e"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_65590da04ac8"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_136ccc15c16e"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_e1c8e7ea8043"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_0e839e47edfa"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_5e83073cf56c"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 131,
+    "title": "第 31 課 このボタンを{押|お}すと，[{電源|でんげん}|i_6c13964945ff]が{入|はい}ります",
+    "sentences": [
+      {
+        "textId": "i_78c7fd9c4b1c"
+      },
+      {
+        "textId": "i_f8d53ce5e9dd"
+      },
+      {
+        "textId": "i_b8b07664d774"
+      },
+      {
+        "textId": "i_86fc407a1462"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_165c336544d1"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_ec01ae628310"
+        },
+        {
+          "speaker": "甲",
+          "textId": "i_5590cfe0a4c6"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_2de88afe197a"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_7db4315952c6"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_97737c550d22"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_98fbccdfdc20"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_591f92acf2c1"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_dedd404fbb43"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{散歩|さんぽ}",
+      "contents": [
+        [
+          {
+            "speaker": "馬",
+            "textId": "i_6dff1a8fab03"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_3e0d9c031920"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_e3e94a995d4f"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_94edb32a7dd5"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_cdad88066668"
+          }
+        ],
+        [
+          {
+            "speaker": "馬",
+            "textId": "i_6e4662857426"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_42f6b5f58cf9"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_601ab0f8690f"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_ab2d695766b2"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_142136e56b30"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_e4e46163a936"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_67b525c86c8e"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_2bc1c4ec96d1"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_9c1ee473c823"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_184d58b82367"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 132,
+    "title": "第 32 課 {今度|こんど}の{日曜日|にちようび}に[{遊園地|ゆうえんち}|i_440486655374]へ{行|い}くつもりです",
+    "sentences": [
+      {
+        "textId": "i_e5d570f0e0ab"
+      },
+      {
+        "textId": "i_8833ca51f5d0"
+      },
+      {
+        "textId": "i_c6d59a09c76a"
+      },
+      {
+        "textId": "i_b226e82c18e0"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_e2d0a3ad0ced"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_5015eb017b10"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_8608d7b626aa"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_3880ded43d10"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_e37856b0f5a5"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_7e2b3f9d4641"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_d8832eb911b7"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_fe76a4a480e2"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{連休|れんきゅう}",
+      "contents": [
+        [
+          {
+            "speaker": "森",
+            "textId": "i_fe9dbbd1e9a7"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_232b645a41b1"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_c3928467e0ec"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_2baa455ec9ae"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_35ecf95b0880"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_30b9a2f0f611"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_120020db4219"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_4e611ce43356"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_a384eeca1110"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_fce444ea4ac8"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_49ebf3a2380d"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_453d332780e1"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 133,
+    "title": "第 33 課 {電車|でんしゃ}が{急|きゅう}に{止|と}まりました",
+    "sentences": [
+      {
+        "textId": "i_f9280a4eb696"
+      },
+      {
+        "textId": "i_adbb3fd285e5"
+      },
+      {
+        "textId": "i_90e10a83b6e6"
+      },
+      {
+        "textId": "i_babfe7572465"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_7517fa286347"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_d88d76354efa"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_abcec83a9123"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_b27b7f7db0c4"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_1f818f06150e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_3f6d0756b073"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_be5eaad708dd"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_7bf6c10010e8"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{再会|さいかい}|i_30c42909b94c]",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_68374c98c440"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_aa155ad4a7bd"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_c61e0d77a963"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_e48e60f0b0f4"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_6125b0a72155"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_9e3b31bd2e85"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_1a5b9107bebe"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_7aa6e2e078f6"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_f571004b5d93"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_836d6d7419c0"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_efa59b262572"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 134,
+    "title": "第 34 課 {壁|かべ}にカレンダーが{掛|か}けてあります",
+    "sentences": [
+      {
+        "textId": "i_de6ab02f6c60"
+      },
+      {
+        "textId": "i_0cf58e4ac25b"
+      },
+      {
+        "textId": "i_2011c81341e6"
+      },
+      {
+        "textId": "i_995f9b0c0a3a"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_21c0d1eff3e2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_70e29bfbea43"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_fe2e76dd2f8f"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_3510c8d0160f"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_af41a09828b9"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_7a6378b51cfe"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_1fab3d634e96"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_e246b01ed8f1"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{北京|ぺきん}ダック",
+      "contents": [
+        [
+          {
+            "speaker": "森",
+            "textId": "i_40bffb292070"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_35c055169749"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_5eeb5c6ef097"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_30a82a9e9557"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_a042ad9eec7c"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_8c530ab0fae2"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_001a7114e2b2"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_012350aa461c"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_ac7150ce31b3"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_078909a4d198"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_21225e23f9d9"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_f66c06fde76c"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_5b107d479257"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_af8271bad03c"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 135,
+    "title": "第 35 課 {明日|あした}{雨|あめ}が{降|ふ}ったら，マラソン{大会|たいかい}は[{中止|ちゅうし}|i_7d9f35b336ca]です",
+    "sentences": [
+      {
+        "textId": "i_2e21f3148796"
+      },
+      {
+        "textId": "i_279df3849280"
+      },
+      {
+        "textId": "i_7b9cd5138328"
+      },
+      {
+        "textId": "i_d8b133232091"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_45bccc8baec1"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_bc0e1b1357be"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_1dbc8dadccef"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_cfff0d73f3e1"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_4d08caaecf0e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c27b7a7e913e"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_cdd4646ea06c"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_2af8fb2bb2b1"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "ホームパーティー",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_dc1563e50c4c"
+          },
+          {
+            "speaker": "夫人",
+            "textId": "i_b5121451de70"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_245843a75692"
+          },
+          {
+            "speaker": "夫人",
+            "textId": "i_912894c1c3cd"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1477ec98629c"
+          },
+          {
+            "speaker": "夫人",
+            "textId": "i_27e6268f2150"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_35576fc5ee19"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_f7fdd88bf6de"
+          },
+          {
+            "speaker": "太田",
+            "textId": "i_f15486060ec2"
+          },
+          {
+            "speaker": "太田",
+            "textId": "i_5c460480ed5b"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_f313c17fe742"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_b019da63126a"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 136,
+    "title": "第 36 課 {遅|おそ}くなって，すみません",
+    "sentences": [
+      {
+        "textId": "i_18400bc819b4"
+      },
+      {
+        "textId": "i_0538f2154a02"
+      },
+      {
+        "textId": "i_4bdf6dc59ce7"
+      },
+      {
+        "textId": "i_5dcdbce7df2b"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_795d678f5c9d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_3726632ebd1e"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_c435524bb096"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_f76fc6cf1835"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_30304e5ae9ad"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_ff68e98fad02"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_afa0a21f4554"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_d9f876ea03fd"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{北京|ぺきん}の{生活|せいかつ}",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_c048f65fe85b"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_92756da90cf4"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_10d84b098ace"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_7ff725f1d5db"
+          },
+          {
+            "speaker": "夫人",
+            "textId": "i_591a682247ea"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_e019968e2254"
+          },
+          {
+            "speaker": "夫人",
+            "textId": "i_a9cc763ff512"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_951efb923c82"
+          },
+          {
+            "speaker": "夫人",
+            "textId": "i_cc46edc73a0e"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_f611e382e1ae"
+          },
+          {
+            "speaker": "夫人",
+            "textId": "i_7170ab1399bb"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_c953ff70b34b"
+          },
+          {
+            "speaker": "夫人",
+            "textId": "i_b198efff7fa8"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 137,
+    "title": "第 37 課 {優勝|ゆうしょう}すれば，オリンピックに{出場|しゅつじょう}することができます",
+    "sentences": [
+      {
+        "textId": "i_0f4070fea5b7"
+      },
+      {
+        "textId": "i_e5516887ac0c"
+      },
+      {
+        "textId": "i_7d3e44efa57a"
+      },
+      {
+        "textId": "i_90be09cba015"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_a0dbf3753fe7"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_34cc214cfe85"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_5a9bb6baaf1a"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_21b270cc074a"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_87ee04877f33"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_5fdbc123d11f"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_8d0a13fd94b2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_9541c5d26ec8"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{万里|ばんり}の{長城|ちょうじょう}",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_1fda239f14a9"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_7a958a2a4fe8"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_cb1f2547641a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_96ef1ef4c171"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_cb0e88ee1edb"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_509da1e7ac46"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_e42865a0c246"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_da46c5e4a802"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_196388a3121b"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_5f7e6fd57eb2"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_a44fe4e8f704"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_0598e4f42615"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 138,
+    "title": "第 38 課 {戴|たい}さんは{英語|えいご}が{話|はな}せます",
+    "sentences": [
+      {
+        "textId": "i_15e6e22eb11e"
+      },
+      {
+        "textId": "i_7c2f645daed7"
+      },
+      {
+        "textId": "i_5626b942629c"
+      },
+      {
+        "textId": "i_3a53abea0c4a"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_37255eb91e93"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_25bd1a336f11"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_507569d5e8eb"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_9a9110e10453"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_a3611e7d0c45"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_e7b672157411"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_5432940f9db3"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_f796588d1244"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{胡同|フートン}|i_2d7aea94600b]",
+      "contents": [
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_7907275a7bb9"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3322b316b4f7"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_77204db50888"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_429025a3d375"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_54f92bb75e44"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_80d0c1322823"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_d318f719e816"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_527b2d7d0f01"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_f6897637a263"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_423a6196a287"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_378bd7ad448e"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_2a590d46c180"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 139,
+    "title": "第 39 課 {眼鏡|めがね}を{掛|か}けて{本|ほん}を{読|よ}みます",
+    "sentences": [
+      {
+        "textId": "i_5cc933a47e11"
+      },
+      {
+        "textId": "i_7664695b5449"
+      },
+      {
+        "textId": "i_e40cc8f1f887"
+      },
+      {
+        "textId": "i_b6aed3fd6ec3"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_7d9746738857"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_15af99ae6d98"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_f36625347ced"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_b6a85a7d124e"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_700e47e8d431"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_597303ef534a"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_4fb2fb68bec0"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_92d39ead7d1b"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{故宮|こきゅう}",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_55bcf4c2ce86"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_13659c353bfa"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_179c63789a35"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_e2ea23de75c3"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_8f9af702a85e"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_2bd2bc04734a"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_8bb34d285c76"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_375024c63e4c"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_aaba8612fb15"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4651410a5b65"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_e1a929dc4126"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4e9e09b7cd6f"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 140,
+    "title": "第 40 課 これから{友達|ともだち}と{食事|しょくじ}に{行|い}くところです",
+    "sentences": [
+      {
+        "textId": "i_a33afb4cf276"
+      },
+      {
+        "textId": "i_5cdd2b4a6ac0"
+      },
+      {
+        "textId": "i_2facd1ce2626"
+      },
+      {
+        "textId": "i_ecdbd9a2486b"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_6e3ad78ecac2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_0d49f2a5e60a"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_66d16ed30be4"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_0789ad05941a"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_8b39380084a8"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_d2479e899597"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_db17239ebc4f"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_a7f6fa7505ec"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{京劇|きょうげき}",
+      "contents": [
+        [
+          {
+            "speaker": "森",
+            "textId": "i_b568ea841034"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_75becd2e2a80"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_fb81659ccc0d"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_5975c6a33ced"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_dddb2191dd92"
+          }
+        ],
+        [
+          {
+            "speaker": "小野",
+            "textId": "i_0fe9e99ac027"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_998373d7f7f8"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_20b12961d458"
+          },
+          {
+            "speaker": "小野",
+            "textId": "i_512e11a70cf3"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_255d2c8083d5"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_d285d776e741"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 141,
+    "title": "第 41 課 {李|り}さんは{部長|ぶちょう}に{褒|ほ}められました",
+    "sentences": [
+      {
+        "textId": "i_920b050fd7eb"
+      },
+      {
+        "textId": "i_d4bf25ab06ac"
+      },
+      {
+        "textId": "i_befbe3ff6546"
+      },
+      {
+        "textId": "i_a58eb9741ed0"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_a2133cb4b13e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_b1612f11d563"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_ab1c3cd71958"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_76c5509275fd"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_bf7e873c0a74"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_fb7900f2dee4"
+        },
+        {
+          "speaker": "甲",
+          "textId": "i_15f415f53b02"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_8f814154ae44"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_bc6c461c5d3a"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{市場|しじょう}{調査|ちょうさ}|i_b2940f8ea3e3]",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_abdfcbb89177"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_000464f0e7e7"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_93060bfb9392"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_4a7758fa75c7"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_c8ef688649cc"
+          }
+        ],
+        [
+          {
+            "speaker": "",
+            "textId": "i_118b30051710"
+          },
+          {
+            "speaker": "",
+            "textId": "i_de6d91047eba"
+          },
+          {
+            "speaker": "",
+            "textId": "i_7b357a1e7573"
+          },
+          {
+            "speaker": "",
+            "textId": "i_b99149ca2251"
+          },
+          {
+            "speaker": "",
+            "textId": "i_4fa441db9425"
+          },
+          {
+            "speaker": "",
+            "textId": "i_9c7fe6769a4e"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 142,
+    "title": "第 42 課 テレビをつけたまま，{出|で}かけてしまいました",
+    "sentences": [
+      {
+        "textId": "i_a6221fe600bb"
+      },
+      {
+        "textId": "i_9e9fa6f528f1"
+      },
+      {
+        "textId": "i_16cd1e193896"
+      },
+      {
+        "textId": "i_26084acdbd0b"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_bf1f2fecbef0"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_5919aed681fe"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_b5e4b01d24da"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_3184938e8d4a"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_aff67a120ad5"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_e5572c48c9ee"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_d851f6dcb376"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_e4bc4f86fa11"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "[{企画|きかく}{案|あん}|i_797548a35294]",
+      "contents": [
+        [
+          {
+            "speaker": "加藤",
+            "textId": "i_1a88caeddffa"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_88b1821b078b"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_0cfd5d22e4fa"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_240f6dfd4c3f"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_979c07497975"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3e9078f6403e"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_9c6eda43fafc"
+          }
+        ],
+        [
+          {
+            "speaker": "太田",
+            "textId": "i_26b07a8c21fd"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_3de6caff70df"
+          },
+          {
+            "speaker": "太田",
+            "textId": "i_b7b355b8260d"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_9afc53d84975"
+          }
+        ],
+        [
+          {
+            "speaker": "太田",
+            "textId": "i_550703f95b03"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_ce43b763afe5"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 143,
+    "title": "第 43 課 {陳|ちん}さんは{息子|むすこ}をアメリカに{留学|りゅうがく}させます",
+    "sentences": [
+      {
+        "textId": "i_ab6acdb917a1"
+      },
+      {
+        "textId": "i_4244a1479b91"
+      },
+      {
+        "textId": "i_88c839a4747b"
+      },
+      {
+        "textId": "i_b82ce4917781"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_f155a9192c08"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_4d44c772f752"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_5e9b1b1dd667"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_ff797c3eaa0b"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_2c630816f2a3"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_87d3e6f20593"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_c694a90a1fa2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_d325b65377ab"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "プレゼンテーション",
+      "contents": [
+        [
+          {
+            "speaker": "陳",
+            "textId": "i_97eeaf7b0615"
+          },
+          {
+            "speaker": "加藤",
+            "textId": "i_40a8738dec6c"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_1488784e8c8a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_89d03dac2e15"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_c5bbcc6172ff"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_e2e2c4ff2357"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 144,
+    "title": "第 44 課 {玄関|げんかん}のところにだれかいるようです",
+    "sentences": [
+      {
+        "textId": "i_5ff412b9a246"
+      },
+      {
+        "textId": "i_2e82ca8cbc4b"
+      },
+      {
+        "textId": "i_13fd35efa582"
+      },
+      {
+        "textId": "i_76e7e1019742"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_6483bf745247"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_e30cf7a45da4"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_a65282c5e239"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_05f6a69a0535"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_f89e8c6a4b67"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_78ba20238ace"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_5936a37dac3c"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_8440ed594b30"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{売|う}れ{行|ゆ}き",
+      "contents": [
+        [
+          {
+            "speaker": "馬",
+            "textId": "i_6ad621ffddff"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_56aaf0b1b755"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_9174ad780c4b"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_8c24e7a0c7c2"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_06c3004e5d0b"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_2a6b60a445b1"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_e34c75dc5e4f"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_c971da4b0115"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_02e494c2c821"
+          },
+          {
+            "speaker": "戴",
+            "textId": "i_6ae0bf8767bd"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_8d759a4dd472"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_94809150d773"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3fa6a301680d"
+          },
+          {
+            "speaker": "馬",
+            "textId": "i_0231ec671563"
+          }
+        ],
+        [
+          {
+            "speaker": "戴",
+            "textId": "i_af95a37ba401"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_aa16fb8b43c0"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 145,
+    "title": "第 45 課 [{少子化|しょうしか}|i_f4cbbac3060d]が{進|すす}んで，{日本|にほん}の[{人口|じんこう}|i_72322855ab20]は{段々|だんだん}{減|へ}っていくでしょう",
+    "sentences": [
+      {
+        "textId": "i_c8e43c643536"
+      },
+      {
+        "textId": "i_556b1e683241"
+      },
+      {
+        "textId": "i_c63a349ebb18"
+      },
+      {
+        "textId": "i_bf7a4d8236fa"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_36f5149ce8d2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_ed18e40c3e01"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_9efcafd42075"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_5048f52d40aa"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_5889ab2db22d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_0079d5357236"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_05c9e9a009cd"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_57c83c64b03e"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{上海|シャンハイ}",
+      "contents": [
+        [
+          {
+            "speaker": "陳",
+            "textId": "i_fbb9441973f9"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_9a227d795315"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_6271e636cc65"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_5e4915e2c4f7"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_c5e373029b74"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_d5ecc9da7e0e"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_9d68cda14f59"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_80bbe80a691b"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_6e1610a9b051"
+          }
+        ],
+        [
+          {
+            "speaker": "陳",
+            "textId": "i_958040faaf30"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_a656b59ce2f2"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_0f64e39e969e"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_c62ea648237a"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_a40ee0441d1f"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 146,
+    "title": "第 46 課 これは{柔|やわ}らかくて，まるで[{本物|ほんもの}|i_06d054407603]の[{毛皮|けがわ}|i_6a4ab7f0d3dd]のようです",
+    "sentences": [
+      {
+        "textId": "i_542131f162c0"
+      },
+      {
+        "textId": "i_c05cf8e38ea5"
+      },
+      {
+        "textId": "i_56c3875771f7"
+      },
+      {
+        "textId": "i_557c0277fd5f"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_1244d9c30fb2"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c52031b95190"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_53d702a6f769"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_8a9fbd126e84"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_ebc8ad3b2bd5"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_6f7c532cbe5b"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_dc1a1140f8d8"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_f308fe47d433"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{事務所|じむしょ}{探|さが}し",
+      "contents": [
+        [
+          {
+            "speaker": "森",
+            "textId": "i_34970202300d"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_7b9cd43f2ce6"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_9799af9bdedd"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_d617cdc5a0fc"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_5ff1dd92ef9e"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_40a5609c1b7f"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_1a34632c3e89"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_03d7a7ddfa3e"
+          }
+        ],
+        [
+          {
+            "speaker": "陳",
+            "textId": "i_4fceb6b5817e"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_87ed5f456fbe"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_cc4011905c80"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_625c78dfb0be"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 147,
+    "title": "第 47 課 {周|しゅう}{先生|せんせい}は{明日|あした}{日本|にほん}へ{行|い}かれます",
+    "sentences": [
+      {
+        "textId": "i_06d0d22862fb"
+      },
+      {
+        "textId": "i_2e6f3423f2fd"
+      },
+      {
+        "textId": "i_35a0533289ed"
+      },
+      {
+        "textId": "i_c3a2e2c36c77"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_ec4940b6e973"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_dbbe59abdff1"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_72f3f1eeff22"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_0a6986632fcb"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_b4b968e50b8d"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_de9a5e7e5a18"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_5a7a7002c1e6"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_311a34eb9115"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{社長|しゃちょう}の[{下見|したみ}|i_801baba461dc]",
+      "contents": [
+        [
+          {
+            "speaker": "加藤",
+            "textId": "i_2e30d048b88a"
+          },
+          {
+            "speaker": "社長",
+            "textId": "i_af811c2557bf"
+          },
+          {
+            "speaker": "加藤",
+            "textId": "i_e8db2aa07b98"
+          },
+          {
+            "speaker": "社長",
+            "textId": "i_70ca34043089"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_66eb13dce7cf"
+          }
+        ],
+        [
+          {
+            "speaker": "社長",
+            "textId": "i_e212aaef688a"
+          },
+          {
+            "speaker": "加藤",
+            "textId": "i_6a97fea64650"
+          },
+          {
+            "speaker": "社長",
+            "textId": "i_1f3b1621faa0"
+          },
+          {
+            "speaker": "加藤",
+            "textId": "i_89ad3e6d81eb"
+          }
+        ],
+        [
+          {
+            "speaker": "森",
+            "textId": "i_e13a4fafacca"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_4e571930812d"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_e9789bdf06e7"
+          },
+          {
+            "speaker": "森",
+            "textId": "i_c5748ee2abad"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 148,
+    "title": "第 48 課 お{荷物|にもつ}は[{私|わたくし}|i_604b9b861d17]がお{持|も}ちします",
+    "sentences": [
+      {
+        "textId": "i_ee93a4d6c0f9"
+      },
+      {
+        "textId": "i_bb31c5babf82"
+      },
+      {
+        "textId": "i_22b770c91996"
+      },
+      {
+        "textId": "i_5d85b38f00cf"
+      }
+    ],
+    "conversations": [
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_718efe227c3e"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_5e16c432164a"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_0880c9b61703"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_c6869163ddde"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_0df48be928d6"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_00cdaddda551"
+        }
+      ],
+      [
+        {
+          "speaker": "甲",
+          "textId": "i_4aaf289ebf01"
+        },
+        {
+          "speaker": "乙",
+          "textId": "i_303ef47955ba"
+        }
+      ]
+    ],
+    "discussions": {
+      "title": "{上海|シャンハイ}{事務所|じむしょ}",
+      "contents": [
+        [
+          {
+            "speaker": "山田",
+            "textId": "i_75be01d1f7fc"
+          },
+          {
+            "speaker": "陳",
+            "textId": "i_4b0cebfd4b98"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_35bf4c0be0c1"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_054db6e70887"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_64033d459a3a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1fc26105adfd"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_54678a0bce70"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ce84e50d347f"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_974154b482f2"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4e0892798ac3"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "",
+      "contents": []
+    }
+  },
+  {
+    "index": 201,
+    "title": "第 1 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{出会|であ}い",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_5a0154ab3433"
+          },
+          {
+            "speaker": "男性",
+            "textId": "i_b61aadc0c60d"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_16d650cc0d42"
+          },
+          {
+            "speaker": "男性",
+            "textId": "i_16515944c741"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1d3d46183b51"
+          },
+          {
+            "speaker": "男性",
+            "textId": "i_eb1ebcb33649"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_0d70b63ef58a"
+          },
+          {
+            "speaker": "男性",
+            "textId": "i_4b416c068499"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_73d2200b5d04"
+          },
+          {
+            "speaker": "男性",
+            "textId": "i_11b8d0441952"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1687643fa0b9"
+          },
+          {
+            "speaker": "男性",
+            "textId": "i_0c2ee28e5664"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3631632457c0"
+          },
+          {
+            "speaker": "男性",
+            "textId": "i_9b5650522a36"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_d8fe5eaad1c0"
+          },
+          {
+            "speaker": "男性",
+            "textId": "i_48392719f6d1"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{日本|にほん}の{鉄道|てつどう}",
+      "contents": [
+        {
+          "textId": "i_efe3d613bdbd"
+        },
+        {
+          "textId": "i_55538a6c20d5"
+        },
+        {
+          "textId": "i_a92216c35d07"
+        },
+        {
+          "textId": "i_a8cb40b29991"
+        },
+        {
+          "textId": "i_0bf940dcd137"
+        }
+      ]
+    }
+  },
+  {
+    "index": 202,
+    "title": "第 2 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{挨拶|あいさつ}",
+      "contents": [
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_db5d6e198111"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_6ddb030a9737"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_3a417ad03ed9"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_1df576b28319"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_c3395055cdc8"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_6cd616d0e5cf"
+          },
+          {
+            "speaker": "同僚",
+            "textId": "i_333d90c07765"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_319530b17718"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4284f7190cdb"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_14101cfdcfd9"
+          },
+          {
+            "speaker": "李、佐藤",
+            "textId": "i_77d0208b3eca"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{挨拶|あいさつ}の{時|とき}の[{礼儀|れいぎ}|i_f5485d69129c]",
+      "contents": [
+        {
+          "textId": "i_f4351826a841"
+        },
+        {
+          "textId": "i_dc6ec17fed7d"
+        },
+        {
+          "textId": "i_4b5c0c1ee540"
+        },
+        {
+          "textId": "i_348c13fdc186"
+        }
+      ]
+    }
+  },
+  {
+    "index": 203,
+    "title": "第 3 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{顔|かお}{合|あ}わせ",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_cb24793fb465"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_689b638747c9"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_bfb6e1ef4f42"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_f1e3d1614a60"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_820ae0204396"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_9102a9ff3b7b"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_b0931ec2b663"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_8cfb44a6846f"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_70302fa3aeea"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "[{名字|みょうじ}|i_a8643d538559]",
+      "contents": [
+        {
+          "textId": "i_7e5a37e578ab"
+        },
+        {
+          "textId": "i_062148a123d7"
+        },
+        {
+          "textId": "i_3a40cab92a8d"
+        },
+        {
+          "textId": "i_673bf7bf6bee"
+        }
+      ]
+    }
+  },
+  {
+    "index": 204,
+    "title": "第 4 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{東京|とうきょう}[{本|ほん}{社|しゃ}|i_5786ee35ae7b]",
+      "contents": [
+        [
+          {
+            "speaker": "社員",
+            "textId": "i_98726a794d05"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_3510934345b6"
+          },
+          {
+            "speaker": "社員",
+            "textId": "i_e8a3847f3d34"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_f5efabe3a96e"
+          },
+          {
+            "speaker": "社員",
+            "textId": "i_bcc38a266be9"
+          },
+          {
+            "speaker": "青木",
+            "textId": "i_9305b1410bbd"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_1a0f97ca60d5"
+          },
+          {
+            "speaker": "青木",
+            "textId": "i_7426bea7e24a"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_48d81957e292"
+          },
+          {
+            "speaker": "青木",
+            "textId": "i_b06cd4f51ce0"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_538016d6cf7e"
+          },
+          {
+            "speaker": "青木",
+            "textId": "i_f4f7ef8c0037"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_fdbe05a08113"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "[{近年|きんねん}|i_a16b483aa93d]サラリーマン[{事情|じじょう}|i_fab25a1aab1f]",
+      "contents": [
+        {
+          "textId": "i_cd112d8620c3"
+        },
+        {
+          "textId": "i_f6b29ea9926a"
+        },
+        {
+          "textId": "i_1c732a93bfa5"
+        },
+        {
+          "textId": "i_384c8dacf323"
+        },
+        {
+          "textId": "i_93f866ec1406"
+        }
+      ]
+    }
+  },
+  {
+    "index": 205,
+    "title": "第 5 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{商品|しょうひん}{紹介|しょうかい}",
+      "contents": [
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_5d6f09f5fd89"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_1a1da92967b3"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_cb3bc37af61a"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_22377da2207c"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ebc0520365fe"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_d8db5633b8b5"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_8aad2b3bdaa4"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_e4f67a7dc308"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_fbc5e41e5136"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_899dfeaf57f6"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_e6fee30a2445"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_f89b021b2cc9"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{日本語|にほんご}の[{語彙|ごい}|i_a5ff790b1f39]",
+      "contents": [
+        {
+          "textId": "i_804e9d1d6bf8"
+        },
+        {
+          "textId": "i_17126fc139cf"
+        },
+        {
+          "textId": "i_76e9c40e7cf8"
+        }
+      ]
+    }
+  },
+  {
+    "index": 206,
+    "title": "第 6 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{先輩|せんぱい}",
+      "contents": [
+        [
+          {
+            "speaker": "中井",
+            "textId": "i_731f31c9f186"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_a342d2a5d7c5"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_2002909f073a"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_c96a90c32fc8"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_39c0a38226a5"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_33b43c49ce6b"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_195048df43d1"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_aab56a33194c"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_c056351be1db"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_55aedb4914da"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_ef86d7584262"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_9c6aff614bd3"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_7717b4b2ef7b"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_9999500b2a02"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "「はしの[{文化|ぶんか}|i_2537a9817e9f]」さまざま",
+      "contents": [
+        {
+          "textId": "i_9fb72c1631f4"
+        },
+        {
+          "textId": "i_34afecc8205f"
+        },
+        {
+          "textId": "i_5e8693b9511c"
+        },
+        {
+          "textId": "i_84647c81e639"
+        },
+        {
+          "textId": "i_bf5adc9aa0e6"
+        }
+      ]
+    }
+  },
+  {
+    "index": 207,
+    "title": "第 7 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{打|う}ち{合|あ}わせ",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_d14047508eff"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_ab1cb88c7922"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_4de4fb708335"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_35a6d668e494"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1652539c129c"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_333a6ad5b06a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_83e4a264cdcd"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_041612553c51"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_64c2dc33d381"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_3a718532dabd"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_1fcc29579f3a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_bc49bede159d"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{電子|でんし}メールの[{作法|さほう}|i_145010d17d3e]",
+      "contents": [
+        {
+          "textId": "i_ff7991d58c0c"
+        },
+        {
+          "textId": "i_cb80c53806c4"
+        },
+        {
+          "textId": "i_49ab9ae8e24d"
+        },
+        {
+          "textId": "i_a6768ac04251"
+        },
+        {
+          "textId": "i_55d675d50a4d"
+        },
+        {
+          "textId": "i_fe65b6efc5aa"
+        },
+        {
+          "textId": "i_e3770a34f093"
+        },
+        {
+          "textId": "i_2db2ac778bd7"
+        },
+        {
+          "textId": "i_425663d76287"
+        },
+        {
+          "textId": "i_c5d8948e7b77"
+        },
+        {
+          "textId": "i_4c8ff09955ee"
+        },
+        {
+          "textId": "i_0dc196865307"
+        },
+        {
+          "textId": "i_4862bcceaa53"
+        },
+        {
+          "textId": "i_acad3226eec3"
+        },
+        {
+          "textId": "i_49eeacc2f4a2"
+        },
+        {
+          "textId": "i_ed6e68af9b6f"
+        },
+        {
+          "textId": "i_b0215daa9b98"
+        },
+        {
+          "textId": "i_7eafbe86b13e"
+        },
+        {
+          "textId": "i_b771bc70c3b6"
+        }
+      ]
+    }
+  },
+  {
+    "index": 208,
+    "title": "第 8 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{企画書|きかくしょ}",
+      "contents": [
+        [
+          {
+            "speaker": "王",
+            "textId": "i_438b0a9549f0"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_368e0b9b54ae"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_39f89f2ab599"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_bf0fc443b38a"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_b50f4b7391d9"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_24fc535fa643"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_1aba000668a4"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_52cde496e5c3"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_3c5e5705b641"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_a4c78f7aab1a"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_0c7f94645616"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_d58436cdf123"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_4a05f5c0b238"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_5f8649286d77"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "カップラーメン",
+      "contents": [
+        {
+          "textId": "i_dce759924bb6"
+        },
+        {
+          "textId": "i_702b2119dcd5"
+        },
+        {
+          "textId": "i_73d232b7c122"
+        },
+        {
+          "textId": "i_5eceb417fe94"
+        },
+        {
+          "textId": "i_82ad56a884e1"
+        },
+        {
+          "textId": "i_dca00afab5b4"
+        }
+      ]
+    }
+  },
+  {
+    "index": 209,
+    "title": "第 9 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "トラブル",
+      "contents": [
+        [
+          {
+            "speaker": "王",
+            "textId": "i_07c41e14f3a6"
+          },
+          {
+            "speaker": "手荷物係",
+            "textId": "i_1a68d348dd09"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_498fa1d80e15"
+          },
+          {
+            "speaker": "手荷物係",
+            "textId": "i_04b37537ac75"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_d1d4ec510bd6"
+          },
+          {
+            "speaker": "空港職員",
+            "textId": "i_0bf53f5d48ba"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_6b13b620a838"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_967e170ebc69"
+          },
+          {
+            "speaker": "手荷物係",
+            "textId": "i_13caeffc1f2a"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_c473a853dcc4"
+          },
+          {
+            "speaker": "手荷物係",
+            "textId": "i_5a94abad57c1"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_fb6c6bec96d9"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "イタリア{旅|りょ}{行|こう}",
+      "contents": [
+        {
+          "textId": "i_d81f5b7e356d"
+        },
+        {
+          "textId": "i_594768e5ac42"
+        },
+        {
+          "textId": "i_f632917d6e51"
+        },
+        {
+          "textId": "i_865de1261a02"
+        },
+        {
+          "textId": "i_12de5e115cf6"
+        }
+      ]
+    }
+  },
+  {
+    "index": 210,
+    "title": "第 10 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "スケジュール",
+      "contents": [
+        [
+          {
+            "speaker": "山田",
+            "textId": "i_487ff5c3e4d4"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_90d52be971f2"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_d8ca7e629c18"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_a5d978920ed8"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_9c4054adccc1"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_c63894eff839"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_c23878b12153"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_2e0900271f21"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_36211654f6dd"
+          },
+          {
+            "speaker": "女将",
+            "textId": "i_286dfeca53d6"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_2d5d34a7d970"
+          },
+          {
+            "speaker": "女将",
+            "textId": "i_3031af46066b"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_48fb19933e35"
+          },
+          {
+            "speaker": "女将",
+            "textId": "i_fa332f7de1c2"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_9805e7e5a1a6"
+          },
+          {
+            "speaker": "女将",
+            "textId": "i_6beae477d3cb"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{温|おん}{泉|せん}[{大|たい}{国|こく}|i_e668beeb2110]、{日|に}本(ほん)",
+      "contents": [
+        {
+          "textId": "i_fbb9aec9e1ec"
+        },
+        {
+          "textId": "i_bc102050d015"
+        },
+        {
+          "textId": "i_a2f4cfc0fe95"
+        },
+        {
+          "textId": "i_4cdc86b099fc"
+        },
+        {
+          "textId": "i_bc8962044f44"
+        }
+      ]
+    }
+  },
+  {
+    "index": 211,
+    "title": "第 11 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{若者|わかもの}の{意識|いしき}",
+      "contents": [
+        [
+          {
+            "speaker": "王",
+            "textId": "i_67ef0f1be616"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_7a25c26c7a6b"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_021d95dee8fd"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_48c6e9cad7d1"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_d9c2046b7a7f"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_747564803fbb"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_0019f2a84701"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_1d46e29305ce"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_d0a1a54eb415"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_7581ef428f30"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_47531b4f30f7"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_946eb627bfd8"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_4e43d9390ead"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_81b8a85170b0"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_47176b84d8bf"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{漫画|まんが}とアニメ",
+      "contents": [
+        {
+          "textId": "i_17f98b0a82b9"
+        },
+        {
+          "textId": "i_5da86a8e3c02"
+        },
+        {
+          "textId": "i_a0b5f95c3c91"
+        },
+        {
+          "textId": "i_eeca952748da"
+        }
+      ]
+    }
+  },
+  {
+    "index": 212,
+    "title": "第 12 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{最終日|さいしゅうび}",
+      "contents": [
+        [
+          {
+            "speaker": "山田",
+            "textId": "i_95a8822839ee"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_a72cf79a61ac"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_5c805773769c"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_30f9567f008d"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_43ad1cc618a9"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_377b6348f5ef"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_3e45743a229d"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_82fab57ee1b4"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_01adc0dde57b"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_5219035a550d"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_a51cf04ca384"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_b8ab89a8dedb"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_7bdd4ab76505"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_6fac92fca694"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "[{方言|ほうげん}|i_103b8b018f7e]と[{共通語|きょうつうご}|i_a1f6e254e688]",
+      "contents": [
+        {
+          "textId": "i_93f061513ccc"
+        },
+        {
+          "textId": "i_14c6925b3e6e"
+        },
+        {
+          "textId": "i_fef4702a3284"
+        },
+        {
+          "textId": "i_d4ecefae1940"
+        },
+        {
+          "textId": "i_87a01d5ca7a9"
+        },
+        {
+          "textId": "i_77f1c8a66cd6"
+        },
+        {
+          "textId": "i_dfe0a7fba727"
+        },
+        {
+          "textId": "i_8748f3d30630"
+        }
+      ]
+    }
+  },
+  {
+    "index": 213,
+    "title": "第 13 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "スピーチの以来",
+      "contents": [
+        [
+          {
+            "speaker": "山田",
+            "textId": "i_f23586358ef2"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_2b6b9f925a64"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_e666971d74aa"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_800d61e2398b"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_ab02f1c09df9"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_2b8446abecb5"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_628cf2080117"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_2b2306bfd025"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_e17a10640dfa"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_238008a15d34"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_52e90ca09d94"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_0ddef4a07229"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_7224fd7b65b5"
+          },
+          {
+            "speaker": "吉田",
+            "textId": "i_03bcd1370821"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{日本|にほん}の{人口|じんこう}が{減|へ}っている－{少子化|しょうしか}",
+      "contents": [
+        {
+          "textId": "i_b53fdba1f70d"
+        },
+        {
+          "textId": "i_1be25357fb14"
+        },
+        {
+          "textId": "i_9048434314d5"
+        },
+        {
+          "textId": "i_cc36020ed72f"
+        },
+        {
+          "textId": "i_648c88e105ad"
+        }
+      ]
+    }
+  },
+  {
+    "index": 214,
+    "title": "第 14 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "[{恩師|おんし}|i_49b4ef65885d]",
+      "contents": [
+        [
+          {
+            "speaker": "王",
+            "textId": "i_344f3788af12"
+          },
+          {
+            "speaker": "後藤",
+            "textId": "i_1b218842b8e7"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_e0a32b9b59f6"
+          },
+          {
+            "speaker": "後藤",
+            "textId": "i_2dff3076c5c3"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_d7f02f30712b"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_609340cab46c"
+          },
+          {
+            "speaker": "後藤",
+            "textId": "i_487db6853281"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_d841b8b2270e"
+          },
+          {
+            "speaker": "後藤",
+            "textId": "i_f73880857da9"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_5782b9fe819a"
+          },
+          {
+            "speaker": "後藤",
+            "textId": "i_49dd885abf2c"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_e0a0e66d0c1d"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_e97d7812b604"
+          },
+          {
+            "speaker": "後藤",
+            "textId": "i_0228086c847e"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_23bf360ec827"
+          },
+          {
+            "speaker": "後藤",
+            "textId": "i_85569da1b939"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_524f75d496e2"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{日本|にほん}の[{就職活動|しゅうしょくかつどう}|i_580524ca019f]",
+      "contents": [
+        {
+          "textId": "i_6fa51919dc8d"
+        },
+        {
+          "textId": "i_6cb5355a7a1e"
+        },
+        {
+          "textId": "i_9907917e9e20"
+        },
+        {
+          "textId": "i_dc72565124ac"
+        },
+        {
+          "textId": "i_4af65d1a77b0"
+        },
+        {
+          "textId": "i_488f9e1eafe6"
+        },
+        {
+          "textId": "i_e081a8abf1d5"
+        }
+      ]
+    }
+  },
+  {
+    "index": 215,
+    "title": "第 15 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{同級生|どうきゅうせい}",
+      "contents": [
+        [
+          {
+            "speaker": "金子",
+            "textId": "i_97f7c6bb0a2c"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_bfaa3c1f2bb0"
+          },
+          {
+            "speaker": "高橋",
+            "textId": "i_c9fba96ef465"
+          },
+          {
+            "speaker": "金子",
+            "textId": "i_b0d512af4da6"
+          },
+          {
+            "speaker": "高橋",
+            "textId": "i_e2f7bdf254a1"
+          },
+          {
+            "speaker": "金子",
+            "textId": "i_e9f2532c6fa5"
+          },
+          {
+            "speaker": "高橋",
+            "textId": "i_dac6c05f090b"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_f02622d9dbd1"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_b2af4d11cebe"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_e9ddbdae4d77"
+          },
+          {
+            "speaker": "金子",
+            "textId": "i_d67dc3c72816"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_e1b9dadca2b6"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_921712173903"
+          },
+          {
+            "speaker": "金子",
+            "textId": "i_19b3631ab7c2"
+          },
+          {
+            "speaker": "高橋",
+            "textId": "i_2178d41b6c5b"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{日本|にほん}レストラン{事情|じじょう}",
+      "contents": [
+        {
+          "textId": "i_44ff8ed48370"
+        },
+        {
+          "textId": "i_0376bcf7e157"
+        },
+        {
+          "textId": "i_275198df75ff"
+        },
+        {
+          "textId": "i_8c7c82a52ec6"
+        },
+        {
+          "textId": "i_00941ded94e9"
+        }
+      ]
+    }
+  },
+  {
+    "index": 216,
+    "title": "第 16 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{結婚披露宴|けっこんひろうえん}",
+      "contents": [
+        [
+          {
+            "speaker": "王",
+            "textId": "i_5a0a29fac7a7"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_954e57c85d21"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_3c6c67f82c94"
+          },
+          {
+            "speaker": "町子",
+            "textId": "i_92eb1fa6f35b"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_1ce184b695a5"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_22aa8e94e953"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_bc80dfa80bb3"
+          },
+          {
+            "speaker": "山田",
+            "textId": "i_1585df8b8495"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{変|か}わる{結婚式|けっこんしき}",
+      "contents": [
+        {
+          "textId": "i_4189fd19488c"
+        },
+        {
+          "textId": "i_30510367fd2c"
+        },
+        {
+          "textId": "i_cc9d3a747fca"
+        },
+        {
+          "textId": "i_1fc5c4a6c8d1"
+        }
+      ]
+    }
+  },
+  {
+    "index": 217,
+    "title": "第 17 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{日本取材|にほんしゅざい}の[{成果|せいか}|i_4ccfe93cd25d]",
+      "contents": [
+        [
+          {
+            "speaker": "王",
+            "textId": "i_fe59380dc064"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_3183afaa6e1d"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_626b78e39ff3"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_33c115b17bef"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_74d36f70c0d7"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_6444e7cea349"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_91dc87a10bfd"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_ecabff3e820b"
+          },
+          {
+            "speaker": "王",
+            "textId": "i_b47ea9e408b5"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_afe76bce45a2"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{北京|ぺきん}の{顔|かお}",
+      "contents": [
+        {
+          "textId": "i_941702314054"
+        },
+        {
+          "textId": "i_55e79a3b0b94"
+        },
+        {
+          "textId": "i_546d984bbfb1"
+        },
+        {
+          "textId": "i_4f9e28b983fc"
+        },
+        {
+          "textId": "i_55659d0afaf7"
+        },
+        {
+          "textId": "i_e09181e5a2bf"
+        },
+        {
+          "textId": "i_c53b000a762e"
+        }
+      ]
+    }
+  },
+  {
+    "index": 218,
+    "title": "第 18 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{売|う}り{込|こ}み",
+      "contents": [
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_a57b90a4800f"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_678deb326d91"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_593cc7347076"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_75b016f770f3"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_5453cb6a4655"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_58e031a49d4e"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_5ed273d29bad"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_59baa557273b"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_4bf5c015e8db"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_a34c5b5b7be9"
+          },
+          {
+            "speaker": "担当者",
+            "textId": "i_ef54b2f06a4c"
+          },
+          {
+            "speaker": "佐藤?大山",
+            "textId": "i_5878af409e60"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{手紙|てがみ}",
+      "contents": [
+        {
+          "textId": "i_f5344fda4e01"
+        },
+        {
+          "textId": "i_f924b2b0eddb"
+        },
+        {
+          "textId": "i_e9c0b080b110"
+        },
+        {
+          "textId": "i_112bfdb291d0"
+        },
+        {
+          "textId": "i_e92e9f9906c0"
+        },
+        {
+          "textId": "i_55bd0370ba7b"
+        },
+        {
+          "textId": "i_a0af1842cee8"
+        },
+        {
+          "textId": "i_0110b29a4d44"
+        }
+      ]
+    }
+  },
+  {
+    "index": 219,
+    "title": "第 19 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "クレーム",
+      "contents": [
+        [
+          {
+            "speaker": "黒田",
+            "textId": "i_6c7c9f809ad2"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_276317382545"
+          },
+          {
+            "speaker": "黒田",
+            "textId": "i_02ae34e1e20a"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_87434339c0e8"
+          },
+          {
+            "speaker": "黒田",
+            "textId": "i_19d4a07dd686"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_55f83b2a0da9"
+          },
+          {
+            "speaker": "黒田",
+            "textId": "i_1afab56b7878"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_7aa4b044c92e"
+          },
+          {
+            "speaker": "黒田",
+            "textId": "i_1af9ce69bc7b"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_0789ebcc74a9"
+          },
+          {
+            "speaker": "黒田",
+            "textId": "i_9a36e3a80954"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_a39d9a589f08"
+          },
+          {
+            "speaker": "黒田",
+            "textId": "i_0ca2a5d31880"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_43364f6f0833"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "[{水道水|すいどうすい}|i_7cac8df1f6f1]の{話|はなし}",
+      "contents": [
+        {
+          "textId": "i_688f280f3303"
+        },
+        {
+          "textId": "i_395c70dabcbb"
+        },
+        {
+          "textId": "i_bf573a4d904f"
+        },
+        {
+          "textId": "i_5216453dfd38"
+        }
+      ]
+    }
+  },
+  {
+    "index": 220,
+    "title": "第 20 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{希望|きぼう}の{日|ひ}",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_71e4f69b2103"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_7384f533b801"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_0508aa609c09"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_1e7d38b98a08"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_26381c06798d"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_b0bc667b5a5e"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_99f032cf22ef"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_a88e75daea10"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_b5af33f3af37"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_cb99d40a2afe"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_92502b9d7028"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_82e3d249b6b7"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_b6c42436f42f"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_abfa5fae6aa8"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{太極拳|たいきょくけん}で{広|ひろ}がる{交流|こうりゅう}",
+      "contents": [
+        {
+          "textId": "i_3610244fe8ee"
+        },
+        {
+          "textId": "i_29ef74da99c1"
+        },
+        {
+          "textId": "i_13657d938208"
+        },
+        {
+          "textId": "i_61f5e987b0fa"
+        }
+      ]
+    }
+  },
+  {
+    "index": 221,
+    "title": "第 21 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{広州|こうしゅう}で",
+      "contents": [
+        [
+          {
+            "speaker": "店員",
+            "textId": "i_c9fde0b53b1c"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_f69954565570"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_a00ffe61eb0a"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_08788035dbcb"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_3b5da0bd1d12"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_7b82f5cc7204"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_7c8bbee0ef11"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_9e5c293991d8"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_a3e2f5013d16"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_e8dd34484600"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_8fbba55ed495"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_a269085075a9"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_740fc18065b5"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_585fd8cc22b8"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_e55643fb5fe1"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_e5f6cd18fe23"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_babd3631bacf"
+          },
+          {
+            "speaker": "店員",
+            "textId": "i_d7903ec6c4f6"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "[{中国茶|ちゅうごくちゃ}|i_b1f7eb6d04ac]の{歴史|れきし}",
+      "contents": [
+        {
+          "textId": "i_4c63397773b7"
+        },
+        {
+          "textId": "i_863134fc357b"
+        },
+        {
+          "textId": "i_f2417cfc8a30"
+        },
+        {
+          "textId": "i_5c0cb24e85da"
+        },
+        {
+          "textId": "i_b987183b7047"
+        }
+      ]
+    }
+  },
+  {
+    "index": 222,
+    "title": "第 22 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{電話|でんわ}",
+      "contents": [
+        [
+          {
+            "speaker": "榎本",
+            "textId": "i_82feec541eed"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_e06c1328ea16"
+          },
+          {
+            "speaker": "榎本",
+            "textId": "i_36d6aee8021f"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_1405f3542919"
+          },
+          {
+            "speaker": "榎本",
+            "textId": "i_f1a9e2b81fa9"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_bfbb35bc347d"
+          },
+          {
+            "speaker": "榎本",
+            "textId": "i_7ba03d78e983"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_80ba1a4f6df5"
+          },
+          {
+            "speaker": "榎本",
+            "textId": "i_587f28c633f7"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_7a3fe100b124"
+          },
+          {
+            "speaker": "榎本",
+            "textId": "i_f0734aa37439"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_5e94c6994fd8"
+          },
+          {
+            "speaker": "榎本",
+            "textId": "i_703117da2818"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_39e0a108a7fd"
+          },
+          {
+            "speaker": "榎本",
+            "textId": "i_51e58843bf95"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ef46f507383a"
+          },
+          {
+            "speaker": "榎本",
+            "textId": "i_02c0f92344f5"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_ad5d2864d62f"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "デジタルカメラ{新|しん}{製品|せいひん}{紹介|しょうかい}",
+      "contents": [
+        {
+          "textId": "i_9f8cdb48ebbb"
+        },
+        {
+          "textId": "i_459782df327b"
+        },
+        {
+          "textId": "i_ca8d1cfe8afd"
+        },
+        {
+          "textId": "i_08c9961f1c99"
+        },
+        {
+          "textId": "i_c757c6ecdeec"
+        },
+        {
+          "textId": "i_00038db19817"
+        },
+        {
+          "textId": "i_345d4a31a202"
+        }
+      ]
+    }
+  },
+  {
+    "index": 223,
+    "title": "第 23 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{紹興|しょうこう}を{訪|たず}ねる",
+      "contents": [
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_50a8a1616f0c"
+          },
+          {
+            "speaker": "ガイド",
+            "textId": "i_76aae4cf2c65"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_9584e7e83e0c"
+          },
+          {
+            "speaker": "ガイド",
+            "textId": "i_1c8936103d7e"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_c40b84788bde"
+          },
+          {
+            "speaker": "ガイド",
+            "textId": "i_a17c4693e565"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_5df484a93198"
+          },
+          {
+            "speaker": "ガイド",
+            "textId": "i_02546943a9ad"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_5f1213b37236"
+          },
+          {
+            "speaker": "ガイド",
+            "textId": "i_4a10c001f06b"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_5e130e2759a9"
+          },
+          {
+            "speaker": "ガイド",
+            "textId": "i_517352f3d627"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_e37ab439153a"
+          },
+          {
+            "speaker": "ガイド",
+            "textId": "i_26dbc9f18b83"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "[{水郷|すいごう}|i_c02b82cf8418]の{町|まち}",
+      "contents": [
+        {
+          "textId": "i_e59852732edc"
+        },
+        {
+          "textId": "i_b6402d4d4e2b"
+        },
+        {
+          "textId": "i_f5254af7f16a"
+        },
+        {
+          "textId": "i_d0c0eb44708a"
+        },
+        {
+          "textId": "i_74b1d06ff76d"
+        }
+      ]
+    }
+  },
+  {
+    "index": 224,
+    "title": "第 24 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{香港|ほんこん}－CM{撮影|さつえい}の{下見|したみ}",
+      "contents": [
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_68976749044a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_76316b5c688c"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_8a65e1653c2d"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_7e5748d04177"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_06708507d5e5"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_d17f3ae7afe4"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_31f5ed63c916"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_10f13dd91c72"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_52624c05dc7a"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_12e04eb449ac"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_b16ed7b5a7a3"
+          },
+          {
+            "speaker": "中井",
+            "textId": "i_5f76014f8190"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_0354c1c64ec8"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_68fdc675c2f6"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "CM",
+      "contents": [
+        {
+          "textId": "i_f249d61a46a3"
+        },
+        {
+          "textId": "i_49812de7e56c"
+        },
+        {
+          "textId": "i_61d2f8da69f2"
+        },
+        {
+          "textId": "i_20e1f44cbcfb"
+        },
+        {
+          "textId": "i_6452c0b3a05f"
+        }
+      ]
+    }
+  },
+  {
+    "index": 225,
+    "title": "第 25 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{創作中華料理|そうさくちゅうかりょうり}コンテストの{実現|じつげん}",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_93b0e5eb5a18"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_9a904f26021b"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_86c3650652bf"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_32dfb1ea7ff6"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_e2565becf24e"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_d07aaee9db35"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_8eb5afdc0aa3"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_9bb64fa2ca46"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_891ee6390c76"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_be366eb8dfc1"
+          },
+          {
+            "speaker": "野田",
+            "textId": "i_5ea5bd56ed86"
+          },
+          {
+            "speaker": "大山",
+            "textId": "i_bedeffdcc981"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_10adb53be211"
+          },
+          {
+            "speaker": "佐藤",
+            "textId": "i_02023179c56f"
+          },
+          {
+            "speaker": "李",
+            "textId": "i_c914750686e4"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{日本|にほん}の{寿司|すし}から{世界|せかい}のSUSHIへ",
+      "contents": [
+        {
+          "textId": "i_a75c6349168c"
+        },
+        {
+          "textId": "i_09a5c3e823c9"
+        },
+        {
+          "textId": "i_fd431f52ab1d"
+        },
+        {
+          "textId": "i_efdedbb4c2d3"
+        }
+      ]
+    }
+  },
+  {
+    "index": 226,
+    "title": "第 26 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "イベント[{前夜|ぜんや}|i_2d5cd455dfea]",
+      "contents": [
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_6001b80744d6"
+          }
+        ],
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_e44d42e7fdc2"
+          }
+        ],
+        [
+          {
+            "speaker": "王",
+            "textId": "i_6c7ea87f2875"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_165431acdab0"
+          }
+        ],
+        [
+          {
+            "speaker": "王",
+            "textId": "i_15880d237c19"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_810b1abf2310"
+          }
+        ],
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_abc8ad696562"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_b5e775608b17"
+          }
+        ],
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_c7c34ba36afd"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_29f9bd5f6ab6"
+          }
+        ],
+        [
+          {
+            "speaker": "王",
+            "textId": "i_406595acc9cb"
+          }
+        ],
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_62e124e1978c"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_e5d909069610"
+          }
+        ],
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_bb31416bffee"
+          }
+        ],
+        [
+          {
+            "speaker": "王",
+            "textId": "i_9591c4edd327"
+          }
+        ],
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_cdeaa122264d"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{地球|ちきゅう}{温暖化|おんだんか}",
+      "contents": [
+        {
+          "textId": "i_39f0d8291e2a"
+        },
+        {
+          "textId": "i_5962ad216c7e"
+        },
+        {
+          "textId": "i_63877af0be9e"
+        },
+        {
+          "textId": "i_609ae1e20d58"
+        },
+        {
+          "textId": "i_8539927c620a"
+        },
+        {
+          "textId": "i_7f98618e4b2c"
+        }
+      ]
+    }
+  },
+  {
+    "index": 227,
+    "title": "第 27 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "イベント{当|とう}{日|じつ}",
+      "contents": [
+        [
+          {
+            "speaker": "アナウンサー",
+            "textId": "i_dd8a2e3cad20"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤(さとう)",
+            "textId": "i_d2b06dfd7a56"
+          }
+        ],
+        [
+          {
+            "speaker": "アナウンサー",
+            "textId": "i_5aaebfc539d8"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤(さとう)",
+            "textId": "i_9f72b129588e"
+          }
+        ],
+        [
+          {
+            "speaker": "アナウンサー",
+            "textId": "i_d5d5811ed3de"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤(さとう)",
+            "textId": "i_0586bf8d5392"
+          }
+        ],
+        [
+          {
+            "speaker": "アナウンサー",
+            "textId": "i_a626490139b8"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤(さとう)",
+            "textId": "i_ff4ad41a3d34"
+          }
+        ],
+        [
+          {
+            "speaker": "アナウンサー",
+            "textId": "i_f0aa2c6d3a9c"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤(さとう)",
+            "textId": "i_873737a2c2c5"
+          }
+        ],
+        [
+          {
+            "speaker": "アナウンサー",
+            "textId": "i_6fe146a96371"
+          }
+        ],
+        [
+          {
+            "speaker": "アナウンサー",
+            "textId": "i_c64c75de2e56"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤(さとう)",
+            "textId": "i_3ff615c96703"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{桜|さくら}",
+      "contents": [
+        {
+          "textId": "i_29920bf00b2e"
+        },
+        {
+          "textId": "i_60d3fa54f7ca"
+        },
+        {
+          "textId": "i_e55ad48e070f"
+        },
+        {
+          "textId": "i_dd964da3f371"
+        },
+        {
+          "textId": "i_25a7317f0922"
+        },
+        {
+          "textId": "i_a002717e7dba"
+        },
+        {
+          "textId": "i_f9fddc468258"
+        },
+        {
+          "textId": "i_18d6c23f2338"
+        },
+        {
+          "textId": "i_5bf4859a3ff4"
+        }
+      ]
+    }
+  },
+  {
+    "index": 228,
+    "title": "第 28 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{病院|びょういん}",
+      "contents": [
+        [
+          {
+            "speaker": "李",
+            "textId": "i_e8c3a5c230e1"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_dda7de3f7f8e"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_700e39c22f62"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_25e2774db382"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_3fb2cdf5acd6"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_b5a151bde773"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_5459a221bb21"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_d1520ae5caa5"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_592565e5ffcf"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_49ad7a2ccc17"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_fb539f6a34f5"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_8c0acdfe3594"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_f5e3d19ff41d"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "ロボット",
+      "contents": [
+        {
+          "textId": "i_cbc74342ac2b"
+        },
+        {
+          "textId": "i_c55538138c33"
+        },
+        {
+          "textId": "i_e60623d71301"
+        },
+        {
+          "textId": "i_01abded71803"
+        }
+      ]
+    }
+  },
+  {
+    "index": 229,
+    "title": "第 29 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "イベント{打|う}ち{上|あ}げ",
+      "contents": [
+        [
+          {
+            "speaker": "王",
+            "textId": "i_93f8ca27188c"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_0461bbe4d19e"
+          }
+        ],
+        [
+          {
+            "speaker": "全員",
+            "textId": "i_eb476d59dbe6"
+          }
+        ],
+        [
+          {
+            "speaker": "中井",
+            "textId": "i_3c50942a134b"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_d3515a4a4c71"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_1785d6063415"
+          }
+        ],
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_2a314f0765bc"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_f178d8889066"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_0e9ee36a404d"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_ab23e7590189"
+          }
+        ],
+        [
+          {
+            "speaker": "中井",
+            "textId": "i_e4f99f44c62d"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_d4901ab9da32"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_094cab33b90b"
+          }
+        ],
+        [
+          {
+            "speaker": "全員",
+            "textId": "i_fe72aa20cb09"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_03f32c2cd5b0"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_07f13c56b452"
+          }
+        ],
+        [
+          {
+            "speaker": "王",
+            "textId": "i_4c6c231db206"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_6377c2825c14"
+          }
+        ],
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_391f791c4571"
+          }
+        ],
+        [
+          {
+            "speaker": "大山",
+            "textId": "i_4ee75c66dee6"
+          }
+        ],
+        [
+          {
+            "speaker": "王",
+            "textId": "i_7f4e2cd579d8"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "[{宇宙食|うちゅうしょく}|i_4e45b90ca782]",
+      "contents": [
+        {
+          "textId": "i_46a9f78af929"
+        },
+        {
+          "textId": "i_2e20722ebafb"
+        },
+        {
+          "textId": "i_c00e3e87aa43"
+        },
+        {
+          "textId": "i_73ada15821dd"
+        },
+        {
+          "textId": "i_ae1f5bc5a76b"
+        }
+      ]
+    }
+  },
+  {
+    "index": 230,
+    "title": "第 30 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{本社|ほんしゃ}での{報告|ほうこく}",
+      "contents": [
+        [
+          {
+            "speaker": "司会",
+            "textId": "i_d8d8b10c4123"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_224bbd8f1a12"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_a1a3070aa06f"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_19e16d759386"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_079dcb836d82"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_d9ab4cf448e0"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "{地震|じしん}",
+      "contents": [
+        {
+          "textId": "i_dc204532fe07"
+        },
+        {
+          "textId": "i_c71fb43b996d"
+        },
+        {
+          "textId": "i_8c01eb6e3071"
+        },
+        {
+          "textId": "i_a2f9b376d343"
+        }
+      ]
+    }
+  },
+  {
+    "index": 231,
+    "title": "第 31 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{栄転|えいてん}の{話|はなし}",
+      "contents": [
+        [
+          {
+            "speaker": "金本",
+            "textId": "i_4f74606ef1e6"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_b31a26720fed"
+          }
+        ],
+        [
+          {
+            "speaker": "金本",
+            "textId": "i_5b191539f30f"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_f1341cf95cd2"
+          }
+        ],
+        [
+          {
+            "speaker": "金本",
+            "textId": "i_386735e66943"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_ba51406fa37d"
+          }
+        ],
+        [
+          {
+            "speaker": "金本",
+            "textId": "i_b5274d9e70a1"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_1105c7a4748e"
+          }
+        ],
+        [
+          {
+            "speaker": "金本",
+            "textId": "i_5d267c7fd05b"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_ef0912eb3b52"
+          }
+        ],
+        [
+          {
+            "speaker": "金本",
+            "textId": "i_b6babaa5ac63"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_17097967e842"
+          }
+        ],
+        [
+          {
+            "speaker": "金本",
+            "textId": "i_adf8ae723f95"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_414520ce42d4"
+          }
+        ],
+        [
+          {
+            "speaker": "金本",
+            "textId": "i_f128aad30e8e"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "クモの[{糸|いと}|i_04c0c9d24d66]",
+      "contents": [
+        {
+          "textId": "i_84a24180b4f1"
+        },
+        {
+          "textId": "i_6e7bac0ec143"
+        },
+        {
+          "textId": "i_30ecc719d284"
+        },
+        {
+          "textId": "i_9a4e17b274b2"
+        }
+      ]
+    }
+  },
+  {
+    "index": 232,
+    "title": "第 32 課 ",
+    "sentences": [],
+    "conversations": [],
+    "discussions": {
+      "title": "{思|おも}い{出|で}の{場|ば}{所|しょ}",
+      "contents": [
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_eed737e31309"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_ffa456ed32af"
+          }
+        ],
+        [
+          {
+            "speaker": "野田",
+            "textId": "i_7b3b1f4a8cb7"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_173cc5debe8f"
+          }
+        ],
+        [
+          {
+            "speaker": "中井",
+            "textId": "i_0825b4dca348"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_0b45adfad04f"
+          }
+        ],
+        [
+          {
+            "speaker": "中井",
+            "textId": "i_f0e1315ab965"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_a18ebd33fc99"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_a9820865009c"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_ab461eca793e"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_562fb887f505"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_e912a82616f2"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_85ad542016b5"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_97b83e0e1e24"
+          }
+        ],
+        [
+          {
+            "speaker": "李",
+            "textId": "i_9c6fb42db90f"
+          }
+        ],
+        [
+          {
+            "speaker": "佐藤",
+            "textId": "i_f5bd826c0114"
+          }
+        ]
+      ]
+    },
+    "article": {
+      "title": "トキ",
+      "contents": [
+        {
+          "textId": "i_f4ae40f0d01a"
+        },
+        {
+          "textId": "i_69c8f1e7851c"
+        },
+        {
+          "textId": "i_9a12b54aabcd"
+        },
+        {
+          "textId": "i_db3e8c8155ad"
+        },
+        {
+          "textId": "i_35dc02a70a45"
+        },
+        {
+          "textId": "i_e4a9998ee647"
+        }
+      ]
+    }
+  }
+]

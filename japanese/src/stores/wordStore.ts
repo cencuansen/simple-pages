@@ -3,7 +3,6 @@ import { computed, ref } from 'vue'
 import type { WordFilter, WordItem } from '@/types/word'
 import Papa from 'papaparse'
 import ky from 'ky'
-import { newTextId } from '@/utils/common'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
 
@@ -58,9 +57,6 @@ export const useWordStore = defineStore('word', () => {
     if (!data || data.length === 0) {
       return []
     }
-    data.forEach((item: WordItem) => {
-      item['textId'] = newTextId()
-    })
   }
 
   const queryWords = (filter: WordFilter): WordItem[] => {

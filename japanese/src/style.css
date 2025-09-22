@@ -89,7 +89,7 @@ ruby rt {
 }
 
 ruby rt::before {
-    content: attr(data-ruby);
+    content: attr(d);
 }
 
 .indentation {

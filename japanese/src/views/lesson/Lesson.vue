@@ -233,40 +233,8 @@ const grammars = computed(() => {
   return grammarStore.queryGrammars({ lesson: currentIndex.value })
 })
 
-const finalWords = computed(() => {
-  return words.value
-  // const res: WordItem[] = []
-  // const conjus = [...conjuVerbs.value, ...jlptConjuVerbs.value]
-
-  // if (!conjus.length) return res
-
-  // words.value.forEach((word) => {
-  //   const match = conjus.find((c) =>
-  //     columns.some((col) => c[col] === word.word)
-  //   )
-  //   if (match) {
-  //     const relatedWords: WordItem[] = columns
-  //       .map(
-  //         (col) =>
-  //           ({
-  //             word: match[col],
-  //             textId: word.textId,
-  //           }) as WordItem
-  //       )
-  //       .filter((w) => Boolean(w.word))
-  //     res.push(...relatedWords)
-  //   } else {
-  //     res.push({
-  //       ...word,
-  //     })
-  //   }
-  // })
-  // return res
-})
-
 const textView = computed(() => {
-  if (!finalWords.value.length) return () => ''
-  return textParser(finalWords.value, wordLink.value, furigana.value)
+  return textParser(wordLink.value, furigana.value)
 })
 
 const onScrollEnd = async () => {
