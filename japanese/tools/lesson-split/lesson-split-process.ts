@@ -344,5 +344,11 @@ data1.forEach((lesson: Lesson) => {
 })
 
 fs.writeFileSync('./lesson-lite.json', JSON.stringify(data1, null, 2))
-fs.writeFileSync('./lesson-contents.csv', lessonContents.join('\n'))
-fs.writeFileSync('./lesson-translations.csv', lessonTranslations.join('\n'))
+fs.writeFileSync(
+  './lesson-contents.csv',
+  `textId,content\n${lessonContents.join('\n')}`
+)
+fs.writeFileSync(
+  './lesson-translations.csv',
+  `textId,content\n${lessonTranslations.join('\n')}`
+)
