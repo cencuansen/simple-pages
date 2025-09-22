@@ -197,7 +197,7 @@ function convertText(content: string, words: WordItem[]): string {
       }
 
       if (matchingGroup.wordItem) {
-        result += `[${rubyParts.join('')}|${matchingGroup.wordItem.textId}]`
+        result += `[${rubyParts.join('')}‖${matchingGroup.wordItem.textId}]`
       } else {
         result += rubyParts.join('')
       }

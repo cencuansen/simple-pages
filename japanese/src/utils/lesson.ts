@@ -5,120 +5,74 @@ import type { Lesson, LessonSearch } from '@/types/lesson.ts'
 export const speakText = (text: string | undefined = '') =>
   text.replace(/![^(]+\(([^)]+)\)/g, '$1')
 
-interface ParseTextBlock {
-  type: 'plain' | 'annotated' | 'anchored'
-  content: string
-  reading?: string
-  id?: string
+/**
+ * 提取纯文本：去掉 […‖id] 和 {surface|reading} 标记，只保留文字表层内容。
+ */
+function extractPlainText(input: string): string {
+  return input
+    // 去掉带锚点的方括号，只保留中间内容
+    .replace(/\[([^\]]*?)‖[^\]]*?\]/g, '$1')
+    // 将所有 {surface|reading} → surface
+    .replace(/\{([^|}]+)\|[^}]+\}/g, '$1');
 }
 
-// 解析文本中的标记块
-function parseTextBlocks(text: string): ParseTextBlock[] {
-  // 匹配三种格式：
-  // 1. 带注音和锚点: [{单词|读音}|id]
-  // 2. 只带锚点: [单词|id]
-  // 3. 只带注音: {单词|读音}
-  // 4. 纯文本
-  const pattern =
-    /\[{([^|]+)\|([^}]+)}\|([^\]]+)\]|\[([^|]+)\|([^\]]+)\]|\{([^|]+)\|([^}]+)\}|([^[\]{}]+)/g
-  const blocks: ParseTextBlock[] = []
-  let match
+/**
+ * 提取带假名的文本：先去掉 […‖id]，再把全串的 {surface|reading} 转成 <ruby>…</ruby>。
+ */
+function extractTextWithRuby(input: string): string {
+  // 1. 去掉锚点标记
+  const withoutAnchors = input.replace(/\[([^\]]*?)‖[^\]]*?\]/g, '$1');
 
-  while ((match = pattern.exec(text)) !== null) {
-    if (match[1] && match[2] && match[3]) {
-      // 格式1: [{单词|读音}|id] - 带注音和锚点
-      blocks.push({
-        type: 'annotated',
-        content: match[1],
-        reading: match[2],
-        id: match[3],
-      })
-    } else if (match[4] && match[5]) {
-      // 格式2: [单词|id] - 只带锚点
-      blocks.push({
-        type: 'anchored',
-        content: match[4],
-        id: match[5],
-      })
-    } else if (match[6] && match[7]) {
-      // 格式3: {单词|读音} - 只带注音
-      blocks.push({
-        type: 'annotated',
-        content: match[6],
-        reading: match[7],
-      })
-    } else if (match[8]) {
-      // 纯文本部分
-      blocks.push({
-        type: 'plain',
-        content: match[8],
-      })
+  // 2. 全局 ruby 化
+  return withoutAnchors.replace(
+    /\{([^|}]+)\|([^}]+)\}/g,
+    `<ruby>$1<rt d='$2'/></ruby>`
+  );
+}
+
+/**
+ * 提取带锚点的文本：把 […‖id] 里的内容（去掉 {…} 注音）包成 <a>，
+ 其他 {surface|reading} 则仅取 surface。
+ */
+function extractTextWithAnchor(input: string): string {
+  // 1. 先把带锚点的方括号处理成 <a>…</a>
+  const withAnchors = input.replace(
+    /\[([^\]]*?)‖([^\]]*?)\]/g,
+    (_match, content, id) => {
+      // content 可能含 {surface|reading}，去掉注音只留 surface
+      const plain = content.replace(/\{([^|}]+)\|[^}]+\}/g, '$1');
+      return `<a href='#${id}' class='anchor-link'>${plain}</a>`;
     }
-  }
+  );
 
-  return blocks
+  // 2. 再把剩余的 {surface|reading} → surface
+  return withAnchors.replace(/\{([^|}]+)\|[^}]+\}/g, '$1');
 }
 
-// 1、提取纯文本
-function extractPlainText(text: string): string {
-  const blocks = parseTextBlocks(text)
-  return blocks.map((block) => block.content).join('')
-}
+/**
+ * 提取带假名和锚点的文本：
+ * - […‖id] 先 ruby 化内部 {…}，然后包成 <a>。
+ * - 剩余花括号也 ruby 化。
+ */
+function extractTextWithRubyAndAnchor(input: string): string {
+  // 1. 先处理方括号：内部 ruby，再包 <a>
+  const anchorProcessed = input.replace(
+    /\[([^\]]*?)‖([^\]]*?)\]/g,
+    (_match, content, id) => {
+      // ruby 化内部所有 {surface|reading}
+      const withRuby = content.replace(
+        /\{([^|}]+)\|([^}]+)\}/g,
+        `<ruby>$1<rt d='$2'/></ruby>`
+      );
+      return `<a href='#${id}' class='anchor-link'>${withRuby}</a>`;
+    }
+  );
 
-// 2、纯文本带注音假名
-function extractTextWithRuby(text: string): string {
-  const blocks = parseTextBlocks(text)
-
-  return blocks
-    .map((block) => {
-      if (block.type === 'plain' || block.type === 'anchored') {
-        return block.content
-      } else {
-        return `<ruby>${block.content}<rt d='${block.reading}'/></ruby>`
-      }
-    })
-    .join('')
-}
-
-// 3、纯文本带锚点
-function extractTextWithAnchor(text: string): string {
-  const blocks = parseTextBlocks(text)
-
-  return blocks
-    .map((block) => {
-      if (block.type === 'plain' || (block.type === 'annotated' && !block.id)) {
-        // 纯文本或没有id的注音文本
-        return block.content
-      } else if (block.id) {
-        // 有id的文本（无论是注音还是纯锚点）
-        return `<a href='#${block.id}' class="anchor-link">${block.content}</a>`
-      } else {
-        return block.content
-      }
-    })
-    .join('')
-}
-
-// 4、纯文本注音假名带锚点
-function extractTextWithRubyAndAnchor(text: string): string {
-  const blocks = parseTextBlocks(text)
-
-  return blocks
-    .map((block) => {
-      if (block.type === 'plain') {
-        return block.content
-      } else if (block.type === 'anchored') {
-        // 只有锚点的情况
-        return `<a href='#${block.id}' class="anchor-link">${block.content}</a>`
-      } else if (block.id) {
-        // 有注音和锚点的情况
-        return `<a href='#${block.id}' class="anchor-link"><ruby>${block.content}<rt d='${block.reading}'/></ruby></a>`
-      } else {
-        // 只有注音的情况
-        return `<ruby>${block.content}<rt d='${block.reading}'/></ruby>`
-      }
-    })
-    .join('')
+  // 2. 全局 ruby 化剩余 {surface|reading}
+  return anchorProcessed.replace(
+    /\{([^|}]+)\|([^}]+)\}/g,
+    `<ruby>$1<rt d='$2'/></ruby>`
+  );
 }
 
 // 文本解析器
