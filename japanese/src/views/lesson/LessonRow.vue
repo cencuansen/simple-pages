@@ -11,7 +11,7 @@
     <div class="right">
       <div class="row">
         <Reading
-          v-if="isNormalText(row.content)"
+          v-if="!isResource(row.content)"
           class="row-icon"
           :row-item="row as TextBase"
           @click="speak(row.textId)"
@@ -24,7 +24,7 @@
           v-html="textView(nonTextProcess(row.content))"
         />
       </div>
-      <div class="translate" v-if="translate && isNormalText(row.content)">
+      <div class="translate" v-if="translate && !isResource(row.content)">
         <el-text>{{ row.translation }}</el-text>
       </div>
     </div>
@@ -58,24 +58,25 @@ const speak = async (id: string) => {
   })
 }
 
-const nonTextPatten = /(\{(\w+)\|([^}]+)\})/
+// 正则表达式匹配resource资源格式
+const resourceRegex = /^\[resource:([a-zA-Z]+):([^\]]+)\]$/
 
-const isNormalText = (text: string) => {
-  return !nonTextPatten.test(text)
+// 判断文本是否是resource资源的函数
+function isResource(text: string): boolean {
+  return resourceRegex.test(text)
 }
 
 const nonTextProcess = (text: string): string => {
   if (!text) return text
-  const match = text.match(nonTextPatten)
+  const match = text.match(resourceRegex)
   if (match) {
-    const matchedText = match[1]
-    const type = match[2]
-    const filename = match[3]
+    const type = match[1]
+    const filename = match[2]
 
     if (type === 'img') {
       const imageUrlBase: string = import.meta.env.VITE_IMAGE_BASE
       const real = `${imageUrlBase}/${filename}`
-      text = text.replace(matchedText, real)
+      text = `<img src="${real}" alt="${filename}" />`
     }
   }
   return text
@@ -128,6 +129,11 @@ const nonTextProcess = (text: string): string => {
 .row-text {
   font-size: 1.1em;
   letter-spacing: 1px;
+}
+
+.row-text > * {
+  width: 100%;
+  min-width: var(--content-max-width);
 }
 
 .translate {
