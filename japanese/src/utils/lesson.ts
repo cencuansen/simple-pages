@@ -193,13 +193,15 @@ export const kataTrueWordTrue = ({
   })
 }
 
-// 解析文本中的标记块
-function parseTextBlocks(text: string): Array<{
+interface ParseTextBlock {
   type: 'plain' | 'annotated' | 'anchored'
   content: string
   reading?: string
   id?: string
-}> {
+}
+
+// 解析文本中的标记块
+function parseTextBlocks(text: string): ParseTextBlock[] {
   // 匹配三种格式：
   // 1. 带注音和锚点: [{单词|读音}|id]
   // 2. 只带锚点: [单词|id]
@@ -207,7 +209,7 @@ function parseTextBlocks(text: string): Array<{
   // 4. 纯文本
   const pattern =
     /\[{([^|]+)\|([^}]+)}\|([^\]]+)\]|\[([^|]+)\|([^\]]+)\]|\{([^|]+)\|([^}]+)\}|([^[\]{}]+)/g
-  const blocks = []
+  const blocks: ParseTextBlock[] = []
   let match
 
   while ((match = pattern.exec(text)) !== null) {
