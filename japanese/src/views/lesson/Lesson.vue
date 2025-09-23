@@ -1,10 +1,12 @@
 <template>
   <div class="lessons" v-if="hasLessons">
-    <LessonHeader id="header" v-if="!fullscreen" />
-
     <div class="lesson-main" ref="container" @scrollend="onScrollEnd">
+      <div ref="top"></div>
+
+      <LessonHeader id="header" v-if="!fullscreen" />
+
       <section class="section">
-        <h1 id="title" ref="top" v-html="textView(lessonTitle)"></h1>
+        <h1 id="title" v-html="textView(lessonTitle)"></h1>
       </section>
 
       <!-- 简单句子 -->
@@ -215,9 +217,10 @@ const mainHeight = computed(() => {
     return `calc(100vh - var(--root-footer-height))`
   } else if (!isPlaying.value) {
     // 非全屏 && 没有启用音频播放
-    return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--root-footer-height))`
+    return `calc(100vh - var(--root-header-height) - var(--root-footer-height))`
   } else {
-    return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--audio-height) - var(--root-footer-height))`
+    // return `calc(100vh - var(--root-header-height) - var(--lesson-headers-height) - var(--audio-height) - var(--root-footer-height))`
+    return `calc(100vh - var(--root-header-height) - var(--root-footer-height))`
   }
 })
 

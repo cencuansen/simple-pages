@@ -2,7 +2,6 @@
   <div class="audio">
     <audio
       ref="audioRef"
-      controls
       @timeupdate="onTimeUpdate"
       @play="onPlay"
       @pause="onPause"
