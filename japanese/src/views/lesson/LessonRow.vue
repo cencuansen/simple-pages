@@ -23,7 +23,9 @@
           }"
           v-html="textView(nonTextProcess(row.content))"
         />
-        <el-text class="text-id" @click="copy(row.textId)">{{ row.textId }}</el-text>
+        <el-text v-if="false" class="text-id" @click="copy(row.textId)">
+          {{ row.textId }}
+        </el-text>
       </div>
       <div class="translate" v-if="translate && !isResource(row.content)">
         <el-text>{{ row.translation }}</el-text>
