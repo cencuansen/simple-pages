@@ -25,25 +25,6 @@
           <el-form-item label="单词释义">
             <el-switch v-model="settingStore.wordDesc" inline-prompt />
           </el-form-item>
-          <el-form-item label="默认词典">
-            <el-select
-              class="dict-selector"
-              fit-input-width
-              v-model="selectedDictionary"
-              default-first-option
-            >
-              <el-option
-                v-for="dict in dictionaries"
-                :key="dict.name"
-                :label="[dict.name, dict.desc].join(' - ')"
-                :value="dict.name"
-                class="option"
-              >
-                <img :src="dict.logo" :alt="dict.label" />
-                <span>{{ [dict.name, dict.desc].join(' - ') }}</span>
-              </el-option>
-            </el-select>
-          </el-form-item>
         </div>
       </el-form-item>
       <el-form-item label="其他">
@@ -66,25 +47,15 @@
 import { computed } from 'vue'
 import { Moon, Sunny } from '@element-plus/icons-vue'
 import { useSettingStore } from '@/stores/settingStore.ts'
-import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
 import { storeToRefs } from 'pinia'
 
 const settingStore = useSettingStore()
 const { isDark } = storeToRefs(settingStore)
 const toggleDark = settingStore.toggleDark
 
-const dictionaryStore = useDictionaryStore()
-const { dictionary, dictionaries } = storeToRefs(dictionaryStore)
-const { setOne } = dictionaryStore
-
 const darkMode = computed({
   get: () => isDark.value,
   set: (val) => toggleDark(val),
-})
-
-const selectedDictionary = computed({
-  get: () => dictionary.value.name,
-  set: (val) => setOne(val),
 })
 </script>
 
