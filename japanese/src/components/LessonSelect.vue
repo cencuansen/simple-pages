@@ -1,7 +1,6 @@
 <template>
   <el-select
     class="lesson-select"
-
     v-model="selectedValue"
     placeholder="选课程"
     :clearable="clearable"
@@ -19,20 +18,24 @@
       </div>
     </template>
     <el-option
+      v-if="!lite"
       v-for="item in lessons"
-      :key="item.index"
       :label="getOptionLabel(item)"
       :value="getOptionValue(item)"
       class="option-item"
     >
-      <div
-        class="option-prefix"
-        :class="levelClass(item.index).en"
-        v-if="!lite"
-      >
+      <div class="option-prefix" :class="levelClass(item.index).en">
         {{ levelClass(item.index).cn }}
       </div>
       <div class="option-content">{{ getOptionLabel(item) }}</div>
+    </el-option>
+    <el-option
+      v-else
+      v-for="item in lessons"
+      :label="item.index"
+      :value="item.index"
+      class="option-item"
+    >
     </el-option>
   </el-select>
 </template>

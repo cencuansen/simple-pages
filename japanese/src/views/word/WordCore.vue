@@ -93,14 +93,21 @@
           {{ scope.row.desc }}
         </template>
       </el-table-column>
-      <el-table-column label="id">
+      <el-table-column label="id" width="110">
         <template #default="scope">
           <el-text @click="copy(scope.row.textId)">
             {{ scope.row.textId }}
           </el-text>
         </template>
       </el-table-column>
-      <el-table-column v-if="showLesson" label="课程" width="60">
+      <el-table-column v-if="showLesson" label="课程" width="100">
+        <template #header>
+          <LessonSelect
+            v-model="lessonIndex"
+            fit-input-width
+            lite
+          />
+        </template>
         <template #default="scope">
           <a href="#" @click="lessonClick(scope.row.lesson)">
             {{ scope.row.lesson }}
