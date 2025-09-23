@@ -104,7 +104,7 @@ const toggleFullscreen = (newStatus: boolean | null = null) => {
 .lesson-headers {
   height: var(--lesson-headers-height);
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

@@ -102,11 +102,7 @@
       </el-table-column>
       <el-table-column v-if="showLesson" label="课程" width="100">
         <template #header>
-          <LessonSelect
-            v-model="lessonIndex"
-            fit-input-width
-            lite
-          />
+          <LessonSelect v-model="lessonIndex" fit-input-width lite />
         </template>
         <template #default="scope">
           <a href="#" @click="lessonClick(scope.row.lesson)">
@@ -373,6 +369,10 @@ onActivated(async () => {
 </script>
 
 <style scoped>
+.el-table {
+  min-height: 500px;
+}
+
 :deep(.reading-column .cell) {
   display: flex;
   align-items: center;

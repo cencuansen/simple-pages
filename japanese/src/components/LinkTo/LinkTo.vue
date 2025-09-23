@@ -145,7 +145,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .link-to {
   position: absolute;
-  right: 30px;
+  right: 50px;
   bottom: 100px;
   border: none;
   width: 25px;
