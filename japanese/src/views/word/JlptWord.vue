@@ -30,7 +30,7 @@ onMounted(() => {
   vocabularyStore.loadVocabularies()
 })
 
-const functionGroup = ref(true)
+const functionGroup = ref(false)
 const pagination = ref(true)
 const scrollTop = ref(true)
 const levelSelect = ref(true)

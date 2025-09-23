@@ -23,7 +23,7 @@
           }"
           v-html="textView(nonTextProcess(row.content))"
         />
-        <el-text v-if="false" class="text-id" @click="copy(row.textId)">
+        <el-text v-if="true" class="text-id" @click="copy(row.textId)">
           {{ row.textId }}
         </el-text>
       </div>

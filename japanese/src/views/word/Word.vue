@@ -33,7 +33,7 @@ onBeforeUnmount(() => {
   speechStore.stop()
 })
 
-const functionGroup = ref(true)
+const functionGroup = ref(false)
 const pagination = ref(true)
 const scrollTop = ref(true)
 const lessonSelect = ref(true)

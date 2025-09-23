@@ -70,8 +70,6 @@
         <WordCore
           :data="words"
           :active-word="activeWord"
-          function-group
-          keyword-filter
           show-header
           pagination
         />

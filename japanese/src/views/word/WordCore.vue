@@ -63,11 +63,20 @@
         label="词性"
         prop="pos"
         show-overflow-tooltip
-        width="60"
-      />
+        width="100"
+      >
+        <template #header>
+          <SimpleSelect
+            v-model="selectedClasses"
+            :data="wordClasses"
+            multiple
+            placeholder="词性"
+          />
+        </template>
+      </el-table-column>
       <el-table-column
         v-if="settingStore.wordDesc"
-        min-width="150"
+        min-width="130"
         show-overflow-tooltip
       >
         <template #header>
@@ -82,6 +91,13 @@
         </template>
         <template #default="scope">
           {{ scope.row.desc }}
+        </template>
+      </el-table-column>
+      <el-table-column label="id">
+        <template #default="scope">
+          <el-text @click="copy(scope.row.textId)">
+            {{ scope.row.textId }}
+          </el-text>
         </template>
       </el-table-column>
       <el-table-column v-if="showLesson" label="课程" width="60">
@@ -157,7 +173,7 @@ import { useReadingStore } from '@/stores/readingStore.ts'
 import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
 
 import type { ActiveWord, WordItem } from '@/types/word.ts'
-import { ElTable } from 'element-plus'
+import { ElNotification, ElTable } from 'element-plus'
 
 import Row from '../../components/Row.vue'
 import LessonSelect from '../../components/LessonSelect.vue'
@@ -272,14 +288,15 @@ const beforePage = computed(() => {
   }
   // 新增：应用单词和释义过滤
   if (wordFilter.value) {
-    list = list.filter((item) =>
-      item.word.includes(wordFilter.value) ||
-      (item.kana && item.kana.includes(wordFilter.value))
+    list = list.filter(
+      (item) =>
+        item.word.includes(wordFilter.value) ||
+        (item.kana && item.kana.includes(wordFilter.value))
     )
   }
   if (descFilter.value) {
-    list = list.filter((item) =>
-      item.desc && item.desc.includes(descFilter.value)
+    list = list.filter(
+      (item) => item.desc && item.desc.includes(descFilter.value)
     )
   }
 
@@ -318,6 +335,11 @@ const lessonClick = (val: number) => {
 const applyFilters = () => {
   // 过滤逻辑已集成在beforePage计算属性中
   // 这里只需要触发重新计算
+}
+
+const copy = async (text: string) => {
+  await navigator.clipboard.writeText(text)
+  ElNotification.success(`Copied!`)
 }
 
 onBeforeUnmount(() => {
