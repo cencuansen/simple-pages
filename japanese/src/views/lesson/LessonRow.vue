@@ -23,6 +23,7 @@
           }"
           v-html="textView(nonTextProcess(row.content))"
         />
+        <el-text class="text-id" @click="copy(row.textId)">{{ row.textId }}</el-text>
       </div>
       <div class="translate" v-if="translate && !isResource(row.content)">
         <el-text>{{ row.translation }}</el-text>
@@ -36,6 +37,7 @@ import { displayText } from '../../utils/lesson.ts'
 import Reading from '../../components/Reading.vue'
 import type { TextBase } from '../../types/lesson.ts'
 import { useReadingStore } from '@/stores/readingStore.ts'
+import { ElNotification } from 'element-plus'
 
 const readingStore = useReadingStore()
 const activeText = readingStore.activeText
@@ -80,6 +82,11 @@ const nonTextProcess = (text: string): string => {
     }
   }
   return text
+}
+
+const copy = async (text: string) => {
+  await navigator.clipboard.writeText(text)
+  ElNotification.success(`Copied!`)
 }
 </script>
 
@@ -134,6 +141,11 @@ const nonTextProcess = (text: string): string => {
 .row-text > * {
   width: 100%;
   min-width: var(--content-max-width);
+}
+
+.text-id {
+  font-size: 0.8em;
+  color: #666666;
 }
 
 .translate {
