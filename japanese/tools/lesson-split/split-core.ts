@@ -1,47 +1,64 @@
-type WordItem = {
+interface WordItem {
   textId: string;
   word: string;
-};
-
-/**
- * 将 "!漢字(かな)" 转换为 "{漢字|かな}"
- */
-function convertRuby(text: string): string {
-  return text.replace(/!([^()]+)\(([^()]+)\)/g, (_m, kanji, kana) => {
-    return `{${kanji}|${kana}}`;
-  });
 }
 
-/**
- * 根据单词列表进行最长匹配标注
- */
 export function convertText(text: string, words: WordItem[]): string {
-  // 先把 ruby 转换好
-  let rubyConverted = convertRuby(text);
+  const annotated = text.replace(/!([^()]+)\(([^()]+)\)/g, '{$1|$2}');
+  const base = annotated.replace(/\{([^|]+)\|[^}]+\}/g, '$1');
 
-  // 按长度降序排序，确保最长匹配优先
-  const sortedWords = [...words].sort((a, b) => b.word.length - a.word.length);
-
-  // 遍历匹配
-  let result = rubyConverted;
-  for (const { textId, word } of sortedWords) {
-    // 构造匹配正则（转义特殊字符）
-    const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
-    // 这里匹配时允许 ruby 已经被替换成 {漢字|かな} 的形式
-    const regex = new RegExp(escaped.replace(/([^\x00-\x7F]+)/g, (m) => {
-      // 对日文部分做宽松匹配（因为已经替换成 {漢字|かな}）
-      return m
-        .split("")
-        .map(ch => `(?:\\{${ch}[^}]+\\}|${ch})`)
-        .join("");
-    }), "g");
-
-    // 替换成标注格式
-    result = result.replace(regex, (match) => `[${match}‖${textId}]`);
+  interface Match {
+    start: number;
+    end: number;
+    id: string;
   }
 
-  return result;
+  const matches: Match[] = [];
+  const sortedWords = [...words].sort((a, b) => b.word.length - a.word.length);
+  let pos = 0;
+  while (pos < base.length) {
+    let matched = false;
+    for (const w of sortedWords) {
+      if (base.substring(pos, pos + w.word.length) === w.word) {
+        matches.push({ start: pos, end: pos + w.word.length, id: w.textId });
+        pos += w.word.length;
+        matched = true;
+        break;
+      }
+    }
+    if (!matched) {
+      pos++;
+    }
+  }
+
+  let output = '';
+  let currentBaseIdx = 0;
+  let matchIdx = 0;
+  let i = 0;
+  while (i < annotated.length) {
+    if (matchIdx < matches.length && currentBaseIdx === matches[matchIdx].start) {
+      output += '[';
+    }
+    if (annotated[i] === '{') {
+      let j = i;
+      while (annotated[j] !== '}') j++;
+      const segment = annotated.substring(i, j + 1);
+      const pipePos = segment.indexOf('|', 1);
+      const kanjiLen = segment.substring(1, pipePos).length;
+      output += segment;
+      currentBaseIdx += kanjiLen;
+      i = j + 1;
+    } else {
+      output += annotated[i];
+      currentBaseIdx++;
+      i++;
+    }
+    if (matchIdx < matches.length && currentBaseIdx === matches[matchIdx].end) {
+      output += '‖' + matches[matchIdx].id + ']';
+      matchIdx++;
+    }
+  }
+  return output;
 }
 
 // 测试
