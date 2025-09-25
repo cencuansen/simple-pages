@@ -16,7 +16,6 @@
         </el-form-item>
         <el-form-item>
           <el-button
-            type="primary"
             :loading="loading"
             @click="fetchAccentPhrases"
           >
@@ -25,7 +24,6 @@
         </el-form-item>
         <el-form-item>
           <VoiceVox
-            type="primary"
             :text="text"
             :disabled="!text"
             :content="'朗读'"

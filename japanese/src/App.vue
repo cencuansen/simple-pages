@@ -177,4 +177,16 @@ onMounted(async () => {
 :deep(.el-tabs__active-bar) {
   background-color: var(--theme-color);
 }
+
+:deep(.is-checked .el-switch__core) {
+  --el-switch-on-color: var(--theme-color);
+}
+
+:deep(.el-slider__bar) {
+  --el-slider-main-bg-color: var(--theme-color);
+}
+
+:deep(.el-slider__button) {
+  --el-slider-main-bg-color: var(--theme-color);
+}
 </style>
