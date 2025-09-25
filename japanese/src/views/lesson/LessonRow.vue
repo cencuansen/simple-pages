@@ -21,7 +21,7 @@
           :class="{
             active: activeText(row.textId),
           }"
-          v-html="textView(nonTextProcess(row.content))"
+          v-html="textView(nonTextProcess(removeSpace(row.content)))"
         />
         <el-text v-if="true" class="text-id" @click="copy(row.textId)">
           {{ row.textId }}
@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { displayText } from '../../utils/lesson.ts'
+import { displayText, removeSpace } from '../../utils/lesson.ts'
 import Reading from '../../components/Reading.vue'
 import type { TextBase } from '../../types/lesson.ts'
 import { useReadingStore } from '@/stores/readingStore.ts'

@@ -9,11 +9,13 @@ export const speakText = (text: string | undefined = '') =>
  * 提取纯文本：去掉 […‖id] 和 {surface|reading} 标记，只保留文字表层内容。
  */
 function extractPlainText(input: string): string {
-  return input
-    // 去掉带锚点的方括号，只保留中间内容
-    .replace(/\[([^\]]*?)‖[^\]]*?\]/g, '$1')
-    // 将所有 {surface|reading} → surface
-    .replace(/\{([^|}]+)\|[^}]+\}/g, '$1');
+  return (
+    input
+      // 去掉带锚点的方括号，只保留中间内容
+      .replace(/\[([^\]]*?)‖[^\]]*?\]/g, '$1')
+      // 将所有 {surface|reading} → surface
+      .replace(/\{([^|}]+)\|[^}]+\}/g, '$1')
+  )
 }
 
 /**
@@ -21,13 +23,13 @@ function extractPlainText(input: string): string {
  */
 function extractTextWithRuby(input: string): string {
   // 1. 去掉锚点标记
-  const withoutAnchors = input.replace(/\[([^\]]*?)‖[^\]]*?\]/g, '$1');
+  const withoutAnchors = input.replace(/\[([^\]]*?)‖[^\]]*?\]/g, '$1')
 
   // 2. 全局 ruby 化
   return withoutAnchors.replace(
     /\{([^|}]+)\|([^}]+)\}/g,
     `<ruby>$1<rt d='$2'/></ruby>`
-  );
+  )
 }
 
 /**
@@ -40,13 +42,13 @@ function extractTextWithAnchor(input: string): string {
     /\[([^\]]*?)‖([^\]]*?)\]/g,
     (_match, content, id) => {
       // content 可能含 {surface|reading}，去掉注音只留 surface
-      const plain = content.replace(/\{([^|}]+)\|[^}]+\}/g, '$1');
-      return `<a href='#${id}' class='anchor-link'>${plain}</a>`;
+      const plain = content.replace(/\{([^|}]+)\|[^}]+\}/g, '$1')
+      return `<a href='#${id}' class='anchor-link'>${plain}</a>`
     }
-  );
+  )
 
   // 2. 再把剩余的 {surface|reading} → surface
-  return withAnchors.replace(/\{([^|}]+)\|[^}]+\}/g, '$1');
+  return withAnchors.replace(/\{([^|}]+)\|[^}]+\}/g, '$1')
 }
 
 /**
@@ -63,16 +65,16 @@ function extractTextWithRubyAndAnchor(input: string): string {
       const withRuby = content.replace(
         /\{([^|}]+)\|([^}]+)\}/g,
         `<ruby>$1<rt d='$2'/></ruby>`
-      );
-      return `<a href='#${id}' class='anchor-link'>${withRuby}</a>`;
+      )
+      return `<a href='#${id}' class='anchor-link'>${withRuby}</a>`
     }
-  );
+  )
 
   // 2. 全局 ruby 化剩余 {surface|reading}
   return anchorProcessed.replace(
     /\{([^|}]+)\|([^}]+)\}/g,
     `<ruby>$1<rt d='$2'/></ruby>`
-  );
+  )
 }
 
 // 文本解析器
@@ -165,4 +167,8 @@ export const searchLesson = (
       return { idx: lesson[0], title: lesson[1], contents }
     })
     .filter((a: LessonSearch) => a.contents.length > 0)
+}
+
+export const removeSpace = (text: string) => {
+  return text.replace(/[ \u3000]/g, '')
 }
