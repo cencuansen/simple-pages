@@ -148,8 +148,6 @@ onMounted(async () => {
 
 .el-segmented {
   padding: 0;
-  --el-segmented-item-selected-color: var(--theme-color);
-  --el-segmented-item-selected-bg-color: inherit;
 }
 
 .router-view {
@@ -166,27 +164,6 @@ onMounted(async () => {
 }
 
 :deep(.active) {
-  color: var(--theme-color);
-}
-
-:deep(.el-tabs__item.is-active),
-:deep(.el-tabs__item:hover) {
-  color: var(--theme-color);
-}
-
-:deep(.el-tabs__active-bar) {
-  background-color: var(--theme-color);
-}
-
-:deep(.is-checked .el-switch__core) {
-  --el-switch-on-color: var(--theme-color);
-}
-
-:deep(.el-slider__bar) {
-  --el-slider-main-bg-color: var(--theme-color);
-}
-
-:deep(.el-slider__button) {
-  --el-slider-main-bg-color: var(--theme-color);
+  color: var(--el-color-primary);
 }
 </style>

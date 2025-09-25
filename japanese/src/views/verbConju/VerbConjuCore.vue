@@ -191,7 +191,7 @@ const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-he
 
 .detail-button {
   cursor: pointer;
-  color: var(--theme-color);
+  color: var(--el-color-primary);
 }
 
 .detail-left {

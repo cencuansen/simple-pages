@@ -163,7 +163,7 @@ onMounted(() => {
   --ib-bg: inherit;
   --ib-hover-bg: #333;
   --ib-item-bg: #666;
-  --ib-item-active-bg: var(--theme-color);
+  --ib-item-active-bg: var(--el-color-primary);
 }
 </style>
 

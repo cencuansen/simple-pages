@@ -1,4 +1,6 @@
 :root {
+    --el-color-primary: #298a5e !important;
+
     --header-height: 50px;
     --content-max-width: 700px;
     --link-to-color: #fff;
@@ -7,8 +9,6 @@
     --text-content-line-height: 3rem;
     --grammar-headers-height: 35px;
     --lesson-headers-height: 60px;
-
-    --theme-color: var(--el-color-success);
 
     --gap12: 12px;
     --gap-12: 12px;
@@ -63,7 +63,7 @@ a {
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-thickness: 1px;
-    text-decoration-color: var(--theme-color);
+    text-decoration-color: var(--el-color-primary);
     text-underline-offset: 4px;
 }
 

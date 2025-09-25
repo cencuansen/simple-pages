@@ -9,7 +9,7 @@
     </div>
     <div class="function-group">
       <el-button
-        :class="{ active: settingStore.allTranslate }"
+        :type="settingStore.allTranslate ? 'primary' : ''"
         title="翻译"
         v-if="settingStore.translate"
         @click="settingStore.setAllTranslate(!settingStore.allTranslate)"
@@ -17,14 +17,14 @@
         翻译
       </el-button>
       <el-button
-        :class="{ active: settingStore.furigana }"
+        :type="settingStore.furigana ? 'primary' : ''"
         title="注音"
         @click="settingStore.furiganaToggle"
       >
         注音
       </el-button>
       <el-button
-        :class="{ active: settingStore.wordLink }"
+        :type="settingStore.wordLink ? 'primary' : ''"
         title="单词跳转"
         @click="settingStore.wordLinkToggle"
       >
