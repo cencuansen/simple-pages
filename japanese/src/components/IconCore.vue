@@ -21,8 +21,7 @@ const handleClick = (e: MouseEvent) => {
 
 <style scoped>
 .el-icon {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 1.5rem;
   cursor: pointer;
   color: var(--el-color-primary);
 }

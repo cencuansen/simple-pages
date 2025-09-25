@@ -371,12 +371,17 @@ onActivated(async () => {
 <style scoped>
 .el-table {
   min-height: 500px;
+  font-size: 1.5rem;
 }
 
 :deep(.reading-column .cell) {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.column-kana {
+  font-size: 1.2rem;
 }
 
 :deep(.el-table .el-scrollbar__wrap) {
@@ -389,10 +394,5 @@ onActivated(async () => {
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-
-.header-filter {
-  width: 100%;
-  min-width: 80px;
 }
 </style>

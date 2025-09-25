@@ -297,19 +297,16 @@ onDeactivated(() => {
 }
 
 h1 {
+  font-size: 3rem;
   margin-bottom: 12px;
 }
 
 h2 {
+  font-size: 2.5rem;
   margin-bottom: 10px;
   display: flex;
   align-items: baseline;
   gap: calc(var(--gap12) * 0.5);
-}
-
-h1,
-h2 {
-  color: var(--el-text-color-regular);
 }
 
 :deep(.anchor-link) {
@@ -338,12 +335,11 @@ h2 {
 
 .model-result-item {
   margin: 30px 20px;
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 
 .model-lesson-title {
   cursor: pointer;
-  font-weight: bolder;
   margin-bottom: 5px;
 }
 

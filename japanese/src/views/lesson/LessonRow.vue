@@ -16,7 +16,7 @@
           :row-item="row as TextBase"
           @click="speak(row.textId)"
         />
-        <el-text
+        <span
           class="row-text"
           :class="{
             active: activeText(row.textId),
@@ -28,7 +28,7 @@
         </el-text>
       </div>
       <div class="translate" v-if="translate && !isResource(row.content)">
-        <el-text>{{ row.translation }}</el-text>
+        <span>{{ row.translation }}</span>
       </div>
     </div>
   </div>
@@ -102,12 +102,12 @@ const copy = async (text: string) => {
 }
 
 .left {
-  width: 2em;
+  width: 4rem;
+  font-size: 2rem;
   display: inline-block;
   text-wrap: nowrap;
   overflow-x: scroll;
   user-select: none;
-  color: #999;
   text-align: left;
   vertical-align: baseline;
 }
@@ -132,12 +132,12 @@ const copy = async (text: string) => {
 }
 
 .row-icon + .row-text {
-  margin-left: 0.1em;
+  margin-left: 1rem;
 }
 
 .row-text {
-  font-size: 1.1em;
-  letter-spacing: 1px;
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
 }
 
 .row-text > * {
@@ -146,11 +146,12 @@ const copy = async (text: string) => {
 }
 
 .text-id {
-  font-size: 0.8em;
-  color: #666666;
+  font-size: 1.2rem;
+  color: #999;
 }
 
 .translate {
-  font-size: 0.75em;
+  font-size: 1.5rem;
+  color: #999;
 }
 </style>

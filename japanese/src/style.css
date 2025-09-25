@@ -1,5 +1,11 @@
 :root {
     --el-color-primary: #298a5e !important;
+    --el-color-primary-light-3: color-mix(in srgb, var(--el-color-primary) 70%, white 30%) !important;
+    --el-color-primary-light-5: color-mix(in srgb, var(--el-color-primary) 50%, white 50%) !important;
+    --el-color-primary-light-7: color-mix(in srgb, var(--el-color-primary) 30%, white 70%) !important;
+    --el-color-primary-light-8: color-mix(in srgb, var(--el-color-primary) 20%, white 80%) !important;
+    --el-color-primary-light-9: color-mix(in srgb, var(--el-color-primary) 10%, white 90%) !important;
+    --el-color-primary-dark-2: color-mix(in srgb, var(--el-color-primary) 80%, black 20%) !important;
 
     --header-height: 50px;
     --content-max-width: 700px;
@@ -40,6 +46,10 @@
     :root {
         --ib-offset: 0;
     }
+}
+
+html {
+    font-size: 10px;
 }
 
 html.dark {
@@ -86,14 +96,9 @@ a:active {
     color: inherit;
 }
 
-ruby rt {
-    user-select: none;
-    pointer-events: none;
-}
-
 ruby rt::before {
     content: attr(d);
-    font-size: 10px;
+    font-size: 1.5rem;
 }
 
 .indentation {
