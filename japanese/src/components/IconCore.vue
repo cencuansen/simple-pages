@@ -24,7 +24,7 @@ const handleClick = (e: MouseEvent) => {
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  color: var(--el-color-primary);
+  color: var(--theme-color);
 }
 
 .disabled {

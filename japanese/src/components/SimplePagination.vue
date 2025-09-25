@@ -45,7 +45,7 @@ const props = withDefaults(defineProps<Props>(), {
   layout: 'prev, pager, next, total',
   small: true,
   size: 'small',
-  background: true,
+  background: false,
   disabled: false,
   hideOnSinglePage: false,
   showSizeChanger: false,
@@ -201,5 +201,6 @@ defineExpose({
 .el-pagination {
   margin: 0 auto;
   width: var(--content-max-width);
+  --el-pagination-hover-color: var(--theme-color);
 }
 </style>

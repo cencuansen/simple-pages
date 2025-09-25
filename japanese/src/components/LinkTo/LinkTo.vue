@@ -158,7 +158,7 @@ onBeforeUnmount(() => {
   color-scheme: inherit;
   font-size: 1.5rem;
   text-decoration: none;
-  background-color: var(--el-color-primary);
+  background-color: var(--theme-color);
 }
 
 @media (min-width: 700px) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="tool">
+  <div class="tab-pane">
     <div class="row">
       <el-input
         type="textarea"

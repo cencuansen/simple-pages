@@ -1,5 +1,5 @@
 <template>
-  <div class="tool" v-loading="loading">
+  <div class="tab-pane" v-loading="loading">
     <div class="row">
       <el-input
         type="textarea"

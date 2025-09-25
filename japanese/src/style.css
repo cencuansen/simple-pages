@@ -8,6 +8,8 @@
     --grammar-headers-height: 35px;
     --lesson-headers-height: 60px;
 
+    --theme-color: var(--el-color-success);
+
     --gap12: 12px;
     --gap-12: 12px;
     --audio-height: 54px;
@@ -61,7 +63,7 @@ a {
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-thickness: 1px;
-    text-decoration-color: var(--el-color-primary);
+    text-decoration-color: var(--theme-color);
     text-underline-offset: 4px;
 }
 

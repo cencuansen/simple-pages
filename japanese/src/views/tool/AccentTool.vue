@@ -1,5 +1,5 @@
 <template>
-  <div class="voicevox-accent-view" ref="container">
+  <div class="tab-pane voicevox-accent-view" ref="container">
     <!-- 控制面板 -->
     <div class="control-panel">
       <el-form

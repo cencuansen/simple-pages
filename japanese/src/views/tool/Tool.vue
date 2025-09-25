@@ -30,7 +30,7 @@ import AccentTool from './AccentTool.vue'
   overflow-y: scroll;
 }
 
-.tool {
+.tab-pane {
   display: flex;
   flex-direction: column;
   gap: var(--gap12);

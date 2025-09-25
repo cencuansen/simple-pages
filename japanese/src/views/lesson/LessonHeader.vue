@@ -9,7 +9,7 @@
     </div>
     <div class="function-group">
       <el-button
-        :type="settingStore.allTranslate ? 'primary' : ''"
+        :class="{ active: settingStore.allTranslate }"
         title="翻译"
         v-if="settingStore.translate"
         @click="settingStore.setAllTranslate(!settingStore.allTranslate)"
@@ -17,20 +17,20 @@
         翻译
       </el-button>
       <el-button
-        :type="settingStore.furigana ? 'primary' : ''"
+        :class="{ active: settingStore.furigana }"
         title="注音"
         @click="settingStore.furiganaToggle"
       >
         注音
       </el-button>
       <el-button
-        :type="settingStore.wordLink ? 'primary' : ''"
+        :class="{ active: settingStore.wordLink }"
         title="单词跳转"
         @click="settingStore.wordLinkToggle"
       >
         跳转
       </el-button>
-      <el-button :type="''" title="搜索" @click="setDialog(!dialog)">
+      <el-button title="搜索" @click="setDialog(!dialog)">
         搜索
       </el-button>
       <el-button title="全屏" v-if="!fullscreen" @click="toggleFullscreen">
@@ -46,7 +46,6 @@
         播放
       </el-button>
       <el-button
-        :type="''"
         v-if="isReading"
         title="停止播放"
         @click="

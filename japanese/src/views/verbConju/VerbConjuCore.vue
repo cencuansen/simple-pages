@@ -30,8 +30,7 @@
         <el-table-column label="" width="60" fixed="left">
           <template #default="scope">
             <el-text
-              type="primary"
-              style="cursor: pointer"
+              class="detail-button"
               @click="rowClick(scope.row)"
             >
               详情
@@ -188,6 +187,11 @@ const mainHeight = `calc(100vh - var(--root-header-height) - var(--single-row-he
 
 .el-form-item {
   margin-bottom: 0;
+}
+
+.detail-button {
+  cursor: pointer;
+  color: var(--theme-color);
 }
 
 .detail-left {
