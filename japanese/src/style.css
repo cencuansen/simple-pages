@@ -59,9 +59,10 @@ body {
 a {
     color: inherit;
     text-decoration-line: underline;
-    text-decoration-style: dotted;
+    text-decoration-style: solid;
     text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration-color: var(--el-color-primary);
+    text-underline-offset: 4px;
 }
 
 a:link {
@@ -90,6 +91,7 @@ ruby rt {
 
 ruby rt::before {
     content: attr(d);
+    font-size: 10px;
 }
 
 .indentation {
