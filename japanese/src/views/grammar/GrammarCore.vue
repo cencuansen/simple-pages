@@ -33,7 +33,7 @@
               </div>
             </template>
             <el-form>
-              <div>
+              <div class="grammar-content">
                 <div v-for="row in grammar.desc" v-html="row"></div>
                 <div v-if="grammar.example">{{ grammar.example }}</div>
               </div>
@@ -191,5 +191,14 @@ onActivated(async () => {
 .grammar-lesson {
   flex: 1;
   text-align: right;
+}
+
+.grammar-content {
+  background-color: var(--el-color-info-light-9);
+}
+
+.grammar-title-row,
+.grammar-content {
+  font-size: 1.5rem;
 }
 </style>
