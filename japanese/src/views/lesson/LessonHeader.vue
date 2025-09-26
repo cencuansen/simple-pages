@@ -124,11 +124,11 @@ const toggleFullscreen = (newStatus: boolean | null = null) => {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: var(--content-max-width);
+  justify-content: safe center;
   overflow-x: scroll;
   overflow-y: hidden;
+  width: 100%;
+  max-width: var(--content-max-width);
 }
 
 .function-group::-webkit-scrollbar {

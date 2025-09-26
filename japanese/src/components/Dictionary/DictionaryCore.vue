@@ -24,15 +24,15 @@ const props = defineProps<DictionaryCore>()
 
 <style scoped>
 .now-dict {
+  width: 100%;
+  height: 100%;
   display: inline-block;
-  width: 24px;
-  height: 24px;
 }
 
 .now-dict-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   background-position: 100% 100%;
 }
 

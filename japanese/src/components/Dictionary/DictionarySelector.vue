@@ -58,10 +58,6 @@ watch(
   gap: 1rem;
 }
 
-:deep(.el-dropdown .el-button-group button:first-child) {
-  width: 24px;
-}
-
 :deep(.el-dropdown .el-button-group button:first-child span) {
   position: absolute;
   width: 100%;

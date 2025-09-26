@@ -74,7 +74,6 @@ const props = withDefaults(defineProps<Props>(), {
   showWordLimit: false,
   maxlength: undefined,
   style: () => ({}),
-  size: 'small',
   className: '',
   type: 'text',
   autosize: false,

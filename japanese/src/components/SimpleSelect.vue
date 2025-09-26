@@ -86,7 +86,6 @@ const props = withDefaults(defineProps<Props>(), {
   collapseTags: true,
   collapseTagsTooltip: false,
   style: () => ({}),
-  size: 'small',
   className: '',
   disabled: false,
   filterable: false,

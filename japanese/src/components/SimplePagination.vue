@@ -5,7 +5,7 @@
       :page-size="internalPageSize"
       :total="totalItems"
       :layout="layout"
-      :size="'small'"
+      :size="size"
       :background="background"
       :disabled="disabled"
       :hide-on-single-page="hideOnSinglePage"
@@ -25,8 +25,6 @@ interface Props {
   pageSize?: number
   // 布局
   layout?: string
-  // 是否小型
-  small?: boolean
   // 尺寸
   size?: string
   // 是否有背景色
@@ -43,8 +41,6 @@ const props = withDefaults(defineProps<Props>(), {
   data: () => [],
   pageSize: 10,
   layout: 'prev, pager, next, total',
-  small: true,
-  size: 'small',
   background: false,
   disabled: false,
   hideOnSinglePage: false,
@@ -201,6 +197,5 @@ defineExpose({
 .el-pagination {
   margin: 0 auto;
   width: var(--content-max-width);
-  --el-pagination-hover-color: var(--theme-color);
 }
 </style>

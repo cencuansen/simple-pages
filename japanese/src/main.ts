@@ -1,12 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import ElementPlus from 'element-plus'
 
 import './style.css'
-import './assets/icons/iconfont.css'
-import 'element-plus/dist/index.css'
-import 'element-plus/theme-chalk/dark/css-vars.css'
+import './styles/element/index.scss'
+
+import ElementPlus from 'element-plus'
 
 import piniaPersist from 'pinia-plugin-persistedstate'
 import { createPinia } from 'pinia'
@@ -17,7 +16,7 @@ const pinia = createPinia()
 pinia.use(piniaPersist)
 
 createApp(App)
-  .use(ElementPlus, { size: 'small' })
+  .use(ElementPlus, {})
   .use(pinia)
   .use(router)
   .directive('focus', vFocus)

@@ -137,6 +137,7 @@ onMounted(async () => {
 }
 
 .button-group {
+  height: 80%;
   overflow-x: scroll;
   display: flex;
   align-self: center;
