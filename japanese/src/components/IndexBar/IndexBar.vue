@@ -161,7 +161,6 @@ onMounted(() => {
   --ib-item-active-h: var(--ib-item-active-w);
   --ib-item-fs: calc(0.5 * var(--ib-item-w));
   --ib-bg: inherit;
-  --ib-hover-bg: #333;
   --ib-item-bg: #666;
   --ib-item-active-bg: var(--el-color-primary);
 }
@@ -182,11 +181,6 @@ onMounted(() => {
   /*box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
   /*backdrop-filter: blur(5px);*/
   transition: background-color 0.2s ease;
-}
-
-.index-bar:hover,
-.index-bar:active {
-  background-color: var(--ib-hover-bg);
 }
 
 .index-bar--left {
@@ -240,45 +234,5 @@ onMounted(() => {
   width: var(--ib-item-active-w);
   height: var(--ib-item-active-h);
   background-color: var(--ib-item-active-bg);
-}
-
-.ib__label {
-  position: absolute;
-  white-space: nowrap;
-  padding: 4px 8px;
-  background-color: #333;
-  color: white;
-  border-radius: 4px;
-  font-size: 12px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.2s ease;
-  pointer-events: none;
-}
-
-.index-bar--left .ib__label {
-  right: 100%;
-  margin-right: 8px;
-}
-
-.index-bar--right .ib__label {
-  left: 100%;
-  margin-left: 8px;
-}
-
-.index-bar--top .ib__label {
-  bottom: 100%;
-  margin-bottom: 8px;
-}
-
-.index-bar--bottom .ib__label {
-  top: 100%;
-  margin-top: 8px;
-}
-
-.ib__item--active .ib__label,
-.ib__item--current .ib__label {
-  opacity: 1;
-  visibility: visible;
 }
 </style>

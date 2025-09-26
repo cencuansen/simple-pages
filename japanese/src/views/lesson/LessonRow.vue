@@ -5,9 +5,9 @@
     v-for="row in rows"
     :key="row.textId"
   >
-    <div class="left" v-if="row.speaker">
+    <el-text class="left" v-if="row.speaker">
       {{ displayText(row.speaker.trim()) }}
-    </div>
+    </el-text>
     <div class="right">
       <div class="row">
         <Reading
@@ -16,7 +16,7 @@
           :row-item="row as TextBase"
           @click="speak(row.textId)"
         />
-        <span
+        <el-text
           class="row-text"
           :class="{
             active: activeText(row.textId),
@@ -63,7 +63,7 @@ const speak = async (id: string) => {
 }
 
 // 正则表达式匹配resource资源格式
-const resourceRegex = /^\[resource:([a-zA-Z]+):([^\]]+)\]$/
+const resourceRegex = /^\[resource:([a-zA-Z]+):([^\]]+)]$/
 
 // 判断文本是否是resource资源的函数
 function isResource(text: string): boolean {
@@ -126,13 +126,9 @@ const copy = async (text: string) => {
   display: inline;
 }
 
-.row-icon,
-.row-text {
+.left,
+.right {
   align-self: baseline;
-}
-
-.row-icon + .row-text {
-  margin-left: 1rem;
 }
 
 .row-text {

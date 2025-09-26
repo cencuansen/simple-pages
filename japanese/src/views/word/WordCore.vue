@@ -60,6 +60,7 @@
         </template>
       </el-table-column>
       <el-table-column
+        v-if="wordClasses.length"
         label="词性"
         prop="pos"
         show-overflow-tooltip
@@ -126,7 +127,7 @@
         v-if="settingStore.wordDict"
         class-name="dict-column"
         label="词典"
-        width="60"
+        width="50"
       >
         <template #header>
           <DictionarySelector @change="dictionaryChange" />
@@ -171,7 +172,6 @@ import {
 import { useSpeechStore } from '@/stores/speechStore.ts'
 import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
-import { useWordStore } from '@/stores/wordStore.ts'
 import { useReadingStore } from '@/stores/readingStore.ts'
 import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
 
@@ -230,7 +230,6 @@ const descFilter = ref<string>('')
 
 const readingStore = useReadingStore()
 const speechStore = useSpeechStore()
-const wordStore = useWordStore()
 const settingStore = useSettingStore()
 const voiceVoxStore = useVoiceVoxStore()
 const dictionaryStore = useDictionaryStore()
@@ -321,7 +320,7 @@ const afterPage = computed(() => {
 })
 
 const wordClasses = computed(() => {
-  return [...new Set(wordStore.wordList.map((item) => item.pos))].sort((a, b) =>
+  return [...new Set(props.data.map((item) => item.pos).filter(Boolean))].sort((a, b) =>
     a.localeCompare(b, 'zh-CN')
   )
 })
@@ -370,7 +369,7 @@ onActivated(async () => {
 
 <style scoped>
 .el-table {
-  min-height: 500px;
+  min-height: 250px;
   font-size: 1.5rem;
 }
 

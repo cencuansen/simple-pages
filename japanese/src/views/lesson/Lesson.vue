@@ -6,7 +6,9 @@
       <LessonHeader id="header" v-if="!fullscreen" />
 
       <section class="section">
-        <h1 id="title" v-html="textView(lessonTitle)"></h1>
+        <el-text>
+          <h1 id="title" v-html="textView(lessonTitle)"></h1>
+        </el-text>
       </section>
 
       <!-- 简单句子 -->
@@ -31,7 +33,9 @@
 
       <!-- 情景对话 -->
       <section id="discussions" class="section" v-if="hasDiscussions">
-        <h2 v-html="textView(discussions?.title)"></h2>
+        <el-text>
+          <h2 v-html="textView(discussions?.title)"></h2>
+        </el-text>
         <div class="discussions" v-for="exchange in discussions?.contents">
           <LessonRow
             :rows="exchange"
@@ -43,10 +47,12 @@
 
       <!-- 短文-->
       <section id="article" class="section" v-if="hasArticle">
-        <h2>
+        <div class="article-title">
           <Reading :row-items="article?.contents as TextBase[]" />
-          <span v-html="textView(article?.title)"></span>
-        </h2>
+          <el-text>
+            <h2 v-html="textView(article?.title)"></h2>
+          </el-text>
+        </div>
 
         <el-form>
           <LessonRow
@@ -307,6 +313,11 @@ h2 {
   display: flex;
   align-items: baseline;
   gap: calc(var(--gap12) * 0.5);
+}
+
+.article-title {
+  display: flex;
+  align-items: center;
 }
 
 :deep(.anchor-link) {
