@@ -68,7 +68,7 @@ const convert = async () => {
 }
 
 const process = (text: string): string => {
-  return text?.replace(/<rt>(.*?)<\/rt>/g, '<rt data-ruby="$1"></rt>')
+  return text?.replace(/<rt>(.*?)<\/rt>/g, '<rt d="$1"></rt>')
 }
 </script>
 
@@ -77,6 +77,7 @@ const process = (text: string): string => {
   display: flex;
   flex-direction: column;
   gap: var(--gap12);
+  font-size: 2rem;
 }
 
 .result .el-text {
