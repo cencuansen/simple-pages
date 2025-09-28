@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     DictionaryCore: typeof import('./src/components/Dictionary/DictionaryCore.vue')['default']
     DictionarySelector: typeof import('./src/components/Dictionary/DictionarySelector.vue')['default']
+    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCollapse: typeof import('element-plus/es')['ElCollapse']
     ElCollapseItem: typeof import('element-plus/es')['ElCollapseItem']
@@ -33,6 +34,7 @@ declare module 'vue' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
+    ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
     IconBot: typeof import('./src/components/IconBot.vue')['default']
     IconCore: typeof import('./src/components/IconCore.vue')['default']

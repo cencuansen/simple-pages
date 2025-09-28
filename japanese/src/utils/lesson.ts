@@ -169,6 +169,6 @@ export const searchLesson = (
     .filter((a: LessonSearch) => a.contents.length > 0)
 }
 
-export const removeSpace = (text: string) => {
+export const trim = (text: string) => {
   return text.replace(/[ \u3000]/g, '')
 }

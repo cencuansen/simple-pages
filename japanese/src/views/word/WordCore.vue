@@ -78,7 +78,6 @@
       <el-table-column
         v-if="settingStore.wordDesc"
         min-width="130"
-        show-overflow-tooltip
       >
         <template #header>
           <div class="column-header">
@@ -94,7 +93,7 @@
           {{ scope.row.desc }}
         </template>
       </el-table-column>
-      <el-table-column label="id" width="110">
+      <el-table-column label="id" width="110" show-overflow-tooltip>
         <template #default="scope">
           <el-text @click="copy(scope.row.textId)">
             {{ scope.row.textId }}
@@ -103,7 +102,7 @@
       </el-table-column>
       <el-table-column v-if="showLesson" label="课程" width="100">
         <template #header>
-          <LessonSelect v-model="lessonIndex" fit-input-width lite />
+          <LessonSelect v-model="lessonIndex" fit-input-width lite placeholder="课程"/>
         </template>
         <template #default="scope">
           <a href="#" @click="lessonClick(scope.row.lesson)">

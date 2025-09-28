@@ -32,12 +32,10 @@
                 </div>
               </div>
             </template>
-            <el-form>
-              <div class="grammar-content">
-                <div v-for="row in grammar.desc" v-html="row"></div>
-                <div v-if="grammar.example">{{ grammar.example }}</div>
-              </div>
-            </el-form>
+            <div class="grammar-content">
+              <div v-for="row in grammar.desc" v-html="row"></div>
+              <div v-if="grammar.example">{{ grammar.example }}</div>
+            </div>
           </el-collapse-item>
         </el-collapse>
       </div>
@@ -193,7 +191,13 @@ onActivated(async () => {
   text-align: right;
 }
 
+:deep(.el-collapse-item__content) {
+  padding: 0;
+}
+
 .grammar-content {
+  padding: 10px;
+  height: 100%;
   background-color: var(--el-color-info-light-9);
 }
 

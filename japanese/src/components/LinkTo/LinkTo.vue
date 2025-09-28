@@ -1,5 +1,10 @@
 <template>
-  <a class="link-to" href="#" @click="back">↑</a>
+  <a class="link-to" href="#" @click="back">
+    <el-badge v-if="linkHistory.length" :value="linkHistory.length">
+      <el-text>↑</el-text>
+    </el-badge>
+    <el-text v-else>↑</el-text>
+  </a>
 </template>
 
 <script setup lang="ts">

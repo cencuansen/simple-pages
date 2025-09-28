@@ -2,7 +2,7 @@
   <el-select
     class="lesson-select"
     v-model="selectedValue"
-    placeholder="选课程"
+    :placeholder="placeholder"
     :clearable="clearable"
     :fit-input-width="fitInputWidth"
     :style="style"

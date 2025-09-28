@@ -75,6 +75,9 @@
 
       <!-- 单词 -->
       <section id="words" class="section" ref="wordsRef">
+        <el-tag v-if="activeWord" closable @close="setActiveWord(null)">
+          正在查看单词：{{ activeWord?.textId }}
+        </el-tag>
         <WordCore
           :data="words"
           :active-word="activeWord"
@@ -183,7 +186,7 @@ const {
   article,
   activeWord,
 } = storeToRefs(lessonStore)
-const { goLesson, setDialog } = lessonStore
+const { goLesson, setDialog, setActiveWord } = lessonStore
 
 const { fullscreen, allTranslate, wordLink, furigana } =
   storeToRefs(settingStore)
@@ -261,6 +264,14 @@ const onSingleKeyup = (event: KeyboardEvent) => {
   } else if (['r'].includes(event.key)) {
   }
 }
+
+watch(() => dialog.value, () => {
+  if (dialog.value) {
+    document.removeEventListener('keyup', onSingleKeyup)
+  } else {
+    document.addEventListener('keyup', onSingleKeyup)
+  }
+})
 
 // 刷新页面、切换页面 router.push 是否执行。
 // 避免刷新页面执行 onActivated 中 router.push，此时 index 为 undefined。
@@ -355,7 +366,7 @@ h2 {
 }
 
 .model-lesson-title:hover {
-  color: #1976d2;
+  color: var(--el-color-primary);
 }
 
 .model-lesson-match-content {
