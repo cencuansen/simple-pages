@@ -131,9 +131,13 @@ const copy = async (text: string) => {
   align-self: baseline;
 }
 
+.row-icon {
+  margin-right: 0.5rem;
+}
+
 .row-text {
   font-size: 2rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.2rem;
 }
 
 .row-text > * {
