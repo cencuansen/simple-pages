@@ -5,8 +5,11 @@
     :is="iconConfig.component"
     :class="iconConfig.className"
     :disabled="isReading"
+    :tabindex="isReading ? -1 : 0"
     v-bind="iconConfig.extraProps"
     @click="iconConfig.onClick"
+    @keydown.space="handleKeydown"
+    @keydown.enter="handleKeydown"
   />
 </template>
 
@@ -206,6 +209,16 @@ const iconConfig = computed(() => {
 
   return null
 })
+
+function handleKeydown(event: Event) {
+  // 阻止空格键的默认滚动行为
+  event.preventDefault()
+
+  // 模拟点击事件
+  if (!isReading.value) {
+    iconConfig.value?.onClick()
+  }
+}
 
 // 滚动监听
 watch(

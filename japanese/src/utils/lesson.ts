@@ -43,7 +43,7 @@ function extractTextWithAnchor(input: string): string {
     (_match, content, id) => {
       // content 可能含 {surface|reading}，去掉注音只留 surface
       const plain = content.replace(/\{([^|}]+)\|[^}]+\}/g, '$1')
-      return `<a href='#${id}' class='anchor-link'>${plain}</a>`
+      return `<a href='#${id}' class='anchor-link' tabindex="-1">${plain}</a>`
     }
   )
 
@@ -66,7 +66,7 @@ function extractTextWithRubyAndAnchor(input: string): string {
         /\{([^|}]+)\|([^}]+)\}/g,
         `<ruby>$1<rt d='$2'/></ruby>`
       )
-      return `<a href='#${id}' class='anchor-link'>${withRuby}</a>`
+      return `<a href='#${id}' class='anchor-link' tabindex="-1">${withRuby}</a>`
     }
   )
 
