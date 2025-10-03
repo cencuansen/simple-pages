@@ -265,13 +265,16 @@ const onSingleKeyup = (event: KeyboardEvent) => {
   }
 }
 
-watch(() => dialog.value, () => {
-  if (dialog.value) {
-    document.removeEventListener('keyup', onSingleKeyup)
-  } else {
-    document.addEventListener('keyup', onSingleKeyup)
+watch(
+  () => dialog.value,
+  () => {
+    if (dialog.value) {
+      document.removeEventListener('keyup', onSingleKeyup)
+    } else {
+      document.addEventListener('keyup', onSingleKeyup)
+    }
   }
-})
+)
 
 // 刷新页面、切换页面 router.push 是否执行。
 // 避免刷新页面执行 onActivated 中 router.push，此时 index 为 undefined。
@@ -333,6 +336,7 @@ h2 {
 
 :deep(.anchor-link) {
   margin: 0 4px;
+  word-break: break-word;
 }
 
 :deep(.el-table .el-scrollbar__wrap) {
