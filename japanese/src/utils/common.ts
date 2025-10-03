@@ -27,3 +27,12 @@ export const detectBrowser = () => {
 export const isNumber = (value: number | null | undefined) => {
   return typeof value === 'number' && Number.isFinite(value)
 }
+
+export const scrollToEle = (target: Element | null) => {
+  if (!target) return
+  target &&
+    target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+}

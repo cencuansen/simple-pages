@@ -12,29 +12,29 @@
         :type="settingStore.allTranslate ? 'primary' : ''"
         title="翻译"
         v-if="settingStore.translate"
-        @click="settingStore.setAllTranslate(!settingStore.allTranslate)"
+        @click="toggleTranslate"
       >
-        翻译
+        翻译 T
       </el-button>
       <el-button
         :type="settingStore.furigana ? 'primary' : ''"
         title="注音"
         @click="settingStore.furiganaToggle"
       >
-        注音
+        注音 H
       </el-button>
       <el-button
         :type="settingStore.wordLink ? 'primary' : ''"
         title="单词跳转"
         @click="settingStore.wordLinkToggle"
       >
-        跳转
+        跳转 W
       </el-button>
       <el-button title="搜索" @click="setDialog(!dialog)">
-        搜索
+        搜索 F
       </el-button>
       <el-button title="全屏" v-if="!fullscreen" @click="toggleFullscreen">
-        全屏
+        全屏 U
       </el-button>
       <el-button
         :type="''"
@@ -43,7 +43,7 @@
         v-if="hasAudio && settingStore.audioSpeak"
         @click="playAudio({ id: lessonAudio || '', text: lessonAudio || '' })"
       >
-        播放
+        播放 P
       </el-button>
       <el-button
         v-if="isReading"
@@ -55,7 +55,7 @@
           }
         "
       >
-        停止
+        停止 S
       </el-button>
     </div>
   </div>
@@ -93,6 +93,7 @@ const playAudio = audioStore.playAudio
 const pauseAudio = audioStore.pauseAudio
 
 const { fullscreen } = storeToRefs(settingStore)
+const toggleTranslate = settingStore.toggleTranslate
 
 const toggleFullscreen = (newStatus: boolean | null = null) => {
   settingStore.setFullscreen(newStatus !== null ? newStatus : !fullscreen.value)

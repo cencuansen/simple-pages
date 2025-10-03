@@ -37,6 +37,9 @@ export const useSettingStore = defineStore(
     const setFullscreen = (newStatus: boolean) => {
       fullscreen.value = newStatus
     }
+    const toggleFullscreen = () => {
+      fullscreen.value = !fullscreen.value
+    }
 
     const basicsTranslate = ref(false)
     const setBasicsTranslate = (newStatus: boolean) => {
@@ -64,6 +67,9 @@ export const useSettingStore = defineStore(
       setExchangeTranslate(newStatus)
       setExchange2Translate(newStatus)
     }
+    const toggleTranslate = () => {
+      allTranslate.value = !allTranslate.value
+    }
 
     return {
       isDark,
@@ -86,10 +92,12 @@ export const useSettingStore = defineStore(
       furiganaToggle,
       wordLinkToggle,
       setFullscreen,
+      toggleFullscreen,
       setAllTranslate,
       setBasicsTranslate,
       setExchangeTranslate,
       setExchange2Translate,
+      toggleTranslate
     }
   },
   {

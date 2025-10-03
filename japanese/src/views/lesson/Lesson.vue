@@ -85,6 +85,8 @@
           pagination
         />
       </section>
+
+      <div ref="end"></div>
     </div>
 
     <LessonAudio ref="audioRef" />
@@ -118,7 +120,7 @@
       class="close-fullscreen"
       title="退出全屏"
       v-if="fullscreen"
-      @click="toggleFullscreen(false)"
+      @click="toggleFullscreen"
     >
       <svg
         width="24"
@@ -143,15 +145,16 @@
 import { computed, type ComputedRef, onActivated, ref, watch } from 'vue'
 import { useLessonStore } from '@/stores/lessonStore.ts'
 import { useAudioStore } from '@/stores/audioStore.ts'
+import { useSpeechStore } from '@/stores/speechStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
 import { useWordStore } from '@/stores/wordStore.ts'
 import { useGrammarStore } from '@/stores/grammar/grammarStore.ts'
 import type { WordItem } from '@/types/word.ts'
-import { searchLesson } from '@/utils/lesson.ts'
+import { searchLesson, displayText, textParser } from '@/utils/lesson.ts'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
-import { displayText, textParser } from '../../utils/lesson.ts'
+import { scrollToEle } from '@/utils/common'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LinkTo from '../../components/LinkTo/LinkTo.vue'
 import LessonAudio from './LessonAudio.vue'
@@ -165,6 +168,7 @@ import type { TextBase } from '../../types/lesson.ts'
 
 const lessonStore = useLessonStore()
 const audioStore = useAudioStore()
+const speechStore = useSpeechStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 const wordStore = useWordStore()
@@ -185,13 +189,22 @@ const {
   hasArticle,
   article,
   activeWord,
+  lessonAudio,
 } = storeToRefs(lessonStore)
 const { goLesson, setDialog, setActiveWord } = lessonStore
 
 const { fullscreen, allTranslate, wordLink, furigana } =
   storeToRefs(settingStore)
+const toggleTranslate = settingStore.toggleTranslate
+const furiganaToggle = settingStore.furiganaToggle
+const wordLinkToggle = settingStore.wordLinkToggle
+const toggleFullscreen = settingStore.toggleFullscreen
 
 const { isPlaying } = storeToRefs(audioStore)
+const playAudio = audioStore.playAudio
+const pauseAudio = audioStore.pauseAudio
+
+const stopSpeech = speechStore.stop
 
 const props = defineProps(['index'])
 const router = useRouter()
@@ -210,15 +223,12 @@ watch(
 )
 
 const top = ref()
+const end = ref()
 const container = ref()
 const scrollPosition = ref<number>(0)
 
 const keyword = ref('')
 const fullLessons = computed(() => searchLesson(lessons.value, keyword.value))
-
-const toggleFullscreen = (newStatus: boolean | null = null) => {
-  settingStore.setFullscreen(newStatus !== null ? newStatus : !fullscreen.value)
-}
 
 const mainHeight = computed(() => {
   if (fullscreen.value) {
@@ -261,7 +271,23 @@ const onSingleKeyup = (event: KeyboardEvent) => {
     lessonStore.goNext()
   } else if (['f'].includes(event.key)) {
     setDialog(!dialog.value)
-  } else if (['r'].includes(event.key)) {
+  } else if (['t'].includes(event.key)) {
+    toggleTranslate()
+  } else if (['h'].includes(event.key)) {
+    furiganaToggle()
+  } else if (['w'].includes(event.key)) {
+    wordLinkToggle()
+  } else if (['u'].includes(event.key)) {
+    toggleFullscreen()
+  } else if (['p'].includes(event.key)) {
+    playAudio({ id: lessonAudio.value || '', text: lessonAudio.value || '' })
+  } else if (['s'].includes(event.key)) {
+    stopSpeech()
+    pauseAudio()
+  } else if (['Home'].includes(event.key)) {
+    scrollToEle(top.value)
+  } else if (['End'].includes(event.key)) {
+    scrollToEle(end.value)
   }
 }
 
