@@ -22,6 +22,7 @@
 
 <script setup lang="ts">
 import { onBeforeMount, onMounted, ref, watch } from 'vue'
+import { useReadingStore } from './stores/readingStore'
 import { useLessonStore } from './stores/lessonStore'
 import { useWordStore } from './stores/wordStore'
 import { useGrammarStore } from './stores/grammar/grammarStore.ts'
@@ -94,6 +95,7 @@ const isActive = (path: string) => {
   return route.path.startsWith(path)
 }
 
+const readingStore = useReadingStore()
 const lessonStore = useLessonStore()
 const wordStore = useWordStore()
 const grammarStore = useGrammarStore()
@@ -101,6 +103,21 @@ const jlptGrammarStore = useJlptGrammarStore()
 const verbConju = useConjuStore()
 const jlptConjuStore = useJlptConjuStore()
 const voiceVoxStore = useVoiceVoxStore()
+
+const { nowTextId } = storeToRefs(readingStore)
+
+const scrollToId = async (id: string) => {
+  if (!id) return
+  const target = document.querySelector(`#${id}`)
+  if (!target) return
+  target.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+    inline: 'nearest',
+  })
+}
+
+watch(() => nowTextId.value, scrollToId)
 
 watch(
   () => route.path,

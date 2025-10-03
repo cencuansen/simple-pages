@@ -1,5 +1,5 @@
 import { defineStore, storeToRefs } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { type ReadingItem, useReadingStore } from './readingStore.ts'
 
 const audioUrlBase = import.meta.env.VITE_AUDIO_BASE
@@ -24,6 +24,11 @@ export const useAudioStore = defineStore('audio', () => {
     return `${str}?t=${Date.now()}`
   }
 
+  const updateStatus = (status: boolean) => {
+    isPlaying.value = status
+    setIsReading(status)
+  }
+
   let currentPauseHandler: (() => void) | null = null
 
   // 播放单个音频
@@ -42,7 +47,7 @@ export const useAudioStore = defineStore('audio', () => {
 
     const playLoop = async () => {
       if (playCount >= repeatTimes.value) {
-        isPlaying.value = false
+        updateStatus(false)
         return
       }
 
@@ -52,7 +57,7 @@ export const useAudioStore = defineStore('audio', () => {
 
       try {
         await audioRef.value!.play()
-        isPlaying.value = true
+        updateStatus(true)
         playCount++
 
         // 设置下一次播放的监听
@@ -62,14 +67,14 @@ export const useAudioStore = defineStore('audio', () => {
             if (playCount < repeatTimes.value) {
               playLoop()
             } else {
-              isPlaying.value = false
+              updateStatus(false)
             }
           },
           { once: true }
         )
       } catch (error) {
         console.error('播放音频失败:', error)
-        isPlaying.value = false
+        updateStatus(false)
       }
     }
 
@@ -91,7 +96,7 @@ export const useAudioStore = defineStore('audio', () => {
 
         if (listRepeatCount >= repeatTimes.value) {
           // 完成所有重复次数
-          isPlaying.value = false
+          updateStatus(false)
           return
         }
       }
@@ -106,7 +111,7 @@ export const useAudioStore = defineStore('audio', () => {
 
       try {
         await audioRef.value!.play()
-        isPlaying.value = true
+        updateStatus(true)
 
         audioRef.value!.addEventListener(
           'ended',
@@ -118,7 +123,7 @@ export const useAudioStore = defineStore('audio', () => {
         )
       } catch (error) {
         console.error('播放音频失败:', error)
-        isPlaying.value = false
+        updateStatus(false)
       }
     }
 
@@ -128,7 +133,7 @@ export const useAudioStore = defineStore('audio', () => {
   const pauseAudio = () => {
     if (isPlaying.value && audioRef.value) {
       audioRef.value.pause()
-      isPlaying.value = false
+      updateStatus(false)
     }
   }
 
@@ -136,25 +141,13 @@ export const useAudioStore = defineStore('audio', () => {
     currentTime.value = (e.target as HTMLAudioElement)?.currentTime || 0
   }
 
-  const onPlay = () => {
-    isPlaying.value = true
-  }
+  const onPlay = () => {}
 
-  const onPause = () => {
-    isPlaying.value = false
-  }
+  const onPause = () => {}
 
-  const onError = () => {
-    isPlaying.value = false
-  }
+  const onError = () => {}
 
-  const onAbort = () => {
-    // isPlaying.value = false
-  }
-
-  watch(isPlaying, (newVal) => {
-    setIsReading(newVal)
-  })
+  const onAbort = () => {}
 
   return {
     audioRef,

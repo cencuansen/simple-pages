@@ -14,7 +14,6 @@
           v-if="!isResource(row.content)"
           class="row-icon"
           :row-item="row as TextBase"
-          @click="speak(row.textId)"
         />
         <el-text
           class="row-text"
@@ -51,16 +50,6 @@ interface LessonRowProps {
 }
 
 defineProps<LessonRowProps>()
-
-const speak = async (id: string) => {
-  const target = document.querySelector(`#${id}`)
-  if (!target) return
-  target.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center',
-    inline: 'nearest',
-  })
-}
 
 // 正则表达式匹配resource资源格式
 const resourceRegex = /^\[resource:([a-zA-Z]+):([^\]]+)]$/

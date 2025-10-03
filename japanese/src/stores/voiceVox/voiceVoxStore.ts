@@ -204,11 +204,16 @@ export const useVoiceVoxStore = defineStore(
       audioRef.value = refEl || void 0
     }
 
+    const updateStatus = (status: boolean) => {
+      isPlaying.value = status
+      setIsReading(status)
+    }
+
     // 播放单个 ReadingItem
     const voiceVoxOne = async (item: ReadingItem) => {
       if (!audioRef.value || !item) return
 
-      isPlaying.value = true
+      updateStatus(true)
       setNowTextId(item.id)
       currentAudio.value = item.text
 
@@ -216,7 +221,7 @@ export const useVoiceVoxStore = defineStore(
 
       const playLoop = async () => {
         if (playCount >= repeatTimes.value) {
-          isPlaying.value = false
+          updateStatus(false)
           return
         }
 
@@ -249,14 +254,14 @@ export const useVoiceVoxStore = defineStore(
               if (playCount < repeatTimes.value) {
                 playLoop()
               } else {
-                isPlaying.value = false
+                updateStatus(false)
               }
             },
             { once: true }
           )
         } catch (err) {
           console.error('播放失败:', err)
-          isPlaying.value = false
+          updateStatus(false)
         }
       }
 
@@ -267,7 +272,7 @@ export const useVoiceVoxStore = defineStore(
     const voiceVoxList = async (items: ReadingItem[]) => {
       if (!audioRef.value || items.length === 0) return
 
-      isPlaying.value = true
+      updateStatus(true)
       let listRepeatCount = 0
       let currentIndex = 0
 
@@ -276,7 +281,7 @@ export const useVoiceVoxStore = defineStore(
           currentIndex = 0
           listRepeatCount++
           if (listRepeatCount >= repeatTimes.value) {
-            isPlaying.value = false
+            updateStatus(false)
             return
           }
         }
@@ -313,7 +318,7 @@ export const useVoiceVoxStore = defineStore(
           )
         } catch (err) {
           console.error('播放失败:', err)
-          isPlaying.value = false
+          updateStatus(false)
         }
       }
 
@@ -323,7 +328,7 @@ export const useVoiceVoxStore = defineStore(
     const voiceVoxPause = () => {
       if (isPlaying.value && audioRef.value) {
         audioRef.value.pause()
-        isPlaying.value = false
+        updateStatus(false)
       }
     }
 
@@ -331,26 +336,13 @@ export const useVoiceVoxStore = defineStore(
       currentTime.value = (e.target as HTMLAudioElement)?.currentTime || 0
     }
 
-    const onPlay = () => {
-      isPlaying.value = true
-    }
+    const onPlay = () => {}
 
-    const onPause = () => {
-      isPlaying.value = false
-    }
+    const onPause = () => {}
 
-    const onError = () => {
-      isPlaying.value = false
-    }
+    const onError = () => {}
 
-    const onAbort = () => {
-      // isPlaying.value = false
-    }
-
-    watch(() => isPlaying.value, (newVal) => {
-      console.log('voicevox watch isPlaying', newVal)
-      setIsReading(newVal)
-    })
+    const onAbort = () => {}
 
     return {
       reset,
