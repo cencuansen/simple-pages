@@ -100,6 +100,62 @@ export const textParser = (
 // 对"无假名无跳转"封装
 export const displayText = (text: string) => extractPlainText(text)
 
+// 加工文本，主要显示 keyword 周围的文本，其他用省略号代替
+function toKeywordCoreContent(
+  text: string,
+  keyword: string,
+  contextLength: number = 10
+): string {
+  if (!text || !keyword) return ''
+
+  const results: string[] = []
+  const lowerText = text.toLowerCase()
+  const lowerKeyword = keyword.toLowerCase()
+  const keywordLength = keyword.length
+
+  let positions: number[] = []
+  let currentIndex = 0
+
+  // 找到所有关键词位置
+  while (
+    (currentIndex = lowerText.indexOf(lowerKeyword, currentIndex)) !== -1
+  ) {
+    positions.push(currentIndex)
+    currentIndex += keywordLength
+  }
+
+  if (positions.length === 0) return ''
+
+  // 合并相邻的关键词
+  const mergedRanges: [number, number][] = []
+  let currentRange: [number, number] = [
+    positions[0],
+    positions[0] + keywordLength,
+  ]
+
+  for (let i = 1; i < positions.length; i++) {
+    const currentPos = positions[i]
+    const previousEnd = currentRange[1]
+
+    // 如果当前关键词与前一个关键词的距离小于等于上下文长度的2倍，则合并
+    if (currentPos - previousEnd <= contextLength * 2) {
+      currentRange[1] = currentPos + keywordLength
+    } else {
+      mergedRanges.push([...currentRange])
+      currentRange = [currentPos, currentPos + keywordLength]
+    }
+  }
+  mergedRanges.push(currentRange)
+
+  // 为每个范围构建结果
+  mergedRanges.forEach(([start, end]) => {
+    const contextStart = Math.max(0, start - contextLength)
+    const contextEnd = Math.min(text.length, end + contextLength)
+    results.push(text.substring(contextStart, contextEnd))
+  })
+  return `... ${results.join(' ... ')} ...`
+}
+
 export const searchLesson = (
   lessons: Lesson[],
   keyword: string | undefined
@@ -162,7 +218,9 @@ export const searchLesson = (
     .map((lesson: string[]) => {
       const contents: string[] = lesson
         .slice(2)
-        .map((text: string) => keywordHighlight(text, keyword))
+        .map((text: string) =>
+          keywordHighlight(toKeywordCoreContent(text, keyword), keyword)
+        )
         .filter(Boolean) as string[]
       return { idx: lesson[0], title: lesson[1], contents }
     })
