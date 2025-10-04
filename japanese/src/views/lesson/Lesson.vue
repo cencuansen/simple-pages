@@ -309,12 +309,6 @@ const onSingleKeyup = (event: KeyboardEvent) => {
     } else {
       playAudio({ id: lessonAudio.value || '', text: lessonAudio.value || '' })
     }
-  } else if (['Home'].includes(event.key)) {
-    event.preventDefault()
-    scrollToEle(top.value)
-  } else if (['End'].includes(event.key)) {
-    event.preventDefault()
-    scrollToEle(end.value)
   }
 }
 
