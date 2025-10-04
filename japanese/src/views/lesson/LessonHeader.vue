@@ -31,10 +31,10 @@
         跳转 W
       </el-button>
       <el-button title="搜索" @click="setDialog(!dialog)">
-        搜索 F
+        搜索 S
       </el-button>
       <el-button title="全屏" v-if="!fullscreen" @click="toggleFullscreen">
-        全屏 U
+        全屏 F
       </el-button>
       <el-button
         :type="''"

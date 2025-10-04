@@ -269,7 +269,7 @@ const onSingleKeyup = (event: KeyboardEvent) => {
     lessonStore.goPrevious()
   } else if (['ArrowRight'].includes(event.key)) {
     lessonStore.goNext()
-  } else if (['f'].includes(event.key)) {
+  } else if (['s'].includes(event.key)) {
     setDialog(!dialog.value)
   } else if (['t'].includes(event.key)) {
     toggleTranslate()
@@ -277,13 +277,15 @@ const onSingleKeyup = (event: KeyboardEvent) => {
     furiganaToggle()
   } else if (['w'].includes(event.key)) {
     wordLinkToggle()
-  } else if (['u'].includes(event.key)) {
+  } else if (['f'].includes(event.key)) {
     toggleFullscreen()
   } else if (['p'].includes(event.key)) {
-    playAudio({ id: lessonAudio.value || '', text: lessonAudio.value || '' })
-  } else if (['s'].includes(event.key)) {
-    stopSpeech()
-    pauseAudio()
+    if (isPlaying.value) {
+      stopSpeech()
+      pauseAudio()
+    } else {
+      playAudio({ id: lessonAudio.value || '', text: lessonAudio.value || '' })
+    }
   } else if (['Home'].includes(event.key)) {
     scrollToEle(top.value)
   } else if (['End'].includes(event.key)) {
