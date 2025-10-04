@@ -1,5 +1,9 @@
 // 创建单词正则表达式
-import type { Lesson, LessonSearch } from '@/types/lesson.ts'
+import type {
+  Lesson,
+  LessonSearch,
+  LessonSearchContent,
+} from '@/types/lesson.ts'
 
 // 获取朗读假名
 export const speakText = (text: string | undefined = '') =>
@@ -164,34 +168,41 @@ export const searchLesson = (
     return [
       `${lesson.index}`,
       lesson.title,
-      ...lesson.sentences.map((a) => displayText(a.content)),
+      ...lesson.sentences.map((a) => `${a.textId}|${displayText(a.content)}`),
       ...lesson.conversations
         .flatMap((a) => a)
-        .map((a) => displayText(a.content)),
+        .map((a) => `${a.textId}|${displayText(a.content)}`),
       ...lesson.discussions.contents
         .flatMap((a) => a)
-        .map((a) => displayText(a.content)),
-      ...lesson.article.contents.map((a) => displayText(a.content)),
+        .map((a) => `${a.textId}|${displayText(a.content)}`),
+      ...lesson.article.contents.map(
+        (a) => `${a.textId}|${displayText(a.content)}`
+      ),
     ].filter(Boolean) as string[]
   })
 
   if (!keyword) {
-    return flatLessons
-      .map((lesson) => {
-        const contents = lesson.slice(2)
-        return {
-          idx: lesson[0],
-          title: lesson[1],
-          contents: [...contents.slice(0, 2), '...'],
-        }
+    return flatLessons.map((lesson) => {
+      const contents = lesson.slice(2)
+      const initContents: LessonSearchContent[] = contents
+        .slice(0, 2)
+        .map((content) => {
+          const [textId, text] = content.split('|')
+          return { textId, text }
+        })
+      initContents.push({
+        textId: '',
+        text: '...',
       })
-      .filter((a) => a.contents.length > 0)
+      return {
+        idx: lesson[0],
+        title: lesson[1],
+        contents: initContents,
+      }
+    })
   }
 
-  const keywordHighlight = (
-    text: string,
-    keyword: string
-  ): string | undefined => {
+  const keywordHighlight = (text: string, keyword: string): string => {
     if (!text || !keyword) {
       return text
     }
@@ -214,17 +225,28 @@ export const searchLesson = (
     return ''
   }
 
+  const doHighlight = (
+    content: string,
+    keyword: string
+  ): LessonSearchContent => {
+    if (!content.includes(keyword)) {
+      return { textId: '', text: '' }
+    }
+    const [textId, text] = content.split('|')
+    const liteText = toKeywordCoreContent(text, keyword)
+    const result = keywordHighlight(liteText, keyword)
+    return { textId, text: result }
+  }
+
   return flatLessons
-    .map((lesson: string[]) => {
-      const contents: string[] = lesson
+    .map((lesson: string[]): LessonSearch => {
+      const contents: LessonSearchContent[] = lesson
         .slice(2)
-        .map((text: string) =>
-          keywordHighlight(toKeywordCoreContent(text, keyword), keyword)
-        )
-        .filter(Boolean) as string[]
+        .map((text: string) => doHighlight(text, keyword))
+        .filter((c) => Boolean(c.text))
       return { idx: lesson[0], title: lesson[1], contents }
     })
-    .filter((a: LessonSearch) => a.contents.length > 0)
+    .filter((l) => Boolean(l.contents.length))
 }
 
 export const trim = (text: string) => {

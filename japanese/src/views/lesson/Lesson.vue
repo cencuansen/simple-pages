@@ -109,7 +109,8 @@
         <div
           class="model-lesson-match-content"
           v-for="content in lesson.contents"
-          v-html="content"
+          v-html="content.text"
+          @click="goLessonContent(Number(lesson.idx), content.textId)"
         ></div>
       </div>
     </el-dialog>
@@ -142,7 +143,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type ComputedRef, onActivated, ref, watch } from 'vue'
+import {
+  computed,
+  type ComputedRef,
+  nextTick,
+  onActivated,
+  ref,
+  watch,
+} from 'vue'
+import { useReadingStore } from '@/stores/readingStore.ts'
 import { useLessonStore } from '@/stores/lessonStore.ts'
 import { useAudioStore } from '@/stores/audioStore.ts'
 import { useSpeechStore } from '@/stores/speechStore.ts'
@@ -154,7 +163,7 @@ import { searchLesson, displayText, textParser } from '@/utils/lesson.ts'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
-import { scrollToEle } from '@/utils/common'
+import { scrollToEle, scrollToId } from '@/utils/common'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LinkTo from '../../components/LinkTo/LinkTo.vue'
 import LessonAudio from './LessonAudio.vue'
@@ -166,12 +175,15 @@ import GrammarCore from '../grammar/GrammarCore.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import type { TextBase } from '../../types/lesson.ts'
 
+const readingStore = useReadingStore()
 const lessonStore = useLessonStore()
 const audioStore = useAudioStore()
 const speechStore = useSpeechStore()
 const settingStore = useSettingStore()
 const grammarStore = useGrammarStore()
 const wordStore = useWordStore()
+
+const setNowTextId = readingStore.setNowTextId
 
 const {
   dialog,
@@ -259,6 +271,13 @@ const textView = computed(() => {
 
 const onScrollEnd = async () => {
   scrollPosition.value = container.value.scrollTop
+}
+
+const goLessonContent = async (lessonIndex: number, textId: string) => {
+  goLesson(lessonIndex)
+  await nextTick()
+  scrollToId(textId)
+  setNowTextId(textId)
 }
 
 const onSingleKeyup = (event: KeyboardEvent) => {
@@ -393,16 +412,17 @@ h2 {
 }
 
 .model-lesson-title {
-  cursor: pointer;
   margin-bottom: 5px;
 }
 
-.model-lesson-title:hover {
+.model-lesson-title:hover,
+.model-lesson-match-content:hover {
+  cursor: pointer;
   color: var(--el-color-primary);
 }
 
 .model-lesson-match-content {
-  user-select: auto;
+  user-select: text;
   box-sizing: border-box;
   padding-left: 20px;
 }

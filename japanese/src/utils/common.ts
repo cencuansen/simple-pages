@@ -28,11 +28,20 @@ export const isNumber = (value: number | null | undefined) => {
   return typeof value === 'number' && Number.isFinite(value)
 }
 
-export const scrollToEle = (target: Element | null) => {
+export const scrollToEle = (
+  target: Element | null,
+  logicalPos: ScrollLogicalPosition = 'start'
+) => {
   if (!target) return
   target &&
     target.scrollIntoView({
       behavior: 'smooth',
-      block: 'start',
+      block: logicalPos,
     })
+}
+
+export const scrollToId = (textId: string) => {
+  if (!textId) return
+  const target = document.querySelector(`#${textId}`)
+  scrollToEle(target, 'center')
 }

@@ -69,5 +69,10 @@ export interface ConvertParam {
 export interface LessonSearch {
   idx: string
   title: string
-  contents: string[]
+  contents: LessonSearchContent[]
+}
+
+export interface LessonSearchContent {
+  textId: string
+  text: string
 }
