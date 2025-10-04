@@ -104,7 +104,7 @@
         <div
           class="model-lesson-title"
           v-html="displayText(lesson.title)"
-          @click="goLesson(Number(lesson.idx))"
+          @click="goLessonContent(Number(lesson.idx))"
         ></div>
         <div
           class="model-lesson-match-content"
@@ -273,11 +273,15 @@ const onScrollEnd = async () => {
   scrollPosition.value = container.value.scrollTop
 }
 
-const goLessonContent = async (lessonIndex: number, textId: string) => {
+const goLessonContent = async (lessonIndex: number, textId: string = '') => {
   goLesson(lessonIndex)
   await nextTick()
-  scrollToId(textId)
-  setNowTextId(textId)
+  if (textId) {
+    scrollToId(textId)
+    setNowTextId(textId)
+  } else {
+    scrollToEle(top.value)
+  }
 }
 
 const onSingleKeyup = (event: KeyboardEvent) => {
