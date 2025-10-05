@@ -125,13 +125,14 @@ const copy = async (text: string) => {
 }
 
 .row-text {
+  width: 100%;
   font-size: 2rem;
   letter-spacing: 0.2rem;
 }
 
-.row-text > * {
+:deep(.row-text img) {
   width: 100%;
-  min-width: var(--content-max-width);
+  object-fit: contain;
 }
 
 .text-id {
