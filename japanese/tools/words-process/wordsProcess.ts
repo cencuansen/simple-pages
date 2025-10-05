@@ -12,6 +12,7 @@ interface WordItem {
 }
 
 const csvText = fs.readFileSync('./words.csv').toString()
+const wordItems: WordItem[] = []
 
 Papa.parse<WordItem>(csvText, {
   header: true,
@@ -19,24 +20,16 @@ Papa.parse<WordItem>(csvText, {
   dynamicTyping: true,
   complete: (result) => {
     result.data.forEach((item) => {
-      if (
-        item.pos.includes('动') &&
-        item.kana.endsWith('する') &&
-        !item.word.endsWith('する')
-      ) {
-        // 修改
-        item.word = `${item.word}する`
+      if (item.lesson > 208) {
+        if (/^[\u30A0-\u30FF]+$/.test(item.word)) {
+          wordItems.push(item)
+        }
       }
     })
-
-    // 写回原文件
-    const modifiedCsv = Papa.unparse(result.data, {
-      header: true,
-      skipEmptyLines: true,
-    })
-    fs.writeFileSync('./words.csv', modifiedCsv)
   },
   error: (err: any) => {
     console.log(`Error: ${err}`)
   },
 })
+
+console.log('')
