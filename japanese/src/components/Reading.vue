@@ -248,3 +248,10 @@ onMounted(() => {
   setAudioRef(createUniqueAudio())
 })
 </script>
+
+<style scoped>
+.icon:hover {
+  border-radius: 3px;
+  background-color: var(--el-fill-color-darker);
+}
+</style>
