@@ -190,7 +190,6 @@ import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
 import { isNumber } from '@/utils/common.ts'
 
 import type { Dictionary as DictionaryType } from '../../types/dictionary.ts'
-import { storeToRefs } from 'pinia'
 
 interface WordProps {
   data: WordItem[]
@@ -237,7 +236,6 @@ const voiceVoxStore = useVoiceVoxStore()
 const dictionaryStore = useDictionaryStore()
 
 const activeText = readingStore.activeText
-const { isReading } = storeToRefs(readingStore)
 
 const initDict = dictionaryStore.getOne()
 const nowDict = ref<DictionaryType>(initDict)
