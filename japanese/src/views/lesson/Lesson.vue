@@ -76,7 +76,7 @@
       <!-- 单词 -->
       <section id="words" class="section" ref="wordsRef">
         <el-tag v-if="activeWord" closable @close="setActiveWord(null)">
-          正在查看单词：{{ activeWord?.textId }}
+          正在查看单词：{{ activeWord?.word }}
         </el-tag>
         <WordCore
           :data="words"

@@ -76,3 +76,10 @@ ruby rt::before {
 .indentation {
     text-indent: 2rem;
 }
+
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

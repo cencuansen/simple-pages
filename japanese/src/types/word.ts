@@ -15,6 +15,7 @@ export interface WordItem {
 
 export interface ActiveWord {
   textId: string
+  word: string
   lesson: number
 }
 

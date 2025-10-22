@@ -72,7 +72,11 @@ const forward = async (event: MouseEvent) => {
   if (from.tagName.toLowerCase() === 'a') {
     const href = from.getAttribute('href')
     if (href && href.startsWith('#')) {
-      setActiveWord({ textId: href.slice(1), lesson: currentIndex.value })
+      setActiveWord({
+        textId: href.slice(1),
+        word: from.innerText,
+        lesson: currentIndex.value,
+      })
       await nextTick()
       const next = document.querySelector(href)
       if (next) {

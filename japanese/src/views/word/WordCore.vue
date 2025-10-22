@@ -75,10 +75,7 @@
           />
         </template>
       </el-table-column>
-      <el-table-column
-        v-if="settingStore.wordDesc"
-        min-width="130"
-      >
+      <el-table-column v-if="settingStore.wordDesc" min-width="130">
         <template #header>
           <div class="column-header">
             <SimpleInput
@@ -102,7 +99,12 @@
       </el-table-column>
       <el-table-column v-if="showLesson" label="课程" width="100">
         <template #header>
-          <LessonSelect v-model="lessonIndex" fit-input-width lite placeholder="课程"/>
+          <LessonSelect
+            v-model="lessonIndex"
+            fit-input-width
+            lite
+            placeholder="课程"
+          />
         </template>
         <template #default="scope">
           <a href="#" @click="lessonClick(scope.row.lesson)">
@@ -188,6 +190,7 @@ import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
 import { isNumber } from '@/utils/common.ts'
 
 import type { Dictionary as DictionaryType } from '../../types/dictionary.ts'
+import { storeToRefs } from 'pinia'
 
 interface WordProps {
   data: WordItem[]
@@ -234,6 +237,7 @@ const voiceVoxStore = useVoiceVoxStore()
 const dictionaryStore = useDictionaryStore()
 
 const activeText = readingStore.activeText
+const { isReading } = storeToRefs(readingStore)
 
 const initDict = dictionaryStore.getOne()
 const nowDict = ref<DictionaryType>(initDict)
@@ -319,8 +323,8 @@ const afterPage = computed(() => {
 })
 
 const wordClasses = computed(() => {
-  return [...new Set(props.data.map((item) => item.pos).filter(Boolean))].sort((a, b) =>
-    a.localeCompare(b, 'zh-CN')
+  return [...new Set(props.data.map((item) => item.pos).filter(Boolean))].sort(
+    (a, b) => a.localeCompare(b, 'zh-CN')
   )
 })
 
