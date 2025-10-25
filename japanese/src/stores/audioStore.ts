@@ -35,6 +35,7 @@ export const useAudioStore = defineStore('audio', () => {
   const playAudio = async (item: ReadingItem) => {
     if (!audioRef.value || !item) return
 
+    updateStatus(true)
     setNowTextId(item.id)
     currentAudio.value = item.text
 
@@ -57,7 +58,6 @@ export const useAudioStore = defineStore('audio', () => {
 
       try {
         await audioRef.value!.play()
-        updateStatus(true)
         playCount++
 
         // 设置下一次播放的监听

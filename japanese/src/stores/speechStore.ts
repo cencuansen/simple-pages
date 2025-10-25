@@ -1,5 +1,5 @@
 import { defineStore, storeToRefs } from 'pinia'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { type ReadingItem, useReadingStore } from './readingStore.ts'
 
 export const useSpeechStore = defineStore(
@@ -21,6 +21,11 @@ export const useSpeechStore = defineStore(
 
     // 是否正在朗读
     const isSpeaking = ref(false)
+
+    const updateStatus = (status: boolean) => {
+      isSpeaking.value = status
+      setIsReading(status)
+    }
 
     // 获取语音选项 (用于UI选择)
     const voiceOptions = computed(() => {
@@ -77,6 +82,7 @@ export const useSpeechStore = defineStore(
     const speak = (item: ReadingItem | undefined) => {
       if (isSpeaking.value || !item) return
 
+      updateStatus(true)
       lastFireTime.value = Date.now()
       speakingText.value = item.text
       setNowTextId(item.id)
@@ -86,7 +92,7 @@ export const useSpeechStore = defineStore(
       let count = 0
       const speakLoop = () => {
         if (count >= repeatTimes.value) {
-          isSpeaking.value = false
+          updateStatus(false)
           return
         }
 
@@ -96,7 +102,7 @@ export const useSpeechStore = defineStore(
           if (count < repeatTimes.value) {
             speakLoop()
           } else {
-            isSpeaking.value = false
+            updateStatus(false)
           }
         }
 
@@ -110,6 +116,7 @@ export const useSpeechStore = defineStore(
     const speakList = (items: ReadingItem[] | undefined = []) => {
       if (!items || items.length === 0 || isSpeaking.value) return
 
+      updateStatus(true)
       speakingText.value = ''
       setNowTextId('')
 
@@ -126,7 +133,7 @@ export const useSpeechStore = defineStore(
 
           if (listRepeatCount >= repeatTimes.value) {
             // 完成所有重复次数
-            isSpeaking.value = false
+            updateStatus(false)
             return
           }
         }
@@ -153,19 +160,15 @@ export const useSpeechStore = defineStore(
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel()
       }
-      isSpeaking.value = false
+      updateStatus(false)
     }
 
     const reset = () => {
       lang.value = 'ja-JP'
       voice.value = null
       voiceName.value = ''
-      isSpeaking.value = false
+      updateStatus(false)
     }
-
-    watch(isSpeaking, (newVal) => {
-      setIsReading(newVal)
-    })
 
     return {
       voice,
