@@ -148,7 +148,7 @@ onMounted(() => {
 
 <style>
 :root {
-  --ib-width: var(--width-12);
+  --ib-width: calc(var(--width-10) * 1.7);
   --ib-height: 80px;
   --ib-item-w: calc(var(--ib-width) * 0.5);
   --ib-item-active-w: calc(var(--ib-item-w) * 1.4);

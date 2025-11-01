@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="router-view">
-    <el-config-provider :locale="locale">
+    <el-config-provider :locale="locale" :size="elementSize">
       <router-view v-slot="{ Component }">
         <keep-alive>
           <component :is="Component" />
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, onMounted, ref, watch } from 'vue'
+import { onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useReadingStore } from './stores/readingStore'
 import { useLessonStore } from './stores/lessonStore'
 import { useWordStore } from './stores/wordStore'
@@ -117,6 +117,22 @@ const scrollToId = async (id: string) => {
   })
 }
 
+const elementSize = ref<'small' | 'default'>('default')
+
+const updateSize = () => {
+  elementSize.value = window.innerWidth <= 800 ? 'small' : 'default'
+}
+
+// 添加防抖优化
+let resizeTimer: number | null = null
+
+const handleResize = () => {
+  if (resizeTimer) {
+    clearTimeout(resizeTimer)
+  }
+  resizeTimer = window.setTimeout(updateSize, 150)
+}
+
 watch(() => nowTextId.value, scrollToId)
 
 watch(
@@ -134,6 +150,9 @@ onBeforeMount(() => {
 })
 
 onMounted(async () => {
+  updateSize() // 初始化
+  window.addEventListener('resize', handleResize)
+
   await wordStore.init()
   await lessonStore.init()
   await grammarStore.init()
@@ -141,6 +160,13 @@ onMounted(async () => {
   await verbConju.init()
   await jlptConjuStore.init()
   await voiceVoxStore.init()
+})
+
+onUnmounted(() => {
+  if (resizeTimer) {
+    clearTimeout(resizeTimer)
+  }
+  window.removeEventListener('resize', handleResize)
 })
 </script>
 

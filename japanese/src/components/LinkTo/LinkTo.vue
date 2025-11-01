@@ -170,7 +170,7 @@ onBeforeUnmount(() => {
   background-color: var(--el-color-primary);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 800px) {
   .link-to {
     right: calc(var(--right-site-center) + var(--width-12) * 0.5);
     transform: translateX(50%);
