@@ -41,6 +41,9 @@
 @media (max-width: 800px) {
     :root {
         --ib-offset: 10px;
+        --gap12: 10px;
+        --gap-12: 10px;
+        --lesson-headers-height: 60px;
 
         font-size: 8px;
     }
