@@ -82,12 +82,11 @@ export const useSpeechStore = defineStore(
     const speak = (item: ReadingItem | undefined) => {
       if (isSpeaking.value || !item) return
 
+      beforeSpeak()
       updateStatus(true)
       lastFireTime.value = Date.now()
       speakingText.value = item.text
       setNowTextId(item.id)
-
-      beforeSpeak()
 
       let count = 0
       const speakLoop = () => {
@@ -116,11 +115,10 @@ export const useSpeechStore = defineStore(
     const speakList = (items: ReadingItem[] | undefined = []) => {
       if (!items || items.length === 0 || isSpeaking.value) return
 
+      beforeSpeak()
       updateStatus(true)
       speakingText.value = ''
       setNowTextId('')
-
-      beforeSpeak()
 
       let listRepeatCount = 0
       let currentIndex = 0
