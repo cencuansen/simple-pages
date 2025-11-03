@@ -16,7 +16,6 @@ export const useReadingStore = defineStore('reading', () => {
   const repeatTimes = ref<number>(1) // 重复次数 (1-5)
 
   const setIsReading = (value: boolean): void => {
-    console.log('setIsReading', value)
     isReading.value = value
   }
 
