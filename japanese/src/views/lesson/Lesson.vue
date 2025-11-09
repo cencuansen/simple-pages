@@ -373,7 +373,6 @@ h2 {
   margin-bottom: 10px;
   display: flex;
   align-items: baseline;
-  gap: calc(var(--gap12) * 0.5);
 }
 
 .article-title {
@@ -382,7 +381,6 @@ h2 {
 }
 
 :deep(.anchor-link) {
-  margin: 0 4px;
   word-break: break-word;
 }
 
