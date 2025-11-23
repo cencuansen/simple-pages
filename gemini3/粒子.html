@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可交互聚合粒子系统</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #050505;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        canvas { display: block; }
+        .ui-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            pointer-events: none;
+            z-index: 10;
+            text-shadow: 0 0 5px #000;
+        }
+        h1 { margin: 0; font-size: 1.2rem; letter-spacing: 2px; }
+        p { margin: 5px 0; font-size: 0.8rem; opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="ui-container">
+        <h1>Interactive Particle Field</h1>
+        <p>左键拖拽旋转视角 | 调整右上角参数控制聚集</p>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+                "lil-gui": "https://unpkg.com/lil-gui@0.19.1/dist/lil-gui.esm.min.js"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import GUI from 'lil-gui';
+
+        // --- 1. 场景初始化 ---
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x050505, 0.02); // 迷雾效果增强深度
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 40);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.body.appendChild(renderer.domElement);
+
+        // 轨道控制器 (允许鼠标拖拽移动视角)
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        // --- 2. 交互辅助平面 ---
+        // 创建一个不可见的平面，用于捕捉鼠标在3D世界中的位置
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const interactionPlane = new THREE.Mesh(
+            new THREE.PlaneGeometry(200, 200),
+            new THREE.MeshBasicMaterial({ visible: false }) // 不可见
+        );
+        scene.add(interactionPlane);
+
+        // --- 3. 核心着色器 ---
+        
+        const vertexShader = `
+            uniform float uTime;
+            uniform float uSpeed;
+            uniform float uSizeMin;
+            uniform float uSizeMax;
+            uniform float uPixelRatio;
+            uniform vec3 uMousePos;      // 鼠标在3D世界的坐标
+            uniform float uGather;       // 聚集强度 (0 = 波动, 1 = 聚集)
+
+            attribute float aScale;      // 随机大小系数
+            attribute vec3 aRandomPos;   // 粒子的原始分布位置
+            attribute vec3 aSpherePos;   // 粒子聚集时的球体位置
+
+            varying vec3 vColor;
+
+            // 随机函数
+            float random(vec2 st) {
+                return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+            }
+
+            void main() {
+                // --- 状态 1: 自然波动 ---
+                vec3 wavePos = aRandomPos;
+                // 复杂的波浪运动
+                wavePos.y += sin(wavePos.x * 0.2 + uTime * uSpeed) * 2.0;
+                wavePos.z += cos(wavePos.y * 0.2 + uTime * uSpeed) * 2.0;
+                // 让粒子也在原地微微打转
+                wavePos.x += cos(uTime * uSpeed * 0.5 + aScale * 10.0) * 0.5;
+
+                // --- 状态 2: 鼠标聚集 (蜂群形态) ---
+                // 粒子不会缩成一个点，而是去往 uMousePos + 自己的球体相对偏移
+                // 加上旋转效果，让蜂群转动
+                float angle = uTime * 2.0;
+                mat2 rot = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+                vec3 rotatedSphere = aSpherePos;
+                rotatedSphere.xz = rot * rotatedSphere.xz; // 绕Y轴旋转
+
+                vec3 gatherPos = uMousePos + rotatedSphere * 4.0; // *4.0 是蜂群半径
+
+                // --- 线性插值混合两个状态 ---
+                vec3 finalPos = mix(wavePos, gatherPos, uGather);
+
+                vec4 viewPosition = viewMatrix * vec4(finalPos, 1.0);
+                gl_Position = projectionMatrix * viewPosition;
+
+                // --- 大小计算 ---
+                float size = uSizeMin + (uSizeMax - uSizeMin) * aScale;
+                
+                // 当聚集时，粒子稍微变小一点，显得更密集
+                size = mix(size, size * 0.6, uGather);
+
+                gl_PointSize = size * uPixelRatio;
+                gl_PointSize *= (1.0 / -viewPosition.z * 20.0); // 距离衰减
+
+                // --- 颜色计算 ---
+                // 波动时偏蓝，聚集时偏红/紫
+                float dist = distance(finalPos, uMousePos);
+                vec3 colorWave = vec3(0.2, 0.6, 1.0); // 青蓝
+                vec3 colorGather = vec3(1.0, 0.3, 0.5); // 玫红
+
+                // 根据混合程度和距离决定颜色
+                vColor = mix(colorWave, colorGather, uGather);
+            }
+        `;
+
+        const fragmentShader = `
+            varying vec3 vColor;
+
+            void main() {
+                // 绘制圆形柔和粒子
+                float d = distance(gl_PointCoord, vec2(0.5));
+                if(d > 0.5) discard;
+                
+                // 径向渐变让粒子看起来像发光球体
+                float strength = pow(1.0 - d * 2.0, 1.5);
+
+                gl_FragColor = vec4(vColor, strength);
+            }
+        `;
+
+        // --- 4. 粒子系统逻辑 ---
+        
+        let geometry = null;
+        let material = null;
+        let particles = null;
+
+        const params = {
+            count: 15000,       // 粒子数量
+            sizeMin: 3,         // 最小尺寸
+            sizeMax: 10,        // 最大尺寸
+            speed: 1.5,         // 波动速度
+            gatherStrength: 0.0 // 聚集倾向 (0-1)
+        };
+
+        const generateParticles = () => {
+            if(particles) {
+                geometry.dispose();
+                material.dispose();
+                scene.remove(particles);
+            }
+
+            geometry = new THREE.BufferGeometry();
+            const count = params.count;
+
+            const bufferRandomPos = new Float32Array(count * 3); // 散开时的位置
+            const bufferSpherePos = new Float32Array(count * 3); // 聚集时的相对位置
+            const bufferScale = new Float32Array(count);         // 大小系数
+
+            for(let i = 0; i < count; i++) {
+                const i3 = i * 3;
+
+                // 1. 散开位置：布满屏幕 (宽范围随机)
+                bufferRandomPos[i3]     = (Math.random() - 0.5) * 80; // x
+                bufferRandomPos[i3 + 1] = (Math.random() - 0.5) * 40; // y
+                bufferRandomPos[i3 + 2] = (Math.random() - 0.5) * 40; // z
+
+                // 2. 聚集位置：随机分布在一个球体表面或内部
+                // 使用球坐标公式生成均匀球体
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos((Math.random() * 2) - 1);
+                const r = Math.cbrt(Math.random()) * 2.0; // 半径随机，形成实心球
+
+                bufferSpherePos[i3]     = r * Math.sin(phi) * Math.cos(theta);
+                bufferSpherePos[i3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+                bufferSpherePos[i3 + 2] = r * Math.cos(phi);
+
+                // 3. 大小系数
+                bufferScale[i] = Math.random();
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(bufferRandomPos, 3)); // Three.js 默认需要 position，虽然我们在 shader 里主要用 aRandomPos
+            geometry.setAttribute('aRandomPos', new THREE.BufferAttribute(bufferRandomPos, 3));
+            geometry.setAttribute('aSpherePos', new THREE.BufferAttribute(bufferSpherePos, 3));
+            geometry.setAttribute('aScale', new THREE.BufferAttribute(bufferScale, 1));
+
+            material = new THREE.ShaderMaterial({
+                vertexShader,
+                fragmentShader,
+                transparent: true,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending,
+                uniforms: {
+                    uTime: { value: 0 },
+                    uSpeed: { value: params.speed },
+                    uSizeMin: { value: params.sizeMin },
+                    uSizeMax: { value: params.sizeMax },
+                    uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
+                    uMousePos: { value: new THREE.Vector3(0, 0, 0) },
+                    uGather: { value: 0 }
+                }
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+        };
+
+        generateParticles();
+
+        // --- 5. 事件监听 ---
+
+        // 鼠标移动逻辑
+        window.addEventListener('mousemove', (event) => {
+            // 1. 归一化鼠标坐标 (-1 到 +1)
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+            // 2. 射线检测：找出鼠标在 3D 空间中 interactionPlane 上的位置
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObject(interactionPlane);
+
+            if (intersects.length > 0) {
+                // 将交点传给 shader
+                const point = intersects[0].point;
+                // 使用 gsap 或简单插值可以让移动更平滑，这里直接赋值响应最快
+                if(material) {
+                    material.uniforms.uMousePos.value.copy(point);
+                }
+            }
+        });
+        
+        // 鼠标按下/松开逻辑 (可选：按下时自动聚集)
+        window.addEventListener('mousedown', () => {
+           // 这里可以添加逻辑，比如按下鼠标左键强制聚集
+           // animateGather(1); 
+        });
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            if(material) material.uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, 2);
+        });
+
+        // --- 6. GUI 设置 ---
+        const gui = new GUI();
+        
+        // 粒子配置
+        const folder1 = gui.addFolder('粒子属性');
+        folder1.add(params, 'count', 1000, 50000, 100).name('数量 (需重建)').onFinishChange(generateParticles);
+        folder1.add(params, 'sizeMin', 0.1, 10).name('最小尺寸').onChange(v => { if(v>params.sizeMax) params.sizeMax=v; material.uniforms.uSizeMin.value = v; });
+        folder1.add(params, 'sizeMax', 0.1, 20).name('最大尺寸').onChange(v => { if(v<params.sizeMin) params.sizeMin=v; material.uniforms.uSizeMax.value = v; });
+        folder1.add(params, 'speed', 0, 5).name('波动速度').onChange(v => material.uniforms.uSpeed.value = v);
+        
+        // 交互配置
+        const folder2 = gui.addFolder('交互控制');
+        // 关键参数：聚集强度
+        folder2.add(params, 'gatherStrength', 0, 1).name('聚集强度').listen().onChange(v => {
+            material.uniforms.uGather.value = v;
+        });
+
+        // --- 7. 动画循环 ---
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            // 更新控制器 (阻尼效果需要)
+            controls.update();
+
+            // 动态调整 interactionPlane 始终面向摄像机，保证鼠标射线准确
+            interactionPlane.lookAt(camera.position);
+
+            if(material) {
+                material.uniforms.uTime.value = elapsedTime;
+                // 平滑过渡 uGather 值 (可选)
+                // material.uniforms.uGather.value += (params.gatherStrength - material.uniforms.uGather.value) * 0.05; 
+                
+                // 如果想实现“只要鼠标移动就稍微聚集一点”的效果，可以在这里写逻辑
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+    </script>
+</body>
+</html>

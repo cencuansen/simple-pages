@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 实时拟物时钟</title>
+    <style>
+        :root {
+            --bg-color: #212121;
+            --clock-face: #2e2e2e;
+            --text-color: #ffffff;
+            --mark-color: #999;
+            --second-hand-color: #ff4b4b; /* 红色秒针 */
+            --shadow-light: rgba(255, 255, 255, 0.05);
+            --shadow-dark: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            flex-direction: column;
+        }
+
+        /* 时钟外框 - 拟态风格 */
+        .clock {
+            width: 350px;
+            height: 350px;
+            background: var(--clock-face);
+            border-radius: 50%;
+            border: 8px solid #333;
+            position: relative;
+            box-shadow: 
+                15px 15px 30px var(--shadow-dark),
+                -15px -15px 30px var(--shadow-light),
+                inset 5px 5px 15px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 中心点 */
+        .clock::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 10;
+            border: 3px solid var(--second-hand-color);
+        }
+
+        /* 刻度线容器 */
+        .marks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        /* 刻度样式 (由JS动态生成) */
+        .mark {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: var(--mark-color);
+            left: 50%;
+            top: 10px;
+            transform-origin: 50% 165px; /* 350/2 - 10 = 165 (半径减去偏移) */
+            transform: translateX(-50%);
+        }
+
+        /* 粗刻度 (3, 6, 9, 12) */
+        .mark.heavy {
+            width: 4px;
+            height: 15px;
+            background: #fff;
+        }
+
+        /* 指针通用样式 */
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center; /* 旋转中心在底部 */
+            border-radius: 4px;
+            z-index: 5;
+            transform: translateX(-50%);
+            /* 使用 will-change 优化渲染性能 */
+            will-change: transform; 
+        }
+
+        /* 时针 */
+        .hour-hand {
+            width: 8px;
+            height: 90px;
+            background: #fff;
+            z-index: 6;
+        }
+
+        /* 分针 */
+        .min-hand {
+            width: 5px;
+            height: 120px;
+            background: #ccc;
+            z-index: 7;
+        }
+
+        /* 秒针 */
+        .second-hand {
+            width: 2px;
+            height: 140px;
+            background: var(--second-hand-color);
+            z-index: 8;
+            /* 秒针尾部平衡块 */
+            box-shadow: 0 20px 0 var(--second-hand-color); 
+        }
+
+        /* 下方数字显示 */
+        .digital-display {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-color);
+        }
+        .time-text {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        .date-text {
+            font-size: 1rem;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 模拟时钟主体 -->
+    <div class="clock">
+        <div class="marks" id="marks-container"></div>
+        
+        <div class="hand hour-hand" id="hour"></div>
+        <div class="hand min-hand" id="min"></div>
+        <div class="hand second-hand" id="sec"></div>
+    </div>
+
+    <!-- 数字显示区 -->
+    <div class="digital-display">
+        <div class="time-text" id="digital-time">00:00:00</div>
+        <div class="date-text" id="digital-date">Loading...</div>
+    </div>
+
+    <script>
+        const hourHand = document.getElementById('hour');
+        const minHand = document.getElementById('min');
+        const secHand = document.getElementById('sec');
+        const digitalTime = document.getElementById('digital-time');
+        const digitalDate = document.getElementById('digital-date');
+        const marksContainer = document.getElementById('marks-container');
+
+        // 1. 初始化表盘刻度
+        function initMarks() {
+            for (let i = 0; i < 60; i++) {
+                const mark = document.createElement('div');
+                mark.className = 'mark';
+                
+                // 每5格一个粗刻度
+                if (i % 5 === 0) {
+                    mark.classList.add('heavy');
+                }
+                
+                // 计算旋转角度：60个刻度，每个6度
+                mark.style.transform = `translateX(-50%) rotate(${i * 6}deg)`;
+                marksContainer.appendChild(mark);
+            }
+        }
+
+        // 2. 核心时钟逻辑
+        function updateClock() {
+            const now = new Date();
+
+            // 获取时间分量
+            const seconds = now.getSeconds();
+            const minutes = now.getMinutes();
+            const hours = now.getHours();
+            const milliseconds = now.getMilliseconds();
+
+            // --- 角度计算 ---
+            
+            // 秒针角度：
+            // 1秒 = 6度。为了平滑移动，加上毫秒偏移 (6度 / 1000ms)
+            const secDeg = (seconds * 6) + (milliseconds * 0.006); 
+
+            // 分针角度：
+            // 1分 = 6度。加上秒的偏移 (6度 / 60秒 = 0.1)
+            const minDeg = (minutes * 6) + (seconds * 0.1);
+
+            // 时针角度：
+            // 1小时 = 30度。加上分的偏移 (30度 / 60分 = 0.5)
+            const hourDeg = ((hours % 12) * 30) + (minutes * 0.5);
+
+            // --- 应用旋转 ---
+            secHand.style.transform = `translateX(-50%) rotate(${secDeg}deg)`;
+            minHand.style.transform = `translateX(-50%) rotate(${minDeg}deg)`;
+            hourHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+
+            // --- 更新数字时间 ---
+            // padStart(2, '0') 用于补零，例如 9 -> 09
+            const hStr = String(hours).padStart(2, '0');
+            const mStr = String(minutes).padStart(2, '0');
+            const sStr = String(seconds).padStart(2, '0');
+            digitalTime.textContent = `${hStr}:${mStr}:${sStr}`;
+
+            // --- 更新日期 (只在分钟变化时更新即可，节约资源，但这里每帧更新也无妨) ---
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            digitalDate.textContent = now.toLocaleDateString('zh-CN', options);
+
+            // 使用 requestAnimationFrame 实现 60fps 平滑动画
+            requestAnimationFrame(updateClock);
+        }
+
+        // 启动
+        initMarks();
+        requestAnimationFrame(updateClock);
+
+    </script>
+</body>
+</html>

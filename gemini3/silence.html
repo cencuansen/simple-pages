@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超现实静谧空间 Surreal Room</title>
+    <style>
+        :root {
+            /* 基础变量 */
+            --depth: 800px;
+            --wall-color: #dcdcdc;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            
+            /* 季节主题变量 (通过JS切换) */
+            --sky-gradient-spring: linear-gradient(to bottom, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            --sky-gradient-summer: linear-gradient(to bottom, #2980b9, #6dd5fa, #ffffff);
+            --sky-gradient-autumn: linear-gradient(to bottom, #e65c00, #F9D423);
+            --sky-gradient-winter: linear-gradient(to bottom, #83a4d4, #b6fbff);
+            
+            --sun-color: #ffdd00;
+            --light-color: rgba(255, 220, 150, 0.4);
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #111;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* --- 视口与3D容器 --- */
+        .viewport {
+            width: 800px;
+            height: 600px;
+            perspective: 1200px; /* 关键：开启3D透视 */
+            position: relative;
+        }
+
+        .room {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: slight-sway 10s infinite ease-in-out alternate; /* 房间轻微晃动，增加梦境感 */
+        }
+
+        /* --- 墙壁结构 --- */
+        .wall {
+            position: absolute;
+            background: var(--wall-color);
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.2);
+        }
+
+        .wall-back {
+            width: 800px;
+            height: 600px;
+            transform: translateZ(-400px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ccc;
+            /* 墙面纹理 */
+            background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd), 
+                              linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        .wall-left {
+            width: 800px;
+            height: 600px;
+            transform: rotateY(90deg) translateZ(-400px);
+            background: #bbb;
+        }
+
+        .wall-right {
+            width: 800px;
+            height: 600px;
+            transform: rotateY(-90deg) translateZ(-400px);
+            background: #bbb;
+        }
+
+        .floor {
+            width: 800px;
+            height: 800px;
+            transform: rotateX(90deg) translateZ(-300px); /* 地板位置 */
+            background: #a8a8a8;
+            background-image: 
+                linear-gradient(#999 1px, transparent 1px),
+                linear-gradient(90deg, #999 1px, transparent 1px);
+            background-size: 50px 50px;
+            box-shadow: inset 0 0 200px #000;
+        }
+
+        .ceiling {
+            width: 800px;
+            height: 800px;
+            transform: rotateX(-90deg) translateZ(-300px);
+            background: #ddd;
+            opacity: 0.5;
+        }
+
+        /* --- 窗户与外部世界 --- */
+        .window-frame {
+            width: 400px;
+            height: 300px;
+            border: 20px solid #444;
+            background: transparent;
+            box-shadow: 
+                inset 10px 10px 30px rgba(0,0,0,0.5),
+                0 0 50px rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .outside-world {
+            position: absolute;
+            top: -200px;
+            left: -200px;
+            width: 800px;
+            height: 800px;
+            background: var(--sky-gradient-spring); /* 默认春季 */
+            z-index: -1;
+            transition: background 2s ease;
+        }
+
+        .sun {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--sun-color);
+            box-shadow: 0 0 60px var(--sun-color);
+            top: 20%;
+            left: 20%;
+            animation: sun-set 30s infinite linear;
+        }
+
+        /* 漂浮的云/星球 (超现实元素) */
+        .surreal-object {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            filter: blur(2px);
+            animation: float-clouds 40s infinite linear;
+        }
+
+        /* --- 室内光影 (丁达尔效应) --- */
+        .god-rays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0) 40%, 
+                var(--light-color) 50%, 
+                rgba(255,255,255,0) 70%
+            );
+            transform: translateZ(50px);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            animation: rays-move 30s infinite linear;
+            filter: blur(10px);
+        }
+
+        /* --- 室内凌乱且悬浮的摆设 --- */
+        
+        /* 悬浮的书本 */
+        .floating-book {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: #8e44ad;
+            border: 2px solid #fff;
+            transform-style: preserve-3d;
+            box-shadow: 10px 20px 20px rgba(0,0,0,0.4);
+        }
+        
+        .fb1 { top: 300px; left: 200px; transform: translateZ(-200px) rotateY(30deg); animation: levitate 4s infinite ease-in-out; background: #c0392b; }
+        .fb2 { top: 350px; left: 500px; transform: translateZ(-150px) rotateX(40deg); animation: levitate 5s infinite ease-in-out 1s; background: #2980b9; }
+        .fb3 { top: 150px; left: 600px; transform: translateZ(-100px) rotateZ(-20deg); animation: levitate 6s infinite ease-in-out 0.5s; background: #27ae60; }
+
+        /* 歪斜的几何体椅子 */
+        .chair-abstract {
+            position: absolute;
+            bottom: -150px; /* 基于墙壁坐标 */
+            left: 300px;
+            width: 100px;
+            height: 100px;
+            background: #34495e;
+            transform: translateZ(-100px) rotateY(-20deg);
+            transform-style: preserve-3d;
+        }
+        .chair-back {
+            position: absolute;
+            top: -120px;
+            left: 0;
+            width: 100px;
+            height: 120px;
+            background: #2c3e50;
+            transform-origin: bottom;
+            transform: rotateX(-10deg); /* 微微向后倾斜 */
+        }
+        .chair-leg {
+            position: absolute;
+            bottom: -80px;
+            width: 10px;
+            height: 80px;
+            background: #1a252f;
+        }
+        /* 椅子也悬浮一点点 */
+        .chair-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: levitate-heavy 8s infinite ease-in-out;
+        }
+
+        /* 散落的纸张 */
+        .paper {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background: white;
+            opacity: 0.9;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .p1 { bottom: 50px; left: 300px; transform: translateZ(-250px) rotateX(90deg) rotateZ(45deg); }
+        .p2 { bottom: 80px; right: 200px; transform: translateZ(-180px) rotateX(90deg) rotateZ(-15deg); }
+        /* 这张纸在飞 */
+        .p3 { top: 200px; left: 400px; transform: translateZ(0px); animation: paper-float 15s infinite linear; }
+
+        /* --- 环境遮罩 (日落变黑) --- */
+        .darkness-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            animation: sunset-darken 30s infinite linear;
+        }
+
+        /* --- 动画关键帧 --- */
+        
+        @keyframes sun-set {
+            0% { transform: translate(0, 0); background: #fff; }
+            40% { transform: translate(200px, 100px); background: #ffdd00; }
+            70% { transform: translate(400px, 300px); background: #ff5e00; box-shadow: 0 0 80px #ff5e00; }
+            100% { transform: translate(400px, 600px); background: #333; box-shadow: none; }
+        }
+
+        @keyframes sunset-darken {
+            0% { opacity: 0; }
+            60% { opacity: 0; }
+            85% { opacity: 0.6; }
+            100% { opacity: 0.9; }
+        }
+
+        @keyframes rays-move {
+            0% { opacity: 0.6; transform: translateZ(50px) rotate(0deg); }
+            100% { opacity: 0.1; transform: translateZ(50px) rotate(20deg); }
+        }
+
+        @keyframes levitate {
+            0%, 100% { transform: translateZ(-200px) translateY(0) rotateY(30deg); }
+            50% { transform: translateZ(-200px) translateY(-20px) rotateY(40deg); }
+        }
+
+        @keyframes levitate-heavy {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes paper-float {
+            0% { transform: translateZ(0px) translate(0, 0) rotate(0deg); }
+            50% { transform: translateZ(50px) translate(50px, -50px) rotate(180deg); }
+            100% { transform: translateZ(0px) translate(0, 0) rotate(360deg); }
+        }
+        
+        @keyframes float-clouds {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(800px); }
+        }
+
+        @keyframes slight-sway {
+            from { transform: rotateY(-2deg); }
+            to { transform: rotateY(2deg); }
+        }
+
+        /* --- UI --- */
+        .ui-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        button {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: inherit;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        button:hover {
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 0 15px white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="viewport">
+        <!-- 整个房间 -->
+        <div class="room">
+            <!-- 墙壁 -->
+            <div class="wall wall-left"></div>
+            <div class="wall wall-right"></div>
+            <div class="wall wall-back">
+                
+                <!-- 窗户系统 -->
+                <div class="window-frame">
+                    <div class="outside-world" id="sky">
+                        <div class="sun"></div>
+                        <!-- 超现实的漂浮球体 -->
+                        <div class="surreal-object" style="top:50px; width:100px; height:100px; background:#fff; left:10px;"></div>
+                        <div class="surreal-object" style="top:150px; width:60px; height:60px; background:rgba(255,255,255,0.5); left:-50px; animation-delay: 5s;"></div>
+                    </div>
+                    <!-- 丁达尔光柱 -->
+                    <div class="god-rays"></div>
+                </div>
+
+            </div>
+            
+            <!-- 地板 -->
+            <div class="floor"></div>
+            <div class="ceiling"></div>
+
+            <!-- 悬浮的摆设 -->
+            <div class="floating-book fb1"></div>
+            <div class="floating-book fb2"></div>
+            <div class="floating-book fb3"></div>
+
+            <div class="paper p1"></div>
+            <div class="paper p2"></div>
+            <div class="paper p3"></div>
+
+            <!-- 椅子 -->
+            <div class="chair-wrapper">
+                <div class="chair-abstract">
+                    <div class="chair-back"></div>
+                    <div class="chair-leg" style="left:5px;"></div>
+                    <div class="chair-leg" style="right:5px;"></div>
+                </div>
+            </div>
+
+            <!-- 日落黑暗遮罩 -->
+            <div class="darkness-overlay"></div>
+        </div>
+    </div>
+
+    <div class="ui-controls">
+        <button onclick="changeSeason('spring')">Spring</button>
+        <button onclick="changeSeason('summer')">Summer</button>
+        <button onclick="changeSeason('autumn')">Autumn</button>
+        <button onclick="changeSeason('winter')">Winter</button>
+    </div>
+
+    <script>
+        const sky = document.getElementById('sky');
+        const root = document.documentElement;
+
+        function changeSeason(season) {
+            let gradient;
+            let sunColor;
+            
+            switch(season) {
+                case 'spring':
+                    gradient = 'var(--sky-gradient-spring)';
+                    sunColor = '#ffdd00';
+                    break;
+                case 'summer':
+                    gradient = 'var(--sky-gradient-summer)';
+                    sunColor = '#ffffff';
+                    break;
+                case 'autumn':
+                    gradient = 'var(--sky-gradient-autumn)';
+                    sunColor = '#ff5e00';
+                    break;
+                case 'winter':
+                    gradient = 'var(--sky-gradient-winter)';
+                    sunColor = '#aaddff';
+                    break;
+            }
+
+            sky.style.background = gradient;
+            root.style.setProperty('--sun-color', sunColor);
+            
+            // 重置动画以产生切换感
+            const sun = document.querySelector('.sun');
+            sun.style.animation = 'none';
+            sun.offsetHeight; /* 触发重绘 */
+            sun.style.animation = 'sun-set 30s infinite linear';
+        }
+    </script>
+</body>
+</html>

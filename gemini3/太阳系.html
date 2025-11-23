@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 3D 太阳系</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        canvas { display: block; }
+        
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            pointer-events: none;
+            z-index: 10;
+        }
+        h1 { margin: 0; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; }
+        p { opacity: 0.7; font-size: 0.9rem; }
+        
+        /* 加载遮罩 */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 999;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div id="loader">正在加载星际纹理资源...</div>
+    <div id="ui">
+        <h1>Solar System</h1>
+        <p>左键旋转 | 滚轮缩放 | 右键平移</p>
+    </div>
+
+    <!-- 引入 Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // --- 1. 场景初始化 ---
+        const scene = new THREE.Scene();
+        
+        // 相机设置
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 5000);
+        camera.position.set(0, 150, 250);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true; // 开启阴影
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.maxDistance = 1000;
+
+        // --- 2. 资源加载器 (纹理) ---
+        const textureLoader = new THREE.TextureLoader();
+        const loaderUI = document.getElementById('loader');
+        
+        // 纹理 URL (使用 GitHub 上的稳定资源)
+        const textures = {
+            sun: 'https://upload.wikimedia.org/wikipedia/commons/9/99/Map_of_the_full_sun.jpg',
+            mercury: 'https://upload.wikimedia.org/wikipedia/commons/3/30/Mercury_Coloris_Basin.jpg',
+            venus: 'https://upload.wikimedia.org/wikipedia/commons/0/02/Venus_globe.jpg',
+            earth: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Earthmap1000x500.jpg',
+            mars: 'https://upload.wikimedia.org/wikipedia/commons/3/36/Mars_Viking_MdIM21_ClrMosaic_global_1024.jpg',
+            jupiter: 'https://upload.wikimedia.org/wikipedia/commons/e/e2/Jupiter.jpg',
+            saturn: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Saturn_%28planet%29_large.jpg',
+            saturnRing: 'https://i.imgur.com/4R8s1n8.png', // 环纹理
+            uranus: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/Uranus2.jpg',
+            neptune: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Neptune_cutout.png',
+            stars: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Earth_lights_vs_population_density.png' // 用作背景
+        };
+
+        // 管理加载进度
+        THREE.DefaultLoadingManager.onLoad = function ( ) {
+            loaderUI.style.opacity = '0';
+            setTimeout(() => loaderUI.style.display = 'none', 500);
+        };
+
+        // --- 3. 创建环境 (星空) ---
+        function createStars() {
+            const geometry = new THREE.BufferGeometry();
+            const count = 5000;
+            const positions = new Float32Array(count * 3);
+            for(let i=0; i<count*3; i++) {
+                positions[i] = (Math.random() - 0.5) * 2000; // 散布在远处
+            }
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const material = new THREE.PointsMaterial({color: 0xffffff, size: 1.5, sizeAttenuation: true});
+            const stars = new THREE.Points(geometry, material);
+            scene.add(stars);
+        }
+        createStars();
+
+        // --- 4. 太阳与光照 ---
+        // 太阳材质 (MeshBasicMaterial 不受光照影响，自己发光)
+        const sunGeometry = new THREE.SphereGeometry(16, 64, 64);
+        const sunMaterial = new THREE.MeshBasicMaterial({ 
+            map: textureLoader.load(textures.sun),
+            color: 0xffddaa 
+        });
+        const sun = new THREE.Mesh(sunGeometry, sunMaterial);
+        scene.add(sun);
+
+        // 点光源 (放在太阳中心)
+        const pointLight = new THREE.PointLight(0xffffff, 2, 1000, 0); // 强度, 距离, 衰减
+        scene.add(pointLight);
+        
+        // 环境光 (让背光面不至于全黑)
+        const ambientLight = new THREE.AmbientLight(0x333333);
+        scene.add(ambientLight);
+
+        // 太阳发光效果 (简单的辉光)
+        const glowGeo = new THREE.SphereGeometry(17, 32, 32);
+        const glowMat = new THREE.MeshBasicMaterial({ 
+            color: 0xffaa00, 
+            transparent: true, 
+            opacity: 0.3, 
+            side: THREE.BackSide 
+        });
+        const sunGlow = new THREE.Mesh(glowGeo, glowMat);
+        scene.add(sunGlow);
+
+        // --- 5. 行星生成系统 ---
+        
+        const planets = []; // 存储行星数据以便动画更新
+
+        // 配置数据 (为了视觉效果，并未完全按照真实比例)
+        const planetData = [
+            { name: "mercury", size: 3.2, dist: 28, speed: 0.04, tex: textures.mercury },
+            { name: "venus",   size: 5.8, dist: 44, speed: 0.015, tex: textures.venus },
+            { name: "earth",   size: 6,   dist: 62, speed: 0.01,  tex: textures.earth, hasMoon: true },
+            { name: "mars",    size: 4,   dist: 78, speed: 0.008, tex: textures.mars },
+            { name: "jupiter", size: 12,  dist: 110, speed: 0.002, tex: textures.jupiter },
+            { name: "saturn",  size: 10,  dist: 150, speed: 0.0009, tex: textures.saturn, hasRing: true },
+            { name: "uranus",  size: 7,   dist: 190, speed: 0.0004, tex: textures.uranus },
+            { name: "neptune", size: 7,   dist: 220, speed: 0.0001, tex: textures.neptune },
+        ];
+
+        function createPlanet(data) {
+            // 1. 创建一个 Pivot (轴心) 对象，位于太阳中心 (0,0,0)
+            // 行星将作为 Pivot 的子对象，旋转 Pivot 即可实现公转
+            const orbitPivot = new THREE.Object3D();
+            scene.add(orbitPivot);
+
+            // 2. 创建行星 Mesh
+            const geo = new THREE.SphereGeometry(data.size, 32, 32);
+            const mat = new THREE.MeshStandardMaterial({
+                map: textureLoader.load(data.tex),
+                roughness: 1, // 粗糙度
+                metalness: 0
+            });
+            const planetMesh = new THREE.Mesh(geo, mat);
+            
+            // 3. 设置位置 (距离太阳的 X 轴偏移)
+            planetMesh.position.x = data.dist;
+            
+            // 4. 开启阴影投射与接收
+            planetMesh.castShadow = true;
+            planetMesh.receiveShadow = true;
+
+            // 5. 将行星添加到轴心
+            orbitPivot.add(planetMesh);
+
+            // 6. 创建轨道线 (视觉辅助)
+            const trackGeo = new THREE.RingGeometry(data.dist - 0.1, data.dist + 0.1, 128);
+            const trackMat = new THREE.MeshBasicMaterial({ 
+                color: 0xffffff, 
+                side: THREE.DoubleSide, 
+                transparent: true, 
+                opacity: 0.15 
+            });
+            const track = new THREE.Mesh(trackGeo, trackMat);
+            track.rotation.x = -Math.PI / 2; // 旋转到水平面
+            scene.add(track);
+
+            // --- 特殊处理：土星环 ---
+            if (data.hasRing) {
+                const ringGeo = new THREE.RingGeometry(data.size * 1.4, data.size * 2.2, 64);
+                const ringMat = new THREE.MeshStandardMaterial({
+                    map: textureLoader.load(textures.saturnRing),
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    opacity: 0.8
+                });
+                const ring = new THREE.Mesh(ringGeo, ringMat);
+                ring.rotation.x = -Math.PI / 2.2; // 稍微倾斜一点
+                planetMesh.add(ring);
+            }
+
+            // --- 特殊处理：月球 (作为地球的子对象) ---
+            if (data.hasMoon) {
+                const moonGeo = new THREE.SphereGeometry(1.5, 16, 16);
+                const moonMat = new THREE.MeshStandardMaterial({ color: 0x888888 });
+                const moon = new THREE.Mesh(moonGeo, moonMat);
+                moon.position.x = 10; // 距离地球的距离
+                planetMesh.add(moon); // 添加到地球
+                
+                // 把月球引用存起来以便自转
+                data.moonMesh = moon;
+            }
+
+            // 将数据保存到数组，用于动画更新
+            planets.push({
+                mesh: planetMesh,
+                pivot: orbitPivot,
+                speed: data.speed,
+                selfRotationSpeed: 0.005 + Math.random() * 0.01, // 随机自转速度
+                data: data
+            });
+        }
+
+        // 初始化所有行星
+        planetData.forEach(createPlanet);
+
+        // --- 6. 动画循环 ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // 太阳自转
+            sun.rotation.y += 0.004;
+
+            // 更新所有行星
+            planets.forEach(obj => {
+                // 公转：旋转轴心
+                obj.pivot.rotation.y += obj.speed;
+
+                // 自转：旋转 Mesh 本身
+                obj.mesh.rotation.y += obj.selfRotationSpeed;
+
+                // 月球绕地球转
+                if (obj.data.hasMoon) {
+                    // 这里简单模拟：月球作为子对象，我们通过三角函数改变其位置，
+                    // 或者直接旋转地球？不，月球公转需要独立计算
+                    // 简单的做法：让月球相对于地球旋转
+                    // 获取时间
+                    const time = Date.now() * 0.002;
+                    obj.data.moonMesh.position.x = Math.cos(time) * 10;
+                    obj.data.moonMesh.position.z = Math.sin(time) * 10;
+                }
+            });
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // --- 7. 窗口适配 ---
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+    </script>
+</body>
+</html>
