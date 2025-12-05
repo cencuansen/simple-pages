@@ -26,7 +26,9 @@ const props = defineProps<DictionaryCore>()
 .now-dict {
   width: 100%;
   height: 100%;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .now-dict-img {

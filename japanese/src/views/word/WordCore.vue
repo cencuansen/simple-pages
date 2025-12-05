@@ -23,12 +23,7 @@
     <SimpleInput v-if="keywordFilter" v-model="keyword" />
   </Row>
   <div ref="container" class="main-table" @scrollend="scrollend">
-    <el-table
-      :data="afterPage"
-      :show-header="showHeader"
-      empty-text="暂无数据"
-      stripe
-    >
+    <el-table :data="afterPage" :show-header="showHeader" stripe>
       <el-table-column min-width="100">
         <template #header>
           <div class="column-header">
@@ -131,7 +126,7 @@
         width="70"
       >
         <template #header>
-          <DictionarySelector @change="dictionaryChange" />
+          <DictionarySelector v-if="afterPage.length" @change="dictionaryChange" />
         </template>
         <template #default="scope">
           <DictionaryCore :dict="nowDict" :word="scope.row.word" />
@@ -151,6 +146,16 @@
           <Reading :word="scope.row as WordItem" />
         </template>
       </el-table-column>
+      <template #empty>
+        <div class="empty-info">暂无数据</div>
+        <div class="dict-row" v-if="wordFilter">
+          <DictionaryCore
+            v-for="dict in dictionaries"
+            :dict="dict"
+            :word="wordFilter"
+          />
+        </div>
+      </template>
     </el-table>
   </div>
   <SimplePagination
@@ -190,6 +195,7 @@ import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
 import { isNumber } from '@/utils/common.ts'
 
 import type { Dictionary as DictionaryType } from '../../types/dictionary.ts'
+import { storeToRefs } from 'pinia'
 
 interface WordProps {
   data: WordItem[]
@@ -239,6 +245,7 @@ const activeText = readingStore.activeText
 
 const initDict = dictionaryStore.getOne()
 const nowDict = ref<DictionaryType>(initDict)
+const { dictionaries } = storeToRefs(dictionaryStore)
 const dictionaryChange = (newDict: DictionaryType) => {
   nowDict.value = newDict
 }
@@ -394,5 +401,20 @@ onActivated(async () => {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+:deep(.el-table__empty-text) {
+  padding: 0 0 10px;
+}
+
+.empty-info {
+  line-height: 40px;
+}
+
+.dict-row {
+  display: flex;
+  gap: var(--gap-12);
+  align-items: center;
+  margin-top: 20px;
 }
 </style>
