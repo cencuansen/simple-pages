@@ -126,7 +126,10 @@
         width="70"
       >
         <template #header>
-          <DictionarySelector v-if="afterPage.length" @change="dictionaryChange" />
+          <DictionarySelector
+            v-if="afterPage.length"
+            @change="dictionaryChange"
+          />
         </template>
         <template #default="scope">
           <DictionaryCore :dict="nowDict" :word="scope.row.word" />

@@ -12,6 +12,7 @@
     <div class="row">
       <div>
         <el-button
+          :loading="isReading"
           :disabled="!text || isReading"
           @click="ttsOne({ id: text, text: text })"
         >

@@ -1,7 +1,7 @@
 <template>
   <div class="tool-container">
     <el-tabs class="setting-container">
-      <el-tab-pane label="注音">
+      <el-tab-pane label="假名">
         <KanjiTool />
       </el-tab-pane>
       <el-tab-pane label="朗读">
