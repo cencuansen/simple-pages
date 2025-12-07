@@ -12,8 +12,13 @@ export const toUrl = (
   // 去除开头和结尾的 ~、～
   word = word.replace(/^[~～]|[~～]$/g, '')
 
+  // // 去除词尾的 します
+  // if (word.length > 3 && word.endsWith('します')) {
+  //   word = word.slice(0, -3)
+  // }
+
   // 去除词尾的 する
-  if (word.endsWith('する')) {
+  if (word.length > 2 && word.endsWith('する')) {
     word = word.slice(0, -2)
   }
 

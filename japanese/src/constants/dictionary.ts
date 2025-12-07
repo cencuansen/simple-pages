@@ -6,7 +6,7 @@ export const dictionaries = [
   {
     label: 'JD',
     name: 'JapanDict',
-    url: `https://www.japandict.com/${placeholder}?lang=eng`,
+    url: `https://www.japandict.com/?s=${placeholder}&lang=eng`,
     logo: `${imageUrlBase}/japan_dict.png`,
     desc: '释义、读音、音调、活用、例句',
   },
