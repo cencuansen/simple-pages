@@ -90,243 +90,6 @@ const katakanaToHiraganaMap: { [key: string]: string } = Object.fromEntries(
   Object.entries(hiraganaToKatakanaMap).map(([key, value]) => [value, key])
 )
 
-// 假名到罗马音映射
-const kanaToRomajiMap: { [key: string]: string } = {
-  あ: 'a',
-  い: 'i',
-  う: 'u',
-  え: 'e',
-  お: 'o',
-  か: 'ka',
-  き: 'ki',
-  く: 'ku',
-  け: 'ke',
-  こ: 'ko',
-  さ: 'sa',
-  し: 'shi',
-  す: 'su',
-  せ: 'se',
-  そ: 'so',
-  た: 'ta',
-  ち: 'chi',
-  つ: 'tsu',
-  て: 'te',
-  と: 'to',
-  な: 'na',
-  に: 'ni',
-  ぬ: 'nu',
-  ね: 'ne',
-  の: 'no',
-  は: 'ha',
-  ひ: 'hi',
-  ふ: 'fu',
-  へ: 'he',
-  ほ: 'ho',
-  ま: 'ma',
-  み: 'mi',
-  む: 'mu',
-  め: 'me',
-  も: 'mo',
-  や: 'ya',
-  ゆ: 'yu',
-  よ: 'yo',
-  ら: 'ra',
-  り: 'ri',
-  る: 'ru',
-  れ: 're',
-  ろ: 'ro',
-  わ: 'wa',
-  ゐ: 'wi',
-  ゑ: 'we',
-  を: 'wo',
-  ん: 'n',
-  が: 'ga',
-  ぎ: 'gi',
-  ぐ: 'gu',
-  げ: 'ge',
-  ご: 'go',
-  ざ: 'za',
-  じ: 'ji',
-  ず: 'zu',
-  ぜ: 'ze',
-  ぞ: 'zo',
-  だ: 'da',
-  ぢ: 'ji',
-  づ: 'zu',
-  で: 'de',
-  ど: 'do',
-  ば: 'ba',
-  び: 'bi',
-  ぶ: 'bu',
-  べ: 'be',
-  ぼ: 'bo',
-  ぱ: 'pa',
-  ぴ: 'pi',
-  ぷ: 'pu',
-  ぺ: 'pe',
-  ぽ: 'po',
-  きゃ: 'kya',
-  きゅ: 'kyu',
-  きょ: 'kyo',
-  しゃ: 'sha',
-  しゅ: 'shu',
-  しょ: 'sho',
-  ちゃ: 'cha',
-  ちゅ: 'chu',
-  ちょ: 'cho',
-  にゃ: 'nya',
-  にゅ: 'nyu',
-  にょ: 'nyo',
-  ひゃ: 'hya',
-  ひゅ: 'hyu',
-  ひょ: 'hyo',
-  みゃ: 'mya',
-  みゅ: 'myu',
-  みょ: 'myo',
-  りゃ: 'rya',
-  りゅ: 'ryu',
-  りょ: 'ryo',
-  ぎゃ: 'gya',
-  ぎゅ: 'gyu',
-  ぎょ: 'gyo',
-  じゃ: 'ja',
-  じゅ: 'ju',
-  じょ: 'jo',
-  びゃ: 'bya',
-  びゅ: 'byu',
-  びょ: 'byo',
-  ぴゃ: 'pya',
-  ぴゅ: 'pyu',
-  ぴょ: 'pyo',
-  ゃ: 'ya',
-  ゅ: 'yu',
-  ょ: 'yo',
-  っ: '', // 促音，在罗马音中表示为下一个辅音重复
-  ぁ: 'a',
-  ぃ: 'i',
-  ぅ: 'u',
-  ぇ: 'e',
-  ぉ: 'o',
-  ゔ: 'vu',
-  // 片假名映射（同样的罗马音）
-  ア: 'a',
-  イ: 'i',
-  ウ: 'u',
-  エ: 'e',
-  オ: 'o',
-  カ: 'ka',
-  キ: 'ki',
-  ク: 'ku',
-  ケ: 'ke',
-  コ: 'ko',
-  サ: 'sa',
-  シ: 'shi',
-  ス: 'su',
-  セ: 'se',
-  ソ: 'so',
-  タ: 'ta',
-  チ: 'chi',
-  ツ: 'tsu',
-  テ: 'te',
-  ト: 'to',
-  ナ: 'na',
-  ニ: 'ni',
-  ヌ: 'nu',
-  ネ: 'ne',
-  ノ: 'no',
-  ハ: 'ha',
-  ヒ: 'hi',
-  フ: 'fu',
-  ヘ: 'he',
-  ホ: 'ho',
-  マ: 'ma',
-  ミ: 'mi',
-  ム: 'mu',
-  メ: 'me',
-  モ: 'mo',
-  ヤ: 'ya',
-  ユ: 'yu',
-  ヨ: 'yo',
-  ラ: 'ra',
-  リ: 'ri',
-  ル: 'ru',
-  レ: 're',
-  ロ: 'ro',
-  ワ: 'wa',
-  ヰ: 'wi',
-  ヱ: 'we',
-  ヲ: 'wo',
-  ン: 'n',
-  ガ: 'ga',
-  ギ: 'gi',
-  グ: 'gu',
-  ゲ: 'ge',
-  ゴ: 'go',
-  ザ: 'za',
-  ジ: 'ji',
-  ズ: 'zu',
-  ゼ: 'ze',
-  ゾ: 'zo',
-  ダ: 'da',
-  ヂ: 'ji',
-  ヅ: 'zu',
-  デ: 'de',
-  ド: 'do',
-  バ: 'ba',
-  ビ: 'bi',
-  ブ: 'bu',
-  ベ: 'be',
-  ボ: 'bo',
-  パ: 'pa',
-  ピ: 'pi',
-  プ: 'pu',
-  ペ: 'pe',
-  ポ: 'po',
-  キャ: 'kya',
-  キュ: 'kyu',
-  キョ: 'kyo',
-  シャ: 'sha',
-  シュ: 'shu',
-  ショ: 'sho',
-  チャ: 'cha',
-  チュ: 'chu',
-  チョ: 'cho',
-  ニャ: 'nya',
-  ニュ: 'nyu',
-  ニョ: 'nyo',
-  ヒャ: 'hya',
-  ヒュ: 'hyu',
-  ヒョ: 'hyo',
-  ミャ: 'mya',
-  ミュ: 'myu',
-  ミョ: 'myo',
-  リャ: 'rya',
-  リュ: 'ryu',
-  リョ: 'ryo',
-  ギャ: 'gya',
-  ギュ: 'gyu',
-  ギョ: 'gyo',
-  ジャ: 'ja',
-  ジュ: 'ju',
-  ジョ: 'jo',
-  ビャ: 'bya',
-  ビュ: 'byu',
-  ビョ: 'byo',
-  ピャ: 'pya',
-  ピュ: 'pyu',
-  ピョ: 'pyo',
-  ャ: 'ya',
-  ュ: 'yu',
-  ョ: 'yo',
-  ッ: '', // 促音
-  ァ: 'a',
-  ィ: 'i',
-  ゥ: 'u',
-  ェ: 'e',
-  ォ: 'o',
-  ヴ: 'vu',
-}
-
 // 判断是否为平假名
 const isHiragana = (char: string): boolean => {
   const code = char.charCodeAt(0)
@@ -378,49 +141,230 @@ export const toKatakana = (text: string): string => {
   return result
 }
 
+const isSmallKana = (char: string): boolean => {
+  return ['ゃ','ゅ','ょ','ぁ','ぃ','ぅ','ぇ','ぉ','ゎ','ャ','ュ','ョ','ァ','ィ','ゥ','ェ','ォ','ヮ'].includes(char);
+};
+
+// Base mapping (hiragana + katakana normalized)
+// Note: this is not exhaustive for every rare kana, but covers modern usage
+const KANA_TO_ROMAJI: Record<string, string> = {
+  // vowels
+  'あ':'a','い':'i','う':'u','え':'e','お':'o',
+  'ア':'a','イ':'i','ウ':'u','エ':'e','オ':'o',
+
+  // k
+  'か':'ka','き':'ki','く':'ku','け':'ke','こ':'ko',
+  'が':'ga','ぎ':'gi','ぐ':'gu','げ':'ge','ご':'go',
+  'カ':'ka','キ':'ki','ク':'ku','ケ':'ke','コ':'ko',
+  'ガ':'ga','ギ':'gi','グ':'gu','ゲ':'ge','ゴ':'go',
+
+  // s
+  'さ':'sa','し':'shi','す':'su','せ':'se','そ':'so',
+  'ざ':'za','じ':'ji','ず':'zu','ぜ':'ze','ぞ':'zo',
+  'サ':'sa','シ':'shi','ス':'su','セ':'se','ソ':'so',
+  'ザ':'za','ジ':'ji','ズ':'zu','ゼ':'ze','ゾ':'zo',
+
+  // t
+  'た':'ta','ち':'chi','つ':'tsu','て':'te','と':'to',
+  'だ':'da','ぢ':'ji','づ':'zu','で':'de','ど':'do', // modern romaji
+  'タ':'ta','チ':'chi','ツ':'tsu','テ':'te','ト':'to',
+  'ダ':'da','ヂ':'ji','ヅ':'zu','デ':'de','ド':'do',
+
+  // n
+  'な':'na','に':'ni','ぬ':'nu','ね':'ne','の':'no',
+  'ナ':'na','ニ':'ni','ヌ':'nu','ネ':'ne','ノ':'no',
+
+  // h
+  'は':'ha','ひ':'hi','ふ':'fu','へ':'he','ほ':'ho',
+  'ば':'ba','び':'bi','ぶ':'bu','べ':'be','ぼ':'bo',
+  'ぱ':'pa','ぴ':'pi','ぷ':'pu','ぺ':'pe','ぽ':'po',
+  'ハ':'ha','ヒ':'hi','フ':'fu','ヘ':'he','ホ':'ho',
+  'バ':'ba','ビ':'bi','ブ':'bu','ベ':'be','ボ':'bo',
+  'パ':'pa','ピ':'pi','プ':'pu','ペ':'pe','ポ':'po',
+
+  // m
+  'ま':'ma','み':'mi','む':'mu','め':'me','も':'mo',
+  'マ':'ma','ミ':'mi','ム':'mu','メ':'me','モ':'mo',
+
+  // y
+  'や':'ya','ゆ':'yu','よ':'yo',
+  'ヤ':'ya','ユ':'yu','ヨ':'yo',
+
+  // r
+  'ら':'ra','り':'ri','る':'ru','れ':'re','ろ':'ro',
+  'ラ':'ra','リ':'ri','ル':'ru','レ':'re','ロ':'ro',
+
+  // w
+  'わ':'wa','を':'o', // 'wo' often 'o' in modern reading
+  'ワ':'wa','ヲ':'o',
+
+  // n'
+  'ん':'n','ン':'n',
+
+  // small vowels
+  'ぁ':'a','ぃ':'i','ぅ':'u','ぇ':'e','ぉ':'o',
+  'ァ':'a','ィ':'i','ゥ':'u','ェ':'e','ォ':'o',
+
+  // small ya/yu/yo (standalone rarely used; combined handled later)
+  'ゃ':'ya','ゅ':'yu','ょ':'yo',
+  'ャ':'ya','ュ':'yu','ョ':'yo',
+
+  // others (common katakana)
+  'ヴ':'vu','ー':'-', // long vowel mark handled specially
+};
+
+// Youon combinations (consonant + small ya/yu/yo)
+const YOUON_COMBOS: Record<string,string> = {
+  // k
+  'きゃ':'kya','きゅ':'kyu','きょ':'kyo',
+  'キャ':'kya','キュ':'kyu','キョ':'kyo',
+  // s/sh
+  'しゃ':'sha','しゅ':'shu','しょ':'sho',
+  'シャ':'sha','シュ':'shu','ショ':'sho',
+  // j
+  'じゃ':'ja','じゅ':'ju','じょ':'jo',
+  'ジャ':'ja','ジュ':'ju','ジョ':'jo',
+  // t/chi
+  'ちゃ':'cha','ちゅ':'chu','ちょ':'cho',
+  'チャ':'cha','チュ':'chu','チョ':'cho',
+  // n
+  'にゃ':'nya','にゅ':'nyu','にょ':'nyo',
+  'ニャ':'nya','ニュ':'nyu','ニョ':'nyo',
+  // h/f
+  'ひゃ':'hya','ひゅ':'hyu','ひょ':'hyo',
+  'ヒャ':'hya','ヒュ':'hyu','ヒョ':'hyo',
+  // m
+  'みゃ':'mya','みゅ':'myu','みょ':'myo',
+  'ミャ':'mya','ミュ':'myu','ミョ':'myo',
+  // r
+  'りゃ':'rya','りゅ':'ryu','りょ':'ryo',
+  'リャ':'rya','リュ':'ryu','リョ':'ryo',
+  // g
+  'ぎゃ':'gya','ぎゅ':'gyu','ぎょ':'gyo',
+  'ギャ':'gya','ギュ':'gyu','ギョ':'gyo',
+  // b/p
+  'びゃ':'bya','びゅ':'byu','びょ':'byo',
+  'ピャ':'pya','ピュ':'pyu','ピョ':'pyo',
+  'ビャ':'bya','ビュ':'byu','ビョ':'byo',
+  // v (katakana)
+  'ヴャ':'vya','ヴュ':'vyu','ヴョ':'vyo',
+};
+
+// Helper: get consonant to double for sokuon
+const leadingConsonantToDouble = (romaji: string): string => {
+  // For 'shi' -> 's', 'chi' -> 'c', 'tsu' -> 't' (rare), 'ji' -> 'j'
+  // Generally take first letter unless it's a vowel
+  if (!romaji) return '';
+  const first = romaji[0].toLowerCase();
+  if ('aeiou'.includes(first)) return ''; // no doubling
+  // Special cases: 'ch' should double 'c' -> 'cchi'; 'sh' -> 'ssh'
+  // Returning just the first consonant works for 'shi','chi','ja','kya' etc.
+  return first;
+};
+
+// Helper: handle long vowel mark ー by repeating the previous vowel
+const applyChoonpu = (result: string): string => {
+  // find last vowel in result and duplicate it
+  const idx = result.lastIndexOf(result.match(/[aeiou](?!.*[aeiou])/i)?.[0] || '');
+  if (idx >= 0) {
+    return result + result[idx];
+  }
+  return result; // no vowel found; ignore
+};
+
+// Helper: handle 'n' before specific letters
+const finalizeNasalN = (result: string, nextCharRomaji: string): string => {
+  if (!nextCharRomaji) return result + 'n';
+  const nextFirst = nextCharRomaji[0]?.toLowerCase() || '';
+  if (['b','m','p'].includes(nextFirst)) {
+    return result + 'm';
+  }
+  if (['a','i','u','e','o','y'].includes(nextFirst)) {
+    return result + "n'";
+  }
+  return result + 'n';
+};
+
+
 export const toRomaji = (text: string): string => {
-  let result = ''
-  let i = 0
+  let result = '';
+  let i = 0;
 
   while (i < text.length) {
-    const char = text[i]
+    const char = text[i];
 
-    // 检查是否为促音（っ或ッ）
+    // Long vowel mark (katakana)
+    if (char === 'ー') {
+      result = applyChoonpu(result);
+      i++;
+      continue;
+    }
+
+    // Sokuon (small tsu)
     if (char === 'っ' || char === 'ッ') {
-      // 检查下一个字符是否为假名
-      if (i + 1 < text.length && isKana(text[i + 1])) {
-        // 获取下一个假名的罗马音的第一个辅音并重复
-        const nextChar = text[i + 1]
-        const nextRomaji = kanaToRomajiMap[nextChar] || ''
-        if (nextRomaji.length > 0) {
-          result += nextRomaji[0] // 重复第一个辅音
-        }
-        i++ // 跳过促音字符，处理下一个字符时会再次处理
+      // Look ahead to next kana romaji to decide doubling
+      const next = text[i + 1];
+      // If next is a youon combo, get its romaji from YOUON_COMBOS
+      let nextRomaji = '';
+      if (i + 2 < text.length && isKana(next) && isSmallKana(text[i + 2])) {
+        const combo = next + text[i + 2];
+        nextRomaji = YOUON_COMBOS[combo] || KANA_TO_ROMAJI[next] || '';
       } else {
-        result += char // 无法处理，保留原样
+        nextRomaji = KANA_TO_ROMAJI[next] || '';
       }
-    }
-    // 检查是否为拗音（两个字符的组合）
-    else if (i + 1 < text.length && isKana(char) && isKana(text[i + 1])) {
-      const twoChars = char + text[i + 1]
-      if (kanaToRomajiMap[twoChars]) {
-        result += kanaToRomajiMap[twoChars]
-        i++ // 跳过第二个字符
-      } else if (kanaToRomajiMap[char]) {
-        result += kanaToRomajiMap[char]
-      } else {
-        result += char
-      }
-    }
-    // 单个字符
-    else if (kanaToRomajiMap[char]) {
-      result += kanaToRomajiMap[char]
-    } else {
-      result += char
+
+      const consonant = leadingConsonantToDouble(nextRomaji);
+      result += consonant;
+      i++; // consume sokuon
+      continue;
     }
 
-    i++
+    // 'ん' nasal n handling
+    if (char === 'ん' || char === 'ン') {
+      // Look ahead romaji
+      let nextRomaji = '';
+      if (i + 1 < text.length) {
+        const next = text[i + 1];
+        if (i + 2 < text.length && isKana(next) && isSmallKana(text[i + 2])) {
+          const combo = next + text[i + 2];
+          nextRomaji = YOUON_COMBOS[combo] || KANA_TO_ROMAJI[next] || '';
+        } else {
+          nextRomaji = KANA_TO_ROMAJI[next] || '';
+        }
+      }
+      result = finalizeNasalN(result, nextRomaji);
+      i++;
+      continue;
+    }
+
+    // Youon (consonant + small ya/yu/yo)
+    if (i + 1 < text.length && isKana(char) && isSmallKana(text[i + 1])) {
+      const combo = char + text[i + 1];
+      if (YOUON_COMBOS[combo]) {
+        result += YOUON_COMBOS[combo];
+        i += 2;
+        continue;
+      }
+      // fallback to base + small vowel romaji if combo missing
+      const base = KANA_TO_ROMAJI[char] || char;
+      const small = KANA_TO_ROMAJI[text[i + 1]] || text[i + 1];
+      result += base + small;
+      i += 2;
+      continue;
+    }
+
+    // Normal kana
+    if (isKana(char)) {
+      const romaji = KANA_TO_ROMAJI[char];
+      result += romaji ?? char;
+      i++;
+      continue;
+    }
+
+    // Non-kana chars: keep as-is
+    result += char;
+    i++;
   }
 
-  return result
-}
+  return result;
+};

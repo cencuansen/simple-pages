@@ -51,6 +51,9 @@
             <div v-if="settingStore.kana" class="column-kana">
               {{ scope.row.kana }}
             </div>
+            <div v-if="settingStore.kana" class="column-kana">
+              {{ toRomaji(scope.row.kana) }}
+            </div>
           </div>
         </template>
       </el-table-column>
@@ -183,10 +186,8 @@ import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
 import { useReadingStore } from '@/stores/readingStore.ts'
 import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
-
 import type { ActiveWord, WordItem } from '@/types/word.ts'
 import { ElNotification, ElTable } from 'element-plus'
-
 import Row from '../../components/Row.vue'
 import LessonSelect from '../../components/LessonSelect.vue'
 import SimpleSelect from '../../components/SimpleSelect.vue'
@@ -196,6 +197,7 @@ import Reading from '../../components/Reading.vue'
 import DictionarySelector from '../../components/Dictionary/DictionarySelector.vue'
 import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
 import { isNumber } from '@/utils/common.ts'
+import { toRomaji } from '@/utils/tool.ts'
 
 import type { Dictionary as DictionaryType } from '../../types/dictionary.ts'
 import { storeToRefs } from 'pinia'
