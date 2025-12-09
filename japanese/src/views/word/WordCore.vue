@@ -152,9 +152,8 @@
           <Reading :word="scope.row as WordItem" />
         </template>
       </el-table-column>
-      <template #empty>
-        <div class="empty-info">暂无数据</div>
-        <div class="dict-row" v-if="wordFilter">
+      <template #append v-if="wordFilter">
+        <div class="dict-row">
           <DictionaryCore
             v-for="dict in dictionaries"
             :dict="dict"
@@ -408,18 +407,12 @@ onActivated(async () => {
   gap: 4px;
 }
 
-:deep(.el-table__empty-text) {
-  padding: 0 0 10px;
-}
-
-.empty-info {
-  line-height: 40px;
-}
-
 .dict-row {
+  height: 50px;
+  margin: 10px 0;
   display: flex;
   gap: var(--gap-12);
   align-items: center;
-  margin-top: 20px;
+  justify-content: safe center;
 }
 </style>

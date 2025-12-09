@@ -191,6 +191,10 @@ onActivated(async () => {
   text-align: right;
 }
 
+.grammar-main {
+  margin-top: 5px;
+}
+
 :deep(.el-collapse-item__content) {
   padding: 0;
 }
