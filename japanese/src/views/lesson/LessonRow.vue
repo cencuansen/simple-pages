@@ -20,7 +20,7 @@
           :class="{
             active: activeText(row.textId),
           }"
-          v-html="textView(nonTextProcess(row.content))"
+          v-html="textView(textPreprocess(row.content))"
         />
         <el-text v-if="true" class="text-id" @click="copy(row.textId)">
           {{ row.textId }}
@@ -59,21 +59,42 @@ function isResource(text: string): boolean {
   return resourceRegex.test(text)
 }
 
-const nonTextProcess = (text: string): string => {
-  if (!text) return text
-  const match = text.match(resourceRegex)
-  if (match) {
-    const type = match[1]
-    const filename = match[2]
-
-    if (type === 'img') {
-      const imageUrlBase: string = import.meta.env.VITE_IMAGE_BASE
-      const real = `${imageUrlBase}/${filename}`
-      text = `<img src="${real}" alt="${filename}" />`
-    }
-  }
-  return text
+function escapeHTML(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
+
+function isSafeFilename(filename: string): boolean {
+  // 只允许字母、数字、下划线、点号、短横线
+  return /^[a-zA-Z0-9._-]+$/.test(filename);
+}
+
+const textPreprocess = (text: string): string => {
+  if (!text) return "";
+
+  const match = text.match(resourceRegex);
+  if (match) {
+    const type = match[1];
+    const filename = match[2];
+
+    if (type === "img" && isSafeFilename(filename)) {
+      const imageUrlBase: string = import.meta.env.VITE_IMAGE_BASE;
+      const safeFilename = escapeHTML(filename);
+      const safeUrl = `${imageUrlBase}/${encodeURIComponent(filename)}`;
+      return `<img src="${safeUrl}" alt="${safeFilename}" />`;
+    }
+
+    // 非法文件名或非 img 类型，直接转义输出
+    return escapeHTML(text);
+  }
+
+  // 默认情况：转义所有文本
+  return escapeHTML(text);
+};
 
 const copy = async (text: string) => {
   await navigator.clipboard.writeText(text)
