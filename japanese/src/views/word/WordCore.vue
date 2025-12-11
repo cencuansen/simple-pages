@@ -32,6 +32,7 @@
               placeholder="单词"
               class="header-filter"
               @input="applyFilters"
+              cache-id="word-keyword"
             />
           </div>
         </template>
@@ -81,6 +82,7 @@
               placeholder="释义"
               class="header-filter"
               @input="applyFilters"
+              cache-id="word-desc"
             />
           </div>
         </template>
