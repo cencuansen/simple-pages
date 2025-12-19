@@ -9,7 +9,10 @@
       {{ displayText(row.speaker.trim()) }}
     </el-text>
     <div class="right">
-      <div class="row">
+      <div
+        class="row"
+        :class="{ 'justify-right': rightRows?.has(row.textId) }"
+      >
         <Reading
           v-if="!isResource(row.content)"
           class="row-icon"
@@ -20,13 +23,17 @@
           :class="{
             active: activeText(row.textId),
           }"
-          v-html="textView(textPreprocess(row.content))"
+          v-html="textView(textPreprocess(row.content, row.textId))"
         />
         <el-text v-if="true" class="text-id" @click="copy(row.textId)">
-          {{ row.textId }}
+          &nbsp;{{ row.textId }}
         </el-text>
       </div>
-      <div class="translate" v-if="translate && !isResource(row.content)">
+      <div
+        class="translate indentation"
+        :class="{ 'justify-right': rightRows?.has(row.textId) }"
+        v-if="translate && !isResource(row.content)"
+      >
         <span>{{ row.translation }}</span>
       </div>
     </div>
@@ -34,6 +41,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { displayText } from '../../utils/lesson.ts'
 import Reading from '../../components/Reading.vue'
 import type { TextBase } from '../../types/lesson.ts'
@@ -42,6 +50,8 @@ import { ElNotification } from 'element-plus'
 
 const readingStore = useReadingStore()
 const activeText = readingStore.activeText
+
+const rightRows = ref<Map<string, boolean>>(new Map())
 
 interface LessonRowProps {
   rows?: TextBase[]
@@ -61,40 +71,45 @@ function isResource(text: string): boolean {
 
 function escapeHTML(str: string): string {
   return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
 }
 
 function isSafeFilename(filename: string): boolean {
   // 只允许字母、数字、下划线、点号、短横线
-  return /^[a-zA-Z0-9._-]+$/.test(filename);
+  return /^[a-zA-Z0-9._-]+$/.test(filename)
 }
 
-const textPreprocess = (text: string): string => {
-  if (!text) return "";
+const textPreprocess = (text: string, id: string): string => {
+  if (!text) return ''
 
-  const match = text.match(resourceRegex);
+  if (/^\s{2,}/.test(text)) {
+    console.log(id)
+    rightRows.value?.set(id, true)
+  }
+
+  const match = text.match(resourceRegex)
   if (match) {
-    const type = match[1];
-    const filename = match[2];
+    const type = match[1]
+    const filename = match[2]
 
-    if (type === "img" && isSafeFilename(filename)) {
-      const imageUrlBase: string = import.meta.env.VITE_IMAGE_BASE;
-      const safeFilename = escapeHTML(filename);
-      const safeUrl = `${imageUrlBase}/${encodeURIComponent(filename)}`;
-      return `<img src="${safeUrl}" alt="${safeFilename}" />`;
+    if (type === 'img' && isSafeFilename(filename)) {
+      const imageUrlBase: string = import.meta.env.VITE_IMAGE_BASE
+      const safeFilename = escapeHTML(filename)
+      const safeUrl = `${imageUrlBase}/${encodeURIComponent(filename)}`
+      return `<img src="${safeUrl}" alt="${safeFilename}" />`
     }
 
     // 非法文件名或非 img 类型，直接转义输出
-    return escapeHTML(text);
+    return escapeHTML(text)
   }
 
   // 默认情况：转义所有文本
-  return escapeHTML(text);
-};
+  return escapeHTML(text)
+}
 
 const copy = async (text: string) => {
   await navigator.clipboard.writeText(text)
@@ -165,5 +180,10 @@ const copy = async (text: string) => {
 .translate {
   font-size: 1.5rem;
   color: #999;
+}
+
+.justify-right {
+  display: inline-block;
+  text-align: right;
 }
 </style>

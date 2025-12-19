@@ -7513,7 +7513,7 @@
     "sentences": [],
     "conversations": [],
     "discussions": {
-      "title": "{日本取材|にほんしゅざい}の[{成果|せいか}‖i_4ccfe93cd25d]",
+      "title": "{日本取材|にほんしゅざい}の[{成|せい}{果|か}‖i_4ccfe93cd25d]",
       "contents": [
         [
           {
@@ -7653,7 +7653,22 @@
           "textId": "i_f5344fda4e01"
         },
         {
+          "textId": "i_f5344fda4e02"
+        },
+        {
+          "textId": "i_f5344fda4e03"
+        },
+        {
+          "textId": "i_f5344fda4e04"
+        },
+        {
           "textId": "i_f924b2b0eddb"
+        },
+        {
+          "textId": "i_f5344fda4e05"
+        },
+        {
+          "textId": "i_f5344fda4e06"
         },
         {
           "textId": "i_e9c0b080b110"
@@ -7662,16 +7677,43 @@
           "textId": "i_112bfdb291d0"
         },
         {
+          "textId": "i_f5344fda4e07"
+        },
+        {
           "textId": "i_e92e9f9906c0"
+        },
+        {
+          "textId": "i_f5344fda4e08"
         },
         {
           "textId": "i_55bd0370ba7b"
         },
         {
+          "textId": "i_f5344fda4e09"
+        },
+        {
+          "textId": "i_f5344fda4e10"
+        },
+        {
+          "textId": "i_f5344fda4e11"
+        },
+        {
           "textId": "i_a0af1842cee8"
         },
         {
+          "textId": "i_f5344fda4e12"
+        },
+        {
+          "textId": "i_f5344fda4e13"
+        },
+        {
+          "textId": "i_f5344fda4e14"
+        },
+        {
           "textId": "i_0110b29a4d44"
+        },
+        {
+          "textId": "i_f5344fda4e15"
         }
       ]
     }
