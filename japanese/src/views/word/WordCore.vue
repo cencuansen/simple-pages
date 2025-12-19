@@ -50,7 +50,7 @@
               {{ scope.row.word }}
             </div>
             <div v-if="settingStore.kana" class="column-kana">
-              {{ scope.row.kana }}
+              {{ toHiragana(scope.row.kana) }}
             </div>
             <div v-if="settingStore.kana" class="column-kana">
               {{ toRomaji(scope.row.kana) }}
@@ -198,7 +198,7 @@ import Reading from '../../components/Reading.vue'
 import DictionarySelector from '../../components/Dictionary/DictionarySelector.vue'
 import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
 import { isNumber } from '@/utils/common.ts'
-import { toRomaji } from '@/utils/tool.ts'
+import { toRomaji, toHiragana } from '@/utils/tool.ts'
 
 import type { Dictionary as DictionaryType } from '../../types/dictionary.ts'
 import { storeToRefs } from 'pinia'
