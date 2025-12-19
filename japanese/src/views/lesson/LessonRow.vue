@@ -9,10 +9,7 @@
       {{ displayText(row.speaker.trim()) }}
     </el-text>
     <div class="right">
-      <div
-        class="row"
-        :class="{ 'justify-right': rightRows?.has(row.textId) }"
-      >
+      <div class="row" :class="{ 'justify-right': rightRows?.has(row.textId) }">
         <Reading
           v-if="!isResource(row.content)"
           class="row-icon"
@@ -25,7 +22,11 @@
           }"
           v-html="textView(textPreprocess(row.content, row.textId))"
         />
-        <el-text v-if="true" class="text-id" @click="copy(row.textId)">
+        <el-text
+          v-if="settingStore.devMode"
+          class="text-id"
+          @click="copy(row.textId)"
+        >
           &nbsp;{{ row.textId }}
         </el-text>
       </div>
@@ -46,10 +47,13 @@ import { displayText } from '../../utils/lesson.ts'
 import Reading from '../../components/Reading.vue'
 import type { TextBase } from '../../types/lesson.ts'
 import { useReadingStore } from '@/stores/readingStore.ts'
+import { useSettingStore } from '@/stores/settingStore.ts'
 import { ElNotification } from 'element-plus'
 
 const readingStore = useReadingStore()
 const activeText = readingStore.activeText
+
+const settingStore = useSettingStore()
 
 const rightRows = ref<Map<string, boolean>>(new Map())
 

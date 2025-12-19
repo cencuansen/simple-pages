@@ -33,6 +33,7 @@ export const useSettingStore = defineStore(
     const ttsSpeak = ref(true)
 
     const fullscreen = ref(false)
+    const devMode = ref(false)
 
     const setFullscreen = (newStatus: boolean) => {
       fullscreen.value = newStatus
@@ -77,6 +78,7 @@ export const useSettingStore = defineStore(
       wordLink,
       furigana,
       translate,
+      devMode,
       word,
       kana,
       wordDesc,

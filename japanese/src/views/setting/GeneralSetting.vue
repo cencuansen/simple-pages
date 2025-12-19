@@ -37,6 +37,9 @@
               :inactive-icon="Sunny"
             />
           </el-form-item>
+          <el-form-item label="开发模式">
+            <el-switch v-model="settingStore.devMode" inline-prompt />
+          </el-form-item>
         </div>
       </el-form-item>
     </el-form>

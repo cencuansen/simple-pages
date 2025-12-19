@@ -90,7 +90,7 @@
           {{ scope.row.desc }}
         </template>
       </el-table-column>
-      <el-table-column label="id" width="110" show-overflow-tooltip>
+      <el-table-column v-if="settingStore.devMode" label="id" width="110" show-overflow-tooltip>
         <template #default="scope">
           <el-text @click="copy(scope.row.textId)">
             {{ scope.row.textId }}
