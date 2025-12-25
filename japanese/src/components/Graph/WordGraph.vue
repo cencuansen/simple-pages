@@ -34,7 +34,7 @@ const history = ref<WordItem[]>([])
 
 // --- 类型筛选配置 ---
 const activeType = ref('全部')
-const relationTypes = ['全部', '同音', '读音相近', '包含/派生', '共有词根']
+const relationTypes = ['全部', '同音', '近音', '子集', '衍生']
 
 // --- 全屏逻辑 ---
 const toggleFullscreen = () => {
@@ -60,9 +60,9 @@ const findRelatedWords = (targetWord: WordItem) => {
   // 定义分组桶
   const groups: Record<string, { node: Node; link: Link }[]> = {
     同音: [],
-    读音相近: [],
-    '包含/派生': [],
-    共有词根: [],
+    近音: [],
+    子集: [],
+    衍生: [],
   }
 
   const normalizeKana = (k: string) =>
@@ -77,18 +77,18 @@ const findRelatedWords = (targetWord: WordItem) => {
     if (w.kana === targetWord.kana) {
       type = '同音'
     } else if (normalizeKana(w.kana) === normalizeKana(targetWord.kana)) {
-      type = '读音相近'
+      type = '近音'
     } else if (
       w.word.includes(targetWord.word) ||
       targetWord.word.includes(w.word)
     ) {
-      type = '包含/派生'
+      type = '子集'
     } else if (targetKanji.length > 0) {
       const currentKanji = extractKanji(w.word)
       const common = [...targetKanji].filter((char) =>
         currentKanji.includes(char)
       )
-      if (common.length > 0) type = '共有词根'
+      if (common.length > 0) type = '衍生'
     }
 
     if (type && groups[type]) {
@@ -106,9 +106,9 @@ const findRelatedWords = (targetWord: WordItem) => {
     // 均衡分配：每种类型先取 8 个，确保多样性，总数约 30 个
     return [
       ...groups['同音'].slice(0, 8),
-      ...groups['读音相近'].slice(0, 8),
-      ...groups['包含/派生'].slice(0, 8),
-      ...groups['共有词根'].slice(0, 8),
+      ...groups['近音'].slice(0, 8),
+      ...groups['子集'].slice(0, 8),
+      ...groups['衍生'].slice(0, 8),
     ]
   }
 }
@@ -165,7 +165,7 @@ const initGraph = async (targetWord: WordItem) => {
     .data(links)
     .join('line')
     .attr('stroke', 'var(--el-border-color)')
-    .attr('stroke-dasharray', (d) => (d.type === '共有词根' ? '4 4' : '0')) // 词根共有用虚线表示
+    .attr('stroke-dasharray', (d) => (d.type === '衍生' ? '4 4' : '0')) // 词根共有用虚线表示
     .attr('stroke-width', 1.5)
 
   const linkText = g
@@ -298,17 +298,8 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
             size="small"
             @click="goBack"
           />
-          <el-segmented
-            v-model="activeType"
-            :options="relationTypes"
-            size="small"
-            class="type-filter"
-          />
         </div>
         <div class="right">
-          <el-tag effect="plain" round size="small" class="center-tag">
-            中心词：{{ currentWord.word }}
-          </el-tag>
           <el-button
             :icon="isFullscreen ? Aim : FullScreen"
             circle
@@ -316,6 +307,14 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
             @click="toggleFullscreen"
           />
         </div>
+      </div>
+      <div class="graph-relation-type">
+        <el-segmented
+          v-model="activeType"
+          :options="relationTypes"
+          size="small"
+          class="type-filter"
+        />
       </div>
       <div ref="containerRef" class="svg-wrapper">
         <svg ref="svgRef" class="relation-svg"></svg>
@@ -403,9 +402,9 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
   height: 100%;
 }
 
-.graph-toolbar {
+.graph-toolbar,
+.graph-relation-type {
   position: absolute;
-  top: 12px;
   left: 12px;
   right: 12px;
   z-index: 10;
@@ -415,12 +414,25 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
   pointer-events: none;
 }
 
+.graph-toolbar {
+  top: 12px;
+}
+
 .graph-toolbar .left,
 .graph-toolbar .right {
   pointer-events: auto;
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.graph-relation-type {
+  top: 45px;
+  pointer-events: auto;
+}
+
+.el-segmented {
+  margin: 0 auto;
 }
 
 .hint-text {
