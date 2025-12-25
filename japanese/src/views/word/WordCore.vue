@@ -90,7 +90,12 @@
           {{ scope.row.desc }}
         </template>
       </el-table-column>
-      <el-table-column v-if="settingStore.devMode" label="id" width="110" show-overflow-tooltip>
+      <el-table-column
+        v-if="settingStore.devMode"
+        label="id"
+        width="110"
+        show-overflow-tooltip
+      >
         <template #default="scope">
           <el-text @click="copy(scope.row.textId)">
             {{ scope.row.textId }}
@@ -122,6 +127,17 @@
           <div v-for="level in scope.row.levels">
             {{ level }}
           </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="联想" width="60">
+        <template #default="scope">
+          <el-button
+            type="primary"
+            link
+            @click="showRelation(scope.row as WordItem)"
+          >
+            联想
+          </el-button>
         </template>
       </el-table-column>
       <el-table-column
@@ -165,12 +181,28 @@
       </template>
     </el-table>
   </div>
+
   <SimplePagination
     v-if="pagination"
     :data="beforePage"
     :page-size="pageSize"
     @page-change="pageChange"
   />
+
+  <el-dialog
+    :modal="true"
+    v-model="drawerVisible"
+    title="词汇联想"
+    fullscreen
+    center
+  >
+    <WordGraph
+      v-if="graphTargetWord"
+      :current-word="graphTargetWord"
+      :all-words="props.data"
+      @node-click="handleNodeClick"
+    />
+  </el-dialog>
 </template>
 
 <script lang="ts" setup>
@@ -189,14 +221,15 @@ import { useReadingStore } from '@/stores/readingStore.ts'
 import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
 import type { ActiveWord, WordItem } from '@/types/word.ts'
 import { ElNotification, ElTable } from 'element-plus'
-import Row from '../../components/Row.vue'
-import LessonSelect from '../../components/LessonSelect.vue'
-import SimpleSelect from '../../components/SimpleSelect.vue'
-import SimpleInput from '../../components/SimpleInput.vue'
-import SimplePagination from '../../components/SimplePagination.vue'
-import Reading from '../../components/Reading.vue'
-import DictionarySelector from '../../components/Dictionary/DictionarySelector.vue'
-import DictionaryCore from '../../components/Dictionary/DictionaryCore.vue'
+import Row from '@/components/Row.vue'
+import LessonSelect from '@/components/LessonSelect.vue'
+import SimpleSelect from '@/components/SimpleSelect.vue'
+import SimpleInput from '@/components/SimpleInput.vue'
+import SimplePagination from '@/components/SimplePagination.vue'
+import Reading from '@/components/Reading.vue'
+import DictionarySelector from '@/components/Dictionary/DictionarySelector.vue'
+import DictionaryCore from '@/components/Dictionary/DictionaryCore.vue'
+import WordGraph from '@/components/Graph/WordGraph.vue'
 import { isNumber } from '@/utils/common.ts'
 import { toRomaji, toHiragana } from '@/utils/tool.ts'
 
@@ -358,6 +391,22 @@ const copy = async (text: string) => {
   ElNotification.success(`Copied!`)
 }
 
+// 控制抽屉显示
+const drawerVisible = ref(false)
+const graphTargetWord = ref<WordItem | null>(null)
+
+// 点击触发展示关系图
+const showRelation = (row: WordItem) => {
+  graphTargetWord.value = row
+  drawerVisible.value = true
+}
+
+// 在图表中点击了其他单词节点，跳转或查看该单词
+const handleNodeClick = (word: WordItem) => {
+  // 可以是关闭抽屉并定位到该单词，或者直接在图表中切换中心词
+  graphTargetWord.value = word
+}
+
 onBeforeUnmount(() => {
   speechStore.stop()
 })
@@ -416,5 +465,25 @@ onActivated(async () => {
   gap: var(--gap-12);
   align-items: center;
   justify-content: safe center;
+}
+
+/* 详情卡片样式 */
+.word-detail-card {
+  margin-top: 20px;
+  border-top: 2px solid #409eff;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+.kana-text {
+  color: #666;
+  font-size: 0.9rem;
+}
+.desc-text {
+  margin-top: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 </style>

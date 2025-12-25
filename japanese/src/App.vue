@@ -194,6 +194,10 @@ onUnmounted(() => {
   padding: 0;
 }
 
+:deep(.el-segmented__item-label) {
+  z-index: 0;
+}
+
 .router-view {
   width: 100vw;
   display: flex;
