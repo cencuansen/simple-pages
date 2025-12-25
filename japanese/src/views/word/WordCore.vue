@@ -195,6 +195,7 @@
     title="词汇联想"
     fullscreen
     center
+    append-to-body
   >
     <WordGraph
       v-if="graphTargetWord"
@@ -467,23 +468,7 @@ onActivated(async () => {
   justify-content: safe center;
 }
 
-/* 详情卡片样式 */
-.word-detail-card {
-  margin-top: 20px;
-  border-top: 2px solid #409eff;
-}
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.2rem;
-}
-.kana-text {
-  color: #666;
-  font-size: 0.9rem;
-}
-.desc-text {
-  margin-top: 10px;
-  font-size: 1rem;
-  line-height: 1.5;
+:deep(.el-dialog__body) {
+  height: 100% !important;
 }
 </style>

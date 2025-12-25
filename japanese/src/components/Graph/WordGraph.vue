@@ -34,7 +34,7 @@ const history = ref<WordItem[]>([])
 
 // --- 类型筛选配置 ---
 const activeType = ref('全部')
-const relationTypes = ['全部', '同音', '近音', '子集', '衍生']
+const relationTypes = ['全部', '同音', '近音', '近义', '子集', '衍生']
 
 // --- 全屏逻辑 ---
 const toggleFullscreen = () => {
@@ -56,11 +56,20 @@ const handleFullscreenChange = () => {
 }
 
 // --- 关联逻辑计算 (含配额均衡分配) ---
+let groups: Record<string, { node: Node; link: Link }[]> = {
+  全部: [],
+  同音: [],
+  近音: [],
+  近义: [],
+  子集: [],
+  衍生: [],
+}
 const findRelatedWords = (targetWord: WordItem) => {
-  // 定义分组桶
-  const groups: Record<string, { node: Node; link: Link }[]> = {
+  groups = {
+    全部: [],
     同音: [],
     近音: [],
+    近义: [],
     子集: [],
     衍生: [],
   }
@@ -68,22 +77,40 @@ const findRelatedWords = (targetWord: WordItem) => {
   const normalizeKana = (k: string) =>
     k?.replace(/[っッーぁぃぅぇぉゃゅょ]/g, '') ?? ''
   const extractKanji = (s: string) => s.replace(/[^\u4e00-\u9faf]/g, '')
+
   const targetKanji = extractKanji(targetWord.word)
+  // 提取释义核心词（简单处理：取前两个字或按顿号拆分）
+  const targetMeanings = targetWord.desc
+    .split(/[，、；;]/)
+    .map((s) => s.trim())
+    .filter((s) => s.length > 1)
 
   props.allWords.forEach((w) => {
     if (w.textId === targetWord.textId) return
 
     let type = ''
+
+    // 1. 同音判定
     if (w.kana === targetWord.kana) {
       type = '同音'
-    } else if (normalizeKana(w.kana) === normalizeKana(targetWord.kana)) {
+    }
+    // 2. 近音判定
+    else if (normalizeKana(w.kana) === normalizeKana(targetWord.kana)) {
       type = '近音'
-    } else if (
+    }
+    // 3. 近义判定 (通过释义交叉匹配)
+    else if (targetMeanings.some((m) => w.desc.includes(m))) {
+      type = '近义'
+    }
+    // 4. 子集判定 (包含关系)
+    else if (
       w.word.includes(targetWord.word) ||
       targetWord.word.includes(w.word)
     ) {
       type = '子集'
-    } else if (targetKanji.length > 0) {
+    }
+    // 5. 衍生判定 (共有汉字)
+    else if (targetKanji.length > 0) {
       const currentKanji = extractKanji(w.word)
       const common = [...targetKanji].filter((char) =>
         currentKanji.includes(char)
@@ -92,23 +119,26 @@ const findRelatedWords = (targetWord: WordItem) => {
     }
 
     if (type && groups[type]) {
-      groups[type].push({
+      w.tags = type
+      const node = {
         node: { id: w.textId, data: w, isCurrent: false },
         link: { source: targetWord.textId, target: w.textId, type },
-      })
+      }
+      groups[type].push(node)
+      groups['全部'].push(node)
     }
   })
 
-  // 结果合并策略
   if (activeType.value !== '全部') {
-    return groups[activeType.value as keyof typeof groups].slice(0, 30) || []
+    return groups[activeType.value]?.slice(0, 30) || []
   } else {
-    // 均衡分配：每种类型先取 8 个，确保多样性，总数约 30 个
+    // 均衡分配：确保小类不被大类淹没
     return [
-      ...groups['同音'].slice(0, 8),
-      ...groups['近音'].slice(0, 8),
-      ...groups['子集'].slice(0, 8),
-      ...groups['衍生'].slice(0, 8),
+      ...groups['同音'].slice(0, 6),
+      ...groups['近音'].slice(0, 6),
+      ...groups['近义'].slice(0, 6),
+      ...groups['子集'].slice(0, 6),
+      ...groups['衍生'].slice(0, 6),
     ]
   }
 }
@@ -121,6 +151,7 @@ const initGraph = async (targetWord: WordItem) => {
   const width = containerRef.value.clientWidth
   const height = containerRef.value.clientHeight
 
+  targetWord.tags = ''
   const relatedData = findRelatedWords(targetWord)
   visibleWords.value = [targetWord, ...relatedData.map((d) => d.node.data)]
 
@@ -165,7 +196,9 @@ const initGraph = async (targetWord: WordItem) => {
     .data(links)
     .join('line')
     .attr('stroke', 'var(--el-border-color)')
-    .attr('stroke-dasharray', (d) => (d.type === '衍生' ? '4 4' : '0')) // 词根共有用虚线表示
+    .attr('stroke-dasharray', (d) =>
+      d.type === '衍生' || d.type === '近义' ? '4 4' : '0'
+    )
     .attr('stroke-width', 1.5)
 
   const linkText = g
@@ -272,8 +305,12 @@ onUnmounted(() => {
   document.removeEventListener('fullscreenchange', handleFullscreenChange)
 })
 
-// 监听当前词变化或筛选类型变化
-watch([() => props.currentWord, activeType], () => {
+watch([() => props.currentWord], () => {
+  activeType.value = '全部'
+  initGraph(props.currentWord)
+})
+
+watch([activeType], () => {
   initGraph(props.currentWord)
 })
 
@@ -308,14 +345,15 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
           />
         </div>
       </div>
+
       <div class="graph-relation-type">
         <el-segmented
           v-model="activeType"
-          :options="relationTypes"
-          size="small"
+          :options="relationTypes.filter((r) => Boolean(groups[r].length))"
           class="type-filter"
         />
       </div>
+
       <div ref="containerRef" class="svg-wrapper">
         <svg ref="svgRef" class="relation-svg"></svg>
       </div>
@@ -339,16 +377,23 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
           </template>
         </el-table-column>
         <el-table-column prop="desc" label="释义" show-overflow-tooltip />
-        <el-table-column label="操作" width="80" align="right">
+        <el-table-column
+          prop="tags"
+          label="类型"
+          width="60"
+          show-overflow-tooltip
+        />
+        <el-table-column label="操作" width="60" align="right">
           <template #default="{ row }">
             <el-button
               v-if="row.textId !== currentWord.textId"
               type="primary"
               link
               @click="handleNodeTransition(row)"
-              >聚焦</el-button
             >
-            <el-text v-else type="primary" size="small">中心</el-text>
+              联想
+            </el-button>
+            <el-text v-else type="primary" size="small"></el-text>
           </template>
         </el-table-column>
       </el-table>
