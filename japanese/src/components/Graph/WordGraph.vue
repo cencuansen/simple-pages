@@ -26,16 +26,19 @@ const emit = defineEmits(['node-click'])
 // --- 响应式变量 ---
 const svgRef = ref<SVGSVGElement | null>(null)
 const containerRef = ref<HTMLDivElement | null>(null)
-const graphBoxRef = ref<HTMLDivElement | null>(null) // 全屏目标容器
-const isFullscreen = ref(false) // 全屏状态记录
+const graphBoxRef = ref<HTMLDivElement | null>(null)
+const isFullscreen = ref(false)
 
-const visibleWords = ref<WordItem[]>([]) // 当前图中展示的单词列表
-const history = ref<WordItem[]>([]) // 历史记录栈
+const visibleWords = ref<WordItem[]>([])
+const history = ref<WordItem[]>([])
+
+// --- 类型筛选配置 ---
+const activeType = ref('全部')
+const relationTypes = ['全部', '同音', '读音相近', '包含/派生', '共有词根']
 
 // --- 全屏逻辑 ---
 const toggleFullscreen = () => {
   if (!graphBoxRef.value) return
-
   if (!document.fullscreenElement) {
     graphBoxRef.value.requestFullscreen().catch((err) => {
       console.error(`全屏模式启动失败: ${err.message}`)
@@ -45,49 +48,69 @@ const toggleFullscreen = () => {
   }
 }
 
-// 监听全屏切换事件（处理 Esc 键退出）
 const handleFullscreenChange = () => {
   isFullscreen.value = !!document.fullscreenElement
-  // 全屏状态切换后重新计算 D3 中心点
   nextTick(() => {
     if (props.currentWord) initGraph(props.currentWord)
   })
 }
 
-// --- 关联逻辑计算 ---
+// --- 关联逻辑计算 (含配额均衡分配) ---
 const findRelatedWords = (targetWord: WordItem) => {
-  const related: { node: Node; link: Link }[] = []
+  // 定义分组桶
+  const groups: Record<string, { node: Node; link: Link }[]> = {
+    同音: [],
+    读音相近: [],
+    '包含/派生': [],
+    共有词根: [],
+  }
+
   const normalizeKana = (k: string) =>
-    Boolean(k) ? k.replace(/[っッーぁぃぅぇぉゃゅょ]/g, '') : ''
+    k?.replace(/[っッーぁぃぅぇぉゃゅょ]/g, '') ?? ''
+  const extractKanji = (s: string) => s.replace(/[^\u4e00-\u9faf]/g, '')
+  const targetKanji = extractKanji(targetWord.word)
 
   props.allWords.forEach((w) => {
     if (w.textId === targetWord.textId) return
 
-    let relationType = ''
+    let type = ''
     if (w.kana === targetWord.kana) {
-      relationType = '同音'
+      type = '同音'
     } else if (normalizeKana(w.kana) === normalizeKana(targetWord.kana)) {
-      relationType = '相近'
+      type = '读音相近'
     } else if (
       w.word.includes(targetWord.word) ||
       targetWord.word.includes(w.word)
     ) {
-      relationType = '含相同词'
+      type = '包含/派生'
+    } else if (targetKanji.length > 0) {
+      const currentKanji = extractKanji(w.word)
+      const common = [...targetKanji].filter((char) =>
+        currentKanji.includes(char)
+      )
+      if (common.length > 0) type = '共有词根'
     }
 
-    if (relationType) {
-      related.push({
+    if (type && groups[type]) {
+      groups[type].push({
         node: { id: w.textId, data: w, isCurrent: false },
-        link: {
-          source: targetWord.textId,
-          target: w.textId,
-          type: relationType,
-        },
+        link: { source: targetWord.textId, target: w.textId, type },
       })
     }
   })
 
-  return related.slice(0, 20)
+  // 结果合并策略
+  if (activeType.value !== '全部') {
+    return groups[activeType.value as keyof typeof groups].slice(0, 30) || []
+  } else {
+    // 均衡分配：每种类型先取 8 个，确保多样性，总数约 30 个
+    return [
+      ...groups['同音'].slice(0, 8),
+      ...groups['读音相近'].slice(0, 8),
+      ...groups['包含/派生'].slice(0, 8),
+      ...groups['共有词根'].slice(0, 8),
+    ]
+  }
 }
 
 // --- D3 渲染引擎 ---
@@ -95,7 +118,6 @@ const initGraph = async (targetWord: WordItem) => {
   await nextTick()
   if (!svgRef.value || !containerRef.value) return
 
-  // 动态获取当前容器宽高（支持全屏自适应）
   const width = containerRef.value.clientWidth
   const height = containerRef.value.clientHeight
 
@@ -116,15 +138,12 @@ const initGraph = async (targetWord: WordItem) => {
 
   const svg = d3.select(svgRef.value)
   svg.selectAll('*').remove()
-
   const g = svg.append('g')
 
   const zoom = d3
     .zoom<SVGSVGElement, unknown>()
     .scaleExtent([0.1, 3])
-    .on('zoom', (event) => {
-      g.attr('transform', event.transform)
-    })
+    .on('zoom', (event) => g.attr('transform', event.transform))
   svg.call(zoom as any)
 
   const simulation = d3
@@ -138,7 +157,7 @@ const initGraph = async (targetWord: WordItem) => {
     )
     .force('charge', d3.forceManyBody().strength(-500))
     .force('center', d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(60))
+    .force('collision', d3.forceCollide().radius(65))
 
   const link = g
     .append('g')
@@ -146,6 +165,7 @@ const initGraph = async (targetWord: WordItem) => {
     .data(links)
     .join('line')
     .attr('stroke', 'var(--el-border-color)')
+    .attr('stroke-dasharray', (d) => (d.type === '共有词根' ? '4 4' : '0')) // 词根共有用虚线表示
     .attr('stroke-width', 1.5)
 
   const linkText = g
@@ -207,11 +227,9 @@ const initGraph = async (targetWord: WordItem) => {
       .attr('y1', (d: any) => d.source.y)
       .attr('x2', (d: any) => d.target.x)
       .attr('y2', (d: any) => d.target.y)
-
     linkText
       .attr('x', (d: any) => (d.source.x + d.target.x) / 2)
       .attr('y', (d: any) => (d.source.y + d.target.y) / 2)
-
     node.attr('transform', (d: any) => `translate(${d.x},${d.y})`)
   })
 }
@@ -242,12 +260,9 @@ const handleNodeTransition = (newWord: WordItem) => {
 
 const goBack = () => {
   const prev = history.value.pop()
-  if (prev) {
-    emit('node-click', prev)
-  }
+  if (prev) emit('node-click', prev)
 }
 
-// --- 生命周期与监听 ---
 onMounted(() => {
   initGraph(props.currentWord)
   document.addEventListener('fullscreenchange', handleFullscreenChange)
@@ -257,12 +272,10 @@ onUnmounted(() => {
   document.removeEventListener('fullscreenchange', handleFullscreenChange)
 })
 
-watch(
-  () => props.currentWord,
-  (newVal) => {
-    initGraph(newVal)
-  }
-)
+// 监听当前词变化或筛选类型变化
+watch([() => props.currentWord, activeType], () => {
+  initGraph(props.currentWord)
+})
 
 const tableRowClassName = ({ row }: { row: WordItem }) => {
   return row.textId === props.currentWord.textId ? 'active-row' : ''
@@ -285,18 +298,22 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
             size="small"
             @click="goBack"
           />
-          <el-tag effect="dark" round>
-            中心词：{{ currentWord.word }}
-          </el-tag>
+          <el-segmented
+            v-model="activeType"
+            :options="relationTypes"
+            size="small"
+            class="type-filter"
+          />
         </div>
         <div class="right">
-          <span class="hint-text">滚轮缩放 / 拖拽移动 / 点击进入</span>
+          <el-tag effect="plain" round size="small" class="center-tag">
+            中心词：{{ currentWord.word }}
+          </el-tag>
           <el-button
             :icon="isFullscreen ? Aim : FullScreen"
             circle
             size="small"
             @click="toggleFullscreen"
-            :title="isFullscreen ? '退出全屏' : '全屏展示'"
           />
         </div>
       </div>
@@ -307,36 +324,32 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
 
     <div v-if="!isFullscreen" class="list-box">
       <el-table :data="visibleWords" stripe :row-class-name="tableRowClassName">
-        <el-table-column prop="word" label="单词" width="120">
+        <el-table-column prop="word" label="单词">
           <template #default="{ row }">
-            <span
+            <div
               :class="[
                 'word-text',
                 { 'is-center': row.textId === currentWord.textId },
               ]"
             >
               {{ row.word }}
-            </span>
-          </template>
-        </el-table-column>
-        <el-table-column prop="kana" label="读音" width="150" />
-        <el-table-column prop="pos" label="词性" width="100">
-          <template #default="{ row }">
-            <el-tag v-if="row.pos" size="small" type="info" ghost>{{ row.pos }}</el-tag>
+            </div>
+            <div v-if="row.word !== row.kana" class="kana-subtext">
+              {{ row.kana }}
+            </div>
           </template>
         </el-table-column>
         <el-table-column prop="desc" label="释义" show-overflow-tooltip />
-        <el-table-column label="操作" width="100" align="right">
+        <el-table-column label="操作" width="80" align="right">
           <template #default="{ row }">
             <el-button
               v-if="row.textId !== currentWord.textId"
               type="primary"
               link
               @click="handleNodeTransition(row)"
+              >聚焦</el-button
             >
-              聚焦
-            </el-button>
-            <el-text v-else type="primary" size="small">当前中心</el-text>
+            <el-text v-else type="primary" size="small">中心</el-text>
           </template>
         </el-table-column>
       </el-table>
@@ -346,7 +359,7 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
 
 <style>
 :root {
-  --box-max-width: 800px
+  --box-max-width: 800px;
 }
 </style>
 
@@ -364,7 +377,7 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
   width: 100%;
   max-width: var(--box-max-width);
   margin: 0 auto;
-  height: 700px;
+  height: calc(100vh - 250px);
   background-color: var(--el-bg-color-page);
   background-image:
     linear-gradient(var(--el-border-color-lighter) 1px, transparent 1px),
