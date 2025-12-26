@@ -148,19 +148,25 @@ const initGraph = async (targetWord: WordItem) => {
   await nextTick()
   if (!svgRef.value || !containerRef.value) return
 
+  // 1. 动态获取当前物理容器宽高
   const width = containerRef.value.clientWidth
   const height = containerRef.value.clientHeight
+
+  // 如果宽高获取不到（可能是全屏切换瞬时），提前退出防止 D3 报错
+  if (width === 0 || height === 0) return
 
   targetWord.tags = ''
   const relatedData = findRelatedWords(targetWord)
   visibleWords.value = [targetWord, ...relatedData.map((d) => d.node.data)]
 
+  // 2. 构造节点数据
+  // 注意：如果节点已存在坐标，D3 会保留，所以我们需要在全屏切换时辅助它们回到视觉中心
   const nodes: Node[] = [
     {
       id: targetWord.textId,
       data: targetWord,
       isCurrent: true,
-      x: width / 2,
+      x: width / 2, // 强行初始定位到中心
       y: height / 2,
     },
     ...relatedData.map((d) => ({ ...d.node })),
@@ -171,12 +177,17 @@ const initGraph = async (targetWord: WordItem) => {
   svg.selectAll('*').remove()
   const g = svg.append('g')
 
+  // 3. Zoom 自适应处理
   const zoom = d3
     .zoom<SVGSVGElement, unknown>()
     .scaleExtent([0.1, 3])
     .on('zoom', (event) => g.attr('transform', event.transform))
-  svg.call(zoom as any)
 
+  svg.call(zoom as any)
+  // 每次重绘重置缩放比例，确保全屏后节点在视野内
+  svg.call(zoom.transform as any, d3.zoomIdentity)
+
+  // 4. 力导向引擎配置
   const simulation = d3
     .forceSimulation<Node>(nodes)
     .force(
@@ -187,9 +198,11 @@ const initGraph = async (targetWord: WordItem) => {
         .distance(160)
     )
     .force('charge', d3.forceManyBody().strength(-500))
+    // 关键：确保中心力根据当前 width/height 动态计算
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('collision', d3.forceCollide().radius(65))
 
+  // 渲染连线和节点... (保持你原有的渲染代码)
   const link = g
     .append('g')
     .selectAll('line')
@@ -231,7 +244,6 @@ const initGraph = async (targetWord: WordItem) => {
     )
     .attr('stroke', 'var(--el-color-primary)')
     .attr('stroke-width', 2)
-    .style('filter', 'drop-shadow(0 2px 6px var(--el-box-shadow-lighter))')
 
   node
     .append('text')
@@ -301,7 +313,7 @@ const clearHistory = () => {
 }
 
 defineExpose({
-  clearHistory
+  clearHistory,
 })
 
 onMounted(() => {
@@ -444,7 +456,6 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
   border: 1px solid var(--el-border-color);
   border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 /* 全屏状态样式适配 */
@@ -533,10 +544,6 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
 .word-text.is-center {
   color: var(--el-color-primary);
   font-weight: bold;
-}
-
-:deep(.el-table__row) {
-  transition: background-color 0.3s;
 }
 
 .relation-svg {
