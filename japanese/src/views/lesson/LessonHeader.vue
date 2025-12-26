@@ -14,27 +14,27 @@
         v-if="settingStore.translate"
         @click="toggleTranslate"
       >
-        翻译 T
+        翻译 ALT+T
       </el-button>
       <el-button
         :type="settingStore.furigana ? 'primary' : ''"
         title="注音"
         @click="settingStore.furiganaToggle"
       >
-        注音 H
+        注音 ALT+H
       </el-button>
       <el-button
         :type="settingStore.wordLink ? 'primary' : ''"
         title="单词跳转"
         @click="settingStore.wordLinkToggle"
       >
-        跳转 W
+        跳转 ALT+W
       </el-button>
       <el-button title="搜索" @click="setDialog(!dialog)">
-        搜索 S
+        搜索 ALT+S
       </el-button>
       <el-button title="全屏" v-if="!fullscreen" @click="toggleFullscreen">
-        全屏 F
+        全屏 ALT+F
       </el-button>
       <el-button
         :type="''"
@@ -43,7 +43,7 @@
         v-if="hasAudio && settingStore.audioSpeak"
         @click="playAudio({ id: lessonAudio || '', text: lessonAudio || '' })"
       >
-        播放 P
+        播放 ALT+P
       </el-button>
       <el-button
         v-if="isReading"
@@ -55,7 +55,7 @@
           }
         "
       >
-        停止 S
+        停止 ALT+P
       </el-button>
     </div>
   </div>

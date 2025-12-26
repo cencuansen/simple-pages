@@ -107,12 +107,26 @@ const onKeydown = (event: KeyboardEvent) => {
 }
 
 const onKeyup = (event: KeyboardEvent) => {
+  // 1. 更新 Ctrl 键的状态（用于 UI 反馈等）
   isCtrlPressed.value = event.ctrlKey
-  if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey) {
+
+  // 2. 核心逻辑：如果没按下 Alt 键，则不触发滚动逻辑
+  if (!event.altKey) {
     return
   }
-  if (Object.keys(hotkeyRefMap.value).includes(event.key)) {
-    hotkeyRefMap.value[event.key]?.scrollIntoView({
+
+  event.preventDefault()
+
+  // 3. 匹配对应的按键
+  // 建议：如果 hotkeyRefMap 的 key 是大写的（如 'A'），
+  // 在按下 Ctrl 时 event.key 可能是 'a'，使用 .toLowerCase() 或 .toUpperCase() 匹配更稳健
+  const targetKey = event.key;
+
+  if (Object.keys(hotkeyRefMap.value).includes(targetKey)) {
+    // 阻止浏览器默认行为（例如 Ctrl+F 搜索，Ctrl+S 保存等）
+    event.preventDefault()
+
+    hotkeyRefMap.value[targetKey]?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
       inline: 'nearest',

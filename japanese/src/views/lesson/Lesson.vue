@@ -284,30 +284,47 @@ const goLessonContent = async (lessonIndex: number, textId: string = '') => {
 }
 
 const onSingleKeyup = (event: KeyboardEvent) => {
-  if (event.ctrlKey || event.altKey || event.shiftKey || event.metaKey) {
+  // 如果没有按下 altKey，则直接返回，不执行任何快捷键
+  if (!event.altKey) {
     return
   }
-  if (['ArrowLeft'].includes(event.key)) {
-    lessonStore.goPrevious()
-  } else if (['ArrowRight'].includes(event.key)) {
-    lessonStore.goNext()
-  } else if (['s'].includes(event.key)) {
-    setDialog(!dialog.value)
-  } else if (['t'].includes(event.key)) {
-    toggleTranslate()
-  } else if (['h'].includes(event.key)) {
-    furiganaToggle()
-  } else if (['w'].includes(event.key)) {
-    wordLinkToggle()
-  } else if (['f'].includes(event.key)) {
-    toggleFullscreen()
-  } else if (['p'].includes(event.key)) {
-    if (isPlaying.value) {
-      stopSpeech()
-      pauseAudio()
-    } else {
-      playAudio({ id: lessonAudio.value || '', text: lessonAudio.value || '' })
-    }
+
+  // 阻止浏览器的默认行为（可选，例如 Ctrl+S 默认是保存网页）
+  event.preventDefault()
+
+  switch (event.key.toLowerCase()) {
+    case 'arrowleft':
+      lessonStore.goPrevious()
+      break
+    case 'arrowright':
+      lessonStore.goNext()
+      break
+    case 's':
+      setDialog(!dialog.value)
+      break
+    case 't':
+      toggleTranslate()
+      break
+    case 'h':
+      furiganaToggle()
+      break
+    case 'w':
+      wordLinkToggle()
+      break
+    case 'f':
+      toggleFullscreen()
+      break
+    case 'p':
+      if (isPlaying.value) {
+        stopSpeech()
+        pauseAudio()
+      } else {
+        playAudio({
+          id: lessonAudio.value || '',
+          text: lessonAudio.value || '',
+        })
+      }
+      break
   }
 }
 
