@@ -22,6 +22,7 @@
     />
     <SimpleInput v-if="keywordFilter" v-model="keyword" />
   </Row>
+
   <div ref="container" class="main-table" @scrollend="scrollend">
     <el-table :data="afterPage" :show-header="showHeader" stripe>
       <el-table-column min-width="100">
@@ -191,15 +192,17 @@
 
   <el-dialog
     :modal="true"
-    v-model="drawerVisible"
+    v-model="showDialog"
     title="词汇联想"
     fullscreen
     center
     append-to-body
+    @close="closeDialog"
   >
     <WordGraph
-      v-if="graphTargetWord"
-      :current-word="graphTargetWord"
+      v-if="graphWord"
+      ref="graphRef"
+      :current-word="graphWord"
       :all-words="props.data"
       @node-click="handleNodeClick"
     />
@@ -270,6 +273,8 @@ const props = withDefaults(defineProps<WordProps>(), {
 
 const lessonIndex = ref<number | undefined>()
 const keyword = ref<string>('')
+
+const graphRef = ref<InstanceType<typeof WordGraph> | null>(null)
 
 // 新增：单词和释义的过滤条件
 const wordFilter = ref<string>('')
@@ -393,19 +398,24 @@ const copy = async (text: string) => {
 }
 
 // 控制抽屉显示
-const drawerVisible = ref(false)
-const graphTargetWord = ref<WordItem | null>(null)
+const showDialog = ref(false)
+const graphWord = ref<WordItem | null>(null)
 
 // 点击触发展示关系图
 const showRelation = (row: WordItem) => {
-  graphTargetWord.value = row
-  drawerVisible.value = true
+  graphWord.value = row
+  showDialog.value = true
+}
+
+const closeDialog = () => {
+  // 调用子组件暴露的方法
+  graphRef.value?.clearHistory()
 }
 
 // 在图表中点击了其他单词节点，跳转或查看该单词
 const handleNodeClick = (word: WordItem) => {
   // 可以是关闭抽屉并定位到该单词，或者直接在图表中切换中心词
-  graphTargetWord.value = word
+  graphWord.value = word
 }
 
 onBeforeUnmount(() => {

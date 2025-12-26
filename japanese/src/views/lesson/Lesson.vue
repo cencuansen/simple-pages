@@ -81,6 +81,7 @@
         <WordCore
           :data="words"
           :active-word="activeWord"
+          :lesson-index="currentIndex"
           show-header
           pagination
         />
@@ -256,9 +257,7 @@ const mainHeight = computed(() => {
 })
 
 const words: ComputedRef<WordItem[]> = computed(() => {
-  return wordStore.queryWords({
-    lesson: currentIndex.value,
-  })
+  return wordStore.wordList
 })
 
 const grammars = computed(() => {

@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import * as d3 from 'd3'
 import type { WordItem } from '@/types/word.ts'
-import { ArrowLeft, FullScreen, Aim } from '@element-plus/icons-vue'
+import { ArrowLeft, FullScreen, Close } from '@element-plus/icons-vue'
 
 // --- 接口定义 ---
 interface Node extends d3.SimulationNodeDatum {
@@ -90,32 +90,32 @@ const findRelatedWords = (targetWord: WordItem) => {
 
     let type = ''
 
-    // 1. 同音判定
+    const currentMeanings = w.desc
+      .split(/[，、；;]/)
+      .map((s) => s.trim())
+      .filter((s) => s.length > 1)
+
     if (w.kana === targetWord.kana) {
       type = '同音'
-    }
-    // 2. 近音判定
-    else if (normalizeKana(w.kana) === normalizeKana(targetWord.kana)) {
+    } else if (normalizeKana(w.kana) === normalizeKana(targetWord.kana)) {
       type = '近音'
-    }
-    // 3. 近义判定 (通过释义交叉匹配)
-    else if (targetMeanings.some((m) => w.desc.includes(m))) {
+    } else if (
+      targetMeanings.some((m) => currentMeanings.some((c) => c === m))
+    ) {
       type = '近义'
-    }
-    // 4. 子集判定 (包含关系)
-    else if (
+    } else if (
       w.word.includes(targetWord.word) ||
       targetWord.word.includes(w.word)
     ) {
       type = '子集'
-    }
-    // 5. 衍生判定 (共有汉字)
-    else if (targetKanji.length > 0) {
+    } else if (targetKanji.length > 0) {
       const currentKanji = extractKanji(w.word)
       const common = [...targetKanji].filter((char) =>
         currentKanji.includes(char)
       )
       if (common.length > 0) type = '衍生'
+    } else if (targetMeanings.some((m) => w.desc.includes(m))) {
+      type = '衍生'
     }
 
     if (type && groups[type]) {
@@ -296,6 +296,14 @@ const goBack = () => {
   if (prev) emit('node-click', prev)
 }
 
+const clearHistory = () => {
+  history.value = []
+}
+
+defineExpose({
+  clearHistory
+})
+
 onMounted(() => {
   initGraph(props.currentWord)
   document.addEventListener('fullscreenchange', handleFullscreenChange)
@@ -338,7 +346,7 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
         </div>
         <div class="right">
           <el-button
-            :icon="isFullscreen ? Aim : FullScreen"
+            :icon="isFullscreen ? Close : FullScreen"
             circle
             size="small"
             @click="toggleFullscreen"
@@ -376,6 +384,12 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
             </div>
           </template>
         </el-table-column>
+        <el-table-column
+          v-if="visibleWords.length && visibleWords[0].pos"
+          prop="pos"
+          label="词性"
+          show-overflow-tooltip
+        />
         <el-table-column prop="desc" label="释义" show-overflow-tooltip />
         <el-table-column
           prop="tags"
