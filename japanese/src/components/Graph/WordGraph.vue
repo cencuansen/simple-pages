@@ -39,7 +39,13 @@
     </div>
 
     <div class="list-box">
-      <WordCore :data="visibleWords" :show-header="true" :show-tags="true" :page-size="20" :pagination="true"/>
+      <WordCore
+        :data="visibleWords"
+        :show-header="true"
+        :show-tags="true"
+        :page-size="20"
+        :pagination="true"
+      />
     </div>
   </div>
 </template>
@@ -132,7 +138,9 @@ const findRelatedWords = (targetWord: WordItem) => {
     .map((s) => s.trim())
     .filter((s) => s.length > 1)
 
-  props.allWords.forEach((w) => {
+  props.allWords.forEach((word) => {
+    // 创建数据副本。如果直接修改原始数据会导致单词表格重新渲染
+    const w = Object.assign({}, word)
     if (w.textId === targetWord.textId) return
 
     let type = ''
@@ -202,16 +210,18 @@ const initGraph = async (targetWord: WordItem) => {
   // 如果宽高获取不到（可能是全屏切换瞬时），提前退出防止 D3 报错
   if (width === 0 || height === 0) return
 
-  targetWord.tags = ''
-  const relatedData = findRelatedWords(targetWord)
-  visibleWords.value = [targetWord, ...relatedData.map((d) => d.node.data)]
+  // 创建数据副本。如果直接修改原始数据会导致单词表格重新渲染
+  const word = Object.assign({}, targetWord)
+  word.tags = ''
+  const relatedData = findRelatedWords(word)
+  visibleWords.value = [word, ...relatedData.map((d) => d.node.data)]
 
   // 2. 构造节点数据
   // 注意：如果节点已存在坐标，D3 会保留，所以我们需要在全屏切换时辅助它们回到视觉中心
   const nodes: Node[] = [
     {
-      id: targetWord.textId,
-      data: targetWord,
+      id: word.textId,
+      data: word,
       isCurrent: true,
       x: width / 2, // 强行初始定位到中心
       y: height / 2,
@@ -279,7 +289,7 @@ const initGraph = async (targetWord: WordItem) => {
     .style('cursor', 'pointer')
     .call(drag(simulation) as any)
     .on('click', (_event, d) => {
-      if (d.id === targetWord.textId) return
+      if (d.id === word.textId) return
       handleNodeTransition(d.data)
     })
 
