@@ -39,9 +39,11 @@
         </template>
         <template #default="scope">
           <div
-            :class="{
-              active: activeText((scope.row as WordItem).textId),
-            }"
+            :style="[
+              activeText((scope.row as WordItem).textId)
+                ? { color: 'var(--el-color-primary)' }
+                : {},
+            ]"
           >
             <div
               v-if="settingStore.word"
@@ -130,12 +132,12 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="联想" width="60">
+      <el-table-column v-if="showRelation" label="联想" width="60">
         <template #default="scope">
           <el-button
             type="primary"
             link
-            @click="showRelation(scope.row as WordItem)"
+            @click="relationClick(scope.row as WordItem)"
           >
             联想
           </el-button>
@@ -191,6 +193,7 @@
   />
 
   <el-dialog
+    v-if="showRelation"
     :modal="true"
     v-model="showDialog"
     title="词汇联想"
@@ -198,6 +201,8 @@
     center
     append-to-body
     @close="closeDialog"
+    @open="onDialogOpen"
+    @closed="onDialogClosed"
   >
     <WordGraph
       v-if="graphWord"
@@ -245,6 +250,7 @@ interface WordProps {
   pageSize?: number
   activeWord?: ActiveWord | null
   showLesson?: boolean
+  showRelation?: boolean
   keyword?: string
   scrollTop?: boolean
   functionGroup?: boolean
@@ -261,6 +267,7 @@ const props = withDefaults(defineProps<WordProps>(), {
   keyword: '',
   scrollTop: false,
   showLesson: false,
+  showRelation: false,
   functionGroup: false,
   showHeader: false,
   lessonIndex: null,
@@ -402,7 +409,7 @@ const showDialog = ref(false)
 const graphWord = ref<WordItem | null>(null)
 
 // 点击触发展示关系图
-const showRelation = (row: WordItem) => {
+const relationClick = (row: WordItem) => {
   graphWord.value = row
   showDialog.value = true
 }
@@ -410,6 +417,30 @@ const showRelation = (row: WordItem) => {
 const closeDialog = () => {
   // 调用子组件暴露的方法
   graphRef.value?.clearHistory()
+}
+
+// 当弹窗打开时，向历史记录插入一个标记
+const onDialogOpen = () => {
+  // 插入一个空的 hash 或状态，防止点击返回键时直接跳出页面
+  window.history.pushState({ dialogOpen: true }, '')
+  window.addEventListener('popstate', handlePopState)
+}
+
+// 监听返回键事件
+const handlePopState = () => {
+  if (showDialog.value) {
+    showDialog.value = false // 仅关闭弹窗，不回退页面
+  }
+}
+
+// 当弹窗关闭时（无论是点 X 还是返回键触发），清理事件和冗余历史
+const onDialogClosed = () => {
+  window.removeEventListener('popstate', handlePopState)
+
+  // 如果是用户点击 X 关闭的（此时历史记录里还有那个标记），需要手动退回一格
+  if (window.history.state?.dialogOpen) {
+    window.history.back()
+  }
 }
 
 // 在图表中点击了其他单词节点，跳转或查看该单词

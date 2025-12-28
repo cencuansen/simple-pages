@@ -7,6 +7,7 @@
       :scroll-top="scrollTop"
       :levelSelect="levelSelect"
       :keyword-filter="keywordFilter"
+      :show-relation="showRelation"
       :page-size="20"
       show-header
     />
@@ -35,6 +36,7 @@ const pagination = ref(true)
 const scrollTop = ref(true)
 const levelSelect = ref(true)
 const keywordFilter = ref(true)
+const showRelation = ref(true)
 
 const tableHeight = computed(() => {
   return tableHeightCalc(functionGroup.value, pagination.value)

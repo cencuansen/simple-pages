@@ -210,8 +210,4 @@ onUnmounted(() => {
   width: 100%;
   height: var(--root-footer-height);
 }
-
-:deep(.active) {
-  color: var(--el-color-primary);
-}
 </style>

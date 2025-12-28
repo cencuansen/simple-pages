@@ -82,6 +82,7 @@
           :data="words"
           :active-word="activeWord"
           :lesson-index="currentIndex"
+          :show-relation="true"
           show-header
           pagination
         />

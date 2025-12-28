@@ -8,6 +8,7 @@
       :lesson-select="lessonSelect"
       :class-select="classSelect"
       :keyword-filter="keywordFilter"
+      :show-relation="showRelation"
       :page-size="20"
       show-header
       show-lesson
@@ -39,6 +40,7 @@ const scrollTop = ref(true)
 const lessonSelect = ref(true)
 const classSelect = ref(true)
 const keywordFilter = ref(true)
+const showRelation = ref(true)
 
 const tableHeight = computed(() => {
   return tableHeightCalc(functionGroup.value, pagination.value)

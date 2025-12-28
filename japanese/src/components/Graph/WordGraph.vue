@@ -38,50 +38,8 @@
       </div>
     </div>
 
-    <div v-if="!isFullscreen" class="list-box">
-      <el-table :data="visibleWords" stripe :row-class-name="tableRowClassName">
-        <el-table-column prop="word" label="单词">
-          <template #default="{ row }">
-            <div
-              :class="[
-                'word-text',
-                { 'is-center': row.textId === currentWord.textId },
-              ]"
-            >
-              {{ row.word }}
-            </div>
-            <div v-if="row.word !== row.kana" class="kana-subtext">
-              {{ row.kana }}
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column
-          v-if="visibleWords.length && visibleWords[0].pos"
-          prop="pos"
-          label="词性"
-          show-overflow-tooltip
-        />
-        <el-table-column prop="desc" label="释义" show-overflow-tooltip />
-        <el-table-column
-          prop="tags"
-          label="类型"
-          width="60"
-          show-overflow-tooltip
-        />
-        <el-table-column label="操作" width="60" align="right">
-          <template #default="{ row }">
-            <el-button
-              v-if="row.textId !== currentWord.textId"
-              type="primary"
-              link
-              @click="handleNodeTransition(row)"
-            >
-              联想
-            </el-button>
-            <el-text v-else type="primary" size="small"></el-text>
-          </template>
-        </el-table-column>
-      </el-table>
+    <div class="list-box">
+      <WordCore :data="visibleWords" :page-size="20" />
     </div>
   </div>
 </template>
@@ -91,6 +49,7 @@ import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import * as d3 from 'd3'
 import type { WordItem } from '@/types/word.ts'
 import { ArrowLeft, FullScreen, Close } from '@element-plus/icons-vue'
+import WordCore from '@/components/Word/WordCore.vue'
 
 // --- 接口定义 ---
 interface Node extends d3.SimulationNodeDatum {
@@ -421,10 +380,6 @@ watch([() => props.currentWord], () => {
 watch([activeType], () => {
   initGraph(props.currentWord)
 })
-
-const tableRowClassName = ({ row }: { row: WordItem }) => {
-  return row.textId === props.currentWord.textId ? 'active-row' : ''
-}
 </script>
 
 <style>
