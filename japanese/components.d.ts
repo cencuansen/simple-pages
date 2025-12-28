@@ -54,6 +54,7 @@ declare module 'vue' {
     SimpleSelect: typeof import('./src/components/SimpleSelect.vue')['default']
     TextSelectionMenu: typeof import('./src/components/TextSelectionMenu/TextSelectionMenu.vue')['default']
     VoiceVox: typeof import('./src/components/VoiceVox/VoiceVox.vue')['default']
+    WordCore: typeof import('./src/components/Word/WordCore.vue')['default']
     WordGraph: typeof import('./src/components/Graph/WordGraph.vue')['default']
   }
   export interface GlobalDirectives {

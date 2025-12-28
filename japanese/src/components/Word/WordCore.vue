@@ -237,7 +237,7 @@ import WordGraph from '@/components/Graph/WordGraph.vue'
 import { isNumber } from '@/utils/common.ts'
 import { toRomaji, toHiragana } from '@/utils/tool.ts'
 
-import type { Dictionary as DictionaryType } from '../../types/dictionary.ts'
+import type { Dictionary as DictionaryType } from '@/types/dictionary.ts'
 import { storeToRefs } from 'pinia'
 
 interface WordProps {
