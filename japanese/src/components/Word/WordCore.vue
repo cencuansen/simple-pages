@@ -147,7 +147,7 @@
         v-if="settingStore.wordDict"
         class-name="dict-column"
         label="词典"
-        width="70"
+        width="60"
       >
         <template #header>
           <DictionarySelector
