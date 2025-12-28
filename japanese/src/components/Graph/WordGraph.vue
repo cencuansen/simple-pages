@@ -1,3 +1,91 @@
+<template>
+  <div class="relation-layout">
+    <div
+      ref="graphBoxRef"
+      class="graph-box"
+      :class="{ 'is-fullscreen': isFullscreen }"
+    >
+      <div class="graph-toolbar">
+        <div class="left">
+          <el-button
+            v-if="history.length > 0"
+            :icon="ArrowLeft"
+            circle
+            size="small"
+            @click="goBack"
+          />
+        </div>
+        <div class="right">
+          <el-button
+            :icon="isFullscreen ? Close : FullScreen"
+            circle
+            size="small"
+            @click="toggleFullscreen"
+          />
+        </div>
+      </div>
+
+      <div class="graph-relation-type">
+        <el-segmented
+          v-model="activeType"
+          :options="relationTypes.filter((r) => Boolean(groups[r].length))"
+          class="type-filter"
+        />
+      </div>
+
+      <div ref="containerRef" class="svg-wrapper">
+        <svg ref="svgRef" class="relation-svg"></svg>
+      </div>
+    </div>
+
+    <div v-if="!isFullscreen" class="list-box">
+      <el-table :data="visibleWords" stripe :row-class-name="tableRowClassName">
+        <el-table-column prop="word" label="单词">
+          <template #default="{ row }">
+            <div
+              :class="[
+                'word-text',
+                { 'is-center': row.textId === currentWord.textId },
+              ]"
+            >
+              {{ row.word }}
+            </div>
+            <div v-if="row.word !== row.kana" class="kana-subtext">
+              {{ row.kana }}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column
+          v-if="visibleWords.length && visibleWords[0].pos"
+          prop="pos"
+          label="词性"
+          show-overflow-tooltip
+        />
+        <el-table-column prop="desc" label="释义" show-overflow-tooltip />
+        <el-table-column
+          prop="tags"
+          label="类型"
+          width="60"
+          show-overflow-tooltip
+        />
+        <el-table-column label="操作" width="60" align="right">
+          <template #default="{ row }">
+            <el-button
+              v-if="row.textId !== currentWord.textId"
+              type="primary"
+              link
+              @click="handleNodeTransition(row)"
+            >
+              联想
+            </el-button>
+            <el-text v-else type="primary" size="small"></el-text>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import * as d3 from 'd3'
@@ -338,94 +426,6 @@ const tableRowClassName = ({ row }: { row: WordItem }) => {
   return row.textId === props.currentWord.textId ? 'active-row' : ''
 }
 </script>
-
-<template>
-  <div class="relation-layout">
-    <div
-      ref="graphBoxRef"
-      class="graph-box"
-      :class="{ 'is-fullscreen': isFullscreen }"
-    >
-      <div class="graph-toolbar">
-        <div class="left">
-          <el-button
-            v-if="history.length > 0"
-            :icon="ArrowLeft"
-            circle
-            size="small"
-            @click="goBack"
-          />
-        </div>
-        <div class="right">
-          <el-button
-            :icon="isFullscreen ? Close : FullScreen"
-            circle
-            size="small"
-            @click="toggleFullscreen"
-          />
-        </div>
-      </div>
-
-      <div class="graph-relation-type">
-        <el-segmented
-          v-model="activeType"
-          :options="relationTypes.filter((r) => Boolean(groups[r].length))"
-          class="type-filter"
-        />
-      </div>
-
-      <div ref="containerRef" class="svg-wrapper">
-        <svg ref="svgRef" class="relation-svg"></svg>
-      </div>
-    </div>
-
-    <div v-if="!isFullscreen" class="list-box">
-      <el-table :data="visibleWords" stripe :row-class-name="tableRowClassName">
-        <el-table-column prop="word" label="单词">
-          <template #default="{ row }">
-            <div
-              :class="[
-                'word-text',
-                { 'is-center': row.textId === currentWord.textId },
-              ]"
-            >
-              {{ row.word }}
-            </div>
-            <div v-if="row.word !== row.kana" class="kana-subtext">
-              {{ row.kana }}
-            </div>
-          </template>
-        </el-table-column>
-        <el-table-column
-          v-if="visibleWords.length && visibleWords[0].pos"
-          prop="pos"
-          label="词性"
-          show-overflow-tooltip
-        />
-        <el-table-column prop="desc" label="释义" show-overflow-tooltip />
-        <el-table-column
-          prop="tags"
-          label="类型"
-          width="60"
-          show-overflow-tooltip
-        />
-        <el-table-column label="操作" width="60" align="right">
-          <template #default="{ row }">
-            <el-button
-              v-if="row.textId !== currentWord.textId"
-              type="primary"
-              link
-              @click="handleNodeTransition(row)"
-            >
-              联想
-            </el-button>
-            <el-text v-else type="primary" size="small"></el-text>
-          </template>
-        </el-table-column>
-      </el-table>
-    </div>
-  </div>
-</template>
 
 <style>
 :root {
