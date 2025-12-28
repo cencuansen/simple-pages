@@ -132,6 +132,7 @@
           </div>
         </template>
       </el-table-column>
+      <el-table-column v-if="showTags" prop="tags" label="标签" width="60"/>
       <el-table-column v-if="showRelation" label="联想" width="60">
         <template #default="scope">
           <el-button
@@ -251,6 +252,7 @@ interface WordProps {
   activeWord?: ActiveWord | null
   showLesson?: boolean
   showRelation?: boolean
+  showTags?: boolean
   keyword?: string
   scrollTop?: boolean
   functionGroup?: boolean
@@ -268,6 +270,7 @@ const props = withDefaults(defineProps<WordProps>(), {
   scrollTop: false,
   showLesson: false,
   showRelation: false,
+  showTags: false,
   functionGroup: false,
   showHeader: false,
   lessonIndex: null,

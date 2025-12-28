@@ -39,7 +39,7 @@
     </div>
 
     <div class="list-box">
-      <WordCore :data="visibleWords" :page-size="20" :pagination="true"/>
+      <WordCore :data="visibleWords" :show-tags="true" :page-size="20" :pagination="true"/>
     </div>
   </div>
 </template>
