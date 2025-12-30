@@ -49,7 +49,6 @@ import type { TextBase } from '../../types/lesson.ts'
 import { useReadingStore } from '@/stores/readingStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
 import { ElNotification } from 'element-plus'
-import type { WordItem } from '@/types/word.ts'
 
 const readingStore = useReadingStore()
 const activeText = readingStore.activeText
