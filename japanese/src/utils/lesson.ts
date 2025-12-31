@@ -220,7 +220,7 @@ export const searchLesson = (
     const regex = new RegExp(`(${pattern})`, 'gi')
     if (regex.test(text)) {
       // 替换匹配的文本
-      return text.replace(regex, '<span class="active">$1</span>')
+      return text.replace(regex, '<span style="color:var(--el-color-primary)">$1</span>')
     }
     return ''
   }
