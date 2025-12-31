@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useGrammarStore } from '@/stores/grammar/grammarStore.ts'
-import GrammarCore from './GrammarCore.vue'
+import GrammarCore from '../../components/Grammar/GrammarCore.vue'
 import { storeToRefs } from 'pinia'
 import { tableHeightCalc } from '../../utils/word'
 

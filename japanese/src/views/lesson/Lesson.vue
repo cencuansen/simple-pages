@@ -173,7 +173,7 @@ import LessonHeader from './LessonHeader.vue'
 import LessonRow from './LessonRow.vue'
 import Reading from '../../components/Reading.vue'
 import WordCore from '../../components/Word/WordCore.vue'
-import GrammarCore from '../grammar/GrammarCore.vue'
+import GrammarCore from '../../components/Grammar/GrammarCore.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
 import type { TextBase } from '../../types/lesson.ts'
 
