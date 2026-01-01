@@ -113,7 +113,10 @@ const beforePage = computed(() => {
   }
   const regex = new RegExp(`(${keyword.value})`, 'g') // 添加捕获组
   const highlight = (text: string) =>
-    text?.replace(regex, '<span style="color:var(--el-color-primary)">$1</span>')
+    text?.replace(
+      regex,
+      '<span style="color:var(--el-color-primary)">$1</span>'
+    )
 
   list = list.map((item) => {
     const tem = { ...item }
@@ -192,7 +195,7 @@ onActivated(async () => {
 }
 
 .grammar-main {
-  margin-top: 5px;
+  padding-top: 5px;
 }
 
 :deep(.el-collapse-item__content) {
