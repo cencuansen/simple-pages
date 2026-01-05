@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>真棒！</title>
+    <style>
+        :root {
+            --primary-color: #4caf50;
+            --reset-color: #f44336;
+            --bg-color: #fff9c4;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg-color);
+        }
+
+        .game-container {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            position: relative;
+            width: 400px;
+        }
+
+        /* 猫咪区域 */
+        .character-area {
+            position: relative;
+            height: 180px;
+            margin-bottom: 40px;
+        }
+
+        .cat {
+            font-size: 100px;
+            display: inline-block;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+        }
+
+        /* 猫爪子 */
+        .paw {
+            position: absolute;
+            font-size: 50px;
+            top: 110px;
+            left: 50%;
+            /* 初始状态：居中不指向任何东西 */
+            transform: translateX(-50%) translateY(0);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            opacity: 0; /* 默认隐藏 */
+            pointer-events: none;
+        }
+
+        /* 物品区域 */
+        .items-area {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+        }
+
+        .item {
+            font-size: 70px;
+            transition: transform 0.3s;
+        }
+
+        /* 按钮区域 */
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .reset-btn {
+            grid-column: span 2;
+            background-color: var(--reset-color) !important;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 0px #2e7d32;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0px #2e7d32;
+        }
+
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 0px 0px #2e7d32;
+        }
+
+        .status-text {
+            margin-top: 25px;
+            font-size: 20px;
+            color: #333;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <div class="character-area">
+            <div class="cat" id="cat">🐱</div>
+            <div class="paw" id="paw">🐾</div>
+        </div>
+
+        <div class="items-area">
+            <div class="item" id="item-carrot">🥕</div>
+            <div class="item" id="item-tissue">🧻</div>
+        </div>
+
+        <div class="controls">
+            <button onclick="handleAction('萝卜')">萝卜</button>
+            <button onclick="handleAction('纸巾')">纸巾</button>
+            <!-- <button class="reset-btn" onclick="resetGame()">重置</button> -->
+        </div>
+
+        <!-- <div class="status-text" id="status">点点按钮试试看！</div> -->
+    </div>
+
+    <script>
+        const items = [
+            { name: '萝卜', x: -100 },
+            { name: '纸巾', x: 100 }
+        ];
+
+        let isAnimating = false;
+        let shouldStop = false; // 用于中断循环的标识
+
+        // 语音播放
+        function speak(text) {
+            window.speechSynthesis.cancel();
+            const msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'zh-CN';
+            window.speechSynthesis.speak(msg);
+        }
+
+        // 动画逻辑
+        async function handleAction(targetName) {
+            if (isAnimating) return;
+            isAnimating = true;
+            shouldStop = false;
+
+            const statusEl = document.getElementById('status');
+            const paw = document.getElementById('paw');
+
+            // 1. 朗读目标
+            speak(targetName);
+            // statusEl.innerText = `目标：${targetName}`;
+
+            let isCorrect = false;
+            while (!isCorrect && !shouldStop) {
+                // 2. 随机指向
+                const randomIndex = Math.floor(Math.random() * items.length);
+                const chosenItem = items[randomIndex];
+
+                // 3. 移动爪子
+                paw.style.opacity = '1';
+                paw.style.transform = `translateX(calc(-50% + ${chosenItem.x}px)) translateY(40px)`;
+                
+                // 等待动画时间
+                await new Promise(r => setTimeout(r, 600));
+
+                if (shouldStop) break;
+
+                // 4. 判断
+                if (chosenItem.name === targetName) {
+                    speak("真棒");
+                    // statusEl.innerText = "🌟 真棒！";
+                    isCorrect = true;
+		    setTimeout(() => {
+                        resetGame();
+                    }, 1300);
+                } else {
+                    speak(targetName);
+                    // statusEl.innerText = `不对，是${targetName}哦...`;
+                    // 停顿一下再次尝试
+                    await new Promise(r => setTimeout(r, 1000));
+                }
+            }
+
+            isAnimating = false;
+        }
+
+        // 重置游戏
+        function resetGame() {
+            shouldStop = true;
+            isAnimating = false;
+            
+            const statusEl = document.getElementById('status');
+            const paw = document.getElementById('paw');
+            
+            // 语音提示
+            // speak("重置");
+
+            // 爪子归位：回到正中间，取消位移，隐藏
+            paw.style.opacity = '0';
+            paw.style.transform = `translateX(-50%) translateY(0)`;
+            
+            // statusEl.innerText = "已重置，请重新选择。";
+        }
+    </script>
+</body>
+</html>
