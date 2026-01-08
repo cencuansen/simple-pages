@@ -22,6 +22,7 @@ for (const lesson of lessonsLite) {
 
 export interface Lesson {
   textId: string
+  index: number
   content: string
 }
 
