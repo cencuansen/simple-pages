@@ -53,7 +53,11 @@
       <!-- 短文-->
       <section id="article" class="section" v-if="hasArticle">
         <div class="article-title">
-          <Reading :row-items="article?.contents as TextBase[]" />
+          <Reading
+            :row-items="
+              article?.contents.map((c) => buildContent(c.textId)) as TextBase[]
+            "
+          />
           <el-text>
             <h2 v-html="textView(article?.title)"></h2>
           </el-text>
@@ -122,7 +126,11 @@
       </div>
     </el-dialog>
 
-    <LinkTo :container="container" :bind="['.anchor-link']" v-model:activeWord="activeWord" />
+    <LinkTo
+      :container="container"
+      :bind="['.anchor-link']"
+      v-model:activeWord="activeWord"
+    />
 
     <div
       class="close-fullscreen"
@@ -210,7 +218,7 @@ const {
   article,
   lessonAudio,
 } = storeToRefs(lessonStore)
-const { goLesson } = lessonStore
+const { goLesson, buildContent } = lessonStore
 
 const { allTranslate, wordLink, furigana } = storeToRefs(settingStore)
 const toggleTranslate = settingStore.toggleTranslate
