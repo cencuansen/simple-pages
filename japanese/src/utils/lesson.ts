@@ -268,7 +268,7 @@ export const hasNext = (lessonIndex: number) => {
 export const nextIndex = (lessonIndex: number): number => {
   if (!Boolean(lessonIndex)) return validIndex[0]
   const position: number = validIndex.indexOf(lessonIndex)
-  if (position === -1) return lessonIndex
+  if (position === -1) return validIndex[0]
   if (position === validIndex.length - 1) return lessonIndex
   return validIndex[position + 1]
 }
@@ -284,7 +284,7 @@ export const hasPrev = (lessonIndex: number) => {
 export const prevIndex = (lessonIndex: number): number => {
   if (!Boolean(lessonIndex)) return validIndex[0]
   const position: number = validIndex.indexOf(lessonIndex)
-  if (position === -1) return lessonIndex
+  if (position === -1) return validIndex[0]
   if (position === 0) return lessonIndex
   return validIndex[position - 1]
 }

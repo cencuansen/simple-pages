@@ -1,16 +1,13 @@
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
-import type { Lesson } from '@/types/lesson.ts'
+import type { Lesson, TextBase } from '@/types/lesson.ts'
 import {
   getLessonContent,
   getLessonLite,
   getLessonTranslation,
 } from '@/apis/lessonApi.ts'
 import { validIndex } from '@/constants/lesson.ts'
-import { checkIndex, hasNext, hasPrev } from '@/utils/lesson.ts'
-
-// const jpJsonBase = import.meta.env.VITE_JSON_BASE
-// const jpLessonJsonBase = import.meta.env.VITE_LESSON_JSON_BASE
+import { checkIndex, prevIndex, nextIndex } from '@/utils/lesson.ts'
 
 export const useLessonStore = defineStore(
   'lessons',
@@ -29,15 +26,11 @@ export const useLessonStore = defineStore(
     }
 
     const goPrevious = () => {
-      if (hasPrev(currentIndex.value)) {
-        currentIndex.value--
-      }
+      currentIndex.value = prevIndex(currentIndex.value)
     }
 
     const goNext = () => {
-      if (hasNext(currentIndex.value)) {
-        currentIndex.value++
-      }
+      currentIndex.value = nextIndex(currentIndex.value)
     }
 
     const getContent = (textId: string): string => {
@@ -45,6 +38,14 @@ export const useLessonStore = defineStore(
     }
     const getTranslation = (textId: string): string => {
       return translationMap.value.get(textId) ?? ''
+    }
+
+    const buildContent = (textId: string): TextBase => {
+      const obj = {} as TextBase
+      obj.textId = textId
+      obj.ttsAudio = `/${currentIndex.value}/${textId}.mp3`
+      obj.content = contentMap.value.get(textId) ?? ''
+      return obj
     }
 
     const currentLesson = computed(() =>
@@ -92,7 +93,6 @@ export const useLessonStore = defineStore(
     watch(
       () => currentIndex.value,
       async (value) => {
-        console.log('current index changed')
         contentMap.value = await getLessonContent(value)
         translationMap.value = await getLessonTranslation(value)
       }
@@ -105,6 +105,7 @@ export const useLessonStore = defineStore(
       goNext,
       getContent,
       getTranslation,
+      buildContent,
 
       currentLesson,
       lessonTitle,

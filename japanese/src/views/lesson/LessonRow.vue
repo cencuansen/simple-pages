@@ -13,7 +13,7 @@
         <Reading
           v-if="!isResource(getContent(row.textId))"
           class="row-icon"
-          :row-item="row as TextBase"
+          :row-item="buildContent(row.textId) as TextBase"
         />
         <el-text
           class="row-text"
@@ -54,6 +54,7 @@ import { ElNotification } from 'element-plus'
 const lessonStore = useLessonStore()
 const getContent = lessonStore.getContent
 const getTranslation = lessonStore.getTranslation
+const buildContent = lessonStore.buildContent
 
 const readingStore = useReadingStore()
 const activeText = readingStore.activeText
