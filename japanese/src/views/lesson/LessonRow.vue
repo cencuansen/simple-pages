@@ -4,6 +4,7 @@
     class="lesson-row"
     v-for="row in rows"
     :key="row.textId"
+    v-show="getContent(row.textId) && getTranslation(row.textId)"
   >
     <el-text class="left" v-if="row.speaker">
       {{ displayText(row.speaker.trim()) }}
