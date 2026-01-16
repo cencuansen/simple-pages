@@ -26,7 +26,7 @@ export interface Lesson {
   content: string
 }
 
-const csvText = fs.readFileSync('./lesson-contents.csv').toString()
+const csvText = fs.readFileSync('./lessons.csv').toString()
 let lessonsContent: Lesson[] = []
 Papa.parse<Lesson>(csvText, {
   header: true,
@@ -47,4 +47,4 @@ lessonsContent.forEach((lesson) => {
   )
 })
 
-fs.writeFileSync('./new-lesson-contents.csv', result.join('\n'))
+fs.writeFileSync('./new-lessons.csv', result.join('\n'))

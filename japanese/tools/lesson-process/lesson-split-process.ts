@@ -178,10 +178,10 @@ data1.forEach((lesson: Lesson) => {
 
 fs.writeFileSync('./lesson-lite.json', JSON.stringify(data1, null, 2))
 fs.writeFileSync(
-  './lesson-contents.csv',
+  './lessons.csv',
   `textId,content\n${lessonContents.join('\n')}`
 )
 fs.writeFileSync(
-  './lesson-translations.csv',
+  './translations.csv',
   `textId,content\n${lessonTranslations.join('\n')}`
 )

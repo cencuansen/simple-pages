@@ -87,8 +87,8 @@ export const useLessonStore = defineStore(
         }
       } catch (err) {
         error.value =
-          err instanceof Error ? err.message : 'Failed to fetch lesson-contents'
-        console.error('Error fetching lesson-contents:', err)
+          err instanceof Error ? err.message : 'Failed to fetch lessons'
+        console.error('Error fetching lessons:', err)
       } finally {
         isLoading.value = false
       }
