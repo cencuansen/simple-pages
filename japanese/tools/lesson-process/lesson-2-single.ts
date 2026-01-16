@@ -7,7 +7,7 @@ export interface Lesson {
   content: string
 }
 
-const csvText = fs.readFileSync('./lessons.csv').toString()
+const csvText = fs.readFileSync('./lesson-contents.csv').toString()
 let contents: Lesson[] = []
 Papa.parse<Lesson>(csvText, {
   header: true,
