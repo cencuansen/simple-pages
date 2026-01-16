@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useLessonStore } from '../stores/lessonStore.ts'
-import { displayText } from '@/utils/lesson.ts'
+// import { displayText } from '@/utils/lesson.ts'
 import { validIndex } from '@/constants/lesson.ts'
 
 interface Lesson {
@@ -115,22 +115,22 @@ const selectedValue = computed({
   },
 })
 
-// 获取选项标签
-const getOptionLabel = (lesson: Lesson | []) => {
-  if (props.formatLabel) {
-    return props.formatLabel(lesson)
-  }
-  const title = lesson.title
-  return displayText(title)
-}
-
-// 获取选项值
-const getOptionValue = (lesson: Lesson) => {
-  if (props.getValue) {
-    return props.getValue(lesson)
-  }
-  return lesson.index
-}
+// // 获取选项标签
+// const getOptionLabel = (lesson: Lesson | []) => {
+//   if (props.formatLabel) {
+//     return props.formatLabel(lesson)
+//   }
+//   const title = lesson.title
+//   return displayText(title)
+// }
+//
+// // 获取选项值
+// const getOptionValue = (lesson: Lesson) => {
+//   if (props.getValue) {
+//     return props.getValue(lesson)
+//   }
+//   return lesson.index
+// }
 
 const levelClass = (index: number) => {
   if (index < 200) {
