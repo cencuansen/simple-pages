@@ -4,16 +4,13 @@
     class="lesson-row"
     v-for="row in rows"
     :key="row.textId"
+    v-loading="!getContent(row.textId) || !getTranslation(row.textId)"
   >
     <el-text class="left" v-if="row.speaker">
       {{ displayText(row.speaker.trim()) }}
     </el-text>
     <div class="right">
-      <div
-        class="row"
-        :class="{ 'justify-right': rightRows?.has(row.textId) }"
-        v-loading="!getContent(row.textId)"
-      >
+      <div class="row" :class="{ 'justify-right': rightRows?.has(row.textId) }">
         <Reading
           v-if="!isResource(getContent(row.textId))"
           class="row-icon"
@@ -38,7 +35,6 @@
         class="translate indentation"
         :class="{ 'justify-right': rightRows?.has(row.textId) }"
         v-if="translate && !isResource(getContent(row.textId))"
-        v-loading="!getTranslation(row.textId)"
       >
         <span>{{ getTranslation(row.textId) }}</span>
       </div>
