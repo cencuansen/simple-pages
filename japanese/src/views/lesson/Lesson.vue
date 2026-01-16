@@ -122,7 +122,7 @@
       </div>
     </el-dialog>
 
-    <LinkTo :container="container" :bind="['.anchor-link']" />
+    <LinkTo :container="container" :bind="['.anchor-link']" v-model:activeWord="activeWord" />
 
     <div
       class="close-fullscreen"

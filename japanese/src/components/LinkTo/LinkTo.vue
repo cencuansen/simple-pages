@@ -12,10 +12,10 @@ import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useLessonStore } from '@/stores/lessonStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
 import { storeToRefs } from 'pinia'
+import type { ActiveWord } from '@/types/word.ts'
 
 const lessonStore = useLessonStore()
 const { currentIndex } = storeToRefs(lessonStore)
-const setActiveWord = lessonStore.setActiveWord
 
 const settingStore = useSettingStore()
 const { wordLink } = storeToRefs(settingStore)
@@ -25,7 +25,16 @@ interface LinkToProps {
   bind: string | string[]
 }
 
-const props = defineProps<LinkToProps>()
+const props = defineProps<
+  LinkToProps & {
+    activeWord: ActiveWord | null
+  }
+>()
+
+const emit = defineEmits(['update:activeWord'])
+const setActiveWord = (activeWord: ActiveWord | null) => {
+  emit('update:activeWord', activeWord)
+}
 
 // 历史记录
 const linkHistory = ref<HTMLElement[]>([])

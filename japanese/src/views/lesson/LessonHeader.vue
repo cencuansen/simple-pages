@@ -95,9 +95,9 @@ const emit = defineEmits(['update:dialog', 'update:fullscreen'])
 
 const toggleTranslate = settingStore.toggleTranslate
 
-const toggleDialog = () => {
-  emit('update:dialog', !props.dialog)
-}
+// const toggleDialog = () => {
+//   emit('update:dialog', !props.dialog)
+// }
 
 const toggleFullscreen = () => {
   emit('update:fullscreen', !props.fullscreen)

@@ -13,6 +13,7 @@ export const useLessonStore = defineStore(
   'lessons',
   () => {
     const currentIndex = ref(validIndex[0])
+    const lessons = ref<Lesson[]>([])
     const lessonMap = ref<Map<number, Lesson>>(new Map())
     const contentMap = ref<Map<string, string>>(new Map())
     const translationMap = ref<Map<string, string>>(new Map())
@@ -100,6 +101,7 @@ export const useLessonStore = defineStore(
 
     return {
       init,
+      lessons,
       goLesson,
       goPrevious,
       goNext,
