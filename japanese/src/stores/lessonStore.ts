@@ -7,6 +7,7 @@ import type { ActiveWord } from '@/types/word.ts'
 import Papa from 'papaparse'
 
 const jpJsonBase = import.meta.env.VITE_JSON_BASE
+// const jpLessonJsonBase = import.meta.env.VITE_LESSON_JSON_BASE
 
 interface LessonRelation {
   textId: string
