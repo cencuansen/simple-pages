@@ -1,9 +1,14 @@
 <template>
-  <div class="lessons" v-if="hasLessons">
+  <div class="lessons">
     <div class="lesson-main" ref="container" @scrollend="onScrollEnd">
       <div ref="top"></div>
 
-      <LessonHeader id="header" v-if="!fullscreen" />
+      <LessonHeader
+        id="header"
+        v-if="!fullscreen"
+        v-model:dialog="dialog"
+        v-model:fullscreen="fullscreen"
+      />
 
       <section class="section">
         <el-text>
@@ -75,7 +80,7 @@
 
       <!-- 单词 -->
       <section id="words" class="section" ref="wordsRef">
-        <el-tag v-if="activeWord" closable @close="setActiveWord(null)">
+        <el-tag v-if="activeWord" closable @close="activeWord = null">
           正在查看单词：{{ activeWord?.word }}
         </el-tag>
         <WordCore
@@ -123,7 +128,7 @@
       class="close-fullscreen"
       title="退出全屏"
       v-if="fullscreen"
-      @click="toggleFullscreen"
+      @click="fullscreen = false"
     >
       <svg
         width="24"
@@ -160,7 +165,7 @@ import { useSpeechStore } from '@/stores/speechStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
 import { useWordStore } from '@/stores/wordStore.ts'
 import { useGrammarStore } from '@/stores/grammar/grammarStore.ts'
-import type { WordItem } from '@/types/word.ts'
+import type { ActiveWord, WordItem } from '@/types/word.ts'
 import { searchLesson, displayText, textParser } from '@/utils/lesson.ts'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
@@ -175,7 +180,7 @@ import Reading from '../../components/Reading.vue'
 import WordCore from '../../components/Word/WordCore.vue'
 import GrammarCore from '../../components/Grammar/GrammarCore.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
-import type { TextBase } from '../../types/lesson.ts'
+import type { LessonSearch, TextBase } from '../../types/lesson.ts'
 
 const readingStore = useReadingStore()
 const lessonStore = useLessonStore()
@@ -187,12 +192,13 @@ const wordStore = useWordStore()
 
 const setNowTextId = readingStore.setNowTextId
 
+const dialog = ref(false)
+const fullscreen = ref(false)
+const activeWord = ref<ActiveWord | null>(null)
+
 const {
-  dialog,
   currentIndex,
   currentLesson,
-  lessons,
-  hasLessons,
   lessonTitle,
   hasSentences,
   sentences,
@@ -202,17 +208,14 @@ const {
   conversations,
   hasArticle,
   article,
-  activeWord,
   lessonAudio,
 } = storeToRefs(lessonStore)
-const { goLesson, setDialog, setActiveWord } = lessonStore
+const { goLesson } = lessonStore
 
-const { fullscreen, allTranslate, wordLink, furigana } =
-  storeToRefs(settingStore)
+const { allTranslate, wordLink, furigana } = storeToRefs(settingStore)
 const toggleTranslate = settingStore.toggleTranslate
 const furiganaToggle = settingStore.furiganaToggle
 const wordLinkToggle = settingStore.wordLinkToggle
-const toggleFullscreen = settingStore.toggleFullscreen
 
 const { isPlaying } = storeToRefs(audioStore)
 const playAudio = audioStore.playAudio
@@ -242,7 +245,8 @@ const container = ref()
 const scrollPosition = ref<number>(0)
 
 const keyword = ref('')
-const fullLessons = computed(() => searchLesson(lessons.value, keyword.value))
+const fullLessons: LessonSearch[] = []
+// const fullLessons = computed(() => searchLesson(lessons.value, keyword.value))
 
 const mainHeight = computed(() => {
   if (fullscreen.value) {
@@ -301,7 +305,7 @@ const onSingleKeyup = (event: KeyboardEvent) => {
       lessonStore.goNext()
       break
     case 's':
-      setDialog(!dialog.value)
+      dialog.value = !dialog.value
       break
     case 't':
       toggleTranslate()
@@ -313,7 +317,7 @@ const onSingleKeyup = (event: KeyboardEvent) => {
       wordLinkToggle()
       break
     case 'f':
-      toggleFullscreen()
+      fullscreen.value = !fullscreen.value
       break
     case 'p':
       if (isPlaying.value) {

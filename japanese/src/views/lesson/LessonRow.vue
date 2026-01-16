@@ -11,7 +11,7 @@
     <div class="right">
       <div class="row" :class="{ 'justify-right': rightRows?.has(row.textId) }">
         <Reading
-          v-if="!isResource(row.content)"
+          v-if="!isResource(getContent(row.textId))"
           class="row-icon"
           :row-item="row as TextBase"
         />
@@ -20,7 +20,7 @@
           :style="[
             activeText(row.textId) ? { color: 'var(--el-color-primary)' } : {},
           ]"
-          v-html="textView(textPreprocess(row.content, row.textId))"
+          v-html="textView(textPreprocess(getContent(row.textId), row.textId))"
         />
         <el-text
           v-if="settingStore.devMode"
@@ -33,9 +33,9 @@
       <div
         class="translate indentation"
         :class="{ 'justify-right': rightRows?.has(row.textId) }"
-        v-if="translate && !isResource(row.content)"
+        v-if="translate && !isResource(getContent(row.textId))"
       >
-        <span>{{ row.translation }}</span>
+        <span>{{ getTranslation(row.textId) }}</span>
       </div>
     </div>
   </div>
@@ -43,12 +43,17 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { displayText } from '../../utils/lesson.ts'
-import Reading from '../../components/Reading.vue'
-import type { TextBase } from '../../types/lesson.ts'
+import { displayText } from '@/utils/lesson.ts'
+import Reading from '@/components/Reading.vue'
+import type { TextBase } from '@/types/lesson.ts'
+import { useLessonStore } from '@/stores/lessonStore.ts'
 import { useReadingStore } from '@/stores/readingStore.ts'
 import { useSettingStore } from '@/stores/settingStore.ts'
 import { ElNotification } from 'element-plus'
+
+const lessonStore = useLessonStore()
+const getContent = lessonStore.getContent
+const getTranslation = lessonStore.getTranslation
 
 const readingStore = useReadingStore()
 const activeText = readingStore.activeText

@@ -45,8 +45,13 @@ const fetchCsvToMap = async (url: string): Promise<Map<string, string>> => {
 
 // --- 导出的 API ---
 
-export const getLessonLite = async (): Promise<Lesson[]> => {
-  return await api.get(`${jsonBase}/lesson-lite.json`).json()
+export const getLessonLite = async (): Promise<Map<number, Lesson>> => {
+  const lessons: Lesson[] = await api.get(`${jsonBase}/lesson-lite.json`).json()
+  const map = new Map<number, Lesson>()
+  lessons.forEach((lesson) => {
+    map.set(lesson.index, lesson)
+  })
+  return map
 }
 
 export const getLessonContent = (lessonIndex: number) =>

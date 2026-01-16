@@ -1,179 +1,55 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
-import { isNumber } from '@/utils/common.ts'
-import type { Lesson, TextBase, LessonRelation } from '../types/lesson.ts'
-import ky from 'ky'
-import type { ActiveWord } from '@/types/word.ts'
-import Papa from 'papaparse'
+import { computed, ref, watch } from 'vue'
+import type { Lesson } from '@/types/lesson.ts'
+import {
+  getLessonContent,
+  getLessonLite,
+  getLessonTranslation,
+} from '@/apis/lessonApi.ts'
+import { validIndex } from '@/constants/lesson.ts'
+import { checkIndex, hasNext, hasPrev } from '@/utils/lesson.ts'
 
-const jpJsonBase = import.meta.env.VITE_JSON_BASE
+// const jpJsonBase = import.meta.env.VITE_JSON_BASE
 // const jpLessonJsonBase = import.meta.env.VITE_LESSON_JSON_BASE
 
 export const useLessonStore = defineStore(
   'lessons',
   () => {
-    // props
-    const lessons = ref<Lesson[]>([])
-    const lessonContentMap = ref<Map<string, string>>(new Map())
-    const lessonTranslationMap = ref<Map<string, string>>(new Map())
-    const isLoading = ref(false)
-    const error = ref<string | null>(null)
-    const currentIndex = ref(-1)
-    const minIndex = ref(0)
-    const maxIndex = ref(0)
-    const dialog = ref(false)
-    const lastElement = ref<HTMLElement | null>()
-    const activeWord = ref<ActiveWord | null>(null)
+    const currentIndex = ref(validIndex[0])
+    const lessonMap = ref<Map<number, Lesson>>(new Map())
+    const contentMap = ref<Map<string, string>>(new Map())
+    const translationMap = ref<Map<string, string>>(new Map())
 
-    // 初始化
     const init = async () => {
-      try {
-        isLoading.value = true
-        error.value = null
-        const lessonLiteResponse = await ky(
-          `${jpJsonBase}/lesson-lite.json?t=${Date.now()}`
-        )
-        const data: Lesson[] = await lessonLiteResponse.json()
+      lessonMap.value = await getLessonLite()
+    }
 
-        const lessonContentResponse = await ky(
-          `${jpJsonBase}/lesson-contents.csv?t=${Date.now()}`
-        )
-        const lessonContentText = await lessonContentResponse.text()
-        Papa.parse<LessonRelation>(lessonContentText, {
-          header: true,
-          skipEmptyLines: true,
-          dynamicTyping: true,
-          complete: (result) => {
-            result.data.forEach((item) => {
-              lessonContentMap.value.set(item.textId, item.content)
-            })
-          },
-          error: (err: any) => {
-            error.value = err.message
-          },
-        })
+    const goLesson = (num: number) => {
+      currentIndex.value = checkIndex(num)
+    }
 
-        const lessonTranslationResponse = await ky(
-          `${jpJsonBase}/lesson-translations.csv?t=${Date.now()}`
-        )
-        const lessonTranslationText = await lessonTranslationResponse.text()
-        Papa.parse<LessonRelation>(lessonTranslationText, {
-          header: true,
-          skipEmptyLines: true,
-          dynamicTyping: true,
-          complete: (result) => {
-            result.data.forEach((item) => {
-              lessonTranslationMap.value.set(item.textId, item.content)
-            })
-          },
-          error: (err: any) => {
-            error.value = err.message
-          },
-        })
-
-        process(data, lessonContentMap.value, lessonTranslationMap.value)
-
-        lessons.value = data
-        minIndex.value = lessons.value[0].index
-        maxIndex.value = lessons.value[lessons.value.length - 1].index
-
-        if (!isValidLessonIndex(currentIndex.value)) {
-          currentIndex.value = minIndex.value
-        }
-      } catch (err) {
-        error.value =
-          err instanceof Error ? err.message : 'Failed to fetch lesson-contents'
-        console.error('Error fetching lesson-contents:', err)
-      } finally {
-        isLoading.value = false
+    const goPrevious = () => {
+      if (hasPrev(currentIndex.value)) {
+        currentIndex.value--
       }
     }
 
-    // -- private functions start --
-    // 检查课程索引是否有效
-    const isValidLessonIndex = (index: number): boolean =>
-      isNumber(index) && index >= minIndex.value && index <= maxIndex.value
-
-    const process = (
-      data: Lesson[],
-      contents: Map<string, string>,
-      translations: Map<string, string>
-    ) => {
-      if (!data || data.length === 0) {
-        return []
+    const goNext = () => {
+      if (hasNext(currentIndex.value)) {
+        currentIndex.value++
       }
-
-      function initItem(item: TextBase, lesson: Lesson) {
-        item.content = contents.get(item.textId) || ''
-        item.translation = translations.get(item.textId)
-        item.ttsAudio = `/${lesson.index}/${item.textId}.mp3`
-      }
-
-      data.forEach((lesson: Lesson) => {
-        lesson.audio = `/${lesson.index}.mp3`
-
-        lesson.sentences?.forEach((item: TextBase) => {
-          initItem(item, lesson)
-        })
-
-        lesson.conversations?.forEach((items: TextBase[]) => {
-          items.forEach((item: TextBase) => {
-            initItem(item, lesson)
-          })
-        })
-
-        lesson.discussions?.contents?.forEach((items: TextBase[]) => {
-          items.forEach((item: TextBase) => {
-            initItem(item, lesson)
-          })
-        })
-
-        lesson.article?.contents?.forEach((item: TextBase) => {
-          initItem(item, lesson)
-        })
-      })
-
-      return data
-    }
-    // -- private functions end --
-
-    // -- setters start --
-    // 切换课程
-    const setCurrentIndex = (index: number) => {
-      isValidLessonIndex(index) && (currentIndex.value = index)
     }
 
-    const setDialog = (val: boolean): void => {
-      dialog.value = val
+    const getContent = (textId: string): string => {
+      return contentMap.value.get(textId) ?? ''
+    }
+    const getTranslation = (textId: string): string => {
+      return translationMap.value.get(textId) ?? ''
     }
 
-    const setLastElement = (el: HTMLElement | null): void => {
-      lastElement.value = el
-    }
-
-    const setActiveWord = (word: ActiveWord | null): void => {
-      activeWord.value = word
-    }
-    // -- setters end --
-
-    // -- computed props start --
     const currentLesson = computed(() =>
-      lessons.value.find((item) => item.index === currentIndex.value)
+      lessonMap.value.get(currentIndex.value)
     )
-    const hasLessons = computed(() => Boolean(currentLesson.value))
-
-    // 全部课程号
-    const lessonIndexs = computed(() => lessons.value.map((les) => les.index))
-
-    const hasPrevious = computed(() => {
-      const position = lessonIndexs.value.indexOf(currentIndex.value)
-      return Boolean(lessonIndexs.value[position - 1])
-    })
-
-    const hasNext = computed(() => {
-      const position = lessonIndexs.value.indexOf(currentIndex.value)
-      return Boolean(lessonIndexs.value[position + 1])
-    })
 
     const lessonTitle = computed(() => currentLesson.value?.title)
 
@@ -211,47 +87,26 @@ export const useLessonStore = defineStore(
     })
     const article = computed(() => currentLesson.value?.article)
 
-    const hasAudio = computed(() => {
-      return currentLesson.value && Boolean(currentLesson.value.audio)
-    })
-    const lessonAudio = computed(() => currentLesson.value?.audio)
-    // -- computed props end --
+    const lessonAudio = computed(() => `/${currentIndex.value}.mp3`)
 
-    // -- functions start --
-    const goPrevious = () => {
-      const position = lessonIndexs.value.indexOf(currentIndex.value)
-      const value = lessonIndexs.value[position - 1]
-      Boolean(value) && (currentIndex.value = value)
-    }
-
-    const goNext = () => {
-      const position = lessonIndexs.value.indexOf(currentIndex.value)
-      const value = lessonIndexs.value[position + 1]
-      Boolean(value) && (currentIndex.value = value)
-    }
-
-    const goLesson = (num: number) => {
-      currentIndex.value = num
-    }
-    // -- functions end --
+    watch(
+      () => currentIndex.value,
+      async (value) => {
+        console.log('current index changed')
+        contentMap.value = await getLessonContent(value)
+        translationMap.value = await getLessonTranslation(value)
+      }
+    )
 
     return {
-      // 属性
-      lessons,
-      isLoading,
-      error,
-      currentIndex,
-      minIndex,
-      maxIndex,
-      dialog,
-      lastElement,
-      activeWord,
+      init,
+      goLesson,
+      goPrevious,
+      goNext,
+      getContent,
+      getTranslation,
 
-      // 计算属性
       currentLesson,
-      hasNext,
-      hasPrevious,
-      hasLessons,
       lessonTitle,
       hasSentences,
       sentences,
@@ -261,20 +116,8 @@ export const useLessonStore = defineStore(
       conversations,
       hasArticle,
       article,
-      hasAudio,
       lessonAudio,
-
-      // setter
-      setCurrentIndex,
-      setDialog,
-      setLastElement,
-      setActiveWord,
-
-      // 方法
-      init,
-      goPrevious,
-      goNext,
-      goLesson,
+      currentIndex,
     }
   },
   {
