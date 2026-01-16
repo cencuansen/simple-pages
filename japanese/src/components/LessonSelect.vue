@@ -45,6 +45,7 @@ import { computed } from 'vue'
 import { useLessonStore } from '../stores/lessonStore.ts'
 // import { displayText } from '@/utils/lesson.ts'
 import { validIndex } from '@/constants/lesson.ts'
+import type { LessonRelation } from '@/types/lesson.ts'
 
 interface Lesson {
   index: number
@@ -74,7 +75,7 @@ interface Props {
   // 自定义标签格式化函数
   formatLabel?: (lesson: Lesson) => string
   // 自定义值获取函数
-  getValue?: (lesson: Lesson) => number | string
+  getValue?: (lesson: LessonRelation) => number | string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -92,13 +93,13 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   'update:modelValue': [value: number | string | null]
-  change: [value: number | string | null, lesson: Lesson | null]
+  change: [value: number | string | null, lesson: LessonRelation | null]
 }>()
 
 const lessonStore = useLessonStore()
 
 // 计算属性获取课程列表
-const lessons = computed(() => lessonStore.lessons || [])
+const lessons = computed(() => lessonStore.fullLessons || [])
 
 // 选中的值
 const selectedValue = computed({

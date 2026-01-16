@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
-import type { Lesson, TextBase } from '@/types/lesson.ts'
+import type { Lesson, LessonRelation, TextBase } from '@/types/lesson.ts'
 import {
-  getLessonContent,
-  getLessonLite,
-  getLessonTranslation,
+  fetchLessonContent,
+  fetchLiteLessons,
+  fetchLessonTranslation,
+  fetchFullLessons,
 } from '@/apis/lessonApi.ts'
 import { validIndex } from '@/constants/lesson.ts'
 import { checkIndex, prevIndex, nextIndex } from '@/utils/lesson.ts'
@@ -13,13 +14,13 @@ export const useLessonStore = defineStore(
   'lessons',
   () => {
     const currentIndex = ref(validIndex[0])
-    const lessons = ref<Lesson[]>([])
+    const fullLessons = ref<LessonRelation[]>([])
     const lessonMap = ref<Map<number, Lesson>>(new Map())
     const contentMap = ref<Map<string, string>>(new Map())
     const translationMap = ref<Map<string, string>>(new Map())
 
     const init = async () => {
-      lessonMap.value = await getLessonLite()
+      lessonMap.value = await fetchLiteLessons()
     }
 
     const goLesson = (num: number) => {
@@ -47,6 +48,14 @@ export const useLessonStore = defineStore(
       obj.ttsAudio = `/${currentIndex.value}/${textId}.mp3`
       obj.content = contentMap.value.get(textId) ?? ''
       return obj
+    }
+
+    const getFullLessons = async (): Promise<LessonRelation[]> => {
+      if (fullLessons.value.length > 0) {
+        return fullLessons.value
+      }
+      fullLessons.value = await fetchFullLessons()
+      return fullLessons.value
     }
 
     const currentLesson = computed(() =>
@@ -91,24 +100,24 @@ export const useLessonStore = defineStore(
 
     const lessonAudio = computed(() => `/${currentIndex.value}.mp3`)
 
-    watch(
-      () => currentIndex.value,
-      async (value) => {
-        contentMap.value = await getLessonContent(value)
-        translationMap.value = await getLessonTranslation(value)
-      }
-    )
+    const onIndexChanged = async (value: number) => {
+      contentMap.value = await fetchLessonContent(value)
+      translationMap.value = await fetchLessonTranslation(value)
+    }
+    watch(() => currentIndex.value, onIndexChanged)
 
     return {
       init,
-      lessons,
+      getFullLessons,
       goLesson,
       goPrevious,
       goNext,
       getContent,
       getTranslation,
       buildContent,
+      onIndexChanged,
 
+      fullLessons,
       currentLesson,
       lessonTitle,
       hasSentences,

@@ -1,6 +1,6 @@
 // 创建单词正则表达式
 import type {
-  Lesson,
+  LessonRelation,
   LessonSearch,
   LessonSearchContent,
 } from '@/types/lesson.ts'
@@ -162,45 +162,36 @@ function toKeywordCoreContent(
 }
 
 export const searchLesson = (
-  lessons: Lesson[],
+  lessons: LessonRelation[],
   keyword: string | undefined
 ): LessonSearch[] => {
-  const flatLessons = lessons.map((lesson) => {
-    return [
-      `${lesson.index}`,
-      lesson.title,
-      ...lesson.sentences.map((a) => `${a.textId}|${displayText(a.content)}`),
-      ...lesson.conversations
-        .flatMap((a) => a)
-        .map((a) => `${a.textId}|${displayText(a.content)}`),
-      ...lesson.discussions.contents
-        .flatMap((a) => a)
-        .map((a) => `${a.textId}|${displayText(a.content)}`),
-      ...lesson.article.contents.map(
-        (a) => `${a.textId}|${displayText(a.content)}`
-      ),
-    ].filter(Boolean) as string[]
-  })
+  const result: LessonSearch[] = []
+  const allIndex = [...new Set(lessons.map((lesson) => lesson.index))]
+  for (const index of allIndex) {
+    const singleLesson = lessons.filter((lesson) => lesson.index === index)
+    result.push({
+      idx: index.toString(),
+      title: '',
+      contents: singleLesson.map((lesson) => {
+        return {
+          textId: lesson.textId,
+          text: lesson.content,
+        }
+      }),
+    })
+  }
+
+  console.log('keyword', keyword)
 
   if (!keyword) {
-    return flatLessons.map((lesson) => {
-      const contents = lesson.slice(2)
-      const initContents: LessonSearchContent[] = contents
-        .slice(0, 2)
-        .map((content) => {
-          const [textId, text] = content.split('|')
-          return { textId, text }
-        })
-      initContents.push({
+    result.forEach((item) => {
+      item.contents = item.contents.slice(0, 2)
+      item.contents.push({
         textId: '',
         text: '...',
       })
-      return {
-        idx: lesson[0],
-        title: lesson[1],
-        contents: initContents,
-      }
     })
+    return result
   }
 
   const keywordHighlight = (text: string, keyword: string): string => {
@@ -230,27 +221,24 @@ export const searchLesson = (
   }
 
   const doHighlight = (
-    content: string,
+    textId: string,
+    text: string,
     keyword: string
   ): LessonSearchContent => {
-    if (!content.includes(keyword)) {
+    if (!text.includes(keyword)) {
       return { textId: '', text: '' }
     }
-    const [textId, text] = content.split('|')
     const liteText = toKeywordCoreContent(text, keyword)
     const result = keywordHighlight(liteText, keyword)
     return { textId, text: result }
   }
 
-  return flatLessons
-    .map((lesson: string[]): LessonSearch => {
-      const contents: LessonSearchContent[] = lesson
-        .slice(2)
-        .map((text: string) => doHighlight(text, keyword))
-        .filter((c) => Boolean(c.text))
-      return { idx: lesson[0], title: lesson[1], contents }
-    })
-    .filter((l) => Boolean(l.contents.length))
+  result.forEach((item) => {
+    item.contents = item.contents
+      .map((content) => doHighlight(content.textId, content.text, keyword))
+      .filter((c) => Boolean(c.text))
+  })
+  return result.filter((item) => Boolean(item.contents.length))
 }
 
 export const trim = (text: string) => {

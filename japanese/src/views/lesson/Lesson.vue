@@ -111,10 +111,10 @@
       <template #header>
         <SimpleInput v-model.lazy="keyword" v-focus />
       </template>
-      <div class="model-result-item" v-for="lesson in fullLessons">
+      <div class="model-result-item" v-for="lesson in searchResult">
         <div
           class="model-lesson-title"
-          v-html="displayText(lesson.title)"
+          v-html="displayText(lesson.idx)"
           @click="goLessonContent(Number(lesson.idx))"
         ></div>
         <div
@@ -163,6 +163,7 @@ import {
   type ComputedRef,
   nextTick,
   onActivated,
+  onMounted,
   ref,
   watch,
 } from 'vue'
@@ -179,6 +180,7 @@ import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 import { scrollToEle, scrollToId } from '@/utils/common'
+import { searchLesson } from '@/utils/lesson'
 import IndexBar from '../../components/IndexBar/IndexBar.vue'
 import LinkTo from '../../components/LinkTo/LinkTo.vue'
 import LessonAudio from './LessonAudio.vue'
@@ -188,7 +190,11 @@ import Reading from '../../components/Reading.vue'
 import WordCore from '../../components/Word/WordCore.vue'
 import GrammarCore from '../../components/Grammar/GrammarCore.vue'
 import SimpleInput from '../../components/SimpleInput.vue'
-import type { LessonSearch, TextBase } from '../../types/lesson.ts'
+import type {
+  LessonRelation,
+  LessonSearch,
+  TextBase,
+} from '../../types/lesson.ts'
 
 const readingStore = useReadingStore()
 const lessonStore = useLessonStore()
@@ -218,7 +224,7 @@ const {
   article,
   lessonAudio,
 } = storeToRefs(lessonStore)
-const { goLesson, buildContent } = lessonStore
+const { goLesson, buildContent, getFullLessons, onIndexChanged } = lessonStore
 
 const { allTranslate, wordLink, furigana } = storeToRefs(settingStore)
 const toggleTranslate = settingStore.toggleTranslate
@@ -253,8 +259,19 @@ const container = ref()
 const scrollPosition = ref<number>(0)
 
 const keyword = ref('')
-const fullLessons: LessonSearch[] = []
-// const fullLessons = computed(() => searchLesson(lessons.value, keyword.value))
+const fullLesson = ref<LessonRelation[]>([])
+watch(
+  () => dialog.value,
+  async (val) => {
+    if (val) {
+      fullLesson.value = await getFullLessons()
+    }
+  }
+)
+
+const searchResult = computed<LessonSearch[]>(() => {
+  return searchLesson(fullLesson.value, keyword.value)
+})
 
 const mainHeight = computed(() => {
   if (fullscreen.value) {
@@ -371,6 +388,10 @@ onActivated(async () => {
 onDeactivated(() => {
   deactivated = true
   document.removeEventListener('keyup', onSingleKeyup)
+})
+
+onMounted(async () => {
+  await onIndexChanged(currentIndex.value)
 })
 </script>
 

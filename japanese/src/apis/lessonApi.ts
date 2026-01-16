@@ -45,7 +45,7 @@ const fetchCsvToMap = async (url: string): Promise<Map<string, string>> => {
 
 // --- 导出的 API ---
 
-export const getLessonLite = async (): Promise<Map<number, Lesson>> => {
+export const fetchLiteLessons = async (): Promise<Map<number, Lesson>> => {
   const lessons: Lesson[] = await api.get(`${jsonBase}/lesson-lite.json`).json()
   const map = new Map<number, Lesson>()
   lessons.forEach((lesson) => {
@@ -54,7 +54,7 @@ export const getLessonLite = async (): Promise<Map<number, Lesson>> => {
   return map
 }
 
-export const getLessonPure = async (): Promise<LessonRelation[]> => {
+export const fetchFullLessons = async (): Promise<LessonRelation[]> => {
   const text = await api.get(`${jsonBase}/lesson-content-pure.csv`).text()
   return new Promise((resolve, reject) => {
     Papa.parse<LessonRelation>(text, {
@@ -69,14 +69,14 @@ export const getLessonPure = async (): Promise<LessonRelation[]> => {
   })
 }
 
-export const getLessonContent = (lessonIndex: number) =>
+export const fetchLessonContent = (lessonIndex: number) =>
   fetchCsvToMap(`${lessonBase}/${lessonIndex}.csv`)
 
-export const getLessonContents = () =>
+export const fetchLessonContents = () =>
   fetchCsvToMap(`${jsonBase}/lesson-contents.csv`)
 
-export const getLessonTranslation = (lessonIndex: number) =>
+export const fetchLessonTranslation = (lessonIndex: number) =>
   fetchCsvToMap(`${translationBase}/${lessonIndex}.csv`)
 
-export const getLessonTranslations = () =>
+export const fetchLessonTranslations = () =>
   fetchCsvToMap(`${jsonBase}/lesson-translations.csv`)
