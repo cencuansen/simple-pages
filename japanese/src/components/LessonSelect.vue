@@ -19,21 +19,21 @@
     </template>
     <el-option
       v-if="!lite"
-      v-for="item in lessons"
-      :label="getOptionLabel(item)"
-      :value="getOptionValue(item)"
+      v-for="item in validIndex"
+      :label="item"
+      :value="item"
       class="option-item"
     >
-      <div class="option-prefix" :class="levelClass(item.index).en">
-        {{ levelClass(item.index).cn }}
+      <div class="option-prefix" :class="levelClass(item).en">
+        {{ levelClass(item).cn }}
       </div>
-      <div class="option-content">{{ getOptionLabel(item) }}</div>
+      <div class="option-content">{{ item }}</div>
     </el-option>
     <el-option
       v-else
-      v-for="item in lessons"
-      :label="item.index"
-      :value="item.index"
+      v-for="item in validIndex"
+      :label="item"
+      :value="item"
       class="option-item"
     >
     </el-option>
@@ -44,6 +44,7 @@
 import { computed } from 'vue'
 import { useLessonStore } from '../stores/lessonStore.ts'
 import { displayText } from '@/utils/lesson.ts'
+import { validIndex } from '@/constants/lesson.ts'
 
 interface Lesson {
   index: number
@@ -115,7 +116,7 @@ const selectedValue = computed({
 })
 
 // 获取选项标签
-const getOptionLabel = (lesson: Lesson) => {
+const getOptionLabel = (lesson: Lesson | []) => {
   if (props.formatLabel) {
     return props.formatLabel(lesson)
   }
