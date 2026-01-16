@@ -4,6 +4,7 @@ import type {
   LessonSearch,
   LessonSearchContent,
 } from '@/types/lesson.ts'
+import { validIndex } from '@/constants/lesson.ts'
 
 // 获取朗读假名
 export const speakText = (text: string | undefined = '') =>
@@ -220,7 +221,10 @@ export const searchLesson = (
     const regex = new RegExp(`(${pattern})`, 'gi')
     if (regex.test(text)) {
       // 替换匹配的文本
-      return text.replace(regex, '<span style="color:var(--el-color-primary)">$1</span>')
+      return text.replace(
+        regex,
+        '<span style="color:var(--el-color-primary)">$1</span>'
+      )
     }
     return ''
   }
@@ -251,4 +255,32 @@ export const searchLesson = (
 
 export const trim = (text: string) => {
   return text.replace(/[ \u3000]/g, '')
+}
+
+export const hasNext = (lessonIndex: number) => {
+  const position: number = validIndex.indexOf(lessonIndex)
+  if (position === -1) return false
+  if (position === validIndex.length - 1) return false
+  return true
+}
+
+export const nextIndex = (lessonIndex: number): number => {
+  const position: number = validIndex.indexOf(lessonIndex)
+  if (position === -1) return lessonIndex
+  if (position === validIndex.length - 1) return lessonIndex
+  return validIndex[position + 1]
+}
+
+export const hasPrev = (lessonIndex: number) => {
+  const position: number = validIndex.indexOf(lessonIndex)
+  if (position === -1) return false
+  if (position === 0) return false
+  return true
+}
+
+export const PrevIndex = (lessonIndex: number): number => {
+  const position: number = validIndex.indexOf(lessonIndex)
+  if (position === -1) return lessonIndex
+  if (position === 0) return lessonIndex
+  return validIndex[position - 1]
 }

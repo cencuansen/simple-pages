@@ -34,6 +34,11 @@ export interface Lesson {
   article: Article
 }
 
+export interface LessonRelation {
+  textId: string
+  content: string
+}
+
 export interface RubyPart {
   text: string
   kana: string
