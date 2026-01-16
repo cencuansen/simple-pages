@@ -124,6 +124,11 @@
           @click="goLessonContent(Number(lesson.idx), content.textId)"
         ></div>
       </div>
+      <div
+        class="model-result-item"
+        v-if="searchResult.length === 0"
+        v-loading="loading"
+      ></div>
     </el-dialog>
 
     <LinkTo
@@ -260,11 +265,14 @@ const scrollPosition = ref<number>(0)
 
 const keyword = ref('')
 const fullLesson = ref<LessonRelation[]>([])
+const loading = ref(false)
 watch(
   () => dialog.value,
   async (val) => {
     if (val) {
+      loading.value = true
       fullLesson.value = await getFullLessons()
+      loading.value = false
     }
   }
 )
