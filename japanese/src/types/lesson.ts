@@ -36,6 +36,7 @@ export interface Lesson {
 
 export interface LessonRelation {
   textId: string
+  index: number
   content: string
 }
 

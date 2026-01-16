@@ -54,6 +54,21 @@ export const getLessonLite = async (): Promise<Map<number, Lesson>> => {
   return map
 }
 
+export const getLessonPure = async (): Promise<LessonRelation[]> => {
+  const text = await api.get(`${jsonBase}/lesson-content-pure.csv`).text()
+  return new Promise((resolve, reject) => {
+    Papa.parse<LessonRelation>(text, {
+      header: true,
+      skipEmptyLines: true,
+      dynamicTyping: true,
+      complete: (result) => {
+        resolve(result.data)
+      },
+      error: (error: any) => reject(error),
+    })
+  })
+}
+
 export const getLessonContent = (lessonIndex: number) =>
   fetchCsvToMap(`${lessonBase}/${lessonIndex}.csv`)
 
