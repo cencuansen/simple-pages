@@ -224,12 +224,12 @@ import {
   ref,
   withDefaults,
 } from 'vue'
-import { useSpeechStore } from '@/stores/speechStore.ts'
-import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
-import { useSettingStore } from '@/stores/settingStore.ts'
-import { useReadingStore } from '@/stores/readingStore.ts'
-import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
-import type { ActiveWord, WordItem } from '@/types/word.ts'
+import { useSpeechStore } from '@/stores/speechStore'
+import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore'
+import { useSettingStore } from '@/stores/settingStore'
+import { useReadingStore } from '@/stores/readingStore'
+import { useDictionaryStore } from '@/stores/dictionaryStore'
+import type { ActiveWord, WordItem } from '@/types/word'
 import { ElNotification, ElTable } from 'element-plus'
 import Row from '@/components/Row.vue'
 import LessonSelect from '@/components/LessonSelect.vue'
@@ -240,10 +240,10 @@ import Reading from '@/components/Reading.vue'
 import DictionarySelector from '@/components/Dictionary/DictionarySelector.vue'
 import DictionaryCore from '@/components/Dictionary/DictionaryCore.vue'
 import WordGraph from '@/components/Graph/WordGraph.vue'
-import { isNumber } from '@/utils/common.ts'
-import { toRomaji, toHiragana } from '@/utils/tool.ts'
+import { isNumber } from '@/utils/common'
+import { toRomaji, toHiragana } from '@/utils/tool'
 
-import type { Dictionary as DictionaryType } from '@/types/dictionary.ts'
+import type { Dictionary as DictionaryType } from '@/types/dictionary'
 import { storeToRefs } from 'pinia'
 
 interface WordProps {

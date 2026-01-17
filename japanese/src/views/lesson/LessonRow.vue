@@ -44,12 +44,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { displayText } from '@/utils/lesson.ts'
+import { displayText } from '@/utils/lesson'
 import Reading from '@/components/Reading.vue'
-import type { TextBase } from '@/types/lesson.ts'
-import { useLessonStore } from '@/stores/lessonStore.ts'
-import { useReadingStore } from '@/stores/readingStore.ts'
-import { useSettingStore } from '@/stores/settingStore.ts'
+import type { TextBase } from '@/types/lesson'
+import { useLessonStore } from '@/stores/lessonStore'
+import { useReadingStore } from '@/stores/readingStore'
+import { useSettingStore } from '@/stores/settingStore'
 import { ElNotification } from 'element-plus'
 
 const lessonStore = useLessonStore()

@@ -16,11 +16,11 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useJlptWordStore } from '@/stores/jlptWordStore.ts'
+import { useJlptWordStore } from '@/stores/jlptWordStore'
 
 import WordCore from '@/components/Word/WordCore.vue'
 import { storeToRefs } from 'pinia'
-import { tableHeightCalc } from '@/utils/word.ts'
+import { tableHeightCalc } from '@/utils/word'
 
 const vocabularyStore = useJlptWordStore()
 

@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { baseColumns } from '../../constants/verbConju.ts'
-import { useJlptConjuStore } from '@/stores/jlptConjuStore.ts'
+import { baseColumns } from '../../constants/verbConju'
+import { useJlptConjuStore } from '@/stores/jlptConjuStore'
 import { storeToRefs } from 'pinia'
 import VerbConjuCore from './VerbConjuCore.vue'
 

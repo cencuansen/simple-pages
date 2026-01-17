@@ -15,8 +15,8 @@
 import { onMounted, ref, type PropType } from 'vue'
 import type { ButtonProps } from 'element-plus/es/components/button'
 
-import { useReadingStore } from '@/stores/readingStore.ts'
-import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
+import { useReadingStore } from '@/stores/readingStore'
+import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore'
 import { storeToRefs } from 'pinia'
 
 const readingStore = useReadingStore()

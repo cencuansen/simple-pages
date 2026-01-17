@@ -21,9 +21,9 @@
 
 <script lang="ts" setup>
 import { computed, type ComputedRef, onMounted, onUnmounted, ref } from 'vue'
-import { useDictionaryStore } from '@/stores/dictionaryStore.ts'
-import type { Dictionary } from '../../types/dictionary.ts'
-import { toUrl } from '@/utils/dictionary.ts'
+import { useDictionaryStore } from '@/stores/dictionaryStore'
+import type { Dictionary } from '@/types/dictionary'
+import { toUrl } from '@/utils/dictionary'
 
 const dictionaryStore = useDictionaryStore()
 const { getOne } = dictionaryStore

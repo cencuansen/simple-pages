@@ -117,7 +117,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
 import { ElMessage } from 'element-plus'
-import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore.ts'
+import { useVoiceVoxStore } from '@/stores/voiceVox/voiceVoxStore'
 import { storeToRefs } from 'pinia'
 import VoiceVox from '@/components/VoiceVox/VoiceVox.vue'
 

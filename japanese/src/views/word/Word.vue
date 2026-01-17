@@ -18,12 +18,12 @@
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from 'vue'
-import { useSpeechStore } from '@/stores/speechStore.ts'
-import { useWordStore } from '@/stores/wordStore.ts'
+import { useSpeechStore } from '@/stores/speechStore'
+import { useWordStore } from '@/stores/wordStore'
 import { storeToRefs } from 'pinia'
 
 import WordCore from '@/components/Word/WordCore.vue'
-import { tableHeightCalc } from '@/utils/word.ts'
+import { tableHeightCalc } from '@/utils/word'
 
 const speechStore = useSpeechStore()
 const wordStore = useWordStore()

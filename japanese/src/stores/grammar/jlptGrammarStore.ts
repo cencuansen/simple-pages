@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import ky from 'ky'
-import type { Grammar } from './grammarStore.ts'
+import type { Grammar } from './grammarStore'
 
 export interface JlptGrammarFilter {
   keyword?: string

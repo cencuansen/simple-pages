@@ -22,8 +22,8 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, withDefaults } from 'vue'
-import { newTextId, scrollToEle } from '@/utils/common.ts'
-import type { ElementInfo, Props } from '@/types/indexBar.ts'
+import { newTextId, scrollToEle } from '@/utils/common'
+import type { ElementInfo, Props } from '@/types/indexBar'
 
 const props = withDefaults(defineProps<Props>(), {
   position: 'right',

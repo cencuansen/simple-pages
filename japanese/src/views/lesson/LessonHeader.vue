@@ -62,11 +62,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 
-import { useReadingStore } from '@/stores/readingStore.ts'
-import { useAudioStore } from '@/stores/audioStore.ts'
-import { useSpeechStore } from '@/stores/speechStore.ts'
-import { useLessonStore } from '@/stores/lessonStore.ts'
-import { useSettingStore } from '@/stores/settingStore.ts'
+import { useReadingStore } from '@/stores/readingStore'
+import { useAudioStore } from '@/stores/audioStore'
+import { useSpeechStore } from '@/stores/speechStore'
+import { useLessonStore } from '@/stores/lessonStore'
+import { useSettingStore } from '@/stores/settingStore'
 
 import LessonSelect from '@/components/LessonSelect.vue'
 
@@ -79,7 +79,7 @@ const settingStore = useSettingStore()
 
 const { isReading } = storeToRefs(readingStore)
 
-import { hasNext, hasPrev } from '@/utils/lesson.ts'
+import { hasNext, hasPrev } from '@/utils/lesson'
 
 const { currentIndex, lessonAudio } = storeToRefs(lessonStore)
 const goPrevious = lessonStore.goPrevious

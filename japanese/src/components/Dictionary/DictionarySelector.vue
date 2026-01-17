@@ -19,9 +19,9 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import type { Dictionary, DictionarySelector } from '../../types/dictionary.ts'
-import { dictionaries } from '../../constants/dictionary.ts'
-import { useDictionaryStore } from '../../stores/dictionaryStore.ts'
+import type { Dictionary, DictionarySelector } from '@/types/dictionary'
+import { dictionaries } from '../../constants/dictionary'
+import { useDictionaryStore } from '../../stores/dictionaryStore'
 import DictionaryCore from './DictionaryCore.vue'
 
 const props = defineProps<DictionarySelector>()

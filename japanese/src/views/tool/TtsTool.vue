@@ -32,10 +32,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useReadingStore } from '@/stores/readingStore.ts'
-import { useSpeechStore } from '@/stores/speechStore.ts'
+import { useReadingStore } from '@/stores/readingStore'
+import { useSpeechStore } from '@/stores/speechStore'
 import { storeToRefs } from 'pinia'
-import VoiceVox from '../../components/VoiceVox/VoiceVox.vue'
+import VoiceVox from '@/components/VoiceVox/VoiceVox.vue'
 
 const readingStore = useReadingStore()
 const { isReading } = storeToRefs(readingStore)

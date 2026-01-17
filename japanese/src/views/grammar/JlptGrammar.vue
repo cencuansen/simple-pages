@@ -15,10 +15,10 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useJlptGrammarStore } from '@/stores/grammar/jlptGrammarStore.ts'
+import { useJlptGrammarStore } from '@/stores/grammar/jlptGrammarStore'
 import { storeToRefs } from 'pinia'
 import { tableHeightCalc } from '../../utils/word'
-import GrammarCore from '../../components/Grammar/GrammarCore.vue'
+import GrammarCore from '@/components/Grammar/GrammarCore.vue'
 
 const grammarStore = useJlptGrammarStore()
 const { jlptGrammars } = storeToRefs(grammarStore)

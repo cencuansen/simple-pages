@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia'
 import { computed, ref, watch } from 'vue'
-import type { Lesson, LessonRelation, TextBase } from '@/types/lesson.ts'
+import type { Lesson, LessonRelation, TextBase } from '@/types/lesson'
 import {
   fetchLessonContent,
   fetchLiteLessons,
   fetchLessonTranslation,
   fetchFullLessons,
-} from '@/apis/lessonApi.ts'
-import { validIndex } from '@/constants/lesson.ts'
-import { checkIndex, prevIndex, nextIndex } from '@/utils/lesson.ts'
+} from '@/apis/lessonApi'
+import { validIndex } from '@/constants/lesson'
+import { checkIndex, prevIndex, nextIndex } from '@/utils/lesson'
 
 export const useLessonStore = defineStore(
   'lessons',

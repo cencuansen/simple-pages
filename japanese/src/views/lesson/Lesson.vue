@@ -172,34 +172,30 @@ import {
   ref,
   watch,
 } from 'vue'
-import { useReadingStore } from '@/stores/readingStore.ts'
-import { useLessonStore } from '@/stores/lessonStore.ts'
-import { useAudioStore } from '@/stores/audioStore.ts'
-import { useSpeechStore } from '@/stores/speechStore.ts'
-import { useSettingStore } from '@/stores/settingStore.ts'
-import { useWordStore } from '@/stores/wordStore.ts'
-import { useGrammarStore } from '@/stores/grammar/grammarStore.ts'
-import type { ActiveWord, WordItem } from '@/types/word.ts'
-import { displayText, textParser } from '@/utils/lesson.ts'
+import { useReadingStore } from '@/stores/readingStore'
+import { useLessonStore } from '@/stores/lessonStore'
+import { useAudioStore } from '@/stores/audioStore'
+import { useSpeechStore } from '@/stores/speechStore'
+import { useSettingStore } from '@/stores/settingStore'
+import { useWordStore } from '@/stores/wordStore'
+import { useGrammarStore } from '@/stores/grammar/grammarStore'
+import type { ActiveWord, WordItem } from '@/types/word'
+import { displayText, textParser } from '@/utils/lesson'
 import { storeToRefs } from 'pinia'
 import { onDeactivated } from '@vue/runtime-core'
 import { useRouter } from 'vue-router'
 import { scrollToEle, scrollToId } from '@/utils/common'
 import { searchLesson } from '@/utils/lesson'
-import IndexBar from '../../components/IndexBar/IndexBar.vue'
-import LinkTo from '../../components/LinkTo/LinkTo.vue'
+import IndexBar from '@/components/IndexBar/IndexBar.vue'
+import LinkTo from '@/components/LinkTo/LinkTo.vue'
 import LessonAudio from './LessonAudio.vue'
 import LessonHeader from './LessonHeader.vue'
 import LessonRow from './LessonRow.vue'
-import Reading from '../../components/Reading.vue'
-import WordCore from '../../components/Word/WordCore.vue'
-import GrammarCore from '../../components/Grammar/GrammarCore.vue'
-import SimpleInput from '../../components/SimpleInput.vue'
-import type {
-  LessonRelation,
-  LessonSearch,
-  TextBase,
-} from '../../types/lesson.ts'
+import Reading from '@/components/Reading.vue'
+import WordCore from '@/components/Word/WordCore.vue'
+import GrammarCore from '@/components/Grammar/GrammarCore.vue'
+import SimpleInput from '@/components/SimpleInput.vue'
+import type { LessonRelation, LessonSearch, TextBase } from '@/types/lesson'
 
 const readingStore = useReadingStore()
 const lessonStore = useLessonStore()

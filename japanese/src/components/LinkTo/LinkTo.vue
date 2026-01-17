@@ -9,10 +9,10 @@
 
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
-import { useLessonStore } from '@/stores/lessonStore.ts'
-import { useSettingStore } from '@/stores/settingStore.ts'
+import { useLessonStore } from '@/stores/lessonStore'
+import { useSettingStore } from '@/stores/settingStore'
 import { storeToRefs } from 'pinia'
-import type { ActiveWord } from '@/types/word.ts'
+import type { ActiveWord } from '@/types/word'
 
 const lessonStore = useLessonStore()
 const { currentIndex } = storeToRefs(lessonStore)

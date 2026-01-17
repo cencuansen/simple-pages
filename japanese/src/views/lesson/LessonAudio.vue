@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAudioStore } from '@/stores/audioStore.ts'
+import { useAudioStore } from '@/stores/audioStore'
 
 import { ref, watch } from 'vue'
 

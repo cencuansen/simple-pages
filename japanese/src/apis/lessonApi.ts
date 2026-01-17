@@ -1,4 +1,4 @@
-import type { Lesson, LessonRelation } from '@/types/lesson.ts'
+import type { Lesson, LessonRelation } from '@/types/lesson'
 import ky from 'ky'
 import Papa from 'papaparse'
 

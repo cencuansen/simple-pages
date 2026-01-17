@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import type { VerbConjuColumn } from '@/types/verbConju'
-import { emptyFn } from '@/utils/verbConju.ts'
+import { emptyFn } from '@/utils/verbConju'
 
 export const typeOptions = ['五段动词', '一段动词', '不规则动词']
 

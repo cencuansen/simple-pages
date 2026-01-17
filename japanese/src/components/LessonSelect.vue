@@ -42,10 +42,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useLessonStore } from '../stores/lessonStore.ts'
-// import { displayText } from '@/utils/lesson.ts'
-import { validIndex } from '@/constants/lesson.ts'
-import type { LessonRelation } from '@/types/lesson.ts'
+import { useLessonStore } from '../stores/lessonStore'
+// import { displayText } from '@/utils/lesson'
+import { validIndex } from '@/constants/lesson'
+import type { LessonRelation } from '@/types/lesson'
 
 interface Lesson {
   index: number

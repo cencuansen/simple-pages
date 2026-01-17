@@ -3,8 +3,8 @@ import type {
   LessonRelation,
   LessonSearch,
   LessonSearchContent,
-} from '@/types/lesson.ts'
-import { validIndex } from '@/constants/lesson.ts'
+} from '@/types/lesson'
+import { validIndex } from '@/constants/lesson'
 
 // 获取朗读假名
 export const speakText = (text: string | undefined = '') =>

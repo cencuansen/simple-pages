@@ -51,14 +51,14 @@
 
 <script setup lang="ts">
 import { computed, type ComputedRef, onActivated, ref, withDefaults } from 'vue'
-import { type Grammar } from '@/stores/grammar/grammarStore.ts'
+import { type Grammar } from '@/stores/grammar/grammarStore'
 import Row from '../Row.vue'
 import LessonSelect from '../LessonSelect.vue'
 import SimpleInput from '../SimpleInput.vue'
 import SimplePagination from '../SimplePagination.vue'
-import { collapseTitle } from '../../utils/grammar.ts'
+import { collapseTitle } from '../../utils/grammar'
 import SimpleSelect from '../SimpleSelect.vue'
-import { isNumber } from '@/utils/common.ts'
+import { isNumber } from '@/utils/common'
 
 interface GrammarProps {
   data: Grammar[]
