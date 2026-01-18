@@ -6,9 +6,13 @@ import {
   fetchLiteLessons,
   fetchLessonTranslation,
   fetchFullLessons,
+  fetchLessonContents,
+  fetchLessonTranslations,
 } from '@/apis/lessonApi'
 import { validIndex } from '@/constants/lesson'
 import { checkIndex, prevIndex, nextIndex } from '@/utils/lesson'
+
+const envType = import.meta.env.VITE_ENV_TYPE
 
 export const useLessonStore = defineStore(
   'lessons',
@@ -101,8 +105,13 @@ export const useLessonStore = defineStore(
     const lessonAudio = computed(() => `/${currentIndex.value}.mp3`)
 
     const onIndexChanged = async (value: number) => {
-      contentMap.value = await fetchLessonContent(value)
-      translationMap.value = await fetchLessonTranslation(value)
+      if (envType === 'DEV') {
+        contentMap.value = await fetchLessonContents()
+        translationMap.value = await fetchLessonTranslations()
+      } else {
+        contentMap.value = await fetchLessonContent(value)
+        translationMap.value = await fetchLessonTranslation(value)
+      }
     }
     watch(() => currentIndex.value, onIndexChanged)
 
