@@ -92,8 +92,7 @@ async function simpleUpload(
   sourceBaseDir: string,
   sourceFilename: string,
   bucket: string,
-  keyPrefix: string,
-  since: Date
+  keyPrefix: string
 ) {
   const isBulk = sourceFilename === '*'
 
@@ -133,14 +132,6 @@ async function simpleUpload(
 
   for (const { fullPath, key } of filesToUpload) {
     try {
-      // 可选：先用 mtime 粗筛（加速）
-      const stat = await fsPromises.stat(fullPath)
-      if (stat.mtime < since) {
-        console.log(`mtime 未更新，跳过 → ${key}`)
-        skippedCount++
-        continue
-      }
-
       // 核心：用 git 判断内容是否真的变化
       const should = await shouldUpload(fullPath)
 
@@ -164,7 +155,7 @@ async function simpleUpload(
         Key: key,
         Body: content,
         ContentType: contentType,
-        // ACL: 'public-read',  // 如需公开访问可取消注释
+        ACL: 'public-read',
       })
 
       await s3Client.send(command)
@@ -218,7 +209,7 @@ for (let index of indexArr) {
 }
 
 ;(async () => {
-  await simpleUpload('./public/lessons', '*', jsonBucket, 'lessons', now)
+  await simpleUpload('./public/lessons', '*', jsonBucket, 'lessons')
 })()
 
 // translations 部分同理
@@ -243,13 +234,7 @@ for (let index of indexArr) {
 }
 
 ;(async () => {
-  await simpleUpload(
-    './public/translations',
-    '*',
-    jsonBucket,
-    'translations',
-    now
-  )
+  await simpleUpload('./public/translations', '*', jsonBucket, 'translations')
 })()
 
 // pure content 部分
@@ -288,10 +273,9 @@ fs.writeFileSync(
     './public/jsons',
     'lesson-content-pure.csv',
     jsonBucket,
-    '',
-    now
+    ''
   )
 })()
 ;(async () => {
-  await simpleUpload('./public/audios', '*', audioBucket, '', now)
+  await simpleUpload('./public/audios', '*', audioBucket, '')
 })()
