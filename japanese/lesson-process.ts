@@ -92,7 +92,8 @@ async function simpleUpload(
   sourceBaseDir: string,
   sourceFilename: string,
   bucket: string,
-  keyPrefix: string
+  keyPrefix: string,
+  since: Date
 ) {
   const isBulk = sourceFilename === '*'
 
@@ -102,7 +103,7 @@ async function simpleUpload(
   }
 
   const baseDir = path.resolve(sourceBaseDir)
-  let filesToUpload: { fullPath: string; key: string }[] = []
+  const filesToUpload: { fullPath: string; key: string }[] = []
 
   if (isBulk) {
     filesToUpload.push(
@@ -120,21 +121,35 @@ async function simpleUpload(
     }
   }
 
-  console.log(`\n检查 ${filesToUpload.length} 个文件（基于 git diff）...`)
-  filesToUpload = filesToUpload.filter(async ({ fullPath }) => {
-    const should = await shouldUpload(fullPath)
-    return should
-  })
-
   if (filesToUpload.length === 0) {
     console.log('没有找到需要处理的文件')
     return
   }
 
+  console.log(`\n检查 ${filesToUpload.length} 个文件（基于 git diff）...`)
+
   let uploadedCount = 0
+  let skippedCount = 0
 
   for (const { fullPath, key } of filesToUpload) {
     try {
+      // 可选：先用 mtime 粗筛（加速）
+      const stat = await fsPromises.stat(fullPath)
+      if (stat.mtime < since) {
+        console.log(`mtime 未更新，跳过 → ${key}`)
+        skippedCount++
+        continue
+      }
+
+      // 核心：用 git 判断内容是否真的变化
+      const should = await shouldUpload(fullPath)
+
+      if (!should) {
+        console.log(`跳过 → ${key}`)
+        skippedCount++
+        continue
+      }
+
       // 需要上传
       const content = await fsPromises.readFile(fullPath)
 
@@ -149,26 +164,34 @@ async function simpleUpload(
         Key: key,
         Body: content,
         ContentType: contentType,
-        ACL: 'public-read',
+        // ACL: 'public-read',  // 如需公开访问可取消注释
       })
 
       await s3Client.send(command)
 
-      console.log(`上传成功 → ${key}`)
+      console.log(`上传成功（内容有变化）→ ${key}`)
       uploadedCount++
     } catch (err) {
       console.error(`处理失败 ${key}:`, err)
     }
   }
 
-  console.log(`\n本次处理完成：上传 ${uploadedCount} 个`)
+  console.log(
+    `\n本次处理完成：上传 ${uploadedCount} 个，跳过 ${skippedCount} 个`
+  )
 }
+
+// ────────────────────────────────────────────────
+// 以下为原有的业务逻辑，保持不变
+// ────────────────────────────────────────────────
 
 const lessonPathFrom: string = './public/jsons/lesson-contents.csv'
 const translationPathFrom: string = './public/jsons/lesson-translations.csv'
 
 const jsonBucket: string = 'japanese-json'
 const audioBucket: string = 'japanese-audio'
+
+const now = new Date()
 
 let contents: Lesson[] = []
 Papa.parse<Lesson>(fs.readFileSync(lessonPathFrom).toString(), {
@@ -195,7 +218,7 @@ for (let index of indexArr) {
 }
 
 ;(async () => {
-  await simpleUpload('./public/lessons', '*', jsonBucket, 'lessons')
+  await simpleUpload('./public/lessons', '*', jsonBucket, 'lessons', now)
 })()
 
 // translations 部分同理
@@ -220,7 +243,13 @@ for (let index of indexArr) {
 }
 
 ;(async () => {
-  await simpleUpload('./public/translations', '*', jsonBucket, 'translations')
+  await simpleUpload(
+    './public/translations',
+    '*',
+    jsonBucket,
+    'translations',
+    now
+  )
 })()
 
 // pure content 部分
@@ -259,9 +288,10 @@ fs.writeFileSync(
     './public/jsons',
     'lesson-content-pure.csv',
     jsonBucket,
-    ''
+    '',
+    now
   )
 })()
 ;(async () => {
-  await simpleUpload('./public/audios', '*', audioBucket, '')
+  await simpleUpload('./public/audios', '*', audioBucket, '', now)
 })()
