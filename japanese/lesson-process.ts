@@ -12,15 +12,16 @@ export interface Lesson {
   textId: string
   index: number
   content: string
+  xx: string
 }
 
 // ====================== R2 配置 ======================
 const s3Client = new S3Client({
   region: 'auto',
-  endpoint: 'https://你的account-id.r2.cloudflarestorage.com',
+  endpoint: 'https://xxxx.r2.cloudflarestorage.com',
   credentials: {
-    accessKeyId: '你的 access key id',
-    secretAccessKey: '你的 secret access key',
+    accessKeyId: 'xxxx',
+    secretAccessKey: 'xxxx',
   },
   forcePathStyle: true,
 })
@@ -32,7 +33,7 @@ const s3Client = new S3Client({
 async function getGitChangedFiles(): Promise<string[]> {
   try {
     const params: string =
-      'public/lessons/ public/translations/ public/audios/ public/jsons/lesson-content-pure.csv'
+      'public/lessons/ public/translations/ public/audios/ public/jsons/'
     const script: string = `git diff --name-only HEAD -- ${params}`
     const { stdout } = await execAsync(script)
     const files = stdout
@@ -260,12 +261,7 @@ fs.writeFileSync(
   pureResult.join('\n')
 )
 ;(async () => {
-  await simpleUpload(
-    './public/jsons',
-    'lesson-content-pure.csv',
-    jsonBucket,
-    ''
-  )
+  await simpleUpload('./public/jsons', '*', jsonBucket, '')
 })()
 ;(async () => {
   await simpleUpload('./public/audios', '*', audioBucket, '')
