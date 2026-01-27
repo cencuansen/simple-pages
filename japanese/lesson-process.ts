@@ -27,28 +27,62 @@ const s3Client = new S3Client({
 // ====================================================
 
 /**
- * 判断文件内容是否与 git HEAD 中的版本完全相同
- * @returns true = 内容完全一致（无需上传）
- *         false = 内容有差异 / 文件未被 git 追踪 / 其他情况（视为需要上传）
+ * 判斷檔案內容是否「有改變」或「是新增檔案」
+ *
+ * @returns
+ *   true  → 需要上傳（檔案內容有改變、或檔案是新增的、或 git 無法判斷）
+ *   false → 不需要上傳（檔案與 HEAD 完全一致，沒有任何改變）
  */
-async function isContentUnchanged(fullPath: string): Promise<boolean> {
+async function shouldUpload(fullPath: string): Promise<boolean> {
   try {
     // git diff --quiet HEAD -- file
-    // 返回码 0 = 无差异，1 = 有差异，其他 = 错误
+    // 返回碼 0 = 完全一致（無差異）
     await execAsync(`git diff --quiet HEAD -- "${fullPath}"`)
-    return true
+
+    // 如果執行到這裡，代表 git diff 返回 0 → 內容完全相同
+    return false // 不需要上傳
   } catch (err: any) {
     if (err.code === 1) {
-      // 有差异
-      return false
+      // git diff 返回 1 → 內容有差異（已修改或新增後已 commit 但與 HEAD 不同）
+      return true
     }
-    // 其他情况（未追踪、新文件、不是 git 仓库等） → 视为需要上传
+
+    // 其他情況：
+    // - 檔案未被 git 追蹤（新增但還沒 add/commit）
+    // - 工作目錄有未 commit 的修改
+    // - git 錯誤、不是 git 倉庫等
     console.warn(
-      `git diff 检查异常，视为需上传: ${fullPath}`,
+      `git diff 檢查異常，視為需要上傳: ${fullPath}`,
       err.message || err
     )
-    return false
+
+    return true // 安全起見，視為需要上傳
   }
+}
+
+async function collectFilesRecursively(
+  dir: string,
+  baseDir: string,
+  prefix: string
+): Promise<{ fullPath: string; key: string }[]> {
+  const files: { fullPath: string; key: string }[] = []
+  const entries = await fsPromises.readdir(dir, { withFileTypes: true })
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name)
+    const relative = path.relative(baseDir, fullPath)
+    const key = prefix ? path.posix.join(prefix, relative) : relative
+
+    if (entry.isDirectory()) {
+      // 遞迴子目錄
+      const subFiles = await collectFilesRecursively(fullPath, baseDir, prefix)
+      files.push(...subFiles)
+    } else if (entry.isFile()) {
+      files.push({ fullPath, key })
+    }
+  }
+
+  return files
 }
 
 /**
@@ -58,8 +92,7 @@ async function simpleUpload(
   sourceBaseDir: string,
   sourceFilename: string,
   bucket: string,
-  keyPrefix: string,
-  since: Date
+  keyPrefix: string
 ) {
   const isBulk = sourceFilename === '*'
 
@@ -69,16 +102,12 @@ async function simpleUpload(
   }
 
   const baseDir = path.resolve(sourceBaseDir)
-  const filesToUpload: { fullPath: string; key: string }[] = []
+  let filesToUpload: { fullPath: string; key: string }[] = []
 
   if (isBulk) {
-    const entries = await fsPromises.readdir(baseDir, { withFileTypes: true })
-    for (const entry of entries) {
-      if (!entry.isFile()) continue
-      const fullPath = path.join(baseDir, entry.name)
-      const key = prefix + entry.name
-      filesToUpload.push({ fullPath, key })
-    }
+    filesToUpload.push(
+      ...(await collectFilesRecursively(baseDir, baseDir, prefix))
+    )
   } else {
     const fullPath = path.join(baseDir, sourceFilename)
     try {
@@ -91,35 +120,21 @@ async function simpleUpload(
     }
   }
 
+  console.log(`\n检查 ${filesToUpload.length} 个文件（基于 git diff）...`)
+  filesToUpload = filesToUpload.filter(async ({ fullPath }) => {
+    const should = await shouldUpload(fullPath)
+    return should
+  })
+
   if (filesToUpload.length === 0) {
     console.log('没有找到需要处理的文件')
     return
   }
 
-  console.log(`\n检查 ${filesToUpload.length} 个文件（基于 git diff）...`)
-
   let uploadedCount = 0
-  let skippedCount = 0
 
   for (const { fullPath, key } of filesToUpload) {
     try {
-      // 可选：先用 mtime 粗筛（加速）
-      const stat = await fsPromises.stat(fullPath)
-      if (stat.mtime < since) {
-        console.log(`mtime 未更新，跳过 → ${key}`)
-        skippedCount++
-        continue
-      }
-
-      // 核心：用 git 判断内容是否真的变化
-      const unchanged = await isContentUnchanged(fullPath)
-
-      if (unchanged) {
-        console.log(`内容与 HEAD 一致，跳过 → ${key}`)
-        skippedCount++
-        continue
-      }
-
       // 需要上传
       const content = await fsPromises.readFile(fullPath)
 
@@ -127,40 +142,33 @@ async function simpleUpload(
       const ext = path.extname(fullPath).toLowerCase()
       if (ext === '.csv') contentType = 'text/csv; charset=utf-8'
       else if (ext === '.json') contentType = 'application/json; charset=utf-8'
+      else if (ext === '.mp3') contentType = 'audio/mpeg'
 
       const command = new PutObjectCommand({
         Bucket: bucket,
         Key: key,
         Body: content,
         ContentType: contentType,
-        // ACL: 'public-read',  // 如需公开访问可取消注释
+        ACL: 'public-read',
       })
 
       await s3Client.send(command)
 
-      console.log(`上传成功（内容有变化）→ ${key}`)
+      console.log(`上传成功 → ${key}`)
       uploadedCount++
     } catch (err) {
       console.error(`处理失败 ${key}:`, err)
     }
   }
 
-  console.log(
-    `\n本次处理完成：上传 ${uploadedCount} 个，跳过 ${skippedCount} 个`
-  )
+  console.log(`\n本次处理完成：上传 ${uploadedCount} 个`)
 }
-
-// ────────────────────────────────────────────────
-// 以下为原有的业务逻辑，保持不变
-// ────────────────────────────────────────────────
 
 const lessonPathFrom: string = './public/jsons/lesson-contents.csv'
 const translationPathFrom: string = './public/jsons/lesson-translations.csv'
 
 const jsonBucket: string = 'japanese-json'
 const audioBucket: string = 'japanese-audio'
-
-const now = new Date()
 
 let contents: Lesson[] = []
 Papa.parse<Lesson>(fs.readFileSync(lessonPathFrom).toString(), {
@@ -187,7 +195,7 @@ for (let index of indexArr) {
 }
 
 ;(async () => {
-  await simpleUpload('./public/lessons', '*', jsonBucket, 'lessons', now)
+  await simpleUpload('./public/lessons', '*', jsonBucket, 'lessons')
 })()
 
 // translations 部分同理
@@ -212,13 +220,7 @@ for (let index of indexArr) {
 }
 
 ;(async () => {
-  await simpleUpload(
-    './public/translations',
-    '*',
-    jsonBucket,
-    'translations',
-    now
-  )
+  await simpleUpload('./public/translations', '*', jsonBucket, 'translations')
 })()
 
 // pure content 部分
@@ -257,7 +259,9 @@ fs.writeFileSync(
     './public/jsons',
     'lesson-content-pure.csv',
     jsonBucket,
-    '',
-    now
+    ''
   )
+})()
+;(async () => {
+  await simpleUpload('./public/audios', '*', audioBucket, '')
 })()

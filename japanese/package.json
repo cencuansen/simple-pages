@@ -9,7 +9,7 @@
     "check": "vue-tsc -b",
     "preview": "vite preview --mode prod",
     "format": "prettier --write .",
-    "cf": "npm run build && npx wrangler pages deploy ./dist --project-name=jp --branch=main"
+    "cf": "npm run build && npx wrangler pages deploy ./dist --project-name=jp --branch=main && tsx lesson-process.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.975.0",
