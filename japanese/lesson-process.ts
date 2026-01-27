@@ -27,66 +27,31 @@ const s3Client = new S3Client({
 // ====================================================
 
 /**
- * 判斷檔案內容是否「有改變」或「是新增檔案」
- *
- * @returns
- *   true  → 需要上傳（檔案內容有改變、或檔案是新增的、或 git 無法判斷）
- *   false → 不需要上傳（檔案與 HEAD 完全一致，沒有任何改變）
+ * 获取 git 相对于 HEAD 的变更文件列表（项目根相对路径）
  */
-async function shouldUpload(fullPath: string): Promise<boolean> {
+async function getGitChangedFiles(): Promise<string[]> {
   try {
-    // git diff --quiet HEAD -- file
-    // 返回碼 0 = 完全一致（無差異）
-    await execAsync(`git diff --quiet HEAD -- "${fullPath}"`)
-
-    // 如果執行到這裡，代表 git diff 返回 0 → 內容完全相同
-    return false // 不需要上傳
+    const params: string =
+      'public/lessons/ public/translations/ public/audios/ public/jsons/lesson-content-pure.csv'
+    const script: string = `git diff --name-only HEAD -- ${params}`
+    const { stdout } = await execAsync(script)
+    const files = stdout
+      .trim()
+      .split('\n')
+      .filter((line) => line.trim() !== '')
+      .map((f) => f.trim())
+    return files
   } catch (err: any) {
-    if (err.code === 1) {
-      // git diff 返回 1 → 內容有差異（已修改或新增後已 commit 但與 HEAD 不同）
-      return true
-    }
-
-    // 其他情況：
-    // - 檔案未被 git 追蹤（新增但還沒 add/commit）
-    // - 工作目錄有未 commit 的修改
-    // - git 錯誤、不是 git 倉庫等
     console.warn(
-      `git diff 檢查異常，視為需要上傳: ${fullPath}`,
+      '获取 git 变更列表失败（可能无 HEAD 或不在 git 仓库）',
       err.message || err
     )
-
-    return true // 安全起見，視為需要上傳
+    return []
   }
-}
-
-async function collectFilesRecursively(
-  dir: string,
-  baseDir: string,
-  prefix: string
-): Promise<{ fullPath: string; key: string }[]> {
-  const files: { fullPath: string; key: string }[] = []
-  const entries = await fsPromises.readdir(dir, { withFileTypes: true })
-
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name)
-    const relative = path.relative(baseDir, fullPath)
-    const key = prefix ? path.posix.join(prefix, relative) : relative
-
-    if (entry.isDirectory()) {
-      // 遞迴子目錄
-      const subFiles = await collectFilesRecursively(fullPath, baseDir, prefix)
-      files.push(...subFiles)
-    } else if (entry.isFile()) {
-      files.push({ fullPath, key })
-    }
-  }
-
-  return files
 }
 
 /**
- * 上传逻辑（基于 git 判断内容是否真的变化）
+ * 上传逻辑：根据 git 变更列表 + 路径前缀匹配，上传属于 sourceBaseDir（含子目录）的文件
  */
 async function simpleUpload(
   sourceBaseDir: string,
@@ -102,46 +67,78 @@ async function simpleUpload(
   }
 
   const baseDir = path.resolve(sourceBaseDir)
+  const baseDirRelative = path.relative(process.cwd(), baseDir) // 项目根到 baseDir 的相对路径
+
+  // 获取 git 变更文件（相对项目根）
+  const gitChanged = await getGitChangedFiles()
+
   const filesToUpload: { fullPath: string; key: string }[] = []
 
+  // 先在 simpleUpload 函数最开头添加：获取 git 仓库根
+  let gitRoot = process.cwd()
+  try {
+    const { stdout } = await execAsync('git rev-parse --show-toplevel')
+    gitRoot = stdout.trim()
+  } catch (err) {
+    console.warn('无法获取 git 根目录，使用当前工作目录作为 fallback', err)
+  }
+
+  // 然后使用 gitRoot 来计算相对路径
+  const baseDirAbs = path.resolve(sourceBaseDir)
+  const baseDirRelativeToGit = path
+    .relative(gitRoot, baseDirAbs)
+    .replace(/\\/g, '/')
+
+  // 批量模式判断逻辑（使用统一的 / 风格路径）
   if (isBulk) {
-    filesToUpload.push(
-      ...(await collectFilesRecursively(baseDir, baseDir, prefix))
-    )
+    for (const relFromGitRoot of gitChanged) {
+      // 统一使用正斜杠比较
+      const normalizedRel = relFromGitRoot.replace(/\\/g, '/')
+
+      // 判断是否属于 baseDirRelativeToGit 或其子目录
+      if (
+        normalizedRel === baseDirRelativeToGit ||
+        normalizedRel.startsWith(baseDirRelativeToGit + '/')
+      ) {
+        // 计算相对于 baseDir 的路径（用于 key）
+        const relInDir = path.relative(baseDirRelativeToGit, normalizedRel)
+        const fullPath = path.join(gitRoot, normalizedRel)
+        const key = prefix + relInDir.replace(/\\/g, '/')
+
+        try {
+          await fsPromises.access(fullPath)
+          filesToUpload.push({ fullPath, key })
+        } catch {
+          console.log(`文件访问失败，跳过: ${normalizedRel}`)
+        }
+      }
+    }
   } else {
-    const fullPath = path.join(baseDir, sourceFilename)
-    try {
-      await fsPromises.access(fullPath)
+    // 单文件模式
+    const targetRelToGit = path
+      .join(baseDirRelativeToGit, sourceFilename)
+      .replace(/\\/g, '/')
+    if (gitChanged.some((rel) => rel.replace(/\\/g, '/') === targetRelToGit)) {
+      const fullPath = path.join(gitRoot, targetRelToGit)
       const key = prefix + sourceFilename
-      filesToUpload.push({ fullPath, key })
-    } catch {
-      console.log(`文件不存在，跳过: ${sourceFilename}`)
-      return
+      try {
+        await fsPromises.access(fullPath)
+        filesToUpload.push({ fullPath, key })
+      } catch {
+        return
+      }
+    } else {
     }
   }
 
   if (filesToUpload.length === 0) {
-    console.log('没有找到需要处理的文件')
     return
   }
 
-  console.log(`\n检查 ${filesToUpload.length} 个文件（基于 git diff）...`)
-
   let uploadedCount = 0
-  let skippedCount = 0
 
   for (const { fullPath, key } of filesToUpload) {
     try {
-      // 核心：用 git 判断内容是否真的变化
-      const should = await shouldUpload(fullPath)
-
-      if (!should) {
-        console.log(`跳过 → ${key}`)
-        skippedCount++
-        continue
-      }
-
-      // 需要上传
       const content = await fsPromises.readFile(fullPath)
 
       let contentType = 'application/octet-stream'
@@ -160,16 +157,12 @@ async function simpleUpload(
 
       await s3Client.send(command)
 
-      console.log(`上传成功（内容有变化）→ ${key}`)
+      console.log(`✔️ ${bucket}/${key}`)
       uploadedCount++
     } catch (err) {
-      console.error(`处理失败 ${key}:`, err)
+      console.error(`❌ ${bucket}/${key}`, err)
     }
   }
-
-  console.log(
-    `\n本次处理完成：上传 ${uploadedCount} 个，跳过 ${skippedCount} 个`
-  )
 }
 
 // ────────────────────────────────────────────────
@@ -181,8 +174,6 @@ const translationPathFrom: string = './public/jsons/lesson-translations.csv'
 
 const jsonBucket: string = 'japanese-json'
 const audioBucket: string = 'japanese-audio'
-
-const now = new Date()
 
 let contents: Lesson[] = []
 Papa.parse<Lesson>(fs.readFileSync(lessonPathFrom).toString(), {
