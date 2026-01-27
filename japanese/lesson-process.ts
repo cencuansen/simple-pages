@@ -1,8 +1,12 @@
 import fs from 'fs'
 import fsPromises from 'fs/promises'
 import path from 'path'
+import { exec } from 'child_process'
+import { promisify } from 'util'
 import Papa from 'papaparse'
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
+
+const execAsync = promisify(exec)
 
 export interface Lesson {
   textId: string
@@ -10,7 +14,7 @@ export interface Lesson {
   content: string
 }
 
-// ====================== 這裡放你自己的 R2 / S3 設定 ======================
+// ====================== R2 配置 ======================
 const s3Client = new S3Client({
   region: 'auto',
   endpoint: 'https://你的account-id.r2.cloudflarestorage.com',
@@ -20,13 +24,35 @@ const s3Client = new S3Client({
   },
   forcePathStyle: true,
 })
-// ==========================================================================
+// ====================================================
 
 /**
- * 把檔案或整個資料夾的檔案上傳到 R2
- * filename === '*' → 上傳整個資料夾
- * filename 是檔名 → 只上傳單一檔案
- * 只上傳 since 之後有修改過的檔案
+ * 判断文件内容是否与 git HEAD 中的版本完全相同
+ * @returns true = 内容完全一致（无需上传）
+ *         false = 内容有差异 / 文件未被 git 追踪 / 其他情况（视为需要上传）
+ */
+async function isContentUnchanged(fullPath: string): Promise<boolean> {
+  try {
+    // git diff --quiet HEAD -- file
+    // 返回码 0 = 无差异，1 = 有差异，其他 = 错误
+    await execAsync(`git diff --quiet HEAD -- "${fullPath}"`)
+    return true
+  } catch (err: any) {
+    if (err.code === 1) {
+      // 有差异
+      return false
+    }
+    // 其他情况（未追踪、新文件、不是 git 仓库等） → 视为需要上传
+    console.warn(
+      `git diff 检查异常，视为需上传: ${fullPath}`,
+      err.message || err
+    )
+    return false
+  }
+}
+
+/**
+ * 上传逻辑（基于 git 判断内容是否真的变化）
  */
 async function simpleUpload(
   sourceBaseDir: string,
@@ -37,91 +63,95 @@ async function simpleUpload(
 ) {
   const isBulk = sourceFilename === '*'
 
-  // 處理 key 的前綴
   let prefix = keyPrefix.trim()
   if (prefix && !prefix.endsWith('/')) {
     prefix += '/'
   }
 
   const baseDir = path.resolve(sourceBaseDir)
-
   const filesToUpload: { fullPath: string; key: string }[] = []
 
   if (isBulk) {
-    // 全部檔案
     const entries = await fsPromises.readdir(baseDir, { withFileTypes: true })
-
     for (const entry of entries) {
       if (!entry.isFile()) continue
-
       const fullPath = path.join(baseDir, entry.name)
-      const stat = await fsPromises.stat(fullPath)
-
-      // 只上傳修改時間 >= since 的檔案
-      if (stat.mtime < since) continue
-
       const key = prefix + entry.name
       filesToUpload.push({ fullPath, key })
     }
   } else {
-    // 單一檔案
     const fullPath = path.join(baseDir, sourceFilename)
-
-    let stat: fs.Stats
     try {
-      stat = await fsPromises.stat(fullPath)
+      await fsPromises.access(fullPath)
+      const key = prefix + sourceFilename
+      filesToUpload.push({ fullPath, key })
     } catch {
-      console.log(`找不到檔案，跳過 → ${fullPath}`)
+      console.log(`文件不存在，跳过: ${sourceFilename}`)
       return
     }
-
-    if (stat.mtime < since) {
-      console.log(`檔案沒有更新，跳過 → ${sourceFilename}`)
-      return
-    }
-
-    const key = prefix + sourceFilename
-    filesToUpload.push({ fullPath, key })
   }
 
   if (filesToUpload.length === 0) {
-    console.log('沒有任何檔案需要上傳')
+    console.log('没有找到需要处理的文件')
     return
   }
 
-  console.log(`\n準備上傳 ${filesToUpload.length} 個檔案 到 ${bucket}`)
+  console.log(`\n检查 ${filesToUpload.length} 个文件（基于 git diff）...`)
+
+  let uploadedCount = 0
+  let skippedCount = 0
 
   for (const { fullPath, key } of filesToUpload) {
     try {
+      // 可选：先用 mtime 粗筛（加速）
+      const stat = await fsPromises.stat(fullPath)
+      if (stat.mtime < since) {
+        console.log(`mtime 未更新，跳过 → ${key}`)
+        skippedCount++
+        continue
+      }
+
+      // 核心：用 git 判断内容是否真的变化
+      const unchanged = await isContentUnchanged(fullPath)
+
+      if (unchanged) {
+        console.log(`内容与 HEAD 一致，跳过 → ${key}`)
+        skippedCount++
+        continue
+      }
+
+      // 需要上传
       const content = await fsPromises.readFile(fullPath)
 
-      // 簡單判斷 content-type（可再自行擴充）
       let contentType = 'application/octet-stream'
       const ext = path.extname(fullPath).toLowerCase()
-
       if (ext === '.csv') contentType = 'text/csv; charset=utf-8'
       else if (ext === '.json') contentType = 'application/json; charset=utf-8'
-      else if (ext === '.txt') contentType = 'text/plain; charset=utf-8'
 
       const command = new PutObjectCommand({
         Bucket: bucket,
         Key: key,
         Body: content,
         ContentType: contentType,
-        // 如果想要公開讀取，可以加上這一行（看你需求）
-        // ACL: 'public-read',
+        // ACL: 'public-read',  // 如需公开访问可取消注释
       })
 
       await s3Client.send(command)
 
-      console.log(`上傳成功 → ${key}`)
-    } catch (e) {
-      console.error(`上傳失敗 → ${key}`)
-      console.error(e)
+      console.log(`上传成功（内容有变化）→ ${key}`)
+      uploadedCount++
+    } catch (err) {
+      console.error(`处理失败 ${key}:`, err)
     }
   }
+
+  console.log(
+    `\n本次处理完成：上传 ${uploadedCount} 个，跳过 ${skippedCount} 个`
+  )
 }
 
+// ────────────────────────────────────────────────
+// 以下为原有的业务逻辑，保持不变
 // ────────────────────────────────────────────────
 
 const lessonPathFrom: string = './public/jsons/lesson-contents.csv'
@@ -149,20 +179,18 @@ let indexArr = [...new Set(contents.map((c) => c.index))].sort()
 
 for (let index of indexArr) {
   const parts = contents.filter((c) => c.index === index)
-  const result = []
-  result.push('textId,index,content')
+  const result: string[] = ['textId,index,content']
   parts.forEach((lesson) =>
     result.push(`${lesson.textId},${lesson.index},${lesson.content}`)
   )
   fs.writeFileSync(`./public/lessons/${index}.csv`, result.join('\n'))
 }
 
-// 上传 lessons 資料夾全部 csv
 ;(async () => {
   await simpleUpload('./public/lessons', '*', jsonBucket, 'lessons', now)
 })()
-// ----
 
+// translations 部分同理
 let translations: Lesson[] = []
 Papa.parse<Lesson>(fs.readFileSync(translationPathFrom).toString(), {
   header: true,
@@ -176,15 +204,13 @@ Papa.parse<Lesson>(fs.readFileSync(translationPathFrom).toString(), {
 
 for (let index of indexArr) {
   const parts = translations.filter((c) => c.index === index)
-  const result = []
-  result.push('textId,index,content')
-  parts.forEach((lesson) => {
+  const result: string[] = ['textId,index,content']
+  parts.forEach((lesson) =>
     result.push(`${lesson.textId},${lesson.index},${lesson.content}`)
-  })
+  )
   fs.writeFileSync(`./public/translations/${index}.csv`, result.join('\n'))
 }
 
-// 上传 translations 資料夾全部 csv
 ;(async () => {
   await simpleUpload(
     './public/translations',
@@ -195,22 +221,12 @@ for (let index of indexArr) {
   )
 })()
 
-// ----
-
-/**
- * 提取标记文本中的纯文本
- * @param input 原始标记字符串
- * @returns 提取后的纯文本
- */
+// pure content 部分
 function extractPlainText(input: string): string {
-  return (
-    input
-      // 去掉带锚点的方括号，只保留中间内容
-      .replace(/\[([^\]]*?)‖[^\]]*?\]/g, '$1')
-      // 将所有 {surface|reading} → surface
-      .replace(/\{([^|}]+)\|[^}]+\}/g, '$1')
-      .replace(/\s+/g, '')
-  )
+  return input
+    .replace(/\[([^\]]*?)‖[^\]]*?\]/g, '$1')
+    .replace(/\{([^|}]+)\|[^}]+\}/g, '$1')
+    .replace(/\s+/g, '')
 }
 
 let pureContents: Lesson[] = []
@@ -226,22 +242,22 @@ Papa.parse<Lesson>(fs.readFileSync(lessonPathFrom).toString(), {
   },
 })
 
-const result = []
-result.push('textId,index,content')
+const pureResult: string[] = ['textId,index,content']
 for (let content of pureContents) {
-  result.push(
+  pureResult.push(
     `${content.textId},${content.index},${extractPlainText(content.content)}`
   )
 }
-fs.writeFileSync(`./public/jsons/lesson-content-pure.csv`, result.join('\n'))
-
-// 上传 lesson-content-pure.csv 單一檔案
+fs.writeFileSync(
+  `./public/jsons/lesson-content-pure.csv`,
+  pureResult.join('\n')
+)
 ;(async () => {
   await simpleUpload(
     './public/jsons',
     'lesson-content-pure.csv',
     jsonBucket,
-    '', // 放在 bucket 根目錄
+    '',
     now
   )
 })()
