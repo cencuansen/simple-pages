@@ -276,9 +276,9 @@ const applyChoonpu = (result: string): string => {
 const finalizeNasalN = (result: string, nextCharRomaji: string): string => {
   if (!nextCharRomaji) return result + 'n';
   const nextFirst = nextCharRomaji[0]?.toLowerCase() || '';
-  if (['b','m','p'].includes(nextFirst)) {
-    return result + 'm';
-  }
+  // if (['b','m','p'].includes(nextFirst)) {
+  //   return result + 'm';
+  // }
   if (['a','i','u','e','o','y'].includes(nextFirst)) {
     return result + "n'";
   }
@@ -368,3 +368,6 @@ export const toRomaji = (text: string): string => {
 
   return result;
 };
+
+
+toRomaji('でんぱ')

@@ -6411,7 +6411,7 @@
     "sentences": [],
     "conversations": [],
     "discussions": {
-      "title": "{商品|しょうひん}{紹介|しょうかい}",
+      "title": "{商品|しょうひん}{紹|しょう}{介|かい}",
       "contents": [
         [
           {
@@ -8001,7 +8001,7 @@
     "sentences": [],
     "conversations": [],
     "discussions": {
-      "title": "{電話|でんわ}",
+      "title": "{電|でん}{話|わ}",
       "contents": [
         [
           {
@@ -8080,7 +8080,7 @@
       ]
     },
     "article": {
-      "title": "[デジタルカメラ‖i_a6ba432e7aa7]{新|しん}{製品|せいひん}{紹介|しょうかい}",
+      "title": "[デジタルカメラ‖i_a6ba432e7aa7]{新|しん}{製品|せいひん}{紹|しょう}{介|かい}",
       "contents": [
         {
           "textId": "i_9f8cdb48ebbb"

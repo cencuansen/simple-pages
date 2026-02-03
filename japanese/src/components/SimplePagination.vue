@@ -187,7 +187,7 @@ defineExpose({
 <style scoped>
 .simple-pagination {
   width: 100%;
-  overflow-y: hidden;
+  overflow-y: scroll;
   overflow-x: hidden;
   height: var(--pagination-height);
   display: flex;

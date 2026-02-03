@@ -28,12 +28,6 @@
       >
         跳转 <span class="hot-key-info">ALT+W</span>
       </el-button>
-      <el-button title="搜索" @click="toggleDialog">
-        搜索 <span class="hot-key-info">ALT+S</span>
-      </el-button>
-      <el-button title="全屏" v-if="!fullscreen" @click="toggleFullscreen">
-        全屏 <span class="hot-key-info">ALT+F</span>
-      </el-button>
       <el-button
         :type="''"
         title="播放"
@@ -54,6 +48,12 @@
         "
       >
         停止 <span class="hot-key-info">ALT+P</span>
+      </el-button>
+      <el-button title="搜索" @click="toggleDialog">
+        搜索 <span class="hot-key-info">ALT+S</span>
+      </el-button>
+      <el-button title="全屏" v-if="!fullscreen" @click="toggleFullscreen">
+        全屏 <span class="hot-key-info">ALT+F</span>
       </el-button>
     </div>
   </div>
@@ -143,5 +143,9 @@ const toggleFullscreen = () => {
 .hot-key-info {
   font-size: 0.8rem;
   margin-left: 3px;
+}
+
+.el-button--small .hot-key-info {
+  display: none;
 }
 </style>

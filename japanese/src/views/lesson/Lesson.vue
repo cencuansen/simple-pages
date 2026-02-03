@@ -444,7 +444,7 @@ h2 {
 }
 
 :deep(section .row),
-:deep(section .simple-pagination) {
+:deep(.lesson-main section .simple-pagination) {
   overflow: hidden;
 }
 
