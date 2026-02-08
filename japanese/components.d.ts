@@ -37,6 +37,7 @@ declare module 'vue' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     ElText: typeof import('element-plus/es')['ElText']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     GrammarCore: typeof import('./src/components/Grammar/GrammarCore.vue')['default']
     IconBot: typeof import('./src/components/IconBot.vue')['default']
     IconCore: typeof import('./src/components/IconCore.vue')['default']

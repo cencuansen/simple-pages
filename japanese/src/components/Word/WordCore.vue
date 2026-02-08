@@ -51,6 +51,13 @@
               class="column-word"
             >
               {{ scope.row.word }}
+              <el-tooltip
+                v-if="scope.row.origin"
+                :content="scope.row.origin"
+                placement="right"
+              >
+                <el-icon><InfoFilled /></el-icon>
+              </el-tooltip>
             </div>
             <div v-if="settingStore.kana" class="column-kana">
               {{ toHiragana(scope.row.kana) }}
@@ -132,7 +139,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column v-if="showTags" prop="tags" label="标签" width="60"/>
+      <el-table-column v-if="showTags" prop="tags" label="标签" width="60" />
       <el-table-column v-if="showRelation" label="联想" width="60">
         <template #default="scope">
           <el-button
@@ -242,6 +249,7 @@ import DictionaryCore from '@/components/Dictionary/DictionaryCore.vue'
 import WordGraph from '@/components/Graph/WordGraph.vue'
 import { isNumber } from '@/utils/common'
 import { toRomaji, toHiragana } from '@/utils/tool'
+import { InfoFilled } from '@element-plus/icons-vue'
 
 import type { Dictionary as DictionaryType } from '@/types/dictionary'
 import { storeToRefs } from 'pinia'
