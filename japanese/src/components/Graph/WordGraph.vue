@@ -1,5 +1,5 @@
 <template>
-  <div class="relation-layout">
+  <div class="relation-word">
     <div
       ref="graphBoxRef"
       class="graph-box"
@@ -399,7 +399,7 @@ watch([activeType], () => {
 </style>
 
 <style scoped>
-.relation-layout {
+.relation-word {
   display: flex;
   flex-direction: column;
   gap: 12px;
